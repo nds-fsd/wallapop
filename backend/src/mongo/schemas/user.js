@@ -7,7 +7,6 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   phone: { type: String, required: true, unique: true },
   adress: { type: String },
-  photo: { type: File },
   birthday: { type: Date },
   gender: { type: String },
 });
