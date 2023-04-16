@@ -1,0 +1,6 @@
+// title: { type: String, required: true },
+//   description: { type: String, required: true },
+//   category: { type: String, required: true, unique: true },
+//   price: { type: Number, required: true },
+//   photo: { type: File },
+//   status: { type: String },
