@@ -6,11 +6,10 @@ const CategoryItem = ({ category }) => {
 
   return (
     <div className={styles.container}>
+      <img src={category.logo}></img>
       <p type="text" className={"text"}>
         {category.name}
       </p>
-      <img src={category.logo}></img>
-      <img src={window.location.origin + category.logo}></img>
     </div>
   );
 };

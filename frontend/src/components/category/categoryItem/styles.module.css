@@ -1,14 +1,4 @@
 .container {
-  /* width: 60px;
-  height: 60px;
-  padding: 20px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  background-color: aquamarine; */
-
   width: 100px;
   height: 100px;
   display: flex;
@@ -19,4 +9,22 @@
   background-color: aquamarine;
   border-radius: 25px;
   margin: 5px;
+  filter: grayscale(100%);
+}
+
+img {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+}
+
+p {
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+
+.container:hover {
+  filter: grayscale(0);
 }
