@@ -6,6 +6,7 @@ app.use(cors());
 app.use(express.json());
 
 
+
 connectDB().then(() => console.log("Connected to database!"))
 
 const server = app.listen(3001, () => {

@@ -1,0 +1,11 @@
+.container {
+  /* margin: 8em auto 2em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center; */
+
+  background-color: royalblue;
+  display: flex;
+  flex-direction: row;
+}
