@@ -1,0 +1,133 @@
+.line {
+    background-color: grey;
+    height: 1px;
+    opacity: .5;
+    margin: 2em 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 45rem;
+    height: auto;
+    background-color:rgb(236, 230, 230);
+    border-radius: 20px;
+    padding: 2em 2em;
+    margin: auto;
+}
+
+.upperBar {
+    display: flex;
+    width: 45rem;
+    height: 3rem;
+    justify-content: flex-end;
+    gap: 2em;
+}
+
+.like {
+    width: 5rem;
+    height: 2rem;
+    border-radius: 2.5rem;
+    border: none;
+    background-color: white;
+    box-shadow: 2px 2px 4px .5px grey;
+    color: red;
+    cursor: pointer;
+}
+
+.like:hover {
+    background-color: red;
+    color: white;
+}
+
+.chat {
+    width: 5rem;
+    height: 2rem;
+    border-radius: 2.5rem;
+    border: none;
+    background-color: white;
+    box-shadow: 2px 2px 4px .5px grey;
+    cursor: pointer;
+}
+
+.chat:hover {
+    background-color: green;
+    color: white;
+}
+
+.details {
+    line-height: 1em;    
+}
+
+.category {
+    display: flex;
+    gap: 1em;
+    width: 18rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 1em;
+    border-radius: 2em;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 2px 2px 4px .5px grey;
+}
+
+.media {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 3rem;
+    background-color: white;
+    width: 75%;
+    height: max-content;
+    margin: 2em 0 4em 0;
+    padding: 0 0 .8em 0;
+    border-radius: 1em;
+    position: relative;
+    left: 5.625em;
+    box-shadow: 2px 2px 4px .5px grey;
+}
+
+.mediaIcons {
+    display: flex;
+    justify-content: center;
+    gap: 2.5em;
+    font-size: 2em;
+}
+
+.mediaIcons span:nth-child(1) {
+    color: #3a559f;
+}
+.mediaIcons span:nth-child(2) {
+    color: #55acee;
+}
+.mediaIcons span:nth-child(3) {
+    color: #1bd741;
+}
+.mediaIcons span:nth-child(4) {
+    color: #f14336;
+}
+
+.mediaIcons span:nth-child(1):hover {
+    color: #2c3f72;
+    cursor: pointer;
+}
+.mediaIcons span:nth-child(2):hover {
+    color: #3a75a1;
+    cursor: pointer;
+}
+.mediaIcons span:nth-child(3):hover {
+    color: #0e7022;
+    cursor: pointer;
+}
+.mediaIcons span:nth-child(4):hover {
+    color: #992921;
+    cursor: pointer;
+}
+
+
+
+
+

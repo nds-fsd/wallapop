@@ -13,8 +13,42 @@ const Slider = ({ images }) => {
 
     return (
     <>
-        <div className={styles.container}>
-            <button onClick={prevImage} className={styles.button}>-</button>
+        {amount >= 1 && (
+            <div className={styles.container}>
+                <button onClick={prevImage} className={styles.button}><span className='icon-undo2'></span></button>
+                {images.map((image, index) => (
+                    <div className={
+                        currentImage === index ? `${styles.slide} ${styles.active}` 
+                        : styles.slide
+                        }> 
+                        {currentImage === index && (
+                        <img key={index} src={image} alt={image} />
+                        )}
+                    </div>   
+                ))}
+                <button onClick={nextImage} className={styles.button}><span className='icon-redo2'></span></button>
+            </div>
+        )}
+
+        {amount === 0 && (
+            <div className={styles.noImage}>
+                <span className='icon-sad'></span>
+                <h1>Sorry, there are no available images to display yet</h1>
+            </div>
+        )}
+    </>
+    );
+};
+
+export default Slider;
+
+//añadir puntitos parte baja imagen, cuando pasa a la siguiente
+//evento del mouse cuando pasas por encima del boton siguiente
+//click sobre la imagen, abre la imagen completa
+
+
+{/* <div className={styles.container}>
+            <button onClick={prevImage} className={styles.button}><span className='icon-undo2'></span></button>
             
             {images.map((image, index) => (
                 <div className={
@@ -28,17 +62,11 @@ const Slider = ({ images }) => {
             ))}
 
             {amount === 0 && (
-                <div className={styles.noImage}>No available image</div>
+                <div className={styles.noImage}>
+                    <span className='icon-sad'></span>
+                    <h1>Sorry, there are no available images to display yet</h1>
+                </div>
             )}
 
-            <button onClick={nextImage} className={styles.button}>+</button>
-        </div>
-    </>
-    );
-};
-
-export default Slider;
-
-//añadir puntitos parte baja imagen, cuando pasa a la siguiente
-//evento del mouse cuando pasas por encima del boton siguiente
-//click sobre la imagen, abre la imagen completa
+            <button onClick={nextImage} className={styles.button}><span className='icon-redo2'></span></button>
+        </div> */}
