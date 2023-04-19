@@ -1,8 +1,9 @@
+import UserPage from "./components/user"
 
 function App() {
     return (
     <div>
-        Your App here
+        <UserPage />
     </div>
 
 
