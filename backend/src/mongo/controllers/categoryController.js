@@ -1,8 +1,7 @@
 const express = require("express");
 const categoryModel = require("../models/categoryModel");
 
-// Definimos el CRUD todas las funciones para poder llamarlas en el front
-
+// Definimos el CRUD todas las funciones para poder llamarlas en el Router
 const getAllCategories = async (req, res) => {
   try {
     const allCategories = await categoryModel.find();
@@ -15,7 +14,6 @@ const getAllCategories = async (req, res) => {
 const postCategory = async (req, res) => {
   const { title, logo } = req.body;
   try {
-    // const isCategoryNameFound = await categoryModel({ name });
     const catExist = await categoryModel.find({ title });
     // si existe mandamos un error
     if (catExist.length > 0) {
