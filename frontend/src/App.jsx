@@ -1,7 +1,8 @@
+import { useState, useEffect } from "react";
 import ListCategory from "./components/category/listCategory";
 
 function App() {
-  console.log("HOLA");
+ 
 
   return (
     <div className="App">

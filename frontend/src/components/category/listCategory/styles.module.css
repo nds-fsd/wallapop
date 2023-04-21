@@ -1,11 +1,41 @@
 .container {
-  /* margin: 8em auto 2em;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center; */
-
+  width: 100vw;
+  border: 1px solid red;
   display: flex;
   flex-direction: row;
   justify-content: center;
+
+  /* para que salga barra scroll */
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  /* position: absolute;
+  left: 0; */
+}
+
+.menu {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+/* Designing for scroll-bar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #09c;
 }

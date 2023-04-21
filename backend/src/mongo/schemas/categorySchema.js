@@ -1,4 +1,6 @@
-const { Schema, model } = require("mongoose");
+const { Schema } = require("mongoose");
+
+// creamos el esquema de la entidad
 
 const categorySchema = new Schema({
   id: { type: Number },
@@ -7,6 +9,4 @@ const categorySchema = new Schema({
   logo: { type: String },
 });
 
-const Category = model("product", categorySchema);
-
-module.exports = Category;
+module.exports = categorySchema;
