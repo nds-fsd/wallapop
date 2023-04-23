@@ -13,5 +13,8 @@
   "devDependencies": {
     "dotenv-cli": "^7.0.0",
     "turbo": "^1.9.1"
+  },
+  "dependencies": {
+    "react-query": "^3.39.3"
   }
 }

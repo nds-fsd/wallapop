@@ -1,66 +1,87 @@
 const express = require('express');
-
-const {products} = require('../data/index');
-const Product = require('../mongo/schemas/product')
-
+const { getAllProducts,
+  getProductById,
+  getProductByCategory,
+  postProduct,
+  updateProductById,
+  updateProductByTitle,
+  deleteProduct } = require('../mongo/controllers/productController')
 
 const productRouter = express.Router();
 
-productRouter.get('/products', async (req, res) => {
-  const allProducts = await Product.find();
-  res.status(200).json(allProducts);
-});
-
-productRouter.get('.products/:id', async (req, res) => {
-  const ProductById = await Product.findById(req.params.id);
-  if (ProductById) {
-    res.status(200).json(ProductById);
-  } else {
-    res.status(404).send("Sorry, this product doesn't exist")
-  }
-});
-
-productRouter.post('/products', async(req, res) => {
-    
-  const newProduct = new Product(products);
-  await newProduct.save()
-  res.status(201).json(newProduct)
-});
-
-
-productRouter.patch('/products/:id', async (req, res) => {
-  const updateProduct = await Product.findByIdAndUpdate(req.params.id, req.body);
-  
-  if (updateProduct) {
-    res.status(204).json(updateProduct);
-  } else {
-    res.status(404).send("Sorry, the product you are looking for doesn't match with existing ones")
-  }
-});
-
-productRouter.patch('/products/query/:title', async (req, res) => {
-  const filter = {
-    name: req.params.title
-  };
-  const updateProduct = await Product.findOneAndUpdate(filter, req.body);
-  
-  if (filter) {
-    res.status(204).json(updateProduct);
-  } else {
-    res.status(404).send("Sorry, the product you are looking for doesn't match with existing ones")
-  }
-});
-
-
-productRouter.delete('/products/:id', async (req, res) => {
-  const deleteProduct = await Product.findByIdAndDelete(req.params.id);
-  
-  if(deleteProduct) {
-    res.status(200).send("Your product has been successfully deleted");
-  } else {
-    res.status(404).send("Sorry, this product doesn't exist");
-  } 
-});
-
+productRouter.get('/', getAllProducts);
+productRouter.get('/:id', getProductById);
+productRouter.get('/:category', getProductByCategory);
+productRouter.post('/newproduct', postProduct);
+productRouter.patch('/:id', updateProductById);
+productRouter.patch('/:title', updateProductByTitle);
+productRouter.delete('/:id', deleteProduct);
 
 module.exports = productRouter;
+
+
+
+// manera común de hacer el routing
+// const {products} = require('../data/index');
+// const Product = require('../mongo/schemas/productSchema')
+
+
+// const productRouter = express.Router();
+
+// productRouter.get('/products', async (req, res) => {
+//   const allProducts = await Product.find().exec();
+//   res.status(200).json(allProducts);
+// });
+
+// productRouter.get('/products/:id', async (req, res) => {
+//   const ProductById = await Product.findById(req.params.id);
+//   if (ProductById) {
+//     res.status(200).json(ProductById);
+//   } else {
+//     res.status(404).send("Sorry, this product doesn't exist")
+//   }
+// });
+
+// productRouter.post('/products', async(req, res) => {
+//   const postProduct = new Product (req.body);
+//   await postProduct.save();
+//   res.status(201).json(postProduct);
+// });
+
+
+// productRouter.patch('/products/:id', async (req, res) => {
+//   const updateProduct = await Product.findByIdAndUpdate(req.params.id, req.body);
+  
+//   if (updateProduct) {
+//     res.status(204).json(updateProduct);
+//   } else {
+//     res.status(404).send("Sorry, the product you are looking for doesn't match with existing ones")
+//   }
+// });
+
+// productRouter.patch('/products/query/:title', async (req, res) => {
+//   const filter = {
+//     title: req.params.title
+//   };
+//   const updateProduct = await Product.findOneAndUpdate(filter, req.body);
+  
+//   if (filter) {
+//     res.status(204).json(updateProduct);
+//   } else {
+//     res.status(404).send("Sorry, the product you are looking for doesn't match with existing ones")
+//   }
+// });
+
+
+// productRouter.delete('/products/:id', async (req, res) => {
+//   const deleteProduct = await Product.findByIdAndDelete(req.params.id);
+  
+//   if(deleteProduct) {
+//     res.status(200).send("Your product has been successfully deleted");
+//   } else {
+//     res.status(404).send("Sorry, this product doesn't exist");
+//   } 
+// });
+
+
+// module.exports = productRouter;

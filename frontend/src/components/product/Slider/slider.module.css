@@ -50,17 +50,29 @@
     border: none;
     background-color: white;
     color: black;
-    opacity: 0.3;
+    opacity: 0;
     cursor: pointer;
     transition: 0.25s ease all;
 }
 
-.button::after {
-    opacity: 0.5;
-    transition: 0.25s ease all;
-} 
-
 .button:hover {
     opacity: 0.8;
     transition: 0.25s ease all;
+}
+
+.buttonOpacity {
+    width: 2em;
+    height: 2em;
+    font-size: 1.5em;
+    border-radius: 1.5em;
+    position: relative;
+    margin: -3em;
+    border: none;
+    background-color: white;
+    color: black;
+    opacity: 0.3;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: 0.25s ease all;
+    opacity: 0.3;
 }

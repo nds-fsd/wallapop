@@ -11,22 +11,33 @@ const Slider = ({ images }) => {
         setCurrentImage(currentImage === 0 ? 1 : currentImage - 1)
     }
 
+    const [isHovering, setIsHovering] = useState(false);    
+    const handleMouseEnter = () => {
+        setIsHovering(true)
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovering(false)
+    };
+
+    
+
+
     return (
     <>
         {amount >= 1 && (
             <div className={styles.container}>
-                <button onClick={prevImage} className={styles.button}><span className='icon-undo2'></span></button>
+                <button onClick={prevImage} className={isHovering ? styles.buttonOpacity : styles.button}><span className='icon-undo2'></span></button>
                 {images.map((image, index) => (
                     <div className={
                         currentImage === index ? `${styles.slide} ${styles.active}` 
-                        : styles.slide
-                        }> 
+                        : styles.slide }> 
                         {currentImage === index && (
-                        <img key={index} src={image} alt={image} />
+                        <img key={index} src={image} alt={image} onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave}/>
                         )}
                     </div>   
                 ))}
-                <button onClick={nextImage} className={styles.button}><span className='icon-redo2'></span></button>
+                <button onClick={nextImage} className={isHovering ? styles.buttonOpacity : styles.button}><span className='icon-redo2'></span></button>
             </div>
         )}
 
@@ -43,7 +54,7 @@ const Slider = ({ images }) => {
 export default Slider;
 
 //añadir puntitos parte baja imagen, cuando pasa a la siguiente
-//evento del mouse cuando pasas por encima del boton siguiente
+//evento del mouse cuando pasas por encima del boton siguiente - DONE
 //click sobre la imagen, abre la imagen completa
 
 

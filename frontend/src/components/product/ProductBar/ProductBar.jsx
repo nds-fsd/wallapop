@@ -1,11 +1,14 @@
 import React from 'react';
 import styles from './productBar.module.css';
-// import { getProductById } from '../../../utils/helpers';
-
 
 
 const ProductBar = ({ product }) => {
-
+    
+    // const { data } = useQuery('products', 
+    // () => api.get(`/products/${data._id}`)
+    // .then(res => res.data)
+    // .catch(e => console.log(e)));
+    
     return (
 
         <div className={styles.productBar}>
