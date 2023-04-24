@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, Outlet, Link, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import PurchasesOnGoing from "./purchases/PurchasesOnGoing";
 import PurchasesCompleted from "./purchases/PurchasesCompleted";
 import Stats from "./stats/Stats";
@@ -40,26 +40,15 @@ import {
   USER_SALES,
   USER_STATS,
 } from "./route-paths";
+import styles from "./index.module.css";
+import Sidebar from "./sidebar";
+
 
 const UserPage = () => {
   return (
     //<LoginNav />
-    <div>
-      <div>
-        <Link to={USER_PROFILE}>
-          <div>
-            <img></img>
-            <p>Luciano C.</p>{" "}
-            {/* El nombre se hace trayendo el nombre de usuario y cortando el apellido */}
-          </div>
-        </Link>
-        <Link to={USER_PURCHASES}>Compras</Link>
-        <Link to={USER_SALES}>Ventas</Link>
-        <Link to={USER_PRODUCTS}>Productos</Link>
-        <Link to={USER_MESSAGES}>Buzón</Link>
-        <Link to={USER_FAVORITES}>Favoritos</Link>
-        <Link to={USER_STATS}>Estadísticas</Link>
-      </div>
+    <div className={styles.userPageContainer}>
+      <Sidebar />
       <div>
         <Routes>
           <Route path={USER_PROFILE} element={<Profile />}>

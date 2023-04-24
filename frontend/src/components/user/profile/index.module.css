@@ -1,0 +1,27 @@
+.profileContainer {
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  border: solid 2px green;
+  margin-left: 1rem;
+}
+
+.profileTitle {
+}
+
+.navbarProfile {
+  display: flex;
+  width: 80vw;
+  justify-content: space-between;
+  align-items: center;
+}
+.linksProfile {
+  display: flex;
+  width: 20vw;
+  justify-content: space-between;
+}
+
+.logoutButton {
+  display: flex;
+  width: 20vw;
+}

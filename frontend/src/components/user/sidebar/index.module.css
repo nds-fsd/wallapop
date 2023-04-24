@@ -1,0 +1,8 @@
+.sideBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 12vw;
+    height: 30rem;
+    border: solid 2px red;
+  }
