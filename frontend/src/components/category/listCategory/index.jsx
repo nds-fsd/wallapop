@@ -3,7 +3,6 @@ import CategoryItem from "../categoryItem/index";
 import styles from "./styles.module.css";
 import { useState, useEffect } from "react";
 
-//children para añadirle despues otras cosas dentro de la clase
 const ListCategory = () => {
   const [categories, setCategories] = useState([]);
 
@@ -26,22 +25,23 @@ const ListCategory = () => {
   };
 
   useEffect(() => {
-    //fetchWithoutAsync()
     getCategories();
   }, []);
-  console.log("LISTCATEGORIES:" + categories);
+  // console.log("LISTCATEGORIES:" + categories);
 
   return (
     <div className={styles.container}>
-      {categories.map((category) => {
-        return (
-          <CategoryItem
-            className={styles.menu}
-            key={category.id}
-            category={category}
-          />
-        );
-      })}
+      <div className={styles.carusel}>
+        {categories.map((category) => {
+          return (
+            <CategoryItem
+              className={styles.menu}
+              key={category.id}
+              category={category}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

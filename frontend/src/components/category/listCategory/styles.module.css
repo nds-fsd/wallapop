@@ -1,26 +1,32 @@
 .container {
-  width: 100vw;
-  border: 1px solid red;
+  height: 120px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
+}
+.container > img {
+  padding-top: 15px;
+}
 
-  /* para que salga barra scroll */
+.carusel {
+  width: 70vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   overflow-x: scroll;
   overflow-y: hidden;
-
-  /* position: absolute;
-  left: 0; */
+  padding-top: 35px;
 }
 
 .menu {
+  width: 100vw;
   display: inline-block;
-  color: white;
   text-align: center;
-  padding: 14px;
-  text-decoration: none;
+  align-items: center;
 }
-/* Designing for scroll-bar */
+
+/* Designing for scroll-bar*/
 ::-webkit-scrollbar {
   width: 5px;
 }
