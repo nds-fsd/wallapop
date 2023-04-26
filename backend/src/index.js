@@ -11,6 +11,6 @@ app.use("/category", categoryRouter);
 
 connectDB().then(() => console.log("Connected to database!"));
 
-const server = app.listen(3005, () => {
+const server = app.listen(3001, () => {
   console.log("Server is up and running ⚡");
 });

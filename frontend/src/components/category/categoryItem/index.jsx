@@ -2,8 +2,7 @@ import React from "react";
 import styles from "./styles.module.css";
 
 const CategoryItem = ({ category }) => {
-  // console.log("CATEGORY");
-
+  // console.log("CATEGORY" + category);
   return (
     <div className={styles.container}>
       <img src={category.logo}></img>
