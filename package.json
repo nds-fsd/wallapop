@@ -13,5 +13,8 @@
   "devDependencies": {
     "dotenv-cli": "^7.0.0",
     "turbo": "^1.9.1"
+  },
+  "dependencies": {
+    "react-hook-form": "^7.43.9"
   }
 }

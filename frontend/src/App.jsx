@@ -1,8 +1,12 @@
+import CreateUserPage from "./components/createUser"
+import LoginPage from "./components/loginUser"
 
 function App() {
     return (
     <div>
-        Your App here
+        <CreateUserPage />
+        <LoginPage />
+      
     </div>
 
 
