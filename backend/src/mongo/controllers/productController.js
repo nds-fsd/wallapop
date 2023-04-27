@@ -3,7 +3,7 @@ const productModel = require('../models/productModel');
 
 const getAllProducts = async (req, res) => {
     try {
-        const allProducts = await productModel.find().exec();
+        const allProducts = await productModel.find().exec()
         res.status(201).json(allProducts);
     }   catch (error) {
         res.status(500).json({ message: "Can't find products"} );
@@ -11,8 +11,9 @@ const getAllProducts = async (req, res) => {
 };
 
 const getProductById = async (req, res) => {
+    const {id} = req.params
     try {
-        const productById = await productModel.findById().exec();
+        const productById = await productModel.findById(id).exec();
         res.status(200).json(productById);
     } catch (error) {
         res.status(404).json({ error: "Sorry, can't find this product" });
@@ -20,44 +21,40 @@ const getProductById = async (req, res) => {
 };
 
 const getProductByCategory = async (req, res) => {
-    const category = req.body;
+    const {category} = req.params;
+    console.log(category)
     try {
-        const productByCategory = await productModel.find({ category }).exec();
+        const productByCategory = await productModel.find({category}).exec();
         res.status(200).json(productByCategory);
+        console.log(productByCategory)
     } catch (error) {
-        res.status(500).json({ error: "Can't find this category" });
+        res.status(404).json({ error: "Sorry, can't find this category" });
+        console.log(error)
     };
 };
 
+
 // const postProduct = async (req, res) => {
-//     const {title, description, category, price, images, status} = req.body;
+//     const {body} = req
 //     try {
-//         const product = new productModel(req.body);
-//         const newProduct= await product.save();
-//         res.status(201).json(newProduct);
-//     } catch(error) {
-//         res.status(500).json({ error: "Sorry, can't post this product" });
+//         const newProduct = new productModel(body)
+//         await newProduct.save()
+//         res.status(200).json(newProduct)
+//     } catch (error) {
+//         res.status(500).json({ error: "Can't post this product"} );
 //     };
 // };
 
 const postProduct = async (req, res) => {
+    const newProduct = new productModel(req.body)
     try {
-        const newProduct = await productModel.create(req.body);
-        res.status(201).json({newProduct})
+        await newProduct.save()
+        res.status(200).json(newProduct)
     } catch (error) {
-        res.status(500).json({error: "Sorry, can't post this product"})
-    }
-}
-
-// const postProduct = async (req, res) => {
-//     try {
-//         const newProduct = new productModel(req.body)
-//         await newProduct.save()
-//         res.status(201).json(newProduct);
-//     } catch (error) {
-//         res.status(500).json({ error: "Sorry, can't post this product" });
-//     }
-// }
+        res.status(500).json({ error: "Can't post this product"} );
+        console.log(error)
+    };
+};
 
 const updateProductById = async (req, res) => {
     try {

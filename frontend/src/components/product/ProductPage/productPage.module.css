@@ -3,14 +3,13 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    text-align: center;
 }
 
 .line {
     background-color: grey;
     height: 1px;
     opacity: .5;
-    margin: 2em 0;
+    margin: 2em 0 1em 0;
 }
 
 .container {
@@ -89,12 +88,12 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 18rem;
+    width: 45rem;
     height: 3rem;
 }
 
 .expandable span:nth-child(1):hover {
-    color: #992921;
+    color: rgb(45, 160, 122);
     cursor: pointer;
 }
 
@@ -104,17 +103,30 @@
 
 .arrow {
     position: relative;
-    left: 5rem;
-    background-color: white;
+    left: 25rem;
+    background-color:rgb(236, 230, 230);
     border: none;
+
 }
 
 .active {
     position: relative;
-    left: 5rem;
-    background-color: white;
+    left: 25rem;
+    background-color:rgb(236, 230, 230);
     border: none;
     transform: rotate(180deg);
+}
+
+.priceContainer {
+    margin: 1.5em 0 0 0;
+    display: flex;
+    align-items: end;
+    gap: 0.5rem;
+}
+.price {
+    color: rgb(45, 160, 122);
+    font-size: 3rem;
+    line-height: 0.1em;
 }
 
 .media {

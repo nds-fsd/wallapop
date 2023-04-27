@@ -1,22 +1,31 @@
 import React from 'react';
 import styles from './productBar.module.css';
+import { getProductByIdHarcoded } from '../../../utils/api';
+import { useQuery } from 'react-query';
 
 
-const ProductBar = ({ product }) => {
+const ProductBar = () => {
     
-    // const { data } = useQuery('products', 
-    // () => api.get(`/products/${data._id}`)
-    // .then(res => res.data)
-    // .catch(e => console.log(e)));
+    // const id = "64478295b771f5dd3c5dab95"
+    const id ='64478295b771f5dd3c5dab95'
+
+    // const {data} = useQuery(['product', id], getProductById)
+
+    const { data, isLoading } = useQuery(['product', id], getProductByIdHarcoded)
     
     return (
-
-        <div className={styles.productBar}>
-            <div className={styles.productDetails}>
-                <p>Ordenador portátil</p>
-                <h3>890 €</h3>
+        
+       <div className={styles.productBar}>
+        {isLoading && (
+            <div>
+                <div className={styles.productDetails}>
+                    <p>{data && data.title}</p>
+                    <h3>{data && data.price}</h3>
+                </div>
+                <button className={styles.comprar}>COMPRAR</button>
             </div>
-            <button className={styles.comprar}>COMPRAR</button>
+        )}
+            
         </div>
     )
 }
@@ -24,11 +33,5 @@ const ProductBar = ({ product }) => {
 
 export default ProductBar;
 
-{/* <div className={styles.productBar}>
-    <div className={styles.productDetails}>
-        <p>{product.title</p>
-        <h3>{product.price}</h3>
-    </div>
-    <button className={styles.comprar}>COMPRAR</button>
-</div> */}
+
 

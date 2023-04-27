@@ -11,7 +11,7 @@ const productRouter = express.Router();
 
 productRouter.get('/', getAllProducts);
 productRouter.get('/:id', getProductById);
-productRouter.get('/:category', getProductByCategory);
+productRouter.get('/category/:category', getProductByCategory);
 productRouter.post('/newproduct', postProduct);
 productRouter.patch('/:id', updateProductById);
 productRouter.patch('/:title', updateProductByTitle);

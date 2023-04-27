@@ -19,8 +19,7 @@ const Slider = ({ images }) => {
     const handleMouseLeave = () => {
         setIsHovering(false)
     };
-
-    
+ 
 
 
     return (
@@ -33,7 +32,7 @@ const Slider = ({ images }) => {
                         currentImage === index ? `${styles.slide} ${styles.active}` 
                         : styles.slide }> 
                         {currentImage === index && (
-                        <img key={index} src={image} alt={image} onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave}/>
+                        <img key={index} src={image} alt={image} width={700} height={500} onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave} />
                         )}
                     </div>   
                 ))}
@@ -56,28 +55,3 @@ export default Slider;
 //añadir puntitos parte baja imagen, cuando pasa a la siguiente
 //evento del mouse cuando pasas por encima del boton siguiente - DONE
 //click sobre la imagen, abre la imagen completa
-
-
-{/* <div className={styles.container}>
-            <button onClick={prevImage} className={styles.button}><span className='icon-undo2'></span></button>
-            
-            {images.map((image, index) => (
-                <div className={
-                    currentImage === index ? `${styles.slide} ${styles.active}` 
-                    : styles.slide
-                    }> 
-                    {currentImage === index && (
-                    <img key={index} src={image} alt={image} />
-                    )}
-                </div>
-            ))}
-
-            {amount === 0 && (
-                <div className={styles.noImage}>
-                    <span className='icon-sad'></span>
-                    <h1>Sorry, there are no available images to display yet</h1>
-                </div>
-            )}
-
-            <button onClick={nextImage} className={styles.button}><span className='icon-redo2'></span></button>
-        </div> */}

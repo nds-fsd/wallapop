@@ -1,42 +1,47 @@
 import React, { useEffect, useState } from "react";
-import {api} from '../../../utils/api';
-import { useQuery, useMutation, useQueryClient, QueryClient, QueryClientProvider } from 'react-query'
+import {getProductById, getProductByIdHarcoded} from '../../../utils/api';
+import { useQuery, useMutation } from 'react-query'
 import styles from './productPage.module.css';
 import Slider from "../Slider/Slider";
 import ProductBar from "../ProductBar/ProductBar";
+import BeatLoader from 'react-spinners/BeatLoader'
+import GridLoader from 'react-spinners/GridLoader'
+import RiseLoader from 'react-spinners/RiseLoader'
+import Spinner from "../../spinner/Spinner";
 
 
 
 
 const ProductPage = () => {
+    let startTime = performance.now();
+    while (performance.now() - startTime < 500) {
+      // Do nothing for 500 ms to emulate extremely slow code
+    };
 
-    // const product = { title, description, category, price, status, images }
-    // const [isExpanded, setIsExpanded] = useState (false)
-    // const handleExpandClick = () => {
-    //     setIsExpanded(!isExpanded);
-    // };
- 
     const mockImages = [
         'https://picsum.photos/id/1/700/500',
         'https://picsum.photos/id/2/700/500',
         'https://picsum.photos/id/3/700/500',
-    ]
+    ]    
 
-    // const {data, isLoading} = useQuery('products', 
-    // () => api.get(`/products/${data._id}`)
-    // .then(res => res.data)
-    // .catch(e => console.log(e)));
+    const [isExpanded, setIsExpanded] = useState (false)
+    const handleExpandClick = () => {
+        setIsExpanded(!isExpanded);
+    };
 
-    const {data, isLoading} = useQuery('products', 
-    () => api.get('/products')
-    .then(res => res.data)
-    .catch(e => console.log(e)));
+    const id = "64478295b771f5dd3c5dab95"
+    // const id = "644796a9d7f98ce14c6ec067"
+    
+    // const {data, isLoading} = useQuery(['product', id], getProductById)
+    const {data, isLoading} = useQuery(['product', id], getProductByIdHarcoded)
 
 
     return (
     <>
         {isLoading && (
-            <div className={styles.loading}><h1>Cargando el producto seleccionado</h1></div>
+            <div>
+                <Spinner />
+            </div>
         )}
 
         {!isLoading && (
@@ -49,7 +54,10 @@ const ProductPage = () => {
                     <Slider images={mockImages} />
                 </div>
                 <div className={styles.details}>
-                    <h1>{data.price}</h1>
+                    <div className={styles.priceContainer}>
+                        <h1 className={styles.price}>{data.price}</h1>
+                        <h2>EUR</h2>
+                    </div>
                     <h2>{data.title}</h2>
                     <p>{data.status}</p>
                 </div>
@@ -58,8 +66,17 @@ const ProductPage = () => {
                     <h3>{data.category}</h3>
                 </div>
                 <div className={styles.line}></div>
-                <p>{data.description}</p>
-                {/* Insertar aquí el código del expandablemenu */}
+                <div>
+                    <div className={styles.expandable}>
+                        <h3>DESCRIPCIÓN DEL PRODUCTO</h3>
+                        <button onClick={handleExpandClick} className={
+                        !isExpanded ? styles.arrow : styles.active}><span className="icon-circle-down"></span></button>
+                    </div>
+                    {isExpanded ? '' : ''}
+                    {isExpanded && (
+                        <p>{data.description}</p>
+                    )}
+                </div>
                 <div className={styles.media}>
                     <p>Comparte este producto con tus amigos</p>
                     <div className={styles.mediaIcons}>
@@ -77,9 +94,6 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
-
-
-
 
     // <div className={styles.details}>
     //             <h1>890 €</h1>

@@ -3,4 +3,4 @@ const productSchema = require("../schemas/productSchema");
 
 const productModel = model("product", productSchema);
 
-module.exports = productModel;
+module.exports = productModel
