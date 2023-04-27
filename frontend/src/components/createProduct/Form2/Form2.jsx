@@ -2,21 +2,27 @@ import React from 'react'
 import styles from './form.module.css'
 import { useForm } from 'react-hook-form'
 import { api } from '../../../utils/api';
+import { useQueryClient } from 'react-query';
 
 
 const Form = () => {
 
     const { register, handleSubmit, reset } = useForm();
+    const queryClient = useQueryClient()
 
     const onSubmit = async (newProduct) => {
     await api.post('products/newProduct', newProduct)
     .then(res => res.data)
     .catch(error => console.log(error))
+    .finally(() => {
+        queryClient?.invalidateQueries('products')
+    })
+    reset()
     }
 
 
     return (
-
+        
         <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
             <input placeholder='Escribe el título del producto' {...register('title')}></input>
             <input placeholder='Describe el producto' {...register('description')}></input>

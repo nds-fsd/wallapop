@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient, QueryClient, QueryClientProvider } from 'react-query'
 import ProductPage from './components/product/ProductPage/ProductPage';
 import { ReactQueryDevtools } from 'react-query/devtools'
-import Form from './components/createProduct/Form/Form';
+import Form2 from './components/createProduct/Form2/Form2';
 import ModalContainer from './components/product/ModalContainer/ModalContainer';
 
 
@@ -20,7 +20,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <div>
           <ProductPage />
-          {/* <Form /> */}
+          {/* <Form2 /> */}
           {/* <ModalContainer /> */}
         </div>
       <ReactQueryDevtools initialIsOpen={false} />
