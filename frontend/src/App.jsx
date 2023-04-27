@@ -1,13 +1,11 @@
 import UserPage from "./components/user"
 
 function App() {
-    return (
+  return (
     <div>
         <UserPage />
     </div>
-
-
-  )
+  );
 }
 
-export default App
+export default App;
