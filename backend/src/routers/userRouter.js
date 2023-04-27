@@ -16,14 +16,14 @@ const {
 //   res.json(response);
 // });
 
-userRouter.post("/user/register", userRegister);
+userRouter.post("/register", userRegister);
 
-userRouter.post("/user/login", userLogin);
+userRouter.post("/login", userLogin);
 
-userRouter.get("/user/:id", findUserByID);
+userRouter.get("/:id", findUserByID);
 
-userRouter.patch("/user/:id", jwtMiddleware, modifyUserByID);
+userRouter.patch("/:id", jwtMiddleware, modifyUserByID);
 
-userRouter.delete("/user/:id", jwtMiddleware, deleteUserByID);
+userRouter.delete("/:id", jwtMiddleware, deleteUserByID);
 
 module.exports = userRouter;
