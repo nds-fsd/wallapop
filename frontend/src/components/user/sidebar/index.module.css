@@ -1,8 +1,19 @@
 .sideBar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 12vw;
-    height: 30rem;
-    border: solid 2px red;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 12vw;
+  height: 30rem;
+}
+
+.profileLink img {
+  width: 3rem;
+  height: auto;
+  border-radius: 100%;
+}
+
+.profileLink {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}

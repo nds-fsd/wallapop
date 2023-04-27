@@ -20,8 +20,8 @@ const ProfileAccount = () => {
           </label>
           <label>
             Sexo
-            <input type="radio" value="Hombre" {...register("gender")} />
-            <input type="radio" value="Mujer" {...register("gender")} />
+            <input type="radio" value="Hombre" {...register("gender")} /> Hombre
+            <input type="radio" value="Mujer" {...register("gender")} /> Mujer
           </label>
           <input type="submit" value="Guardar" />
         </form>

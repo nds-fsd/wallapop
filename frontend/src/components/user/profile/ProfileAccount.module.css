@@ -1,6 +1,4 @@
 .formUser {
-    border: solid 2px black;
-    display: flex;
-    flex-direction: column;
-  
-  }
+  display: flex;
+  flex-direction: column;
+}

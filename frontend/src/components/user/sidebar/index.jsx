@@ -14,13 +14,14 @@ import {
   USER_STATS,
 } from "../route-paths";
 import styles from "./index.module.css";
+import image from "../../../assets/images/pexels-pixabay-415829.jpg";
 
 const Sidebar = () => {
   return (
     <div className={styles.sideBar}>
       <Link to={USER_PROFILE}>
         <div className={styles.profileLink}>
-          <img src="../assets/images/pexels-pixabay-415829.jpg"></img>
+          <img src={image} />
           <p>Maria P.</p>{" "}
           {/* El nombre se hace trayendo el nombre de usuario y cortando el apellido */}
         </div>
@@ -29,7 +30,6 @@ const Sidebar = () => {
         <GiShakingHands /> Compras
       </Link>
       <Link to={USER_SALES}>
-        {" "}
         <GiPriceTag /> Ventas
       </Link>
       <Link to={USER_PRODUCTS}>
