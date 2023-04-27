@@ -19,8 +19,8 @@ function App() {
     
       <QueryClientProvider client={queryClient}>
         <div>
-          <ProductPage />
-          {/* <Form2 /> */}
+          {/* <ProductPage /> */}
+          <Form2 />
           {/* <ModalContainer /> */}
         </div>
       <ReactQueryDevtools initialIsOpen={false} />

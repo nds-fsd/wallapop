@@ -1,15 +1,18 @@
 import React from 'react'
 import styles from './form.module.css'
 import { useForm } from 'react-hook-form'
-import { api } from '../../../utils/api';
-import { useQueryClient } from 'react-query';
+import { postProduct } from '../../../utils/api';
+import { useQuery} from 'react-query';
+import Spinner from '../../spinner/Spinner';
 
 
-const Form = () => {
+const Form2 = () => {
 
-    const { register, handleSubmit, reset } = useForm();
-    const queryClient = useQueryClient()
+    // const onSubmit =() => {
+    //     useQuery(['product'], postProduct, reset)}
+    // const { register, handleSubmit, reset } = useForm();
 
+    const { data, isLoading } = onSubmit
     const onSubmit = async (newProduct) => {
     await api.post('products/newProduct', newProduct)
     .then(res => res.data)
@@ -20,10 +23,19 @@ const Form = () => {
     reset()
     }
 
-
-    return (
+   
         
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
+        
+    return (
+    <>
+        {isLoading && (
+            <div>
+                <Spinner />
+            </div>
+        )}
+
+        {!isLoading && (
+            <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
             <input placeholder='Escribe el título del producto' {...register('title')}></input>
             <input placeholder='Describe el producto' {...register('description')}></input>
             <input type='number' {...register('price')} ></input>
@@ -54,11 +66,11 @@ const Form = () => {
             <input {...register('status')} placeholder='Estado del producto'></input>
             <input type='submit' value='Crear'></input>
             <input type='submit' value='Sube tus imágenes'></input>
-
-
         </form>
+        )}
+    </>   
     )
 };
 
 
-export default Form;
+export default Form2
