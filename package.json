@@ -12,9 +12,21 @@
   },
   "devDependencies": {
     "dotenv-cli": "^7.0.0",
+    "prettier": "2.8.7",
     "turbo": "^1.9.1"
   },
   "dependencies": {
+
     "@monorepo/frontend": "^0.0.0"
+
+    "react-query": "^3.39.3",
+    "react-spinners": "^0.13.8",
+    "react-hook-form": "^7.43.9",
+    "bcrypt": "^5.1.0",
+    "jsonwebtoken": "^9.0.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
+    "react-router-dom": "^6.10.0"
+
   }
 }
