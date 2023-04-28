@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {getProductById, getProductByIdHarcoded} from '../../../utils/api';
+import {getProductByIdHarcoded} from '../../../utils/api';
 import { useQuery, useMutation } from 'react-query'
 import styles from './productPage.module.css';
 import Slider from "../Slider/Slider";
@@ -29,11 +29,12 @@ const ProductPage = () => {
         setIsExpanded(!isExpanded);
     };
 
-    const id = "64478295b771f5dd3c5dab95"
+    const id ="64478295b771f5dd3c5dab95"
     // const id = "644796a9d7f98ce14c6ec067"
     
     // const {data, isLoading} = useQuery(['product', id], getProductById)
     const {data, isLoading} = useQuery(['product', id], getProductByIdHarcoded)
+    console.log(data)
 
 
     return (
@@ -55,15 +56,15 @@ const ProductPage = () => {
                 </div>
                 <div className={styles.details}>
                     <div className={styles.priceContainer}>
-                        <h1 className={styles.price}>{data.price}</h1>
+                        <h1 className={styles.price}>{data && data.price}</h1>
                         <h2>EUR</h2>
                     </div>
-                    <h2>{data.title}</h2>
-                    <p>{data.status}</p>
+                    <h2>{data && data.title}</h2>
+                    <p>{data && data.status}</p>
                 </div>
                 <div className={styles.category}>
                     <span className='icon-display'></span>
-                    <h3>{data.category}</h3>
+                    <h3>{data && data.category}</h3>
                 </div>
                 <div className={styles.line}></div>
                 <div>
@@ -74,7 +75,7 @@ const ProductPage = () => {
                     </div>
                     {isExpanded ? '' : ''}
                     {isExpanded && (
-                        <p>{data.description}</p>
+                        <p>{data && data.description}</p>
                     )}
                 </div>
                 <div className={styles.media}>
@@ -86,7 +87,7 @@ const ProductPage = () => {
                         <span className="icon-mail2"></span>
                     </div>  
                 </div>
-                    <ProductBar data={data}/>
+                    <ProductBar data={data && data}/>
             </div>
             )}  
     </>

@@ -8,20 +8,20 @@ import Spinner from '../../spinner/Spinner';
 
 const Form2 = () => {
 
-    // const onSubmit =() => {
-    //     useQuery(['product'], postProduct, reset)}
-    // const { register, handleSubmit, reset } = useForm();
+    const onSubmit =() => {
+        useQuery(['product'], postProduct, reset)}
+    const { register, handleSubmit, reset } = useForm();
 
-    const { data, isLoading } = onSubmit
-    const onSubmit = async (newProduct) => {
-    await api.post('products/newProduct', newProduct)
-    .then(res => res.data)
-    .catch(error => console.log(error))
-    .finally(() => {
-        queryClient?.invalidateQueries('products')
-    })
-    reset()
-    }
+    // const { data, isLoading } = onSubmit
+    // const onSubmit = async (newProduct) => {
+    // await api.post('products/newProduct', newProduct)
+    // .then(res => res.data)
+    // .catch(error => console.log(error))
+    // .finally(() => {
+    //     queryClient?.invalidateQueries('products')
+    // })
+    // reset()
+    // }
 
    
         

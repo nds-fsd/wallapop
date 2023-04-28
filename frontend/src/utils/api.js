@@ -7,8 +7,8 @@ export const api = axios.create({
 });
 
 
-export const getProductById = async (queryKey) => {
-    await api.get(`/products/${queryKey[1]}`)
+export const getProductById = (queryKey) => {
+    return api.get(`/products/${queryKey[1]}`)
     .then(res => res.data)
     .catch(error => {console.log(error)
     return[]})
@@ -21,17 +21,17 @@ export const getProductById = async (queryKey) => {
 //     return[]})
 // }
 
-export const getProductByIdHarcoded = async () => {
-    await api.get('/products/64478295b771f5dd3c5dab95')
+export const getProductByIdHarcoded = () => {
+    return api.get('/products/64478295b771f5dd3c5dab95')
     .then(res => res.data)
     .catch(error => {console.log(error)
     return[]})
 };
 
 
-export const postProduct = async () => {
+export const postProduct = () => {
     const queryClient = useQueryClient()
-    await api.post('/products/newProduct')
+    return api.post('/products/newProduct')
     .then(res => res.data)
     .catch(error => {console.log(error)
     .finally(() => {

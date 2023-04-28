@@ -26,8 +26,8 @@ function App() {
           <CreateUserPage />
           <LoginPage />
           <UserPage />
-          {/* <ProductPage /> */}
           <Form2 />
+          <ProductPage />
           {/* <ModalContainer /> */}
           <ListCategory />
           <ListProducts />
