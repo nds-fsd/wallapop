@@ -1,0 +1,37 @@
+import React from 'react';
+import styles from './productBar.module.css';
+import { getProductByIdHarcoded } from '../../../utils/api';
+import { useQuery } from 'react-query';
+
+
+const ProductBar = () => {
+    
+    // const id = "64478295b771f5dd3c5dab95"
+    const id ='64478295b771f5dd3c5dab95'
+
+    // const {data} = useQuery(['product', id], getProductById)
+
+    const { data, isLoading } = useQuery(['product', id], getProductByIdHarcoded)
+    
+    return (
+        
+       <div className={styles.productBar}>
+        {isLoading && (
+            <div>
+                <div className={styles.productDetails}>
+                    <p>{data && data.title}</p>
+                    <h3>{data && data.price}</h3>
+                </div>
+                <button className={styles.comprar}>COMPRAR</button>
+            </div>
+        )}
+            
+        </div>
+    )
+}
+
+
+export default ProductBar;
+
+
+

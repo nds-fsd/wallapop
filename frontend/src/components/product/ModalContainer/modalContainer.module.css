@@ -1,0 +1,53 @@
+.line {
+    background-color: grey;
+    height: 1px;
+    opacity: .5;
+    margin: 2em 0 1em 0;
+}
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    width: 50rem;
+    min-height: 30rem;
+    background-color: white;
+    position: relative;
+    border-radius: 1em;
+    padding:  0 2em;
+    box-shadow: 5px 5px 5px .5px rgb(78, 78, 78);
+}
+
+.title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid grey;
+}
+
+.close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background-color:white;
+    border: none;
+}
+
+.close span:nth-child(1) {
+    font-size: 1.2em;
+}
+
+.close span:nth-child(1):hover {
+    color: rgb(45, 160, 122);
+    cursor: pointer;
+}
+
+

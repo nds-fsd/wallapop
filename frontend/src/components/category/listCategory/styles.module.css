@@ -1,0 +1,47 @@
+.container {
+  height: 120px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.container > img {
+  padding-top: 15px;
+}
+
+.carusel {
+  width: 70vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding-top: 35px;
+}
+
+.menu {
+  width: 100vw;
+  display: inline-block;
+  text-align: center;
+  align-items: center;
+}
+
+/* Designing for scroll-bar*/
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #09c;
+}
