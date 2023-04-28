@@ -8,4 +8,4 @@ services:
       MONGO_INITDB_ROOT_USERNAME: monorepo
       MONGO_INITDB_ROOT_PASSWORD: monorepo
     ports:
-      - "27035:27017"
+      - "27040:27017"
