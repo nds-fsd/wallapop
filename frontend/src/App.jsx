@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient, QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
@@ -7,7 +8,7 @@ import UserPage from "./components/user"
 import ModalContainer from './components/product/ModalContainer/ModalContainer';
 import ProductPage from './components/product/ProductPage/ProductPage';
 import Form2 from './components/createProduct/Form2/Form2';
-
+import Navbar from './components/home/navbar'
 
 
 function App() {
@@ -20,18 +21,21 @@ function App() {
     
       <QueryClientProvider client={queryClient}>
         <div>
+          <Navbar/>
           <CreateUserPage />
           <LoginPage />
           <UserPage />
           {/* <ProductPage /> */}
           <Form2 />
           {/* <ModalContainer /> */}
+          
         </div>
       <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </>
 
   )
+
 }
 
 export default App;
