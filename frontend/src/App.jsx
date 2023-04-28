@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import ListCategory from "./components/category/listCategory";
+import ListProducts from "./components/product/listProduct";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
@@ -11,7 +12,6 @@ function App() {
       {/* <ReactQueryDevtools> */}
       <div className="App">
         <h1>LANDING PAGE</h1>
-        <ListCategory />
       </div>
       {/* </ReactQueryDevtools> */}
     </QueryClientProvider>
