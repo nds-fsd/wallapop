@@ -1,0 +1,10 @@
+.icono {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+.icono:hover {
+  background-color: orange;
+}

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient, QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
@@ -10,6 +11,8 @@ import Form2 from './components/createProduct/Form2/Form2';
 import Navbar from './components/home/navbar'
 import ListCategory from "./components/category/listCategory";
 import ListProducts from "./components/product/listProduct";
+import Map from "./components/createProduct/components/map/Map.jsx";
+import Postproform from "./components/createProduct/components/Form/Form.jsx";
 
 
 function App() {
@@ -31,7 +34,8 @@ function App() {
           {/* <ModalContainer /> */}
           <ListCategory />
           <ListProducts />
-          
+          <Postproform />
+          <Map />
         </div>
       <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
@@ -52,4 +56,5 @@ export default App;
 //       <Route path="" element={<ProductImages />}  />
 //   </Routes>
 // </div>
+
 
