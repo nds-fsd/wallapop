@@ -12,7 +12,7 @@ export const getProductById = async (queryKey) => {
     .then(res => res.data)
     .catch(error => {console.log(error)
     return[]})
-}
+};
 
 // export const getProductByIdHarcoded = () => {
 //     return api.get('/products/64478295b771f5dd3c5dab95')
@@ -26,7 +26,7 @@ export const getProductByIdHarcoded = async () => {
     .then(res => res.data)
     .catch(error => {console.log(error)
     return[]})
-}
+};
 
 
 export const postProduct = async () => {
@@ -38,4 +38,5 @@ export const postProduct = async () => {
         queryClient?.invalidateQueries('products')
     })
     return[]})
-}
+};
+

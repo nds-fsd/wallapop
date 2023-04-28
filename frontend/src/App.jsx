@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient, QueryClient, QueryClientProvider } from 'react-query'
-import ProductPage from './components/product/ProductPage/ProductPage';
 import { ReactQueryDevtools } from 'react-query/devtools'
-import Form2 from './components/createProduct/Form2/Form2';
+import CreateUserPage from "./components/createUser"
+import LoginPage from "./components/loginUser"
+import UserPage from "./components/user"
 import ModalContainer from './components/product/ModalContainer/ModalContainer';
-
-
+import ProductPage from './components/product/ProductPage/ProductPage';
+import Form2 from './components/createProduct/Form2/Form2';
 
 
 
@@ -19,6 +20,9 @@ function App() {
     
       <QueryClientProvider client={queryClient}>
         <div>
+          <CreateUserPage />
+          <LoginPage />
+          <UserPage />
           {/* <ProductPage /> */}
           <Form2 />
           {/* <ModalContainer /> */}
@@ -32,12 +36,7 @@ function App() {
 
 export default App;
 
-// // Posible enroutado para la página de producto:
-// // Dentro de cada página de producto, que haya un outlet para renderizar las imágenes dentro del slider
-// // Al clickar sobre una imagen que se abra otra página para ver las imágenes más grandes
-// // Barra estática como footer que muestre el title, precio y botón de comprar - DONE
-// // Menú desplegable para la descripción del producto
-
+// // Posible enroutado para la página de producto ?? :
 
 // <div className='main-router'>
 //   <Routes>
@@ -46,5 +45,4 @@ export default App;
 //       <Route path="" element={<ProductImages />}  />
 //   </Routes>
 // </div>
-
 
