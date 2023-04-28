@@ -1,5 +1,5 @@
 .container {
-    width: 700px;
+    width: 720px;
     height: 500px;
     display: flex;
     flex-direction: row;
@@ -8,7 +8,7 @@
 }
 
 .noImage {
-    width: 700px;
+    width: 720px;
     height: 500px;
     background-color: grey;
     color: white;
@@ -30,7 +30,7 @@
 }
 
 .slide {
-    max-width: 700px;
+    max-width: 720px;
     height: 500px;
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
@@ -75,5 +75,13 @@
     opacity: 0.8;
     transition: 0.25s ease all;
     opacity: 0.3;
+}
+
+.imgSlider {
+    width: 720px;
+    height: 500px;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
 }
 

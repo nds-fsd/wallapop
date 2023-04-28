@@ -24,11 +24,11 @@ function App() {
     
       <QueryClientProvider client={queryClient}>
         <div>
-          <Navbar/>
+          {/* <Navbar/>
           <CreateUserPage />
           <LoginPage />
-          <UserPage />
-          {/* <ProductPage /> */}
+          <UserPage /> */}
+          <ProductPage />
           {/* <ModalContainer /> */}
           {/* <ListCategory /> */}
           {/* <ListProducts /> */}

@@ -32,7 +32,7 @@ const Slider = ({ images }) => {
                         currentImage === index ? `${styles.slide} ${styles.active}` 
                         : styles.slide }> 
                         {currentImage === index && (
-                        <img key={index} src={image} alt={image} width={700} height={500} onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+                        <img key={index} src={image} alt={image}  onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave} className={styles.imgSlider}/>
                         )}
                     </div>   
                 ))}
