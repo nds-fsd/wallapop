@@ -22,7 +22,9 @@ const ProductPage = () => {
         'https://picsum.photos/id/1/700/500',
         'https://picsum.photos/id/2/700/500',
         'https://picsum.photos/id/3/700/500',
-    ]    
+    ]  
+    
+
 
     const [isExpanded, setIsExpanded] = useState (false)
     const handleExpandClick = () => {
@@ -34,7 +36,7 @@ const ProductPage = () => {
     
     // const {data, isLoading} = useQuery(['product', id], getProductById)
     const {data, isLoading} = useQuery(['product', id], getProductByIdHarcoded)
-    console.log(data)
+    // console.log(data)
 
 
     return (
@@ -51,9 +53,7 @@ const ProductPage = () => {
                     <button className={styles.like}><span className='icon-heart1'></span></button>
                     <button className={styles.chat}>CHAT</button>            
                 </div>
-                <div className={styles.sliderContainer}>
-                    <Slider images={mockImages} />
-                </div>
+                <Slider images={mockImages}/>
                 <div className={styles.details}>
                     <div className={styles.priceContainer}>
                         <h1 className={styles.price}>{data && data.price}</h1>

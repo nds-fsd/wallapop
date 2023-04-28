@@ -23,10 +23,6 @@
     margin: auto;
 }
 
-.sliderContainer{
-    width: 100%;
-    height: 100%; 
-}
 .upperBar {
     display: flex;
     width: 45rem;

@@ -13,11 +13,10 @@ const ProductBar = () => {
 
     const { data, isLoading } = useQuery(['product', id], getProductByIdHarcoded)
     
-    return (
-        
-       <div className={styles.productBar}>
-        {isLoading && (
-            <div>
+    return (    
+        <>
+        {!isLoading && (
+            <div className={styles.productBar}>
                 <div className={styles.productDetails}>
                     <p>{data && data.title}</p>
                     <h3>{data && data.price}</h3>
@@ -25,8 +24,7 @@ const ProductBar = () => {
                 <button className={styles.comprar}>COMPRAR</button>
             </div>
         )}
-            
-        </div>
+        </>
     )
 }
 

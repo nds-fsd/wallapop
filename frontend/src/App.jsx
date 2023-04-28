@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient, QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
@@ -29,13 +28,12 @@ function App() {
           <CreateUserPage />
           <LoginPage />
           <UserPage />
-          <Form2 />
-          <ProductPage />
+          {/* <ProductPage /> */}
           {/* <ModalContainer /> */}
-          <ListCategory />
-          <ListProducts />
-          <Postproform />
-          <Map />
+          {/* <ListCategory /> */}
+          {/* <ListProducts /> */}
+          {/* <Postproform />
+          <Map /> */}
         </div>
       <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
