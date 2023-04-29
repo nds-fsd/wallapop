@@ -1,17 +1,22 @@
 .container {
+    position: relative;
+    top: .5rem;
     width: 720px;
     height: 500px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background-color: var(--blue-light);
+    border-radius: 2rem;
 }
 
 .noImage {
     width: 720px;
     height: 500px;
     background-color: grey;
-    color: white;
+    border-radius: 2rem;
+    color: var(--yellow-light);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -78,10 +83,12 @@
 }
 
 .imgSlider {
-    width: 720px;
-    height: 500px;
-    margin-top: 0;
+    width: 700px;
+    height: 480px;
+    margin-top: 10px;
     display: flex;
     align-items: center;
+    border-radius: 1.5em;
+    box-shadow: 2px 2px 3px 0.5px var(--blue-light);
 }
 
