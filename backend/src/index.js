@@ -2,9 +2,9 @@
 const express = require('express');
 const {connectDB} =  require("./mongo/connection");
 const cors = require('cors');
-const productRouter = require('./routers/productRouter')
-const userRouter = require("./routers/userRouter");
-const categoryRouter = require("./routers/categoryRouter");
+const productRouter = require('./mongo/routers/productRouter')
+const userRouter = require("./mongo/routers/userRouter");
+const categoryRouter = require("./mongo/routers/categoryRouter");
 
 const app = express();
 

@@ -2,7 +2,7 @@ const express = require("express");
 const {
   getAllCategories,
   postCategory,
-} = require("../mongo/controllers/categoryController");
+} = require("../controllers/categoryController");
 
 const categoryRouter = express.Router();
 

@@ -1,6 +1,5 @@
 const express = require("express");
-const User = require("../mongo/schemas/user");
-const jwtMiddleware = require("../security/jwtMiddleware");
+const jwtMiddleware = require("../../security/jwtMiddleware");
 const userRouter = express.Router();
 const {
   userLogin,

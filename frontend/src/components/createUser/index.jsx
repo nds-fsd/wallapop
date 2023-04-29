@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import './createUser.module.css';
+import styles from './createUser.module.css';
 
 const CreateUserPage = () => {
   const {
@@ -25,8 +25,8 @@ const CreateUserPage = () => {
   };
 
   return (
-    <div className="createUserContainer">
-      <div className="formContainer">
+    <div className={styles.createUserContainer}>
+      <div className={styles.formContainer}>
         <h1>Regístrate</h1>
         <form onSubmit={handleSubmit(handleCreateUser)}>
           <input
@@ -97,7 +97,7 @@ const CreateUserPage = () => {
             {...register('gender')}
           />
           {errors.gender && <p>{errors.gender.message}</p>}
-          <button className="createUserButton" type="submit">
+          <button className={styles.createUserButton} type="submit">
             Regístrate
           </button>
         </form>
