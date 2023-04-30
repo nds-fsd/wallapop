@@ -61,6 +61,7 @@ const ProductPage = () => {
                     </div>
                     <h2>{data && data.title}</h2>
                     <p>{data && data.status}</p>
+                    
                 </div>
                 <div className={styles.category}>
                     <span className='icon-display'></span>

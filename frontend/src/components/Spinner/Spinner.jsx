@@ -20,9 +20,9 @@ const Spinner = () => {
     <>
         {loading && (
             <div className={styles.spinner}>
-                <BeatLoader color={'rgb(45, 160, 122)'} loading={loading} size={30} />
-                {/* <GridLoader color={'rgb(45, 160, 122)'} loading={loading} size={40} /> */}
-                {/* <RiseLoader color={'rgb(45, 160, 122)'} loading={loading} size={20} /> */}
+                <BeatLoader color={'rgb(40, 51, 158)'} loading={loading} size={30} />
+                {/* <GridLoader color={'rgb(40, 51, 158)'} loading={loading} size={40} /> */}
+                {/* <RiseLoader color={'rgb(40, 51, 158)'} loading={loading} size={20} /> */}
             </div>
         )}
     </>     

@@ -3,8 +3,8 @@
 @tailwind utilities; */
 
 #root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 2;
+  font-family: 'Roboto', sans-serif;  
+  line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -12,8 +12,65 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   min-height: 100vh;
+  color: var(--yellow-light);
+  --yellow-main: #EBA905;
+  --yellow-light: #fcf7e3;
+  --yellow-dark: #9E8837;
+  --blue-dark: #28339E;
+  --blue-light: #6A76EB;
+  background-color: var(--yellow-light);
+  
 }
 
 body {
   height: 100vh;
+  margin: 0;
 }
+
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 1.15rem;
+}
+
+h5 {
+  font-size: 1.1rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  font-size: 0.9rem;
+}
+
+.button {
+  width: 12rem;
+  height: 2.5rem;
+  border-radius: 2.5rem;
+  border: none;
+  box-shadow: 2px 2px 4px .5px var(--blue-light);
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--blue-light);
+  color: white;
+}
+
+
+

@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    gap: 20rem;
+    gap: 3rem;
     width: 100%;
     height: max-content;
     background-color: white;
@@ -17,22 +17,24 @@
     margin: 1em 0 0 0;
     line-height: 0.4em;
     font-size: .9em;
+    color: black;
 }
 
 .comprar {
+    background-color: var(--yellow-main);
+    color: white;
+    box-shadow: 2px 2px 4px .5px var(--yellow-dark);
     width: 12rem;
     height: 2.5rem;
     border-radius: 2.5rem;
     border: none;
-    background-color: aquamarine;
-    box-shadow: 2px 2px 4px .5px grey;
-    cursor: pointer;
     font-weight: bold;
     font-size: 1.2em;
 }
 
 .comprar:hover {
-    background-color: blue;
+    background-color: var(--blue-light);
+    box-shadow: 2px 2px 4px .5px var(--blue-light);
     color: white;
     cursor: pointer;
 }
