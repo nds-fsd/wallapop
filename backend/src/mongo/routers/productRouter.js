@@ -5,7 +5,7 @@ const { getAllProducts,
   postProduct,
   updateProductById,
   updateProductByTitle,
-  deleteProduct } = require('../mongo/controllers/productController')
+  deleteProduct } = require('../controllers/productController')
 
 const productRouter = express.Router();
 
