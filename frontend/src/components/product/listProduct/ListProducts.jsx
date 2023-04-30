@@ -1,7 +1,7 @@
-import styles from "./styles.module.css";
+import styles from "./listProducts.module.css";
 import { api } from "../../../utils/api";
 import { useQuery, useQueryClient } from "react-query";
-import Product from "../product/index";
+import Product from "../product/Product";
 
 const productos = [
   {

@@ -1,6 +1,6 @@
 import React from "react";
-import CategoryItem from "../categoryItem/index";
-import styles from "./styles.module.css";
+import CategoryItem from "../categoryItem/CategoryItem";
+import styles from "./listCategory.module.css";
 import { api } from "../../../utils/api";
 import { useQuery } from "react-query";
 

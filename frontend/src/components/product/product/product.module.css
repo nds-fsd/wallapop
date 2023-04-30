@@ -7,50 +7,54 @@
 
 .card {
   border-radius: 1rem;
-  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2); */
+  box-shadow: 2px 2px 2px 1px var(--blue-light);
   display: flex;
-  margin: 0.5rem;
-  padding: 0px;
+  margin: 0.7rem;
   overflow: hidden;
-  width: 38rem;
+  width: 42rem;
   height: 16rem;
+  background-color: var(--blue-dark);
 }
 
 .card h6 {
   letter-spacing: 0.1rem;
   margin: 0px;
-  opacity: 0.7;
-  font-size: 14px;
+  /* opacity: 0.7; */
+  font-size: 1em;
 }
 .card h4 {
   letter-spacing: 0.1rem;
   padding: 0px;
   margin: 0px;
   font-style: bold;
-  font-size: 21px;
+  font-size: 2em;
 }
 .card h2 {
   font-size: 0.7rem;
-  opacity: 0.4;
+  /* opacity: 0.4; */
   text-transform: uppercase;
 }
 
 .columnLeft {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 16rem;
+  height: 17rem;
+  background-color: var(--blue-light);
 }
 
 .columnLeft img {
-  width: 258px;
-  height: 20rem;
-  margin: 0px;
-  padding: 0px;
+  position: relative;
+  top: -1rem;
+  left: 0.65rem;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 1em 0 0 0.8em;
 }
 .columnRight {
+  width: 25rem;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
+

@@ -8,11 +8,10 @@ import ModalContainer from './components/product/ModalContainer/ModalContainer';
 import ProductPage from './components/product/ProductPage/ProductPage';
 import Form2 from './components/createProduct/Form2/Form2';
 import Navbar from './components/home/navbar'
-import ListCategory from "./components/category/listCategory";
-import ListProducts from "./components/product/listProduct";
+import ListCategory from "./components/category/listCategory/ListCategory";
+import ListProducts from "./components/product/listProduct/ListProducts";
 import Map from "./components/createProduct/map/Map.jsx";
-import Postproform from "./components/createProduct/components/Form/Form.jsx";
-
+import Postproform from './components/createProduct/form/Form';
 
 function App() {
 
