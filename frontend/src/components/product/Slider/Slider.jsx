@@ -27,12 +27,12 @@ const Slider = ({ images }) => {
         {amount >= 1 && (
             <div className={styles.container}>
                 <button onClick={prevImage} className={isHovering ? styles.buttonOpacity : styles.button}><span className='icon-undo2'></span></button>
-                {images.map((image, index) => (
+                {images.map((image, id) => (
                     <div className={
-                        currentImage === index ? `${styles.slide} ${styles.active}` 
+                        currentImage === id ? `${styles.slide} ${styles.active}` 
                         : styles.slide }> 
-                        {currentImage === index && (
-                        <img key={index} src={image} alt={image}  onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave} className={styles.imgSlider}/>
+                        {currentImage === id && (
+                        <img key={id} src={image} alt={image} onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave} className={styles.imgSlider}/>
                         )}
                     </div>   
                 ))}

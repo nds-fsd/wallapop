@@ -8,6 +8,7 @@ import BeatLoader from 'react-spinners/BeatLoader'
 import GridLoader from 'react-spinners/GridLoader'
 import RiseLoader from 'react-spinners/RiseLoader'
 import Spinner from "../../spinner/Spinner";
+import Keywords from "../Keywords/Keywords";
 
 
 
@@ -24,20 +25,17 @@ const ProductPage = () => {
         'https://picsum.photos/id/3/700/500',
     ]  
     
-
-
     const [isExpanded, setIsExpanded] = useState (false)
     const handleExpandClick = () => {
         setIsExpanded(!isExpanded);
     };
 
-    const id ="64478295b771f5dd3c5dab95"
+    const id ="644eabfc231e21681d117b7b"
     // const id = "644796a9d7f98ce14c6ec067"
     
     // const {data, isLoading} = useQuery(['product', id], getProductById)
     const {data, isLoading} = useQuery(['product', id], getProductByIdHarcoded)
-    // console.log(data)
-
+    console.log(data)
 
     return (
     <>
@@ -54,15 +52,18 @@ const ProductPage = () => {
                     <button className={styles.chat}>CHAT</button>            
                 </div>
                 <Slider images={mockImages}/>
+                <div className={styles.detailsContainer}>
                 <div className={styles.details}>
                     <div className={styles.priceContainer}>
                         <h1 className={styles.price}>{data && data.price}</h1>
                         <h2>EUR</h2>
                     </div>
                     <h2>{data && data.title}</h2>
-                    <p>{data && data.status}</p>
-                    
+                    <p>{data && data.status}</p>                  
                 </div>
+                <Keywords data={data && data}/>
+                </div>
+                
                 <div className={styles.category}>
                     <span className='icon-display'></span>
                     <h3>{data && data.category}</h3>

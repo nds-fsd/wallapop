@@ -22,7 +22,7 @@ export const getProductById = (queryKey) => {
 // }
 
 export const getProductByIdHarcoded = () => {
-    return api.get('/products/64478295b771f5dd3c5dab95')
+    return api.get('/products/644eabfc231e21681d117b7b')
     .then(res => res.data)
     .catch(error => {console.log(error)
     return[]})

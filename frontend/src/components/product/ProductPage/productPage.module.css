@@ -68,8 +68,14 @@
     color: white;
 }
 
+.detailsContainer {
+    display: flex;
+    width: 45rem;
+    
+}
 .details {
-    line-height: 1em;    
+    line-height: 1em; 
+    width: 30rem;
 }
 
 .category {

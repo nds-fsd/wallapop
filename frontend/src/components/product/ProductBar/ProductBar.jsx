@@ -1,21 +1,11 @@
 import React from 'react';
 import styles from './productBar.module.css';
-import { getProductByIdHarcoded } from '../../../utils/api';
-import { useQuery } from 'react-query';
 
 
-const ProductBar = () => {
-    
-    // const id = "64478295b771f5dd3c5dab95"
-    const id ='64478295b771f5dd3c5dab95'
-
-    // const {data} = useQuery(['product', id], getProductById)
-
-    const { data, isLoading } = useQuery(['product', id], getProductByIdHarcoded)
-    
+const ProductBar = ({data}) => {
+       
     return (    
         <>
-        {!isLoading && (
             <div className={styles.productBar}>
                 <div className={styles.productDetails}>
                     <p>{data && data.title}</p>
@@ -23,7 +13,6 @@ const ProductBar = () => {
                 </div>
                 <button className={styles.comprar}>COMPRAR</button>
             </div>
-        )}
         </>
     )
 }

@@ -7,7 +7,7 @@ const productSchema = new Schema({
   price: { type: Number, required: true },
   images: { type: String },
   status: { type: String },
-  keywords: { type: Array }
+  keywords: { type: String }
 });
 
 module.exports = productSchema;
