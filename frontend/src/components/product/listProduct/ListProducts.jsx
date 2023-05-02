@@ -1,6 +1,6 @@
 import styles from "./listProducts.module.css";
 import { api } from "../../../utils/apiProducts";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import Product from "../product/Product";
 import React, { useState } from "react";
 import Paginator from "../Paginator/paginator";
