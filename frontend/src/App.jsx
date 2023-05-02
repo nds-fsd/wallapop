@@ -23,16 +23,16 @@ function App() {
     
       <QueryClientProvider client={queryClient}>
         <div>
-          <Navbar/>
+          {/* <Navbar/>
           <CreateUserPage />
           <LoginPage />
           <UserPage />
-          <ProductPage />
+          <ProductPage /> */}
           {/* <ModalContainer />  */}
           <ListCategory />
           <ListProducts />
-          <Postproform />
-          <Map />
+          {/* <Postproform />
+          <Map /> */}
         </div>
       <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

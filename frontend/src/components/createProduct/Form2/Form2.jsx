@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './form.module.css'
 import { useForm } from 'react-hook-form'
-import { postProduct } from '../../../utils/api';
+import { postProduct } from '../../../utils/apiProducts';
 import { useQuery} from 'react-query';
-import Spinner from '../../spinner/Spinner';
+import Spinner from '../../Spinner/Spinner';
 
 
 const Form2 = () => {
