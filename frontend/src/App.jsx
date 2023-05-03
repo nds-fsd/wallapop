@@ -12,6 +12,7 @@ import ListCategory from "./components/category/listCategory/ListCategory";
 import ListProducts from "./components/product/listProduct/ListProducts";
 import Map from "./components/createProduct/map/Map.jsx";
 import Postproform from './components/createProduct/form/Form';
+import CreateProductPage from './components/createProduct/Form2/CreateProductPage';
 
 function App() {
 
@@ -27,12 +28,14 @@ function App() {
           <CreateUserPage />
           <LoginPage />
           <UserPage /> */}
-          <ProductPage />
+          {/* <ProductPage /> */}
           {/* <ModalContainer />  */}
           {/* <ListCategory />
           <ListProducts />
           <Postproform />
           <Map /> */}
+          {/* <Form2 /> */}
+          <CreateProductPage />
         </div>
       <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

@@ -19,8 +19,8 @@
     height: auto;
     /* background-color:rgb(236, 230, 230); */
     background-color: var(--blue-dark);
-    border-radius: 20px;
-    padding: 2em 2em;
+    border-radius: 1.5rem;
+    padding: 2.5em 2.5em;
     margin: auto;
     position: relative;
     top: 5em;

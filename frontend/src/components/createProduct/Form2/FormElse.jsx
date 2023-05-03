@@ -1,43 +1,18 @@
 import React from 'react'
-import styles from './form2.module.css'
+import styles from './createProductPage.module.css'
 import { useForm } from 'react-hook-form'
 import { postProduct } from '../../../utils/api';
 import { useQuery} from 'react-query';
-import Spinner from '../../spinner/Spinner';
 
 
-const Form2 = () => {
+const FormElse = () => {
 
     const onSubmit = () => {
         useQuery(['product'], postProduct, reset)}
     const { register, handleSubmit, reset } = useForm();
 
-    // const { data, isLoading } = onSubmit
-    // const onSubmit = async (newProduct) => {
-    // await api.post('products/newProduct', newProduct)
-    // .then(res => res.data)
-    // .catch(error => console.log(error))
-    // .finally(() => {
-    //     queryClient?.invalidateQueries('products')
-    // })
-    // reset()
-    // }
-
-
-
-   
-        
-        
     return (
-    <>
-        {/* {isLoading && (
-            <div>
-                <Spinner />
-            </div>
-        )} */}
-
-        
-        
+        <>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.sectionForm}>
             <h2 className={styles.title}>Información del producto</h2>
             <label htmlFor='title' className={styles.labels}>¿Qué vas a vender hoy?</label>
@@ -69,15 +44,10 @@ const Form2 = () => {
                     <option value='Coleccionismo'>Coleccionismo</option>
                     <option value='Construcción y Reformas'>Construcción y Reformas</option>
                     <option value='Industria y Agricultura'>Industria y Agricultura</option>
-                    <option value='Coches'>Coches</option>
-                    <option value='Motos'>Motos</option>
                     <option value='Motor y Accesorios'>Motor y Accesorios</option>
                     <option value='Moda y Accesorios'>Moda y Accesorios</option>
-                    <option value='Inmobiliaria'>Inmobiliaria</option>
                     <option value='Hogar y Jardín'>Hogar y Jardín</option>
                     <option value='Deporte y Ocio'>Deporte y Ocio</option>
-                    <option value='Servicios'>Servicios</option>
-                    <option value='Empleo'>Empleo</option>
                     <option value='Otros'>Otros</option>
                 </select>
                 <select {...register('status')} className={styles.dropdown}>
@@ -90,6 +60,7 @@ const Form2 = () => {
             </div>
             <label htmlFor='description' className={styles.labels}>¿Cómo es tu producto?</label>
             <textarea maxLength={500} placeholder='Describe lo fantástico que es tu producto. Añade detalles como el modelo, color, funcionalidad...' {...register('description')} className={styles.textArea}></textarea>  
+            
             <div>
                 <div className={styles.line}></div>
                 <h2 className={styles.title}>Imágenes</h2>
@@ -105,12 +76,8 @@ const Form2 = () => {
             <input type='submit' value='Sube tu producto' className={styles.button}></input>
 
         </form>
-        
-        
-
-    </>   
+        </>
     )
-};
+}
 
-
-export default Form2
+export default FormElse;
