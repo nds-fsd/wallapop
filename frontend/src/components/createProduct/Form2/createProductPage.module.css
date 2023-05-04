@@ -218,10 +218,14 @@
     font-size: 3rem;
 }
 .selection1:hover {
-    color: var(--yellow-main);
+    color: white;
+    background-color: var(--yellow-main);
+    box-shadow: 2px 2px 4px .5px var(--blue-light);
 }
 .selection:hover {
-    color: var(--yellow-main);
+    color: white;
+    background-color: var(--yellow-main);
+    box-shadow: 2px 2px 4px .5px var(--blue-light);
 }
 
 .vertical {

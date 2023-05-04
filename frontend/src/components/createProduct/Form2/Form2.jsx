@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './form2.module.css'
+import styles from './createProductPage.module.css'
 import { useForm } from 'react-hook-form'
 import { postProduct } from '../../../utils/api';
 import { useQuery} from 'react-query';
