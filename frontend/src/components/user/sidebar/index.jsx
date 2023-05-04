@@ -15,15 +15,17 @@ import {
 } from "../route-paths";
 import styles from "./index.module.css";
 import image from "../../../assets/images/pexels-pixabay-415829.jpg";
+import { getUserData } from "../../../utils/localStorage.utils";
 
 const Sidebar = () => {
+
+  const userData = getUserData();
   return (
     <div className={styles.sideBar}>
       <Link to={USER_PROFILE}>
         <div className={styles.profileLink}>
           <img src={image} />
-          <p>Maria P.</p>{" "}
-          {/* El nombre se hace trayendo el nombre de usuario y cortando el apellido */}
+          <p>{userData.name}</p>
         </div>
       </Link>
       <Link to={USER_PURCHASES}>
