@@ -16,6 +16,7 @@ import { Outlet, Route, Routes } from 'react-router-dom';
 import Buscador from './components/home/Buscador';
 import Home from './components/home';
 import { USER } from './components/user/route-paths';
+import CreateProductPage from './components/createProduct/Form2/CreateProductPage';
 
 function App() {
 
@@ -39,9 +40,9 @@ function App() {
           <Map /> */}
           {/* <Form2 /> */}
           <CreateProductPage />
-          <Navbar/>
+          
          
-          <div>
+          {/* <div>
             <Routes>
                 <Route path="/"  element={<Home />} />
                 <Route path="/login" element= {<LoginPage/>} />
@@ -51,7 +52,7 @@ function App() {
                 <Route path="/:productid" element= {<ProductPage />} />
                 <Route path="/user/*" element= {<UserPage />} />
             </Routes>
-          </div>
+          </div> */}
          
         </div>
       <ReactQueryDevtools initialIsOpen={false} />

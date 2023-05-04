@@ -1,8 +1,9 @@
 import React from 'react'
 import styles from './createProductPage.module.css'
 import { useForm } from 'react-hook-form'
-import { postProduct } from '../../../utils/api';
+import { postProduct } from '../../../utils/apiProducts';
 import { useQuery} from 'react-query';
+import FormImages from './Images';
 
 
 const FormElse = () => {
@@ -60,21 +61,7 @@ const FormElse = () => {
             </div>
             <label htmlFor='description' className={styles.labels}>¿Cómo es tu producto?</label>
             <textarea maxLength={500} placeholder='Describe lo fantástico que es tu producto. Añade detalles como el modelo, color, funcionalidad...' {...register('description')} className={styles.textArea}></textarea>  
-            
-            <div>
-                <div className={styles.line}></div>
-                <h2 className={styles.title}>Imágenes</h2>
-                <h5><span className={styles.yellowChar}>Aquí va un consejo... Sube al menos 3 fotos de calidad.</span> Ya conoces el refrán, una imagen vale más que mil palabras.</h5>
-                <div className={styles.images}>
-                    <button className={styles.image}><span className='icon-image1'></span></button>
-                    <button className={styles.image}><span className='icon-image1'></span></button>
-                    <button className={styles.image}><span className='icon-image1'></span></button>
-                    <button className={styles.image}><span className='icon-image1'></span></button>
-                    <button className={styles.image}><span className='icon-image1'></span></button>
-                </div>
-            </div>
-            <input type='submit' value='Sube tu producto' className={styles.button}></input>
-
+            <FormImages />
         </form>
         </>
     )

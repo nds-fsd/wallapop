@@ -1,39 +1,28 @@
 import React from 'react'
 import styles from './createProductPage.module.css'
-import Form2 from './Form2';
+import CreateProductNavBar from './CreateProductNavBar';
+import { Route, Routes } from 'react-router-dom';
+import { FORM_ELSE, FORM_HOUSE, FORM_JOB, FORM_VEHICLE } from './routeCreateProd-paths';
+import FormElse from './FormElse';
+import FormHouse from './FormHouse';
+import FormVehicle from './FormVehicle';
+import FormJob from './FormJob';
 
 const CreateProductPage = () => {
 
     return (
-
         <>
-        
-            <div className={styles.container}>
-                <h2 className={styles.title}>¿Qué quieres subir hoy?</h2>
-                <h4>ReTrend relanza casi todo lo que imaginas</h4>
-                <div className={styles.selector}>
-                    <div className={styles.vertical}>
-                        <button className={styles.selection1}><span className='icon-home1'></span></button>
-                        <p className={styles.tags}>Algo que no utilizo</p>
-                    </div>
-                    <div className={styles.vertical}>
-                        <button className={styles.selection}><span className='icon-home1'></span></button>
-                        <p className={styles.tags}>Una casa</p>
-                    </div>
-                    <div className={styles.vertical}>
-                        <button className={styles.selection}><span className='icon-home1'></span></button>
-                        <p className={styles.tags}>Un vehículo</p>
-                    </div>
-                    <div className={styles.vertical}>
-                        <button className={styles.selection}><span className='icon-home1'></span></button>
-                        <p className={styles.tags}>Servicio / Empleo</p>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.blank}></div>
-            <Form2 />
+        <div className={styles.createProductContainer}>
+            <CreateProductNavBar />
+            <Routes>
+                <Route path={FORM_ELSE} element={<FormElse />} />
+                <Route path={FORM_HOUSE} element={<FormHouse />} />
+                <Route path={FORM_VEHICLE} element={<FormVehicle />} />
+                <Route path={FORM_JOB} element={<FormJob />} />
+            </Routes>
+        </div>                    
         </>
-    )
-}
+    );
+};
 
 export default CreateProductPage;

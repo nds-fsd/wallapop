@@ -1,0 +1,74 @@
+.container {
+ width: 45rem;
+ height: max-content;
+ background-color: var(--blue-dark);
+ margin: auto;
+ padding: 1rem 2.5rem 2rem 2.5rem;
+ border-radius: 1.5rem;
+}
+.title {
+ color: var(--yellow-main)
+}
+.selector {
+ display: flex;
+ justify-content: space-evenly;
+ gap: 2rem;
+ height: fit-content;
+}
+
+.selection1 {
+ width: 14rem;
+ height: 5rem;
+ border-radius: 1.5rem;
+ border: none;
+ box-shadow: 2px 2px 2px .5px var(--yellow-dark);
+ cursor: pointer;
+ background-color: white;
+ color: var(--blue-light)
+}
+.selection {
+ width: 7rem;
+ height: 5rem;
+ border-radius: 1.5rem;
+ border: none;
+ box-shadow: 2px 2px 2px .5px var(--yellow-dark);
+ cursor: pointer;
+ background-color: white;
+ color: var(--blue-light)
+}
+.selection1 span:nth-child(1) {
+ font-size: 3rem;
+}
+.selection span:nth-child(1) {
+ font-size: 3rem;
+}
+.selection1:hover {
+ color: white;
+ background-color: var(--yellow-main);
+ box-shadow: 2px 2px 4px .5px var(--blue-light);
+}
+.selection:hover {
+ color: white;
+ background-color: var(--yellow-main);
+ box-shadow: 2px 2px 4px .5px var(--blue-light);
+}
+
+.vertical {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ text-transform: uppercase;
+ text-decoration: none;
+ color: var(--yellow-light)
+}
+
+.vertical:hover {
+ color: var(--yellow-main)
+}
+
+.tags {
+ position: relative;
+ top: 1rem;
+ margin-bottom: 1rem;
+}
+
