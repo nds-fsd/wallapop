@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
+import { useForm, } from 'react-hook-form';
 import './loginUser.module.css';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { api } from '../../utils/api';
+import { getUserToken } from '../../utils/localStorage.utils';
+import { setUserSession } from '../../utils/localStorage.utils';
 
 const LoginPage = () => {
   const {
@@ -10,12 +13,15 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-const handleLogin = async (userData) => {
+  const navigate = useNavigate();
+  
+  const handleLogin = async (userData) => {
   try {
-    const response = await axios.post("/user/login", userData);
+    const response = await api.post("/user/login", userData);
     if (response.status === 200) {
-      localStorage.setItem("token", response.data.token);
+      setUserSession(response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
+      navigate("/");
     }
     return response;
   } catch (error) {
@@ -25,7 +31,13 @@ const handleLogin = async (userData) => {
 };
 
   return (
-    <div className="loginContainer">
+
+<div className="loginContainer">
+  <div>
+    {getUserToken() && (
+      <Navigate to="/" />
+    )}
+  </div>
   <div className="formContainer">
     <h1 className="formTitle">Inicia Sesión</h1>
     <form onSubmit={handleSubmit(handleLogin)}>
