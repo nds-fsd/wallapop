@@ -1,7 +1,7 @@
 import React from "react";
 import CategoryItem from "../categoryItem/CategoryItem";
 import styles from "./listCategory.module.css";
-import { api } from "../../../utils/api";
+import { api } from "../../../utils/apiCategories";
 import { useQuery } from "react-query";
 
 const ListCategory = () => {

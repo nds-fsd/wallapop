@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {getProductByIdHarcoded} from '../../../utils/api';
+import {getProductByIdHarcoded} from '../../../utils/apiProducts';
 import { useQuery, useMutation } from 'react-query'
 import styles from './productPage.module.css';
 import Slider from "../Slider/Slider";

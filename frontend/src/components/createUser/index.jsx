@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import styles from './createUser.module.css';
+import { setUserSession } from '../../utils/localStorage.utils';
+import { Link } from 'react-router-dom';
+import { api } from '../../utils/api';
 
 const CreateUserPage = () => {
   const {
@@ -12,9 +14,9 @@ const CreateUserPage = () => {
 
   const handleCreateUser = async (userData) => {
     try {
-      const response = await axios.post("/user/register", userData);
+      const response = await api.post("/user/register", userData);
       if (response.status === 201) {
-        localStorage.setItem("token", response.data.token);
+        setUserSession(response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
       }
       return response;
@@ -97,9 +99,9 @@ const CreateUserPage = () => {
             {...register('gender')}
           />
           {errors.gender && <p>{errors.gender.message}</p>}
-          <button className={styles.createUserButton} type="submit">
+          <Link to="/"><button className={styles.createUserButton} type="submit">
             Regístrate
-          </button>
+          </button></Link>
         </form>
       </div>
     </div>

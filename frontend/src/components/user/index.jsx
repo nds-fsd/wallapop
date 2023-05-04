@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import PurchasesOnGoing from "./purchases/PurchasesOnGoing";
 import PurchasesCompleted from "./purchases/PurchasesCompleted";
 import Stats from "./stats/Stats";
@@ -32,6 +32,7 @@ import {
   PURCHASES_ONGOING,
   SALES_COMPLETED,
   SALES_ONGOING,
+  USER,
   USER_FAVORITES,
   USER_MESSAGES,
   USER_PRODUCTS,
@@ -83,6 +84,7 @@ const UserPage = () => {
 
           <Route path={USER_STATS} element={<Stats />} />
         </Routes>
+
       </div>
     </div>
   );

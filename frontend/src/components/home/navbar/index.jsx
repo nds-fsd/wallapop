@@ -1,21 +1,27 @@
 import React from "react";
-import ReactDOM from 'react-dom/client';
-import Buscador from '../Buscador'
+import { getUserToken } from "../../../utils/localStorage.utils";
 import Login from "../LOGIN";
 import Logout from "../LOGOUT/index";
 
 const Navbar=() => {
+    const token = getUserToken();
 
     return (
         
         <div>
-            <Logout/>
-            <Login/>
-            <Buscador/>
-            <h1> Compra y vende cosas de segunda mano </h1>
-            <h2>Casi,casi,sin moverte del sofà</h2>
-            <button>CARGAR MÁS</button>
-        </div>
+            {token ? <Login/> : <Logout /> }
+           
+         </div>
         
   )};
   export default Navbar
+
+  {/* <CreateUserPage />
+<LoginPage />
+<UserPage />
+<ProductPage />
+{/* <ModalContainer />  */}
+
+{/* <ListProducts />
+<Postproform />
+<Map /> */}

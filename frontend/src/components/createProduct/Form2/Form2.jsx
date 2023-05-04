@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './createProductPage.module.css'
 import { useForm } from 'react-hook-form'
-import { postProduct } from '../../../utils/api';
+import { postProduct } from '../../../utils/apiProducts';
 import { useQuery} from 'react-query';
 import Spinner from '../../spinner/Spinner';
 

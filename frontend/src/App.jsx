@@ -12,7 +12,10 @@ import ListCategory from "./components/category/listCategory/ListCategory";
 import ListProducts from "./components/product/listProduct/ListProducts";
 import Map from "./components/createProduct/map/Map.jsx";
 import Postproform from './components/createProduct/form/Form';
-import CreateProductPage from './components/createProduct/Form2/CreateProductPage';
+import { Outlet, Route, Routes } from 'react-router-dom';
+import Buscador from './components/home/Buscador';
+import Home from './components/home';
+import { USER } from './components/user/route-paths';
 
 function App() {
 
@@ -36,6 +39,20 @@ function App() {
           <Map /> */}
           {/* <Form2 /> */}
           <CreateProductPage />
+          <Navbar/>
+         
+          <div>
+            <Routes>
+                <Route path="/"  element={<Home />} />
+                <Route path="/login" element= {<LoginPage/>} />
+                <Route path="/register" element= {<CreateUserPage />} />
+                <Route path="/createproduct" element= {<Postproform />} />
+                <Route path="/:pathcategory" element= {<ListProducts />} />
+                <Route path="/:productid" element= {<ProductPage />} />
+                <Route path="/user/*" element= {<UserPage />} />
+            </Routes>
+          </div>
+         
         </div>
       <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
@@ -46,6 +63,9 @@ function App() {
 }
 
 export default App;
+
+
+
 
 // // Posible enroutado para la página de producto ?? :
 
