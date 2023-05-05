@@ -21,12 +21,22 @@ export const getProductById = (queryKey) => {
 //     return[]})
 // }
 
+
 export const getProductByIdHarcoded = () => {
     return api.get('/products/644eabfc231e21681d117b7b')
     .then(res => res.data)
     .catch(error => {console.log(error)
     return[]})
 };
+
+export const getProductByIdHarcodedHouse = () => {
+    return api.get('/products/644ebe60f1b76b31b761b446')
+    .then(res => res.data)
+    .catch(error => {console.log(error)
+    return[]})
+};
+
+
 
 
 export const postProduct = () => {

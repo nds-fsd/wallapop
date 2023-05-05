@@ -17,6 +17,7 @@ import Buscador from './components/home/Buscador';
 import Home from './components/home';
 import { USER } from './components/user/route-paths';
 import CreateProductPage from './components/createProduct/Form2/CreateProductPage';
+import HousePage from './components/product/ProductPage/HousePage';
 
 function App() {
 
@@ -38,8 +39,8 @@ function App() {
           <ListProducts />
           <Postproform />
           <Map /> */}
-          {/* <Form2 /> */}
-          <CreateProductPage />
+          {/* <CreateProductPage /> */}
+          <HousePage />
           
          
           {/* <div>

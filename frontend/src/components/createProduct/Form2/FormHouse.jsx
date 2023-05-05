@@ -32,16 +32,16 @@ const FormHouse = () => {
             </div>
                      
             <label htmlFor='alquiler' className={styles.labels}>¿Alquilas o vendes?</label>
-            <Controller name='category' control={control} defaultValue={false} render={({field}) => (
+            <Controller name='rent' control={control} defaultValue={false} render={({field}) => (
                 <div className={styles.category}>
                     <label htmlFor='alquiler'className={styles.checkbox}>
-                        <input id='alquiler' type='radio' {...field} value='alquiler' name='category'></input>
+                        <input id='alquiler' type='radio' {...field} value='alquiler' name='reny'></input>
                         <span className='icon-sun'></span>
                         Alquiler
                     </label>
                     
                     <label htmlFor='venta' className={styles.checkbox}>
-                        <input id='venta' type='radio' {...field} value='venta' name='category'></input>
+                        <input id='venta' type='radio' {...field} value='venta' name='rent'></input>
                         <span className='icon-star-empty'></span>
                         Venta
                     </label>

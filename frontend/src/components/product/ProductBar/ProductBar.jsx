@@ -17,10 +17,13 @@ const ProductBar = () => {
         <>
             <div className={styles.productBar}>
                 <div className={styles.productDetails}>
-                    <p>{data && data.title}</p>
-                    <h3>{data && data.price}</h3>
-                </div>
+                    <div>
+                        <p>{data && data.title}</p>
+                        <h3>{data && data.price}</h3>
+                    </div>
                 <button className={styles.comprar}>COMPRAR</button>
+                </div>
+                
             </div>
         </>
     )
