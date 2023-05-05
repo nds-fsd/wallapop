@@ -12,13 +12,15 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   min-height: 100vh;
-  color: var(--yellow-light);
+  color: var(--blue-dark);
   --yellow-main: #EBA905;
   --yellow-light: #fcf7e3;
-  --yellow-dark: #9E8837;
-  --blue-dark: #28339E;
-  --blue-light: #6A76EB;
-  background-color: var(--yellow-light);
+  --yellow-dark: #706a53c0;
+  --blue-dark: #0e165c;
+  --blue-medium: #39428d;
+  --blue-light: #6ae3eb;
+  --grey: #d8dddd;
+  background-color: var(--grey);
   
 }
 
@@ -29,23 +31,22 @@ body {
 
 h1 {
   font-size: 3rem;
-  font-weight: bold;
-  color: #28339E;
+  font-weight: 900;
 }
 
 h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #28339E;
+  font-size: 2.2rem;
+  font-weight: 900;
 }
 
 h3 {
   font-size: 1.25rem;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 h4 {
   font-size: 1.15rem;
+  line-height: 0.8rem;
 }
 
 h5 {

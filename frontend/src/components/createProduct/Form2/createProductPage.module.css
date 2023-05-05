@@ -7,7 +7,7 @@
 .sectionForm {
     width: 45rem;
     height: max-content;
-    background-color: var(--blue-dark);
+    background-color: white;
     border-radius: 1.5rem;
     padding: 2.5em 2.5em;
     position: relative;
@@ -17,9 +17,7 @@
     flex-direction: column;
     gap: 1rem;
 }
-.title {
-    color: var(--yellow-main)
-}
+
 .labels {
     font-size: 1.3rem;
     font-weight: bold;
@@ -36,11 +34,24 @@
     position: relative;
     left: 18.2rem;
 }
+
 .labelTriple {
     font-size: 1.3rem;
     font-weight: bold;  
     display: flex;
     gap: 12rem;
+}
+.labelTriple2 {
+    font-size: 1.3rem;
+    font-weight: bold;  
+    display: flex;
+    gap: 11.5rem;
+}
+.labelShift {
+    font-size: 1.3rem;
+    font-weight: bold;
+    position: relative;
+    left: 20.5rem;
 }
 
 .vehicle {
@@ -51,7 +62,7 @@
     width: 12rem;
     height: 2.3rem;
     border-radius: 0.5rem;
-    border: 0.25em solid var(--yellow-main);
+    border: 0.1em solid var(--yellow-main);
     position: relative;
     padding-left: 1rem;
     font-size: 1rem;
@@ -60,7 +71,7 @@
 .category {
     display: flex;
     justify-content: center;
-    gap: 2em;
+    gap: 3em;
 }
 .checkbox {
     display: flex;
@@ -68,8 +79,8 @@
     align-items: center;
     position: relative;
     display: flex;
-    width: 7em;
-    height: 7em;
+    width: 6em;
+    height: 6em;
     cursor: pointer;
 }
 
@@ -81,7 +92,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 5em;
+  font-size: 4.5em;
   color: var(--blue-ligth);
 }
 
@@ -93,24 +104,22 @@
     color: var(--yellow-main);
 }
 
-/* .checkbox input[type="radio"] + span:before {
-  content: "\f185";
-  font-family: 'Roboto', sans-serif;  
-}
-
-.checkbox input[type="radio"]:checked + span:before {
-  content: "\f00c";
-  color: #00bfff;
-} */
-
-
-
 .line {
-    background-color: var(--yellow-main);
+    background-color: var(--blue-dark);
     height: 2px;
     opacity: 1;
     margin: 2em 0 1em 0;
-  }
+    position: relative;
+    top: -2.4em;
+}
+.line2 {
+    background-color: var(--blue-dark);
+    height: 2px;
+    opacity: 1;
+    margin: 2em 0 1em 0;
+    position: relative;
+    top: -4.2em;
+}
 .priceCategory {
     display: flex;
     gap: 20rem;
@@ -119,7 +128,7 @@
     width: 43.5rem;
     height: 2.3rem;
     border-radius: 0.5rem;
-    border: 0.25em solid var(--yellow-main);
+    border: 0.1em solid var(--yellow-main);
     position: relative;
     padding-left: 1rem;
     font-size: 1rem;
@@ -130,31 +139,23 @@
     gap: 1.8rem;  
     
 }
-.labelDouble {
-    display: flex;
-}
-
-.category {
-    display: flex;
-}
-
 
 .inputPrice {
     width: 12rem;
     height: 2.3rem;
     border-radius: 0.5rem;
-    border: 0.25em solid var(--yellow-main);
+    border: 0.1em solid var(--yellow-main);
     position: relative;
     padding-left: 1rem;
     font-size: 1rem;
 }
 .inputKeywords {
-    width: 19.4rem;
+    width: 19.7rem;
     height: 2.3rem;
     border-radius: 0.5rem;
-    border: 0.25em solid var(--yellow-main);
+    border: 0.1em solid var(--yellow-main);
     position: relative;
-    left: 3rem;
+    left: 3.4rem;
     padding-left: 1rem;
     font-size: 1rem;
 }
@@ -163,11 +164,22 @@
     font-weight: bold;
     color: var(--yellow-main)
 }
+.inputLand {
+    width: 20.5rem;
+    height: 2.6rem;
+    border-radius: 0.5rem;
+    border: 0.1em solid var(--yellow-main);
+    position: relative;
+    padding-left: 0.8rem;
+    font-size: 1rem;
+    color: grey;
+}
+
 .dropdown {
-    width: 21rem;
+    width: 21.2rem;
     height: 3rem;
     border-radius: 0.5rem;
-    border: 0.25em solid var(--yellow-main);
+    border: 0.1em solid var(--yellow-main);
     position: relative;
     padding-left: 0.8rem;
     font-size: 1rem;
@@ -185,7 +197,7 @@
     width: 43.5rem;
     height: 7rem;
     border-radius: 0.5rem;
-    border: 0.25em solid var(--yellow-main);
+    border: 0.1em solid var(--yellow-main);
     position: relative;
     padding-left: 0.8rem;
     padding-top: 0.8rem;
@@ -193,6 +205,65 @@
     color: grey;
     font-family: 'Roboto', sans-serif;  
 }
+.subtitles {
+    display: flex;
+}
+
+.engine {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    width: 20rem;
+}
+.square {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    display: flex;
+    width: 5em;
+    height: 5em;
+    cursor: pointer;
+}
+
+.square input[type="radio"] {
+    display: none;
+}
+
+.square span { 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3em;
+  color: var(--blue-ligth);
+}
+
+.square span:hover {
+    color: var(--yellow-main)
+}
+
+.square input[type='radio']:checked + span {
+    color: var(--yellow-main);
+}
+
+.motor {
+    display: flex;
+}
+
+.inmuebles input[type='checkbox'] {
+    display: none;
+}
+
+.inmuebles {
+    display: flex;
+}
+.inmueblesTitle {
+    height: 8.2rem;
+}
 
 
-
+.type {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}

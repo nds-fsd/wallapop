@@ -1,28 +1,19 @@
-.imagesContainer {
-  position: relative;
-  top: 2rem;
+.boldChar {
+  font-size: 1.2em;
 }
-.yellowChar {
-  color: var(--yellow-main);
-  font-size: 1.3em;
-}
-.title {
-  color: var(--yellow-main)
- }
 
 .line {
-  background-color: var(--yellow-main);
+  background-color: var(--blue-dark);
   height: 2px;
   opacity: 1;
   margin: 2em 0 1em 0;
+  position: relative;
+  top: -2.3em;
 }
 
 .images {
-  width: 44rem;
-  height: auto;    
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: space-between;
 }
 
 .images .image {
@@ -52,10 +43,10 @@
   font-size: 1.2rem;
   padding: 0 1rem;
   border-radius: 2.5rem;
-  border: none;
+  border: 0.2em solid var(--yellow-main);
   background-color: var(--yellow-main);
-  box-shadow: 2px 2px 2px .5px var(--blue-light);
-  color: var(--yellow-light);
+  background-color: white;
+  color: var(--yellow-main);
   font-weight: bold;
   cursor: pointer;
   position: relative;
@@ -64,8 +55,7 @@
 }
 
 .button:hover {
-  background-color: var(--blue-light);
-  box-shadow: 2px 2px 2px .5px var(--yellow-light);
+  background-color: var(--yellow-main);
   color: white;
 }
 
@@ -73,4 +63,5 @@
   border: 2px solid var(--yellow-main);
   padding: 1em 1em;
   border-radius: 1.5rem;
+  background-color: var(--yellow-light);
 }

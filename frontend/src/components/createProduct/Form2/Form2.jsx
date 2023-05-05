@@ -3,13 +3,13 @@ import styles from './createProductPage.module.css'
 import { useForm } from 'react-hook-form'
 import { postProduct } from '../../../utils/apiProducts';
 import { useQuery} from 'react-query';
-import Spinner from '../../spinner/Spinner';
 
 
 const Form2 = () => {
 
     const onSubmit = () => {
-        useQuery(['product'], postProduct, reset)}
+    useQuery(['product'], postProduct, reset)}
+   
     const { register, handleSubmit, reset } = useForm();
 
     // const { data, isLoading } = onSubmit
@@ -39,7 +39,7 @@ const Form2 = () => {
         
         
         <form onSubmit={handleSubmit(onSubmit)} className={styles.sectionForm}>
-            <h2 className={styles.title}>Información del producto</h2>
+            <h2>Información del producto</h2>
             <label htmlFor='title' className={styles.labels}>¿Qué vas a vender hoy?</label>
             <input placeholder='Dale un título a tu producto' {...register('title')} className={styles.input}></input>
             <div className={styles.labelDouble}>

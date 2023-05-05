@@ -7,7 +7,7 @@ const CreateProductNavBar = () => {
     return (
         <>
             <div className={styles.container}>
-                <h2 className={styles.title}>¿Qué quieres subir hoy?</h2>
+                <h1 className={styles.mainTitle}>¿Qué quieres subir hoy?</h1>
                 <h4>ReTrend relanza casi todo lo que imaginas</h4>
                 <div className={styles.selector}>
                     <Link to='algo-que-no-utilizo' className={styles.vertical}>
@@ -27,7 +27,6 @@ const CreateProductNavBar = () => {
                         <p className={styles.tags}>Servicio / Empleo</p>
                     </Link >  
                     <Outlet/>
-                  
                 </div>
             </div>
         </>
