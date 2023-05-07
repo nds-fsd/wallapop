@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './productBar.module.css';
-import { getProductById, getProductByIdHarcoded } from '../../../utils/api';
+import { getProductByIdHarcoded } from '../../../utils/apiProducts';
 import { useQuery } from 'react-query';
 
 

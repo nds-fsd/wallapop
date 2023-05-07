@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query'
-import { getProductByIdHarcoded } from '../../../utils/api';
+import { getProductByIdHarcoded } from '../../../utils/apiProducts';
 import styles from './modalContainer.module.css'
 
 
