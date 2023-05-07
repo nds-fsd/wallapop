@@ -7,7 +7,7 @@ import ProductBar from "../ProductBar/ProductBar";
 import BeatLoader from 'react-spinners/BeatLoader'
 import GridLoader from 'react-spinners/GridLoader'
 import RiseLoader from 'react-spinners/RiseLoader'
-import Spinner from "../../spinner/Spinner";
+import Spinner from "../../Spinner/Spinner";
 
 
 

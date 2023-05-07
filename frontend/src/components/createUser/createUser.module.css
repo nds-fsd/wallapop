@@ -1,26 +1,6 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f7f7f7;
-  color: #333;
-}
-
-h1 {
-  font-size: 36px;
-  text-align: center;
-}
-
-form {
-  width: 350px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-input[type="text"], input[type="password"], select {
+input[type="text"], input[type="password"], input[type="email"], select {
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   margin-bottom: 15px;
   border: none;
   border-radius: 4px;
@@ -28,7 +8,7 @@ input[type="text"], input[type="password"], select {
 }
 
 button[type="submit"] {
-  background-color: #4CAF50;
+  background-color: #EBA905;;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -38,10 +18,8 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #45a049;
+  background-color: #EBA905;;
 }
-
-/* styles for createUser page */
 .create-form {
   display: block;
 }
@@ -53,9 +31,74 @@ button[type="submit"]:hover {
   margin-bottom: 10px;
 }
 
-.create-form .login-link {
-  display: block;
-  text-align: center;
-  margin-top: 20px;
-  font-size: 16px;
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
+
+.formTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--blue-dark);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.formInput {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 0px;
+  padding-left:0px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: white;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  
+}
+
+.formInput:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px var(--blue-light);
+}
+
+.formButton {
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--yellow-dark);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.formButton:hover {
+  background-color: var(--blue-dark);
+}
+
+.formError {
+  color: red;
+  margin-top: 10px;
+  text-align: left;
+}
+.loginContainer {
+  background-color: var(--yellow-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+

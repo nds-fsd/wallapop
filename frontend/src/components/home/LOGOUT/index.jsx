@@ -13,8 +13,7 @@ return(
             </div>
         </Link>
         <div className={styles.buttonLink}>
-            <button><Link to="/login"> INICIA SESION </Link></button>
-            <button><Link to="/register"> REGISTRATE </Link></button>
+            <button><Link to="/login"> Regístrate o inicia sesión </Link></button>
          </div>
 </div>
 )};
