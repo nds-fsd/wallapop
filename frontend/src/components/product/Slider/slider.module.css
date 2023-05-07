@@ -91,3 +91,14 @@
     border: 0.2em solid var(--yellow-main);
 }
 
+.statusTag {
+    position: relative;
+    top: -3rem;
+    left: 2rem;
+    background-color: var(--blue-light);
+    padding: 0.4em 1em;
+    width: max-content;
+    border-radius: 2rem;
+    font-weight: bold;
+}
+

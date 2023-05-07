@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './images.module.css'
+import styles from './formImages.module.css'
 
 const FormImages = () => {
 
@@ -18,9 +18,9 @@ const FormImages = () => {
       <button className={styles.image}><span className='icon-image1'></span></button>
       <button className={styles.image}><span className='icon-image1'></span></button>
     </div>
-    <div>
+    {/* <div>
       <input type='submit' value='Subir' className={styles.button}></input>
-    </div>
+    </div> */}
   </>
  )
 }

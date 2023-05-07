@@ -2,15 +2,24 @@ import React from 'react'
 import styles from './createProductPage.module.css'
 import { Controller, useForm } from 'react-hook-form'
 import { postProduct } from '../../../utils/apiProducts';
-import { useQuery} from 'react-query';
-import FormImages from './Images';
+import { useMutation, useQueryClient} from 'react-query';
+import FormImages from '../FormImages/FormImages';
+import Map from '../map/Map';
 
 
 const FormVehicle = () => {
 
-    const onSubmit = () => {
-        useQuery(['product'], postProduct, reset)}
-    const { control, register, handleSubmit, reset } = useForm();
+    const { control, register, handleSubmit, formState: {errors, isSubmitting, isValid} } = useForm();
+    const queryClient = useQueryClient();
+    const mutation = useMutation(postProduct, {
+        onSuccess: () =>{
+            queryClient.invalidateQueries('product')
+        },
+    })
+
+    const onSubmit = (productData) => {
+        mutation.mutate(productData)
+    }
 
     return (
         <>
@@ -136,6 +145,9 @@ const FormVehicle = () => {
             <label htmlFor='description' className={styles.labels}>¿Cómo es tu vehículo?</label>
             <textarea maxLength={500} placeholder='Describe el vehículo que deseas vender. Añade detalles como el modelo, color, kilometraje...' {...register('description')} className={styles.textArea}></textarea>  
             <FormImages />
+            <Map />
+            <input type='submit' disabled={!isValid || mutation.isLoading} value='Subir' className={styles.formButton}></input>
+
         </form>
         </>
     )

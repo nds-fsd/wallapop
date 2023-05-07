@@ -61,7 +61,7 @@ p {
   font-size: 1rem;
 }
 
-.button {
+/* .button {
   width: 12rem;
   height: 2.5rem;
   border-radius: 2.5rem;
@@ -73,7 +73,7 @@ p {
 .button:hover {
   background-color: var(--blue-light);
   color: white;
-}
+} */
 
 
 

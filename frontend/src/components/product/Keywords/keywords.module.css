@@ -1,4 +1,4 @@
-.keywords {
+/* .keywords {
     text-transform: uppercase;
     display: flex;
     flex-wrap: wrap;
@@ -7,6 +7,16 @@
     width: 15rem;
     height: 5rem;
     gap: 1em;
+} */
+
+.keywords {
+    text-transform: uppercase;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1em;
+    margin-left: -2.5rem;
+    margin-bottom: 2rem;
 }
 
 .list {
@@ -15,10 +25,10 @@
     list-style: none;
     background-color: var(--yellow-main);
     color: white;
-    padding: 0.7em;
+    padding: 0.7em 1.2em;
     width: fit-content;
+    height: fit-content;
     border-radius: 2em;
     font-weight: bold;
     position: relative;
-    top: 1.5em;
 }

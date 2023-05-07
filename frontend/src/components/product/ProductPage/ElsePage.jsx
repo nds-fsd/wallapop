@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './productPage.module.css'
 import {getProductByIdHarcoded} from '../../../utils/apiProducts';
 import { useQuery } from 'react-query'
@@ -19,9 +19,10 @@ const ElsePage = () => {
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
   };
-
+  //id de un servicio
+  // const id = '644ebdbcf1b76b31b761b41c';
   const id ="644eabfc231e21681d117b7b"
-  // const id = "644796a9d7f98ce14c6ec067"
+
 
   // const {data, isLoading} = useQuery(['product', id], getProductById)
   const {data} = useQuery(['product', id], getProductByIdHarcoded)
@@ -35,24 +36,21 @@ const ElsePage = () => {
             <button className={styles.like}><span className='icon-heart1'></span></button>
             <button className={styles.chat}>CHAT</button>            
           </div>
-          <Slider images={mockImages}/>
-          <div className={styles.detailsContainer}>
-            <div className={styles.details}>
-              <div className={styles.priceContainer}>
-                <h1 className={styles.price}>{data && data.price}</h1>
-                <h2>EUR</h2>
-              </div>
-              <h2>{data && data.title}</h2>
-              <p>{data && data.status}</p>                  
+          { data && <Slider images={mockImages} data={data}/>}
+          <div className={styles.details}>
+            <div className={styles.priceContainer}>
+              <h1 className={styles.price}>{data && data.price}</h1>
+              <h2>EUR</h2>
             </div>
-            <Keywords data={data && data}/>
-        </div>
-                
-        <div className={styles.category}>
-          <span className='icon-display'></span>
-          <h3>{data && data.category}</h3>
-        </div>
-                
+            <div className={styles.category}>
+              <span className='icon-display'></span>
+              <h3>{data && data.category}</h3>
+            </div>
+          </div>
+            
+          <h2>{data && data.title}</h2>
+          { data && <Keywords data={data}/>}               
+             
         <div className={styles.line}></div>
         <div className={styles.expandable}>
            <h3>DESCRIPCIÓN DEL PRODUCTO</h3>
@@ -73,12 +71,11 @@ const ElsePage = () => {
             <span className="icon-mail2"></span>
           </div>  
         </div>
-        <ProductBar data={data && data}/>
+        {data && <ProductBar data={data}/>}
       </div>
     </div>
-  
   </>
-  )
-}
+  );
+};
 
 export default ElsePage;

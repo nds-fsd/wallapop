@@ -2,15 +2,24 @@ import React from 'react'
 import styles from './createProductPage.module.css'
 import { useForm } from 'react-hook-form'
 import { postProduct } from '../../../utils/apiProducts';
-import { useQuery} from 'react-query';
-import FormImages from './Images';
+import { useMutation, useQueryClient } from 'react-query';
+import FormImages from '../FormImages/FormImages';
+import Map from '../map/Map';
 
 
 const FormElse = () => {
 
-    const onSubmit = () => {
-        useQuery(['product'], postProduct, reset)}
-    const { register, handleSubmit, reset } = useForm();
+    const queryClient = useQueryClient();
+    const { register, handleSubmit, formState: {errors, isSubmitting, isValid} } = useForm();
+    const mutation = useMutation(postProduct, {
+        onSuccess: () =>{
+            queryClient.invalidateQueries('product')
+        },
+    })
+
+    const onSubmit = (productData) => {
+        mutation.mutate(productData)
+    }
 
     return (
         <>
@@ -65,6 +74,8 @@ const FormElse = () => {
             <label htmlFor='description' className={styles.labels}>¿Cómo es tu producto?</label>
             <textarea maxLength={500} placeholder='Describe lo fantástico que es tu producto. Añade detalles como el modelo, color, funcionalidad...' {...register('description')} className={styles.textArea}></textarea>  
             <FormImages />
+            <Map />
+            <input type='submit' disabled={!isValid || mutation.isLoading} value='Subir' className={styles.formButton}></input>
         </form>
         </>
     )

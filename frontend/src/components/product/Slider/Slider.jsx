@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './slider.module.css'
 
-const Slider = ({ images }) => {
+const Slider = ({ images, data }) => {
     const [currentImage, setCurrentImage] = useState(0);
     const amount = images.length;
     const nextImage = () => {
@@ -25,18 +25,21 @@ const Slider = ({ images }) => {
     return (
     <>
         {amount >= 1 && (
-            <div className={styles.container}>
-                <button onClick={prevImage} className={isHovering ? styles.buttonOpacity : styles.button}><span className='icon-undo2'></span></button>
-                {images.map((image, id) => (
-                    <div className={
-                        currentImage === id ? `${styles.slide} ${styles.active}` 
-                        : styles.slide }> 
-                        {currentImage === id && (
-                        <img key={id} src={image} alt={image} onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave} className={styles.imgSlider}/>
-                        )}
-                    </div>   
-                ))}
-                <button onClick={nextImage} className={isHovering ? styles.buttonOpacity : styles.button}><span className='icon-redo2'></span></button>
+            <div>
+                <div className={styles.container}>
+                    <button onClick={prevImage} className={isHovering ? styles.buttonOpacity : styles.button}><span className='icon-undo2'></span></button>
+                    {images.map((image, id) => (
+                        <div className={
+                            currentImage === id ? `${styles.slide} ${styles.active}` 
+                            : styles.slide }> 
+                            {currentImage === id && (
+                            <img key={id} src={image} alt={image} onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave} className={styles.imgSlider}/>
+                            )}
+                        </div>   
+                    ))}
+                    <button onClick={nextImage} className={isHovering ? styles.buttonOpacity : styles.button}><span className='icon-redo2'></span></button>
+                </div>
+                <p className={styles.statusTag}>{data && data.status}</p>
             </div>
         )}
 

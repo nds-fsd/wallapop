@@ -64,18 +64,19 @@
     color: white;
 }
 
+.details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .detailsContainer {
     display: flex;
     width: 45rem; 
-    margin: 1.5rem 0; 
 }
 
 .detailsHouse {
     width: 45rem;
-}
-.details {
-    line-height: 1em; 
-    width: 30rem;
+    line-height: 2.7rem;
 }
 
 .category {
@@ -127,10 +128,11 @@
     transform: rotate(180deg);
 }
 .priceContainer {
-    margin: 1.5em 0 0 0;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    line-height: 1em; 
+
 }
 .price {
     color: var(--yellow-main);
@@ -141,9 +143,7 @@
 .textExpanded {
     padding: 1rem 0;
 }
-.house {
-    line-height: 2.7rem;
-}
+
 .media {
     display: flex;
     justify-content: center;
@@ -196,6 +196,18 @@
 .mediaIcons span:nth-child(4):hover {
     color: #992921;
     cursor: pointer;
+}
+.houseType {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.houseDetail {
+    border: 0.2em solid var(--blue-light);
+    border-radius: 2rem;
+    width: max-content;
+    padding: 0.4em 1em;
 }
 
 

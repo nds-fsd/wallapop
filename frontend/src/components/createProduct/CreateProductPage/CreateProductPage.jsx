@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './createProductPage.module.css'
-import CreateProductNavBar from './CreateProductNavBar';
+import CreateProductNavBar from '../CreateProductNavBar/CreateProductNavBar';
 import { Route, Routes } from 'react-router-dom';
 import { FORM_ELSE, FORM_HOUSE, FORM_JOB, FORM_VEHICLE } from './routeCreateProd-paths';
 import FormElse from './FormElse';

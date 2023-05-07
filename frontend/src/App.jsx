@@ -6,7 +6,6 @@ import LoginPage from "./components/loginUser"
 import UserPage from "./components/user"
 import ModalContainer from './components/product/ModalContainer/ModalContainer';
 import ProductPage from './components/product/ProductPage/ProductPage';
-import Form2 from './components/createProduct/Form2/Form2';
 import Navbar from './components/home/navbar'
 import ListCategory from "./components/category/listCategory/ListCategory";
 import ListProducts from "./components/product/listProduct/ListProducts";
@@ -16,8 +15,11 @@ import { Outlet, Route, Routes } from 'react-router-dom';
 import Buscador from './components/home/Buscador';
 import Home from './components/home';
 import { USER } from './components/user/route-paths';
-import CreateProductPage from './components/createProduct/Form2/CreateProductPage';
+import CreateProductPage from './components/createProduct/CreateProductPage/CreateProductPage';
 import HousePage from './components/product/ProductPage/HousePage';
+import ProdPage from './components/product/ProductPage/ProdPage';
+import ElsePage from './components/product/ProductPage/ElsePage';
+import VehiclePage from './components/product/ProductPage/VehiclePage';
 
 function App() {
 
@@ -33,14 +35,17 @@ function App() {
           <CreateUserPage />
           <LoginPage />
           <UserPage /> */}
-          {/* <ProductPage /> */}
           {/* <ModalContainer />  */}
           {/* <ListCategory />
           <ListProducts />
           <Postproform />
           <Map /> */}
-          {/* <CreateProductPage /> */}
-          <HousePage />
+          <CreateProductPage />
+          {/* <HousePage /> */}
+          {/* <ElsePage /> */}
+          {/* <VehiclePage /> */}
+          {/* <ProductPage /> */}
+
           
          
           {/* <div>
@@ -48,9 +53,9 @@ function App() {
                 <Route path="/"  element={<Home />} />
                 <Route path="/login" element= {<LoginPage/>} />
                 <Route path="/register" element= {<CreateUserPage />} />
-                <Route path="/createproduct" element= {<Postproform />} />
+                <Route path="/products/newproduct" element= {<Postproform />} />
                 <Route path="/:pathcategory" element= {<ListProducts />} />
-                <Route path="/:productid" element= {<ProductPage />} />
+                <Route path="/products/:productid" element= {<ProductPage />} />
                 <Route path="/user/*" element= {<UserPage />} />
             </Routes>
           </div> */}
@@ -60,23 +65,10 @@ function App() {
       </QueryClientProvider>
     </>
 
-  )
-
-}
+  );
+};
 
 export default App;
 
-
-
-
-// // Posible enroutado para la página de producto ?? :
-
-// <div className='main-router'>
-//   <Routes>
-//     <Route path={PRODUCT_ID} element={<ProductPage />}/>
-//       <Route path={PRODUCT_ID} element={<Slider />} />
-//       <Route path="" element={<ProductImages />}  />
-//   </Routes>
-// </div>
 
 

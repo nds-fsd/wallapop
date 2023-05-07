@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useQueryClient } from 'react-query';
+
 
 export const api = axios.create({
     baseURL: 'http://localhost:3001',
@@ -30,23 +30,21 @@ export const getProductByIdHarcoded = () => {
 };
 
 export const getProductByIdHarcodedHouse = () => {
-    return api.get('/products/644ebe60f1b76b31b761b446')
+    return api.get('/products/64567f375b58e334d1dd118d')
     .then(res => res.data)
     .catch(error => {console.log(error)
     return[]})
 };
 
 
+export const postProduct = (data) => {
+    return api.post('/products/newProduct', data)
+};
 
-
-export const postProduct = () => {
-    const queryClient = useQueryClient()
-    return api.post('/products/newProduct')
+export const getProductByIdHarcodedVehicle = () => {
+    return api.get('/products/644ebe96f1b76b31b761b454')
     .then(res => res.data)
     .catch(error => {console.log(error)
-    .finally(() => {
-        queryClient?.invalidateQueries('products')
-    })
     return[]})
 };
 

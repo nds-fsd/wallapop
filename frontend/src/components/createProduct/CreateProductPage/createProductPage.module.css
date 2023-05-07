@@ -261,9 +261,30 @@
     height: 8.2rem;
 }
 
-
 .type {
     display: flex;
     gap: 2rem;
     justify-content: center;
 }
+
+.formButton {
+    width: 13rem;
+    height: 3rem;
+    font-size: 1.2rem;
+    padding: 0 1rem;
+    border-radius: 2.5rem;
+    border: 0.2em solid var(--yellow-main);
+    background-color: var(--yellow-main);
+    background-color: white;
+    color: var(--yellow-main);
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    top: 2rem;
+    margin-bottom: 2em;;
+  }
+  
+  .formButton:hover {
+    background-color: var(--yellow-main);
+    color: white;
+  }
