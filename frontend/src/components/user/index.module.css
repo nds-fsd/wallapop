@@ -1,13 +1,53 @@
 .userPageContainer {
   display: flex;
+  gap: 2rem;
 }
 
 .profileLink {
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 20vw;
+    justify-content: space-around;   
+}
+
+.navPageContainer h1{
+  font-size: 1.5rem;
+
+}
+.navPageContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .profileLink img {
     border-radius: 100%;
 }
+
+.linkPageContainer  :hover {
+  background-color: #28349e82;
+  color: var(--yellow-light);
+  border-radius: 1rem;
+}
+
+.linkPageContainer {
+  display: flex;
+  width: 50vw;
+  align-items: flex-start;
+  gap: 2rem;
+}
+.linkPageContainer a{ 
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 35%;
+}
+
+.outletContainer {
+  width: 100%;
+  background-color: rgba(198, 197, 197, 0.368);
+  padding: 1rem;
+}
+

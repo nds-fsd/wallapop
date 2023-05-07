@@ -1,9 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 .sideBar {
+  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 12vw;
+  align-items: center;
+  width: 12.5vw;
   height: 30rem;
+  padding: 1rem;
+}
+
+.sideBar :hover{
+ background-color:  #28349e82;
+ color: var(--yellow-light);
+ border-radius: 1rem;
+ box-shadow: 2px 2px 4px .5px #0000001a;
+}
+
+.sideBar a{
+  text-decoration: none;
+  display: flex;
+  justify-content:flex-start;
+  align-items: center;
+  width: 12vw;
+  gap: 1rem;
+  font-size: 1rem;
 }
 
 .profileLink img {
@@ -15,5 +37,14 @@
 .profileLink {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+
+  font-weight: bolder;
+  padding-left: 0;
 }
+.profileLink :hover {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+
+

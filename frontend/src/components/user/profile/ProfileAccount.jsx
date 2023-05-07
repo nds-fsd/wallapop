@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./ProfileAccount.module.css";
+import style from "./index.module.css";
 
 const ProfileAccount = () => {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState("");
 
   return (
-    <div>
-      <div>
+    <div className={style.mainContainer}>
+      <div className={style.contentContainer}> 
         <h4> Información personal</h4>
         <form
-          className={styles.formUser}
           onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
         >
           <label>
@@ -26,7 +26,7 @@ const ProfileAccount = () => {
           <input type="submit" value="Guardar" />
         </form>
       </div>
-      <div>
+      <div className={style.contentContainer}>
         <h4>Información cuenta</h4>
         <form
           className={styles.formUser}
