@@ -1,21 +1,22 @@
-import React from "react"
-import styles from './product.module.css'
+import React from "react";
+import styles from "./product.module.css";
+import { NavLink } from "react-router-dom";
 
 const Product = ({ prod }) => {
-  
   return (
-    <div className={styles.container}>
+    // creo los datos que recibo(prod) que vamos a mostrar en cada card de producto
+    <NavLink to={"/category/product/" + prod._id} className={styles.container}>
       <div className={styles.card}>
         <div className={styles.columnLeft}>
           <img src={prod.photo}></img>
         </div>
         <div className={styles.columnRight}>
-          <h4>{prod.price} €</h4>
+          <h4>{prod.price}€</h4>
           <h6>{prod.title}</h6>
           <h2>{prod.description}</h2>
         </div>
       </div>
-    </div>
+    </NavLink>
   );
 };
 

@@ -1,194 +1,191 @@
 .loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .line {
-    background-color: var(--yellow-main);
-    height: 2px;
-    opacity: 1;
-    margin: 2em 0 1em 0;
+  background-color: var(--yellow-main);
+  height: 2px;
+  opacity: 1;
+  margin: 2em 0 1em 0;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    width: 45rem;
-    height: auto;
-    /* background-color:rgb(236, 230, 230); */
-    background-color: var(--blue-dark);
-    border-radius: 20px;
-    padding: 2em 2em;
-    margin: auto;
-    position: relative;
-    top: 5em;
+  display: flex;
+  flex-direction: column;
+  width: 45rem;
+  height: auto;
+  /* background-color:rgb(236, 230, 230); */
+  background-color: var(--blue-dark);
+  border-radius: 20px;
+  padding: 2em 2em;
+  margin: auto;
+  position: relative;
+  top: 5em;
 }
 
 .upperBar {
-    display: flex;
-    width: 45rem;
-    height: 3rem;
-    justify-content: flex-end;
-    gap: 2em;
+  display: flex;
+  width: 45rem;
+  height: 3rem;
+  justify-content: flex-end;
+  gap: 2em;
 }
 
 .like {
-    width: 5rem;
-    height: 2rem;
-    border-radius: 2.5rem;
-    border: none;
-    background-color: white;
-    box-shadow: 2px 2px 2px .5px var(--blue-light);
-    color: red;
-    cursor: pointer;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 2.5rem;
+  border: none;
+  background-color: white;
+  box-shadow: 2px 2px 2px 0.5px var(--blue-light);
+  color: red;
+  cursor: pointer;
 }
 
 .like:hover {
-    background-color: red;
-    color: white;
+  background-color: red;
+  color: white;
 }
 
 .chat {
-    width: 5rem;
-    height: 2rem;
-    border-radius: 2.5rem;
-    border: none;
-    background-color: var(--yellow-main);
-    box-shadow: 2px 2px 2px .5px var(--blue-light);
-    color: var(--yellow-light);
-    font-weight: bold;
-    cursor: pointer;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 2.5rem;
+  border: none;
+  background-color: var(--yellow-main);
+  box-shadow: 2px 2px 2px 0.5px var(--blue-light);
+  color: var(--yellow-light);
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .chat:hover {
-    background-color: var(--blue-light);
-    box-shadow: 2px 2px 2px .5px var(--yellow-light);
-    color: white;
+  background-color: var(--blue-light);
+  box-shadow: 2px 2px 2px 0.5px var(--yellow-light);
+  color: white;
 }
 
 .details {
-    line-height: 1em;    
+  line-height: 1em;
+}
+.details > h2 {
+  color: var(--yellow-dark);
 }
 
 .category {
-    display: flex;
-    color: black;
-    gap: 1em;
-    width: 18rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    padding: 0 0 0 1em;
-    border-radius: 2em;
-    border: none;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 2px 2px 4px .5px var(--blue-light);
+  display: flex;
+  color: black;
+  gap: 1em;
+  width: 18rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 1em;
+  border-radius: 2em;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 2px 2px 4px 0.5px var(--blue-light);
 }
 
 .expandable {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 45rem;
-    height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45rem;
+  height: 3rem;
 }
 
 .expandable span:nth-child(1):hover {
-    color: var(--yellow-main);
-    cursor: pointer;
+  color: var(--yellow-main);
+  cursor: pointer;
 }
 
 .expandable span:nth-child(1) {
-    font-size: 2em;
-    color: var(--yellow-light);
+  font-size: 2em;
+  color: var(--yellow-light);
 }
 
 .arrow {
-    position: relative;
-    left: 25rem;
-    background-color: var(--blue-dark);
-    border: none;
-
+  position: relative;
+  left: 25rem;
+  background-color: var(--blue-dark);
+  border: none;
 }
 
 .active {
-    position: relative;
-    left: 25rem;
-    background-color: var(--blue-dark);
-    border: none;
-    transform: rotate(180deg);
+  position: relative;
+  left: 25rem;
+  background-color: var(--blue-dark);
+  border: none;
+  transform: rotate(180deg);
 }
 
 .priceContainer {
-    margin: 1.5em 0 0 0;
-    display: flex;
-    align-items: end;
-    gap: 0.5rem;
+  margin: 1.5em 0 0 0;
+  display: flex;
+  align-items: end;
+  gap: 0.5rem;
 }
 .price {
-    color: var(--yellow-main);
-    font-size: 3rem;
-    line-height: 0.1em;
+  color: var(--yellow-main);
+  font-size: 3rem;
+  line-height: 0.1em;
 }
 
 .media {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    color: black;
-    height: 3rem;
-    background-color: white;
-    width: 75%;
-    height: max-content;
-    margin: 2em 0 4em 0;
-    padding: 0 0 .8em 0;
-    border-radius: 1em;
-    position: relative;
-    left: 5.625em;
-    box-shadow: 2px 2px 4px .5px var(--blue-light);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  height: 3rem;
+  background-color: white;
+  width: 75%;
+  height: max-content;
+  margin: 2em 0 4em 0;
+  padding: 0 0 0.8em 0;
+  border-radius: 1em;
+  position: relative;
+  left: 5.625em;
+  box-shadow: 2px 2px 4px 0.5px var(--blue-light);
 }
 
 .mediaIcons {
-    display: flex;
-    justify-content: center;
-    gap: 2.5em;
-    font-size: 2em;
+  display: flex;
+  justify-content: center;
+  gap: 2.5em;
+  font-size: 2em;
 }
 
 .mediaIcons span:nth-child(1) {
-    color: #3a559f;
+  color: #3a559f;
 }
 .mediaIcons span:nth-child(2) {
-    color: #55acee;
+  color: #55acee;
 }
 .mediaIcons span:nth-child(3) {
-    color: #1bd741;
+  color: #1bd741;
 }
 .mediaIcons span:nth-child(4) {
-    color: #f14336;
+  color: #f14336;
 }
 
 .mediaIcons span:nth-child(1):hover {
-    color: #2c3f72;
-    cursor: pointer;
+  color: #2c3f72;
+  cursor: pointer;
 }
 .mediaIcons span:nth-child(2):hover {
-    color: #3a75a1;
-    cursor: pointer;
+  color: #3a75a1;
+  cursor: pointer;
 }
 .mediaIcons span:nth-child(3):hover {
-    color: #0e7022;
-    cursor: pointer;
+  color: #0e7022;
+  cursor: pointer;
 }
 .mediaIcons span:nth-child(4):hover {
-    color: #992921;
-    cursor: pointer;
+  color: #992921;
+  cursor: pointer;
 }
-
-
-
-
-

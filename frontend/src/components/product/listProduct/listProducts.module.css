@@ -1,4 +1,4 @@
-.pagination {
+/* .pagination {
     list-style: none;
     display: flex;
     justify-content: center;
@@ -7,5 +7,9 @@
     font-size: 1.2rem;
     gap: 5px;
     color: black;
-  }
-  
+  } */
+
+.menu {
+  display: flex;
+  flex-direction: row;
+}

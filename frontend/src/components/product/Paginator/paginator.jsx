@@ -3,7 +3,7 @@ import ReactPaginate from "react-paginate";
 import styles from "./paginator.module.css";
 
 const Paginator = ({ prod }) => {
-  console.log("HOLA: " + prod);
+  // console.log("HOLA: " + prod);
   // const [currentItems, setCurrentItems] = useState([]);
   // const [pageCount, setpageCount] = useState(0);
   // const [itemOffset, setItemOffset] = useState(0);
