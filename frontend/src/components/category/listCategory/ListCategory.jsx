@@ -38,8 +38,9 @@ const ListCategory = () => {
               <NavLink
                 to={"/category/" + category.title}
                 className={styles.item}
+                key={category._id}
               >
-                {category.title}
+               {category.title}
               </NavLink>
             );
           })}

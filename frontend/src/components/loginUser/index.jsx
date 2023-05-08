@@ -5,6 +5,8 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { api } from '../../utils/apiProducts';
 import { getUserToken } from '../../utils/localStorage.utils';
 import { setUserSession } from '../../utils/localStorage.utils';
+import { useMutation } from 'react-query';
+import { loginUser } from '../../utils/apiAuth';
 
 const LoginPage = () => {
   const {
@@ -14,21 +16,32 @@ const LoginPage = () => {
   } = useForm();
 
   const navigate = useNavigate();
-  
-  const handleLogin = async (userData) => {
-  try {
-    const response = await api.post("/user/login", userData);
-    if (response.status === 200) {
-      setUserSession(response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
-      navigate("/");
-    }
-    return response;
-  } catch (error) {
-    console.error(error);
-    throw error;
+  const login = useMutation(["user"],  loginUser);
+
+  const handleLogin = (data) => {
+    login.mutate(data, {
+      onSuccess: (data) => {
+        setUserSession(data);
+        localStorage.setItem("user", JSON.stringify(data.user))
+        navigate("/");
+      }
+    })
   }
-};
+  
+//   const handleLogin = async (userData) => {
+//   try {
+//     const response = await api.post("/user/login", userData);
+//     if (response.status === 200) {
+//       setUserSession(response.data.token);
+//       localStorage.setItem("user", JSON.stringify(response.data.user));
+//       navigate("/");
+//     }
+//     return response;
+//   } catch (error) {
+//     console.error(error);
+//     throw error;
+//   }
+// };
 
   return (
 

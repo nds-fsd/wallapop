@@ -9,17 +9,11 @@ import ProductPage from "./components/product/ProductPage/ProductPage";
 import Navbar from "./components/home/navbar";
 import ListCategory from "./components/category/listCategory/ListCategory";
 import ListProducts from "./components/product/listProduct/ListProducts";
-import { Outlet, Route, Routes } from "react-router-dom";
-import Buscador from "./components/home/Buscador";
+import { Route, Routes } from "react-router-dom";
 import Home from "./components/home";
-import { USER } from "./components/user/route-paths";
 import CreateProductPage from './components/createProduct/CreateProductPage/CreateProductPage';
-import HousePage from './components/product/ProductPage/HousePage';
-import ProdPage from './components/product/ProductPage/ProdPage';
-import ElsePage from './components/product/ProductPage/ElsePage';
-import VehiclePage from './components/product/ProductPage/VehiclePage';
 import PrivateRoutes from './components/privateRoutes';
-import FormElse from './components/createProduct/CreateProductPage/FormElse';
+
 
 
 function App() {
@@ -37,7 +31,7 @@ function App() {
                 <Route path="/login" element= {<LoginPage/>} />
                 <Route path="/register" element= {<CreateUserPage />} />
                 <Route path="/user/*" element={<UserPage />} />
-                <Route path="/products/newproduct" element={<CreateProductPage />} />
+                <Route path="/createproduct/*" element={<CreateProductPage />} />
                 {/* creo la ruta para poder acceder a las categorias desde otro sitio y la lista de productos 
               Lo creo dentro del routs sin mostrarlo porque asi por mucho que cambie de categoria sigue mostrandose la navBar arriba
               en caso que no fuera asi no se mostraria

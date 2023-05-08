@@ -2,8 +2,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './createUser.module.css';
 import { setUserSession } from '../../utils/localStorage.utils';
-import { Link } from 'react-router-dom';
-import { api } from '../../utils/apiProducts';
+import { Link, useNavigate } from 'react-router-dom';
+import { useMutation } from 'react-query';
+import { createUser } from '../../utils/apiAuth';
+
 
 const CreateUserPage = () => {
   const {
@@ -12,19 +14,35 @@ const CreateUserPage = () => {
     formState: { errors },
   } = useForm();
 
-  const handleCreateUser = async (userData) => {
-    try {
-      const response = await api.post("/user/register", userData);
-      if (response.status === 201) {
-        setUserSession(response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-      }
-      return response;
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-  };
+  const navigate = useNavigate();
+  const registerUser = useMutation(["user"],  createUser);
+
+
+
+   const handleCreateUser =  (data) => {
+      registerUser.mutate(data, {
+        onSuccess: (data) => {
+          setUserSession(data);
+          localStorage.setItem("user", JSON.stringify(data.user));  
+          navigate("/");
+        }
+      })
+
+   }
+
+  // const handleCreateUser = async (userData) => {
+  //   try {
+  //     const response = await api.post("/user/register", userData);
+  //     if (response.status === 201) {
+  //       setUserSession(response.data.token);
+  //       localStorage.setItem("user", JSON.stringify(response.data.user));
+  //     }
+  //     return response;
+  //   } catch (error) {
+  //     console.error(error);
+  //     throw error;
+  //   }
+  // };
 
   return (
     <div className={styles.createUserContainer}>
@@ -99,9 +117,9 @@ const CreateUserPage = () => {
             {...register('gender')}
           />
           {errors.gender && <p>{errors.gender.message}</p>}
-          <Link to="/"><button className={styles.createUserButton} type="submit">
+          <button className={styles.createUserButton} type="submit">
             Regístrate
-          </button></Link>
+          </button>
         </form>
       </div>
     </div>
