@@ -82,16 +82,9 @@ const FormVehicle = () => {
             <div className={styles.coin}>EUR</div>  
                 <input placeholder='Crea tus palabras clave' {...register('keywords')} className={styles.inputKeywords}></input> 
             </div>
-            <div className={styles.labelDouble}>
-                <label htmlFor='category' className={styles.labels}>Categoría</label>
-                <label htmlFor='status' className={styles.labelStatus}>Estado de tu vehículo</label>      
-            </div> 
-            <div className={styles.column}>       
-                <select {...register('category')} className={styles.dropdown}>
-                    <option value=''>Selecciona una categoría</option>
-                    <option value='Coches'>Coches</option>
-                    <option value='Motos'>Motos</option>
-                </select>
+            
+            <label htmlFor='status' className={styles.labels}>Estado de tu vehículo</label>      
+            <div>       
                 <select {...register('status')} className={styles.dropdown}>
                     <option value='' >Selecciona un estado</option>
                     <option value='En buen estado'>En buen estado</option>  
@@ -127,12 +120,12 @@ const FormVehicle = () => {
             <Controller name='shift' control={control} defaultValue={false} render={({field}) => (
                 <div className={styles.engine}>
                     <label htmlFor='manual' className={styles.square}>
-                        <input id='manual' type='radio' {...field} value='manual' name='shift'></input>
+                        <input id='manual' type='radio' { ...field } value='manual' name='shift'></input>
                         <span className='icon-star-empty'></span>
                         Manual
                     </label>
                     <label htmlFor='automatic' className={styles.square}>
-                        <input id='automatic' type='radio' {...field} value='automatic' name='shift'></input>
+                        <input id='automatic' type='radio' { ...field } value='automatic' name='shift'></input>
                         <span className='icon-star-empty'></span>
                     Automático
                     </label>     
@@ -146,7 +139,7 @@ const FormVehicle = () => {
             <textarea maxLength={500} placeholder='Describe el vehículo que deseas vender. Añade detalles como el modelo, color, kilometraje...' {...register('description')} className={styles.textArea}></textarea>  
             <FormImages />
             <Map />
-            <input type='submit' disabled={!isValid || mutation.isLoading} value='Subir' className={styles.formButton}></input>
+            <input type='submit' disabled={!isValid || mutation.isLoading} className={styles.formButton} value='subir'></input>
 
         </form>
         </>
