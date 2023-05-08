@@ -1,8 +1,12 @@
 import React from "react";
 import CategoryItem from "../categoryItem/CategoryItem";
 import styles from "./listCategory.module.css";
+<<<<<<< HEAD
 import { apiCategory } from "../../../utils/apiCategories";
 // import { apiProduct } from "../../../utils/apiProducts";
+=======
+import { api } from "../../../utils/apiProducts";
+>>>>>>> 48d9578b2b9d9667c2f8014752b0f17873e3fb69
 import { useQuery } from "react-query";
 import { NavLink, Navigate, Outlet, useParams } from "react-router-dom";
 

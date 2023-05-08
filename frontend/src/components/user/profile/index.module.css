@@ -1,26 +1,88 @@
 .profileContainer {
-  width: 80vw;
   display: flex;
+  width: 100%;
   flex-direction: column;
   margin-left: 1rem;
 }
 
 .profileTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profileTitle h4 {
+  font-size: 1rem;
+  color: grey;
+
+  font-weight: lighter;
+}
+.profileTitle h1 {
+  font-size: 1.5rem;
 }
 
 .navbarProfile {
   display: flex;
-  width: 80vw;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
 }
+.linksProfile a{
+  text-decoration: none;
+  font-size: 1rem;
+  padding: .5rem;
+  border-radius: 35%;
+}
+.linksProfile  :hover {
+  background-color: #28349e82;
+  color: var(--yellow-light);
+  border-radius: 1rem;
+}
+
 .linksProfile {
   display: flex;
   width: 20vw;
   justify-content: space-between;
+  font-size: 1rem;
+}
+
+.logoutButton button {
+  width: 7rem;
+  height: 2.5rem;
+  border-radius: 2.5rem;
+  font-size: .75rem;
+  border: solid 0.15rem var(--yellow-main);
+  color: var(--yellow-main);
+  font-weight: 600;
+  background-color: var(--yellow-light);
+  cursor: pointer;
+}
+
+.logoutButton :hover {
+background-color: #ebaa0525;
+  border-radius: 2.5rem;
+  color: var(--blue-dark);
+  border-color: var(--blue-dark);
 }
 
 .logoutButton {
   display: flex;
   width: 20vw;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--yellow-light);
+    color: var(--blue-dark);
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin-right: 1rem;
+  gap: 1rem;
 }

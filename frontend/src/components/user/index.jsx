@@ -47,10 +47,9 @@ import Sidebar from "./sidebar";
 
 const UserPage = () => {
   return (
-    //<LoginNav />
     <div className={styles.userPageContainer}>
       <Sidebar />
-      <div>
+      <div className={styles.outletContainer}>
         <Routes>
           <Route path={USER_PROFILE} element={<Profile />}>
             <Route path={PROFILE_INFO} element={<ProfileInfo />} />
