@@ -1,7 +1,6 @@
 .container {
-  height: 120px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -17,6 +16,25 @@
   overflow-x: scroll;
   overflow-y: hidden;
   padding-top: 35px;
+}
+
+.item {
+  width: 135px;
+  height: 69px;
+  background-color: var(--yellow-main);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0 0 1em 1em;
+  word-wrap: break-word;
+  flex-shrink: 0;
+  border-radius: 10px;
+  color: var(--blue-dark);
+  text-decoration: none;
 }
 
 .menu {

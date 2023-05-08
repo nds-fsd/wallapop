@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import styles from './createUser.module.css';
 import { setUserSession } from '../../utils/localStorage.utils';
 import { Link } from 'react-router-dom';
-import { api } from '../../utils/api';
+import { api } from '../../utils/apiProducts';
 
 const CreateUserPage = () => {
   const {
