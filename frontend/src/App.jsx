@@ -20,6 +20,10 @@ import ElsePage from './components/product/ProductPage/ElsePage';
 import VehiclePage from './components/product/ProductPage/VehiclePage';
 import PrivateRoutes from './components/privateRoutes';
 import FormElse from './components/createProduct/CreateProductPage/FormElse';
+import { FORM_ELSE, FORM_HOUSE, FORM_JOB, FORM_VEHICLE } from './components/createProduct/CreateProductPage/routeCreateProd-paths';
+import FormHouse from './components/createProduct/CreateProductPage/FormHouse';
+import FormVehicle from './components/createProduct/CreateProductPage/FormVehicle';
+import FormJob from './components/createProduct/CreateProductPage/FormJob';
 
 
 function App() {
@@ -29,7 +33,6 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <div>
-
           <Navbar />
           <div>
             <Routes>
@@ -37,7 +40,7 @@ function App() {
                 <Route path="/login" element= {<LoginPage/>} />
                 <Route path="/register" element= {<CreateUserPage />} />
                 <Route path="/user/*" element={<UserPage />} />
-                <Route path="/products/newproduct" element={<CreateProductPage />} />
+                <Route path="/products/newproduct/*" element={<CreateProductPage />} /> 
                 {/* creo la ruta para poder acceder a las categorias desde otro sitio y la lista de productos 
               Lo creo dentro del routs sin mostrarlo porque asi por mucho que cambie de categoria sigue mostrandose la navBar arriba
               en caso que no fuera asi no se mostraria

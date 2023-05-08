@@ -24,7 +24,7 @@ return(
                 <Link to="/user"> <img src={imageProfile} /> TÚ</Link>
             </div>
             <div className={styles.createProductButton}>
-                <Link to="/createproduct">SUBIR UN PRODUCTO </Link>
+                <Link to="/products/newproduct">SUBIR UN PRODUCTO </Link>
             </div>
         </div>
 </nav>
