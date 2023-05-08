@@ -42,7 +42,7 @@ const HousePage = () => {
             <p className={styles.houseDetail}>{data&& data.land} m2</p>
           </div>
           <div className={styles.priceContainer}>
-            <h1 className={styles.price}>{data && data.price}</h1>
+            <h1 className={styles.price}>{data && data.price.toLocaleString()}</h1>
             <h2>EUR</h2>
           </div> 
           <h2 className={styles.detailsHouse}>{data && data.title}</h2>

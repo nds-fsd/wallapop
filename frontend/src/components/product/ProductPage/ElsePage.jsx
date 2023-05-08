@@ -40,7 +40,7 @@ const ElsePage = () => {
           { data && <Slider images={mockImages} data={data}/>}
           <div className={styles.details}>
             <div className={styles.priceContainer}>
-              <h1 className={styles.price}>{data && data.price}</h1>
+              <h1 className={styles.price}>{data && data.price.toLocaleString()}</h1>
               <h2>EUR</h2>
             </div>
             <div className={styles.category}>
