@@ -30,8 +30,7 @@ export const getProductByCategory = ({ queryKey }) => {
 };
 
 export const getProductByIdHarcoded = () => {
-  return api
-    .get("/products/644eabfc231e21681d117b7b")
+  return api.get("/products/644eabfc231e21681d117b7b")
     .then((res) => res.data)
     .catch((error) => {
       console.log(error);
@@ -39,15 +38,23 @@ export const getProductByIdHarcoded = () => {
     });
 };
 
-export const postProduct = () => {
-  const queryClient = useQueryClient();
-  return api
-    .post("/products/newProduct")
-    .then((res) => res.data)
-    .catch((error) => {
-      console.log(error).finally(() => {
-        queryClient?.invalidateQueries("products");
-      });
-      return [];
-    });
+export const getProductByIdHarcodedHouse = () => {
+  return api.get('/products/64567f375b58e334d1dd118d')
+  .then(res => res.data)
+  .catch(error => 
+    {console.log(error)
+    return[]})
+};
+
+export const getProductByIdHarcodedVehicle = () => {
+  return api.get('/products/644ebe96f1b76b31b761b454')
+  .then(res => res.data)
+  .catch(error => 
+    {console.log(error)
+    return[]})
+};
+
+
+export const postProduct = (data) => {
+  return api.post('/products/newProduct', data)
 };

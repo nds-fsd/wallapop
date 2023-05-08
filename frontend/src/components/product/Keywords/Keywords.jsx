@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './keywords.module.css'
-import { useQuery } from 'react-query';
-import { getProductByIdHarcoded } from '../../../utils/apiProducts';
 
 
 const Keywords = ({data}) => {
@@ -10,18 +8,19 @@ const Keywords = ({data}) => {
     const words = data.keywords
     console.log(words)
     
-    const [keys, setKeys] = useState(false)
+    const [keys, setKeys] = useState(false);
+   
 
     return (
        <>
-       {keys && (
+       {!keys && (
             <ul className={styles.keywords}>
             {words.map((word) => (
                 <li key={word.id} className={styles.list}>#{word}</li>
             ))}
             </ul>
-       )}
-            
+       )}     
+    
        </>
     )
 };

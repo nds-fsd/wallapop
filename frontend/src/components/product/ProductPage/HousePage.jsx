@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from './productPage.module.css'
-import {getProductByIdHarcoded, getProductByIdHarcodedHouse} from '../../../utils/apiProducts';
+import { getProductByIdHarcodedHouse} from '../../../utils/apiProducts';
 import { useQuery } from 'react-query'
 import Slider from '../Slider/Slider'
 import Keywords from '../Keywords/Keywords'

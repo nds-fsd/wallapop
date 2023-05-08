@@ -14,14 +14,9 @@ const ProdPage = () => {
   // const id = "644796a9d7f98ce14c6ec067"
 
   // const {data, isLoading} = useQuery(['product', id], getProductById)
-  const {data, isLoading} = useQuery(['product', id], getProductByIdHarcodedHouse)
+  const {data: category, isLoading} = useQuery(['product', id], getProductByIdHarcodedHouse)
+    
   
-  if (!data) {
-    return <div>Loading...</div>
-  }
-  
-  const category = data.category;
-  console.log(category)
 
   let componentToRender;
 

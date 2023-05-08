@@ -60,16 +60,15 @@
 }
 
 .chat:hover {
-  background-color: var(--blue-light);
-  box-shadow: 2px 2px 2px .5px var(--yellow-light);
+  background-color: var(--yellow-main);
   color: white;
 }
 
 .details {
-  line-height: 1em;    
-}
-.details > h2 {
-  color: var(--yellow-dark);
+  line-height: 1em; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   
 }
 
 .category {

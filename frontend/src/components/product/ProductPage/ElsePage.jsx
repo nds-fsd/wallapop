@@ -19,6 +19,7 @@ const ElsePage = () => {
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
   };
+  
   //id de un servicio
   // const id = '644ebdbcf1b76b31b761b41c';
   const id ="644eabfc231e21681d117b7b"

@@ -28,12 +28,12 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <div>
 
-          <CreateProductPage />
+          {/* <CreateProductPage /> */}
           {/* <HousePage /> */}
           {/* <ElsePage /> */}
           {/* <VehiclePage /> */}
           {/* <ProductPage /> */}
-         
+         {/* <ProdPage /> */}
           <Navbar />
 
           <div>
