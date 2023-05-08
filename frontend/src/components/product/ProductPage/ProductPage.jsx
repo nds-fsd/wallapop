@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {getProductByIdHarcoded} from '../../../utils/api';
+import {getProductByIdHarcoded} from '../../../utils/apiProducts';
 import { useQuery, useMutation } from 'react-query'
 import styles from './productPage.module.css';
 import Slider from "../Slider/Slider";
@@ -7,7 +7,7 @@ import ProductBar from "../ProductBar/ProductBar";
 import BeatLoader from 'react-spinners/BeatLoader'
 import GridLoader from 'react-spinners/GridLoader'
 import RiseLoader from 'react-spinners/RiseLoader'
-import Spinner from "../../spinner/Spinner";
+import Spinner from "../../Spinner/Spinner";
 
 
 

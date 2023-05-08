@@ -1,0 +1,33 @@
+.navbar {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 3rem;
+}
+
+
+.logoLink img {
+    width: 11rem;
+    height: auto;
+  }
+
+
+.buttonLink {
+  width:50vw;
+  display: flex;
+  justify-content: space-around;
+  padding-right: 6rem;
+}
+
+.buttonLink button {
+    width: 7rem;
+    height: 2.5rem;
+    border-radius: 2.5rem;
+    border: none;
+    color: var(--blue-dark);
+    background-color: var(--yellow-main);
+    box-shadow: 1px 1px 1px 1px var(--yellow-dark);
+    cursor: pointer;
+  }

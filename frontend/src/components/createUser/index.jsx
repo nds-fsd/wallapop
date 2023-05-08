@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import styles from './createUser.module.css';
+import { setUserSession } from '../../utils/localStorage.utils';
+import { Link, useNavigate } from 'react-router-dom';
+import { api } from '../../utils/api';
 
 const CreateUserPage = () => {
   const {
@@ -10,12 +12,15 @@ const CreateUserPage = () => {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
   const handleCreateUser = async (userData) => {
     try {
-      const response = await axios.post("/user/register", userData);
+      const response = await api.post("/user/register", userData);
       if (response.status === 201) {
-        localStorage.setItem("token", response.data.token);
+        setUserSession(response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
+        navigate("/");
       }
       return response;
     } catch (error) {
@@ -25,78 +30,78 @@ const CreateUserPage = () => {
   };
 
   return (
-    <div className={styles.createUserContainer}>
+    <div className={styles.loginContainer}>
       <div className={styles.formContainer}>
-        <h1>Regístrate</h1>
+        <h1 className= {styles.formTitle}>Regístrate</h1>
         <form onSubmit={handleSubmit(handleCreateUser)}>
           <input
             type="text"
-            placeholder="Name"
+            placeholder="Nombre"
             {...register('name', {
-              required: 'Name is required',
+              required: 'Introduzca su nombre',
             })}
           />
-          {errors.name && <p>{errors.name.message}</p>}
+          {errors.name && <p className={styles.formError}>{errors.name.message}</p>}
           <input
             type="text"
-            placeholder="Surname"
+            placeholder="Apellido"
             {...register('surname', {
-              required: 'Surname is required',
+              required: 'Introduzca su apellido',
             })}
           />
-          {errors.surname && <p>{errors.surname.message}</p>}
+          {errors.surname && <p className={styles.formError}>{errors.surname.message}</p>}
           <input
             type="email"
             placeholder="Email"
             {...register('email', {
-              required: 'Email is required',
+              required: 'introduzca su Email',
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                 message: 'Invalid email address',
               },
             })}
           />
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && <p className={styles.formError}>{errors.email.message}</p>}
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Contraseña"
             {...register('password', {
-              required: 'Password is required',
+              required: 'Introduzca su contraseña',
             })}
           />
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && <p className={styles.formError}>{errors.password.message}</p>}
           <input
             type="text"
-            placeholder="Phone"
+            placeholder="Teléfono"
             {...register('phone', {
-              required: 'Phone is required',
+              required: 'Introduzca su teléfono',
             })}
           />
-          {errors.phone && <p>{errors.phone.message}</p>}
+          {errors.phone && <p className={styles.formError}>{errors.phone.message}</p>}
           <input
             type="text"
-            placeholder="Address"
+            placeholder="Dirección"
             {...register('address')}
           />
-          {errors.address && <p>{errors.address.message}</p>}
+          {errors.address && <p className={styles.formError}>{errors.address.message}</p>}
           <input
             type="text"
-            placeholder="Photo"
+            placeholder="Foto"
             {...register('photo')}
           />
-          {errors.photo && <p>{errors.photo.message}</p>}
+          {errors.photo && <p className={styles.formError}>{errors.photo.message}</p>}
           <input
             type="date"
-            placeholder="Birthday"
+            placeholder="Fecha de nacimiento"
             {...register('birthday')}
           />
-          {errors.birthday && <p>{errors.birthday.message}</p>}
+          {errors.birthday && <p className={styles.formError}>{errors.birthday.message}</p>}
           <input
             type="text"
-            placeholder="Gender"
+            placeholder="Sexo"
             {...register('gender')}
           />
-          {errors.gender && <p>{errors.gender.message}</p>}
+          {errors.gender && <p className={styles.formError}>{errors.gender.message}</p>}
           <button className={styles.createUserButton} type="submit">
             Regístrate
           </button>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
+import { getUserData, removeSession } from "../../../utils/localStorage.utils";
 import {
   PROFILE_ACCOUNT,
   PROFILE_INFO,
@@ -17,12 +18,12 @@ const Profile = () => {
       </div>
       <div className={styles.navbarProfile}>
         <div className={styles.linksProfile}>
-          <Link to={USER_PROFILE + "/" + PROFILE_INFO}>Perfil</Link>
-          <Link to={USER_PROFILE + "/" + PROFILE_ACCOUNT}>Cuenta</Link>
-          <Link to={USER_PROFILE + "/" + PROFILE_VALUES}>Valoraciones</Link>
+          <Link to={PROFILE_INFO}>Perfil</Link>
+          <Link to={PROFILE_ACCOUNT}>Cuenta</Link>
+          <Link to={PROFILE_VALUES}>Valoraciones</Link>
         </div>
         <div className={styles.logoutButton}>
-          <button>Cerrar sesion</button>
+        <Link to="/"><button onClick={removeSession()}>Cerrar sesion</button></Link>
         </div>
       </div>
       <Outlet />

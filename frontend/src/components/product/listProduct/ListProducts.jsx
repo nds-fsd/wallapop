@@ -1,5 +1,5 @@
 import styles from "./listProducts.module.css";
-import { api } from "../../../utils/api";
+import { api } from "../../../utils/apiProducts";
 import { useQuery, useQueryClient } from "react-query";
 import Product from "../product/Product";
 

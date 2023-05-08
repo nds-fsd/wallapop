@@ -11,22 +11,23 @@
     "dev": "dotenv -- turbo run dev "
   },
   "devDependencies": {
+    "@vitejs/plugin-react-swc": "^3.3.0",
     "dotenv-cli": "^7.0.0",
     "prettier": "2.8.7",
-    "turbo": "^1.9.1"
+    "swc": "^1.0.11",
+    "turbo": "^1.9.1",
+    "vite": "^4.3.4"
   },
   "dependencies": {
-
-
     "@monorepo/frontend": "^0.0.0",
-    "react-query": "^3.39.3",
-    "react-spinners": "^0.13.8",
-    "react-hook-form": "^7.43.9",
+    "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "jsonwebtoken": "^9.0.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",
-    "react-router-dom": "^6.10.0"
-
+    "react-query": "^3.39.3",
+    "react-router-dom": "^6.10.0",
+    "react-spinners": "^0.13.8"
   }
 }
