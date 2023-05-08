@@ -1,82 +1,75 @@
 .line {
-    background-color: var(--blue-dark);
-    height: 2px;
-    opacity: 1;
-    position: relative;
-    top: 4.7rem;
+  background-color: var(--blue-dark);
+  height: 2px;
+  opacity: 1;
+  position: relative;
+  top: 4.7rem;
 }
 
 .productPage {
-    display: flex;
-    flex-direction: column;
-    padding: 5rem 5rem 1rem 5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 5rem 5rem 1rem 5rem;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    width: 45rem;
-    height: auto;
-    background-color: white;
-    border-radius: 1.5rem;
-    padding: 2.5em 2.5em;
-    margin: auto;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 45rem;
+  height: auto;
+  background-color: white;
+  border-radius: 1.5rem;
+  padding: 2.5em 2.5em;
+  margin: auto;
+  position: relative;
 }
 
 .upperBar {
-    display: flex;
-    width: 45rem;
-    height: 3rem;
-    justify-content: flex-end;
-    gap: 2em;
+  display: flex;
+  width: 45rem;
+  height: 3rem;
+  justify-content: flex-end;
+  gap: 2em;
 }
 
 .like {
-    width: 5rem;
-    height: 2rem;
-    border-radius: 2.5rem;
-    border: 0.2em solid var(--blue-dark);
-    background-color: white;
-    color: red;
-    cursor: pointer;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 2.5rem;
+  border: 0.2em solid var(--blue-dark);
+  background-color: white;
+  color: red;
+  cursor: pointer;
 }
 
 .like:hover {
-    background-color: red;
-    color: white;
-    border: none;
+  background-color: red;
+  color: white;
+  border: none;
 }
 
 .chat {
-    width: 5rem;
-    height: 2rem;
-    border-radius: 2.5rem;
-    border: 0.2em solid var(--yellow-main);
-    background-color: white;
-    color: var(--yellow-main);
-    font-weight: bold;
-    cursor: pointer;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 2.5rem;
+  border: 0.2em solid var(--yellow-main);
+  background-color: white;
+  color: var(--yellow-main);
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .chat:hover {
-    background-color: var(--yellow-main);
-    color: white;
+  background-color: var(--blue-light);
+  box-shadow: 2px 2px 2px .5px var(--yellow-light);
+  color: white;
 }
 
 .details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  line-height: 1em;    
 }
-.detailsContainer {
-    display: flex;
-    width: 45rem; 
-}
-
-.detailsHouse {
-    width: 45rem;
-    line-height: 2.7rem;
+.details > h2 {
+  color: var(--yellow-dark);
 }
 
 .category {
@@ -106,8 +99,8 @@
 }
 
 .expandable span:nth-child(1):hover {
-    color: var(--yellow-main);
-    cursor: pointer;
+  color: var(--yellow-main);
+  cursor: pointer;
 }
 
 .expandable span:nth-child(1) {
@@ -135,9 +128,9 @@
 
 }
 .price {
-    color: var(--yellow-main);
-    font-size: 3rem;
-    line-height: 0.1em;
+  color: var(--yellow-main);
+  font-size: 3rem;
+  line-height: 0.1em;
 }
 
 .textExpanded {
@@ -162,40 +155,40 @@
 }
 
 .mediaIcons {
-    display: flex;
-    justify-content: center;
-    gap: 2.5em;
-    font-size: 2em;
+  display: flex;
+  justify-content: center;
+  gap: 2.5em;
+  font-size: 2em;
 }
 
 .mediaIcons span:nth-child(1) {
-    color: #3a559f;
+  color: #3a559f;
 }
 .mediaIcons span:nth-child(2) {
-    color: #55acee;
+  color: #55acee;
 }
 .mediaIcons span:nth-child(3) {
-    color: #1bd741;
+  color: #1bd741;
 }
 .mediaIcons span:nth-child(4) {
-    color: #f14336;
+  color: #f14336;
 }
 
 .mediaIcons span:nth-child(1):hover {
-    color: #2c3f72;
-    cursor: pointer;
+  color: #2c3f72;
+  cursor: pointer;
 }
 .mediaIcons span:nth-child(2):hover {
-    color: #3a75a1;
-    cursor: pointer;
+  color: #3a75a1;
+  cursor: pointer;
 }
 .mediaIcons span:nth-child(3):hover {
-    color: #0e7022;
-    cursor: pointer;
+  color: #0e7022;
+  cursor: pointer;
 }
 .mediaIcons span:nth-child(4):hover {
-    color: #992921;
-    cursor: pointer;
+  color: #992921;
+  cursor: pointer;
 }
 .houseType {
     display: flex;
@@ -209,8 +202,3 @@
     width: max-content;
     padding: 0.4em 1em;
 }
-
-
-
-
-

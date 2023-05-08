@@ -3,7 +3,7 @@ import styles from './productPage.module.css'
 import HousePage from './HousePage'
 import ElsePage from './ElsePage'
 import VehiclePage from './VehiclePage'
-import Spinner from '../../spinner/Spinner'
+import Spinner from '../../Spinner/Spinner'
 import { useQuery } from 'react-query'
 import { getProductByIdHarcodedHouse } from '../../../utils/apiProducts'
 
@@ -50,4 +50,4 @@ const ProdPage = () => {
   )
 }
 
-export default ProdPage
+export default ProdPage;
