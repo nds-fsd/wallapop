@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import image from "../../../assets/images/logo-retrend.png";
+import Buscador from "../Buscador";
 import styles from "./index.module.css"
+import { TbMessages } from "react-icons/tb";
+import { MdOutlineFavoriteBorder } from "react-icons/md";
+import imageProfile from "../../../assets/images/pexels-pixabay-415829.jpg"
+
 
 const Login = () => {
 return(
@@ -11,11 +16,16 @@ return(
                 <img src={image} />
             </div>
         </Link>
+        <Buscador />
         <div className={styles.buttonLink}>
-            <Link to="/user/favorite"><button> FAVORITOS </button></Link>
-            <Link to="/user/message"><button > BUZÓN </button></Link>
-            <Link to="/user"><button> TÚ </button></Link>
-            <Link to="/createproduct"><button> SUBIR UN PRODUCTO </button></Link>
+            <Link to="/user/favorites"> <MdOutlineFavoriteBorder /> FAVORITOS </Link>
+            <Link to="/user/messages"> <TbMessages /> BUZÓN </Link>
+            <div className={styles.tuButton}>
+                <Link to="/user"> <img src={imageProfile} /> TÚ</Link>
+            </div>
+            <div className={styles.createProductButton}>
+                <Link to="/createproduct">SUBIR UN PRODUCTO </Link>
+            </div>
         </div>
 </nav>
 )};

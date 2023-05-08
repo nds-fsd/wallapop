@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import {  QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 import CreateUserPage from "./components/createUser";
 import LoginPage from "./components/loginUser";
 import UserPage from "./components/user";
@@ -28,28 +28,26 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <div>
 
-          {/* <CreateProductPage /> */}
-          {/* <HousePage /> */}
-          {/* <ElsePage /> */}
-          {/* <VehiclePage /> */}
-          {/* <ProductPage /> */}
-         {/* <ProdPage /> */}
           <Navbar />
 
           <div>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<CreateUserPage />} />
-              <Route path="/products/newproduct" element={<CreateProductPage />} />
-              <Route path="/user/*" element={<UserPage />} />
-              {/* creo la ruta para poder acceder a las categorias desde otro sitio y la lista de productos 
+                <Route path="/"  element={<Home />} />
+                <Route path="/login" element= {<LoginPage/>} />
+                <Route path="/register" element= {<CreateUserPage />} />
+                <Route path="/user/*" element={<UserPage />} />
+                <Route path="/products/newproduct" element={<CreateProductPage />} />
+                {/* creo la ruta para poder acceder a las categorias desde otro sitio y la lista de productos 
               Lo creo dentro del routs sin mostrarlo porque asi por mucho que cambie de categoria sigue mostrandose la navBar arriba
               en caso que no fuera asi no se mostraria
               Aqui solo la declaro la ruta para que exista y poder acceder desde otro lado */}
               <Route path="/category" element={<ListCategory />}>
                 <Route path=":category" element={<ListProducts />} />
                 <Route path="products/:productid" element={<ProductPage />} />
+              </Route>
+              <Route path="/user" element={<PrivateRoutes />}>
+                <Route path="" element= {<UserPage />} />
+                <Route path="*" element= {<UserPage />} />
               </Route>
             </Routes>
           </div>
@@ -62,6 +60,8 @@ function App() {
 };
 
 export default App;
+
+
 
 
 

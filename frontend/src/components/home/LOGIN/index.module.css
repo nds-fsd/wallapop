@@ -1,17 +1,35 @@
 .navbar {
   width: 100vw;
+  height:15vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding-left: 3rem;
+  border-bottom: solid rgba(198, 197, 197, 0.368) .1rem; 
 }
 
 
 .logoLink img {
-    width: 11rem;
+    width: 7rem;
     height: auto;
+    margin: 0;
   }
+
+
+.tuButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.tuButton img {
+  margin: 0;
+  width: 2rem;
+  height: auto;
+  border-radius: 100%;
+}
 
 
 .buttonLink {
@@ -21,13 +39,33 @@
   padding-right: 6rem;
 }
 
-.buttonLink button {
-    width: 7rem;
-    height: 2.5rem;
-    border-radius: 2.5rem;
-    border: none;
-    color: var(--blue-dark);
-    background-color: var(--yellow-main);
-    box-shadow: 1px 1px 1px 1px var(--yellow-dark);
-    cursor: pointer;
-  }
+.buttonLink :hover {
+  background-color: #ebaa0525;
+  border-radius: 2.5rem;
+  color: var(--blue-dark);
+  border-color: var(--blue-dark);
+}
+
+.buttonLink a {
+  width: 7rem;
+  height: 2.5rem;
+  border-radius: 2.5rem;
+  font-size: .75rem;
+  border: solid 0.15rem var(--yellow-main);
+  color: var(--yellow-main);
+  font-weight: 600;
+  background-color: var(--yellow-light);
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+}
+
+.createProductButton a {
+  width: 10rem;
+  background-color: var(--yellow-main);
+  color: var(--yellow-light);
+}

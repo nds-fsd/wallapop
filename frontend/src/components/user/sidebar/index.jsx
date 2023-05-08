@@ -22,12 +22,13 @@ const Sidebar = () => {
   const userData = getUserData();
   return (
     <div className={styles.sideBar}>
-      <Link to={USER_PROFILE}>
         <div className={styles.profileLink}>
-          <img src={image} />
-          <p>{userData.name}</p>
+          <Link to={USER_PROFILE}>
+            
+            <img src={image} />
+            <p>{userData.name}</p>
+          </Link>
         </div>
-      </Link>
       <Link to={USER_PURCHASES}>
         <GiShakingHands /> Compras
       </Link>
