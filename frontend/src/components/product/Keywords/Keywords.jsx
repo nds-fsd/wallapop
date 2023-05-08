@@ -8,19 +8,16 @@ const Keywords = ({data}) => {
     const words = data.keywords
     console.log(words)
     
-    const [keys, setKeys] = useState(false);
-   
 
     return (
        <>
-       {!keys && (
+       {Array.isArray(words) && words.length > 0 && (
             <ul className={styles.keywords}>
-            {words.map((word) => (
-                <li key={word.id} className={styles.list}>#{word}</li>
+            {words.map((word, index) => (
+                <li key={index} className={styles.list}>{`#${word}`}</li>
             ))}
             </ul>
-       )}     
-    
+       )} 
        </>
     )
 };

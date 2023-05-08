@@ -47,10 +47,10 @@ const ElsePage = () => {
               <span className='icon-display'></span>
               <h3>{data && data.category}</h3>
             </div>
-          </div>
+        </div>
             
-          <h2>{data && data.title}</h2>
-          { data && <Keywords data={data}/>}               
+        <h2>{data && data.title}</h2>
+        { data && <Keywords data={data}/>}               
              
         <div className={styles.line}></div>
         <div className={styles.expandable}>

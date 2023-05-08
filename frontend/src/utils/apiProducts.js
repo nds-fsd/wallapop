@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useQueryClient } from "react-query";
 
 export const api = axios.create({
   baseURL: "http://localhost:3001",

@@ -31,3 +31,8 @@
     font-weight: bold;
     position: relative;
 }
+
+.blank {
+    width: auto;
+    background-color: white;
+}

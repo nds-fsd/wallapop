@@ -18,6 +18,8 @@ import HousePage from './components/product/ProductPage/HousePage';
 import ProdPage from './components/product/ProductPage/ProdPage';
 import ElsePage from './components/product/ProductPage/ElsePage';
 import VehiclePage from './components/product/ProductPage/VehiclePage';
+import PrivateRoutes from './components/privateRoutes';
+import FormElse from './components/createProduct/CreateProductPage/FormElse';
 
 
 function App() {
@@ -29,7 +31,6 @@ function App() {
         <div>
 
           <Navbar />
-
           <div>
             <Routes>
                 <Route path="/"  element={<Home />} />
@@ -43,7 +44,7 @@ function App() {
               Aqui solo la declaro la ruta para que exista y poder acceder desde otro lado */}
               <Route path="/category" element={<ListCategory />}>
                 <Route path=":category" element={<ListProducts />} />
-                <Route path="products/:productid" element={<ProductPage />} />
+                <Route path="product/:productid" element={<ProductPage />} />
               </Route>
               <Route path="/user" element={<PrivateRoutes />}>
                 <Route path="" element= {<UserPage />} />
