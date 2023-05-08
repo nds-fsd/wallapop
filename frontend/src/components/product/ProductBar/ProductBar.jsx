@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./productBar.module.css";
-import { getProductByIdHarcoded } from "../../../utils/apiProducts";
-import { useQuery } from "react-query";
+
 
 const ProductBar = (product) => {
   return (
