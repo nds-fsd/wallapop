@@ -4,7 +4,6 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import CreateUserPage from "./components/createUser";
 import LoginPage from "./components/loginUser";
 import UserPage from "./components/user";
-import ModalContainer from "./components/product/ModalContainer/ModalContainer";
 import ProductPage from "./components/product/ProductPage/ProductPage";
 import Navbar from "./components/home/navbar";
 import ListCategory from "./components/category/listCategory/ListCategory";

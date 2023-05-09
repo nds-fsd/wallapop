@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm, } from 'react-hook-form';
-import './loginUser.module.css';
+import styles from './loginUser.module.css';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { api } from '../../utils/apiProducts';
 import { getUserToken } from '../../utils/localStorage.utils';
@@ -44,44 +44,50 @@ const LoginPage = () => {
 // };
 
   return (
+    <>
+      <div className={styles.loginContainer}>
+        <div>
+          {getUserToken() && (
+            <Navigate to="/" />
+          )}
+        </div>
+        <div >
+          <h1>Inicia Sesión</h1>
+          <form onSubmit={handleSubmit(handleLogin)} className={styles.formContainer}>
+            <div className={styles.register}>
+              <input
+                type="email"
+                placeholder="Email"
+                className={styles.input}
+                {...register('email', {
+                  required: 'Email is required',
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                    message: 'Invalid email address',
+                  },
+                })}
+              />
+              {errors.email && <p>{errors.email.message}</p>}
+              <input
+                type="password"
+                placeholder="Password"
+                className={styles.input}
+                {...register('password', {
+                  required: 'Password is required',
+                })}
+              />
+            {errors.password && <p>{errors.password.message}</p>}
+            </div>
+            
+            <button className={styles.formButton} type="submit">
+              Inicia sesión
+            </button>
+          </form>
+        </div>
+      </div>
+    </>
 
-<div className="loginContainer">
-  <div>
-    {getUserToken() && (
-      <Navigate to="/" />
-    )}
-  </div>
-  <div className="formContainer">
-    <h1 className="formTitle">Inicia Sesión</h1>
-    <form onSubmit={handleSubmit(handleLogin)}>
-      <input
-        type="email"
-        placeholder="Email"
-        {...register('email', {
-          required: 'Email is required',
-          pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-            message: 'Invalid email address',
-          },
-        })}
-        className="formInput"
-      />
-      {errors.email && <p>{errors.email.message}</p>}
-      <input
-        type="password"
-        placeholder="Password"
-        {...register('password', {
-          required: 'Password is required',
-        })}
-        className="formInput"
-      />
-      {errors.password && <p>{errors.password.message}</p>}
-      <button className="formButton" type="submit">
-        Inicia sesión
-      </button>
-    </form>
-  </div>
-</div>
+
   );
 };
 
