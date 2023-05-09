@@ -268,7 +268,7 @@
     justify-content: center;
 }
 
-.formButton {
+.formButton button {
     width: 13rem;
     height: 3rem;
     font-size: 1.2rem;
@@ -285,7 +285,7 @@
     margin-bottom: 2em;
   }
   
-  .formButton:hover {
+  .formButton button:hover {
     background-color: var(--yellow-main);
     color: white;
   }

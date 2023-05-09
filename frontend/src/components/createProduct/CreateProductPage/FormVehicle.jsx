@@ -139,8 +139,9 @@ const FormVehicle = () => {
             <textarea maxLength={500} placeholder='Describe el vehículo que deseas vender. Añade detalles como el modelo, color, kilometraje...' {...register('description')} className={styles.textArea}></textarea>  
             <FormImages />
             <Map />
-            <input type='submit' disabled={!isValid || mutation.isLoading} className={styles.formButton} value='subir'></input>
-
+            <div className={styles.formButton}>
+                <button type='submit' disabled={!isValid || mutation.isLoading} >Subir</button>
+            </div>
         </form>
         </>
     )

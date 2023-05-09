@@ -61,8 +61,9 @@ const FormJob = () => {
                 <textarea maxLength={500} placeholder='Describe las ventajas del servicio o empleo que buscas para que los demás sepan por qué deben contratarte a ti y no a otro...' {...register('description')} className={styles.textArea}></textarea>  
                 <FormImages />
                 <Map />
-                <input type='submit' disabled={!isValid || mutation.isLoading} className={styles.formButton} value='subir'></input>
-
+                <div className={styles.formButton}>
+                    <button type='submit' disabled={!isValid || mutation.isLoading} >Subir</button>
+                </div>
 
             </form> 
         </>

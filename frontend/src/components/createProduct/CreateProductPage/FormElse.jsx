@@ -75,7 +75,9 @@ const FormElse = () => {
             <textarea maxLength={500} placeholder='Describe lo fantástico que es tu producto. Añade detalles como el modelo, color, funcionalidad...' {...register('description')} className={styles.textArea}></textarea>  
             <FormImages />
             <Map />
-            <input type='submit' disabled={!isValid || mutation.isLoading} value='Subir' className={styles.formButton}></input>
+            <div className={styles.formButton}>
+                <button type='submit' disabled={!isValid || mutation.isLoading} >Subir</button>
+            </div>        
         </form>
         </>
     )
