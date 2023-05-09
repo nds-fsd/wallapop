@@ -19,9 +19,9 @@ const productSchema = new Schema({
   brand : { type: String },
   model : { type: String },
   year : { type: Number },
-  doors : { type: String },
-  seats : { type: String },
-  km : { type: String },
+  doors : { type: Number },
+  seats : { type: Number },
+  km : { type: Number },
   engine : { type: String },
   shift : { type: String }
 

@@ -69,9 +69,9 @@ const FormVehicle = () => {
                 <label htmlFor='km' className={styles.labels}>Kilometraje</label>
             </div>
             <div className={styles.vehicle}>
-                <input placeholder='Escribe un número' {...register('doors')} className={styles.inputVehicle}></input>
-                <input placeholder='Escribe un número' {...register('seats')} className={styles.inputVehicle}></input>
-                <input placeholder='Sé preciso' {...register('km')} className={styles.inputVehicle}></input>
+                <input type='number' placeholder='Escribe un número' {...register('doors')} className={styles.inputVehicle}></input>
+                <input type='number'placeholder='Escribe un número' {...register('seats')} className={styles.inputVehicle}></input>
+                <input type='number' placeholder='Sé preciso' {...register('km')} className={styles.inputVehicle}></input>
             </div>
             <div>
                 <label htmlFor='price' className={styles.labels}>Ponle precio</label>
