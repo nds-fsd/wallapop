@@ -42,7 +42,7 @@ const CreateUserPage = () => {
             })}
           />
           {errors.name && <p className={styles.formError}>{errors.name.message}</p>}
-          <input
+          <input className={styles.inputRegister}
             type="text"
             placeholder="Apellido"
             {...register('surname', {
@@ -50,7 +50,7 @@ const CreateUserPage = () => {
             })}
           />
           {errors.surname && <p className={styles.formError}>{errors.surname.message}</p>}
-          <input
+          <input className={styles.inputRegister}
             type="email"
             placeholder="Email"
             {...register('email', {
@@ -62,7 +62,7 @@ const CreateUserPage = () => {
             })}
           />
           {errors.email && <p className={styles.formError}>{errors.email.message}</p>}
-          <input
+          <input className={styles.inputRegister}
             type="password"
             placeholder="Contraseña"
             {...register('password', {
@@ -70,7 +70,7 @@ const CreateUserPage = () => {
             })}
           />
           {errors.password && <p className={styles.formError}>{errors.password.message}</p>}
-          <input
+          <input className={styles.inputRegister}
             type="text"
             placeholder="Teléfono"
             {...register('phone', {
@@ -78,25 +78,25 @@ const CreateUserPage = () => {
             })}
           />
           {errors.phone && <p className={styles.formError}>{errors.phone.message}</p>}
-          <input
+          <input className={styles.inputRegister}
             type="text"
             placeholder="Dirección"
             {...register('address')}
           />
           {errors.address && <p className={styles.formError}>{errors.address.message}</p>}
-          <input
+          <input className={styles.inputRegister}
             type="text"
             placeholder="Foto"
             {...register('photo')}
           />
           {errors.photo && <p className={styles.formError}>{errors.photo.message}</p>}
-          <input
+          <input className={styles.inputRegister}
             type="date"
             placeholder="Fecha de nacimiento"
             {...register('birthday')}
           />
           {errors.birthday && <p className={styles.formError}>{errors.birthday.message}</p>}
-          <input
+          <input className={styles.inputRegister}
             type="text"
             placeholder="Sexo"
             {...register('gender')}
