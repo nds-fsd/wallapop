@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useForm, } from 'react-hook-form';
 import styles from './loginUser.module.css';
-import styles from './loginUser.module.css';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { api } from '../../utils/apiProducts';
 import { getUserToken } from '../../utils/localStorage.utils';
 import { setUserSession } from '../../utils/localStorage.utils';
 import { useMutation } from 'react-query';
