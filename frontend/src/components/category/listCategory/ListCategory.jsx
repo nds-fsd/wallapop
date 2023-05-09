@@ -40,7 +40,7 @@ const ListCategory = () => {
                 className={styles.item}
                 key={category._id}
               >
-               {category.title}
+                {category.title}
               </NavLink>
             );
           })}

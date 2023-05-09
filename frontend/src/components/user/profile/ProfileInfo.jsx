@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./ProfileInfo.module.css";
-import style from "./index.module.css"
-import image from "../../../assets/images/pexels-pixabay-415829.jpg"
+import style from "./index.module.css";
+import image from "../../../assets/images/pexels-pixabay-415829.jpg";
 
 const ProfileInfo = () => {
   const { register, handleSubmit } = useForm();
@@ -11,17 +11,17 @@ const ProfileInfo = () => {
   return (
     <div className={style.mainContainer}>
       <div className={style.contentContainer}>
-          <h4> Imagenes de perfil</h4>
-          <h5> Foto principal </h5>
-          <div className={styles.changePhotoContainer}>
-           <div>
+        <h4> Imagenes de perfil</h4>
+        <h5> Foto principal </h5>
+        <div className={styles.changePhotoContainer}>
+          <div>
             <img src={image} />
-           </div>
-           <div className={styles.handleContainer}>
-              <button>Cambiar Foto</button>
-              <p>Aceptamos fotos formato .jpg y minimo 400 x 400 px</p>
-            </div> 
           </div>
+          <div className={styles.handleContainer}>
+            <button>Cambiar Foto</button>
+            <p>Aceptamos fotos formato .jpg y minimo 400 x 400 px</p>
+          </div>
+        </div>
       </div>
       <div className={style.contentContainer}>
         <h4>Información pública</h4>

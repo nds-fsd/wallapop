@@ -4,29 +4,28 @@
 }
 
 .profileLink {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 20vw;
-    justify-content: space-around;   
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 20vw;
+  justify-content: space-around;
 }
 
-.navPageContainer h1{
+.navPageContainer h1 {
   font-size: 1.5rem;
-
 }
-.navPageContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+.navPageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .profileLink img {
-    border-radius: 100%;
+  border-radius: 100%;
 }
 
-.linkPageContainer  :hover {
+.linkPageContainer :hover {
   background-color: #28349e82;
   color: var(--yellow-light);
   border-radius: 1rem;
@@ -38,7 +37,7 @@
   align-items: flex-start;
   gap: 2rem;
 }
-.linkPageContainer a{ 
+.linkPageContainer a {
   text-decoration: none;
   font-size: 1rem;
   padding: 0.5rem;
@@ -50,4 +49,3 @@
   background-color: rgba(198, 197, 197, 0.368);
   padding: 1rem;
 }
-

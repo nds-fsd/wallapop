@@ -6,15 +6,15 @@ export const api = axios.create({
 });
 
 export const loginUser = (user) => {
-    return api
+  return api
     .post("/user/login", user)
     .then((res) => res.data)
     .catch((e) => console.log(e));
-}
+};
 
 export const createUser = (user) => {
-    return api
+  return api
     .post("/user/register", user)
     .then((res) => res.data)
     .catch((e) => console.log(e));
-}
+};

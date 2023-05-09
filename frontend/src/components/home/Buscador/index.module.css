@@ -1,27 +1,27 @@
 .searchContainer {
-    display: flex;
-    width: 50%;
-    background-color: transparent;
-    box-shadow: none;
-    gap: 2rem;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  width: 50%;
+  background-color: transparent;
+  box-shadow: none;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
 }
 
-.searchContainer button{
-    width: 7rem;
-    height: 2.5rem;
-    border-radius: 2.5rem;
-    font-size: 1rem;
-    color: var(--blue-dark);
-    background-color: var(--yellow-main);
-    cursor: pointer;
+.searchContainer button {
+  width: 7rem;
+  height: 2.5rem;
+  border-radius: 2.5rem;
+  font-size: 1rem;
+  color: var(--blue-dark);
+  background-color: var(--yellow-main);
+  cursor: pointer;
 }
 
-.searchContainer input{
-    border-radius: 10rem;
-    border: var(--blue-dark) solid .1rem;
-    width: 80%;
-    margin-bottom: 0;
-    padding: .65rem;
+.searchContainer input {
+  border-radius: 10rem;
+  border: var(--blue-dark) solid 0.1rem;
+  width: 80%;
+  margin-bottom: 0;
+  padding: 0.65rem;
 }

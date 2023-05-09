@@ -3,25 +3,23 @@ import { getUserToken } from "../../../utils/localStorage.utils";
 import Login from "../LOGIN";
 import Logout from "../LOGOUT/index";
 
-const Navbar=() => {
-    const token = getUserToken();
+const Navbar = () => {
+  const token = getUserToken();
 
-    return (
-        
-        <div>
-            {token ? <Login/> : <Logout /> }
-           
-         </div>
-        
-  )};
-  export default Navbar
+  return <div>{token ? <Login /> : <Logout />}</div>;
+};
+export default Navbar;
 
-  {/* <CreateUserPage />
+{
+  /* <CreateUserPage />
 <LoginPage />
 <UserPage />
 <ProductPage />
-{/* <ModalContainer />  */}
+{/* <ModalContainer />  */
+}
 
-{/* <ListProducts />
+{
+  /* <ListProducts />
 <Postproform />
-<Map /> */}
+<Map /> */
+}

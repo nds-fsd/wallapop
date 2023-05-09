@@ -27,13 +27,13 @@
   justify-content: space-between;
   align-items: center;
 }
-.linksProfile a{
+.linksProfile a {
   text-decoration: none;
   font-size: 1rem;
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 35%;
 }
-.linksProfile  :hover {
+.linksProfile :hover {
   background-color: #28349e82;
   color: var(--yellow-light);
   border-radius: 1rem;
@@ -50,7 +50,7 @@
   width: 7rem;
   height: 2.5rem;
   border-radius: 2.5rem;
-  font-size: .75rem;
+  font-size: 0.75rem;
   border: solid 0.15rem var(--yellow-main);
   color: var(--yellow-main);
   font-weight: 600;
@@ -59,7 +59,7 @@
 }
 
 .logoutButton :hover {
-background-color: #ebaa0525;
+  background-color: #ebaa0525;
   border-radius: 2.5rem;
   color: var(--blue-dark);
   border-color: var(--blue-dark);
@@ -71,12 +71,12 @@ background-color: #ebaa0525;
 }
 
 .contentContainer {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--yellow-light);
-    color: var(--blue-dark);
-    padding: 1rem;
-    border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--yellow-light);
+  color: var(--blue-dark);
+  padding: 1rem;
+  border-radius: 1rem;
 }
 
 .mainContainer {

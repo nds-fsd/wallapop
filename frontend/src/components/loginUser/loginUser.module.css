@@ -16,74 +16,60 @@
     font-size: 16px;
   } */
 
-  .loginContainer h1 {
-    text-align: center;
-  }
-  
-  .loginContainer {
-    display: flex;
-    flex-direction: column;
-    width: 35rem;
-    background-color: white;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    height: max-content;
-    border-radius: 1.5rem;  
-    position: relative;
-    margin: 5rem auto 1rem auto;
-  }
-  
-  .formContainer {
-    display: flex;
-    gap: 2.5rem;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 2.5rem 3rem;
-  }
+.loginContainer h1 {
+  text-align: center;
+}
 
-  .register {
-    display: flex;
-    justify-content: space-between;
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  width: 35rem;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  height: max-content;
+  border-radius: 1.5rem;
+  position: relative;
+  margin: 5rem auto 1rem auto;
+}
 
-  }
-  .input {
-    width: 13rem;
-    height: 2.3rem;
-    border-radius: 0.5rem;
-    border: 0.1em solid var(--yellow-main);
-    position: relative;
-    padding-left: 1rem;
-    font-size: 1rem;
-    gap: 1rem;
-  }
+.formContainer {
+  display: flex;
+  gap: 2.5rem;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 2.5rem 3rem;
+}
 
-  .formButton {
-    width: 30rem;
-    height: 3rem;
-    font-size: 1.2rem;
-    border-radius: 2.5rem;
-    border: 0.15em solid var(--yellow-main);
-    background-color: white;
-    color: var(--yellow-main);
-    font-weight: bold;
-    cursor: pointer;
-    position: relative;
-   
-  }
-  
-  .formButton:hover {
-    background-color: var(--yellow-main);
-    color: white;
-  }
+.register {
+  display: flex;
+  justify-content: space-between;
+}
+.input {
+  width: 13rem;
+  height: 2.3rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 1rem;
+  font-size: 1rem;
+  gap: 1rem;
+}
 
+.formButton {
+  width: 30rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  border-radius: 2.5rem;
+  border: 0.15em solid var(--yellow-main);
+  background-color: white;
+  color: var(--yellow-main);
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+}
 
-
-
-
-
-
-
-
-
-
-
+.formButton:hover {
+  background-color: var(--yellow-main);
+  color: white;
+}

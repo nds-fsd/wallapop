@@ -1,24 +1,22 @@
 .navbar {
   width: 100vw;
-  height:15vh;
+  height: 15vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding-left: 3rem;
-  border-bottom: solid rgba(198, 197, 197, 0.368) .1rem; 
+  border-bottom: solid rgba(198, 197, 197, 0.368) 0.1rem;
 }
 
-
 .logoLink img {
-    width: 7rem;
-    height: auto;
-    margin: 0;
-  }
-
+  width: 7rem;
+  height: auto;
+  margin: 0;
+}
 
 .buttonLink {
-  width:30vw;
+  width: 30vw;
   display: flex;
   justify-content: space-around;
   padding-right: 6rem;
@@ -31,12 +29,11 @@
   border-color: var(--blue-dark);
 }
 
-
 .buttonLink a {
   width: 7rem;
   height: 2.5rem;
   border-radius: 2.5rem;
-  font-size: .75rem;
+  font-size: 0.75rem;
   border: solid 0.15rem var(--yellow-main);
   color: var(--yellow-main);
   font-weight: 600;
@@ -47,4 +44,4 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  }
+}

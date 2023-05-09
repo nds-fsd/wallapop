@@ -1,41 +1,41 @@
-.productBar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: max-content;
-    background-color: var(--blue-medium);    
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    box-shadow: 0 2px 4px 1px grey;
-    z-index: 1000;
+.productBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: max-content;
+  background-color: var(--blue-medium);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 2px 4px 1px grey;
+  z-index: 1000;
 }
 
 .productDetails {
-    display: flex;
-    justify-content: space-between;
-    margin: 1em 0 0;
-    width: 45rem;
-    margin: 0 auto;
-    padding: 1em 0 0 0;
-    line-height: 0.4em;
-    font-size: 0.7em;
-    color: white;
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0 0;
+  width: 45rem;
+  margin: 0 auto;
+  padding: 1em 0 0 0;
+  line-height: 0.4em;
+  font-size: 0.7em;
+  color: white;
 }
 
 .comprar {
-    background-color: var(--yellow-main);
-    color: white;
-    width: 12rem;
-    height: 2.5rem;
-    border-radius: 2.5rem;
-    border: none;
-    font-weight: bold;
+  background-color: var(--yellow-main);
+  color: white;
+  width: 12rem;
+  height: 2.5rem;
+  border-radius: 2.5rem;
+  border: none;
+  font-weight: bold;
 }
 
 .comprar:hover {
-    background-color: var(--blue-light);
-    color: white;
-    cursor: pointer;
+  background-color: var(--blue-light);
+  color: white;
+  cursor: pointer;
 }

@@ -16,7 +16,6 @@ const ListProducts = () => {
     getProductByCategory
   );
 
-
   return (
     <div className={styles.container}>
       <h1>{params.category}</h1>

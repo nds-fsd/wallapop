@@ -50,7 +50,7 @@ const userRegister = async (req, res) => {
       .status(400)
       .json({ error: { email: "Email already registered" } });
   } else {
-    const newUser = new userModel ({
+    const newUser = new userModel({
       name: body.name,
       surname: body.surname,
       email: body.email,

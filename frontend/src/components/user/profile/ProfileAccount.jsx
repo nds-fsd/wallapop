@@ -9,11 +9,9 @@ const ProfileAccount = () => {
 
   return (
     <div className={style.mainContainer}>
-      <div className={style.contentContainer}> 
+      <div className={style.contentContainer}>
         <h4> Información personal</h4>
-        <form
-          onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
-        >
+        <form onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
           <label>
             Fecha de nacimiento
             <input type="date" {...register("birthday")} />

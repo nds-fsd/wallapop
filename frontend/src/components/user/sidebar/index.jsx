@@ -18,17 +18,15 @@ import image from "../../../assets/images/pexels-pixabay-415829.jpg";
 import { getUserData } from "../../../utils/localStorage.utils";
 
 const Sidebar = () => {
-
   const userData = getUserData();
   return (
     <div className={styles.sideBar}>
-        <div className={styles.profileLink}>
-          <Link to={USER_PROFILE}>
-            
-            <img src={image} />
-            <p>{userData.name}</p>
-          </Link>
-        </div>
+      <div className={styles.profileLink}>
+        <Link to={USER_PROFILE}>
+          <img src={image} />
+          <p>{userData.name}</p>
+        </Link>
+      </div>
       <Link to={USER_PURCHASES}>
         <GiShakingHands /> Compras
       </Link>

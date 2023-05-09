@@ -1,56 +1,75 @@
-import React, { useState } from 'react';
-import styles from './slider.module.css'
+import React, { useState } from "react";
+import styles from "./slider.module.css";
 
 const Slider = ({ images, data }) => {
-    const [currentImage, setCurrentImage] = useState(0);
-    const amount = images.length;
-    const nextImage = () => {
-        setCurrentImage(currentImage === amount -1 ? 0 : currentImage + 1)
-    }
-    const prevImage = () => {
-        setCurrentImage(currentImage === 0 ? 1 : currentImage - 1)
-    }
+  const [currentImage, setCurrentImage] = useState(0);
+  const amount = images.length;
+  const nextImage = () => {
+    setCurrentImage(currentImage === amount - 1 ? 0 : currentImage + 1);
+  };
+  const prevImage = () => {
+    setCurrentImage(currentImage === 0 ? 1 : currentImage - 1);
+  };
 
-    const [isHovering, setIsHovering] = useState(false);    
-    const handleMouseEnter = () => {
-        setIsHovering(true)
-    };
+  const [isHovering, setIsHovering] = useState(false);
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
 
-    const handleMouseLeave = () => {
-        setIsHovering(false)
-    };
- 
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
 
-
-    return (
+  return (
     <>
-        {amount >= 1 && (
-            <div>
-                <div className={styles.container}>
-                    <button onClick={prevImage} className={isHovering ? styles.buttonOpacity : styles.button}><span className='icon-undo2'></span></button>
-                    {images.map((image, id) => (
-                        <div className={
-                            currentImage === id ? `${styles.slide} ${styles.active}` 
-                            : styles.slide }> 
-                            {currentImage === id && (
-                            <img key={id} src={image} alt={image} onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave} className={styles.imgSlider}/>
-                            )}
-                        </div>   
-                    ))}
-                    <button onClick={nextImage} className={isHovering ? styles.buttonOpacity : styles.button}><span className='icon-redo2'></span></button>
-                </div>
-                <p className={styles.statusTag}>{data && data.status}</p>
-            </div>
-        )}
+      {amount >= 1 && (
+        <div>
+          <div className={styles.container}>
+            <button
+              onClick={prevImage}
+              className={isHovering ? styles.buttonOpacity : styles.button}
+            >
+              <span className="icon-undo2"></span>
+            </button>
+            {images.map((image, id) => (
+              <div
+                className={
+                  currentImage === id
+                    ? `${styles.slide} ${styles.active}`
+                    : styles.slide
+                }
+              >
+                {currentImage === id && (
+                  <img
+                    key={id}
+                    src={image}
+                    alt={image}
+                    onMouseOver={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    className={styles.imgSlider}
+                  />
+                )}
+              </div>
+            ))}
+            <button
+              onClick={nextImage}
+              className={isHovering ? styles.buttonOpacity : styles.button}
+            >
+              <span className="icon-redo2"></span>
+            </button>
+          </div>
+          <p className={styles.statusTag}>{data && data.status}</p>
+        </div>
+      )}
 
-        {amount === 0 && (
-            <div className={styles.noImage}>
-                <span className='icon-sad'></span>
-                <h1>Sorry, there are no available images to display yet</h1>
-            </div>
-        )}
+      {amount === 0 && (
+        <div className={styles.noImage}>
+          <span className="icon-sad"></span>
+          <h1>Sorry, there are no available images to display yet</h1>
+        </div>
+      )}
     </>
-    );
+  );
 };
 
 export default Slider;

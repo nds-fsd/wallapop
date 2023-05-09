@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "./productBar.module.css";
 
-
-const ProductBar = ({data}) => {
+const ProductBar = ({ data }) => {
   return (
     <>
       <div className={styles.productBar}>
