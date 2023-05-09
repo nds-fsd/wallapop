@@ -4,7 +4,8 @@ import styles from './loginUser.module.css';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { getUserToken } from '../../utils/localStorage.utils';
 import { setUserSession } from '../../utils/localStorage.utils';
-import { Link } from 'react-router-dom';
+import { useMutation } from 'react-query';
+import { loginUser } from '../../utils/apiAuth';
 
 const LoginPage = () => {
   const {
@@ -14,67 +15,74 @@ const LoginPage = () => {
   } = useForm();
 
   const navigate = useNavigate();
-  
-  const handleLogin = async (userData) => {
-  try {
-    const response = await api.post("/user/login", userData);
-    if (response.status === 200) {
-      setUserSession(response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
-      navigate("/");
-    }
-    return response;
-  } catch (error) {
-    console.error(error);
-    if (error.response && error.response.status === 404) {
-      errors.email = { message: 'Usuario no encontrado, regístrate para continuar.' };
-    } else {
-      throw error;
-    }
-  }
-};
+  const login = useMutation(["user"],  loginUser);
 
-return (
-  <div className={styles.loginContainer}>
-    <div>
-      {getUserToken() && (
-        <Navigate to="/" />
-      )}
-    </div>
-    <div className={styles.formContainer}>
-      <h1 className={styles.formTitle}>Inicia Sesión</h1>
-      <form onSubmit={handleSubmit(handleLogin)}>
-        <input
-          type="email"
-          placeholder="Email"
-          {...register('email', {
-            required: '*Introduce tu email',
-            pattern: {
+  const handleLogin = (data) => {
+    login.mutate(data, {
+      onSuccess: (data) => {
+        setUserSession(data);
+        localStorage.setItem("user", JSON.stringify(data.user))
+        navigate("/");
+      }
+    })
+  }
+  
+//   const handleLogin = async (userData) => {
+//   try {
+//     const response = await api.post("/user/login", userData);
+//     if (response.status === 200) {
+//       setUserSession(response.data.token);
+//       localStorage.setItem("user", JSON.stringify(response.data.user));
+//       navigate("/");
+//     }
+//     return response;
+//   } catch (error) {
+//     console.error(error);
+//     throw error;
+//   }
+// };
+
+  return (
+    <>
+      <div className={styles.loginContainer}>
+        <div>
+          {getUserToken() && (
+            <Navigate to="/" />
+          )}
+        </div>
+        <h1>Inicia Sesión</h1>
+        <form onSubmit={handleSubmit(handleLogin)} className={styles.formContainer}>
+          <div className={styles.register}>
+            <input
+              type="email"
+              placeholder="Email"
+              className={styles.input}
+              {...register('email', {
+              required: 'Email is required',
+              pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-              message: '*Email incorrecto',
-            },
-          })}
-          className={styles.formInput}
-        />
-        {errors.email && <p className={styles.formError}>{errors.email.message}</p>}
-        <input
-          type="password"
-          placeholder="Contraseña"
-          {...register('password', {
-            required: '*Introduce tu contraseña',
-          })}
-          className={styles.formInput}
-        />
-        {errors.password && <p className={styles.formError}>{errors.password.message}</p>}
-        <button className={styles.formButton} type="submit">
-          Inicia sesión
-        </button>
-      </form>
-      <p className={styles.formMessage}>¿No tienes una cuenta?<span ><Link to="/register">{' Regístrate'}</Link></span>
-      </p>
-    </div>
-  </div>
-);
+              message: 'Invalid email address',
+              },
+              })}
+            />
+            {errors.email && <p>{errors.email.message}</p>}
+            <input
+              type="password"
+              placeholder="Password"
+              className={styles.input}
+              {...register('password', {
+              required: 'Password is required',
+              })}
+            />
+            {errors.password && <p>{errors.password.message}</p>}
+          </div>
+          <button className={styles.formButton} type="submit">
+            Inicia sesión
+          </button>
+        </form>
+      </div>
+    </>
+  );
 };
 
 export default LoginPage;

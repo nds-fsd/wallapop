@@ -1,0 +1,26 @@
+.line {
+  background-color: var(--blue-dark);
+  height: 2px;
+  opacity: 1;
+  margin: 2em 0 1em 0;
+  position: relative;
+  top: -2.4em;
+}
+
+.input {
+  width: 43.5rem;
+  height: 2.3rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 1rem;
+  font-size: 1rem;
+}
+
+.map {
+  width: 45rem;
+  height: 22rem;
+  margin-top: 2rem;
+  border: none;
+  border-radius: 1em;
+}

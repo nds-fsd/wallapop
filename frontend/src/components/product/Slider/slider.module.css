@@ -7,16 +7,15 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: var(--blue-light);
     border-radius: 2rem;
 }
 
 .noImage {
     width: 720px;
     height: 500px;
-    background-color: grey;
+    background-color: var(--blue-dark);
     border-radius: 2rem;
-    color: var(--yellow-light);
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -85,10 +84,21 @@
 .imgSlider {
     width: 700px;
     height: 480px;
-    margin-top: 10px;
+    margin-top: 1em;
     display: flex;
     align-items: center;
     border-radius: 1.5em;
-    box-shadow: 2px 2px 3px 0.5px var(--blue-light);
+    border: 0.2em solid var(--yellow-main);
+}
+
+.statusTag {
+    position: relative;
+    top: -3rem;
+    left: 2rem;
+    background-color: var(--blue-light);
+    padding: 0.4em 1em;
+    width: max-content;
+    border-radius: 2rem;
+    font-weight: bold;
 }
 

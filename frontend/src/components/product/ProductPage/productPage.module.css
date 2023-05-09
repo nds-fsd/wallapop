@@ -1,90 +1,91 @@
-.loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+.line {
+  background-color: var(--blue-dark);
+  height: 2px;
+  opacity: 1;
+  position: relative;
+  top: 4.7rem;
 }
 
-.line {
-    background-color: var(--yellow-main);
-    height: 2px;
-    opacity: 1;
-    margin: 2em 0 1em 0;
+.productPage {
+  display: flex;
+  flex-direction: column;
+  padding: 5rem 5rem 1rem 5rem;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    width: 45rem;
-    height: auto;
-    /* background-color:rgb(236, 230, 230); */
-    background-color: var(--blue-dark);
-    border-radius: 20px;
-    padding: 2em 2em;
-    margin: auto;
-    position: relative;
-    top: 5em;
+  display: flex;
+  flex-direction: column;
+  width: 45rem;
+  height: auto;
+  background-color: white;
+  border-radius: 1.5rem;
+  padding: 2.5em 2.5em;
+  margin: auto;
+  position: relative;
 }
 
 .upperBar {
-    display: flex;
-    width: 45rem;
-    height: 3rem;
-    justify-content: flex-end;
-    gap: 2em;
+  display: flex;
+  width: 45rem;
+  height: 3rem;
+  justify-content: flex-end;
+  gap: 2em;
 }
 
 .like {
-    width: 5rem;
-    height: 2rem;
-    border-radius: 2.5rem;
-    border: none;
-    background-color: white;
-    box-shadow: 2px 2px 2px .5px var(--blue-light);
-    color: red;
-    cursor: pointer;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 2.5rem;
+  border: 0.2em solid var(--blue-dark);
+  background-color: white;
+  color: red;
+  cursor: pointer;
 }
 
 .like:hover {
-    background-color: red;
-    color: white;
+  background-color: red;
+  color: white;
+  border: none;
 }
 
 .chat {
-    width: 5rem;
-    height: 2rem;
-    border-radius: 2.5rem;
-    border: none;
-    background-color: var(--yellow-main);
-    box-shadow: 2px 2px 2px .5px var(--blue-light);
-    color: var(--yellow-light);
-    font-weight: bold;
-    cursor: pointer;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 2.5rem;
+  border: 0.2em solid var(--yellow-main);
+  background-color: white;
+  color: var(--yellow-main);
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .chat:hover {
-    background-color: var(--blue-light);
-    box-shadow: 2px 2px 2px .5px var(--yellow-light);
-    color: white;
+  background-color: var(--yellow-main);
+  color: white;
 }
 
 .details {
-    line-height: 1em;    
+  line-height: 1em; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   
 }
 
 .category {
     display: flex;
-    color: black;
     gap: 1em;
-    width: 18rem;
+    width: max-content;
     height: 3rem;
     display: flex;
     align-items: center;
-    padding: 0 0 0 1em;
+    padding: 0 1em 0 1em;
     border-radius: 2em;
-    border: none;
+    border: 0.1em solid var(--blue-dark);
     background-color: rgb(255, 255, 255);
-    box-shadow: 2px 2px 4px .5px var(--blue-light);
+}
+
+.category span {
+    color: var(--blue-dark)
 }
 
 .expandable {
@@ -93,44 +94,46 @@
     justify-content: flex-start;
     width: 45rem;
     height: 3rem;
+    margin: 2rem 0;
 }
 
 .expandable span:nth-child(1):hover {
-    color: var(--yellow-main);
-    cursor: pointer;
+  color: var(--yellow-main);
+  cursor: pointer;
 }
 
 .expandable span:nth-child(1) {
     font-size: 2em;
-    color: var(--yellow-light);
+    color: var(--blue-dark);
 }
-
 .arrow {
     position: relative;
-    left: 25rem;
-    background-color: var(--blue-dark);
+    left: 22rem;
+    background-color: white;
     border: none;
-
 }
-
 .active {
     position: relative;
-    left: 25rem;
-    background-color: var(--blue-dark);
+    left: 22rem;
+    background-color: white;
     border: none;
     transform: rotate(180deg);
 }
-
 .priceContainer {
-    margin: 1.5em 0 0 0;
     display: flex;
-    align-items: end;
+    align-items: center;
     gap: 0.5rem;
+    line-height: 1em; 
+
 }
 .price {
-    color: var(--yellow-main);
-    font-size: 3rem;
-    line-height: 0.1em;
+  color: var(--yellow-main);
+  font-size: 3rem;
+  line-height: 0.1em;
+}
+
+.textExpanded {
+    padding: 1rem 0;
 }
 
 .media {
@@ -138,57 +141,63 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    color: black;
     height: 3rem;
     background-color: white;
     width: 75%;
     height: max-content;
     margin: 2em 0 4em 0;
-    padding: 0 0 .8em 0;
+    padding: 0.8em 0 .8em 0;
     border-radius: 1em;
     position: relative;
     left: 5.625em;
-    box-shadow: 2px 2px 4px .5px var(--blue-light);
+    border: 0.2em solid var(--yellow-main)
 }
 
 .mediaIcons {
-    display: flex;
-    justify-content: center;
-    gap: 2.5em;
-    font-size: 2em;
+  display: flex;
+  justify-content: center;
+  gap: 2.5em;
+  font-size: 2em;
 }
 
 .mediaIcons span:nth-child(1) {
-    color: #3a559f;
+  color: #3a559f;
 }
 .mediaIcons span:nth-child(2) {
-    color: #55acee;
+  color: #55acee;
 }
 .mediaIcons span:nth-child(3) {
-    color: #1bd741;
+  color: #1bd741;
 }
 .mediaIcons span:nth-child(4) {
-    color: #f14336;
+  color: #f14336;
 }
 
 .mediaIcons span:nth-child(1):hover {
-    color: #2c3f72;
-    cursor: pointer;
+  color: #2c3f72;
+  cursor: pointer;
 }
 .mediaIcons span:nth-child(2):hover {
-    color: #3a75a1;
-    cursor: pointer;
+  color: #3a75a1;
+  cursor: pointer;
 }
 .mediaIcons span:nth-child(3):hover {
-    color: #0e7022;
-    cursor: pointer;
+  color: #0e7022;
+  cursor: pointer;
 }
 .mediaIcons span:nth-child(4):hover {
-    color: #992921;
-    cursor: pointer;
+  color: #992921;
+  cursor: pointer;
+}
+.houseType {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
 }
 
-
-
-
-
+.houseDetail {
+    border: 0.2em solid var(--blue-light);
+    border-radius: 2rem;
+    width: max-content;
+    padding: 0.4em 1em;
+}

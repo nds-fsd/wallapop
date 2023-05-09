@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import image from "../../../assets/images/logo-retrend.png";
+import Buscador from "../Buscador";
 import styles from "./index.module.css"
 
 
@@ -12,8 +13,10 @@ return(
                 <img src={image} />
             </div>
         </Link>
+        <Buscador/>
         <div className={styles.buttonLink}>
-            <button><Link to="/login"> Regístrate o inicia sesión </Link></button>
+            <Link to="/login"> INICIA SESION </Link>
+            <Link to="/register"> REGISTRATE </Link>
          </div>
 </div>
 )};

@@ -1,25 +1,114 @@
-.inputRegister, .select {
+.createUserContainer h1 {
+  text-align: center;
+}
+
+.createUserContainer {
+  display: flex;
+  flex-direction: column;
+  width: 35rem;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  height: fit-content;
+  border-radius: 1.5rem;  
+  margin: auto;
+  position: relative;
+  top: 2rem;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 0 2.5rem 2.5rem;
+}
+.column {
+  display: flex;
+  gap: 1rem;
+}
+
+.imageColumn {
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input {
+  width: 15rem;
+  height: 2.3rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 1rem;
+  font-size: 1rem;
+  gap: 1rem;
+}
+
+.dropdown {
+  width: 16.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 0.8rem;
+  font-size: 1rem;
+  color: grey;
+}
+
+.createUserButton {
+  width: 13rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  border-radius: 2.5rem;
+  border: 0.15em solid var(--yellow-main);
+  background-color: white;
+  color: var(--yellow-main);
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  top: 5rem;
+}
+
+.createUserButton:hover {
+  background-color: var(--yellow-main);
+  color: white;
+}
+
+.image {
+  width: 5.5rem;
+  height: 5.5rem;
+  background-color: transparent;
+  color: var(--blue-light);
+  border-radius: 1rem;
+  border-style: dotted;
+  border-width: 0.2rem;
+  border-color: var(--blue-light);
+  cursor: pointer;
+  margin-top: 1em;
+}
+
+.image span:nth-child(1) {
+  font-size: 2.5rem;
+}
+
+.image:hover {
+  border-color: var(--yellow-main);
+  color: var(--yellow-main);
+}
+
+/* .inputRegister, .select {
   width: 100%;
   padding: 5px;
   margin-bottom: 15px;
   border: none;
   border-radius: 4px;
   box-sizing: border-box;
-}
-.createUserButton {
-  background-color: var(--yellow-light);
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
+} */
 
-.createUserButton:hover {
-  background-color: var(--yellow-light);
-}
-.create-form {
+/* styles for createUser page */
+/* .create-form {
   display: block;
 }
 
@@ -73,31 +162,5 @@
   width: 100%;
   height: 50px;
   margin-top: 20px;
-  border-radius: 5px;
-  border: none;
-  background-color: var(--yellow-dark);
-  color: white;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.formButton:hover {
-  background-color: var(--blue-dark);
-}
-
-.formError {
-  color: red;
-  margin-top: 10px;
-  text-align: left;
-}
-.loginContainer {
-  background-color: var(--yellow-light);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
+  font-size: 16px;
+} */

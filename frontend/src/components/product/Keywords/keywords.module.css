@@ -1,0 +1,38 @@
+/* .keywords {
+    text-transform: uppercase;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 15rem;
+    height: 5rem;
+    gap: 1em;
+} */
+
+.keywords {
+    text-transform: uppercase;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1em;
+    margin-left: -2.5rem;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    background-color: var(--yellow-main);
+    color: white;
+    padding: 0.7em 1.2em;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 2em;
+    font-weight: bold;
+    position: relative;
+}
+
+.blank {
+    width: auto;
+    background-color: white;
+}
