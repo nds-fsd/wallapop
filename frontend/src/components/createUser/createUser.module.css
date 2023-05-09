@@ -1,4 +1,4 @@
-.inputRegister, .select {
+input[type="text"], input[type="password"], input[type="email"], select {
   width: 100%;
   padding: 5px;
   margin-bottom: 15px;
@@ -6,8 +6,9 @@
   border-radius: 4px;
   box-sizing: border-box;
 }
-.createUserButton {
-  background-color: var(--yellow-light);
+
+button[type="submit"] {
+  background-color: #EBA905;;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -16,8 +17,8 @@
   font-size: 16px;
 }
 
-.createUserButton:hover {
-  background-color: var(--yellow-light);
+button[type="submit"]:hover {
+  background-color: #EBA905;;
 }
 .create-form {
   display: block;
