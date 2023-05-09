@@ -22,7 +22,7 @@ const CreateUserPage = () => {
    const handleCreateUser =  (data) => {
       registerUser.mutate(data, {
         onSuccess: (data) => {
-          setUserSession(data);
+          setUserSession(data.token);
           localStorage.setItem("user", JSON.stringify(data.user));  
           navigate("/");
         }

@@ -18,7 +18,6 @@ export const getStorageObject = (key) => {
     const session = getStorageObject('user-session');
 
     if (session) {
-      console.log("esto es sesion", session)
       return session;
     }
     return false;

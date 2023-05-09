@@ -23,4 +23,5 @@
     border: var(--blue-dark) solid .1rem;
     width: 80%;
     margin-bottom: 0;
+    padding: .65rem;
 }
