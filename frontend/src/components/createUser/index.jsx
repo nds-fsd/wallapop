@@ -47,9 +47,7 @@ const CreateUserPage = () => {
   return (
     <>
       <div className={styles.createUserContainer}>
-        <h1>Regístrate</h1>
-        <div >
-        
+        <h1>Regístrate</h1>        
           <form onSubmit={handleSubmit(handleCreateUser)} className={styles.formContainer}>
             <div className={styles.column}>
               <input
@@ -152,7 +150,6 @@ const CreateUserPage = () => {
             
           </form>
         </div>
-      </div>
     </>
     
   );
