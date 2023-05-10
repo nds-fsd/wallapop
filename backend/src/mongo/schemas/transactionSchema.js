@@ -5,6 +5,8 @@ const transactionSchema = new Schema({
   date: { type: Date, required: true },
   state: { type: Boolean },
   address: { type: String, required: true },
+
+  // Para poder relacionar transacion con usuario comprador
   purchaser: [
     {
       type: Schema.Types.ObjectId,
@@ -12,6 +14,7 @@ const transactionSchema = new Schema({
       ref: "user",
     },
   ],
+  // Para poder relacionar transacion con usuario vendedor
   vendor: [
     {
       type: Schema.Types.ObjectId,
@@ -19,6 +22,7 @@ const transactionSchema = new Schema({
       ref: "user",
     },
   ],
+  // Para poder relacionar transacion con usuario productos
   product: [
     {
       type: Schema.Types.ObjectId,

@@ -10,7 +10,7 @@ const productSchema = new Schema({
   booked: { type: Boolean },
   keywords: { type: Array },
   datePublication: { type: Date },
-  // Para poder relacionar esta entidad con usuarios lo declaramos asi
+  // Para poder relacionar producto con users
   user: [
     {
       type: Schema.Types.ObjectId,
@@ -18,6 +18,8 @@ const productSchema = new Schema({
       ref: "user",
     },
   ],
+  // Para poder relacionar producto con categorias
+  // ponemos el valor otros por defecto porque asi si no se especifica la categoria se crea el producto en la categoria otros
   categories: [
     {
       type: Schema.Types.ObjectId,
@@ -28,7 +30,7 @@ const productSchema = new Schema({
   characteristics: { type: Object },
 
   // ESTO DE AQUI ABAJO IRA FUERA CUANDO SE TERMINE DE CAMBIAR LAS FUNCIONES
-  // Y ESTEN PREPARADAS CON EL POPULATE 
+  // Y ESTEN PREPARADAS CON EL POPULATE
   category: { type: String },
   rent: { type: String },
   space: { type: String },
