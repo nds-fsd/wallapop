@@ -1,16 +1,12 @@
 import React from "react";
-import CategoryItem from "../categoryItem/CategoryItem";
 import styles from "./listCategory.module.css";
-import { apiCategory } from "../../../utils/apiCategories";
+import { getCategories } from "../../../utils/apiCategories";
 import { useQuery } from "react-query";
-import { NavLink, Navigate, Outlet, useParams } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 const ListCategory = () => {
   // Hago peticion a BD para obtener todas las categorias
-  const { data: categories, isLoading } = useQuery("categories", async () => {
-    const res = await apiCategory.get("/category");
-    return res.data;
-  });
+  const { data: categories, isLoading } = useQuery(["category"], getCategories);
 
   return (
     <div className={styles.container}>
