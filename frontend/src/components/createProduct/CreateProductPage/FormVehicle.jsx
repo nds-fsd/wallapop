@@ -27,7 +27,7 @@ const FormVehicle = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.sectionForm}>
-        <div>
+        <div className={styles.title}>
           <h2>Información básica</h2>
           <div className={styles.line}></div>
         </div>

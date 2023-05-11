@@ -26,7 +26,7 @@ const FormElse = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.sectionForm}>
-        <div>
+        <div className={styles.title}>
           <h2>Información del producto</h2>
           <div className={styles.line}></div>
         </div>

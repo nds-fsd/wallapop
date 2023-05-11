@@ -11,6 +11,7 @@ const FormHouse = () => {
     control,
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting, isValid },
   } = useForm();
   const queryClient = useQueryClient();
@@ -23,38 +24,36 @@ const FormHouse = () => {
   const onSubmit = (productData) => {
     mutation.mutate(productData);
     console.log(productData);
+    reset()
   };
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.sectionForm}>
-        <div className={styles.inmueblesTitle}>
-          <div className={styles.inmuebles}>
-            <h2>Información de tu inmueble</h2>
-            <div className={styles.inmuebles}>
-              {/* Este input controlorá que la categoría esté checkeada por defecto sin ser vista en pantalla */}
-              <Controller
-                name="category"
-                control={control}
-                defaultValue="inmobiliaria"
-                render={({ field }) => (
-                  <div>
-                    <label htmlFor="category"></label>
-                    <input
-                      id="inmobiliaria"
-                      type="checkbox"
-                      {...field}
-                      value="inmobiliaria"
-                      name="category"
-                    ></input>
-                  </div>
-                )}
-              />
-            </div>
-          </div>
-          <div className={styles.line2}></div>
+        <div className={styles.title}>
+          <h2>Información de tu inmueble</h2>
+          <div className={styles.line}></div>
         </div>
-
+        <div className={styles.inmuebles}>
+          {/* Este input controlorá que la categoría esté checkeada por defecto sin ser vista en pantalla */}
+          <Controller
+            name="category"
+            control={control}
+            defaultValue="inmobiliaria"
+            render={({ field }) => (
+              <div>
+                <label htmlFor="category"></label>
+                <input
+                  id="inmobiliaria"
+                  type="checkbox"
+                  {...field}
+                  value="inmobiliaria"
+                  name="category"
+                ></input>
+              </div>
+            )}
+          />
+        </div>
         <label htmlFor="alquiler" className={styles.labels}>
           ¿Alquilas o vendes?
         </label>

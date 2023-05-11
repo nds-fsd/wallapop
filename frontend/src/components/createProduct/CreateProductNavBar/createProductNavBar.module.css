@@ -1,10 +1,10 @@
 .container {
   width: 45rem;
   height: max-content;
-  /* background-color: var(--blue-dark); */
   background-color: white;
+  position: relative;
   margin: auto;
-  padding: 1rem 2.5rem 2rem 2.5rem;
+  padding: 1rem 2.5rem 1rem 2.5rem;
   border-radius: 1rem;
 }
 
@@ -17,9 +17,9 @@
 
 .selection1 {
   width: 16rem;
-  height: 6rem;
-  border-radius: 1.5rem;
-  border-radius: 4rem 4rem 0 0;
+  height: 4rem;
+  border-radius: 2rem;
+  border-radius: 2rem 2rem 0 0;
   border: 0.2em solid var(--yellow-main);
   cursor: pointer;
   background-color: var(--yel);
@@ -27,18 +27,18 @@
 }
 .selection {
   width: 8rem;
-  height: 6rem;
+  height: 4rem;
   border: 0.2em solid var(--yellow-main);
-  border-radius: 4rem 4rem 0 0;
+  border-radius: 2rem 2rem 0 0;
   cursor: pointer;
   background-color: white;
   color: var(--yellow-main);
 }
 .selection1 span:nth-child(1) {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 .selection span:nth-child(1) {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 .selection1:hover {
   color: white;
@@ -63,17 +63,10 @@
 
 .tags {
   position: relative;
-  top: 1rem;
-  margin-bottom: 1rem;
   font-weight: bold;
 }
 
-.div {
-  height: 2rem;
-  width: 45rem;
-  background-color: var(--blue-medium);
-}
-
-.mainTitle {
-  position: relative;
+.icons {
+  width: 3rem;
+  color: var(--yellow-main)
 }
