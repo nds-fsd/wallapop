@@ -24,7 +24,7 @@ const Profile = () => {
         </div>
         <div className={styles.logoutButton}>
           <Link to="/">
-            <button onClick={removeSession()}>Cerrar sesion</button>
+            <button onClick={removeSession}>Cerrar sesion</button>
           </Link>
         </div>
       </div>

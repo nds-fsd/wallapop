@@ -34,7 +34,7 @@ function App() {
               {/* creo la ruta para poder acceder a las categorias desde otro sitio y la lista de productos 
               Lo creo dentro del routs sin mostrarlo porque asi por mucho que cambie de categoria sigue mostrandose la navBar arriba
               en caso que no fuera asi no se mostraria
-              Aqui solo la declaro la ruta para que exista y poder acceder desde otro lado */}
+            Aqui solo la declaro la ruta para que exista y poder acceder desde otro lado */}
               <Route path="/category" element={<ListCategory />}>
                 <Route path=":category" element={<ListProducts />} />
                 <Route path="product/:productid" element={<ProductPage />} />
