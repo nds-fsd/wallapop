@@ -44,6 +44,14 @@
   align-items: center;
 }
 
+.item:hover {
+  background-color: var(--blue-light);
+}
+.item:focus {
+  background-color: var(--blue-dark);
+  color: #fff;
+}
+
 /* Designing for scroll-bar*/
 ::-webkit-scrollbar {
   width: 5px;
