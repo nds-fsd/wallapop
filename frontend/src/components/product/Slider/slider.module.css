@@ -1,6 +1,10 @@
+.sliderContainer {
+  width: 720px;
+  height: 500px;
+}
+
 .container {
   position: relative;
-  top: 0.5rem;
   width: 720px;
   height: 500px;
   display: flex;
@@ -89,15 +93,36 @@
   align-items: center;
   border-radius: 1.5em;
   border: 0.2em solid var(--yellow-main);
+  cursor: pointer;
 }
 
 .statusTag {
   position: relative;
-  top: -4rem;
+  top: -29.5rem;
   left: 2rem;
   background-color: var(--blue-light);
   padding: 0.4em 1em;
   width: max-content;
   border-radius: 2rem;
   font-weight: bold;
+}
+
+.dotContainer {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+ 
+}
+.dot {
+  position: relative;
+  top: -8rem;
+  font-size: 2rem;
+  opacity: 0.5;
+  border-radius: 0.5em;
+  /* color: var(--yellow-main); */
+  color: var(--blue-light);
+}
+
+.dotactive {
+  opacity: 1;
 }

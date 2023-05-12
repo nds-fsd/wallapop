@@ -5,8 +5,9 @@
   top: 0;
   left: 0;
   /* background-color: rgba(0, 0, 0, 0.8); */
-  background-color: var(--grey);
+  background-color: white;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1000;
@@ -22,14 +23,11 @@
   box-shadow: 5px 5px 10px 2px var(--blue-medium);
 }
 
-.title {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  border-bottom: 2px solid var(--blue-dark);
-}
 .title > h3 {
   line-height: 1rem;
+  position: absolute;
+  top: 0.5rem;
+  left: 14rem;
 }
 
 .close {

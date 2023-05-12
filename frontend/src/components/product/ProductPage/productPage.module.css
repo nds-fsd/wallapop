@@ -9,7 +9,7 @@
 .productPage {
   display: flex;
   flex-direction: column;
-  padding: 5rem 5rem 1rem 5rem;
+  padding: 2rem 5rem 1rem 5rem;
 }
 
 .container {
@@ -65,7 +65,8 @@
 }
 
 .details {
-  line-height: 1em;
+  position: relative;
+  top: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

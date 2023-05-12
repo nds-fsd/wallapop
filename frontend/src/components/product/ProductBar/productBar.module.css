@@ -9,7 +9,7 @@
   bottom: 0;
   left: 0;
   box-shadow: 0 2px 4px 1px grey;
-  z-index: 1000;
+  z-index: 500;
 }
 
 .productDetails {

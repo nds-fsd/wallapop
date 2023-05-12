@@ -20,6 +20,7 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <div>
+
           <Navbar />
           <div>
             <Routes>
