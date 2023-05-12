@@ -40,7 +40,7 @@ const ElsePage = () => {
           <div className={styles.details}>
             <div className={styles.priceContainer}>
               <h1 className={styles.price}>
-                {data && data.price.toLocaleString()}
+                {data && data.price.toLocaleString('es-ES', {useGrouping: true})}
               </h1>
               <h2>EUR</h2>
             </div>

@@ -1,19 +1,18 @@
 @font-face {
-  font-family: "Icomoon";
-  src: url("Icomoon.eot?vstecl");
-  src: url("Icomoon.eot?vstecl#iefix") format("embedded-opentype"),
-    url("Icomoon.ttf?vstecl") format("truetype"),
-    url("Icomoon.woff?vstecl") format("woff"),
-    url("Icomoon.svg?vstecl#Icomoon") format("svg");
+  font-family: 'Icomoon';
+  src:  url('Icomoon.eot?e1uyw7');
+  src:  url('Icomoon.eot?e1uyw7#iefix') format('embedded-opentype'),
+    url('Icomoon.ttf?e1uyw7') format('truetype'),
+    url('Icomoon.woff?e1uyw7') format('woff'),
+    url('Icomoon.svg?e1uyw7#Icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="icon-"],
-[class*=" icon-"] {
+[class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "Icomoon" !important;
+  font-family: 'Icomoon' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -26,6 +25,72 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-todo:before {
+  content: "\e900";
+}
+.icon-otros:before {
+  content: "\e901";
+}
+.icon-agricultura:before {
+  content: "\e902";
+}
+.icon-construccion-reformas:before {
+  content: "\e903";
+}
+.icon-nios-bebes:before {
+  content: "\e904";
+}
+.icon-moviles-telefonia:before {
+  content: "\e905";
+}
+.icon-informatica-electronica:before {
+  content: "\e906";
+}
+.icon-consolas-videojuegos:before {
+  content: "\e907";
+}
+.icon-coches:before {
+  content: "\e908";
+}
+.icon-motos:before {
+  content: "\e909";
+}
+.icon-bicicletas:before {
+  content: "\e90a";
+}
+.icon-motor-accesorios:before {
+  content: "\e90b";
+}
+.icon-tv-audio-foto:before {
+  content: "\e90c";
+}
+.icon-moda:before {
+  content: "\e90d";
+}
+.icon-inmobiliaria:before {
+  content: "\e90e";
+}
+.icon-hogar-jardin:before {
+  content: "\e90f";
+}
+.icon-electrodomesticos:before {
+  content: "\e910";
+}
+.icon-deportes:before {
+  content: "\e911";
+}
+.icon-cine-libros-musica:before {
+  content: "\e912";
+}
+.icon-coleccionismo:before {
+  content: "\e913";
+}
+.icon-servicios:before {
+  content: "\e914";
+}
+.icon-empleo:before {
+  content: "\e915";
+}
 .icon-home1:before {
   content: "\ea34";
 }

@@ -24,6 +24,9 @@
   cursor: pointer;
   background-color: var(--yel);
   color: var(--yellow-main);
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
 }
 .selection {
   width: 8rem;
@@ -33,18 +36,39 @@
   cursor: pointer;
   background-color: white;
   color: var(--yellow-main);
+  font-weight: bold;
 }
+.selection2 {
+  width: 8rem;
+  height: 4rem;
+  border: 0.2em solid var(--yellow-main);
+  border-radius: 2rem 2rem 0 0;
+  cursor: pointer;
+  background-color: white;
+  color: var(--yellow-main);
+  font-weight: bold;
+}
+
 .selection1 span:nth-child(1) {
-  font-size: 2rem;
+  font-size: 3rem;
 }
 .selection span:nth-child(1) {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.selection2 span:nth-child(1) {
+  font-size: 3.5rem;
+  font-weight: bold;
 }
 .selection1:hover {
   color: white;
   background-color: var(--yellow-main);
 }
 .selection:hover {
+  color: white;
+  background-color: var(--yellow-main);
+}
+.selection2:hover {
   color: white;
   background-color: var(--yellow-main);
 }

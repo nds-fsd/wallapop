@@ -12,25 +12,25 @@ const CreateProductNavBar = () => {
         <div className={styles.selector}>
           <Link to="algo-que-no-utilizo" className={styles.vertical}>
             <button className={styles.selection1}>
-            <span className="icon-home1"></span>
+              <span className="icon-todo"></span>
             </button>
             <p className={styles.tags}>Algo que no utilizo</p>
           </Link>
           <Link to="inmueble" className={styles.vertical}>
             <button className={styles.selection}>
-              <span className="icon-home1"></span>
+              <span className="icon-inmobiliaria"></span>
             </button>
             <p className={styles.tags}>Inmueble</p>
           </Link>
           <Link to="vehiculo" className={styles.vertical}>
-            <button className={styles.selection}>
-              <span className="icon-home1"></span>
+            <button className={styles.selection2}>
+              <span className="icon-coches"></span>
             </button>
             <p className={styles.tags}>Vehículo</p>
           </Link>
           <Link to="servicio-empleo" className={styles.vertical}>
             <button className={styles.selection}>
-              <span className="icon-home1"></span>
+              <span className="icon-empleo"></span>
             </button>
             <p className={styles.tags}>Servicio / Empleo</p>
           </Link>

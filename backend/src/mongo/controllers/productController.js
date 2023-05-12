@@ -32,16 +32,6 @@ const getProductByCategory = async (req, res) => {
   }
 };
 
-// const postProduct = async (req, res) => {
-//     const {body} = req
-//     try {
-//         const newProduct = new productModel(body)
-//         await newProduct.save()
-//         res.status(200).json(newProduct)
-//     } catch (error) {
-//         res.status(500).json({ error: "Can't post this product"} );
-//     };
-// };
 
 const postProduct = async (req, res) => {
   const newProduct = new productModel(req.body);
