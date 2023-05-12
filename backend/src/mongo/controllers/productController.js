@@ -1,4 +1,5 @@
 const productModel = require("../models/productModel");
+const categoryModel = require("../models/categoryModel");
 
 const getAllProducts = async (req, res) => {
   try {
@@ -19,11 +20,15 @@ const getProductById = async (req, res) => {
   }
 };
 
+// Buscar productos por categorias
 const getProductByCategory = async (req, res) => {
   const { category } = req.params;
-  console.log(category);
   try {
-    const productByCategory = await productModel.find({ category }).exec();
+    const productByCategory = await productModel
+      //buscamos por el nombre de la categoria que la obtenemos de la url
+      .find({ category })
+      //y populamos con categorias para buscar los productos que tiene esa categoria
+      .populate("categories");
     res.status(200).json(productByCategory);
     console.log(productByCategory);
   } catch (error) {
@@ -32,21 +37,23 @@ const getProductByCategory = async (req, res) => {
   }
 };
 
-// const postProduct = async (req, res) => {
-//     const {body} = req
-//     try {
-//         const newProduct = new productModel(body)
-//         await newProduct.save()
-//         res.status(200).json(newProduct)
-//     } catch (error) {
-//         res.status(500).json({ error: "Can't post this product"} );
-//     };
-// };
-
+// Crear producto
 const postProduct = async (req, res) => {
   const newProduct = new productModel(req.body);
+
+  //cogemos el los datos del ususario que hemos pasado por la url de la peticion
+  const userId = req.params.userId;
+  //parseamos los datos y cogemos el id del usuario y lo añadimos al newProduct
+  newProduct.user.push(JSON.parse(userId).id);
+
+  //hacemos una findOne con el nombre de la categoria para poder obtener toda su info y coger el id para ponerselo al producto
+  // y asi relacionarlo con categoria
+  const cat = await categoryModel.findOne({ title: req.body.category });
+  // le añadimos el id de la categoria encontrado arriba al producto antes de crearlo
+  newProduct.categories.push(cat._id);
   try {
     await newProduct.save();
+    // console.log(newProduct);
     res.status(200).json(newProduct);
   } catch (error) {
     res.status(500).json({ error: "Can't post this product" });
@@ -59,12 +66,10 @@ const updateProductById = async (req, res) => {
     const updateProduct = await productModel
       .findByIdAndUpdate(req.params.id, req.body)
       .exec();
-    res
-      .status(204)
-      .json({
-        updateProduct,
-        message: "Your product has been successfully updated",
-      });
+    res.status(204).json({
+      updateProduct,
+      message: "Your product has been successfully updated",
+    });
   } catch (error) {
     res.status(404).json({ error: "Sorry, can't find this product" });
   }
@@ -76,12 +81,10 @@ const updateProductByTitle = async (req, res) => {
     const updateProd = await productModel
       .findOneAndUpdate(filter, req.body)
       .exec();
-    res
-      .status(204)
-      .json({
-        updateProd,
-        message: "Your product has been successfully updated",
-      });
+    res.status(204).json({
+      updateProd,
+      message: "Your product has been successfully updated",
+    });
   } catch (error) {
     res.status(404).json({ error: "Sorry, can't find this product" });
   }
@@ -92,12 +95,10 @@ const deleteProduct = async (req, res) => {
     const delProduct = await productModel
       .findByIdAndDelete(req.params.id)
       .exec();
-    res
-      .status(204)
-      .json({
-        delProduct,
-        message: "Your product has been successfully deleted",
-      });
+    res.status(204).json({
+      delProduct,
+      message: "Your product has been successfully deleted",
+    });
   } catch (error) {
     res.status(404).json({ error: "Sorry, can't find this product" });
   }

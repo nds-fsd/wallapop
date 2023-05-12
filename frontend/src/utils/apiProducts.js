@@ -54,5 +54,8 @@ export const getProductByIdHarcodedVehicle = () => {
 };
 
 export const postProduct = (data) => {
-  return api.post("/products/newProduct", data);
+  const userId = localStorage.getItem("user");
+  console.log(userId);
+
+  return api.post(`/products/newProduct/${userId}`, data);
 };
