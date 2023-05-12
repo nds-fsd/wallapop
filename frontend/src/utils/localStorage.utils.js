@@ -1,13 +1,15 @@
 export const getStorageObject = (key) => {
   const item = localStorage.getItem(key);
-  if (item !== null) {
+  if (item) {
     return JSON.parse(item);
   }
   return null;
 };
 
 export const setStorageObject = (key, object) => {
-  localStorage.setItem(key, JSON.stringify(object));
+  if (object !== undefined) {
+    localStorage.setItem(key, JSON.stringify(object));
+  }
 };
 
 export const deleteStorageObject = (key) => {

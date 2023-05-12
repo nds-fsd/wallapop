@@ -6,7 +6,7 @@ const productSchema = new Schema({
   price: { type: Number, required: true },
   images: { type: String },
   status: { type: String },
-  sold: { type: Boolean },
+  sold: { type: Boolean, default: false},
   booked: { type: Boolean },
   keywords: { type: Array },
   datePublication: { type: Date },
