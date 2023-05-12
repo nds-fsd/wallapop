@@ -6,8 +6,8 @@ const productSchema = new Schema({
   price: { type: Number, required: true },
   images: { type: String },
   status: { type: String },
-  sold: { type: Boolean },
-  booked: { type: Boolean },
+  sold: { type: Boolean, default: false },
+  booked: { type: Boolean, default: false },
   keywords: { type: Array },
   datePublication: { type: Date },
   // Para poder relacionar producto con users
