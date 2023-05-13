@@ -14,33 +14,6 @@ const CreateUserPage = () => {
   const { handleAuth } = useContext(AuthContext);
 
 
-  // const navigate = useNavigate();
-  // const registerUser = useMutation(["user"], createUser);
-
-  // const handleCreateUser = (data) => {
-  //   registerUser.mutate(data, {
-  //     onSuccess: (data) => {
-  //       setUserSession(data.token);
-  //       localStorage.setItem("user", JSON.stringify(data.user));
-  //       navigate("/");
-  //     },
-  //   });
-  // };
-
-  // const handleCreateUser = async (userData) => {
-  //   try {
-  //     const response = await api.post("/user/register", userData);
-  //     if (response.status === 201) {
-  //       setUserSession(response.data.token);
-  //       localStorage.setItem("user", JSON.stringify(response.data.user));
-  //     }
-  //     return response;
-  //   } catch (error) {
-  //     console.error(error);
-  //     throw error;
-  //   }
-  // };
-
   return (
     <>
       <div className={styles.createUserContainer}>
@@ -132,12 +105,10 @@ const CreateUserPage = () => {
             </select>
             {errors.gender && <p>{errors.gender.message}</p>}
           </div>
-          {/* <input
-              type="text"
-              placeholder="Imágenes"
-              className={styles.input}
+           <input
+              type="hidden"
               {...register('photo')}
-            /> */}
+            />
           <div className={styles.column}>
             <div className={styles.imageColumn}>
               <label htmlFor="images">Selecciona una imagen</label>

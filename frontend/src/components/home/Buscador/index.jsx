@@ -16,7 +16,7 @@ const Buscador = () => {
         value={search}
         onChange={(ev) => setSearch(ev.target.value)}
       ></input>
-      <button type="submit">Buscar</button>
+      <button type="submit">BUSCAR</button>
     </form>
   );
 };
