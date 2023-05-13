@@ -6,15 +6,32 @@ const productSchema = new Schema({
   price: { type: Number, required: true },
   images: { type: String },
   status: { type: String },
+  sold: { type: Boolean },
+  booked: { type: Boolean },
   keywords: { type: Array },
   datePublication: { type: Date },
-  category: { type: String },
+  // Para poder relacionar producto con users
+  user: [
+    {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "user",
+    },
+  ],
+  // Para poder relacionar producto con categorias
+  // ponemos el valor otros por defecto porque asi si no se especifica la categoria se crea el producto en la categoria otros
   categories: [
     {
       type: Schema.Types.ObjectId,
+      default: "Otros",
       ref: "category",
     },
   ],
+  characteristics: { type: Object },
+
+  // ESTO DE AQUI ABAJO IRA FUERA CUANDO SE TERMINE DE CAMBIAR LAS FUNCIONES
+  // Y ESTEN PREPARADAS CON EL POPULATE
+  category: { type: String },
   rent: { type: String },
   space: { type: String },
   land: { type: Number },

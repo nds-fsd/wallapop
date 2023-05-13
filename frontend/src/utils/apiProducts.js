@@ -1,9 +1,4 @@
-import axios from "axios";
-
-export const api = axios.create({
-  baseURL: "http://localhost:3001",
-  headers: { "Content-Type": "application/json" },
-});
+import { api } from "./api";
 
 export const getProductById = ({ queryKey }) => {
   return api
@@ -18,7 +13,7 @@ export const getProductById = ({ queryKey }) => {
 export const getProductByCategory = ({ queryKey }) => {
   return (
     api
-      //si no le pongo {queryKey} hay que acceder a la propiedad queryKey
+      //si no le pongo {queryKey} hay que acceder a la propiedad queryKey (queryKey.queryKey)
       .get(`/products/category/${queryKey[1]}`)
       .then((res) => res.data)
       .catch((error) => {
@@ -59,5 +54,8 @@ export const getProductByIdHarcodedVehicle = () => {
 };
 
 export const postProduct = (data) => {
-  return api.post("/products/newProduct", data);
+  const userId = localStorage.getItem("user");
+  console.log(userId);
+
+  return api.post(`/products/newProduct/${userId}`, data);
 };

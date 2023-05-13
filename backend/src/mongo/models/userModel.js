@@ -2,7 +2,7 @@ const { model } = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
-const userSchema = require("../schemas/user");
+const userSchema = require("../schemas/userSchema");
 
 userSchema.pre("save", function (next) {
   const user = this;

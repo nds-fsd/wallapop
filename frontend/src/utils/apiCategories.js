@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useQueryClient } from "react-query";
+import { api } from "./api";
 
 export const getCategories = () => {
   return api

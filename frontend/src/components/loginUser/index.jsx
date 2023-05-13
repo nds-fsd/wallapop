@@ -47,7 +47,7 @@ const LoginPage = () => {
             />
             {errors.password && <p>{errors.password.message}</p>}
           </div>
-          <button className={styles.formButton} type="submit">
+          <button className={styles.formButton} data-test="boton" type="submit">
             Inicia sesión
           </button>
         </form>
