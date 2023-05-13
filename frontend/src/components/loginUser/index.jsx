@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./loginUser.module.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { getUserToken } from "../../utils/localStorage.utils";
-import { setUserSession } from "../../utils/localStorage.utils";
-import { useMutation } from "react-query";
-import { loginUser } from "../../utils/apiAuth";
+import { AuthContext } from "../../context/authContext";
 
 const LoginPage = () => {
   const {
@@ -14,33 +12,7 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate();
-  const login = useMutation(["user"], loginUser);
-
-  const handleLogin = (data) => {
-    login.mutate(data, {
-      onSuccess: (data) => {
-        setUserSession(data);
-        localStorage.setItem("user", JSON.stringify(data.user));
-        navigate("/");
-      },
-    });
-  };
-
-  //   const handleLogin = async (userData) => {
-  //   try {
-  //     const response = await api.post("/user/login", userData);
-  //     if (response.status === 200) {
-  //       setUserSession(response.data.token);
-  //       localStorage.setItem("user", JSON.stringify(response.data.user));
-  //       navigate("/");
-  //     }
-  //     return response;
-  //   } catch (error) {
-  //     console.error(error);
-  //     throw error;
-  //   }
-  // };
+ const { handleAuth } = useContext(AuthContext);
 
   return (
     <>
@@ -48,7 +20,7 @@ const LoginPage = () => {
         <div>{getUserToken() && <Navigate to="/" />}</div>
         <h1>Inicia Sesión</h1>
         <form
-          onSubmit={handleSubmit(handleLogin)}
+          onSubmit={handleSubmit(handleAuth)}
           className={styles.formContainer}
         >
           <div className={styles.register}>

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
+import { AuthContext } from "../../../context/authContext";
 import { getUserData, removeSession } from "../../../utils/localStorage.utils";
 import {
   PROFILE_ACCOUNT,
@@ -10,6 +11,8 @@ import {
 import styles from "./index.module.css";
 
 const Profile = () => {
+  const { handleLogout } = useContext(AuthContext);
+
   return (
     <div className={styles.profileContainer}>
       <div className={styles.profileTitle}>
@@ -23,9 +26,7 @@ const Profile = () => {
           <Link to={PROFILE_VALUES}>Valoraciones</Link>
         </div>
         <div className={styles.logoutButton}>
-          <Link to="/">
-            <button onClick={removeSession()}>Cerrar sesion</button>
-          </Link>
+            <button onClick={handleLogout}>Cerrar sesion</button>
         </div>
       </div>
       <Outlet />
