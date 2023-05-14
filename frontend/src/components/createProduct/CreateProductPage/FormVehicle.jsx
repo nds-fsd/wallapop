@@ -11,18 +11,22 @@ const FormVehicle = () => {
     control,
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid },
+    reset,
+    formState: { errors },
   } = useForm();
   const queryClient = useQueryClient();
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
-      queryClient.invalidateQueries("product");
+      queryClient.invalidateQueries();
     },
   });
 
   const onSubmit = (productData) => {
     mutation.mutate(productData);
+    reset()
   };
+
+  console.log(errors)
 
   return (
     <>
@@ -39,6 +43,7 @@ const FormVehicle = () => {
           name="category"
           control={control}
           defaultValue={false}
+          rules={{required: "Selecciona una opción" }}
           render={({ field }) => (
             <div className={styles.category}>
               <label htmlFor="coches" className={styles.checkbox}>
@@ -67,15 +72,18 @@ const FormVehicle = () => {
             </div>
           )}
         />
+        {errors.category && <p className={styles.error1}><span className="icon-warning1"></span>{errors.category.message}</p>}
+
 
         <label htmlFor="title" className={styles.labels}>
           ¿Qué ofreces?
         </label>
         <input
           placeholder="Dale un título a tu vehículo"
-          {...register("title")}
+          {...register("title", {required: "El título es obligatorio" })}
           className={styles.input}
         ></input>
+        {errors.title && <p className={styles.error}><span className="icon-warning1"></span>{errors.title.message}</p>}
         <div className={styles.labelTriple}>
           <label htmlFor="brand" className={styles.label}>
             Marca
@@ -90,23 +98,30 @@ const FormVehicle = () => {
         <div className={styles.vehicle}>
           <input
             placeholder="Ej. BMW"
-            {...register("brand")}
+            {...register("brand", {required: "Este campo es obligatorio" })}
             className={styles.inputVehicle}
           ></input>
           <input
             placeholder="Ej. S1"
-            {...register("model")}
+            {...register("model", {required: "Este campo es obligatorio"})}
             className={styles.inputVehicle}
           ></input>
           <input
             placeholder="De fabricación"
-            {...register("year")}
+            {...register("year", {required: "Este campo es obligatorio"})}
             className={styles.inputVehicle}
           ></input>
+          
+          
+        </div>
+        <div className={styles.error2}>
+            {errors.brand && <p><span className="icon-warning1"></span>{errors.brand.message}</p>}
+            {errors.model && <p><span className="icon-warning1"></span>{errors.model.message}</p>}
+            {errors.year && <p><span className="icon-warning1"></span>{errors.year.message}</p>}
         </div>
 
-        <div>
-          <h2 className={styles.title}>Información del vehículo</h2>
+        <div className={styles.title}>
+          <h2>Información del vehículo</h2>
           <div className={styles.line}></div>
         </div>
         <div className={styles.labelTriple2}>
@@ -136,9 +151,10 @@ const FormVehicle = () => {
           <input
             type="number"
             placeholder="Sé preciso"
-            {...register("km")}
+            {...register("km", {required: "Este campo es obligatorio" })}
             className={styles.inputVehicle}
           ></input>
+          {errors.km && <p className={styles.error}><span className="icon-warning1"></span>{errors.km.message}</p>}
         </div>
         <div>
           <label htmlFor="price" className={styles.labels}>
@@ -152,10 +168,11 @@ const FormVehicle = () => {
           <input
             type="number"
             min="1"
-            {...register("price")}
+            {...register("price", {required: "El precio es obligatorio" })}
             placeholder="No te excedas..."
             className={styles.inputPrice}
           ></input>
+          {errors.price && <p className={styles.error}><span className="icon-warning1"></span>{errors.price.message}</p>}
           <div className={styles.coin}>EUR</div>
           <input
             placeholder="Crea tus palabras clave"
@@ -189,6 +206,7 @@ const FormVehicle = () => {
               name="engine"
               control={control}
               defaultValue={false}
+              rules={{required: "Selecciona una opción" }}
               render={({ field }) => (
                 <div className={styles.engine}>
                   <label htmlFor="gasolina" className={styles.square}>
@@ -224,6 +242,7 @@ const FormVehicle = () => {
                     <span className="icon-star-empty"></span>
                     Eléctrico
                   </label>
+                  {errors.engine && <p className={styles.error}><span className="icon-warning1"></span>{errors.engine.message}</p>}
                 </div>
               )}
             />
@@ -231,6 +250,7 @@ const FormVehicle = () => {
               name="shift"
               control={control}
               defaultValue={false}
+              rules={{required: "Selecciona una opción"}}
               render={({ field }) => (
                 <div className={styles.engine}>
                   <label htmlFor="manual" className={styles.square}>
@@ -255,6 +275,7 @@ const FormVehicle = () => {
                     <span className="icon-star-empty"></span>
                     Automático
                   </label>
+                  {errors.shift && <p className={styles.error}><span className="icon-warning1"></span>{errors.shift.message}</p>}
                 </div>
               )}
             />
@@ -266,16 +287,17 @@ const FormVehicle = () => {
         <textarea
           maxLength={500}
           placeholder="Describe el vehículo que deseas vender. Añade detalles como el modelo, color, kilometraje..."
-          {...register("description")}
+          {...register("description", {required: "La descripción es obligatoria" })}
           className={styles.textArea}
-        ></textarea>
+        />
+        {errors.description && <p className={styles.error}><span className="icon-warning1"></span>{errors.description.message}</p>}
         <FormImages />
         <Map />
-        <div className={styles.formButton}>
-          <button type="submit" disabled={!isValid || mutation.isLoading}>
+        
+          <button type="submit" className={styles.formButton}>
             Subir
           </button>
-        </div>
+        
       </form>
     </>
   );

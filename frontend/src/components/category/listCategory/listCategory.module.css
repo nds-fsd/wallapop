@@ -36,6 +36,7 @@
   flex-shrink: 0;
   border-radius: 10px;
   text-decoration: none;
+  padding: 0 1em 0 1em;
 }
 
 .menu {

@@ -73,6 +73,22 @@
   background-color: var(--yellow-main);
 }
 
+.selection1:focus {
+  color: white;
+  background-color: var(--blue-medium);
+  border-color: var(--blue-medium);
+}
+.selection:focus {
+  color: white;
+  background-color: var(--blue-medium);
+  border-color: var(--blue-medium);
+}
+.selection2:focus {
+  color: white;
+  background-color: var(--blue-medium);
+  border-color: var(--blue-medium);
+}
+
 .vertical {
   display: flex;
   flex-direction: column;

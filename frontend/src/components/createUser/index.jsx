@@ -10,6 +10,7 @@ const CreateUserPage = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -24,7 +25,10 @@ const CreateUserPage = () => {
         navigate("/");
       },
     });
+    reset()
   };
+
+  console.log(errors)
 
   // const handleCreateUser = async (userData) => {
   //   try {
@@ -54,7 +58,7 @@ const CreateUserPage = () => {
               placeholder="Nombre"
               className={styles.input}
               {...register("name", {
-                required: "Name is required",
+                required: "Nombre obligatorio",
               })}
             />
             {errors.name && <p>{errors.name.message}</p>}
@@ -63,7 +67,7 @@ const CreateUserPage = () => {
               placeholder="Apellido"
               className={styles.input}
               {...register("surname", {
-                required: "Surname is required",
+                required: "Apellido obligatorio",
               })}
             />
             {errors.surname && <p>{errors.surname.message}</p>}
@@ -74,10 +78,10 @@ const CreateUserPage = () => {
               placeholder="Email"
               className={styles.input}
               {...register("email", {
-                required: "Email is required",
+                required: "Email obligatorio",
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: "Invalid email address",
+                  message: "Email no válido",
                 },
               })}
             />
@@ -87,7 +91,7 @@ const CreateUserPage = () => {
               placeholder="Password"
               className={styles.input}
               {...register("password", {
-                required: "Password is required",
+                required: "Contraseña obligatoria",
               })}
             />
             {errors.password && <p>{errors.password.message}</p>}
@@ -98,7 +102,7 @@ const CreateUserPage = () => {
               placeholder="Teléfono"
               className={styles.input}
               {...register("phone", {
-                required: "Phone is required",
+                required: "Teléfono obligatorio",
               })}
             />
             {errors.phone && <p>{errors.phone.message}</p>}
@@ -126,7 +130,7 @@ const CreateUserPage = () => {
               <option value="">Selecciona una opción</option>
               <option value="Masculino">Masculino</option>
               <option value="Femenino">Femenino</option>
-              <option value="Binario">Binario</option>
+              <option value="No binario">Binario</option>
               <option value="Prefiero no decirlo">Prefiero no decirlo</option>
             </select>
             {errors.gender && <p>{errors.gender.message}</p>}

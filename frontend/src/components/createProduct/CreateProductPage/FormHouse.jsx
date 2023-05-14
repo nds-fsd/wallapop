@@ -12,12 +12,13 @@ const FormHouse = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors },
   } = useForm();
-  const queryClient = useQueryClient();
+
+  const queryClient = useQueryClient(["product"]);
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
-      queryClient.invalidateQueries("product");
+      queryClient.invalidateQueries(["product"]);
     },
   });
 
@@ -61,6 +62,7 @@ const FormHouse = () => {
           name="rent"
           control={control}
           defaultValue={false}
+          rules={{required: "Selecciona una opción" }}
           render={({ field }) => (
             <div className={styles.category}>
               <label htmlFor="alquiler" className={styles.checkbox}>
@@ -86,6 +88,8 @@ const FormHouse = () => {
                 <span className="icon-star-empty"></span>
                 Venta
               </label>
+              {errors.rent && <p className={styles.error}>{errors.rent.message}</p>}
+
             </div>
           )}
         />
@@ -94,9 +98,10 @@ const FormHouse = () => {
         </label>
         <input
           placeholder="Dale un título a tu inmueble"
-          {...register("title")}
+          {...register("title", {required: "El título es obligatorio" })}
           className={styles.input}
         ></input>
+        {errors.title && <p className={styles.error}>{errors.title.message}</p>}
 
         <label htmlFor="space" className={styles.labels}>
           ¿De qué espacio se trata?
@@ -106,6 +111,7 @@ const FormHouse = () => {
             name="space"
             control={control}
             defaultValue={false}
+            rules={{required: "Selecciona una opción" }}            
             render={({ field }) => (
               <div className={styles.type}>
                 <label htmlFor="piso" className={styles.square}>
@@ -174,6 +180,8 @@ const FormHouse = () => {
                   <span className="icon-star-empty"></span>
                   Trastero
                 </label>
+                {errors.space && <p className={styles.error}>{errors.space.message}</p>}
+
               </div>
             )}
           />
@@ -191,10 +199,11 @@ const FormHouse = () => {
           <input
             type="number"
             min="1"
-            {...register("land")}
+            {...register("land", {required: "Este campo es obligatorio" })}
             placeholder="En m2"
             className={styles.inputLand}
           ></input>
+          {errors.land && <p className={styles.error}>{errors.land.message}</p>}
           <select {...register("status")} className={styles.dropdown}>
             <option value="">Selecciona un estado</option>
             <option value="Obra nueva">Obra nueva</option>
@@ -215,10 +224,11 @@ const FormHouse = () => {
           <input
             type="number"
             min="1"
-            {...register("price")}
+            {...register("price", {required: "El precio es obligatorio" })}
             placeholder="No te excedas..."
             className={styles.inputPrice}
           ></input>
+          {errors.price && <p className={styles.error}>{errors.price.message}</p>}
           <div className={styles.coin}>EUR</div>
           <input
             placeholder="Crea tus palabras clave"
@@ -233,16 +243,17 @@ const FormHouse = () => {
         <textarea
           maxLength={500}
           placeholder="Describe los detalles más llamativos de tu espacio..."
-          {...register("description")}
+          {...register("description", {required: "La descripción es obligatoria"})}
           className={styles.textArea}
         ></textarea>
+        {errors.description && <p className={styles.error}>{errors.description.message}</p>}
         <FormImages />
         <Map />
-        <div className={styles.formButton}>
-          <button type="submit" disabled={!isValid || mutation.isLoading}>
+        
+          <button type="submit" className={styles.formButton}>
             Subir
           </button>
-        </div>
+        
       </form>
     </>
   );

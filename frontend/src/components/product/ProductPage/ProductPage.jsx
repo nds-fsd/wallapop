@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
-  getProductByIdHarcoded,
   getProductById,
 } from "../../../utils/apiProducts";
 import { useQuery, useMutation } from "react-query";

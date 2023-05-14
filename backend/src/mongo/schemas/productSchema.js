@@ -18,6 +18,7 @@ const productSchema = new Schema({
       ref: "user",
     },
   ],
+  
   // Para poder relacionar producto con categorias
   // ponemos el valor otros por defecto porque asi si no se especifica la categoria se crea el producto en la categoria otros
   categories: [
@@ -31,18 +32,18 @@ const productSchema = new Schema({
 
   // ESTO DE AQUI ABAJO IRA FUERA CUANDO SE TERMINE DE CAMBIAR LAS FUNCIONES
   // Y ESTEN PREPARADAS CON EL POPULATE
-  category: { type: String },
-  rent: { type: String },
-  space: { type: String },
+  category: { type: String, required: true },
+  rent: { type: String , required: true },
+  space: { type: String, required: true },
   land: { type: Number },
   brand: { type: String },
-  model: { type: String },
-  year: { type: Number },
+  model: { type: String, required: true },
+  year: { type: Number, required: true },
   doors: { type: Number },
   seats: { type: Number },
-  km: { type: Number },
-  engine: { type: String },
-  shift: { type: String },
+  km: { type: Number, required: true },
+  engine: { type: String, required: true },
+  shift: { type: String, required: true},
 });
 
 module.exports = productSchema;

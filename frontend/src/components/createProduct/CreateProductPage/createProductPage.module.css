@@ -117,6 +117,15 @@
   top: -1.7em;
 }
 
+.line2 {
+  background-color: var(--blue-dark);
+  height: 2px;
+  opacity: 1;
+  margin: 2em 0 1em 0;
+  position: relative;
+  top: -5.7em;
+}
+
 .priceCategory {
   display: flex;
   gap: 20rem;
@@ -263,7 +272,7 @@
   justify-content: center;
 }
 
-.formButton button {
+.formButton {
   width: 13rem;
   height: 3rem;
   font-size: 1.2rem;
@@ -278,7 +287,48 @@
   position: relative;
 }
 
-.formButton button:hover {
+.formButton:hover {
   background-color: var(--yellow-main);
   color: white;
+}
+
+.error {
+  color: red;
+  font-size: 0.7em;
+  margin-top: -0.4rem;
+
+}
+
+.error span {
+  color: red;
+  margin-right: 0.5em;
+}
+
+.error1 {
+  color: red;
+  font-size: 0.7em;
+  margin-top: -0.4rem;
+
+}
+
+.error1 span {
+  color: red;
+  margin-right: 0.5em;
+  margin-left: 30rem;
+}
+
+.error2 {
+  display: flex;
+  gap: 6.7rem;
+}
+
+.error2 > p {
+  color: red;
+  font-size: 0.7em;
+  margin-top: -0.4rem;
+}
+
+.error2 span {
+  color: red;
+  margin-right: 0.5em;
 }

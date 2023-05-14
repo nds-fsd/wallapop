@@ -10,17 +10,19 @@ const FormJob = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid },
+    reset,
+    formState: { errors },
   } = useForm();
   const queryClient = useQueryClient();
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
-      queryClient.invalidateQueries("product");
+      queryClient.invalidateQueries();
     },
   });
 
   const onSubmit = (productData) => {
     mutation.mutate(productData);
+    reset()
   };
 
   return (
@@ -35,9 +37,12 @@ const FormJob = () => {
         </label>
         <input
           placeholder="Dale un título a tu servicio / empleo"
-          {...register("title")}
+          {...register("title", {
+            required: {message: "El título es obligatorio"} 
+          })}
           className={styles.input}
         ></input>
+        {errors.title && <p className={styles.error}>{errors.title.message}</p>}
         <div className={styles.labelDouble}>
           <label htmlFor="price" className={styles.labels}>
             Ponle precio
@@ -50,11 +55,12 @@ const FormJob = () => {
           <input
             type="number"
             min="1"
-            {...register("price")}
+            {...register("price", {required: "El precio es obligatorio" })}
             placeholder="No te excedas..."
             className={styles.inputPrice}
           ></input>
           <div className={styles.coin}>EUR</div>
+          {errors.price && <p className={styles.error}>{errors.price.message}</p>}
           <input
             placeholder="Crea tus palabras clave"
             {...register("keywords")}
@@ -70,11 +76,12 @@ const FormJob = () => {
           </label>
         </div>
         <div className={styles.column}>
-          <select {...register("category")} className={styles.dropdown}>
+          <select {...register("category", {required: {message: "Selecciona una categoría"} })} className={styles.dropdown}>
             <option value="">Selecciona una categoría</option>
             <option value="Servicios">Servicios</option>
             <option value="Empleo">Empleo</option>
           </select>
+          {errors.category && <p className={styles.error}>{errors.category.message}</p>}
           <select {...register("status")} className={styles.dropdown}>
             <option value="">Selecciona un estado</option>
             <option value="Horas a convenir">Horas a convenir</option>
@@ -88,16 +95,15 @@ const FormJob = () => {
         <textarea
           maxLength={500}
           placeholder="Describe las ventajas del servicio o empleo que buscas para que los demás sepan por qué deben contratarte a ti y no a otro..."
-          {...register("description")}
+          {...register("description", {required: {message: "La descripción es obligatoria"} })}
           className={styles.textArea}
         ></textarea>
+        {errors.description && <p className={styles.error}>{errors.description.message}</p>}
         <FormImages />
         <Map />
-        <div className={styles.formButton}>
-          <button type="submit" disabled={!isValid || mutation.isLoading}>
+          <button type="submit" className={styles.formButton} >
             Subir
           </button>
-        </div>
       </form>
     </>
   );

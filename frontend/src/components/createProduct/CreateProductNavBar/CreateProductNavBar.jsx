@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./createProductNavBar.module.css";
 import { Link, Outlet } from "react-router-dom";
-import imgCat from "../../../assets/imgCat";
 
 const CreateProductNavBar = () => {
   return (

@@ -13,11 +13,12 @@ const productRouter = express.Router();
 
 productRouter.get("/", getAllProducts);
 productRouter.get("/:id", getProductById);
+// productRouter.get("/:user", getProductByUser)
 productRouter.get("/category/:category", getProductByCategory);
 productRouter.post("/newproduct/:userId", postProduct);
-productRouter.patch("/:id", updateProductById);
+productRouter.patch("/:user", updateProductById);
 productRouter.patch("/:title", updateProductByTitle);
-productRouter.delete("/:id", deleteProduct);
+productRouter.delete("/:user", deleteProduct);
 
 module.exports = productRouter;
 

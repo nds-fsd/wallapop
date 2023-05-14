@@ -20,6 +20,21 @@ const getProductById = async (req, res) => {
   }
 };
 
+const getProductByUser = async (req, res) => {
+  const { userId } = req.params;
+  console.log(userId)
+  try {
+    const productByUser = await productModel
+    .find({ user: userId })
+    .populate("user");
+    res.status(200).json(productByUser);
+    console.log(productByUser);
+  } catch (error) {
+    res.status(404).json({ error: "Sorry, can't find products to display" });
+    console.log(error);
+  };
+};
+
 // Buscar productos por categorias
 const getProductByCategory = async (req, res) => {
   const { category } = req.params;
@@ -107,6 +122,7 @@ const deleteProduct = async (req, res) => {
 module.exports = {
   getAllProducts,
   getProductById,
+  getProductByUser,
   getProductByCategory,
   postProduct,
   updateProductById,

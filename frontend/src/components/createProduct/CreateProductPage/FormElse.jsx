@@ -7,20 +7,22 @@ import FormImages from "../FormImages/FormImages";
 import Map from "../map/Map";
 
 const FormElse = () => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient(["product"]);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting, isValid },
   } = useForm();
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
-      queryClient.invalidateQueries("product");
+      queryClient.invalidateQueries(["product"]);
     },
   });
 
   const onSubmit = (productData) => {
     mutation.mutate(productData);
+    reset()  
   };
 
   return (
@@ -35,9 +37,12 @@ const FormElse = () => {
         </label>
         <input
           placeholder="Dale un título a tu producto"
-          {...register("title")}
+          {...register("title", {
+            required: "El título es obligatorio"
+          })}
           className={styles.input}
         ></input>
+        {errors.title && <p className={styles.error}>{errors.title.message}</p>}
         <div className={styles.labelDouble}>
           <label htmlFor="price" className={styles.labels}>
             Ponle precio
@@ -50,10 +55,13 @@ const FormElse = () => {
           <input
             type="number"
             min="1"
-            {...register("price")}
+            {...register("price", {
+              required: "El precio es obligatorio" 
+            })}
             placeholder="No te excedas..."
             className={styles.inputPrice}
           ></input>
+          {errors.price && <p className={styles.error}>{errors.price.message}</p>}
           <div className={styles.coin}>EUR</div>
           <input
             placeholder="Crea tus palabras clave"
@@ -70,7 +78,7 @@ const FormElse = () => {
           </label>
         </div>
         <div className={styles.column}>
-          <select {...register("category")} className={styles.dropdown}>
+          <select {...register("category", {required: "Selecciona una categoría"})} className={styles.dropdown}>
             <option value="">Selecciona una categoría</option>
             <option value="Informática y Electrónica">
               Informática y Electrónica
@@ -104,6 +112,7 @@ const FormElse = () => {
             <option value="Poco uso">Poco uso</option>
             <option value="Sin estrenar">Sin estrenar</option>
           </select>
+          {errors.category && <p className={styles.error}>{errors.category.message}</p>}
         </div>
         <label htmlFor="description" className={styles.labels}>
           ¿Cómo es tu producto?
@@ -111,16 +120,19 @@ const FormElse = () => {
         <textarea
           maxLength={500}
           placeholder="Describe lo fantástico que es tu producto. Añade detalles como el modelo, color, funcionalidad..."
-          {...register("description")}
+          {...register("description", {
+            required: "La descripción es obligatoria"
+          })}
           className={styles.textArea}
         ></textarea>
+        {errors.description && <p className={styles.error}>{errors.description.message}</p>}
         <FormImages />
         <Map />
-        <div className={styles.formButton}>
-          <button type="submit" disabled={!isValid || mutation.isLoading}>
+        
+          <button type="submit" className={styles.formButton}>
             Subir
           </button>
-        </div>
+        
       </form>
     </>
   );
