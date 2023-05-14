@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/authContext";
+import { ImageContext } from "../../context/imageContext";
 import styles from "./createUser.module.css";
-
 
 const CreateUserPage = () => {
   const {
@@ -12,34 +12,7 @@ const CreateUserPage = () => {
   } = useForm();
 
   const { handleAuth } = useContext(AuthContext);
-
-
-  // const navigate = useNavigate();
-  // const registerUser = useMutation(["user"], createUser);
-
-  // const handleCreateUser = (data) => {
-  //   registerUser.mutate(data, {
-  //     onSuccess: (data) => {
-  //       setUserSession(data.token);
-  //       localStorage.setItem("user", JSON.stringify(data.user));
-  //       navigate("/");
-  //     },
-  //   });
-  // };
-
-  // const handleCreateUser = async (userData) => {
-  //   try {
-  //     const response = await api.post("/user/register", userData);
-  //     if (response.status === 201) {
-  //       setUserSession(response.data.token);
-  //       localStorage.setItem("user", JSON.stringify(response.data.user));
-  //     }
-  //     return response;
-  //   } catch (error) {
-  //     console.error(error);
-  //     throw error;
-  //   }
-  // };
+  const { showUploadWidget } = useContext(ImageContext);
 
   return (
     <>
@@ -132,16 +105,14 @@ const CreateUserPage = () => {
             </select>
             {errors.gender && <p>{errors.gender.message}</p>}
           </div>
-          {/* <input
-              type="text"
-              placeholder="Imágenes"
-              className={styles.input}
-              {...register('photo')}
-            /> */}
+          <input type="hidden" {...register("photo")} />
           <div className={styles.column}>
             <div className={styles.imageColumn}>
               <label htmlFor="images">Selecciona una imagen</label>
-              <button className={styles.image}>
+              <button
+                onClick={showUploadWidget.open()}
+                className={styles.image}
+              >
                 <span className="icon-image1"></span>
               </button>
             </div>
