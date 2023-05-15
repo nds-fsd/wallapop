@@ -61,7 +61,6 @@ const CreateUserPage = () => {
                 required: "Nombre obligatorio",
               })}
             />
-            {errors.name && <p>{errors.name.message}</p>}
             <input
               type="text"
               placeholder="Apellido"
@@ -70,7 +69,11 @@ const CreateUserPage = () => {
                 required: "Apellido obligatorio",
               })}
             />
-            {errors.surname && <p>{errors.surname.message}</p>}
+                        
+          </div>
+          <div className={styles.error}> 
+            {errors.name && <p><span className="icon-warning1"></span>{errors.name.message}</p>}
+            {errors.surname && <p><span className="icon-warning1"></span>{errors.surname.message}</p>}
           </div>
           <div className={styles.column}>
             <input
@@ -85,7 +88,6 @@ const CreateUserPage = () => {
                 },
               })}
             />
-            {errors.email && <p>{errors.email.message}</p>}
             <input
               type="password"
               placeholder="Password"
@@ -94,7 +96,10 @@ const CreateUserPage = () => {
                 required: "Contraseña obligatoria",
               })}
             />
-            {errors.password && <p>{errors.password.message}</p>}
+          </div>
+          <div className={styles.error1}>
+            {errors.email && <p><span className="icon-warning1"></span>{errors.email.message}</p>}
+            {errors.password && <p><span className="icon-warning1"></span>{errors.password.message}</p>}
           </div>
           <div className={styles.column}>
             <input
@@ -105,14 +110,17 @@ const CreateUserPage = () => {
                 required: "Teléfono obligatorio",
               })}
             />
-            {errors.phone && <p>{errors.phone.message}</p>}
             <input
               type="text"
               placeholder="Dirección"
               className={styles.input}
-              {...register("address")}
+              {...register("address", {required: "Dirección obligatoria"})}
             />
-            {errors.address && <p>{errors.address.message}</p>}
+          </div>
+          <div className={styles.error}>
+            {errors.phone && <p><span className="icon-warning1"></span>{errors.phone.message}</p>}
+            {errors.address && <p><span className="icon-warning1"></span>{errors.address.message}</p>}
+
           </div>
           <div className={styles.column}>
             <input
@@ -121,7 +129,7 @@ const CreateUserPage = () => {
               className={styles.input}
               {...register("birthday")}
             />
-            {errors.birthday && <p>{errors.birthday.message}</p>}
+            {errors.birthday && <p className={styles.error}><span className="icon-warning1"></span>{errors.birthday.message}</p>}
             <select
               {...register("gender")}
               placeholder="Género"
@@ -133,7 +141,7 @@ const CreateUserPage = () => {
               <option value="No binario">Binario</option>
               <option value="Prefiero no decirlo">Prefiero no decirlo</option>
             </select>
-            {errors.gender && <p>{errors.gender.message}</p>}
+            {errors.gender && <p className={styles.error}><span className="icon-warning1"></span>{errors.gender.message}</p>}
           </div>
           {/* <input
               type="text"
@@ -148,7 +156,7 @@ const CreateUserPage = () => {
                 <span className="icon-image1"></span>
               </button>
             </div>
-            {errors.photo && <p>{errors.photo.message}</p>}
+            {errors.photo && <p className={styles.error}><span className="icon-warning1"></span>{errors.photo.message}</p>}
 
             <button className={styles.createUserButton} type="submit">
               Regístrate

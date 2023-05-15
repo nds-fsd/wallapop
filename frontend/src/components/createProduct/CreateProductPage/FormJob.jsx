@@ -38,11 +38,11 @@ const FormJob = () => {
         <input
           placeholder="Dale un título a tu servicio / empleo"
           {...register("title", {
-            required: {message: "El título es obligatorio"} 
+            required: "El título es obligatorio" 
           })}
           className={styles.input}
         ></input>
-        {errors.title && <p className={styles.error}>{errors.title.message}</p>}
+        {errors.title && <p className={styles.error}><span className="icon-warning1"></span>{errors.title.message}</p>}
         <div className={styles.labelDouble}>
           <label htmlFor="price" className={styles.labels}>
             Ponle precio
@@ -60,13 +60,13 @@ const FormJob = () => {
             className={styles.inputPrice}
           ></input>
           <div className={styles.coin}>EUR</div>
-          {errors.price && <p className={styles.error}>{errors.price.message}</p>}
           <input
             placeholder="Crea tus palabras clave"
             {...register("keywords")}
             className={styles.inputKeywords}
           ></input>
         </div>
+        {errors.price && <p className={styles.error}><span className="icon-warning1"></span>{errors.price.message}</p>}
         <div className={styles.labelDouble}>
           <label htmlFor="category" className={styles.labels}>
             Categoría
@@ -76,12 +76,11 @@ const FormJob = () => {
           </label>
         </div>
         <div className={styles.column}>
-          <select {...register("category", {required: {message: "Selecciona una categoría"} })} className={styles.dropdown}>
+          <select {...register("category", {required: "Selecciona una categoría"})} className={styles.dropdown}>
             <option value="">Selecciona una categoría</option>
             <option value="Servicios">Servicios</option>
             <option value="Empleo">Empleo</option>
           </select>
-          {errors.category && <p className={styles.error}>{errors.category.message}</p>}
           <select {...register("status")} className={styles.dropdown}>
             <option value="">Selecciona un estado</option>
             <option value="Horas a convenir">Horas a convenir</option>
@@ -89,16 +88,17 @@ const FormJob = () => {
             <option value="Por la tarde">Por la tarde</option>
           </select>
         </div>
+        {errors.category && <p className={styles.error}><span className="icon-warning1"></span>{errors.category.message}</p>}
         <label htmlFor="description" className={styles.labels}>
           ¿Cómo es tu producto?
         </label>
         <textarea
           maxLength={500}
           placeholder="Describe las ventajas del servicio o empleo que buscas para que los demás sepan por qué deben contratarte a ti y no a otro..."
-          {...register("description", {required: {message: "La descripción es obligatoria"} })}
+          {...register("description", {required: "La descripción es obligatoria" })}
           className={styles.textArea}
         ></textarea>
-        {errors.description && <p className={styles.error}>{errors.description.message}</p>}
+        {errors.description && <p className={styles.error}><span className="icon-warning1"></span>{errors.description.message}</p>}
         <FormImages />
         <Map />
           <button type="submit" className={styles.formButton} >

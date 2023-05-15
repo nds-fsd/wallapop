@@ -43,7 +43,7 @@ const FormVehicle = () => {
           name="category"
           control={control}
           defaultValue={false}
-          rules={{required: "Selecciona una opción" }}
+          rules={{required: "Selecciona una categoría" }}
           render={({ field }) => (
             <div className={styles.category}>
               <label htmlFor="coches" className={styles.checkbox}>
@@ -154,8 +154,8 @@ const FormVehicle = () => {
             {...register("km", {required: "Este campo es obligatorio" })}
             className={styles.inputVehicle}
           ></input>
-          {errors.km && <p className={styles.error}><span className="icon-warning1"></span>{errors.km.message}</p>}
         </div>
+        {errors.km && <p className={styles.error3}><span className="icon-warning1"></span>{errors.km.message}</p>}
         <div>
           <label htmlFor="price" className={styles.labels}>
             Ponle precio
@@ -172,7 +172,6 @@ const FormVehicle = () => {
             placeholder="No te excedas..."
             className={styles.inputPrice}
           ></input>
-          {errors.price && <p className={styles.error}><span className="icon-warning1"></span>{errors.price.message}</p>}
           <div className={styles.coin}>EUR</div>
           <input
             placeholder="Crea tus palabras clave"
@@ -180,6 +179,8 @@ const FormVehicle = () => {
             className={styles.inputKeywords}
           ></input>
         </div>
+        {errors.price && <p className={styles.error}><span className="icon-warning1"></span>{errors.price.message}</p>}
+
 
         <label htmlFor="status" className={styles.labels}>
           Estado de tu vehículo
@@ -242,7 +243,6 @@ const FormVehicle = () => {
                     <span className="icon-star-empty"></span>
                     Eléctrico
                   </label>
-                  {errors.engine && <p className={styles.error}><span className="icon-warning1"></span>{errors.engine.message}</p>}
                 </div>
               )}
             />
@@ -275,11 +275,14 @@ const FormVehicle = () => {
                     <span className="icon-star-empty"></span>
                     Automático
                   </label>
-                  {errors.shift && <p className={styles.error}><span className="icon-warning1"></span>{errors.shift.message}</p>}
                 </div>
               )}
             />
           </div>
+          <div className={styles.error4}>
+              {errors.engine && <p><span className="icon-warning1"></span>{errors.engine.message}</p>}
+              {errors.shift && <p><span className="icon-warning1"></span>{errors.shift.message}</p>}
+            </div>
         </div>
         <label htmlFor="description" className={styles.labels}>
           ¿Cómo es tu vehículo?

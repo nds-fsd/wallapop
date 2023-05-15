@@ -88,11 +88,12 @@ const FormHouse = () => {
                 <span className="icon-star-empty"></span>
                 Venta
               </label>
-              {errors.rent && <p className={styles.error}>{errors.rent.message}</p>}
 
             </div>
           )}
         />
+        {errors.rent && <p className={styles.error1}><span className="icon-warning1"></span>{errors.rent.message}</p>}
+
         <label htmlFor="title" className={styles.labels}>
           ¿Qué ofreces?
         </label>
@@ -101,7 +102,7 @@ const FormHouse = () => {
           {...register("title", {required: "El título es obligatorio" })}
           className={styles.input}
         ></input>
-        {errors.title && <p className={styles.error}>{errors.title.message}</p>}
+        {errors.title && <p className={styles.error}><span className="icon-warning1"></span>{errors.title.message}</p>}
 
         <label htmlFor="space" className={styles.labels}>
           ¿De qué espacio se trata?
@@ -180,12 +181,13 @@ const FormHouse = () => {
                   <span className="icon-star-empty"></span>
                   Trastero
                 </label>
-                {errors.space && <p className={styles.error}>{errors.space.message}</p>}
 
               </div>
             )}
           />
         </div>
+        {errors.space && <p className={styles.error}><span className="icon-warning1"></span>{errors.space.message}</p>}
+
 
         <div className={styles.labelDouble}>
           <label htmlFor="land" className={styles.labels}>
@@ -203,7 +205,6 @@ const FormHouse = () => {
             placeholder="En m2"
             className={styles.inputLand}
           ></input>
-          {errors.land && <p className={styles.error}>{errors.land.message}</p>}
           <select {...register("status")} className={styles.dropdown}>
             <option value="">Selecciona un estado</option>
             <option value="Obra nueva">Obra nueva</option>
@@ -211,6 +212,7 @@ const FormHouse = () => {
             <option value="A reformar">A reformar</option>
           </select>
         </div>
+        {errors.land && <p className={styles.error}><span className="icon-warning1"></span>{errors.land.message}</p>}
 
         <div>
           <label htmlFor="price" className={styles.labels}>
@@ -228,7 +230,6 @@ const FormHouse = () => {
             placeholder="No te excedas..."
             className={styles.inputPrice}
           ></input>
-          {errors.price && <p className={styles.error}>{errors.price.message}</p>}
           <div className={styles.coin}>EUR</div>
           <input
             placeholder="Crea tus palabras clave"
@@ -236,6 +237,8 @@ const FormHouse = () => {
             className={styles.inputKeywords}
           ></input>
         </div>
+        {errors.price && <p className={styles.error}><span className="icon-warning1"></span>{errors.price.message}</p>}
+
 
         <label htmlFor="description" className={styles.labels}>
           ¿Cómo es tu inmueble?
@@ -246,7 +249,7 @@ const FormHouse = () => {
           {...register("description", {required: "La descripción es obligatoria"})}
           className={styles.textArea}
         ></textarea>
-        {errors.description && <p className={styles.error}>{errors.description.message}</p>}
+        {errors.description && <p className={styles.error}><span className="icon-warning1"></span>{errors.description.message}</p>}
         <FormImages />
         <Map />
         

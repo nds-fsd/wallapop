@@ -292,43 +292,61 @@
   color: white;
 }
 
+/* errors - form vehicle */
+
 .error {
   color: red;
   font-size: 0.7em;
   margin-top: -0.4rem;
-
 }
-
 .error span {
   color: red;
   margin-right: 0.5em;
 }
-
 .error1 {
   color: red;
   font-size: 0.7em;
   margin-top: -0.4rem;
 
 }
-
 .error1 span {
   color: red;
   margin-right: 0.5em;
   margin-left: 30rem;
 }
-
 .error2 {
   display: flex;
   gap: 6.7rem;
 }
-
 .error2 > p {
   color: red;
   font-size: 0.7em;
   margin-top: -0.4rem;
 }
-
 .error2 span {
+  color: red;
+  margin-right: 0.5em;
+}
+.error3 {
+  color: red;
+  font-size: 0.7em;
+  margin-top: -0.4rem;
+  margin-left: 31.5rem;
+}
+.error3 span {
+  color: red;
+  margin-right: 0.5em;
+}
+.error4 {
+  display: flex;
+  gap: 15.5rem;
+}
+.error4 > p{
+  color: red;
+  font-size: 0.7em;
+  margin-top: -0.4rem;
+}
+.error4 span {
   color: red;
   margin-right: 0.5em;
 }

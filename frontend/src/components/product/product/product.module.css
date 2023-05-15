@@ -22,7 +22,9 @@
   background-color: white;
 }
 .card:hover {
-  box-shadow: 3px 3px 5px .5px var(--blue-medium);
+  /* box-shadow: 3px 3px 5px .5px var(--blue-medium); */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
 }
 
 .columnRight > h6 {

@@ -42,7 +42,7 @@ const FormElse = () => {
           })}
           className={styles.input}
         ></input>
-        {errors.title && <p className={styles.error}>{errors.title.message}</p>}
+        {errors.title && <p className={styles.error}><span className="icon-warning1"></span>{errors.title.message}</p>}
         <div className={styles.labelDouble}>
           <label htmlFor="price" className={styles.labels}>
             Ponle precio
@@ -61,7 +61,6 @@ const FormElse = () => {
             placeholder="No te excedas..."
             className={styles.inputPrice}
           ></input>
-          {errors.price && <p className={styles.error}>{errors.price.message}</p>}
           <div className={styles.coin}>EUR</div>
           <input
             placeholder="Crea tus palabras clave"
@@ -69,6 +68,7 @@ const FormElse = () => {
             className={styles.inputKeywords}
           ></input>
         </div>
+        {errors.price && <p className={styles.error}><span className="icon-warning1"></span>{errors.price.message}</p>}
         <div className={styles.labelDouble}>
           <label htmlFor="category" className={styles.labels}>
             Categoría
@@ -112,8 +112,8 @@ const FormElse = () => {
             <option value="Poco uso">Poco uso</option>
             <option value="Sin estrenar">Sin estrenar</option>
           </select>
-          {errors.category && <p className={styles.error}>{errors.category.message}</p>}
         </div>
+        {errors.category && <p className={styles.error}><span className="icon-warning1"></span>{errors.category.message}</p>}
         <label htmlFor="description" className={styles.labels}>
           ¿Cómo es tu producto?
         </label>
@@ -125,7 +125,7 @@ const FormElse = () => {
           })}
           className={styles.textArea}
         ></textarea>
-        {errors.description && <p className={styles.error}>{errors.description.message}</p>}
+        {errors.description && <p className={styles.error}><span className="icon-warning1"></span>{errors.description.message}</p>}
         <FormImages />
         <Map />
         

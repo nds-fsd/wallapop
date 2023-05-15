@@ -8,12 +8,21 @@ const ProductPublished = (product) => {
   //Aqui va el fetch al endpoint de productos
 
     // para coger el id de la url
-    const { id } = useParams();
+    // const id = "6460c2f2980f4e977122dc3c"
+    // const { id } = useParams();
+    // const { data, isLoading } = useQuery(
+    //   ["products/published", id],
+    //   () => getProductByUser(id)
+    // );
+    // console.log("products for user", data)
+    // console.log(id)
+
+
     const { data, isLoading } = useQuery(
-      ["products/published", id],
-      () => getProductByUser(id)
+      ["products/published"],
+      getProductByUser
     );
-    console.log("products for user", data)
+    console.log("los productos del user", data)
     
 
 

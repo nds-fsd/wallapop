@@ -21,14 +21,16 @@ const getProductById = async (req, res) => {
 };
 
 const getProductByUser = async (req, res) => {
-  const { userId } = req.params;
-  console.log(userId)
+  console.log(req)
+  const userId = req.params.userId;
+  console.log("entro en el controller", userId)
   try {
     const productByUser = await productModel
-    .find({ user: userId })
-    .populate("user");
+    .find({ userId })
+    .populate("user")
+    .exec();
     res.status(200).json(productByUser);
-    console.log(productByUser);
+    console.log("estos son los producto", productByUser);
   } catch (error) {
     res.status(404).json({ error: "Sorry, can't find products to display" });
     console.log(error);

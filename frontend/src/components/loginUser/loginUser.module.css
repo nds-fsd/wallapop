@@ -73,3 +73,18 @@
   background-color: var(--yellow-main);
   color: white;
 }
+
+.error {
+  display: flex;
+  margin-top: -1.7rem;
+  gap: 9.5rem;
+}
+.error > p {
+  color: red;
+  font-size: 0.7em;
+  margin-top: -0.4rem;
+}
+.error span {
+  color: red;
+  margin-right: 0.5em;
+}

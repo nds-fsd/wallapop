@@ -12,10 +12,11 @@ export const getProductById = ({ queryKey }) => {
 };
 
 export const getProductByUser = () => {
-  const userId = localStorage.getItem("user")
+  const user = JSON.parse(localStorage.getItem("user"))
+  const userId = user.id
   console.log("el user", userId)
   return api
-  .get(`/user/products/published`)
+  .get(`/user/products/published?userId=${userId}`)
   .then((res) => res.data)
   .catch((error) => {
     console.log(error);

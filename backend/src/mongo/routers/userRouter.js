@@ -23,7 +23,7 @@ userRouter.post("/login", userLogin);
 
 userRouter.get("/:id", findUserByID);
 
-userRouter.get("/products/published", getProductByUser)
+userRouter.get(`/user/products/published`, getProductByUser)
 
 userRouter.patch("/:id", jwtMiddleware, modifyUserByID);
 
