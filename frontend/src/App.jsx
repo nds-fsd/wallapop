@@ -12,6 +12,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/home";
 import CreateProductPage from "./components/createProduct/CreateProductPage/CreateProductPage";
 import PrivateRoutes from "./components/privateRoutes";
+import { AuthProvider } from "./context/authContext";
 
 function App() {
   const queryClient = new QueryClient();
@@ -19,34 +20,36 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <div>
-          <Navbar />
+        <AuthProvider>
           <div>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<CreateUserPage />} />
-              <Route path="/user/*" element={<UserPage />} />
-              <Route
-                path="/products/newproduct/*"
-                element={<CreateProductPage />}
-              />
-              {/* creo la ruta para poder acceder a las categorias desde otro sitio y la lista de productos 
+            <Navbar />
+            <div>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<CreateUserPage />} />
+                <Route path="/user/*" element={<UserPage />} />
+                <Route
+                  path="/products/newproduct/*"
+                  element={<CreateProductPage />}
+                />
+                {/* creo la ruta para poder acceder a las categorias desde otro sitio y la lista de productos 
               Lo creo dentro del routs sin mostrarlo porque asi por mucho que cambie de categoria sigue mostrandose la navBar arriba
               en caso que no fuera asi no se mostraria
-            Aqui solo la declaro la ruta para que exista y poder acceder desde otro lado */}
-              <Route path="/category" element={<ListCategory />}>
-                <Route path=":category" element={<ListProducts />} />
-                <Route path="product/:productid" element={<ProductPage />} />
-              </Route>
-              <Route path="/user" element={<PrivateRoutes />}>
-                <Route path="" element={<UserPage />} />
-                <Route path="*" element={<UserPage />} />
-              </Route>
-            </Routes>
+              Aqui solo la declaro la ruta para que exista y poder acceder desde otro lado */}
+                <Route path="/category" element={<ListCategory />}>
+                  <Route path=":category" element={<ListProducts />} />
+                  <Route path="product/:productid" element={<ProductPage />} />
+                </Route>
+                <Route path="/user" element={<PrivateRoutes />}>
+                  <Route path="" element={<UserPage />} />
+                  <Route path="*" element={<UserPage />} />
+                </Route>
+              </Routes>
+            </div>
           </div>
-        </div>
-        <ReactQueryDevtools initialIsOpen={false} />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </AuthProvider>
       </QueryClientProvider>
     </>
   );

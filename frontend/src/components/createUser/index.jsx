@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../context/authContext";
 import styles from "./createUser.module.css";
-import { setUserSession } from "../../utils/localStorage.utils";
-import { Link, useNavigate } from "react-router-dom";
-import { useMutation } from "react-query";
-import { createUser } from "../../utils/apiAuth";
+
 
 const CreateUserPage = () => {
   const {
@@ -13,18 +11,21 @@ const CreateUserPage = () => {
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate();
-  const registerUser = useMutation(["user"], createUser);
+  const { handleAuth } = useContext(AuthContext);
 
-  const handleCreateUser = (data) => {
-    registerUser.mutate(data, {
-      onSuccess: (data) => {
-        setUserSession(data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-        navigate("/");
-      },
-    });
-  };
+
+  // const navigate = useNavigate();
+  // const registerUser = useMutation(["user"], createUser);
+
+  // const handleCreateUser = (data) => {
+  //   registerUser.mutate(data, {
+  //     onSuccess: (data) => {
+  //       setUserSession(data.token);
+  //       localStorage.setItem("user", JSON.stringify(data.user));
+  //       navigate("/");
+  //     },
+  //   });
+  // };
 
   // const handleCreateUser = async (userData) => {
   //   try {
@@ -45,7 +46,7 @@ const CreateUserPage = () => {
       <div className={styles.createUserContainer}>
         <h1>Regístrate</h1>
         <form
-          onSubmit={handleSubmit(handleCreateUser)}
+          onSubmit={handleSubmit(handleAuth)}
           className={styles.formContainer}
         >
           <div className={styles.column}>
