@@ -1,7 +1,8 @@
 import { api } from "./api";
+import { getUserData } from "./localStorage.utils";
 
 export const getProductById = ({ queryKey }) => {
-  console.log(queryKey)
+  console.log(queryKey);
   return api
     .get(`/products/${queryKey[1]}`)
     .then((res) => res.data)
@@ -12,29 +13,25 @@ export const getProductById = ({ queryKey }) => {
 };
 
 export const getProductByUser = () => {
-  const user = JSON.parse(localStorage.getItem("user"))
-  const userId = user.id
-  console.log("el user", userId)
+  const { id } = JSON.parse(localStorage.getItem("user"));
+  const token = JSON.parse(localStorage.getItem("user-session"));
+  console.log("el id", id);
+  console.log("el token", token);
   return api
-  .get(`/user/products/published?userId=${userId}`)
-  .then((res) => res.data)
-  .catch((error) => {
-    console.log(error);
-    return [];
-  })
-}
-
-// export const getProductByUser = ({ queryKey }) => {
-//   const user = localStorage.getItem("user")
-//   console.log(user)
-//   return api
-//   .get(`/products/userId/${queryKey[1]}`)
-//   .then((res) => res.data)
-//   .catch((error) => {
-//     console.log(error);
-//     return [];
-//   })
-// }
+    .get(`/products/getbyuser/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      return {
+        error:
+          "Sorry, we couldn't retrieve your products. Please try again later.",
+      };
+    });
+};
 
 export const getProductByCategory = ({ queryKey }) => {
   return (
@@ -50,10 +47,14 @@ export const getProductByCategory = ({ queryKey }) => {
 };
 
 export const postProduct = (data) => {
-  const userId = localStorage.getItem("user");
-  // console.log(userId);
-
-  return api.post(`/products/newProduct/${userId}`, data);
+  // const { id } = JSON.parse(localStorage.getItem("user"));
+  const { id } = getUserData();
+  return api
+    .post(`/products/newProduct/${id}`, data)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 // export const getProductByIdHarcoded = () => {

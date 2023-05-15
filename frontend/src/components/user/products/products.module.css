@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 2rem;
+  margin-top: 1em;
+}
+
+.card {
+  width: 22rem;
+  height: 23rem;
+  padding: 1em 1.5em 1em 1.5em;
+  background-color: white;
+  border-radius: 1.5rem;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+.card > img {
+  border-radius: 0.7em;
+  border: 0.15em solid var(--yellow-main);
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.5em;
+}
+
+.titleContainer  {
+  color: var(--yellow-main);
+}
+.title {
+  color: var(--blue-dark);
+  text-decoration: underline;
+}
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 2.5em;
+}
+
+.paragraph {
+  font-size: 0.8em;
+  line-height: 1.2em;
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.keywords {
+  display: flex;
+  font-size: 0.8em;
+}
+.icons button {
+  border: none;
+  background-color: white;
+}
+.icons {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  position: relative;
+  top: 0.5em;
+  margin-bottom: 1em;
+}
+.icons span {
+  color: var(--yellow-main);
+  font-size: 2em;
+  cursor: pointer;
+}
+.icons span:hover {
+  color: var(--blue-light)
+}
+.icons span:focus {
+  color: var(--blue-medium)
+}

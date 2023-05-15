@@ -84,7 +84,7 @@ const Slider = ({ images, data }) => {
       {amount === 0 && (
         <div className={styles.noImage}>
           <span className="icon-sad"></span>
-          <h1>Sorry, there are no available images to display yet</h1>
+          <h1>Lo sentimos, no hay imágenes para mostrar</h1>
         </div>
       )}
     </>

@@ -13,10 +13,10 @@ const FormJob = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient(["product"]);
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries(["product"]);
     },
   });
 

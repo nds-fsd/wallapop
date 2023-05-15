@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import styles from "./modalContainerSlider.module.css";
-import ModalContentSlider from "../ModalContent/ModalContentSlider";
+import ModalContentSlider from "../ModalContentSlider/ModalContentSlider";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../../../../utils/apiProducts";
 

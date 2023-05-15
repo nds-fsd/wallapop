@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
+import { getCategories } from "../../../utils/apiCategories";
 
 const ElsePage = () => {
   const mockImages = [
@@ -25,6 +26,8 @@ const ElsePage = () => {
   // const {data, isLoading} = useQuery(['product', id], getProductById)
   const { data } = useQuery(["product", id], getProductByIdHarcoded);
   // console.log(data)
+
+ 
 
   return (
     <>

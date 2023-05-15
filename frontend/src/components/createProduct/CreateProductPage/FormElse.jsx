@@ -2,9 +2,10 @@ import React from "react";
 import styles from "./createProductPage.module.css";
 import { useForm } from "react-hook-form";
 import { postProduct } from "../../../utils/apiProducts";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
 import Map from "../map/Map";
+import { getCategories } from "../../../utils/apiCategories";
 
 const FormElse = () => {
   const queryClient = useQueryClient(["product"]);
@@ -12,7 +13,7 @@ const FormElse = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors },
   } = useForm();
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
@@ -24,6 +25,15 @@ const FormElse = () => {
     mutation.mutate(productData);
     reset()  
   };
+
+  const { data: categories } = useQuery(["category"], getCategories);
+  console.log(categories)
+  const titles = [  categories[3].title,
+    categories[4].title,
+    categories[5].title,
+    categories[7].title,
+  ];
+  console.log(titles)
 
   return (
     <>

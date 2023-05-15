@@ -14,19 +14,26 @@ const FormVehicle = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient(["product"]);
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries(["product"]);
     },
   });
+
+  //  const mutation = useMutation(["newProduct"], postProduct ,{
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries(["newProduct"])
+  //   }
+  // })
 
   const onSubmit = (productData) => {
     mutation.mutate(productData);
     reset()
+
   };
 
-  console.log(errors)
+  // console.log(errors)
 
   return (
     <>
@@ -295,7 +302,7 @@ const FormVehicle = () => {
         />
         {errors.description && <p className={styles.error}><span className="icon-warning1"></span>{errors.description.message}</p>}
         <FormImages />
-        <Map />
+        {/* <Map /> */}
         
           <button type="submit" className={styles.formButton}>
             Subir
