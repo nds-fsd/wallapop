@@ -27,6 +27,7 @@ const userLogin = async (req, res) => {
         email: foundUser.email,
         name: foundUser.name,
         id: foundUser._id,
+        photo: foundUser.photo
       },
     });
   } catch (err) {
@@ -38,44 +39,41 @@ const userLogin = async (req, res) => {
 
 const userRegister = async (req, res) => {
   const email = req.body.email;
-  const body = req.body;
-
-  if (!email) {
-    return res.status(400).json({ error: { register: "Email not recieved" } });
-  }
-  const existingUser = await userModel.findOne({ email: email });
-
-  if (existingUser) {
-    return res
-      .status(400)
-      .json({ error: { email: "Email already registered" } });
-  } else {
-    const newUser = new userModel({
-      name: body.name,
-      surname: body.surname,
-      email: body.email,
-      password: body.password,
-      phone: body.phone,
-      photo: body.photo,
-      adress: body.adress,
-      birthday: body.birthday,
-      gender: body.gender,
-    });
-    const savedUser = await newUser.save();
-    if (savedUser) {
-      return res.status(201).json({
-        token: savedUser.generateJWT(),
-        user: {
-          email: savedUser.email,
-          name: savedUser.name,
-          id: savedUser._id,
-        },
-      });
-    } else {
+  const { body } = req;
+  console.log("este es el body que nos llega", body);
+  try {
+    if (!email) {
       return res
-        .status(500)
-        .json({ error: { firstName: "Error creating new User :(", err } });
+        .status(400)
+        .json({ error: { register: "Email not recieved" } });
     }
+    const existingUser = await userModel.findOne({ email: email });
+
+    if (existingUser) {
+      return res
+        .status(400)
+        .json({ error: { email: "Email already registered" } });
+    } else {
+      const newUser = new userModel(body);
+      console.log("este es el nuevo usuario", newUser);
+      const savedUser = await newUser.save();
+      if (savedUser) {
+        const token = savedUser.generateJWT();
+        console.log(token);
+        return res.status(201).json({
+          token: token,
+          user: {
+            email: savedUser.email,
+            name: savedUser.name,
+            id: savedUser._id,
+            photo: savedUser.photo
+          },
+        });
+      }
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: err });
   }
 };
 

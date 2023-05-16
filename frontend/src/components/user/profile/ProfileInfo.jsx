@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./ProfileInfo.module.css";
 import style from "./index.module.css";
-import image from "../../../assets/images/pexels-pixabay-415829.jpg";
+import { AuthContext } from "../../../context/authContext";
+import cld from "../../../utils/cloudinary-client";
+import { useContext } from "react";
 
 const ProfileInfo = () => {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState("");
+  const { userData } = useContext(AuthContext);
+  if (!userData) return null;
 
   return (
     <div className={style.mainContainer}>
@@ -15,7 +19,7 @@ const ProfileInfo = () => {
         <h5> Foto principal </h5>
         <div className={styles.changePhotoContainer}>
           <div>
-            <img src={image} />
+            <img src={userData.photo} />
           </div>
           <div className={styles.handleContainer}>
             <button>Cambiar Foto</button>
