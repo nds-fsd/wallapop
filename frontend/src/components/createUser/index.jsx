@@ -12,14 +12,22 @@ const CreateUserPage = () => {
   } = useForm();
 
   const { handleAuth } = useContext(AuthContext);
-  const { showUploadWidget } = useContext(ImageContext);
+  const { showUploadWidget, image } = useContext(ImageContext);
+
+  const handleOpenWidget = () => {
+    showUploadWidget.open();
+  };
+
+  const handleSubmitWrapper = (data) => {
+    handleAuth({ ...data, photo: image });
+  };
 
   return (
     <>
       <div className={styles.createUserContainer}>
         <h1>Regístrate</h1>
         <form
-          onSubmit={handleSubmit(handleAuth)}
+          onSubmit={handleSubmit(handleSubmitWrapper)}
           className={styles.formContainer}
         >
           <div className={styles.column}>
@@ -80,7 +88,7 @@ const CreateUserPage = () => {
               type="text"
               placeholder="Dirección"
               className={styles.input}
-              {...register("address")}
+              {...register("adress")}
             />
             {errors.address && <p>{errors.address.message}</p>}
           </div>
@@ -105,24 +113,21 @@ const CreateUserPage = () => {
             </select>
             {errors.gender && <p>{errors.gender.message}</p>}
           </div>
-          <input type="hidden" {...register("photo")} />
-          <div className={styles.column}>
-            <div className={styles.imageColumn}>
-              <label htmlFor="images">Selecciona una imagen</label>
-              <button
-                onClick={showUploadWidget.open()}
-                className={styles.image}
-              >
-                <span className="icon-image1"></span>
-              </button>
-            </div>
-            {errors.photo && <p>{errors.photo.message}</p>}
 
-            <button className={styles.createUserButton} type="submit">
-              Regístrate
-            </button>
+          <div className={styles.column}>
+            <input
+              className={styles.createUserButton}
+              value="Registrate"
+              type="submit"
+            />
           </div>
         </form>
+        <div className={styles.imageColumn}>
+          <label htmlFor="images">Selecciona una imagen</label>
+          <button onClick={handleOpenWidget} className={styles.image}>
+            <span className="icon-image1"></span>
+          </button>
+        </div>
       </div>
     </>
   );

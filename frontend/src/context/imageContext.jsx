@@ -1,14 +1,17 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 
 export const ImageContext = createContext();
 
 export const ImageProvider = ({children}) => {
+const [ image, setImage] = useState('');
+
+
   const showUploadWidget =
     cloudinary.createUploadWidget(
       {
-        cloudName:"dvogntdp2",
-        uploadPreset: "kysnseyx",
+        cloudName: 'dvogntdp2',
+        uploadPreset: 'kysnseyx',
         sources: [
           "local",
           "url",
@@ -47,14 +50,16 @@ export const ImageProvider = ({children}) => {
           fonts: { default: null, "sans-serif": { url: null, active: true } },
         },
       },
-      (err, info) => {
-        if (!err) {
-          console.log("Upload Widget event - ", info);
+      (err, result) => {
+
+        if (!err && result.event === 'success') {
+          console.log('esto es result', result)
+          setImage(result.info.url);
         }
       }
     );
 
-  const data = { showUploadWidget };
+  const data = { showUploadWidget, image };
 
   return <ImageContext.Provider value={data}>{children}</ImageContext.Provider>;
 };
