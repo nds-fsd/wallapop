@@ -3,6 +3,7 @@ import styles from "./listCategory.module.css";
 import { getCategories } from "../../../utils/apiCategories";
 import { useQuery } from "react-query";
 import { NavLink, Outlet } from "react-router-dom";
+import Spinner from "../../Spinner/Spinner";
 
 const ListCategory = () => {
   // Hago peticion a BD para obtener todas las categorias
@@ -13,7 +14,7 @@ const ListCategory = () => {
       {/* si no ha cargado las categorias muestra esto */}
       {isLoading && (
         <div>
-          {/* <Spinner /> */}
+          <Spinner />
           <h1>Cargando</h1>
         </div>
       )}

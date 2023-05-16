@@ -81,7 +81,6 @@ const userRegister = async (req, res) => {
 
 const findUserByID = async (req, res) => {
   const newFind = await userModel.findById(req.params.id);
-
   if (!newFind) {
     res.status(404).json("Sorry cant find that!");
   } else {
@@ -91,6 +90,7 @@ const findUserByID = async (req, res) => {
 
 const modifyUserByID = async (req, res) => {
   const user = await userModel.findByIdAndUpdate(req.params.id, req.body);
+  console.log("user", user);
   if (!user) {
     res.status(404).json({ error: { id: "Sorry cant find that!" } });
   } else {

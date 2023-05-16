@@ -1,60 +1,141 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./ProfileInfo.module.css";
-import style from "./index.module.css";
 import image from "../../../assets/images/pexels-pixabay-415829.jpg";
+import { deleteUser, getInfoUser, modUser } from "../../../utils/apiAuth";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import Spinner from "../../Spinner/Spinner";
 
 const ProfileInfo = () => {
-  const { register, handleSubmit } = useForm();
-  const [data, setData] = useState("");
+  const queryClient = useQueryClient();
+  // cargar datos usuario
+  const { data: datos, isLoading } = useQuery(["user"], getInfoUser);
+  console.log("user: ", datos);
 
-  return (
-    <div className={style.mainContainer}>
-      <div className={style.contentContainer}>
-        <h4> Imagenes de perfil</h4>
-        <h5> Foto principal </h5>
-        <div className={styles.changePhotoContainer}>
-          <div>
-            <img src={image} />
-          </div>
-          <div className={styles.handleContainer}>
-            <button>Cambiar Foto</button>
-            <p>Aceptamos fotos formato .jpg y minimo 400 x 400 px</p>
+  //??
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting, isValid },
+  } = useForm({
+    values: { ...datos },
+  });
+
+  //otro mutation para el delate??
+  const mutationDelete = useMutation(deleteUser, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("user");
+    },
+  });
+
+  const onSubmitDelete = (productData) => {
+    console.log("PRODUCTDATA ", productData);
+    mutationDelete.mutate(productData);
+  };
+
+  //Mutation para modificar user
+  const mutationMod = useMutation(modUser, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("user");
+    },
+  });
+
+  const onSubmit = (productData) => {
+    console.log("PRODUCTDATA ", productData);
+    mutationMod.mutate(productData);
+  };
+
+  if (isLoading) {
+    return <Spinner size="M" />;
+  } else {
+    return (
+      <div className={styles.mainContainer}>
+        <div className={styles.contentContainer}>
+          <h2> Imagenes de perfil</h2>
+          <div className={styles.infoFoto}>
+            <h5> Foto principal </h5>
+            <div className={styles.changePhotoContainer}>
+              <div>
+                <img src={image} />
+              </div>
+              <div className={styles.handleContainer}>
+                <button className={styles.formButton}>Cambiar Foto</button>
+                <p>Aceptamos fotos formato .jpg y minimo 400 x 400 px</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className={style.contentContainer}>
-        <h4>Información pública</h4>
-        <div className={styles.formUser}>
-          <form
-            onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
-          >
-            <label>
+        <div className={styles.contentContainer}>
+          <h2>Información pública</h2>
+          <form className={styles.formUser} onSubmit={handleSubmit(onSubmit)}>
+            <label className={styles.labels}>
               Nombre
-              <input {...register("name")} />
+              <input
+                className={styles.inputProfile}
+                name="name"
+                {...register("name", {
+                  required: true,
+                })}
+              />
+              {errors.name && errors.name.type === "required" && (
+                <span role="alert">This is required</span>
+              )}{" "}
             </label>
-            <label>
+            <label className={styles.labels}>
               Apellido
-              <input {...register("surname")} />
+              <input
+                className={styles.inputProfile}
+                name="surname"
+                placeholder="Apellido"
+                {...register("surname", {
+                  required: "Surname is required",
+                })}
+              />
+              {errors?.surname?.message}
             </label>
-            <label>
-              Ubicación de tus productos
-              <input {...register("adress")} />
+            <label className={styles.labels}>
+              Direción
+              <input
+                className={styles.inputProfile}
+                placeholder="Direción"
+                {...register("adress")}
+              />
             </label>
-            <label>
+            <label className={styles.labels}>
               Descripción
-              <textarea {...register("description")} />
+              <textarea
+                className={styles.inputProfile}
+                {...register("description")}
+              />
             </label>
-            <label>
+            <label className={styles.labels}>
               Teléfono
-              <input {...register("phone")} />
+              <input
+                className={styles.inputProfile}
+                placeholder="Teléfono"
+                {...register("phone")}
+              />
             </label>
-            <input type="submit" value="Guardar" />
+            <button
+              className={styles.formButton}
+              type="submit"
+              disabled={!isValid || mutationMod.isLoading}
+            >
+              Guardar
+            </button>
+            <button
+              className={styles.formButton2}
+              type="submit"
+              disabled={!isValid || mutationDelete.isLoading}
+              onSubmit={handleSubmit(onSubmitDelete)}
+            >
+              Eliminar
+            </button>
           </form>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default ProfileInfo;

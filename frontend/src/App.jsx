@@ -11,7 +11,7 @@ import ListProducts from "./components/product/listProduct/ListProducts";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/home";
 import CreateProductPage from "./components/createProduct/CreateProductPage/CreateProductPage";
-import PrivateRoutes from "./components/privateRoutes";
+import PrivateRoutes from "./components/private-routes";
 import { AuthProvider } from "./context/authContext";
 
 function App() {
