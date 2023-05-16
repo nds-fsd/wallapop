@@ -16,6 +16,8 @@ const ProductPublished = () => {
   });
 
   console.log(prods);
+  
+  
   const [modalOpen, setModalOpen] = useState(false);
 
 
@@ -38,10 +40,35 @@ const ProductPublished = () => {
                   <h3>{prods && prod.price.toLocaleString('es-ES', {useGrouping: true})} €</h3>
                 </div>
                 <div className={styles.details}>
-                  <h5>Informática y Electrónica</h5>
+                  <div>
+                    {prod.categories.map((category) => (
+                      <h5 key={category._id}>{category.title}</h5>
+                    ))}
+                  </div>
+                  {/* <h5>Informática y Electrónica</h5> */}
                   <p>{prods && prod.status}</p>
                 </div>
-                <div className={styles.keywords}>{prods && prod.keywords}</div>
+                {/* {Array.isArray(prod.keywords) && prod.keywords !== ' ' && (
+                  <div className={styles.keywords}>
+                  {prod.keywords.map((keyword) => (
+                    <p key={keyword._id}>{`#${keyword}`}</p>
+                  ))}
+                </div>
+                )} */}
+
+                {Array.isArray(prod.keywords) && prod.keywords.length > 0 && (
+                  <div className={styles.keywords}>
+                    {prod.keywords.map((keyword, index) => {
+                      const trimmedKeyword = keyword.trim();
+                      if (trimmedKeyword !== '') {
+                        return <p key={index}>{`#${trimmedKeyword}`}</p>;
+                      }
+                      return null;
+                    })}
+                  </div>
+                )}
+                
+                {/* <div className={styles.keywords}>{prods && prod.keywords}</div> */}
                 <p className={styles.paragraph}>{prods && prod.description}</p>
                 <div className={styles.icons}>
                   <button onClick={() => setModalOpen(!modalOpen)}><span className="icon-pen1"></span></button>

@@ -20,7 +20,11 @@ const FormJob = () => {
     },
   });
 
-  const onSubmit = (productData) => {
+  const onSubmit = (data) => {
+    const keywords = data.keywords?.split(/[,\s]+/)
+    .map((keyword) => keyword.trim())
+    .filter((keyword) => keyword !== '') || [];
+    const productData = { ...data, keywords };    
     mutation.mutate(productData);
     reset()
   };

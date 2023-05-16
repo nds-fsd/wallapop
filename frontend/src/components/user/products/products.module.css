@@ -8,7 +8,7 @@
 
 .card {
   width: 22rem;
-  height: 23rem;
+  height: fit-content;
   padding: 1em 1.5em 1em 1.5em;
   background-color: white;
   border-radius: 1.5rem;
@@ -23,15 +23,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 2.5em;
-}
-
-.titleContainer  {
+  height: 4.5em;
   color: var(--yellow-main);
 }
+
 .title {
   color: var(--blue-dark);
   text-decoration: underline;
+  width: 17rem;
 }
 .details {
   display: flex;
@@ -45,7 +44,7 @@
   line-height: 1.2em;
   text-align: justify;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -53,6 +52,10 @@
 
 .keywords {
   display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+.keywords > p {
   font-size: 0.8em;
 }
 .icons button {

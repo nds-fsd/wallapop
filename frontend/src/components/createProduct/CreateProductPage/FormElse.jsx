@@ -21,19 +21,24 @@ const FormElse = () => {
     },
   });
 
-  const onSubmit = (productData) => {
+  const onSubmit = (data) => {
+    const keywords = data.keywords?.split(/[,\s]+/)
+    .map((keyword) => keyword.trim())
+    .filter((keyword) => keyword !== '') || [];
+    const productData = { ...data, keywords };    
     mutation.mutate(productData);
-    reset()  
+    reset()
   };
+
 
   const { data: categories } = useQuery(["category"], getCategories);
   console.log(categories)
-  const titles = [  categories[3].title,
-    categories[4].title,
-    categories[5].title,
-    categories[7].title,
-  ];
-  console.log(titles)
+  // const titles = [  categories[3].title,
+  //   categories[4].title,
+  //   categories[5].title,
+  //   categories[7].title,
+  // ];
+  // console.log(titles)
 
   return (
     <>

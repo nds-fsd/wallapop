@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./createProductPage.module.css";
 import { Controller, useForm } from "react-hook-form";
 import { postProduct } from "../../../utils/apiProducts";
@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
 import Map from "../map/Map";
 
-const FormVehicle = () => {
+const FormVehicle = () => {    
   const {
     control,
     register,
@@ -21,16 +21,14 @@ const FormVehicle = () => {
     },
   });
 
-  //  const mutation = useMutation(["newProduct"], postProduct ,{
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries(["newProduct"])
-  //   }
-  // })
-
-  const onSubmit = (productData) => {
+  const onSubmit = (data) => {
+    const keywords = data.keywords?.split(/[,\s]+/)
+    .map((keyword) => keyword.trim())
+    .filter((keyword) => keyword !== '') || [];
+    const productData = { ...data, keywords };    
     mutation.mutate(productData);
-    reset()
-
+    reset()  
+    console.log(productData)
   };
 
   // console.log(errors)
@@ -46,7 +44,33 @@ const FormVehicle = () => {
           ¿Qué vas a vender hoy?
         </label>
 
-        <Controller
+        <div className={styles.category}>
+              <label htmlFor="coches" className={styles.checkbox}>
+                <input
+                  id="coches"
+                  type="radio"
+                  value="coches"
+                  {...register("category", {required: "Selecciona una categoría" })}
+                ></input>
+                <span className="icon-sun"></span>
+                Coche
+              </label>
+
+
+              <label htmlFor="motos" className={styles.checkbox}>
+                <input
+                  id="motos"
+                  type="radio"
+                  value="motos"
+                  {...register("category", {required: "Selecciona una categoría" })}
+                  ></input>
+                <span className="icon-star-empty"></span>
+                Moto
+              </label>
+        </div>
+
+
+        {/* <Controller
           name="category"
           control={control}
           defaultValue={false}
@@ -59,7 +83,6 @@ const FormVehicle = () => {
                   type="radio"
                   {...field}
                   value="coches"
-                  name="category"
                 ></input>
                 <span className="icon-sun"></span>
                 Coche
@@ -71,14 +94,13 @@ const FormVehicle = () => {
                   type="radio"
                   {...field}
                   value="motos"
-                  name="category"
-                ></input>
+                  ></input>
                 <span className="icon-star-empty"></span>
                 Moto
               </label>
             </div>
           )}
-        />
+        /> */}
         {errors.category && <p className={styles.error1}><span className="icon-warning1"></span>{errors.category.message}</p>}
 
 
