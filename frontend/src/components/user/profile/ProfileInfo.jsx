@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./ProfileInfo.module.css";
-import image from "../../../assets/images/pexels-pixabay-415829.jpg";
+import { AuthContext } from "../../../context/authContext";
+import cld from "../../../utils/cloudinary-client";
+import { useContext } from "react";
 import { deleteUser, getInfoUser, modUser } from "../../../utils/apiAuth";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import Spinner from "../../Spinner/Spinner";

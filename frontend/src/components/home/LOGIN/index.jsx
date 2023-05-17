@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import image from "../../../assets/images/logo-retrend.png";
 import Buscador from "../Buscador";
 import styles from "./index.module.css";
 import { TbMessages } from "react-icons/tb";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
-import imageProfile from "../../../assets/images/pexels-pixabay-415829.jpg";
+import { AuthContext } from "../../../context/authContext";
+import logo from "../../../assets/images/logo-retrend.png";
 
 const Login = () => {
+  const { userData } = useContext(AuthContext);
+  if (!userData) return null;
+
   return (
     <nav className={styles.navbar}>
       <Link to="/">
         <div className={styles.logoLink}>
-          <img src={image} />
+          <img src={logo} />{" "}
         </div>
       </Link>
       <Buscador />
@@ -28,7 +31,8 @@ const Login = () => {
         <div className={styles.tuButton}>
           <Link to="/user">
             {" "}
-            <img src={imageProfile} /> TÚ
+            <img src={userData.photo} />
+            TÚ
           </Link>
         </div>
         <div className={styles.createProductButton}>

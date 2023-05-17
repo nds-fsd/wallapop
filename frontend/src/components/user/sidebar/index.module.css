@@ -30,7 +30,8 @@
 
 .profileLink img {
   width: 3rem;
-  height: auto;
+  height: 3rem;
+  object-fit: cover;
   border-radius: 100%;
 }
 

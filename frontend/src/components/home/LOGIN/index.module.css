@@ -25,7 +25,8 @@
 .tuButton img {
   margin: 0;
   width: 2rem;
-  height: auto;
+  height: 2rem;
+  object-fit: cover;
   border-radius: 100%;
 }
 
