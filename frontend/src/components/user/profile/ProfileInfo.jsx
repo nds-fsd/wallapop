@@ -10,11 +10,11 @@ import Spinner from "../../Spinner/Spinner";
 
 const ProfileInfo = () => {
   const queryClient = useQueryClient();
+  const [data, setData] = useState("");
+  const { userData } = useContext(AuthContext);
+
   // cargar datos usuario
   const { data: datos, isLoading } = useQuery(["user"], getInfoUser);
-  console.log("user: ", datos);
-
-  //??
   const {
     register,
     handleSubmit,
@@ -22,6 +22,8 @@ const ProfileInfo = () => {
   } = useForm({
     values: { ...datos },
   });
+
+  if (!userData) return null;
 
   //otro mutation para el delate??
   const mutationDelete = useMutation(deleteUser, {
