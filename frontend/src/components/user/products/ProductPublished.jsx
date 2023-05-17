@@ -18,7 +18,23 @@ const ProductPublished = () => {
   console.log(prods);
   
   
+  
   const [modalOpen, setModalOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false)
+
+  const openModal = () => {
+    setModalOpen(!modalOpen)
+  };
+  const handleEdit = () => {
+  //   la funcion del edit
+  //   reset({title, price, keywords, description, status, location, images})
+
+    setIsEditing(!isEditing)
+  };
+  const handleClick = () => {
+    openModal();
+    handleEdit();    
+  }
 
 
   return (
@@ -48,74 +64,34 @@ const ProductPublished = () => {
                   {/* <h5>Informática y Electrónica</h5> */}
                   <p>{prods && prod.status}</p>
                 </div>
-                {/* {Array.isArray(prod.keywords) && prod.keywords !== ' ' && (
+                {Array.isArray(prod.keywords) && prod.keywords !== ' ' && (
                   <div className={styles.keywords}>
-                  {prod.keywords.map((keyword) => (
+                  {prod.keywords.map((keyword, _id) => (
                     <p key={keyword._id}>{`#${keyword}`}</p>
                   ))}
                 </div>
-                )} */}
-
-                {Array.isArray(prod.keywords) && prod.keywords.length > 0 && (
-                  <div className={styles.keywords}>
-                    {prod.keywords.map((keyword, index) => {
-                      const trimmedKeyword = keyword.trim();
-                      if (trimmedKeyword !== '') {
-                        return <p key={index}>{`#${trimmedKeyword}`}</p>;
-                      }
-                      return null;
-                    })}
-                  </div>
                 )}
-                
-                {/* <div className={styles.keywords}>{prods && prod.keywords}</div> */}
                 <p className={styles.paragraph}>{prods && prod.description}</p>
                 <div className={styles.icons}>
-                  <button onClick={() => setModalOpen(!modalOpen)}><span className="icon-pen1"></span></button>
+                  {/* <button onClick={() => setModalOpen(!modalOpen)}><span className="icon-pen1"></span></button> */}
+                  <button onClick={handleClick}><span className="icon-pen1"></span></button>
                   <button><span className="icon-bin"></span></button>
+                  {prods && <ModalContainer modalOpen={modalOpen} setModalOpen={setModalOpen} prod={prod}/>}
                 </div>
-                {prods && <ModalContainer modalOpen={modalOpen} setModalOpen={setModalOpen} prod={prod}/>}
               </div>
             // </div>
           )
         })
       )}
+
+      {/* {isEditing && (
+        <div>
+          {prods && <ModalContainer modalOpen={modalOpen} setModalOpen={setModalOpen} prod={prod}/>}
+        </div>
+      )} */}
     </div>
     </>
   );
 };
 
 export default ProductPublished;
-
-
-// <div className={styles.container}>
-//         <div className={styles.card}>
-//           <img src={mockImages[0]}></img>
-//           <div className={styles.titleContainer}>
-//             <h3 className={styles.title}>Ordenador portátil</h3>
-//             <h3>890 €</h3>
-//           </div>
-//           <div className={styles.details}>
-//             <h5>Informática y Electrónica</h5>
-//             <p>Como nuevo</p>
-//           </div>
-//           <div className={styles.keywords}>
-//             #PC #Samsung #portátil #pepinazo
-//           </div>
-//           <p className={styles.paragraph}>
-//             Procesador Intel Core i9-11900H. Tarjeta gráfica NVIDIA GeForce RTX
-//             3050 (Laptop, 65W). Pantalla de 15.6″, 2.8K (2880 x 1620), 120 Hz,
-//             OLED. Memoria de 1000GB SSD. Memoria RAM de 16GB DDR4. Peso de 1.75
-//             kg (3.9 lbs)
-//           </p>
-//           <div className={styles.icons}>
-//             <button onClick={() => setModalOpen(!modalOpen)}>
-//               <span className="icon-pen1"></span>
-//             </button>
-//             <button>
-//               <span className="icon-bin"></span>
-//             </button>
-//           </div>
-//           <ModalContainer modalOpen={modalOpen} setModalOpen={setModalOpen} />
-//         </div>
-//       </div>

@@ -52,8 +52,8 @@ const FormVehicle = () => {
                   value="coches"
                   {...register("category", {required: "Selecciona una categoría" })}
                 ></input>
-                <span className="icon-sun"></span>
-                Coche
+                <span className="icon-coches"></span>
+                {/* Coche */}
               </label>
 
 
@@ -64,8 +64,8 @@ const FormVehicle = () => {
                   value="motos"
                   {...register("category", {required: "Selecciona una categoría" })}
                   ></input>
-                <span className="icon-star-empty"></span>
-                Moto
+                <span className="icon-motos"></span>
+                {/* Moto */}
               </label>
         </div>
 
@@ -247,7 +247,7 @@ const FormVehicle = () => {
                       value="gasolina"
                       name="engine"
                     ></input>
-                    <span className="icon-star-empty"></span>
+                    <span className="icon-gasolina"></span>
                     Gasolina
                   </label>
                   <label htmlFor="diesel" className={styles.square}>
@@ -258,7 +258,7 @@ const FormVehicle = () => {
                       value="diesel"
                       name="engine"
                     ></input>
-                    <span className="icon-star-empty"></span>
+                    <span className="icon-diesel"></span>
                     Diesel
                   </label>
                   <label htmlFor="electrico" className={styles.square}>
@@ -269,7 +269,7 @@ const FormVehicle = () => {
                       value="electrico"
                       name="engine"
                     ></input>
-                    <span className="icon-star-empty"></span>
+                    <span className="icon-electrico"></span>
                     Eléctrico
                   </label>
                 </div>
@@ -290,7 +290,7 @@ const FormVehicle = () => {
                       value="manual"
                       name="shift"
                     ></input>
-                    <span className="icon-star-empty"></span>
+                    <span className="icon-cambio-manual"></span>
                     Manual
                   </label>
                   <label htmlFor="automatic" className={styles.square}>
@@ -301,7 +301,7 @@ const FormVehicle = () => {
                       value="automatic"
                       name="shift"
                     ></input>
-                    <span className="icon-star-empty"></span>
+                    <span className="icon-cambio-automatico"></span>
                     Automático
                   </label>
                 </div>
@@ -324,7 +324,7 @@ const FormVehicle = () => {
         />
         {errors.description && <p className={styles.error}><span className="icon-warning1"></span>{errors.description.message}</p>}
         <FormImages />
-        {/* <Map /> */}
+        <Map />
         
           <button type="submit" className={styles.formButton}>
             Subir

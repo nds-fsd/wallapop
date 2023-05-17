@@ -51,7 +51,7 @@ const FormHouse = () => {
                   id="inmobiliaria"
                   type="checkbox"
                   {...field}
-                  value="inmobiliaria"
+                  value="Inmobiliaria"
                   name="category"
                 ></input>
               </div>
@@ -76,8 +76,7 @@ const FormHouse = () => {
                   value="alquiler"
                   name="rent"
                 ></input>
-                <span className="icon-sun"></span>
-                Alquiler
+                <span className="icon-alquiler"></span>
               </label>
 
               <label htmlFor="venta" className={styles.checkbox}>
@@ -88,8 +87,7 @@ const FormHouse = () => {
                   value="venta"
                   name="rent"
                 ></input>
-                <span className="icon-star-empty"></span>
-                Venta
+                <span className="icon-venta"></span>
               </label>
 
             </div>
@@ -126,7 +124,7 @@ const FormHouse = () => {
                     value="piso"
                     name="space"
                   ></input>
-                  <span className="icon-star-empty"></span>
+                  <span className="icon-piso"></span>
                   Piso
                 </label>
                 <label htmlFor="casa" className={styles.square}>
@@ -137,7 +135,7 @@ const FormHouse = () => {
                     value="casa"
                     name="space"
                   ></input>
-                  <span className="icon-star-empty"></span>
+                  <span className="icon-casa"></span>
                   Casa
                 </label>
                 <label htmlFor="habitacion" className={styles.square}>
@@ -148,7 +146,7 @@ const FormHouse = () => {
                     value="habitacion"
                     name="space"
                   ></input>
-                  <span className="icon-star-empty"></span>
+                  <span className="icon-habitacion"></span>
                   Habitación
                 </label>
                 <label htmlFor="oficina" className={styles.square}>
@@ -159,7 +157,7 @@ const FormHouse = () => {
                     value="oficina"
                     name="space"
                   ></input>
-                  <span className="icon-star-empty"></span>
+                  <span className="icon-oficina"></span>
                   Oficina
                 </label>
                 <label htmlFor="garaje" className={styles.square}>
@@ -170,7 +168,7 @@ const FormHouse = () => {
                     value="garaje"
                     name="space"
                   ></input>
-                  <span className="icon-star-empty"></span>
+                  <span className="icon-garaje"></span>
                   Garaje
                 </label>
                 <label htmlFor="trastero" className={styles.square}>
@@ -181,7 +179,7 @@ const FormHouse = () => {
                     value="trastero"
                     name="space"
                   ></input>
-                  <span className="icon-star-empty"></span>
+                  <span className="icon-trastero"></span>
                   Trastero
                 </label>
 

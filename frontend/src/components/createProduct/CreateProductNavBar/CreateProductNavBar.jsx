@@ -7,11 +7,11 @@ const CreateProductNavBar = () => {
     <>
       <div className={styles.container}>
         <h1>¿Qué quieres subir hoy?</h1>
-        <h3>ReTrend relanza casi todo lo que imaginas</h3>
+        <h4>ReTrend relanza casi todo lo que imaginas</h4>
         <div className={styles.selector}>
           <Link to="algo-que-no-utilizo" className={styles.vertical}>
             <button className={styles.selection1}>
-              <span className="icon-todo"></span>
+              <span className="icon-varios"></span>
             </button>
             <p className={styles.tags}>Algo que no utilizo</p>
           </Link>

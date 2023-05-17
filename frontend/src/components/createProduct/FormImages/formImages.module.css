@@ -13,12 +13,12 @@
 
 .images {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .images .image {
-  width: 8rem;
-  height: 8rem;
+  width: 6rem;
+  height: 6rem;
   background-color: transparent;
   color: var(--blue-light);
   border-radius: 1rem;
@@ -29,7 +29,7 @@
 }
 
 .image span:nth-child(1) {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 .image:hover {

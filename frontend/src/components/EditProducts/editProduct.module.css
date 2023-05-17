@@ -1,10 +1,18 @@
-.createProductContainer {
+.editContainer{
+  width: 59rem;
   display: flex;
   flex-direction: column;
-  padding: 2rem 2rem;
-}
+  gap: 0.7rem;
+  padding-bottom: 1.5em;
 
-.sectionForm {
+}
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+/* .sectionForm {
   width: 45rem;
   height: max-content;
   background-color: white;
@@ -15,28 +23,25 @@
   bottom: 1em;
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
   margin: 0 auto;
-}
+} */
 
-.title {
-  height: 7rem;
-}
+
 .labels {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: bold;
 }
 .labelKeywords {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: bold;
   position: relative;
-  left: 16.7rem;
+  left: 8.5rem;
 }
 .labelStatus {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: bold;
   position: relative;
-  left: 18.2rem;
+  left: 8.5rem;
 }
 
 .labelTriple {
@@ -45,19 +50,64 @@
   display: flex;
   gap: 12rem;
 }
-.labelTriple2 {
+.double {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+/* .labelTriple2 {
   font-size: 1.3rem;
   font-weight: bold;
   display: flex;
   gap: 11.5rem;
-}
+} */
 .labelShift {
   font-size: 1.3rem;
   font-weight: bold;
   position: relative;
   left: 20.5rem;
 }
+.input {
+  height: 2.1rem;
+  width: 58rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+}
 
+.inputTriple {
+  width: 15rem;
+  height: 2.1rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+}
+.price {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* .inputPrice {
+  width: 12rem;
+  height: 2.1rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+} */
+
+.columnTriple {
+  width: 59rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .vehicle {
   display: flex;
   justify-content: space-between;
@@ -84,7 +134,7 @@
   position: relative;
   display: flex;
   width: 6em;
-  height: 6em;
+  /* height: 6em; */
   cursor: pointer;
 }
 
@@ -96,7 +146,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4.5em;
+  font-size: 4em;
   color: var(--blue-ligth);
 }
 
@@ -108,66 +158,29 @@
   color: var(--yellow-main);
 }
 
-.line {
-  background-color: var(--blue-dark);
-  height: 2px;
-  opacity: 1;
-  margin: 2em 0 1em 0;
-  position: relative;
-  top: -1.7em;
-}
-
-.line2 {
-  background-color: var(--blue-dark);
-  height: 2px;
-  opacity: 1;
-  margin: 2em 0 1em 0;
-  position: relative;
-  top: -5.7em;
-}
-
 .priceCategory {
   display: flex;
   gap: 20rem;
 }
-.input {
-  width: 43.5rem;
-  height: 2.3rem;
-  border-radius: 0.5rem;
-  border: 0.1em solid var(--yellow-main);
-  position: relative;
-  padding-left: 1rem;
-  font-size: 1rem;
-}
-.price {
-  display: flex;
-  align-items: center;
-  gap: 1.8rem;
-}
-
-.inputPrice {
-  width: 12rem;
-  height: 2.3rem;
-  border-radius: 0.5rem;
-  border: 0.1em solid var(--yellow-main);
-  position: relative;
-  padding-left: 1rem;
-  font-size: 1rem;
-}
-.inputKeywords {
-  width: 19.7rem;
-  height: 2.3rem;
-  border-radius: 0.5rem;
-  border: 0.1em solid var(--yellow-main);
-  position: relative;
-  left: 3.4rem;
-  padding-left: 1rem;
-  font-size: 1rem;
-}
 .coin {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: var(--yellow-main);
+}
+
+.dropdown {
+  width: 16rem;
+  height: 2.4rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 0.8rem;
+  font-size: 0.9rem;
+  color: grey;
+}
+
+.dropdown option:hover {
+  background-color: var(--yellow-main);
 }
 .inputLand {
   width: 20.5rem;
@@ -180,36 +193,35 @@
   color: grey;
 }
 
-.dropdown {
-  width: 21.2rem;
-  height: 3rem;
-  border-radius: 0.5rem;
-  border: 0.1em solid var(--yellow-main);
-  position: relative;
-  padding-left: 0.8rem;
-  font-size: 1rem;
-  color: grey;
-}
 
-.dropdown option:hover {
-  background-color: var(--yellow-main);
-}
 .column {
   display: flex;
   gap: 3rem;
 }
 .textArea {
-  width: 43.5rem;
+  width: 50rem;
   height: 7rem;
   border-radius: 0.5rem;
   border: 0.1em solid var(--yellow-main);
   position: relative;
   padding-left: 0.8rem;
   padding-top: 0.8rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: grey;
   font-family: "Roboto", sans-serif;
 }
+.location {
+  height: 2.1rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 0.8rem;
+  font-size: 0.9rem;
+  color: grey;
+  font-family: "Roboto", sans-serif;
+}
+
 .subtitles {
   display: flex;
 }
@@ -275,7 +287,7 @@
 .formButton {
   width: 13rem;
   height: 3rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   padding: 0 1rem;
   border-radius: 2.5rem;
   border: 0.15em solid var(--yellow-main);

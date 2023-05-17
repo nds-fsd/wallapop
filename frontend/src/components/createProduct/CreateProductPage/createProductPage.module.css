@@ -84,7 +84,7 @@
   position: relative;
   display: flex;
   width: 6em;
-  height: 6em;
+  /* height: 6em; */
   cursor: pointer;
 }
 
@@ -96,7 +96,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4.5em;
+  font-size: 4em;
   color: var(--blue-ligth);
 }
 
@@ -283,6 +283,7 @@
   background-color: white;
   color: var(--yellow-main);
   font-weight: bold;
+  top: 1em;
   cursor: pointer;
   position: relative;
 }

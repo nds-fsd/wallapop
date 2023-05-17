@@ -8,15 +8,15 @@ const Keywords = ({ data }) => {
 
   return (
     <>
-      {/* {Array.isArray(words) && words != '' && (
+      {Array.isArray(words) && words != '' && (
         <ul className={styles.keywords}>
           {words.map((word, index) => (
             <li key={index} className={styles.list}>{`#${word}`}</li>
           ))}
         </ul>
-      )} */}
+      )}
 
-      {Array.isArray(prod.keywords) && prod.keywords.length > 0 && (
+      {/* {Array.isArray(prod.keywords) && prod.keywords.length > 0 && (
         <ul className={styles.keywords}>
           {words.map((word, index) => {
             const trimmedWord = word.trim();
@@ -26,7 +26,7 @@ const Keywords = ({ data }) => {
             return null;
           })}
         </ul>
-      )}  
+      )}   */}
     </>
   );
 };

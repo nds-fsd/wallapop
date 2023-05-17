@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'Icomoon';
-  src:  url('Icomoon.eot?pjsiae');
-  src:  url('Icomoon.eot?pjsiae#iefix') format('embedded-opentype'),
-    url('Icomoon.ttf?pjsiae') format('truetype'),
-    url('Icomoon.woff?pjsiae') format('woff'),
-    url('Icomoon.svg?pjsiae#Icomoon') format('svg');
+  src:  url('Icomoon.eot?2d4asc');
+  src:  url('Icomoon.eot?2d4asc#iefix') format('embedded-opentype'),
+    url('Icomoon.ttf?2d4asc') format('truetype'),
+    url('Icomoon.woff?2d4asc') format('woff'),
+    url('Icomoon.svg?2d4asc#Icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,24 +25,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-various:before {
-  content: "\e91f";
-}
-.icon-gasolina:before {
-  content: "\e920";
-}
-.icon-diesel:before {
-  content: "\e921";
-}
-.icon-electrico:before {
-  content: "\e922";
-}
-.icon-cambio-manual:before {
-  content: "\e923";
-}
-.icon-cambio-automatico:before {
-  content: "\e924";
-}
 .icon-alquiler:before {
   content: "\e916";
 }
