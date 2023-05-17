@@ -60,7 +60,7 @@ const ProfileInfo = () => {
             <h5> Foto principal </h5>
             <div className={styles.changePhotoContainer}>
               <div>
-                <img src={image} />
+                <img src={userData.photo} />{" "}
               </div>
               <div className={styles.handleContainer}>
                 <button className={styles.formButton}>Cambiar Foto</button>
