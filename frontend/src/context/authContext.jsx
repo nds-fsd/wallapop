@@ -1,15 +1,18 @@
+import { createContext, useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../utils/apiAuth";
-import { getUserData, removeSession, setUserDataLocalStorage, setUserSession } from "../utils/localStorage.utils";
-
-import { createContext, useEffect, useState } from "react";
+import { createUser, loginUser } from "../utils/apiAuth";
+import {
+  getUserData,
+  removeSession,
+  setUserDataLocalStorage,
+  setUserSession,
+} from "../utils/localStorage.utils";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
-  console.log('esto es userData', userData)
 
   const navigate = useNavigate();
   const login = useMutation(["user"], loginUser);
@@ -20,15 +23,30 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const handleAuth = (data) => {
-    login.mutate(data, {
-      onSuccess: (data) => {
-        setUserSession(data.token);
-        setUserData(data.user);
-        setUserDataLocalStorage(data.user)
-        navigate("/");
-      },
-    });
+    console.log("esta es la data que recibo del formulario de registro", data);
+    if (!data.phone) {
+      login.mutate(data, {
+        onSuccess(data) {
+          setUserSession(data.token);
+          setUserData(data);
+          setUserDataLocalStorage(data.user);
+          navigate("/");
+        },
+      });
+    } else {
+      console.log("paso por aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+      register.mutate(data, {
+        onSuccess(data) {
+          console.log("esto es data en registeru", data);
+          setUserSession(data.token);
+          setUserData(data);
+          setUserDataLocalStorage(data.user);
+          navigate("/");
+        },
+      });
+    }
   };
+  console.log(userData);
 
   const handleLogout = () => {
     removeSession();

@@ -10,45 +10,47 @@ import Spinner from "../../Spinner/Spinner";
 
 const ProfileInfo = () => {
   const queryClient = useQueryClient();
-  const [data, setData] = useState("");
   const { userData } = useContext(AuthContext);
-
-  // cargar datos usuario
-  const { data: datos, isLoading } = useQuery(["user"], getInfoUser);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting, isValid },
-  } = useForm({
-    values: { ...datos },
+  } = useForm();
+
+  const mutationMod = useMutation(modUser, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["user"],
+      });
+    },
   });
 
-  if (!userData) return null;
+  const onSubmitMod = (productData) => {
+    console.log("PRODUCTDATA MODIFICAR", productData);
+    mutationMod.mutate(productData);
+  };
 
-  //otro mutation para el delate??
   const mutationDelete = useMutation(deleteUser, {
     onSuccess: () => {
-      queryClient.invalidateQueries("user");
+      queryClient.invalidateQueries({
+        queryKey: ["user"],
+      });
     },
   });
 
   const onSubmitDelete = (productData) => {
-    console.log("PRODUCTDATA ", productData);
+    console.log("PRODUCTDATA DELETE", productData);
     mutationDelete.mutate(productData);
   };
 
-  //Mutation para modificar user
-  const mutationMod = useMutation(modUser, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("user");
+  const { isLoading } = useQuery(["user"], getInfoUser, {
+    onSuccess: (data) => {
+      reset(data);
     },
   });
 
-  const onSubmit = (productData) => {
-    console.log("PRODUCTDATA ", productData);
-    mutationMod.mutate(productData);
-  };
-
+  if (!userData) return null;
   if (isLoading) {
     return <Spinner size="M" />;
   } else {
@@ -71,19 +73,23 @@ const ProfileInfo = () => {
         </div>
         <div className={styles.contentContainer}>
           <h2>Información pública</h2>
-          <form className={styles.formUser} onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className={styles.formUser}
+            onSubmit={handleSubmit(onSubmitMod, onSubmitDelete)}
+          >
             <label className={styles.labels}>
               Nombre
               <input
                 className={styles.inputProfile}
-                name="name"
+                // placeholder="Nombre"
                 {...register("name", {
                   required: true,
                 })}
               />
-              {errors.name && errors.name.type === "required" && (
+              {errors.name && <span>This field is required</span>}
+              {/* {errors.name && errors.name.type === "required" && (
                 <span role="alert">This is required</span>
-              )}{" "}
+              )} */}
             </label>
             <label className={styles.labels}>
               Apellido
@@ -124,6 +130,7 @@ const ProfileInfo = () => {
               className={styles.formButton}
               type="submit"
               disabled={!isValid || mutationMod.isLoading}
+              onSubmit={handleSubmit(onSubmitMod)}
             >
               Guardar
             </button>
@@ -131,8 +138,10 @@ const ProfileInfo = () => {
               className={styles.formButton2}
               type="submit"
               disabled={!isValid || mutationDelete.isLoading}
-              onSubmit={handleSubmit(onSubmitDelete)}
+              onClick={handleSubmit(onSubmitDelete)}
             >
+              {/* home */}
+              {/* borrar localStorage */}
               Eliminar
             </button>
           </form>
