@@ -200,7 +200,7 @@
 }
 .textArea {
   width: 50rem;
-  height: 7rem;
+  height: 5rem;
   border-radius: 0.5rem;
   border: 0.1em solid var(--yellow-main);
   position: relative;
@@ -291,7 +291,6 @@
   padding: 0 1rem;
   border-radius: 2.5rem;
   border: 0.15em solid var(--yellow-main);
-  background-color: var(--yellow-main);
   background-color: white;
   color: var(--yellow-main);
   font-weight: bold;

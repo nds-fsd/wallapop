@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import { getProductByUser } from "../../../utils/apiProducts";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { deleteProduct, getProductByUser } from "../../../utils/apiProducts";
 import Spinner from "../../Spinner/Spinner";
 import styles from "./products.module.css";
 import Images from "./Image/Images";
 import ModalContainer from "../../product/ModalContainer/ModalContainer";
-import Keywords from "../../product/Keywords/Keywords";
+
+
 const ProductPublished = () => {
  
 
@@ -17,24 +17,35 @@ const ProductPublished = () => {
 
   console.log(prods);
   
-  
-  
   const [modalOpen, setModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false)
+  const [idProduct, setIdProduct] = useState('')
+  const [refresh, setRefresh] = useState(false)
+  
 
   const openModal = () => {
     setModalOpen(!modalOpen)
   };
-  const handleEdit = () => {
-  //   la funcion del edit
-  //   reset({title, price, keywords, description, status, location, images})
-
-    setIsEditing(!isEditing)
-  };
-  const handleClick = () => {
+ 
+  const handleClick = (id) => {
+    console.log("el id del producto", id)
+    setIdProduct(id)
     openModal();
-    handleEdit();    
+    setIsEditing(!isEditing)  
   }
+
+  const queryClient = useQueryClient(["product"]);
+  const mutation = useMutation(deleteProduct, {
+    onSuccess: () => {
+      queryClient?.invalidateQueries(["product"]);
+    },
+  });
+
+  const handleDeletion = (product) => {
+    mutation.mutate(product);
+    alert("Estás a punto de borrar un producto. ¿Deseas continuar?")
+    setRefresh(!refresh)
+  };
 
 
   return (
@@ -52,8 +63,8 @@ const ProductPublished = () => {
               <div className={styles.card}>
                 {prods && <Images images={prod.images} />}
                 <div className={styles.titleContainer}>
-                  <h3 className={styles.title}>{prods && prod.title}</h3>
-                  <h3>{prods && prod.price.toLocaleString('es-ES', {useGrouping: true})} €</h3>
+                  <h4 className={styles.title}>{prods && prod.title}</h4>
+                  <h4>{prods && prod.price.toLocaleString('es-ES', {useGrouping: true})} €</h4>
                 </div>
                 <div className={styles.details}>
                   <div>
@@ -74,9 +85,9 @@ const ProductPublished = () => {
                 <p className={styles.paragraph}>{prods && prod.description}</p>
                 <div className={styles.icons}>
                   {/* <button onClick={() => setModalOpen(!modalOpen)}><span className="icon-pen1"></span></button> */}
-                  <button onClick={handleClick}><span className="icon-pen1"></span></button>
-                  <button><span className="icon-bin"></span></button>
-                  {prods && <ModalContainer modalOpen={modalOpen} setModalOpen={setModalOpen} prod={prod}/>}
+                  <button onClick={() => handleClick(prod._id)}><span className="icon-pen1"></span></button>
+                  <button onClick={() => handleDeletion(prod._id)}><span className="icon-bin"></span></button>
+                  {prods && <ModalContainer modalOpen={modalOpen} setModalOpen={setModalOpen} id={idProduct}/>}
                 </div>
               </div>
             // </div>

@@ -17,7 +17,7 @@ const FormVehicle = () => {
   const queryClient = useQueryClient(["product"]);
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["product"]);
+      queryClient?.invalidateQueries(["product"]);
     },
   });
 

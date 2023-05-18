@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  gap: 2rem;
+  gap: 2.2rem;
   margin-top: 1em;
 }
 
@@ -23,20 +23,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 4.5em;
+  height: 3.2em;
   color: var(--yellow-main);
+  position: relative;
+  top: 0.7em;
 }
 
 .title {
   color: var(--blue-dark);
   text-decoration: underline;
   width: 17rem;
+  line-height: 1.2em;
 }
+
 .details {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 2.5em;
+  position: relative;
+  top: 0.7em;
 }
 
 .paragraph {
@@ -76,8 +82,8 @@
   cursor: pointer;
 }
 .icons span:hover {
-  color: var(--blue-light)
+  color: var(--blue-light);
 }
 .icons span:focus {
-  color: var(--blue-medium)
+  color: var(--blue-medium);
 }

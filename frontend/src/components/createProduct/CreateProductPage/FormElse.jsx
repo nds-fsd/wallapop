@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./createProductPage.module.css";
 import { useForm } from "react-hook-form";
-import { postProduct } from "../../../utils/apiProducts";
+import { postProduct, updateProduct } from "../../../utils/apiProducts";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
 import Map from "../map/Map";
@@ -22,17 +22,18 @@ const FormElse = () => {
   });
 
   const onSubmit = (data) => {
-    const keywords = data.keywords?.split(/[,\s]+/)
-    .map((keyword) => keyword.trim())
-    .filter((keyword) => keyword !== '') || [];
-    const productData = { ...data, keywords };    
+    const keywords =
+      data.keywords
+        ?.split(/[,\s]+/)
+        .map((keyword) => keyword.trim())
+        .filter((keyword) => keyword !== "") || [];
+    const productData = { ...data, keywords };
     mutation.mutate(productData);
-    reset()
+    reset();
   };
 
-
-  const { data: categories } = useQuery(["category"], getCategories);
-  console.log(categories)
+  // const { data: categories } = useQuery(["category"], getCategories);
+  // console.log(categories);
   // const titles = [  categories[3].title,
   //   categories[4].title,
   //   categories[5].title,
@@ -53,11 +54,16 @@ const FormElse = () => {
         <input
           placeholder="Dale un título a tu producto"
           {...register("title", {
-            required: "El título es obligatorio"
+            required: "El título es obligatorio",
           })}
           className={styles.input}
         ></input>
-        {errors.title && <p className={styles.error}><span className="icon-warning1"></span>{errors.title.message}</p>}
+        {errors.title && (
+          <p className={styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.title.message}
+          </p>
+        )}
         <div className={styles.labelDouble}>
           <label htmlFor="price" className={styles.labels}>
             Ponle precio
@@ -71,7 +77,7 @@ const FormElse = () => {
             type="number"
             min="1"
             {...register("price", {
-              required: "El precio es obligatorio" 
+              required: "El precio es obligatorio",
             })}
             placeholder="No te excedas..."
             className={styles.inputPrice}
@@ -83,7 +89,12 @@ const FormElse = () => {
             className={styles.inputKeywords}
           ></input>
         </div>
-        {errors.price && <p className={styles.error}><span className="icon-warning1"></span>{errors.price.message}</p>}
+        {errors.price && (
+          <p className={styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.price.message}
+          </p>
+        )}
         <div className={styles.labelDouble}>
           <label htmlFor="category" className={styles.labels}>
             Categoría
@@ -93,7 +104,10 @@ const FormElse = () => {
           </label>
         </div>
         <div className={styles.column}>
-          <select {...register("category", {required: "Selecciona una categoría"})} className={styles.dropdown}>
+          <select
+            {...register("category", { required: "Selecciona una categoría" })}
+            className={styles.dropdown}
+          >
             <option value="">Selecciona una categoría</option>
             <option value="Informática y Electrónica">
               Informática y Electrónica
@@ -128,7 +142,12 @@ const FormElse = () => {
             <option value="Sin estrenar">Sin estrenar</option>
           </select>
         </div>
-        {errors.category && <p className={styles.error}><span className="icon-warning1"></span>{errors.category.message}</p>}
+        {errors.category && (
+          <p className={styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.category.message}
+          </p>
+        )}
         <label htmlFor="description" className={styles.labels}>
           ¿Cómo es tu producto?
         </label>
@@ -136,18 +155,22 @@ const FormElse = () => {
           maxLength={500}
           placeholder="Describe lo fantástico que es tu producto. Añade detalles como el modelo, color, funcionalidad..."
           {...register("description", {
-            required: "La descripción es obligatoria"
+            required: "La descripción es obligatoria",
           })}
           className={styles.textArea}
         ></textarea>
-        {errors.description && <p className={styles.error}><span className="icon-warning1"></span>{errors.description.message}</p>}
+        {errors.description && (
+          <p className={styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.description.message}
+          </p>
+        )}
         <FormImages />
         <Map />
-        
-          <button type="submit" className={styles.formButton}>
-            Subir
-          </button>
-        
+
+        <button type="submit" className={styles.formButton}>
+          Subir
+        </button>
       </form>
     </>
   );

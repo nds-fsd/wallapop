@@ -2,7 +2,8 @@ import React from "react";
 import styles from "./modalContainer.module.css";
 import ModalContent from "./ModalContentProdUser/ModalContent";
 
-const ModalContainer = ({ modalOpen, setModalOpen, prod }) => {
+const ModalContainer = ({ modalOpen, setModalOpen, id }) => {
+ 
   return (
     <>
       {modalOpen && (
@@ -17,7 +18,7 @@ const ModalContainer = ({ modalOpen, setModalOpen, prod }) => {
                 <span className="icon-cross1"></span>
               </button>
             </div>
-            {prod && <ModalContent prod={prod} />}
+            {id && <ModalContent id={id} />}
           </div>
         </div>
       )}

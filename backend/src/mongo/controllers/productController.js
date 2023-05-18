@@ -21,7 +21,7 @@ const getProductById = async (req, res) => {
 };
 
 const getProductByUser = async (req, res) => {
-  console.log("paso por aqui");
+  // console.log("paso por aqui");
   const userId = req.params.user;
   try {
     if (!userId) res.status(404).json("no user id provided");
@@ -76,10 +76,10 @@ const postProduct = async (req, res) => {
     const newProduct = new productModel(body);
     newProduct.user = user;
     const cat = await categoryModel.findOne({ title: newProduct.category });
-    if(cat){
-      newProduct.categories.push(cat._id)
+    if (cat) {
+      newProduct.categories.push(cat._id);
     }
-    await newProduct.save()
+    await newProduct.save();
     res.status(200).json(newProduct);
   } catch (e) {
     res.status(500).json({ message: e });
@@ -106,45 +106,36 @@ const postProduct = async (req, res) => {
 };
 
 const updateProductById = async (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+  
   try {
     const updateProduct = await productModel
-      .findByIdAndUpdate(req.params.id, req.body)
+      .findByIdAndUpdate(id, body, { new: true })
       .exec();
-    res.status(204).json({
-      updateProduct,
-      message: "Your product has been successfully updated",
-    });
+    if (!updateProduct) {
+      return res.status(404).json( { error: "Sorry, can't find this product"})
+    }
+    res.status(200).json(updateProduct);
   } catch (error) {
-    res.status(404).json({ error: "Sorry, can't find this product" });
+    res.status(500).json({ error: "An error occurred while updating the product" });
   }
 };
 
-const updateProductByTitle = async (req, res) => {
-  const filter = { title: req.params.title };
-  try {
-    const updateProd = await productModel
-      .findOneAndUpdate(filter, req.body)
-      .exec();
-    res.status(204).json({
-      updateProd,
-      message: "Your product has been successfully updated",
-    });
-  } catch (error) {
-    res.status(404).json({ error: "Sorry, can't find this product" });
-  }
-};
-
-const deleteProduct = async (req, res) => {
+const deleteProductById = async (req, res) => {
   try {
     const delProduct = await productModel
       .findByIdAndDelete(req.params.id)
       .exec();
-    res.status(204).json({
+    if (!delProduct) {
+      return res.status(404).json( {error: "Sorry, can't find this product" })
+    }
+    res.status(201).json({
       delProduct,
       message: "Your product has been successfully deleted",
     });
   } catch (error) {
-    res.status(404).json({ error: "Sorry, can't find this product" });
+    res.status(500).json({ error: "An error occurred while deleting the product" });
   }
 };
 
@@ -155,6 +146,5 @@ module.exports = {
   getProductByCategory,
   postProduct,
   updateProductById,
-  updateProductByTitle,
-  deleteProduct,
+  deleteProductById,
 };

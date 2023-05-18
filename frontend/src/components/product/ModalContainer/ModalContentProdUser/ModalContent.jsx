@@ -2,9 +2,9 @@ import React from "react";
 import EditElse from "../../../EditProducts/EditElse";
 
 
-const ModalContent = (prod) => {
-//   const category = prod.prod.categories
-// console.log(category)
+const ModalContent = ({id}) => {
+
+
  
   return (
     <>
@@ -14,7 +14,7 @@ const ModalContent = (prod) => {
           <h5 key={category._id}>{category.title}</h5>
         ))}
       </div> */}
-      {prod && <EditElse prod={prod}/>}
+      {id && <EditElse id={id}/>}
       {/* <FormElse /> */}
     </>
   );

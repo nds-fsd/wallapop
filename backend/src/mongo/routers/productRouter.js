@@ -5,8 +5,7 @@ const {
   getProductByCategory,
   postProduct,
   updateProductById,
-  updateProductByTitle,
-  deleteProduct,
+  deleteProductById,
   getProductByUser,
 } = require("../controllers/productController");
 
@@ -17,9 +16,8 @@ productRouter.get("/:id", getProductById);
 productRouter.get("/getbyuser/:user", getProductByUser)
 productRouter.get("/category/:category", getProductByCategory);
 productRouter.post("/newproduct/:user", postProduct);
-productRouter.patch("/:user", updateProductById);
-productRouter.patch("/:title", updateProductByTitle);
-productRouter.delete("/:user", deleteProduct);
+productRouter.patch("/:id", updateProductById);
+productRouter.delete("/:id", deleteProductById);
 
 
 

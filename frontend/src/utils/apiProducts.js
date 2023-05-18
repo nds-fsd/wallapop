@@ -2,7 +2,6 @@ import { api } from "./api";
 import { getUserData } from "./localStorage.utils";
 
 export const getProductById = ({ queryKey }) => {
-  console.log(queryKey);
   return api
     .get(`/products/${queryKey[1]}`)
     .then((res) => res.data)
@@ -56,6 +55,27 @@ export const postProduct = (data) => {
       console.log(error);
     });
 };
+
+
+export const updateProduct = ({ id, data }) => {
+  return api
+  .patch(`/products/${id}`, data)
+  .then((res) => res.data )
+  .catch((error) => {
+    console.log(error)
+  });
+};
+
+
+export const deleteProduct = (id) => {
+  return api
+  .delete(`/products/${id}`)
+  .then(res => res.data)
+  .catch((error) => {
+    console.log(error)
+  })
+}
+
 
 // export const getProductByIdHarcoded = () => {
 //   return api
