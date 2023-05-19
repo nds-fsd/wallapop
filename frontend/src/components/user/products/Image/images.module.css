@@ -17,3 +17,10 @@
   align-items: center;
   text-align: center;
 }
+
+.imgList {
+  width: 7rem;
+  height: 5rem;
+  border: 0.15em solid var(--yellow-main);
+  border-radius: 0.7em;
+}
