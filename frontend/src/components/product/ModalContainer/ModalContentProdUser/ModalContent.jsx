@@ -14,39 +14,42 @@ const ModalContent = ({id}) => {
   const { data } = useQuery(["product", id], getProductById)
   console.log("en el modal content", data)
 
-  // const cat= data.category
-  // console.log("las keywords", data.category)
+  if (!data || !data.category) {
+    return null; // Render nothing if data or category is undefined
+  }
+  const cat= data?.category
+  console.log("las keywords", data.category)
   //aqui me retorna la categoria del producto, cuando hago click 
   //en un producto me sale error de que category es undefined
   //y ya no puedo aplicar el switch case
 
-  // let componentToRender;
+  let componentToRender;
 
-  // switch (cat) {
-  //   case "Inmobiliaria":
-  //     componentToRender = <EditHouse />;
-  //     break;
-  //   case "Motos":
-  //   case "Coches":
-  //     componentToRender = <EditVehicle />;
-  //     break;
-  //   case "Servicios":
-  //   case "Empleo":
-  //     componentToRender = <EditJob />;
-  //     break;
-  //   default:
-  //     componentToRender = <EditElse />;
-  //     break;
-  // }
+  switch (cat) {
+    case "Inmobiliaria":
+      componentToRender = <EditHouse id={id}/>;
+      break;
+    case "motos":
+    case "coches":
+      componentToRender = <EditVehicle id={id}/>;
+      break;
+    case "servicios":
+    case "empleo":
+      componentToRender = <EditJob id={id} />;
+      break;
+    default:
+      componentToRender = <EditElse id={id}/>;
+      break;
+  }
  
   return (
     <>
       <h3>Información de tu producto / servicio</h3>
-      {id && <EditElse id={id}/>}
+      {/* {id && <EditElse id={id}/>} */}
       {/* {id && <EditJob id={id}/>} */}
       {/* {id && <EditVehicle id={id}/>} */}
       {/* {id && <EditHouse id={id}/>} */}
-      {/* {id && <componentToRender/>} */}
+      {id && componentToRender}
 
 
       

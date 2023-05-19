@@ -35,7 +35,7 @@ const getProductByUser = async (req, res) => {
   } catch (e) {
     res.status(500).json({ message: e });
   }
-}
+};
 
 // Buscar productos por categorias
 const getProductByCategory = async (req, res) => {
@@ -94,34 +94,37 @@ const postProduct = async (req, res) => {
 const updateProductById = async (req, res) => {
   const { id } = req.params;
   const body = req.body;
-  
+
   try {
     const updateProduct = await productModel
       .findByIdAndUpdate(id, body, { new: true })
       .exec();
     if (!updateProduct) {
-      return res.status(404).json( { error: "Sorry, can't find this product"})
+      return res.status(404).json({ error: "Sorry, can't find this product" });
     }
     res.status(201).json(updateProduct);
   } catch (error) {
-    res.status(500).json({ error: "An error occurred while updating the product" });
+    res
+      .status(500)
+      .json({ error: "An error occurred while updating the product" });
   }
 };
 
 const deleteProductById = async (req, res) => {
+  const { id } = req.params;
   try {
-    const delProduct = await productModel
-      .findByIdAndDelete(req.params.id)
-      .exec();
+    const delProduct = await productModel.findByIdAndDelete(id).exec();
     if (!delProduct) {
-      return res.status(404).json( {error: "Sorry, can't find this product" })
+      return res.status(404).json({ error: "Sorry, can't find this product" });
     }
     res.status(200).json({
       delProduct,
       message: "Your product has been successfully deleted",
     });
   } catch (error) {
-    res.status(500).json({ error: "An error occurred while deleting the product" });
+    res
+      .status(500)
+      .json({ error: "An error occurred while deleting the product" });
   }
 };
 

@@ -72,11 +72,12 @@ export const postProduct = (data) => {
 //   });
 // };
 
-export const updateProduct = ({ id, data }) => {
+export const updateProduct = (product) => {
+  const id = product._id
   const { token } = getUserToken()
-  console.log("paso por la api de update", data)
+  console.log("paso por la api de update", product)
   return api
-  .patch(`/products/${id}`, data , {
+  .patch(`/products/${id}`, product , {
     headers: {
       Authorization: `Bearer ${token}`,
     },

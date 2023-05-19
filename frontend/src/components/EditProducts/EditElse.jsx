@@ -14,13 +14,11 @@ const EditElse = ({ id }) => {
     formState: { errors },
   } = useForm();
 
-  const { data: product }  = useQuery(["product-updated", id], getProductById,{
+  const { data } = useQuery(["product-updated", id], getProductById,{
     onSuccess: (product) => {
       reset(product)
     }
   });
-  console.log("en el form update", product);
-
 
   const queryClient = useQueryClient(["product-updated"]);
   const mutation = useMutation(updateProduct, {
@@ -30,8 +28,9 @@ const EditElse = ({ id }) => {
   });
 
   const onSubmit = (product) => {
-    console.log(product)
     mutation.mutate(product);
+    alert("Los cambios se han guardado satisfactoriamente")
+
   };
 
   // const onSubmit = (product) => {
@@ -145,16 +144,7 @@ const EditElse = ({ id }) => {
           )}
           {/* <FormImages />
           <Map /> */}
-          <div className={styles.double}>
-            <label htmlFor="location" className={styles.labels}>
-              Localización:
-            </label>
-            <input
-              placeholder="Localización"
-              {...register("location")}
-              className={styles.location}
-            ></input>
-          </div>
+          
           <div>
             {/* <div className={styles.images}>
                 {prod && prod.images.map((image, _id) => (

@@ -14,14 +14,9 @@ const ProductPublished = () => {
     queryKey: ["products_published"],
     queryFn: getProductByUser,
   });
-
-  console.log(prods);
   
   const [modalOpen, setModalOpen] = useState(false);
-  const [isEditing, setIsEditing] = useState(false)
-  const [idProduct, setIdProduct] = useState('')
-  const [refresh, setRefresh] = useState(false)
-  
+  const [idProduct, setIdProduct] = useState('') 
 
   const openModal = () => {
     setModalOpen(!modalOpen)
@@ -31,20 +26,18 @@ const ProductPublished = () => {
     console.log("el id del producto", id)
     setIdProduct(id)
     openModal();
-    setIsEditing(!isEditing)  
   }
 
   const queryClient = useQueryClient(["product"]);
   const mutation = useMutation(deleteProduct, {
     onSuccess: () => {
-      queryClient?.invalidateQueries(["product"]);
+      queryClient?.invalidateQueries(["product", id]);
     },
   });
 
   const handleDeletion = (product) => {
     mutation.mutate(product);
     alert("Estás a punto de borrar un producto. ¿Deseas continuar?")
-    setRefresh(!refresh)
   };
 
 
