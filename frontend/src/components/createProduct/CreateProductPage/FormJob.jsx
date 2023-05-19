@@ -94,7 +94,7 @@ const FormJob = () => {
         </div>
         {errors.category && <p className={styles.error}><span className="icon-warning1"></span>{errors.category.message}</p>}
         <label htmlFor="description" className={styles.labels}>
-          ¿Cómo es tu producto?
+          ¿Cómo es tu servicio?
         </label>
         <textarea
           maxLength={500}

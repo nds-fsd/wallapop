@@ -1,5 +1,5 @@
 import { api } from "./api";
-import { getUserData } from "./localStorage.utils";
+import { getUserData, getUserToken } from "./localStorage.utils";
 
 export const getProductById = ({ queryKey }) => {
   return api
@@ -14,8 +14,8 @@ export const getProductById = ({ queryKey }) => {
 export const getProductByUser = () => {
   const { id } = JSON.parse(localStorage.getItem("user"));
   const token = JSON.parse(localStorage.getItem("user-session"));
-  console.log("el id", id);
-  console.log("el token", token);
+  // console.log("el id", id);
+  // console.log("el token", token);
   return api
     .get(`/products/getbyuser/${id}`, {
       headers: {
@@ -57,9 +57,30 @@ export const postProduct = (data) => {
 };
 
 
+// export const updateProduct = ({ id, data }) => {
+//   const token = JSON.parse(localStorage.getItem("user-session"));
+//   console.log("paso por la api de update", data)
+//   return api
+//   .patch(`/products/${id}`, data , {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   })
+//   .then((res) => res.data )
+//   .catch((error) => {
+//     console.log(error)
+//   });
+// };
+
 export const updateProduct = ({ id, data }) => {
+  const { token } = getUserToken()
+  console.log("paso por la api de update", data)
   return api
-  .patch(`/products/${id}`, data)
+  .patch(`/products/${id}`, data , {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
   .then((res) => res.data )
   .catch((error) => {
     console.log(error)
@@ -68,8 +89,13 @@ export const updateProduct = ({ id, data }) => {
 
 
 export const deleteProduct = (id) => {
+  const token = JSON.parse(localStorage.getItem("user-session"));
   return api
-  .delete(`/products/${id}`)
+  .delete(`/products/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
   .then(res => res.data)
   .catch((error) => {
     console.log(error)

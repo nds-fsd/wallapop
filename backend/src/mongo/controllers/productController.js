@@ -4,7 +4,7 @@ const categoryModel = require("../models/categoryModel");
 const getAllProducts = async (req, res) => {
   try {
     const allProducts = await productModel.find().exec();
-    res.status(201).json(allProducts);
+    res.status(200).json(allProducts);
   } catch (error) {
     res.status(500).json({ message: "Can't find products" });
   }
@@ -35,21 +35,7 @@ const getProductByUser = async (req, res) => {
   } catch (e) {
     res.status(500).json({ message: e });
   }
-  // console.log("paso por aqui")
-  // const userId = req.params.id;
-  // console.log("entro en el controller", userId)
-  // try {
-  //   const productByUser = await productModel
-  //   .find({ user: userId })
-  //   .populate("user")
-  //   .exec();
-  //   res.status(200).json(productByUser);
-  //   console.log("estos son los productos", productByUser);
-  // } catch (error) {
-  //   res.status(404).json({ error: "Sorry, can't find products to display" });
-  //   console.log(error);
-  // };
-};
+}
 
 // Buscar productos por categorias
 const getProductByCategory = async (req, res) => {
@@ -80,7 +66,7 @@ const postProduct = async (req, res) => {
       newProduct.categories.push(cat._id);
     }
     await newProduct.save();
-    res.status(200).json(newProduct);
+    res.status(201).json(newProduct);
   } catch (e) {
     res.status(500).json({ message: e });
   }
@@ -116,7 +102,7 @@ const updateProductById = async (req, res) => {
     if (!updateProduct) {
       return res.status(404).json( { error: "Sorry, can't find this product"})
     }
-    res.status(200).json(updateProduct);
+    res.status(201).json(updateProduct);
   } catch (error) {
     res.status(500).json({ error: "An error occurred while updating the product" });
   }
@@ -130,7 +116,7 @@ const deleteProductById = async (req, res) => {
     if (!delProduct) {
       return res.status(404).json( {error: "Sorry, can't find this product" })
     }
-    res.status(201).json({
+    res.status(200).json({
       delProduct,
       message: "Your product has been successfully deleted",
     });

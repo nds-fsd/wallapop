@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProductById, updateProduct } from "../../utils/apiProducts";
 
-const EditElse = ({ id }) => {
+const EditVehicle = ({ id }) => {
   console.log("el producto en el modal", id);
-  
+
   const {
     register,
     handleSubmit,
@@ -14,13 +14,12 @@ const EditElse = ({ id }) => {
     formState: { errors },
   } = useForm();
 
-  const { data: product }  = useQuery(["product-updated", id], getProductById,{
+  const { data: product } = useQuery(["product-updated", id], getProductById, {
     onSuccess: (product) => {
-      reset(product)
-    }
+      reset(product);
+    },
   });
-  console.log("en el form update", product);
-
+  console.log("en el form de update", product);
 
   const queryClient = useQueryClient(["product-updated"]);
   const mutation = useMutation(updateProduct, {
@@ -30,7 +29,7 @@ const EditElse = ({ id }) => {
   });
 
   const onSubmit = (product) => {
-    console.log(product)
+    console.log(product);
     mutation.mutate(product);
   };
 
@@ -45,13 +44,11 @@ const EditElse = ({ id }) => {
   //   mutation.mutate(productData);
   // };
 
-  
-
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.editContainer}>
-        <div className={styles.title}>
+          <div className={styles.title}>
             <label htmlFor="title" className={styles.labels}>
               Título:
             </label>
@@ -79,6 +76,104 @@ const EditElse = ({ id }) => {
             </p>
           )}
 
+          <div className={styles.title}>
+            <label htmlFor="brand" className={styles.labels}>
+              Marca:
+            </label>
+            <input
+              placeholder="Ej. BMW"
+              {...register("brand", { required: "Este campo es obligatorio" })}
+              className={styles.input}
+            ></input>
+            <label htmlFor="model" className={styles.labels}>
+              Modelo:
+            </label>
+            <input
+              placeholder="Ej. S1"
+              {...register("model", { required: "Este campo es obligatorio" })}
+              className={styles.input}
+            ></input>
+            <label htmlFor="year" className={styles.labels}>
+              Año:
+            </label>
+            <input
+              placeholder="De fabricación"
+              {...register("year", { required: "Este campo es obligatorio" })}
+              className={styles.input}
+            ></input>
+          </div>
+          <div className={styles.error2}>
+            {errors.brand && (
+              <p>
+                <span className="icon-warning1"></span>
+                {errors.brand.message}
+              </p>
+            )}
+            {errors.model && (
+              <p>
+                <span className="icon-warning1"></span>
+                {errors.model.message}
+              </p>
+            )}
+            {errors.year && (
+              <p>
+                <span className="icon-warning1"></span>
+                {errors.year.message}
+              </p>
+            )}
+          </div>
+
+          <div className={styles.title}>
+            <label htmlFor="doors" className={styles.labels}>
+              Puertas:
+            </label>
+            <input
+              type="number"
+              placeholder="Escribe un número"
+              {...register("doors")}
+              className={styles.input}
+            ></input>
+            <label htmlFor="seats" className={styles.labels}>
+              Plazas:
+            </label>
+            <input
+              type="number"
+              placeholder="Escribe un número"
+              {...register("seats")}
+              className={styles.input}
+            ></input>
+            <label htmlFor="km" className={styles.labels}>
+              Kilometraje:
+            </label>
+            <input
+              type="number"
+              placeholder="Sé preciso"
+              {...register("km", { required: "Este campo es obligatorio" })}
+              className={styles.input}
+            ></input>
+          </div>
+
+          <div className={styles.title}>
+          <label htmlFor="engine" className={styles.labels}>
+            Motor:
+          </label>
+          <select {...register("engine")} className={styles.input}>
+              <option value="">Selecciona una opción</option>
+              <option value="Gasolina">Gasolina</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Eléctrico">Eléctirco</option>
+
+            </select>
+          <label htmlFor="shift" className={styles.labels}>
+            Cambio:
+          </label>
+          <select {...register("shift")} className={styles.input}>
+              <option value="">Selecciona una opción</option>
+              <option value="Manual">Manual</option>
+              <option value="Automático">Automático</option>
+            </select>
+        </div>
+
           <div className={styles.labelTriple}>
             <label htmlFor="price" className={styles.labels}>
               Precio:
@@ -87,7 +182,7 @@ const EditElse = ({ id }) => {
               Tus keywords:
             </label>
             <label htmlFor="status" className={styles.labelStatus}>
-              Estado de tu producto:
+              Estado de tu vehículo:
             </label>
           </div>
           <div className={styles.columnTriple}>
@@ -111,10 +206,8 @@ const EditElse = ({ id }) => {
 
             <select {...register("status")} className={styles.dropdown}>
               <option value="">Selecciona un estado</option>
-              <option value="Como nuevo">Como nuevo</option>
               <option value="En buen estado">En buen estado</option>
               <option value="Poco uso">Poco uso</option>
-              <option value="Sin estrenar">Sin estrenar</option>
             </select>
           </div>
 
@@ -130,7 +223,7 @@ const EditElse = ({ id }) => {
             </label>
             <textarea
               maxLength={500}
-              placeholder="Describe lo fantástico que es tu producto. Añade detalles como el modelo, color, funcionalidad..."
+              placeholder="Describe las ventajas del servicio o empleo que buscas para que los demás sepan por qué deben contratarte a ti y no a otro..."
               {...register("description", {
                 required: "La descripción es obligatoria",
               })}
@@ -145,16 +238,7 @@ const EditElse = ({ id }) => {
           )}
           {/* <FormImages />
           <Map /> */}
-          <div className={styles.double}>
-            <label htmlFor="location" className={styles.labels}>
-              Localización:
-            </label>
-            <input
-              placeholder="Localización"
-              {...register("location")}
-              className={styles.location}
-            ></input>
-          </div>
+
           <div>
             {/* <div className={styles.images}>
                 {prod && prod.images.map((image, _id) => (
@@ -163,9 +247,7 @@ const EditElse = ({ id }) => {
               </div> */}
           </div>
           <div className={styles.formButton}>
-            <button type="submit" >
-              Guardar cambios
-            </button>
+            <button type="submit">Guardar cambios</button>
           </div>
         </div>
       </form>
@@ -173,4 +255,4 @@ const EditElse = ({ id }) => {
   );
 };
 
-export default EditElse;
+export default EditVehicle;

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./productPage.module.css";
-import { getProductByIdHarcodedVehicle } from "../../../utils/apiProducts";
 import { useQuery } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
@@ -21,8 +20,8 @@ const VehiclePage = () => {
   const id = "644ebe96f1b76b31b761b454";
 
   // const {data, isLoading} = useQuery(['product', id], getProductById)
-  const { data } = useQuery(["product", id], getProductByIdHarcodedVehicle);
-  console.log(data);
+  // const { data } = useQuery(["product", id], getProductByIdHarcodedVehicle);
+  // console.log(data);
 
   return (
     <>

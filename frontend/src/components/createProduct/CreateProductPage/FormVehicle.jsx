@@ -114,7 +114,7 @@ const FormVehicle = () => {
         ></input>
         {errors.title && <p className={styles.error}><span className="icon-warning1"></span>{errors.title.message}</p>}
         <div className={styles.labelTriple}>
-          <label htmlFor="brand" className={styles.label}>
+          <label htmlFor="brand" className={styles.labels}>
             Marca
           </label>
           <label htmlFor="model" className={styles.labels}>
@@ -154,7 +154,7 @@ const FormVehicle = () => {
           <div className={styles.line}></div>
         </div>
         <div className={styles.labelTriple2}>
-          <label htmlFor="doors" className={styles.label}>
+          <label htmlFor="doors" className={styles.labels}>
             Puertas
           </label>
           <label htmlFor="seats" className={styles.labels}>

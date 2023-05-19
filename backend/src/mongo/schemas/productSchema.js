@@ -10,6 +10,7 @@ const productSchema = new Schema({
   booked: { type: Boolean },
   keywords: { type: Array },
   datePublication: { type: Date },
+  location: { type: String },
   // Para poder relacionar producto con users
   user: 
     {

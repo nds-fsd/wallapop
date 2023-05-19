@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProductById, updateProduct } from "../../utils/apiProducts";
 
-const EditElse = ({ id }) => {
+const EditJob = ({ id }) => {
   console.log("el producto en el modal", id);
   
   const {
@@ -19,7 +19,7 @@ const EditElse = ({ id }) => {
       reset(product)
     }
   });
-  console.log("en el form update", product);
+  console.log("en el form de update", product);
 
 
   const queryClient = useQueryClient(["product-updated"]);
@@ -51,7 +51,7 @@ const EditElse = ({ id }) => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.editContainer}>
-        <div className={styles.title}>
+          <div className={styles.title}>
             <label htmlFor="title" className={styles.labels}>
               Título:
             </label>
@@ -87,7 +87,7 @@ const EditElse = ({ id }) => {
               Tus keywords:
             </label>
             <label htmlFor="status" className={styles.labelStatus}>
-              Estado de tu producto:
+              Estado de tu servicio:
             </label>
           </div>
           <div className={styles.columnTriple}>
@@ -111,10 +111,9 @@ const EditElse = ({ id }) => {
 
             <select {...register("status")} className={styles.dropdown}>
               <option value="">Selecciona un estado</option>
-              <option value="Como nuevo">Como nuevo</option>
-              <option value="En buen estado">En buen estado</option>
-              <option value="Poco uso">Poco uso</option>
-              <option value="Sin estrenar">Sin estrenar</option>
+              <option value="Horas a convenir">Horas a convenir</option>
+              <option value="Por la mañana">Por la mañana</option>
+              <option value="Por la tarde">Por la tarde</option>
             </select>
           </div>
 
@@ -130,7 +129,7 @@ const EditElse = ({ id }) => {
             </label>
             <textarea
               maxLength={500}
-              placeholder="Describe lo fantástico que es tu producto. Añade detalles como el modelo, color, funcionalidad..."
+              placeholder="Describe las ventajas del servicio o empleo que buscas para que los demás sepan por qué deben contratarte a ti y no a otro..."
               {...register("description", {
                 required: "La descripción es obligatoria",
               })}
@@ -145,16 +144,7 @@ const EditElse = ({ id }) => {
           )}
           {/* <FormImages />
           <Map /> */}
-          <div className={styles.double}>
-            <label htmlFor="location" className={styles.labels}>
-              Localización:
-            </label>
-            <input
-              placeholder="Localización"
-              {...register("location")}
-              className={styles.location}
-            ></input>
-          </div>
+          
           <div>
             {/* <div className={styles.images}>
                 {prod && prod.images.map((image, _id) => (
@@ -173,4 +163,4 @@ const EditElse = ({ id }) => {
   );
 };
 
-export default EditElse;
+export default EditJob;
