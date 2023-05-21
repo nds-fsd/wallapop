@@ -11,7 +11,7 @@ const CreateUserPage = () => {
     formState: { errors },
   } = useForm();
 
-  const { handleAuth } = useContext(AuthContext);
+  const { handleAuth, registerError } = useContext(AuthContext);
   const { showUploadWidget, image } = useContext(ImageContext);
 
   const handleOpenWidget = () => {
@@ -19,71 +19,91 @@ const CreateUserPage = () => {
   };
 
   const handleSubmitWrapper = (data) => {
-    handleAuth({ ...data, photo: image });
+    handleAuth({...data, photo: image });
   };
 
   return (
-    <>
+    <div className={styles.mainContainer}>
       <div className={styles.createUserContainer}>
         <h1>Regístrate</h1>
+        <div className={styles.imageButtonContainer}>
+          <label htmlFor="images">Selecciona una imagen</label>
+          <button onClick={handleOpenWidget} className={!image?styles.image : styles.noimage}>
+            {!image ? (
+              <span className="icon-image1"></span>
+            ) : (
+              <img src={image} />
+            )}
+          </button>
+        </div>
         <form
           onSubmit={handleSubmit(handleSubmitWrapper)}
           className={styles.formContainer}
         >
           <div className={styles.column}>
-            <input
-              type="text"
-              placeholder="Nombre"
-              className={styles.input}
-              {...register("name", {
-                required: "Name is required",
-              })}
-            />
-            {errors.name && <p>{errors.name.message}</p>}
-            <input
-              type="text"
-              placeholder="Apellido"
-              className={styles.input}
-              {...register("surname", {
-                required: "Surname is required",
-              })}
-            />
-            {errors.surname && <p>{errors.surname.message}</p>}
+            <div className={styles.errorContainer}>
+              <input
+                type="text"
+                placeholder="Nombre"
+                className={styles.input}
+                {...register("name", {
+                  required: "Name is required",
+                })}
+              />
+              {errors.name && <p>{errors.name.message}</p>}
+            </div>
+            <div className={styles.errorContainer}>
+              <input
+                type="text"
+                placeholder="Apellido"
+                className={styles.input}
+                {...register("surname", {
+                  required: "Surname is required",
+                })}
+              />
+              {errors.surname && <p>{errors.surname.message}</p>}
+            </div>
           </div>
           <div className={styles.column}>
-            <input
-              type="email"
-              placeholder="Email"
-              className={styles.input}
-              {...register("email", {
-                required: "Email is required",
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: "Invalid email address",
-                },
-              })}
-            />
-            {errors.email && <p>{errors.email.message}</p>}
-            <input
-              type="password"
-              placeholder="Password"
-              className={styles.input}
-              {...register("password", {
-                required: "Password is required",
-              })}
-            />
-            {errors.password && <p>{errors.password.message}</p>}
+            <div className={styles.errorContainer}>
+              <input
+                type="email"
+                placeholder="Email"
+                className={styles.input}
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                    message: "Invalid email address",
+                  },
+                })}
+              />
+              {errors.email && <p>{errors.email.message}</p>}
+            </div>
+            <div className={styles.errorContainer}>
+              <input
+                type="password"
+                placeholder="Password"
+                className={styles.input}
+                {...register("password", {
+                  required: "Password is required",
+                })}
+              />
+              {errors.password && <p>{errors.password.message}</p>}
+            </div>
           </div>
           <div className={styles.column}>
-            <input
-              type="text"
-              placeholder="Teléfono"
-              className={styles.input}
-              {...register("phone", {
-                required: "Phone is required",
-              })}
-            />
-            {errors.phone && <p>{errors.phone.message}</p>}
+            <div className={styles.errorContainer}>
+              <input
+                type="text"
+                placeholder="Teléfono"
+                className={styles.input}
+                {...register("phone", {
+                  required: "Phone is required",
+                })}
+              />
+              {errors.phone && <p>{errors.phone.message}</p>}
+            </div>
             <input
               type="text"
               placeholder="Dirección"
@@ -108,28 +128,21 @@ const CreateUserPage = () => {
               <option value="">Selecciona una opción</option>
               <option value="Masculino">Masculino</option>
               <option value="Femenino">Femenino</option>
-              <option value="Binario">Binario</option>
+              <option value="No Binario">Binario</option>
               <option value="Prefiero no decirlo">Prefiero no decirlo</option>
             </select>
             {errors.gender && <p>{errors.gender.message}</p>}
           </div>
 
-          <div className={styles.column}>
-            <input
-              className={styles.createUserButton}
-              value="Registrate"
-              type="submit"
-            />
-          </div>
+          <input
+            className={styles.createUserButton}
+            value="Registrate"
+            type="submit"
+          />
         </form>
-        <div className={styles.imageColumn}>
-          <label htmlFor="images">Selecciona una imagen</label>
-          <button onClick={handleOpenWidget} className={styles.image}>
-            <span className="icon-image1"></span>
-          </button>
-        </div>
+        <div>{registerError}</div>
       </div>
-    </>
+    </div>
   );
 };
 

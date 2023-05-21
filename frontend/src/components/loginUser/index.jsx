@@ -12,7 +12,7 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
- const { handleAuth } = useContext(AuthContext);
+  const { handleAuth, loginError } = useContext(AuthContext);
 
   return (
     <>
@@ -29,24 +29,23 @@ const LoginPage = () => {
               placeholder="Email"
               className={styles.input}
               {...register("email", {
-                required: "Email is required",
+                required: true,
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                   message: "Invalid email address",
                 },
               })}
             />
-            {errors.email && <p>{errors.email.message}</p>}
             <input
               type="password"
               placeholder="Password"
               className={styles.input}
               {...register("password", {
-                required: "Password is required",
+                required: true,
               })}
             />
-            {errors.password && <p>{errors.password.message}</p>}
           </div>
+          <div className={styles.errorContainer}>{loginError}</div>
           <button className={styles.formButton} data-test="boton" type="submit">
             Inicia sesión
           </button>
