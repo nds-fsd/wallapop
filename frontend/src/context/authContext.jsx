@@ -14,11 +14,41 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
-  console.log('esto es userData', userData)
+  const [loginError, setLoginError] = useState(null);
+  const [registerError, setRegisterError] = useState(null);
 
   const navigate = useNavigate();
-  const login = useMutation(["user"], loginUser);
-  const register = useMutation(["user"], createUser);
+
+  const login = useMutation({
+    mutationFn: (data) => loginUser(data),
+    onSuccess: (data) => {
+      setUserSession(data.data.token);
+      setUserData(data.data);
+      setUserDataLocalStorage(data.data.user);
+      navigate("/");
+    },
+    onError: (e) => {
+      setLoginError(
+        e.response.data.error.login ||
+          e.response.data.error.password ||
+          e.response.data.error.email ||
+          e.response.data.error.register
+      );
+    },
+  });
+
+  const register = useMutation({
+    mutationFn: (data) => createUser(data),
+    onSuccess: (data) => {
+      setUserSession(data.token);
+      setUserData(data.user);
+      setUserDataLocalStorage(data.user);
+      navigate("/");
+    },
+    onError: (e) => {
+      console.log("register error", e.response.data.error.register);
+    },
+  });
 
   useEffect(() => {
     setUserData(getUserData);
@@ -26,32 +56,24 @@ export const AuthProvider = ({ children }) => {
 
   const handleAuth = (data) => {
     if (!data.phone) {
-      login.mutate(data, {
-        onSuccess(data) {
-          setUserSession(data.token);
-          setUserData(data);
-          setUserDataLocalStorage(data.user);
-          navigate("/");
-        },
-      });
+      login.mutate(data);
     } else {
-      register.mutate(data, {
-        onSuccess(data) {
-          console.log('esto es data', data);
-          setUserSession(data.token);
-          setUserData(data);
-          setUserDataLocalStorage(data.user);
-          navigate("/");
-        },
-      });
+      register.mutate(data);
     }
   };
 
   const handleLogout = () => {
     removeSession();
+    setUserData(null);
     navigate("/");
   };
-  const data = { handleAuth, handleLogout, userData };
+  const data = {
+    handleAuth,
+    handleLogout,
+    userData,
+    loginError,
+    registerError,
+  };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };
