@@ -6,12 +6,14 @@ import styles from "./products.module.css";
 import Images from "./Image/Images";
 import ModalContainer from "../../product/ModalContainer/ModalContainer";
 import ImagesList from "./Image/ImagesList";
+import CustomAlert from "../../CustomAlert/CustomAlert";
 
 const ProductPublished = () => {
   const { data: prods, isLoading } = useQuery({
     queryKey: ["products_published"],
     queryFn: getProductByUser,
   });
+  console.log("los productos", prods)
 
   const [modalOpen, setModalOpen] = useState(false);
   const [idProduct, setIdProduct] = useState("");
@@ -25,7 +27,7 @@ const ProductPublished = () => {
   };
 
   const handleClick = (id) => {
-    console.log("el id del producto", id);
+    // console.log("el id del producto", id);
     setIdProduct(id);
     openModal();
   };
@@ -34,13 +36,17 @@ const ProductPublished = () => {
   const mutation = useMutation(deleteProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product", id]);
+      // window.location.reload()
     },
-  });
 
-  const handleDeletion = (product) => {
-    mutation.mutate(product);
-    alert("Estás a punto de borrar un producto. ¿Deseas continuar?");
+  });
+  
+  const handleDeletion = (id) => {
+    const shouldDelete = window.confirm("Estás a punto de borrar este producto. ¿Deseas continuar?")
+    if (shouldDelete) {
+    mutation.mutate(id);
   };
+}
 
   return (
     <>
@@ -81,25 +87,24 @@ const ProductPublished = () => {
                 ))}
               </div> */}
                       <h5>{prod.category}</h5>
-                      {/* <h5>Informática y Electrónica</h5> */}
                       <p>{prod.status}</p>
                     </div>
                     {Array.isArray(prod.keywords) && prod.keywords !== " " && (
                       <div className={styles.keywords}>
                         {prod.keywords.map((keyword, _id) => (
-                          <p key={keyword._id}>{`#${keyword}`}</p>
+                          <p key={_id}>{`#${keyword}`}</p>
                         ))}
                       </div>
                     )}
                     <p className={styles.paragraph}>{prod.description}</p>
                     <div className={styles.icons}>
-                      {/* <button onClick={() => setModalOpen(!modalOpen)}><span className="icon-pen1"></span></button> */}
                       <button onClick={() => handleClick(prod._id)}>
                         <span className="icon-pen1"></span>
                       </button>
                       <button onClick={() => handleDeletion(prod._id)}>
                         <span className="icon-bin"></span>
                       </button>
+
                       {
                         <ModalContainer
                           modalOpen={modalOpen}

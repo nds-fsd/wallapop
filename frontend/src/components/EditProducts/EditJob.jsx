@@ -19,33 +19,25 @@ const EditJob = ({ id }) => {
       reset(product)
     }
   });
-  console.log("en el form de update", product);
-
+  // console.log("en el form de update", product);
 
   const queryClient = useQueryClient(["product-updated"]);
   const mutation = useMutation(updateProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
+      window.location.reload()
     },
   });
 
   const onSubmit = (product) => {
-    console.log(product)
-    mutation.mutate(product);
+    const keywords = product.keywords
+    ?.split(",")
+    .map((keyword) => [keyword.trim()])
+    .filter((keyword) => keyword[0] !== "");  
+    const productData = { ...product, keywords };
+    mutation.mutate(productData);
+    alert("Los cambios se han guardado satisfactoriamente");
   };
-
-  // const onSubmit = (product) => {
-  //   const keywords = product.keywords
-  //     ?.split(/[,\s]+/)
-  //     .map((keyword) => keyword.trim())
-  //     .filter((keyword) => keyword !== "");
-  //   const productData = { ...product, keywords: keywords || [] };
-  //   reset();
-  //   console.log("en el submit", productData);
-  //   mutation.mutate(productData);
-  // };
-
-  
 
   return (
     <>
@@ -107,6 +99,7 @@ const EditJob = ({ id }) => {
               placeholder="Crea tus palabras clave"
               {...register("keywords")}
               className={styles.inputTriple}
+              // defaultValue={product?.keywords?.join(", ") || ""}
             ></input>
 
             <select {...register("status")} className={styles.dropdown}>

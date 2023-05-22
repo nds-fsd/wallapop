@@ -5,8 +5,9 @@ import { postProduct } from "../../../utils/apiProducts";
 import { useMutation, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
 import Map from "../map/Map";
+import CustomAlert from "../../CustomAlert/CustomAlert";
 
-const FormVehicle = () => {    
+const FormVehicle = () => {
   const {
     control,
     register,
@@ -21,14 +22,22 @@ const FormVehicle = () => {
     },
   });
 
+  // const [showAlert, setShowAlert] = useState(false)
+  // const handleCloseAlert = () => {
+  //   setShowAlert(false);
+  // };
+
   const onSubmit = (data) => {
-    const keywords = data.keywords?.split(/[,\s]+/)
-    .map((keyword) => keyword.trim())
-    .filter((keyword) => keyword !== '') || [];
-    const productData = { ...data, keywords };    
+    const keywords =
+      data.keywords
+        ?.split(',')
+        .map((keyword) => keyword.trim())
+        .filter((keyword) => keyword !== "") || [];
+    const productData = { ...data, keywords };
     mutation.mutate(productData);
-    reset()  
-    console.log(productData)
+    // setShowAlert(true);
+    alert("Tu vehículo se ha subido correctamente");
+    reset();
   };
 
   // console.log(errors)
@@ -45,74 +54,62 @@ const FormVehicle = () => {
         </label>
 
         <div className={styles.category}>
-              <label htmlFor="coches" className={styles.checkbox}>
-                <input
-                  id="coches"
-                  type="radio"
-                  value="coches"
-                  {...register("category", {required: "Selecciona una categoría" })}
-                ></input>
-                <span className="icon-coches"></span>
-                {/* Coche */}
-              </label>
-
-
-              <label htmlFor="motos" className={styles.checkbox}>
-                <input
-                  id="motos"
-                  type="radio"
-                  value="motos"
-                  {...register("category", {required: "Selecciona una categoría" })}
-                  ></input>
-                <span className="icon-motos"></span>
-                {/* Moto */}
-              </label>
-        </div>
-
-
-        {/* <Controller
+          <Controller
           name="category"
           control={control}
-          defaultValue={false}
           rules={{required: "Selecciona una categoría" }}
           render={({ field }) => (
             <div className={styles.category}>
-              <label htmlFor="coches" className={styles.checkbox}>
+              <label htmlFor="oches" className={styles.checkbox}>
                 <input
-                  id="coches"
+                  id="Coches"
                   type="radio"
                   {...field}
-                  value="coches"
+                  value="Coches"
+                  name='category'
+                  onChange={field.onChange}
                 ></input>
-                <span className="icon-sun"></span>
-                Coche
+                <span className="icon-coches"></span>
               </label>
 
-              <label htmlFor="motos" className={styles.checkbox}>
+              <label htmlFor="Motos" className={styles.checkbox}>
                 <input
-                  id="motos"
+                  id="Motos"
                   type="radio"
                   {...field}
-                  value="motos"
+                  value="Motos"
+                  name='category'
+                  onChange={field.onChange}
                   ></input>
-                <span className="icon-star-empty"></span>
-                Moto
+                <span className="icon-motos"></span>
               </label>
             </div>
           )}
-        /> */}
-        {errors.category && <p className={styles.error1}><span className="icon-warning1"></span>{errors.category.message}</p>}
+        />  
 
+        
+        </div>     
+        {errors.category && (
+          <p className={styles.error1}>
+            <span className="icon-warning1"></span>
+            {errors.category.message}
+          </p>
+        )}
 
         <label htmlFor="title" className={styles.labels}>
           ¿Qué ofreces?
         </label>
         <input
           placeholder="Dale un título a tu vehículo"
-          {...register("title", {required: "El título es obligatorio" })}
+          {...register("title", { required: "El título es obligatorio" })}
           className={styles.input}
         ></input>
-        {errors.title && <p className={styles.error}><span className="icon-warning1"></span>{errors.title.message}</p>}
+        {errors.title && (
+          <p className={styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.title.message}
+          </p>
+        )}
         <div className={styles.labelTriple}>
           <label htmlFor="brand" className={styles.labels}>
             Marca
@@ -127,26 +124,39 @@ const FormVehicle = () => {
         <div className={styles.vehicle}>
           <input
             placeholder="Ej. BMW"
-            {...register("brand", {required: "Este campo es obligatorio" })}
+            {...register("brand", { required: "Este campo es obligatorio" })}
             className={styles.inputVehicle}
           ></input>
           <input
             placeholder="Ej. S1"
-            {...register("model", {required: "Este campo es obligatorio"})}
+            {...register("model", { required: "Este campo es obligatorio" })}
             className={styles.inputVehicle}
           ></input>
           <input
             placeholder="De fabricación"
-            {...register("year", {required: "Este campo es obligatorio"})}
+            {...register("year", { required: "Este campo es obligatorio" })}
             className={styles.inputVehicle}
           ></input>
-          
-          
         </div>
         <div className={styles.error2}>
-            {errors.brand && <p><span className="icon-warning1"></span>{errors.brand.message}</p>}
-            {errors.model && <p><span className="icon-warning1"></span>{errors.model.message}</p>}
-            {errors.year && <p><span className="icon-warning1"></span>{errors.year.message}</p>}
+          {errors.brand && (
+            <p>
+              <span className="icon-warning1"></span>
+              {errors.brand.message}
+            </p>
+          )}
+          {errors.model && (
+            <p>
+              <span className="icon-warning1"></span>
+              {errors.model.message}
+            </p>
+          )}
+          {errors.year && (
+            <p>
+              <span className="icon-warning1"></span>
+              {errors.year.message}
+            </p>
+          )}
         </div>
 
         <div className={styles.title}>
@@ -180,11 +190,16 @@ const FormVehicle = () => {
           <input
             type="number"
             placeholder="Sé preciso"
-            {...register("km", {required: "Este campo es obligatorio" })}
+            {...register("km", { required: "Este campo es obligatorio" })}
             className={styles.inputVehicle}
           ></input>
         </div>
-        {errors.km && <p className={styles.error3}><span className="icon-warning1"></span>{errors.km.message}</p>}
+        {errors.km && (
+          <p className={styles.error3}>
+            <span className="icon-warning1"></span>
+            {errors.km.message}
+          </p>
+        )}
         <div>
           <label htmlFor="price" className={styles.labels}>
             Ponle precio
@@ -197,7 +212,7 @@ const FormVehicle = () => {
           <input
             type="number"
             min="1"
-            {...register("price", {required: "El precio es obligatorio" })}
+            {...register("price", { required: "El precio es obligatorio" })}
             placeholder="No te excedas..."
             className={styles.inputPrice}
           ></input>
@@ -208,19 +223,29 @@ const FormVehicle = () => {
             className={styles.inputKeywords}
           ></input>
         </div>
-        {errors.price && <p className={styles.error}><span className="icon-warning1"></span>{errors.price.message}</p>}
-
+        {errors.price && (
+          <p className={styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.price.message}
+          </p>
+        )}
 
         <label htmlFor="status" className={styles.labels}>
           Estado de tu vehículo
         </label>
         <div>
-          <select {...register("status")} className={styles.dropdown}>
+          <select {...register("status", {required: "Selecciona un estado"})} className={styles.dropdown}>
             <option value="">Selecciona un estado</option>
             <option value="En buen estado">En buen estado</option>
             <option value="Poco uso">Poco uso</option>
           </select>
         </div>
+        {errors.status && (
+            <p className={styles.error}>
+              <span className="icon-warning1"></span>
+              {errors.status.message}
+            </p>
+          )}
 
         <div>
           <label htmlFor="engine" className={styles.labels}>
@@ -236,7 +261,7 @@ const FormVehicle = () => {
               name="engine"
               control={control}
               defaultValue={false}
-              rules={{required: "Selecciona una opción" }}
+              rules={{ required: "Selecciona una opción" }}
               render={({ field }) => (
                 <div className={styles.engine}>
                   <label htmlFor="gasolina" className={styles.square}>
@@ -279,15 +304,15 @@ const FormVehicle = () => {
               name="shift"
               control={control}
               defaultValue={false}
-              rules={{required: "Selecciona una opción"}}
+              rules={{ required: "Selecciona una opción" }}
               render={({ field }) => (
                 <div className={styles.engine}>
-                  <label htmlFor="manual" className={styles.square}>
+                  <label htmlFor="Manual" className={styles.square}>
                     <input
                       id="manual"
                       type="radio"
                       {...field}
-                      value="manual"
+                      value="Manual"
                       name="shift"
                     ></input>
                     <span className="icon-cambio-manual"></span>
@@ -295,10 +320,10 @@ const FormVehicle = () => {
                   </label>
                   <label htmlFor="automatic" className={styles.square}>
                     <input
-                      id="automatic"
+                      id="Automático"
                       type="radio"
                       {...field}
-                      value="automatic"
+                      value="Automático"
                       name="shift"
                     ></input>
                     <span className="icon-cambio-automatico"></span>
@@ -309,9 +334,19 @@ const FormVehicle = () => {
             />
           </div>
           <div className={styles.error4}>
-              {errors.engine && <p><span className="icon-warning1"></span>{errors.engine.message}</p>}
-              {errors.shift && <p><span className="icon-warning1"></span>{errors.shift.message}</p>}
-            </div>
+            {errors.engine && (
+              <p>
+                <span className="icon-warning1"></span>
+                {errors.engine.message}
+              </p>
+            )}
+            {errors.shift && (
+              <p>
+                <span className="icon-warning1"></span>
+                {errors.shift.message}
+              </p>
+            )}
+          </div>
         </div>
         <label htmlFor="description" className={styles.labels}>
           ¿Cómo es tu vehículo?
@@ -319,17 +354,24 @@ const FormVehicle = () => {
         <textarea
           maxLength={500}
           placeholder="Describe el vehículo que deseas vender. Añade detalles como el modelo, color, kilometraje..."
-          {...register("description", {required: "La descripción es obligatoria" })}
+          {...register("description", {
+            required: "La descripción es obligatoria",
+          })}
           className={styles.textArea}
         />
-        {errors.description && <p className={styles.error}><span className="icon-warning1"></span>{errors.description.message}</p>}
+        {errors.description && (
+          <p className={styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.description.message}
+          </p>
+        )}
         <FormImages />
         <Map />
-        
-          <button type="submit" className={styles.formButton}>
-            Subir
-          </button>
-        
+
+        <button type="submit" className={styles.formButton}>
+          Subir
+        </button>
+        {/* {showAlert && <CustomAlert message="Tu vehículo se ha subido correctamente" onClose={handleCloseAlert}/>} */}
       </form>
     </>
   );

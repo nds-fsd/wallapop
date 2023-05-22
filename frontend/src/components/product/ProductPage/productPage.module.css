@@ -124,11 +124,9 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  line-height: 1em;
 }
 .price {
   color: var(--yellow-main);
-  font-size: 3rem;
   line-height: 0.1em;
 }
 
@@ -189,15 +187,46 @@
   color: #992921;
   cursor: pointer;
 }
-.houseType {
+.detailType {
   display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  height: 3rem;;
 }
 
-.houseDetail {
+.detailType2 {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  
+}
+.detail {
   border: 0.2em solid var(--blue-light);
   border-radius: 2rem;
   width: max-content;
-  padding: 0.4em 1em;
+  padding: 0.7em 1em;
 }
+
+
+.specialDetails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--blue-dark);
+  color: white;
+  border-radius: 2rem;
+  padding: 0 1em 0 1em;
+  gap: 1em;
+}
+
+.detailsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+
+
+

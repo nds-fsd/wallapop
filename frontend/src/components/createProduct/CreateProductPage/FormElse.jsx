@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./createProductPage.module.css";
 import { useForm } from "react-hook-form";
 import { postProduct, updateProduct } from "../../../utils/apiProducts";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
 import Map from "../map/Map";
-import { getCategories } from "../../../utils/apiCategories";
+import CustomAlert from "../../CustomAlert/CustomAlert";
 
 const FormElse = () => {
   const queryClient = useQueryClient(["product"]);
+
   const {
     register,
     handleSubmit,
@@ -21,20 +22,23 @@ const FormElse = () => {
     },
   });
 
+  const [showAlert, setShowAlert] = useState(false);
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
+
   const onSubmit = (data) => {
     const keywords =
       data.keywords
-        ?.split(/[,\s]+/)
+        ?.split(",")
         .map((keyword) => keyword.trim())
         .filter((keyword) => keyword !== "") || [];
     const productData = { ...data, keywords };
     mutation.mutate(productData);
-    reset()
+    // setShowAlert(true);
+    alert("Tu producto se ha subido correctamente");
+    reset();
   };
-
-  // const { data: categories } = useQuery(["category"], getCategories);
-  // console.log(categories);
- 
 
   return (
     <>
@@ -129,7 +133,10 @@ const FormElse = () => {
             <option value="Deporte y Ocio">Deporte y Ocio</option>
             <option value="Otros">Otros</option>
           </select>
-          <select {...register("status")} className={styles.dropdown}>
+          <select
+            {...register("status", { required: "Selecciona una estado" })}
+            className={styles.dropdown}
+          >
             <option value="">Selecciona un estado</option>
             <option value="Como nuevo">Como nuevo</option>
             <option value="En buen estado">En buen estado</option>
@@ -137,12 +144,21 @@ const FormElse = () => {
             <option value="Sin estrenar">Sin estrenar</option>
           </select>
         </div>
-        {errors.category && (
-          <p className={styles.error}>
-            <span className="icon-warning1"></span>
-            {errors.category.message}
-          </p>
-        )}
+        <div className={styles.status}>
+          {errors.category && (
+            <p className={styles.error}>
+              <span className="icon-warning1"></span>
+              {errors.category.message}
+            </p>
+          )}
+          {errors.status && (
+            <p className={styles.error}>
+              <span className="icon-warning1"></span>
+              {errors.status.message}
+            </p>
+          )}
+        </div>
+
         <label htmlFor="description" className={styles.labels}>
           ¿Cómo es tu producto?
         </label>
@@ -166,6 +182,12 @@ const FormElse = () => {
         <button type="submit" className={styles.formButton}>
           Subir
         </button>
+        {showAlert && (
+          <CustomAlert
+            message="Tu producto se ha subido correctamente"
+            onClose={handleCloseAlert}
+          />
+        )}
       </form>
     </>
   );

@@ -63,7 +63,7 @@ cursor: pointer;
 .title {
   color: var(--blue-dark);
   text-decoration: underline;
-  width: 17rem;
+  width: 16rem;
   line-height: 1.2em;
 }
 

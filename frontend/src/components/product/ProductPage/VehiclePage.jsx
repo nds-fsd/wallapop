@@ -4,24 +4,28 @@ import { useQuery } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
+import { getProductById } from "../../../utils/apiProducts";
 
-const VehiclePage = () => {
+const VehiclePage = ({ id }) => {
   const mockImages = [
     "https://picsum.photos/id/1/700/500",
     "https://picsum.photos/id/2/700/500",
     "https://picsum.photos/id/3/700/500",
   ];
 
+  // console.log("el id del vehiculo", id)
+
   const [isExpanded, setIsExpanded] = useState(false);
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
   };
 
-  const id = "644ebe96f1b76b31b761b454";
+  const { data, isLoading } = useQuery(["product", id], getProductById);
+  // const { data: user } = useQuery(["user", id], findUserByID);
+  // console.log(user)
 
-  // const {data, isLoading} = useQuery(['product', id], getProductById)
-  // const { data } = useQuery(["product", id], getProductByIdHarcodedVehicle);
-  // console.log(data);
+  console.log("el user", data.user)
+
 
   return (
     <>
@@ -34,10 +38,12 @@ const VehiclePage = () => {
             <button className={styles.chat}>CHAT</button>
           </div>
           {data && <Slider images={mockImages} data={data} />}
+          
           <div className={styles.details}>
             <div className={styles.priceContainer}>
               <h1 className={styles.price}>
-                {data && data.price.toLocaleString('es-ES', {useGrouping: true})}
+                {data &&
+                  data.price.toLocaleString("es-ES", { useGrouping: true })}
               </h1>
               <h2>EUR</h2>
             </div>
@@ -49,6 +55,21 @@ const VehiclePage = () => {
 
           <h2>{data && data.title}</h2>
           {data && <Keywords data={data} />}
+          
+          <div className={styles.detailType}>
+            <h5 className={styles.detail}>{data && data.brand}</h5>
+            <h5 className={styles.detail}>{data && data.model}</h5>
+            <h5 className={styles.detail}>{data && data.year}</h5>
+            <h5 className={styles.detail}>{data && data.doors} puertas</h5>
+            <h5 className={styles.detail}>{data && data.seats} asientos</h5>
+          </div>
+          <div className={styles.detailType2}>
+            <h5 className={styles.detail}>
+              {data.km.toLocaleString("es-ES", { useGrouping: true })} Km
+            </h5>
+            <h5 className={styles.detail}>{data && data.engine}</h5>
+            <h5 className={styles.detail}>{data && data.shift}</h5>
+          </div>
 
           <div className={styles.line}></div>
           <div className={styles.expandable}>

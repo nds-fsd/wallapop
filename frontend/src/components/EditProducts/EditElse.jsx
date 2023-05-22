@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./editProduct.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProductById, updateProduct } from "../../utils/apiProducts";
+import CustomAlert from "../CustomAlert/CustomAlert";
 
 const EditElse = ({ id }) => {
   console.log("el producto en el modal", id);
@@ -14,7 +15,7 @@ const EditElse = ({ id }) => {
     formState: { errors },
   } = useForm();
 
-  const { data } = useQuery(["product-updated", id], getProductById,{
+  const { data: product } = useQuery(["product-updated", id], getProductById,{
     onSuccess: (product) => {
       reset(product)
     }
@@ -24,27 +25,20 @@ const EditElse = ({ id }) => {
   const mutation = useMutation(updateProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
+      window.location.reload()
     },
   });
 
   const onSubmit = (product) => {
-    mutation.mutate(product);
-    alert("Los cambios se han guardado satisfactoriamente")
-
+    const keywords = product.keywords
+    ?.split(",")
+    .map((keyword) => [keyword.trim()])
+    .filter((keyword) => keyword[0] !== "");  
+    const productData = { ...product, keywords };
+    mutation.mutate(productData);
+    alert("Los cambios se han guardado satisfactoriamente");
   };
 
-  // const onSubmit = (product) => {
-  //   const keywords = product.keywords
-  //     ?.split(/[,\s]+/)
-  //     .map((keyword) => keyword.trim())
-  //     .filter((keyword) => keyword !== "");
-  //   const productData = { ...product, keywords: keywords || [] };
-  //   reset();
-  //   console.log("en el submit", productData);
-  //   mutation.mutate(productData);
-  // };
-
-  
 
   return (
     <>
@@ -106,6 +100,7 @@ const EditElse = ({ id }) => {
               placeholder="Crea tus palabras clave"
               {...register("keywords")}
               className={styles.inputTriple}
+              // defaultValue={product?.keywords?.join(", ") || ""}
             ></input>
 
             <select {...register("status")} className={styles.dropdown}>

@@ -29,12 +29,12 @@ const ModalContent = ({id}) => {
     case "Inmobiliaria":
       componentToRender = <EditHouse id={id}/>;
       break;
-    case "motos":
-    case "coches":
+    case "Motos":
+    case "Coches":
       componentToRender = <EditVehicle id={id}/>;
       break;
-    case "servicios":
-    case "empleo":
+    case "Servicios":
+    case "Empleo":
       componentToRender = <EditJob id={id} />;
       break;
     default:

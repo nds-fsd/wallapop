@@ -12,6 +12,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/home";
 import CreateProductPage from "./components/createProduct/CreateProductPage/CreateProductPage";
 import PrivateRoutes from "./components/privateRoutes";
+import ProdPage from "./components/product/ProductPage/ProdPage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -37,7 +38,9 @@ function App() {
             Aqui solo la declaro la ruta para que exista y poder acceder desde otro lado */}
               <Route path="/category" element={<ListCategory />}>
                 <Route path=":category" element={<ListProducts />} />
-                <Route path="product/:productid" element={<ProductPage />} />
+                {/* <Route path="product/:productid" element={<ProductPage />} /> */}
+                <Route path="product/:productid" element={<ProdPage />} />
+
               </Route>
               <Route path="/user" element={<PrivateRoutes />}>
                 <Route path="" element={<UserPage />} />

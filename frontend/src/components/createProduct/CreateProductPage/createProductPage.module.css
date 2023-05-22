@@ -23,36 +23,36 @@
   height: 7rem;
 }
 .labels {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 .labelKeywords {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
   position: relative;
   left: 16.7rem;
 }
 .labelStatus {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
   position: relative;
   left: 18.2rem;
 }
 
 .labelTriple {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
   display: flex;
   gap: 12rem;
 }
 .labelTriple2 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
   display: flex;
   gap: 11.5rem;
 }
 .labelShift {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
   position: relative;
   left: 20.5rem;
@@ -64,7 +64,7 @@
 }
 .inputVehicle {
   width: 12rem;
-  height: 2.3rem;
+  height: 2.2rem;
   border-radius: 0.5rem;
   border: 0.1em solid var(--yellow-main);
   position: relative;
@@ -132,7 +132,7 @@
 }
 .input {
   width: 43.5rem;
-  height: 2.3rem;
+  height: 2.1rem;
   border-radius: 0.5rem;
   border: 0.1em solid var(--yellow-main);
   position: relative;
@@ -147,7 +147,7 @@
 
 .inputPrice {
   width: 12rem;
-  height: 2.3rem;
+  height: 2.1rem;
   border-radius: 0.5rem;
   border: 0.1em solid var(--yellow-main);
   position: relative;
@@ -156,7 +156,7 @@
 }
 .inputKeywords {
   width: 19.7rem;
-  height: 2.3rem;
+  height: 2.1rem;
   border-radius: 0.5rem;
   border: 0.1em solid var(--yellow-main);
   position: relative;
@@ -171,7 +171,7 @@
 }
 .inputLand {
   width: 20.5rem;
-  height: 2.6rem;
+  height: 2.1rem;
   border-radius: 0.5rem;
   border: 0.1em solid var(--yellow-main);
   position: relative;
@@ -182,7 +182,7 @@
 
 .dropdown {
   width: 21.2rem;
-  height: 3rem;
+  height: 2.3rem;
   border-radius: 0.5rem;
   border: 0.1em solid var(--yellow-main);
   position: relative;
@@ -200,7 +200,7 @@
 }
 .textArea {
   width: 43.5rem;
-  height: 7rem;
+  height: 5rem;
   border-radius: 0.5rem;
   border: 0.1em solid var(--yellow-main);
   position: relative;
@@ -283,9 +283,7 @@
   background-color: white;
   color: var(--yellow-main);
   font-weight: bold;
-  top: 1em;
   cursor: pointer;
-  position: relative;
 }
 
 .formButton:hover {
@@ -350,4 +348,9 @@
 .error4 span {
   color: red;
   margin-right: 0.5em;
+}
+
+.status {
+  display: flex;
+  gap: 15rem;
 }

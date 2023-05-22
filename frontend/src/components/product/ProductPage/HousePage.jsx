@@ -4,8 +4,9 @@ import { useQuery } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
+import { getProductById } from "../../../utils/apiProducts";
 
-const HousePage = () => {
+const HousePage = ({ id }) => {
   const mockImages = [
     "https://picsum.photos/id/1/700/500",
     "https://picsum.photos/id/2/700/500",
@@ -17,11 +18,7 @@ const HousePage = () => {
     setIsExpanded(!isExpanded);
   };
 
-  const id = "64567f375b58e334d1dd118d";
-  // const id = "644796a9d7f98ce14c6ec067"
-
-  // const {data, isLoading} = useQuery(['product', id], getProductById)
-  // const { data } = useQuery(["product", id], getProductByIdHarcodedHouse);
+  const {data, isLoading} = useQuery(['product', id], getProductById)
 
   return (
     <>
@@ -34,11 +31,7 @@ const HousePage = () => {
             <button className={styles.chat}>CHAT</button>
           </div>
           {data && <Slider images={mockImages} data={data} />}
-          <div className={styles.houseType}>
-            <p className={styles.houseDetail}>{data && data.type}</p>
-            <p className={styles.houseDetail}>{data && data.rent}</p>
-            <p className={styles.houseDetail}>{data && data.land} m2</p>
-          </div>
+          
           <div className={styles.priceContainer}>
             <h1 className={styles.price}>
               {data && data.price.toLocaleString('es-ES', {useGrouping: true})}
@@ -46,7 +39,13 @@ const HousePage = () => {
             <h2>EUR</h2>
           </div>
           <h2 className={styles.detailsHouse}>{data && data.title}</h2>
+          <div className={styles.detailType}>
+            <h5 className={styles.detail}>{data && data.space}</h5>
+            <h5 className={styles.detail}>{data && data.rent}</h5>
+            <h5 className={styles.detail}>{data && data.land} m2</h5>
+          </div>
           {data && <Keywords data={data} />}
+          
           <div className={styles.line}></div>
           <div className={styles.expandable}>
             <h3>DESCRIPCIÓN DEL PRODUCTO</h3>

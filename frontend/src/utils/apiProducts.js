@@ -57,25 +57,10 @@ export const postProduct = (data) => {
 };
 
 
-// export const updateProduct = ({ id, data }) => {
-//   const token = JSON.parse(localStorage.getItem("user-session"));
-//   console.log("paso por la api de update", data)
-//   return api
-//   .patch(`/products/${id}`, data , {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   })
-//   .then((res) => res.data )
-//   .catch((error) => {
-//     console.log(error)
-//   });
-// };
-
 export const updateProduct = (product) => {
   const id = product._id
   const { token } = getUserToken()
-  console.log("paso por la api de update", product)
+  // console.log("paso por la api de update", product)
   return api
   .patch(`/products/${id}`, product , {
     headers: {
@@ -102,6 +87,7 @@ export const deleteProduct = (id) => {
     console.log(error)
   })
 }
+
 
 
 // export const getProductByIdHarcoded = () => {
