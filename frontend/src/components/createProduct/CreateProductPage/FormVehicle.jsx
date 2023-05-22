@@ -60,7 +60,7 @@ const FormVehicle = () => {
           rules={{required: "Selecciona una categoría" }}
           render={({ field }) => (
             <div className={styles.category}>
-              <label htmlFor="oches" className={styles.checkbox}>
+              <label htmlFor="Coches" className={styles.checkbox}>
                 <input
                   id="Coches"
                   type="radio"

@@ -85,8 +85,8 @@
 }
 
 .image {
-  width: 5.5rem;
-  height: 5.5rem;
+  width: 5rem;
+  height: 5rem;
   background-color: transparent;
   color: var(--blue-light);
   border-radius: 1rem;
@@ -112,12 +112,14 @@
 
 .error {
   display: flex;
-  gap: 8.5rem;
+  justify-content: flex-start;
+  gap: 8.7rem;
+  width: 34rem;
 }
 .error > p {
   color: red;
   font-size: 0.7em;
-  margin-top: -0.4rem;
+  margin-top: -0.2rem;
 }
 .error span {
   color: red;
@@ -126,28 +128,31 @@
 .error1 {
   display: flex;
   gap: 9.5rem;
+  justify-content: flex-start;
+  gap: 9.2rem;
+  width: 34rem;
 }
 .error1 > p {
   color: red;
   font-size: 0.7em;
-  margin-top: -0.4rem;
+  margin-top: -0.2rem;
 }
 .error1 span {
   color: red;
   margin-right: 0.5em;
 }
 
-/* .inputRegister, .select {
+.inputRegister, .select {
   width: 100%;
   padding: 5px;
   margin-bottom: 15px;
   border: none;
   border-radius: 4px;
   box-sizing: border-box;
-} */
+}
 
 /* styles for createUser page */
-/* .create-form {
+.create-form {
   display: block;
 }
 

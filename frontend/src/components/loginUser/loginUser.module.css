@@ -74,10 +74,11 @@
   color: white;
 }
 
+
+
 .error {
   display: flex;
-  margin-top: -1.7rem;
-  gap: 9.5rem;
+  gap: 9rem;
 }
 .error > p {
   color: red;
@@ -88,7 +89,7 @@
   color: red;
   margin-right: 0.5em;
 }
-.errorContainer {
+/* .errorContainer {
   color: red;
   display: flex;
   gap: 1rem;
@@ -98,4 +99,4 @@
 .errorContainer p {
   margin: 0;
   padding: 0;
-}
+} */
