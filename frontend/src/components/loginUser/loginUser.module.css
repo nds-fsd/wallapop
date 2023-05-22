@@ -35,7 +35,7 @@
 
 .formContainer {
   display: flex;
-  gap: 2.5rem;
+  gap: 1rem;
   flex-direction: column;
   justify-content: center;
   padding: 0 2.5rem 3rem;
@@ -87,4 +87,15 @@
 .error span {
   color: red;
   margin-right: 0.5em;
+}
+.errorContainer {
+  color: red;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-around;
+}
+
+.errorContainer p {
+  margin: 0;
+  padding: 0;
 }

@@ -7,9 +7,9 @@ export const getStorageObject = (key) => {
 };
 
 export const setStorageObject = (key, object) => {
-  if (object !== undefined) {
-    localStorage.setItem(key, JSON.stringify(object));
-  }
+  if(object !== undefined){
+  return localStorage.setItem(key, JSON.stringify(object));
+}
 };
 
 export const deleteStorageObject = (key) => {
@@ -32,10 +32,17 @@ export const getUserData = () => {
   return null;
 };
 
+export const setUserDataLocalStorage = (sessionData) => {
+  setStorageObject ("user", sessionData );
+}
+
 export const setUserSession = (sessionData) => {
+  console.log('esto es object', sessionData)
+
   setStorageObject("user-session", sessionData);
 };
 
 export const removeSession = () => {
   deleteStorageObject("user-session");
+  deleteStorageObject("user");
 };
