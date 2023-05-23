@@ -4,7 +4,6 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import CreateUserPage from "./components/createUser";
 import LoginPage from "./components/loginUser";
 import UserPage from "./components/user";
-import ProductPage from "./components/product/ProductPage/ProductPage";
 import Navbar from "./components/home/navbar";
 import ListCategory from "./components/category/listCategory/ListCategory";
 import ListProducts from "./components/product/listProduct/ListProducts";
@@ -14,6 +13,7 @@ import CreateProductPage from "./components/createProduct/CreateProductPage/Crea
 import PrivateRoutes from "./components/privateRoutes";
 import { AuthProvider } from "./context/authContext";
 import { ImageProvider } from "./context/imageContext";
+import ProdPage from "./components/product/ProductPage/ProdPage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -40,11 +40,13 @@ function App() {
               Aqui solo la declaro la ruta para que exista y poder acceder desde otro lado */}
                   <Route path="/category" element={<ListCategory />}>
                     <Route path=":category" element={<ListProducts />} />
-                    <Route
+                    {/* <Route path="product/:productid" element={<ProductPage />} /> */}
+                <Route
                       path="product/:productid"
-                      element={<ProductPage />}
+                      element={<ProdPage />}
                     />
-                  </Route>
+    
+              </Route>
                   <Route path="/user" element={<PrivateRoutes />}>
                     <Route path="" element={<UserPage />} />
                     <Route path="*" element={<UserPage />} />

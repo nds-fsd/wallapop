@@ -1,60 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./createProductPage.module.css";
 import { Controller, useForm } from "react-hook-form";
 import { postProduct } from "../../../utils/apiProducts";
 import { useMutation, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
 import Map from "../map/Map";
+import CustomAlert from "../../CustomAlert/CustomAlert";
 
 const FormHouse = () => {
   const {
     control,
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid },
+    reset,
+    formState: { errors },
   } = useForm();
-  const queryClient = useQueryClient();
+
+  const queryClient = useQueryClient(["product"]);
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
-      queryClient.invalidateQueries("product");
+      queryClient.invalidateQueries(["product"]);
     },
   });
 
-  const onSubmit = (productData) => {
+  // const [showAlert, setShowAlert] = useState(false)
+  // const handleCloseAlert = () => {
+  //   setShowAlert(false);
+  // };
+
+  const onSubmit = (data) => {
+    const keywords = data.keywords
+      .split(",")
+      .map((keyword) => keyword.trim())
+      .filter((keyword) => keyword !== "");
+    const productData = { ...data, keywords };
+    console.log("las keywords", keywords);
     mutation.mutate(productData);
-    console.log(productData);
+    alert("Tu inmueble se ha subido correctamente");
+    reset();
   };
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.sectionForm}>
-        <div className={styles.inmueblesTitle}>
-          <div className={styles.inmuebles}>
-            <h2>Información de tu inmueble</h2>
-            <div className={styles.inmuebles}>
-              {/* Este input controlorá que la categoría esté checkeada por defecto sin ser vista en pantalla */}
-              <Controller
-                name="category"
-                control={control}
-                defaultValue="inmobiliaria"
-                render={({ field }) => (
-                  <div>
-                    <label htmlFor="category"></label>
-                    <input
-                      id="inmobiliaria"
-                      type="checkbox"
-                      {...field}
-                      value="inmobiliaria"
-                      name="category"
-                    ></input>
-                  </div>
-                )}
-              />
-            </div>
-          </div>
-          <div className={styles.line2}></div>
+        <div className={styles.title}>
+          <h2>Información de tu inmueble</h2>
+          <div className={styles.line}></div>
         </div>
-
+        <div className={styles.inmuebles}>
+          {/* Este input controlorá que la categoría esté checkeada por defecto sin ser vista en pantalla */}
+          <Controller
+            name="category"
+            control={control}
+            defaultValue="Inmobiliaria"
+            render={({ field }) => (
+              <div>
+                <label htmlFor="category"></label>
+                <input
+                  id="Inmobiliaria"
+                  type="checkbox"
+                  {...field}
+                  value="Inmobiliaria"
+                  name="category"
+                ></input>
+              </div>
+            )}
+          />
+        </div>
         <label htmlFor="alquiler" className={styles.labels}>
           ¿Alquilas o vendes?
         </label>
@@ -62,42 +74,54 @@ const FormHouse = () => {
           name="rent"
           control={control}
           defaultValue={false}
+          rules={{ required: "Selecciona una opción" }}
           render={({ field }) => (
             <div className={styles.category}>
               <label htmlFor="alquiler" className={styles.checkbox}>
                 <input
-                  id="alquiler"
+                  id="Alquiler"
                   type="radio"
                   {...field}
-                  value="alquiler"
+                  value="Alquiler"
                   name="rent"
                 ></input>
-                <span className="icon-sun"></span>
-                Alquiler
+                <span className="icon-alquiler"></span>
               </label>
 
               <label htmlFor="venta" className={styles.checkbox}>
                 <input
-                  id="venta"
+                  id="Venta"
                   type="radio"
                   {...field}
-                  value="venta"
+                  value="Venta"
                   name="rent"
                 ></input>
-                <span className="icon-star-empty"></span>
-                Venta
+                <span className="icon-venta"></span>
               </label>
             </div>
           )}
         />
+        {errors.rent && (
+          <p className={styles.error1}>
+            <span className="icon-warning1"></span>
+            {errors.rent.message}
+          </p>
+        )}
+
         <label htmlFor="title" className={styles.labels}>
           ¿Qué ofreces?
         </label>
         <input
           placeholder="Dale un título a tu inmueble"
-          {...register("title")}
+          {...register("title", { required: "El título es obligatorio" })}
           className={styles.input}
         ></input>
+        {errors.title && (
+          <p className={styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.title.message}
+          </p>
+        )}
 
         <label htmlFor="space" className={styles.labels}>
           ¿De qué espacio se trata?
@@ -107,78 +131,85 @@ const FormHouse = () => {
             name="space"
             control={control}
             defaultValue={false}
+            rules={{ required: "Selecciona una opción" }}
             render={({ field }) => (
               <div className={styles.type}>
-                <label htmlFor="piso" className={styles.square}>
+                <label htmlFor="Piso" className={styles.square}>
                   <input
-                    id="piso"
+                    id="Piso"
                     type="radio"
                     {...field}
-                    value="piso"
+                    value="Piso"
                     name="space"
                   ></input>
-                  <span className="icon-star-empty"></span>
+                  <span className="icon-piso"></span>
                   Piso
                 </label>
-                <label htmlFor="casa" className={styles.square}>
+                <label htmlFor="Casa" className={styles.square}>
                   <input
-                    id="casa"
+                    id="Casa"
                     type="radio"
                     {...field}
-                    value="casa"
+                    value="Casa"
                     name="space"
                   ></input>
-                  <span className="icon-star-empty"></span>
+                  <span className="icon-casa"></span>
                   Casa
                 </label>
-                <label htmlFor="habitacion" className={styles.square}>
+                <label htmlFor="Habitación" className={styles.square}>
                   <input
-                    id="habitacion"
+                    id="Habitacion"
                     type="radio"
                     {...field}
-                    value="habitacion"
+                    value="Habitación"
                     name="space"
                   ></input>
-                  <span className="icon-star-empty"></span>
+                  <span className="icon-habitacion"></span>
                   Habitación
                 </label>
-                <label htmlFor="oficina" className={styles.square}>
+                <label htmlFor="Oficina" className={styles.square}>
                   <input
-                    id="oficina"
+                    id="Oficina"
                     type="radio"
                     {...field}
-                    value="oficina"
+                    value="Oficina"
                     name="space"
                   ></input>
-                  <span className="icon-star-empty"></span>
+                  <span className="icon-oficina"></span>
                   Oficina
                 </label>
-                <label htmlFor="garaje" className={styles.square}>
+                <label htmlFor="Garaje" className={styles.square}>
                   <input
-                    id="garaje"
+                    id="Garaje"
                     type="radio"
                     {...field}
-                    value="garaje"
+                    value="Garaje"
                     name="space"
                   ></input>
-                  <span className="icon-star-empty"></span>
+                  <span className="icon-garaje"></span>
                   Garaje
                 </label>
-                <label htmlFor="trastero" className={styles.square}>
+                <label htmlFor="Trastero" className={styles.square}>
                   <input
-                    id="trastero"
+                    id="Trastero"
                     type="radio"
                     {...field}
-                    value="trastero"
+                    value="Trastero"
                     name="space"
                   ></input>
-                  <span className="icon-star-empty"></span>
+                  <span className="icon-trastero"></span>
                   Trastero
                 </label>
               </div>
             )}
           />
         </div>
+        {errors.space && (
+          <p className={styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.space.message}
+          </p>
+        )}
 
         <div className={styles.labelDouble}>
           <label htmlFor="land" className={styles.labels}>
@@ -192,16 +223,30 @@ const FormHouse = () => {
           <input
             type="number"
             min="1"
-            {...register("land")}
+            {...register("land", { required: "Este campo es obligatorio" })}
             placeholder="En m2"
             className={styles.inputLand}
           ></input>
-          <select {...register("status")} className={styles.dropdown}>
+          <select {...register("status", {required: "Selecciona un estado"})} className={styles.dropdown}>
             <option value="">Selecciona un estado</option>
             <option value="Obra nueva">Obra nueva</option>
             <option value="En buen estado">En buen estado</option>
             <option value="A reformar">A reformar</option>
           </select>
+        </div>
+        <div className={styles.status}>
+          {errors.land && (
+            <p className={styles.error}>
+              <span className="icon-warning1"></span>
+              {errors.land.message}
+            </p>
+          )}
+          {errors.status && (
+            <p className={styles.error}>
+              <span className="icon-warning1"></span>
+              {errors.status.message}
+            </p>
+          )}
         </div>
 
         <div>
@@ -216,7 +261,7 @@ const FormHouse = () => {
           <input
             type="number"
             min="1"
-            {...register("price")}
+            {...register("price", { required: "El precio es obligatorio" })}
             placeholder="No te excedas..."
             className={styles.inputPrice}
           ></input>
@@ -227,6 +272,12 @@ const FormHouse = () => {
             className={styles.inputKeywords}
           ></input>
         </div>
+        {errors.price && (
+          <p className={styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.price.message}
+          </p>
+        )}
 
         <label htmlFor="description" className={styles.labels}>
           ¿Cómo es tu inmueble?
@@ -234,16 +285,24 @@ const FormHouse = () => {
         <textarea
           maxLength={500}
           placeholder="Describe los detalles más llamativos de tu espacio..."
-          {...register("description")}
+          {...register("description", {
+            required: "La descripción es obligatoria",
+          })}
           className={styles.textArea}
         ></textarea>
+        {errors.description && (
+          <p className={styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.description.message}
+          </p>
+        )}
         <FormImages />
         <Map />
-        <div className={styles.formButton}>
-          <button type="submit" disabled={!isValid || mutation.isLoading}>
-            Subir
-          </button>
-        </div>
+
+        <button type="submit" className={styles.formButton}>
+          Subir
+        </button>
+        {/* {showAlert && <CustomAlert message="Tu producto se ha subido correctamente" onClose={handleCloseAlert}/>} */}
       </form>
     </>
   );

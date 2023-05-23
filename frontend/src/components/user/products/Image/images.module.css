@@ -1,0 +1,26 @@
+.image {
+  border-radius: 0.7em;
+  width: 200px;
+  height: 150px;
+  border: 0.15em solid var(--yellow-main);
+}
+
+.noImage {
+  width: 200px;
+  height: 150px;
+  background-color: var(--blue-dark);
+  border-radius: 0.7em;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.imgList {
+  width: 7rem;
+  height: 5rem;
+  border: 0.15em solid var(--yellow-main);
+  border-radius: 0.7em;
+}

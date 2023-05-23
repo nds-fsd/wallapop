@@ -6,18 +6,19 @@ const productSchema = new Schema({
   price: { type: Number, required: true },
   images: { type: String },
   status: { type: String },
-  sold: { type: Boolean },
+  sold: { type: Boolean, default: false},
   booked: { type: Boolean },
   keywords: { type: Array },
   datePublication: { type: Date },
+  location: { type: String },
   // Para poder relacionar producto con users
-  user: [
+  user: 
     {
       type: Schema.Types.ObjectId,
       required: true,
       ref: "user",
     },
-  ],
+  
   // Para poder relacionar producto con categorias
   // ponemos el valor otros por defecto porque asi si no se especifica la categoria se crea el producto en la categoria otros
   categories: [
@@ -32,7 +33,7 @@ const productSchema = new Schema({
   // ESTO DE AQUI ABAJO IRA FUERA CUANDO SE TERMINE DE CAMBIAR LAS FUNCIONES
   // Y ESTEN PREPARADAS CON EL POPULATE
   category: { type: String },
-  rent: { type: String },
+  rent: { type: String  },
   space: { type: String },
   land: { type: Number },
   brand: { type: String },
@@ -40,9 +41,9 @@ const productSchema = new Schema({
   year: { type: Number },
   doors: { type: Number },
   seats: { type: Number },
-  km: { type: Number },
-  engine: { type: String },
-  shift: { type: String },
+  km: { type: Number},
+  engine: { type: String},
+  shift: { type: String},
 });
 
 module.exports = productSchema;

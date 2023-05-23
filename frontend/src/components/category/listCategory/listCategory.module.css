@@ -27,14 +27,16 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 15px;
-  font-size: 12px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  text-align: center;
+  color: white;
+  font-weight: bold;
   margin: 0 0 1em 1em;
   word-wrap: break-word;
   flex-shrink: 0;
   border-radius: 10px;
-  color: var(--blue-dark);
   text-decoration: none;
+  padding: 0 1em 0 1em;
 }
 
 .menu {

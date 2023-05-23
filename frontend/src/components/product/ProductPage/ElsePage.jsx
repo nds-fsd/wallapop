@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styles from "./productPage.module.css";
-import { getProductByIdHarcoded } from "../../../utils/apiProducts";
 import { useQuery } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
+import { getProductById } from "../../../utils/apiProducts";
 
-const ElsePage = () => {
+const ElsePage = ({ id }) => {
   const mockImages = [
     "https://picsum.photos/id/1/700/500",
     "https://picsum.photos/id/2/700/500",
@@ -20,11 +20,13 @@ const ElsePage = () => {
 
   //id de un servicio
   // const id = '644ebdbcf1b76b31b761b41c';
-  const id = "644eabfc231e21681d117b7b";
+  // const id = "644eabfc231e21681d117b7b";
 
-  // const {data, isLoading} = useQuery(['product', id], getProductById)
-  const { data } = useQuery(["product", id], getProductByIdHarcoded);
-  // console.log(data)
+  const {data, isLoading} = useQuery(['product', id], getProductById)
+  // const { data } = useQuery(["product", id], getProductByIdHarcoded);
+  console.log(data)
+
+ 
 
   return (
     <>
@@ -40,7 +42,7 @@ const ElsePage = () => {
           <div className={styles.details}>
             <div className={styles.priceContainer}>
               <h1 className={styles.price}>
-                {data && data.price.toLocaleString()}
+                {data && data.price.toLocaleString('es-ES', {useGrouping: true})}
               </h1>
               <h2>EUR</h2>
             </div>

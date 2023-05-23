@@ -29,7 +29,7 @@ const LoginPage = () => {
               placeholder="Email"
               className={styles.input}
               {...register("email", {
-                required: true,
+                required: "Email obligatorio",
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                   message: "Invalid email address",
@@ -41,9 +41,13 @@ const LoginPage = () => {
               placeholder="Password"
               className={styles.input}
               {...register("password", {
-                required: true,
+                required: "Contraseña obligatoria",
               })}
             />
+          </div>
+          <div className={styles.error}>
+            {errors.email && <p><span className="icon-warning1"></span>{errors.email.message}</p>}
+            {errors.password && <p><span className="icon-warning1"></span>{errors.password.message}</p>}
           </div>
           <div className={styles.errorContainer}>{loginError}</div>
           <button className={styles.formButton} data-test="boton" type="submit">

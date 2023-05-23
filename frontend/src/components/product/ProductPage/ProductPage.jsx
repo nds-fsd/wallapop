@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
-  getProductByIdHarcoded,
   getProductById,
 } from "../../../utils/apiProducts";
 import { useQuery, useMutation } from "react-query";
@@ -21,9 +20,9 @@ const ProductPage = () => {
   }
 
   const mockImages = [
-    "https://picsum.photos/id/1/700/500",
-    "https://picsum.photos/id/2/700/500",
-    "https://picsum.photos/id/3/700/500",
+    "https://picsum.photos/id/1/500/350",
+    "https://picsum.photos/id/2/500/350",
+    "https://picsum.photos/id/3/500/500",
   ];
 
   const [isExpanded, setIsExpanded] = useState(false);
@@ -59,7 +58,7 @@ const ProductPage = () => {
             <div className={styles.details}>
               <div className={styles.priceContainer}>
                 <h1 className={styles.price}>
-                  {data && data.price.toLocaleString()}
+                  {data && data.price.toLocaleString('es-ES', {useGrouping: true})}
                 </h1>
                 <h2>EUR</h2>
               </div>
