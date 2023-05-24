@@ -36,7 +36,6 @@ const ProductPublished = () => {
   const mutation = useMutation(deleteProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product", id]);
-      // window.location.reload()
     },
 
   });

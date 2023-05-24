@@ -5,6 +5,7 @@ import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
 import { getProductById } from "../../../utils/apiProducts";
+import { Link } from "react-router-dom";
 
 const HousePage = ({ id }) => {
   const mockImages = [
@@ -18,7 +19,13 @@ const HousePage = ({ id }) => {
     setIsExpanded(!isExpanded);
   };
 
-  const {data, isLoading} = useQuery(['product', id], getProductById)
+  const { data, isLoading } = useQuery(["product", id], getProductById);
+  const category = data.categories;
+
+  //Cuando todos los productos tengan asociado categories (title, logo...)
+  //junto con el div que tiene el Link
+  // const title = data?.categories[0].title
+  // console.log("el titulo de la categoria", title)
 
   return (
     <>
@@ -31,21 +38,41 @@ const HousePage = ({ id }) => {
             <button className={styles.chat}>CHAT</button>
           </div>
           {data && <Slider images={mockImages} data={data} />}
-          
-          <div className={styles.priceContainer}>
-            <h1 className={styles.price}>
-              {data && data.price.toLocaleString('es-ES', {useGrouping: true})}
-            </h1>
-            <h2>EUR</h2>
+
+          <div className={styles.details}>
+            <div className={styles.priceContainer}>
+              <h1 className={styles.price}>
+                {data &&
+                  data.price.toLocaleString("es-ES", { useGrouping: true })}
+              </h1>
+              <h2>EUR</h2>
+            </div>
+            <div className={styles.category}>
+              {/* <Link to={"/category/" + title} key={category._id}>
+                {data.categories &&
+                  category.map((cat) => <span className={cat.logo} />)}
+                <h3>{data && data.category}</h3>
+              </Link> */}
+            </div>
+            <div className={styles.category}>
+              {category && category.map((cat) => <span className={cat.logo} />)}
+              <h3>{data && data.category}</h3>
+            </div>
           </div>
+
           <h2 className={styles.detailsHouse}>{data && data.title}</h2>
-          <div className={styles.detailType}>
-            <h5 className={styles.detail}>{data && data.space}</h5>
-            <h5 className={styles.detail}>{data && data.rent}</h5>
-            <h5 className={styles.detail}>{data && data.land} m2</h5>
-          </div>
+          {data.space || data.rent || data.land ? (
+            <div className={styles.detailType}>
+              {data.space && <h5 className={styles.detail}>{data.space}</h5>}
+              {data.rent && <h5 className={styles.detail}>{data.rent}</h5>}
+              {data.land && <h5 className={styles.detail}>{data.land} m2</h5>}
+
+              <h5 className={styles.detail}>{data && data.land} m2</h5>
+            </div>
+          ) : null}
+
           {data && <Keywords data={data} />}
-          
+
           <div className={styles.line}></div>
           <div className={styles.expandable}>
             <h3>DESCRIPCIÓN DEL PRODUCTO</h3>

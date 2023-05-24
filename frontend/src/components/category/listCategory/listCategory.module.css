@@ -9,7 +9,7 @@
 }
 
 .carusel {
-  width: 70vw;
+  width: 81vw;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -18,15 +18,20 @@
   padding-top: 35px;
 }
 
+.item span:nth-child(1) {
+  font-size: 3.5rem;
+  color: white;
+}
+
+
 .item {
-  width: 135px;
-  height: 69px;
+  width: 11.5rem;
+  height: 6rem;
   background-color: var(--yellow-main);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 15px;
   font-size: 1em;
   text-align: center;
   color: white;
@@ -34,7 +39,7 @@
   margin: 0 0 1em 1em;
   word-wrap: break-word;
   flex-shrink: 0;
-  border-radius: 10px;
+  border-radius: 2rem;
   text-decoration: none;
   padding: 0 1em 0 1em;
 }
@@ -67,9 +72,10 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
+  background-color: var(--blue-dark);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #09c;
+  background: var(--blue-light);
 }

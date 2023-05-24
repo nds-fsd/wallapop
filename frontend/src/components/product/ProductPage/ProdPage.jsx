@@ -14,14 +14,14 @@ const ProdPage = () => {
   // console.log("el params", params)
   const { data, isLoading } = useQuery(["product", params.productid], getProductById)
   const id = params.productid
-  console.log("el paramsid", id)
+  // console.log("el paramsid", id)
   // console.log("en la pagina de producto", data)
 
   if (!data || !data.category) {
     return null; // Render nothing if data or category is undefined
   }
   const cat= data?.category
-  console.log("la  categoría del producto", data.category)
+  // console.log("la  categoría del producto", data.category)
 
   let componentToRender;
 

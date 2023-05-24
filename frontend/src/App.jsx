@@ -14,6 +14,7 @@ import PrivateRoutes from "./components/privateRoutes";
 import { AuthProvider } from "./context/authContext";
 import { ImageProvider } from "./context/imageContext";
 import ProdPage from "./components/product/ProductPage/ProdPage";
+import AllCategories from "./components/category/AllCategories/AllCategories";
 
 function App() {
   const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ function App() {
               en caso que no fuera asi no se mostraria
               Aqui solo la declaro la ruta para que exista y poder acceder desde otro lado */}
                   <Route path="/category" element={<ListCategory />}>
+                    {/* <Route path="/category/all-categories" element={<AllCategories />} /> */}
                     <Route path=":category" element={<ListProducts />} />
                     {/* <Route path="product/:productid" element={<ProductPage />} /> */}
                 <Route

@@ -5,6 +5,7 @@ import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
 import { getProductById } from "../../../utils/apiProducts";
+import { Link } from "react-router-dom";
 
 const VehiclePage = ({ id }) => {
   const mockImages = [
@@ -21,11 +22,12 @@ const VehiclePage = ({ id }) => {
   };
 
   const { data, isLoading } = useQuery(["product", id], getProductById);
-  // const { data: user } = useQuery(["user", id], findUserByID);
-  // console.log(user)
+  const category = data.categories;
 
-  console.log("el user", data.user)
-
+  //Cuando todos los productos tengan asociado categories (title, logo...)
+  //junto con el div que tiene el Link
+  // const title = data?.categories[0].title
+  // console.log("el titulo de la categoria", title)
 
   return (
     <>
@@ -38,38 +40,58 @@ const VehiclePage = ({ id }) => {
             <button className={styles.chat}>CHAT</button>
           </div>
           {data && <Slider images={mockImages} data={data} />}
-          
+
           <div className={styles.details}>
             <div className={styles.priceContainer}>
               <h1 className={styles.price}>
                 {data &&
-                  data.price.toLocaleString("es-ES", { useGrouping: true })}
+                  data.price?.toLocaleString("es-ES", {
+                    useGrouping: true,
+                  })}{" "}
               </h1>
               <h2>EUR</h2>
             </div>
+            {/* <div className={styles.category}>
+              <Link to={"/category/" + title} key={category._id}>
+                {data.categories &&
+                  category.map((cat) => <span className={cat.logo} />)}
+                <h3>{data && data.category}</h3>
+              </Link>
+            </div> */}
             <div className={styles.category}>
-              <span className="icon-display"></span>
+              {data.categories &&
+                category.map((cat) => <span className={cat.logo} />)}
               <h3>{data && data.category}</h3>
             </div>
           </div>
 
           <h2>{data && data.title}</h2>
           {data && <Keywords data={data} />}
-          
-          <div className={styles.detailType}>
-            <h5 className={styles.detail}>{data && data.brand}</h5>
-            <h5 className={styles.detail}>{data && data.model}</h5>
-            <h5 className={styles.detail}>{data && data.year}</h5>
-            <h5 className={styles.detail}>{data && data.doors} puertas</h5>
-            <h5 className={styles.detail}>{data && data.seats} asientos</h5>
-          </div>
-          <div className={styles.detailType2}>
-            <h5 className={styles.detail}>
-              {data.km.toLocaleString("es-ES", { useGrouping: true })} Km
-            </h5>
-            <h5 className={styles.detail}>{data && data.engine}</h5>
-            <h5 className={styles.detail}>{data && data.shift}</h5>
-          </div>
+
+          {data.brand || data.model || data.year || data.doors || data.seats ? (
+            <div className={styles.detailType}>
+              {data.brand && <h5 className={styles.detail}>{data.brand}</h5>}
+              {data.model && <h5 className={styles.detail}>{data.model}</h5>}
+              {data.year && <h5 className={styles.detail}>{data.year}</h5>}
+              {data.doors && (
+                <h5 className={styles.detail}>{data.doors} puertas</h5>
+              )}
+              {data.seats && (
+                <h5 className={styles.detail}>{data.seats} asientos</h5>
+              )}
+            </div>
+          ) : null}
+          {data.km || data.engine || data.shift ? (
+            <div className={styles.detailType2}>
+              {data.km && (
+                <h5 className={styles.detail}>
+                  {data.km.toLocaleString("es-ES", { useGrouping: true })} Km
+                </h5>
+              )}
+              {data.engine && <h5 className={styles.detail}>{data.engine}</h5>}
+              {data.shift && <h5 className={styles.detail}>{data.shift}</h5>}
+            </div>
+          ) : null}
 
           <div className={styles.line}></div>
           <div className={styles.expandable}>
