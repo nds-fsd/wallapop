@@ -20,7 +20,7 @@ const Images = ({ images }) => {
     )} */}
 
     
-    <img src={mockImages[0]}></img>
+    <img src={mockImages[0]} className={styles.image}></img>
    
     {images === 0 && (
       <div className={styles.noImage}>

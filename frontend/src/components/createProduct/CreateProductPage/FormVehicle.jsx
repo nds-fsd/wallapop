@@ -264,34 +264,34 @@ const FormVehicle = () => {
               rules={{ required: "Selecciona una opción" }}
               render={({ field }) => (
                 <div className={styles.engine}>
-                  <label htmlFor="gasolina" className={styles.square}>
+                  <label htmlFor="Gasolina" className={styles.square}>
                     <input
-                      id="gasolina"
+                      id="Gasolina"
                       type="radio"
                       {...field}
-                      value="gasolina"
+                      value="Gasolina"
                       name="engine"
                     ></input>
                     <span className="icon-gasolina"></span>
                     Gasolina
                   </label>
-                  <label htmlFor="diesel" className={styles.square}>
+                  <label htmlFor="Diesel" className={styles.square}>
                     <input
-                      id="diesel"
+                      id="Diesel"
                       type="radio"
                       {...field}
-                      value="diesel"
+                      value="Diesel"
                       name="engine"
                     ></input>
                     <span className="icon-diesel"></span>
                     Diesel
                   </label>
-                  <label htmlFor="electrico" className={styles.square}>
+                  <label htmlFor="Eléctrico" className={styles.square}>
                     <input
-                      id="electrico"
+                      id="Eléctrico"
                       type="radio"
                       {...field}
-                      value="electrico"
+                      value="Eléctrico"
                       name="engine"
                     ></input>
                     <span className="icon-electrico"></span>
@@ -309,7 +309,7 @@ const FormVehicle = () => {
                 <div className={styles.engine}>
                   <label htmlFor="Manual" className={styles.square}>
                     <input
-                      id="manual"
+                      id="Manual"
                       type="radio"
                       {...field}
                       value="Manual"
@@ -318,7 +318,7 @@ const FormVehicle = () => {
                     <span className="icon-cambio-manual"></span>
                     Manual
                   </label>
-                  <label htmlFor="automatic" className={styles.square}>
+                  <label htmlFor="Automático" className={styles.square}>
                     <input
                       id="Automático"
                       type="radio"

@@ -35,8 +35,10 @@ const ListCategory = () => {
                 to={"/category/" + category.title}
                 className={styles.item}
                 key={category._id}
-              >
+                >
+                <span className={category.logo} />
                 {category.title}
+            
               </NavLink>
             );
           })}

@@ -3,7 +3,10 @@ const categoryModel = require("../models/categoryModel");
 
 const getAllProducts = async (req, res) => {
   try {
-    const allProducts = await productModel.find().exec();
+    const allProducts = await productModel
+    .find()
+    .populate("categories")
+    .exec()
     res.status(200).json(allProducts);
   } catch (error) {
     res.status(500).json({ message: "Can't find products" });
@@ -13,7 +16,10 @@ const getAllProducts = async (req, res) => {
 const getProductById = async (req, res) => {
   const { id } = req.params;
   try {
-    const productById = await productModel.findById(id).exec();
+    const productById = await productModel.findById(id)
+      .populate("user")
+      .populate("categories")
+      .exec()
     res.status(200).json(productById);
   } catch (error) {
     res.status(404).json({ error: "Sorry, can't find this product" });

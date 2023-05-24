@@ -1,6 +1,16 @@
 import { api } from "./api";
 import { getUserData, getUserToken } from "./localStorage.utils";
 
+export const getAllProducts = () => {
+  console.log("paso por el get all")
+  return api
+  .get('/products/')
+  .then((res) => res.data)
+  .catch((error) => {
+    console.log(error)
+  })
+}
+
 export const getProductById = ({ queryKey }) => {
   return api
     .get(`/products/${queryKey[1]}`)
