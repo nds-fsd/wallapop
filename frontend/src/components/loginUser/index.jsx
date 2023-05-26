@@ -12,7 +12,7 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const { handleAuthLogin } = useContext(AuthContext);
+  const { handleAuthLogin, loginError } = useContext(AuthContext);
 
   return (
     <>
