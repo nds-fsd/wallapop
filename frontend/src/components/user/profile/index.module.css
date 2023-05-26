@@ -38,6 +38,11 @@
   color: var(--yellow-light);
   border-radius: 1rem;
 }
+.linksProfile :focus {
+  background-color: #28349e82;
+  color: var(--yellow-light);
+  border-radius: 1rem;
+}
 
 .linksProfile {
   display: flex;

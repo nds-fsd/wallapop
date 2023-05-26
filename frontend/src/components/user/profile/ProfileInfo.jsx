@@ -1,82 +1,92 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./ProfileInfo.module.css";
 import { AuthContext } from "../../../context/authContext";
-import cld from "../../../utils/cloudinary-client";
-import { useContext } from "react";
-import { deleteUser, getInfoUser, modUser } from "../../../utils/apiAuth";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { getInfoUser } from "../../../utils/apiAuth";
+import { useQuery, useQueryClient } from "react-query";
 import Spinner from "../../Spinner/Spinner";
 
 const ProfileInfo = () => {
   const queryClient = useQueryClient();
-  const { userData } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors, isValid },
   } = useForm();
-
-  const mutationMod = useMutation(modUser, {
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["user"],
-      });
-    },
-  });
-
-  const onSubmitMod = (productData) => {
-    console.log("PRODUCTDATA MODIFICAR", productData);
-    mutationMod.mutate(productData);
-  };
-
-  const mutationDelete = useMutation(deleteUser, {
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["user"],
-      });
-    },
-  });
-
-  const onSubmitDelete = (productData) => {
-    console.log("PRODUCTDATA DELETE", productData);
-    mutationDelete.mutate(productData);
-  };
 
   const { isLoading } = useQuery(["user"], getInfoUser, {
     onSuccess: (data) => {
+      //para rellenar los campos con la info del usuario
       reset(data);
+      console.log("GET USER", data);
     },
   });
 
-  if (!userData) return null;
+  const {
+    userData,
+    handlerAuthUpdate,
+    handlerAuthDelete,
+    showUploadWidget,
+    image,
+  } = useContext(AuthContext);
+
+  const handleOpenWidget = () => {
+    showUploadWidget.open();
+  };
+
+  // PARA EDITAR USER
+  const handleSubmitWrapperUpdate = (data) => {
+    console.log("VAS A EDITAR EL USUARIO", data);
+    handlerAuthUpdate({ ...data, photo: image });
+  };
+
+  // PARA ELIMINAR USER
+  const handleSubmitWrapperDelete = (data) => {
+    console.log("VAS A ELIMINAR EL USUARIO", data);
+    handlerAuthDelete({ ...data, photo: image });
+  };
+
   if (isLoading) {
     return <Spinner size="M" />;
   } else {
     return (
       <div className={styles.mainContainer}>
-        <div className={styles.contentContainer}>
+        {/* FORMULARIO IMAGENES */}
+        <form
+          className={styles.contentContainer}
+          onSubmit={handleSubmit(handleSubmitWrapperUpdate)}
+        >
           <h2> Imagenes de perfil</h2>
           <div className={styles.infoFoto}>
-            <h5> Foto principal </h5>
             <div className={styles.changePhotoContainer}>
               <div>
-                <img src={userData.photo} />{" "}
+                <img src={userData.photo} name="photo" />
+                <h4>{userData.photo}</h4>
               </div>
               <div className={styles.handleContainer}>
-                <button className={styles.formButton}>Cambiar Foto</button>
+                <button
+                  onClick={handleOpenWidget}
+                  className={styles.formButton}
+                >
+                  Cambiar Foto
+                </button>
+                <button
+                  type="sumbit"
+                  // onSubmit={handleSubmit(handleSubmitWrapperUpdate)}
+                >
+                  Guardar
+                </button>
                 <p>Aceptamos fotos formato .jpg y minimo 400 x 400 px</p>
               </div>
             </div>
           </div>
-        </div>
+        </form>
+
         <div className={styles.contentContainer}>
           <h2>Información pública</h2>
-          <form
-            className={styles.formUser}
-            onSubmit={handleSubmit(onSubmitMod, onSubmitDelete)}
-          >
+          {/* FORMULARIO DATOS */}
+          <form className={styles.formUser}>
             <label className={styles.labels}>
               Nombre
               <input
@@ -126,25 +136,25 @@ const ProfileInfo = () => {
                 {...register("phone")}
               />
             </label>
+          </form>
+          <div className={styles.divButtons}>
             <button
               className={styles.formButton}
               type="submit"
-              disabled={!isValid || mutationMod.isLoading}
-              onSubmit={handleSubmit(onSubmitMod)}
+              disabled={!isValid}
+              onClick={handleSubmit(handleSubmitWrapperUpdate)}
             >
               Guardar
             </button>
             <button
               className={styles.formButton2}
               type="submit"
-              disabled={!isValid || mutationDelete.isLoading}
-              onClick={handleSubmit(onSubmitDelete)}
+              disabled={!isValid}
+              onClick={handleSubmit(handleSubmitWrapperDelete)}
             >
-              {/* home */}
-              {/* borrar localStorage */}
               Eliminar
             </button>
-          </form>
+          </div>
         </div>
       </div>
     );

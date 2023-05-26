@@ -1,0 +1,113 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin-right: 1rem;
+  gap: 1rem;
+}
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  color: var(--blue-dark);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.handleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.labels {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.labelsBth {
+  font-size: 1.3rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+}
+.labelsGenero {
+  font-size: 1.3rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+}
+.formButton {
+  width: 13rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  border-radius: 2.5rem;
+  border: 0.15em solid var(--yellow-main);
+  background-color: var(--yellow-main);
+  background-color: white;
+  color: var(--yellow-main);
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 2em;
+}
+
+.formButton:hover {
+  background-color: var(--yellow-main);
+  color: white;
+}
+.formButton2 {
+  width: 13rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  padding: 0 1rem;
+  border-radius: 2.5rem;
+  border: 0.15em solid red;
+  background-color: red;
+  background-color: white;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 2em;
+}
+
+.formButton2:hover {
+  background-color: red;
+  color: white;
+}
+.inputProfile {
+  width: 12rem;
+  height: 2.3rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  padding-left: 1rem;
+  font-size: 1rem;
+  margin-left: 1rem;
+}
+
+.selectSexo {
+  width: 12rem;
+  height: 2.3rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  padding-left: 1rem;
+  font-size: 1rem;
+  margin-left: 1rem;
+}
+
+.divButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.formPersonal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}
+
+.styleButton {
+  display: flex;
+  justify-content: center;
+}

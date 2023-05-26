@@ -13,7 +13,6 @@ import Home from "./components/home";
 import CreateProductPage from "./components/createProduct/CreateProductPage/CreateProductPage";
 import PrivateRoutes from "./components/private-routes";
 import { AuthProvider } from "./context/authContext";
-import { ImageProvider } from "./context/imageContext";
 
 function App() {
   const queryClient = new QueryClient();
@@ -21,40 +20,35 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <ImageProvider>
-          <AuthProvider>
+        <AuthProvider>
+          <div>
+            <Navbar />
             <div>
-              <Navbar />
-              <div>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/login" element={<LoginPage />} />
-                  <Route path="/register" element={<CreateUserPage />} />
-                  <Route
-                    path="/products/newproduct/*"
-                    element={<CreateProductPage />}
-                  />
-                  {/* creo la ruta para poder acceder a las categorias desde otro sitio y la lista de productos 
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<CreateUserPage />} />
+                <Route
+                  path="/products/newproduct/*"
+                  element={<CreateProductPage />}
+                />
+                {/* creo la ruta para poder acceder a las categorias desde otro sitio y la lista de productos 
               Lo creo dentro del routs sin mostrarlo porque asi por mucho que cambie de categoria sigue mostrandose la navBar arriba
               en caso que no fuera asi no se mostraria
               Aqui solo la declaro la ruta para que exista y poder acceder desde otro lado */}
-                  <Route path="/category" element={<ListCategory />}>
-                    <Route path=":category" element={<ListProducts />} />
-                    <Route
-                      path="product/:productid"
-                      element={<ProductPage />}
-                    />
-                  </Route>
-                  <Route path="/user" element={<PrivateRoutes />}>
-                    <Route path="" element={<UserPage />} />
-                    <Route path="*" element={<UserPage />} />
-                  </Route>
-                </Routes>
-              </div>
+                <Route path="/category" element={<ListCategory />}>
+                  <Route path=":category" element={<ListProducts />} />
+                  <Route path="product/:productid" element={<ProductPage />} />
+                </Route>
+                <Route path="/user" element={<PrivateRoutes />}>
+                  <Route path="" element={<UserPage />} />
+                  <Route path="*" element={<UserPage />} />
+                </Route>
+              </Routes>
             </div>
-            <ReactQueryDevtools initialIsOpen={false} />
-          </AuthProvider>
-        </ImageProvider>
+          </div>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </AuthProvider>
       </QueryClientProvider>
     </>
   );

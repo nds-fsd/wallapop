@@ -27,7 +27,7 @@ const userLogin = async (req, res) => {
         email: foundUser.email,
         name: foundUser.name,
         id: foundUser._id,
-        photo: foundUser.photo
+        photo: foundUser.photo,
       },
     });
   } catch (err) {
@@ -66,7 +66,7 @@ const userRegister = async (req, res) => {
             email: savedUser.email,
             name: savedUser.name,
             id: savedUser._id,
-            photo: savedUser.photo
+            photo: savedUser.photo,
           },
         });
       }
@@ -88,7 +88,7 @@ const findUserByID = async (req, res) => {
 
 const modifyUserByID = async (req, res) => {
   const user = await userModel.findByIdAndUpdate(req.params.id, req.body);
-  console.log("user", user);
+  console.log("CONTROLLER USER PATCH", user);
   if (!user) {
     res.status(404).json({ error: { id: "Sorry cant find that!" } });
   } else {
