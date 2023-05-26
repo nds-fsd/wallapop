@@ -37,22 +37,19 @@ function App() {
               Lo creo dentro del routs sin mostrarlo porque asi por mucho que cambie de categoria sigue mostrandose la navBar arriba
               en caso que no fuera asi no se mostraria
               Aqui solo la declaro la ruta para que exista y poder acceder desde otro lado */}
-                  <Route path="/category" element={<ListCategory />}>
-                    <Route path=":category" element={<ListProducts />} />
-                    <Route
-                      path="product/:productid"
-                      element={<ProductPage />}
-                    />
-                  </Route>
-                  <Route path="/user" element={<PrivateRoutes />}>
-                    <Route path="" element={<UserPage />} />
-                    <Route path="*" element={<UserPage />} />
-                  </Route>
-                </Routes>
-              </div>
+                <Route path="/category" element={<ListCategory />}>
+                  <Route path=":category" element={<ListProducts />} />
+                  <Route path="product/:productid" element={<ProdPage />} />
+                </Route>
+                <Route path="/user" element={<PrivateRoutes />}>
+                  <Route path="" element={<UserPage />} />
+                  <Route path="*" element={<UserPage />} />
+                </Route>
+              </Routes>
             </div>
-            <ReactQueryDevtools initialIsOpen={false} />
-          </AuthProvider>
+          </div>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </AuthProvider>
       </QueryClientProvider>
     </>
   );

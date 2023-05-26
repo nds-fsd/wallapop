@@ -36,7 +36,7 @@ const Login = () => {
           </Link>
         </div>
         <div className={styles.createProductButton}>
-          <Link to="/products/newproduct">SUBIR UN PRODUCTO </Link>
+          <Link to="/products/newproduct/algo-que-no-utilizo">SUBIR UN PRODUCTO </Link>
         </div>
       </div>
     </nav>
