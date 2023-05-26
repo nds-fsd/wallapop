@@ -67,7 +67,7 @@ const FormHouse = () => {
             )}
           />
         </div>
-        <label htmlFor="alquiler" className={styles.labels}>
+        <label htmlFor="Alquiler" className={styles.labels}>
           ¿Alquilas o vendes?
         </label>
         <Controller
@@ -77,7 +77,7 @@ const FormHouse = () => {
           rules={{ required: "Selecciona una opción" }}
           render={({ field }) => (
             <div className={styles.category}>
-              <label htmlFor="alquiler" className={styles.checkbox}>
+              <label htmlFor="Alquiler" className={styles.checkbox}>
                 <input
                   id="Alquiler"
                   type="radio"
@@ -88,7 +88,7 @@ const FormHouse = () => {
                 <span className="icon-alquiler"></span>
               </label>
 
-              <label htmlFor="venta" className={styles.checkbox}>
+              <label htmlFor="Venta" className={styles.checkbox}>
                 <input
                   id="Venta"
                   type="radio"
@@ -158,7 +158,7 @@ const FormHouse = () => {
                 </label>
                 <label htmlFor="Habitación" className={styles.square}>
                   <input
-                    id="Habitacion"
+                    id="Habitación"
                     type="radio"
                     {...field}
                     value="Habitación"
