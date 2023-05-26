@@ -43,8 +43,13 @@ const ProfileInfo = () => {
 
   // PARA ELIMINAR USER
   const handleSubmitWrapperDelete = (data) => {
-    console.log("VAS A ELIMINAR EL USUARIO", data);
-    handlerAuthDelete({ ...data });
+    const shouldDelete = window.confirm(
+      "Estás a punto de borrar este producto. ¿Deseas continuar?"
+    );
+    if (shouldDelete) {
+      console.log("VAS A ELIMINAR EL USUARIO", data);
+      handlerAuthDelete({ ...data });
+    }
   };
 
   if (isLoading) {
@@ -58,9 +63,7 @@ const ProfileInfo = () => {
               <h2> Imagenes de perfil</h2>
               <div className={styles.infoFoto}>
                 <div className={styles.changePhotoContainer}>
-                  <div>
-                    <img src={userData.photo} name="photo" />
-                  </div>
+                  <img src={userData.photo} name="photo" />
                   <div className={styles.handleContainer}>
                     <button
                       onClick={handleOpenWidget}
@@ -68,7 +71,6 @@ const ProfileInfo = () => {
                     >
                       Cambiar Foto
                     </button>
-                    {/* <p>Aceptamos fotos formato .jpg y minimo 400 x 400 px</p> */}
                   </div>
                 </div>
               </div>
@@ -81,15 +83,11 @@ const ProfileInfo = () => {
                   Nombre
                   <input
                     className={styles.inputProfile}
-                    // placeholder="Nombre"
                     {...register("name", {
                       required: true,
                     })}
                   />
                   {errors.name && <span>This field is required</span>}
-                  {/* {errors.name && errors.name.type === "required" && (
-                <span role="alert">This is required</span>
-              )} */}
                 </label>
                 <label className={styles.labels}>
                   Apellido
@@ -122,6 +120,7 @@ const ProfileInfo = () => {
               </form>
             </div>
           </div>
+          {/* DIV BOTONES */}
           <div className={styles.divButtons}>
             <button
               className={styles.formButton}

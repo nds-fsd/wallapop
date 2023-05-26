@@ -31,6 +31,7 @@
   color: var(--blue-dark);
   padding: 1rem;
   border-radius: 1rem;
+  align-items: center;
 }
 
 .mainContainer {
@@ -41,6 +42,12 @@
   gap: 1rem;
 }
 
+.changePhotoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .changePhotoContainer img {
   width: 10rem;
   height: 10rem;
@@ -117,7 +124,6 @@
   height: 2.3rem;
   border-radius: 0.5rem;
   border: 0.1em solid var(--yellow-main);
-  position: relative;
   padding-left: 1rem;
   font-size: 1rem;
   margin-left: 1rem;

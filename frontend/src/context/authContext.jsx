@@ -23,88 +23,84 @@ export const AuthProvider = ({ children }) => {
     onSuccess: (data) => {
       //para rellenar los campos con la info del usuario
       setUserData(data);
-      console.log("GET USER", data);
     },
   });
-  console.log("UDER :::::::::", infoUser);
 
   const [image, setImage] = useState("");
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
 
-  const login = useMutation(["user"], loginUser);
-  const register = useMutation(["user"], createUser);
-  const update = useMutation({
-    mutationFn: modUser,
+  const login = useMutation({
+    mutationFn: loginUser,
     onSuccess: (data) => {
       setUserSession(data.token);
       setUserDataLocalStorage(data.user);
       queryClient.invalidateQueries({
         queryKey: ["user"],
       });
+      navigate("/");
     },
   });
 
-  const userDelete = useMutation(["user"], deleteUser);
+  const register = useMutation({
+    mutationFn: createUser,
+    onSuccess: (data) => {
+      setUserSession(data.token);
+      setUserDataLocalStorage(data.user);
+      queryClient.invalidateQueries({
+        queryKey: ["user"],
+      });
+      navigate("/");
+    },
+  });
+
+  const update = useMutation({
+    mutationFn: modUser,
+    onSuccess: (data) => {
+      setUserSession(data.token);
+      setUserDataLocalStorage(data.user);
+      // haccemos el invalid para avisar que hay un cambio
+      queryClient.invalidateQueries({
+        queryKey: ["user"],
+      });
+    },
+  });
+
+  const userDelete = useMutation({
+    mutationFn: deleteUser,
+    onSuccess: (data) => {
+      setUserSession(data.token);
+      setUserDataLocalStorage(data.user);
+      queryClient.invalidateQueries({
+        queryKey: ["user"],
+      });
+      navigate("/");
+    },
+  });
 
   // FUNCION LOGIN
   const handleAuthLogin = (data) => {
     console.log("HANDLEAUTH LOGIN", data);
-    login.mutate(data, {
-      onSuccess(data) {
-        setUserSession(data.token);
-        setUserData(data);
-        setUserDataLocalStorage(data.user);
-        navigate("/");
-      },
-    });
+    login.mutate(data);
   };
 
   // FUNCION REGISTRO
   const handleAuthRegister = (data) => {
     console.log("HANDLEAUTH REGISTER", data);
-    register.mutate(data, {
-      onSuccess(data) {
-        setUserSession(data.token);
-        setUserData(data);
-        setUserDataLocalStorage(data.user);
-        navigate("/");
-      },
-    });
+    register.mutate(data);
   };
 
   // FUNCION MODIFICAR
   const handlerAuthUpdate = (data) => {
     console.log("HANDLEAUTH MODIFICAR", data);
     update.mutate(data);
-    // onSuccess(data) {
-    //   console.log("AAAAAAAAAAAAAAAAAAAA");
-    //   setUserSession(data.token);
-    //   setUserData(data);
-    //   setUserDataLocalStorage(data.user);
-    //   //hay que invalidar la query para que actualize
-    //   queryClient.invalidateQueries({
-    //     queryKey: ["user"],
-    //   });
-    // },
-    // });
   };
 
   // FUNCION DELETE
   const handlerAuthDelete = (data) => {
     // windows alert para avisar
     console.log("HANDLEAUTH DELETE", data);
-    userDelete.mutate(data, {
-      onSuccess(data) {
-        setUserSession(data.token);
-        setUserData(data);
-        setUserDataLocalStorage(data.user);
-        queryClient.invalidateQueries({
-          queryKey: ["user"],
-        });
-        navigate("/");
-      },
-    });
+    userDelete.mutate(data);
   };
 
   const handleLogout = () => {
@@ -166,5 +162,3 @@ export const AuthProvider = ({ children }) => {
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };
-
-// https://res.cloudinary.com/dvogntdp2/image/upload/v1684953829/u6vpi2v1ma8d6s8yta8u.gif
