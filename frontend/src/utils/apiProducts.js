@@ -62,7 +62,11 @@ export const postProduct = (data) => {
     .post(`/products/newProduct/${id}`, data)
     .then((res) => res.data)
     .catch((error) => {
-      console.log(error);
+      console.log(error)
+      return {
+        error:
+          "Sorry, we couldn't post your product.",
+      };
     });
 };
 

@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/authContext";
-import { ImageContext } from "../../context/imageContext";
 import styles from "./createUser.module.css";
 
 const CreateUserPage = () => {
@@ -12,15 +11,15 @@ const CreateUserPage = () => {
     formState: { errors },
   } = useForm();
 
-  const { handleAuth, registerError } = useContext(AuthContext);
-  const { showUploadWidget, image } = useContext(ImageContext);
+  const { handleAuthRegister, showUploadWidget, image } =
+    useContext(AuthContext);
 
   const handleOpenWidget = () => {
     showUploadWidget.open();
   };
 
   const handleSubmitWrapper = (data) => {
-    handleAuth({ ...data, photo: image });
+    handleAuthRegister({ ...data, photo: image });
   };
 
   return (

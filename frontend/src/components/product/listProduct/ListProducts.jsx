@@ -20,8 +20,8 @@ const ListProducts = () => {
       <h1>{params.category}</h1>
       {isLoading && (
         <div>
-          {/* <Spinner /> */}
-          <h1>Cargando</h1>
+          <Spinner />
+          {/* <h1>Cargando</h1> */}
         </div>
       )}
       <div className={styles.carusel}>

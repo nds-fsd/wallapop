@@ -12,7 +12,7 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const { handleAuth, loginError } = useContext(AuthContext);
+  const { handleAuthLogin, loginError } = useContext(AuthContext);
 
   return (
     <>
@@ -20,7 +20,7 @@ const LoginPage = () => {
         <div>{getUserToken() && <Navigate to="/" />}</div>
         <h1>Inicia Sesión</h1>
         <form
-          onSubmit={handleSubmit(handleAuth)}
+          onSubmit={handleSubmit(handleAuthLogin)}
           className={styles.formContainer}
         >
           <div className={styles.register}>
