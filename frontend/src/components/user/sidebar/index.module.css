@@ -17,6 +17,12 @@
   border-radius: 1rem;
   box-shadow: 2px 2px 4px 0.5px #0000001a;
 }
+.sideBar :focus {
+  background-color: #28349e82;
+  color: var(--yellow-light);
+  border-radius: 1rem;
+  box-shadow: 2px 2px 4px 0.5px #0000001a;
+}
 
 .sideBar a {
   text-decoration: none;
@@ -38,7 +44,7 @@
 .profileLink {
   display: flex;
   flex-direction: row;
-
+  align-items: center;
   font-weight: bolder;
   padding-left: 0;
 }

@@ -1,14 +1,5 @@
-import { useState } from "react";
 import { api } from "./api";
-
-export const loginUser = (user) => {
-
-  return api
-    .post("/user/login", user)
-    // .then((res) => res.data)
-    // .catch((e) => {
-    //   console.log(e.response.data.error)});
-};
+import { deleteStorageObject } from "./localStorage.utils";
 
 export const createUser = (user) => {
   return api
@@ -17,4 +8,54 @@ export const createUser = (user) => {
     .catch((e) => console.log(e));
 };
 
+export const loginUser = (user) => {
+  return api
+    .post("/user/login", user)
+    .then((res) => res.data)
+    .catch((e) => console.log(e));
+};
 
+export const getInfoUser = (user) => {
+  const userId = localStorage.getItem("user");
+  const id = JSON.parse(userId).id;
+  return api
+    .get(`/user/${id}`, user)
+    .then((res) => res.data)
+    .catch((e) => console.log(e));
+};
+
+export const modUser = (user) => {
+  console.log("HOLA USER QUE TAL?", user);
+  const token = JSON.parse(localStorage.getItem("user-session"));
+  const userId = localStorage.getItem("user");
+  const id = JSON.parse(userId).id;
+  return api
+    .patch(`/user/${id}`, user, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data)
+    .catch((e) => console.log(e));
+};
+
+export const deleteUser = (user) => {
+  console.log("VAMOS A ELIMINAR EL USUARIO");
+  const token = JSON.parse(localStorage.getItem("user-session"));
+  const userId = localStorage.getItem("user");
+  const id = JSON.parse(userId).id;
+  return api
+    .delete(`/user/${id}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      //eliminamos el user-session para borrar los datos del usuario
+      deleteStorageObject("user-session"),
+        deleteStorageObject("user"),
+        res.data;
+    })
+    .catch((e) => console.log(e))
+    .finally(console.log("ADEU hasta la proxima"));
+};

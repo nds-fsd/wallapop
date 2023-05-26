@@ -2,5 +2,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+}
+
+.small{
+  height: 150px;
+  width: 150px;
+}
+.medium{
+  height: 350px;
+  width: 350px;
+}
+.large{
+  height: 600px;
+  width: 600px;
 }

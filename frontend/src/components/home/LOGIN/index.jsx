@@ -29,14 +29,14 @@ const Login = () => {
           <TbMessages /> BUZÓN{" "}
         </Link>
         <div className={styles.tuButton}>
-          <Link to="/user">
+          <Link to="/user/profile/info">
             {" "}
             <img src={userData.photo} />
             TÚ
           </Link>
         </div>
         <div className={styles.createProductButton}>
-          <Link to="/products/newproduct">SUBIR UN PRODUCTO </Link>
+          <Link to="/products/newproduct/algo-que-no-utilizo">SUBIR UN PRODUCTO </Link>
         </div>
       </div>
     </nav>

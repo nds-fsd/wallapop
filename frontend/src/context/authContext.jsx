@@ -1,65 +1,106 @@
-import { useMutation } from "react-query";
+import { createContext, useEffect, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { createUser, loginUser } from "../utils/apiAuth";
 import {
-  getUserData,
+  createUser,
+  loginUser,
+  modUser,
+  deleteUser,
+  getInfoUser,
+} from "../utils/apiAuth";
+import {
   removeSession,
   setUserDataLocalStorage,
   setUserSession,
 } from "../utils/localStorage.utils";
 
-import { createContext, useEffect, useState } from "react";
-
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [userData, setUserData] = useState(null);
-  const [loginError, setLoginError] = useState(null);
-  const [registerError, setRegisterError] = useState(null);
+  const queryClient = useQueryClient();
 
+  const infoUser = useQuery(["user"], getInfoUser, {
+    onSuccess: (data) => {
+      //para rellenar los campos con la info del usuario
+      setUserData(data);
+    },
+  });
+
+  const [image, setImage] = useState("");
+  const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
 
   const login = useMutation({
-    mutationFn: (data) => loginUser(data),
+    mutationFn: loginUser,
     onSuccess: (data) => {
-      setUserSession(data.data.token);
-      setUserData(data.data);
-      setUserDataLocalStorage(data.data.user);
+      setUserSession(data.token);
+      setUserDataLocalStorage(data.user);
+      queryClient.invalidateQueries({
+        queryKey: ["user"],
+      });
       navigate("/");
-    },
-    onError: (e) => {
-      setLoginError(
-        e.response.data.error.login ||
-          e.response.data.error.password ||
-          e.response.data.error.email ||
-          e.response.data.error.register
-      );
     },
   });
 
   const register = useMutation({
-    mutationFn: (data) => createUser(data),
+    mutationFn: createUser,
     onSuccess: (data) => {
       setUserSession(data.token);
-      setUserData(data.user);
       setUserDataLocalStorage(data.user);
+      queryClient.invalidateQueries({
+        queryKey: ["user"],
+      });
       navigate("/");
-    },
-    onError: (e) => {
-      console.log("register error", e.response.data.error.register);
     },
   });
 
-  useEffect(() => {
-    setUserData(getUserData);
-  }, []);
+  const update = useMutation({
+    mutationFn: modUser,
+    onSuccess: (data) => {
+      setUserSession(data.token);
+      setUserDataLocalStorage(data.user);
+      // haccemos el invalid para avisar que hay un cambio
+      queryClient.invalidateQueries({
+        queryKey: ["user"],
+      });
+    },
+  });
 
-  const handleAuth = (data) => {
-    if (!data.phone) {
-      login.mutate(data);
-    } else {
-      register.mutate(data);
-    }
+  const userDelete = useMutation({
+    mutationFn: deleteUser,
+    onSuccess: (data) => {
+      setUserSession(data.token);
+      setUserDataLocalStorage(data.user);
+      queryClient.invalidateQueries({
+        queryKey: ["user"],
+      });
+      navigate("/");
+    },
+  });
+
+  // FUNCION LOGIN
+  const handleAuthLogin = (data) => {
+    console.log("HANDLEAUTH LOGIN", data);
+    login.mutate(data);
+  };
+
+  // FUNCION REGISTRO
+  const handleAuthRegister = (data) => {
+    console.log("HANDLEAUTH REGISTER", data);
+    register.mutate(data);
+  };
+
+  // FUNCION MODIFICAR
+  const handlerAuthUpdate = (data) => {
+    console.log("HANDLEAUTH MODIFICAR", data);
+    update.mutate(data);
+  };
+
+  // FUNCION DELETE
+  const handlerAuthDelete = (data) => {
+    // windows alert para avisar
+    console.log("HANDLEAUTH DELETE", data);
+    userDelete.mutate(data);
   };
 
   const handleLogout = () => {
@@ -67,12 +108,57 @@ export const AuthProvider = ({ children }) => {
     setUserData(null);
     navigate("/");
   };
+
+  //PARA QUE SE ABRA EL CLAUDINARY Y CARGAR IMAGEN
+  const showUploadWidget = cloudinary.createUploadWidget(
+    {
+      cloudName: "dvogntdp2",
+      uploadPreset: "kysnseyx",
+      sources: ["local", "url", "image_search", "google_drive"],
+      googleApiKey: "<image_search_google_api_key>",
+      showAdvancedOptions: true,
+      cropping: true,
+      multiple: false,
+      defaultSource: "local",
+      styles: {
+        palette: {
+          window: "#FFFFFF",
+          windowBorder: "#90A0B3",
+          tabIcon: "#EBA905",
+          menuIcons: "#5A616A",
+          textDark: "#000000",
+          textLight: "#FFFFFF",
+          link: "#EBA905",
+          action: "#39428D",
+          inactiveTabIcon: "#0E165C",
+          error: "#F44235",
+          inProgress: "#EBA905",
+          complete: "#20B832",
+          sourceBg: "#FCF7E3",
+        },
+        fonts: { default: null, "sans-serif": { url: null, active: true } },
+      },
+    },
+    (err, result) => {
+      if (!err && result.event === "success") {
+        console.log("esto es result", result);
+        setImage(result.info.secure_url);
+      }
+    }
+  );
+  // const imgProfilInfo = { showUploadWidget, image };
+
   const data = {
-    handleAuth,
+    // handleAuth,
     handleLogout,
+    handleAuthLogin,
+    handleAuthRegister,
+    handlerAuthUpdate,
+    handlerAuthDelete,
     userData,
-    loginError,
-    registerError,
+    setUserData,
+    showUploadWidget,
+    image,
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
