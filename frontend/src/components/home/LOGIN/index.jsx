@@ -29,7 +29,7 @@ const Login = () => {
           <TbMessages /> BUZÓN{" "}
         </Link>
         <div className={styles.tuButton}>
-          <Link to="/user">
+          <Link to="/user/profile/info">
             {" "}
             <img src={userData.photo} />
             TÚ

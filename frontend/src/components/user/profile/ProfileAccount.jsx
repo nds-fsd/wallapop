@@ -44,15 +44,12 @@ const ProfileAccount = () => {
         <div className={styles.contentContainer}>
           <h2> Información personal</h2>
           <form className={styles.formPersonal}>
-            <label className={styles.labelsBth}>
-              Cumpleaños
-              {/* <Date {...register("birthday")}></Date> */}
+            <label className={styles.labels}>
+              Email
               <input
                 className={styles.inputProfile}
-                type="date"
-                {...register("birthday", {
-                  valueAsDate: true,
-                })}
+                type="text"
+                {...register("email")}
               />
             </label>
             <label className={styles.labelsGenero}>
@@ -68,29 +65,6 @@ const ProfileAccount = () => {
                 <option value="No Binario">No Binario</option>
                 <option value="Prefiero no decirlo">Prefiero no decirlo</option>
               </select>
-            </label>
-          </form>
-          <div className={styles.styleButton}>
-            <button
-              className={styles.formButton}
-              type="submit"
-              disabled={!isValid}
-              onClick={handleSubmit(handleSubmitWrapperUpdate)}
-            >
-              Guardar
-            </button>
-          </div>
-        </div>
-        <div className={styles.contentContainer}>
-          <h2>Información cuenta</h2>
-          <form className={styles.formUser}>
-            <label className={styles.labels}>
-              Email
-              <input
-                className={styles.inputProfile}
-                type="text"
-                {...register("email")}
-              />
             </label>
           </form>
           <div className={styles.divButtons}>

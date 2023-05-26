@@ -44,7 +44,7 @@ const ProfileInfo = () => {
   // PARA ELIMINAR USER
   const handleSubmitWrapperDelete = (data) => {
     console.log("VAS A ELIMINAR EL USUARIO", data);
-    handlerAuthDelete({ ...data, photo: image });
+    handlerAuthDelete({ ...data });
   };
 
   if (isLoading) {
@@ -52,91 +52,76 @@ const ProfileInfo = () => {
   } else {
     return (
       <div className={styles.mainContainer}>
-        {/* FORMULARIO IMAGENES */}
-        <form
-          className={styles.contentContainer}
-          onSubmit={handleSubmit(handleSubmitWrapperUpdate)}
-        >
-          <h2> Imagenes de perfil</h2>
-          <div className={styles.infoFoto}>
-            <div className={styles.changePhotoContainer}>
-              <div>
-                <img src={userData.photo} name="photo" />
-                <h4>{userData.photo}</h4>
-              </div>
-              <div className={styles.handleContainer}>
-                <button
-                  onClick={handleOpenWidget}
-                  className={styles.formButton}
-                >
-                  Cambiar Foto
-                </button>
-                <button
-                  type="sumbit"
-                  // onSubmit={handleSubmit(handleSubmitWrapperUpdate)}
-                >
-                  Guardar
-                </button>
-                <p>Aceptamos fotos formato .jpg y minimo 400 x 400 px</p>
+        <div className={styles.contentContainer}>
+          <div className={styles.contentForm}>
+            <div className={styles.divFoto}>
+              <h2> Imagenes de perfil</h2>
+              <div className={styles.infoFoto}>
+                <div className={styles.changePhotoContainer}>
+                  <div>
+                    <img src={userData.photo} name="photo" />
+                  </div>
+                  <div className={styles.handleContainer}>
+                    <button
+                      onClick={handleOpenWidget}
+                      className={styles.formButton}
+                    >
+                      Cambiar Foto
+                    </button>
+                    {/* <p>Aceptamos fotos formato .jpg y minimo 400 x 400 px</p> */}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </form>
-
-        <div className={styles.contentContainer}>
-          <h2>Información pública</h2>
-          {/* FORMULARIO DATOS */}
-          <form className={styles.formUser}>
-            <label className={styles.labels}>
-              Nombre
-              <input
-                className={styles.inputProfile}
-                // placeholder="Nombre"
-                {...register("name", {
-                  required: true,
-                })}
-              />
-              {errors.name && <span>This field is required</span>}
-              {/* {errors.name && errors.name.type === "required" && (
+            <div className={styles.divInfoUser}>
+              <h2>Información pública</h2>
+              {/* FORMULARIO DATOS */}
+              <form className={styles.formUser}>
+                <label className={styles.labels}>
+                  Nombre
+                  <input
+                    className={styles.inputProfile}
+                    // placeholder="Nombre"
+                    {...register("name", {
+                      required: true,
+                    })}
+                  />
+                  {errors.name && <span>This field is required</span>}
+                  {/* {errors.name && errors.name.type === "required" && (
                 <span role="alert">This is required</span>
               )} */}
-            </label>
-            <label className={styles.labels}>
-              Apellido
-              <input
-                className={styles.inputProfile}
-                name="surname"
-                placeholder="Apellido"
-                {...register("surname", {
-                  required: "Surname is required",
-                })}
-              />
-              {errors?.surname?.message}
-            </label>
-            <label className={styles.labels}>
-              Direción
-              <input
-                className={styles.inputProfile}
-                placeholder="Direción"
-                {...register("adress")}
-              />
-            </label>
-            <label className={styles.labels}>
-              Descripción
-              <textarea
-                className={styles.inputProfile}
-                {...register("description")}
-              />
-            </label>
-            <label className={styles.labels}>
-              Teléfono
-              <input
-                className={styles.inputProfile}
-                placeholder="Teléfono"
-                {...register("phone")}
-              />
-            </label>
-          </form>
+                </label>
+                <label className={styles.labels}>
+                  Apellido
+                  <input
+                    className={styles.inputProfile}
+                    name="surname"
+                    placeholder="Apellido"
+                    {...register("surname", {
+                      required: "Surname is required",
+                    })}
+                  />
+                  {errors?.surname?.message}
+                </label>
+                <label className={styles.labels}>
+                  Direción
+                  <input
+                    className={styles.inputProfile}
+                    placeholder="Direción"
+                    {...register("adress")}
+                  />
+                </label>
+                <label className={styles.labels}>
+                  Teléfono
+                  <input
+                    className={styles.inputProfile}
+                    placeholder="Teléfono"
+                    {...register("phone")}
+                  />
+                </label>
+              </form>
+            </div>
+          </div>
           <div className={styles.divButtons}>
             <button
               className={styles.formButton}
