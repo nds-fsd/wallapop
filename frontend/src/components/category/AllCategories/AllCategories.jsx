@@ -34,6 +34,7 @@ const AllCategories = () => {
                   images={prod.images}
                   className={styles.images}
                   category={prod.categories}
+                  status={prod.status}
                 />
               )}
               <div className={styles.titleContainer}>

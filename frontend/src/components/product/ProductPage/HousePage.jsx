@@ -22,6 +22,8 @@ const HousePage = ({ id }) => {
   const { data, isLoading } = useQuery(["product", id], getProductById);
   const category = data.categories;
 
+  console.log(data);
+
   //Cuando todos los productos tengan asociado categories (title, logo...)
   //junto con el div que tiene el Link
   // const title = data?.categories[0].title
@@ -47,27 +49,25 @@ const HousePage = ({ id }) => {
               </h1>
               <h2>EUR</h2>
             </div>
-            <div className={styles.category}>
-              {/* <Link to={"/category/" + title} key={category._id}>
+            {/* <div className={styles.category}>
+              <Link to={"/category/" + title} key={category._id}>
                 {data.categories &&
                   category.map((cat) => <span className={cat.logo} />)}
                 <h3>{data && data.category}</h3>
-              </Link> */}
-            </div>
+              </Link>
+            </div> */}
             <div className={styles.category}>
               {category && category.map((cat) => <span className={cat.logo} />)}
               <h3>{data && data.category}</h3>
             </div>
           </div>
 
-          <h2 className={styles.detailsHouse}>{data && data.title}</h2>
+          <h2>{data && data.title}</h2>
           {data.space || data.rent || data.land ? (
             <div className={styles.detailType}>
-              {data.space && <h5 className={styles.detail}>{data.space}</h5>}
-              {data.rent && <h5 className={styles.detail}>{data.rent}</h5>}
-              {data.land && <h5 className={styles.detail}>{data.land} m2</h5>}
-
-              <h5 className={styles.detail}>{data && data.land} m2</h5>
+              {data.space && <p className={styles.detail}>{data.space}</p>}
+              {data.rent && <p className={styles.detail}>{data.rent}</p>}
+              {data.land && <p className={styles.detail}>{data.land} m2</p>}
             </div>
           ) : null}
 
@@ -87,6 +87,24 @@ const HousePage = ({ id }) => {
           {isExpanded && (
             <p className={styles.textExpanded}>{data && data.description}</p>
           )}
+
+          <div className={styles.linksContainerHouse}>
+            <div className={styles.links}>
+              <span className="icon-credit-card1"></span>
+              <h5>Calcula tu préstamo</h5>
+              <Link to="https://www.creditea.es/" target="_blank">
+                <img src="C:\Users\anank\Documents\Ananke85\wallapop\frontend\src\assets\carfax.png"></img>
+              </Link>
+            </div>
+
+            <div className={styles.links}>
+              <span className="icon-coin-euro"></span>
+              <h5>Calcula tu seguro</h5>
+              <Link to="https://www.mapfre.es/particulares/" target="_blank">
+                <img src="C:\Users\anank\Documents\Ananke85\wallapop\frontend\src\assets\carfax.png"></img>
+              </Link>
+            </div>
+          </div>
 
           <div className={styles.media}>
             <p>Comparte este producto con tus amigos</p>

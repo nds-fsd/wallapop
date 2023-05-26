@@ -51,10 +51,6 @@
   gap: 1rem;
 }
 
-.input:focus {
-  color: var(--blue-light)
-}
-
 .dropdown {
   width: 16.5rem;
   height: 2.5rem;

@@ -142,7 +142,7 @@
 .price {
   display: flex;
   align-items: center;
-  gap: 1.8rem;
+  gap: 1.2rem;
 }
 
 .inputPrice {
@@ -160,12 +160,12 @@
   border-radius: 0.5rem;
   border: 0.1em solid var(--yellow-main);
   position: relative;
-  left: 3.4rem;
+  left: 5.7rem;
   padding-left: 1rem;
   font-size: 1rem;
 }
 .coin {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: var(--yellow-main);
 }

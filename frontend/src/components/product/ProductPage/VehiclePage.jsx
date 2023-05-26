@@ -52,7 +52,7 @@ const VehiclePage = ({ id }) => {
               <h2>EUR</h2>
             </div>
             {/* <div className={styles.category}>
-              <Link to={"/category/" + title} key={category._id}>
+              <Link to={"/category/" + title} key={category._id} target={_blank}>
                 {data.categories &&
                   category.map((cat) => <span className={cat.logo} />)}
                 <h3>{data && data.category}</h3>
@@ -70,26 +70,26 @@ const VehiclePage = ({ id }) => {
 
           {data.brand || data.model || data.year || data.doors || data.seats ? (
             <div className={styles.detailType}>
-              {data.brand && <h5 className={styles.detail}>{data.brand}</h5>}
-              {data.model && <h5 className={styles.detail}>{data.model}</h5>}
-              {data.year && <h5 className={styles.detail}>{data.year}</h5>}
+              {data.brand && <p className={styles.detail}>{data.brand}</p>}
+              {data.model && <p className={styles.detail}>{data.model}</p>}
+              {data.year && <p className={styles.detail}>{data.year}</p>}
               {data.doors && (
-                <h5 className={styles.detail}>{data.doors} puertas</h5>
+                <p className={styles.detail}>{data.doors} puertas</p>
               )}
               {data.seats && (
-                <h5 className={styles.detail}>{data.seats} asientos</h5>
+                <p className={styles.detail}>{data.seats} plazas</p>
               )}
             </div>
           ) : null}
           {data.km || data.engine || data.shift ? (
             <div className={styles.detailType2}>
               {data.km && (
-                <h5 className={styles.detail}>
+                <p className={styles.detail}>
                   {data.km.toLocaleString("es-ES", { useGrouping: true })} Km
-                </h5>
+                </p>
               )}
-              {data.engine && <h5 className={styles.detail}>{data.engine}</h5>}
-              {data.shift && <h5 className={styles.detail}>{data.shift}</h5>}
+              {data.engine && <p className={styles.detail}>{data.engine}</p>}
+              {data.shift && <p className={styles.detail}>{data.shift}</p>}
             </div>
           ) : null}
 
@@ -107,6 +107,29 @@ const VehiclePage = ({ id }) => {
           {isExpanded && (
             <p className={styles.textExpanded}>{data && data.description}</p>
           )}
+          <div className={styles.linksContainer}>
+            <div className={styles.links}>
+              <span className="icon-credit-card1"></span>
+              <h5>Calcula tu préstamo</h5>
+              <Link to="https://www.creditea.es/" target="_blank">
+                <img src="C:\Users\anank\Documents\Ananke85\wallapop\frontend\src\assets\carfax.png"></img>
+              </Link>
+            </div>
+            <div className={styles.links}>
+              <span className="icon-file-text2"></span>
+              <h5>Historial del vehículo</h5>
+              <Link to="https://shorturl.at/qxG89" target="_blank">
+                <img src="C:\Users\anank\Documents\Ananke85\wallapop\frontend\src\assets\carfax.png"></img>
+              </Link>
+            </div>
+            <div className={styles.links}>
+              <span className="icon-coin-euro"></span>
+              <h5>Calcula tu seguro</h5>
+              <Link to="https://www.mapfre.es/particulares/" target="_blank">
+                <img src="C:\Users\anank\Documents\Ananke85\wallapop\frontend\src\assets\carfax.png"></img>
+              </Link>
+            </div>
+          </div>
 
           <div className={styles.media}>
             <p>Comparte este producto con tus amigos</p>
