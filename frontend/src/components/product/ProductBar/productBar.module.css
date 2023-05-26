@@ -9,18 +9,17 @@
   bottom: 0;
   left: 0;
   box-shadow: 0 2px 4px 1px grey;
-  z-index: 1000;
+  z-index: 500;
 }
 
 .productDetails {
   display: flex;
   justify-content: space-between;
-  margin: 1em 0 0;
-  width: 45rem;
+  align-items: center;
+  width: 42rem;
   margin: 0 auto;
-  padding: 1em 0 0 0;
-  line-height: 0.4em;
-  font-size: 0.7em;
+  line-height: 0.2em;
+  font-size: 0.6em;
   color: white;
 }
 
@@ -32,6 +31,7 @@
   border-radius: 2.5rem;
   border: none;
   font-weight: bold;
+  font-size: 2em;
 }
 
 .comprar:hover {

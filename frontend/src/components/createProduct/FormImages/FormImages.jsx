@@ -31,6 +31,9 @@ const FormImages = () => {
         <button className={styles.image}>
           <span className="icon-image1"></span>
         </button>
+        <button className={styles.image}>
+          <span className="icon-image1"></span>
+        </button>
       </div>
       {/* <div>
       <input type='submit' value='Subir' className={styles.button}></input>

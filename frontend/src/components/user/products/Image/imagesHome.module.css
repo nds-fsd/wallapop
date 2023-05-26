@@ -1,0 +1,33 @@
+.image {
+  border-radius: 0.7em;
+  width: 13rem;
+  height: 250px;
+  border: 0.15em solid var(--yellow-main);
+}
+
+.noImage {
+  width: 200px;
+  height: 250px;
+  background-color: var(--blue-dark);
+  border-radius: 0.7em;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.icon {
+  height: 250px;
+}
+
+.icon span {
+  color: white;
+  font-size: 2.8em;
+  position: relative;
+  top: -5.7em;
+  left: 3.4em;
+  z-index: 200;
+}
+

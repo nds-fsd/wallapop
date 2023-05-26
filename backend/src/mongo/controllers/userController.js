@@ -14,11 +14,11 @@ const userLogin = async (req, res) => {
     if (!foundUser) {
       return res
         .status(400)
-        .json({ error: { email: "User not found, please Register" } });
+        .json({ error: { email: "Missing email or password" } });
     }
     // * Validate password with bcrypt library
     if (!foundUser.comparePassword(password)) {
-      return res.status(400).json({ error: { password: "Invalid Password" } });
+      return res.status(400).json({ error: { password: "Missing email or password" } });
     }
     // * if everything is ok, return the new token and user data
     return res.status(200).json({
@@ -40,7 +40,7 @@ const userLogin = async (req, res) => {
 const userRegister = async (req, res) => {
   const email = req.body.email;
   const { body } = req;
-  console.log("este es el body que nos llega", body);
+
   try {
     if (!email) {
       return res

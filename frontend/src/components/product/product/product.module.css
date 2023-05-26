@@ -1,6 +1,6 @@
 @media screen and (min-width: 500px) {
   .card {
-    width: 350px;
+    width: 50rem;
     margin: 0 auto;
   }
 }
@@ -17,55 +17,58 @@
   display: flex;
   margin: 0.7rem;
   overflow: hidden;
-  width: 42rem;
+  width: 45rem;
   height: 16rem;
-  background-color: #fff;
+  background-color: white;
 }
 .card:hover {
-  box-shadow: 2px 2px 2px 1px var(--blue-dark);
+  /* box-shadow: 3px 3px 5px .5px var(--blue-medium); */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
 }
 
 .columnRight > h6 {
-  letter-spacing: 0.1rem;
   margin: 0px;
-  opacity: 0.7;
-  font-size: 1em;
-  color: black;
+  color: var(--blue-dark);
 }
 .columnRight > h4 {
-  letter-spacing: 0.1rem;
   padding: 0px;
   margin: 0px;
   font-style: bold;
   font-size: 2em;
-  color: black;
+  color: var(--yellow-main);
 }
-.columnRight > h2 {
-  font-size: 0.7rem;
-  opacity: 0.4;
-  color: black;
-
-  text-transform: uppercase;
+.columnRight > p {
+  color: var(--blue-dark);
+  font-size: 0.8em;
+  line-height: 1.3em;
+  display: -webkit-box;
+  max-height: 10rem;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
 }
 
 .columnLeft {
   width: 16rem;
-  height: 17rem;
-  background-color: #e1f3fa;
+  height: 16rem;
+  background-color: var(--blue-medium);
 }
 
 .columnLeft img {
-  position: relative;
-  top: -1rem;
-  left: 0.65rem;
-  width: 15rem;
-  height: 15rem;
-  border-radius: 1em 0 0 0.8em;
+  width: 16rem;
+  height: 16rem;
+  border-radius: 1em 0 0 1em;
 }
 .columnRight {
-  width: 25rem;
-  padding: 1rem;
+  width: 28rem;
+  padding: 2rem 1rem 1rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 1rem;
+  text-align: justify;
+  
 }

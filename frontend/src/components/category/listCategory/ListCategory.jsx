@@ -8,7 +8,7 @@ import Spinner from "../../Spinner/Spinner";
 const ListCategory = () => {
   // Hago peticion a BD para obtener todas las categorias
   const { data: categories, isLoading } = useQuery(["category"], getCategories);
-
+// console.log(categories)
   return (
     <div className={styles.container}>
       {/* si no ha cargado las categorias muestra esto */}
@@ -36,8 +36,10 @@ const ListCategory = () => {
                 to={"/category/" + category.title}
                 className={styles.item}
                 key={category._id}
-              >
+                >
+                <span className={category.logo} />
                 {category.title}
+            
               </NavLink>
             );
           })}

@@ -4,7 +4,6 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import CreateUserPage from "./components/createUser";
 import LoginPage from "./components/loginUser";
 import UserPage from "./components/user";
-import ProductPage from "./components/product/ProductPage/ProductPage";
 import Navbar from "./components/home/navbar";
 import ListCategory from "./components/category/listCategory/ListCategory";
 import ListProducts from "./components/product/listProduct/ListProducts";
@@ -13,6 +12,8 @@ import Home from "./components/home";
 import CreateProductPage from "./components/createProduct/CreateProductPage/CreateProductPage";
 import PrivateRoutes from "./components/private-routes";
 import { AuthProvider } from "./context/authContext";
+import ProdPage from "./components/product/ProductPage/ProdPage";
+import AllCategories from "./components/category/AllCategories/AllCategories";
 
 function App() {
   const queryClient = new QueryClient();
@@ -36,19 +37,22 @@ function App() {
               Lo creo dentro del routs sin mostrarlo porque asi por mucho que cambie de categoria sigue mostrandose la navBar arriba
               en caso que no fuera asi no se mostraria
               Aqui solo la declaro la ruta para que exista y poder acceder desde otro lado */}
-                <Route path="/category" element={<ListCategory />}>
-                  <Route path=":category" element={<ListProducts />} />
-                  <Route path="product/:productid" element={<ProductPage />} />
-                </Route>
-                <Route path="/user" element={<PrivateRoutes />}>
-                  <Route path="" element={<UserPage />} />
-                  <Route path="*" element={<UserPage />} />
-                </Route>
-              </Routes>
+                  <Route path="/category" element={<ListCategory />}>
+                    <Route path=":category" element={<ListProducts />} />
+                    <Route
+                      path="product/:productid"
+                      element={<ProductPage />}
+                    />
+                  </Route>
+                  <Route path="/user" element={<PrivateRoutes />}>
+                    <Route path="" element={<UserPage />} />
+                    <Route path="*" element={<UserPage />} />
+                  </Route>
+                </Routes>
+              </div>
             </div>
-          </div>
-          <ReactQueryDevtools initialIsOpen={false} />
-        </AuthProvider>
+            <ReactQueryDevtools initialIsOpen={false} />
+          </AuthProvider>
       </QueryClientProvider>
     </>
   );

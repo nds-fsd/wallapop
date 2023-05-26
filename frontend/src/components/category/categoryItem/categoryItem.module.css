@@ -1,0 +1,33 @@
+.container {
+  width: 135px;
+  height: 69px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: aquamarine;
+  filter: grayscale(100%);
+  margin: 0 0 1em 1em;
+  word-wrap: break-word;
+  flex-shrink: 0;
+  border-radius: 10px;
+  color: white;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  margin-top: 25px;
+}
+
+p {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+
+.container:hover {
+  filter: grayscale(0);
+  color: var(--blue-medium);
+}

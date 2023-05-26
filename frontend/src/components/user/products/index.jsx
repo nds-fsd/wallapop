@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import style from "../index.module.css";
+import ProductPublished from "./ProductPublished";
 
 const Products = () => {
   return (

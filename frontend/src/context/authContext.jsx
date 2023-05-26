@@ -105,6 +105,7 @@ export const AuthProvider = ({ children }) => {
 
   const handleLogout = () => {
     removeSession();
+    setUserData(null);
     navigate("/");
   };
 

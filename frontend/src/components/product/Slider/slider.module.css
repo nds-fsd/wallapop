@@ -1,18 +1,22 @@
+.sliderContainer {
+  width: 42rem;
+  height: 355px;
+}
+
 .container {
-  position: relative;
-  top: 0.5rem;
-  width: 720px;
-  height: 500px;
+  width: 500px;
+  height: 350px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   border-radius: 2rem;
+
 }
 
 .noImage {
-  width: 720px;
-  height: 500px;
+  width: 500px;
+  height: 350px;
   background-color: var(--blue-dark);
   border-radius: 2rem;
   color: white;
@@ -34,8 +38,8 @@
 }
 
 .slide {
-  max-width: 720px;
-  height: 500px;
+  max-width: 500px;
+  height: 350px;
   opacity: 0;
   transition: opacity 0.8s ease-in-out;
 }
@@ -47,9 +51,10 @@
 .button {
   width: 2em;
   height: 2em;
-  font-size: 1.5em;
-  border-radius: 1.5em;
+  font-size: 1.2em;
+  border-radius: 1.2em;
   position: relative;
+  left: 5rem;
   margin: -3em;
   border: none;
   background-color: white;
@@ -67,9 +72,10 @@
 .buttonOpacity {
   width: 2em;
   height: 2em;
-  font-size: 1.5em;
-  border-radius: 1.5em;
+  font-size: 1.2em;
+  border-radius: 1.2em;
   position: relative;
+  left: 5rem;
   margin: -3em;
   border: none;
   background-color: white;
@@ -82,22 +88,42 @@
 }
 
 .imgSlider {
-  width: 700px;
-  height: 480px;
-  margin-top: 1em;
+  width: 500px;
+  height: 350px;
+  margin-left: 5rem;
   display: flex;
   align-items: center;
   border-radius: 1.5em;
   border: 0.2em solid var(--yellow-main);
+  cursor: pointer;
 }
 
 .statusTag {
   position: relative;
-  top: -3rem;
-  left: 2rem;
+  top: -21rem;
   background-color: var(--blue-light);
   padding: 0.4em 1em;
   width: max-content;
   border-radius: 2rem;
   font-weight: bold;
+}
+
+.dotContainer {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+ 
+}
+.dot {
+  position: relative;
+  top: -7rem;
+  font-size: 1.5rem;
+  opacity: 0.5;
+  border-radius: 0.5em;
+  /* color: var(--yellow-main); */
+  color: var(--blue-light);
+}
+
+.dotactive {
+  opacity: 1;
 }

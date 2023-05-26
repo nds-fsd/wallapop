@@ -5,26 +5,32 @@ import ElsePage from "./ElsePage";
 import VehiclePage from "./VehiclePage";
 import Spinner from "../../Spinner/Spinner";
 import { useQuery } from "react-query";
-import { getProductByIdHarcodedHouse } from "../../../utils/apiProducts";
+import { getProductById } from "../../../utils/apiProducts";
+import { useParams } from "react-router-dom";
 
 const ProdPage = () => {
-  const id = "644ebe60f1b76b31b761b446";
-  // const id = "644796a9d7f98ce14c6ec067"
+ 
+  const params = useParams();
+  // console.log("el params", params)
+  const { data, isLoading } = useQuery(["product", params.productid], getProductById)
+  const id = params.productid
+  // console.log("el paramsid", id)
+  // console.log("en la pagina de producto", data)
 
-  // const {data, isLoading} = useQuery(['product', id], getProductById)
-  const { data: category, isLoading } = useQuery(
-    ["product", id],
-    getProductByIdHarcodedHouse
-  );
+  if (!data || !data.category) {
+    return null; // Render nothing if data or category is undefined
+  }
+  const cat= data?.category
+  // console.log("la  categoría del producto", data.category)
 
   let componentToRender;
 
-  if (category === "Inmobiliaria") {
-    componentToRender = <HousePage />;
-  } else if (category === "Motos" || "Coches") {
-    componentToRender = <VehiclePage />;
+  if (cat === "Inmobiliaria") {
+    componentToRender = <HousePage id={id}/>;
+  } else if (cat === "Motos" || "Coches") {
+    componentToRender = <VehiclePage id={id}/>;
   } else {
-    componentToRender = <ElsePage />;
+    componentToRender = <ElsePage id={id}/>;
   }
 
   return (
@@ -34,7 +40,7 @@ const ProdPage = () => {
           <Spinner />
         </div>
       )}
-      {!isLoading && <div>{componentToRender}</div>}
+      {!isLoading && id && componentToRender}
     </>
   );
 };

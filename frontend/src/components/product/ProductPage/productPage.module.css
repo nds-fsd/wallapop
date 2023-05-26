@@ -9,13 +9,13 @@
 .productPage {
   display: flex;
   flex-direction: column;
-  padding: 5rem 5rem 1rem 5rem;
+  padding: 2rem 5rem 1rem 5rem;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  width: 45rem;
+  width: 42rem;
   height: auto;
   background-color: white;
   border-radius: 1.5rem;
@@ -26,7 +26,7 @@
 
 .upperBar {
   display: flex;
-  width: 45rem;
+  width: 42rem;
   height: 3rem;
   justify-content: flex-end;
   gap: 2em;
@@ -65,7 +65,8 @@
 }
 
 .details {
-  line-height: 1em;
+  position: relative;
+  top: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -73,26 +74,45 @@
 
 .category {
   display: flex;
+  align-items: center;
   gap: 1em;
   width: max-content;
   height: 3rem;
-  display: flex;
-  align-items: center;
   padding: 0 1em 0 1em;
   border-radius: 2em;
   border: 0.1em solid var(--blue-dark);
   background-color: rgb(255, 255, 255);
 }
 
+.category a {
+  text-decoration: none;
+  color: var(--blue-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .category span {
   color: var(--blue-dark);
+  font-size: 2.5em;
+}
+
+.category:hover span {
+  color: var(--yellow-main);
+}
+
+.category:hover a {
+  color: var(--yellow-main);
+}
+.category:hover {
+  border: 0.1em solid var(--yellow-main);
 }
 
 .expandable {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 45rem;
+  width: 42rem;
   height: 3rem;
   margin: 2rem 0;
 }
@@ -108,13 +128,13 @@
 }
 .arrow {
   position: relative;
-  left: 22rem;
+  left: 20rem;
   background-color: white;
   border: none;
 }
 .active {
   position: relative;
-  left: 22rem;
+  left: 20rem;
   background-color: white;
   border: none;
   transform: rotate(180deg);
@@ -123,11 +143,9 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  line-height: 1em;
 }
 .price {
   color: var(--yellow-main);
-  font-size: 3rem;
   line-height: 0.1em;
 }
 
@@ -188,15 +206,40 @@
   color: #992921;
   cursor: pointer;
 }
-.houseType {
+.detailType {
   display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  height: 4rem;
 }
 
-.houseDetail {
+.detailType2 {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.detail {
   border: 0.2em solid var(--blue-light);
   border-radius: 2rem;
   width: max-content;
-  padding: 0.4em 1em;
+  padding: 0.7em 1em;
+}
+
+.specialDetails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--blue-dark);
+  color: white;
+  border-radius: 2rem;
+  padding: 0 1em 0 1em;
+  gap: 1em;
+}
+
+.detailsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
 }

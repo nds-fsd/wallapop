@@ -8,12 +8,12 @@ const Product = ({ prod }) => {
     <NavLink to={"/category/product/" + prod._id} className={styles.container}>
       <div className={styles.card}>
         <div className={styles.columnLeft}>
-          <img src={prod.photo}></img>
+          <img src={prod.images}></img>
         </div>
         <div className={styles.columnRight}>
-          <h4>{prod.price}€</h4>
+          <h4>{prod.price.toLocaleString('es-ES', {useGrouping: true}) } €</h4>
           <h6>{prod.title}</h6>
-          <h2>{prod.description}</h2>
+          <p>{prod.description}</p>
         </div>
       </div>
     </NavLink>

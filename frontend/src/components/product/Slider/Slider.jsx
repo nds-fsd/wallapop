@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./slider.module.css";
+import ModalContainerSlider from "../ModalContainer/ModalContainerSlider/ModalContainerSlider";
 
 const Slider = ({ images, data }) => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -20,10 +21,12 @@ const Slider = ({ images, data }) => {
     setIsHovering(false);
   };
 
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <>
       {amount >= 1 && (
-        <div>
+        <div className={styles.sliderContainer}>
           <div className={styles.container}>
             <button
               onClick={prevImage}
@@ -47,6 +50,7 @@ const Slider = ({ images, data }) => {
                     onMouseOver={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                     className={styles.imgSlider}
+                    onClick={() => setModalOpen(!modalOpen)}
                   />
                 )}
               </div>
@@ -59,13 +63,28 @@ const Slider = ({ images, data }) => {
             </button>
           </div>
           <p className={styles.statusTag}>{data && data.status}</p>
+          
+          {images && (
+            <ModalContainerSlider modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+            images={images} />
+          )}
+
+          <div className={styles.dotContainer}>
+            {images.map((_, id) => (
+              <div key={id} className={currentImage === id
+                ? `${styles.dot} ${styles.dotactive}`
+                : styles.dot }><span className="icon-ello"></span></div>
+            ))}
+          </div>
+
         </div>
       )}
 
       {amount === 0 && (
         <div className={styles.noImage}>
           <span className="icon-sad"></span>
-          <h1>Sorry, there are no available images to display yet</h1>
+          <h1>Lo sentimos, no hay imágenes para mostrar</h1>
         </div>
       )}
     </>
@@ -74,6 +93,3 @@ const Slider = ({ images, data }) => {
 
 export default Slider;
 
-//añadir puntitos parte baja imagen, cuando pasa a la siguiente
-//evento del mouse cuando pasas por encima del boton siguiente - DONE
-//click sobre la imagen, abre la imagen completa

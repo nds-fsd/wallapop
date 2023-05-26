@@ -1,51 +1,52 @@
-.line {
-  background-color: grey;
-  height: 1px;
-  opacity: 0.5;
-  margin: 2em 0 1em 0;
-}
 .overlay {
   width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(7, 7, 7, 0.027);
+  /* background-color: var(--grey);
+  background-color: blue; */
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .modal {
-  width: 50rem;
-  min-height: 30rem;
+  width: 60rem;
+  height: max-content;
   background-color: white;
   position: relative;
+  margin: 0 auto;
   border-radius: 1em;
   padding: 0 2em;
-  box-shadow: 5px 5px 5px 0.5px rgb(78, 78, 78);
+  box-shadow: 2px 2px 5px rgba(104, 104, 104, 0.1);
 }
 
 .title {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-bottom: 1px solid grey;
+  height: 2rem;
+  margin-top: 1.5em
 }
+
 
 .close {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  background-color: white;
+  background-color: transparent;
   border: none;
 }
 
 .close span:nth-child(1) {
+  color: var(--blue-dark);
   font-size: 1.2em;
 }
 
 .close span:nth-child(1):hover {
-  color: rgb(45, 160, 122);
+  color: var(--yellow-main);
   cursor: pointer;
 }

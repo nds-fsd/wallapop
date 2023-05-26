@@ -8,13 +8,25 @@ const Keywords = ({ data }) => {
 
   return (
     <>
-      {Array.isArray(words) && words.length > 0 && (
+      {Array.isArray(words) && words != '' && (
         <ul className={styles.keywords}>
           {words.map((word, index) => (
             <li key={index} className={styles.list}>{`#${word}`}</li>
           ))}
         </ul>
       )}
+
+      {/* {Array.isArray(prod.keywords) && prod.keywords.length > 0 && (
+        <ul className={styles.keywords}>
+          {words.map((word, index) => {
+            const trimmedWord = word.trim();
+            if (trimmedWord !== '') {
+              return <li key={index}>{`#${trimmedWord}`}</li>;
+            }
+            return null;
+          })}
+        </ul>
+      )}   */}
     </>
   );
 };
