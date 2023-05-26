@@ -1,30 +1,31 @@
-const express = require('express');
-const { getAllProducts,
+const express = require("express");
+const {
+  getAllProducts,
   getProductById,
   getProductByCategory,
   postProduct,
   updateProductById,
-  updateProductByTitle,
-  deleteProduct } = require('../controllers/productController')
+  deleteProductById,
+  getProductByUser,
+} = require("../controllers/productController");
 
 const productRouter = express.Router();
 
-productRouter.get('/', getAllProducts);
-productRouter.get('/:id', getProductById);
-productRouter.get('/category/:category', getProductByCategory);
-productRouter.post('/newproduct', postProduct);
-productRouter.patch('/:id', updateProductById);
-productRouter.patch('/:title', updateProductByTitle);
-productRouter.delete('/:id', deleteProduct);
+productRouter.get("/", getAllProducts);
+productRouter.get("/:id", getProductById);
+productRouter.get("/getbyuser/:user", getProductByUser)
+productRouter.get("/category/:category", getProductByCategory);
+productRouter.post("/newproduct/:user", postProduct);
+productRouter.patch("/:id", updateProductById);
+productRouter.delete("/:id", deleteProductById);
+
+
 
 module.exports = productRouter;
-
-
 
 // manera común de hacer el routing
 // const {products} = require('../data/index');
 // const Product = require('../mongo/schemas/productSchema')
-
 
 // const productRouter = express.Router();
 
@@ -48,10 +49,9 @@ module.exports = productRouter;
 //   res.status(201).json(postProduct);
 // });
 
-
 // productRouter.patch('/products/:id', async (req, res) => {
 //   const updateProduct = await Product.findByIdAndUpdate(req.params.id, req.body);
-  
+
 //   if (updateProduct) {
 //     res.status(204).json(updateProduct);
 //   } else {
@@ -64,7 +64,7 @@ module.exports = productRouter;
 //     title: req.params.title
 //   };
 //   const updateProduct = await Product.findOneAndUpdate(filter, req.body);
-  
+
 //   if (filter) {
 //     res.status(204).json(updateProduct);
 //   } else {
@@ -72,16 +72,14 @@ module.exports = productRouter;
 //   }
 // });
 
-
 // productRouter.delete('/products/:id', async (req, res) => {
 //   const deleteProduct = await Product.findByIdAndDelete(req.params.id);
-  
+
 //   if(deleteProduct) {
 //     res.status(200).send("Your product has been successfully deleted");
 //   } else {
 //     res.status(404).send("Sorry, this product doesn't exist");
-//   } 
+//   }
 // });
-
 
 // module.exports = productRouter;

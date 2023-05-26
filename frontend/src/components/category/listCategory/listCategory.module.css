@@ -9,7 +9,7 @@
 }
 
 .carusel {
-  width: 70vw;
+  width: 81vw;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -19,24 +19,42 @@
 }
 
 .item {
-  width: 135px;
-  height: 69px;
-  background-color: var(--yellow-main);
+  width: 11.5rem;
+  height: 6rem;
+  /* background-color: var(--yellow-main);
+  background-color: white;
+  border: 0.15em solid var(--yellow-main); */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 15px;
-  font-size: 12px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  text-align: center;
+  color: var(--blue-dark);
+  /* color: var(--yellow-main); */
+  color: var(--blue-dark);
+  font-weight: bold;
   margin: 0 0 1em 1em;
   word-wrap: break-word;
   flex-shrink: 0;
-  border-radius: 10px;
-  color: var(--blue-dark);
+  border-radius: 2rem;
   text-decoration: none;
+  padding: 0 1em 0 1em;
 }
 
+
+.item span:nth-child(1) {
+  font-size: 3.5rem;
+  /* color: white;
+  color: var(--yellow-main); */
+}
+
+.item:hover {
+  color: var(--blue-light)
+}
+.item:focus {
+  color: var(--yellow-main)
+}
 .menu {
   width: 100vw;
   display: inline-block;
@@ -57,9 +75,10 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
+  background-color: var(--blue-dark);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #09c;
+  background: var(--blue-light);
 }

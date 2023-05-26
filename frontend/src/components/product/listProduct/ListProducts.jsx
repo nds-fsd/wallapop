@@ -1,5 +1,4 @@
 import styles from "./listProducts.module.css";
-import { api } from "../../../utils/apiProducts";
 import { useQuery, useQueryClient } from "react-query";
 import Product from "../product/Product";
 import React, { useState } from "react";
@@ -16,14 +15,13 @@ const ListProducts = () => {
     getProductByCategory
   );
 
-
   return (
     <div className={styles.container}>
       <h1>{params.category}</h1>
       {isLoading && (
         <div>
-          {/* <Spinner /> */}
-          <h1>Cargando</h1>
+          <Spinner />
+          {/* <h1>Cargando</h1> */}
         </div>
       )}
       <div className={styles.carusel}>

@@ -14,21 +14,22 @@ import {
   USER_STATS,
 } from "../route-paths";
 import styles from "./index.module.css";
-import image from "../../../assets/images/pexels-pixabay-415829.jpg";
-import { getUserData } from "../../../utils/localStorage.utils";
+import { AuthContext } from "../../../context/authContext";
+import cld from "../../../utils/cloudinary-client";
+import { useContext } from "react";
 
 const Sidebar = () => {
+  const { userData } = useContext(AuthContext);
+  if(!userData)return null
 
-  const userData = getUserData();
   return (
     <div className={styles.sideBar}>
-        <div className={styles.profileLink}>
-          <Link to={USER_PROFILE}>
-            
-            <img src={image} />
-            <p>{userData.name}</p>
-          </Link>
-        </div>
+      <div className={styles.profileLink}>
+        <Link to={USER_PROFILE}>
+        <img src={userData.photo} />
+          <p>{userData.name}</p>
+        </Link>
+      </div>
       <Link to={USER_PURCHASES}>
         <GiShakingHands /> Compras
       </Link>

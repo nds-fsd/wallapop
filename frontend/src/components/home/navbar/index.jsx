@@ -1,27 +1,11 @@
-import React from "react";
-import { getUserToken } from "../../../utils/localStorage.utils";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../context/authContext";
 import Login from "../LOGIN";
 import Logout from "../LOGOUT/index";
 
-const Navbar=() => {
-    const token = getUserToken();
+const Navbar = () => {
+  const { userData } = useContext(AuthContext);
 
-    return (
-        
-        <div>
-            {token ? <Login/> : <Logout /> }
-           
-         </div>
-        
-  )};
-  export default Navbar
-
-  {/* <CreateUserPage />
-<LoginPage />
-<UserPage />
-<ProductPage />
-{/* <ModalContainer />  */}
-
-{/* <ListProducts />
-<Postproform />
-<Map /> */}
+   return <div> {userData ? <Login /> : <Logout />} </div>;
+};
+export default Navbar;

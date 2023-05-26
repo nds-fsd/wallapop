@@ -2,6 +2,8 @@ const express = require("express");
 const categoryModel = require("../models/categoryModel");
 
 // Definimos el CRUD todas las funciones para poder llamarlas en el Router
+
+// Get para obtener todas las categorias
 const getAllCategories = async (req, res) => {
   try {
     const allCategories = await categoryModel.find();
@@ -11,6 +13,7 @@ const getAllCategories = async (req, res) => {
   }
 };
 
+// Crear categorias
 const postCategory = async (req, res) => {
   const { title, logo } = req.body;
   try {

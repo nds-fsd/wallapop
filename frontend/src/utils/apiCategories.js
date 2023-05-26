@@ -1,7 +1,11 @@
-import axios from "axios";
-import { useQueryClient } from "react-query";
+import { api } from "./api";
 
-export const apiCategory = axios.create({
-  baseURL: "http://localhost:3001",
-  headers: { "Content-Type": "application/json" },
-});
+export const getCategories = () => {
+  return api
+    .get(`/category`)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      return [];
+    });
+};

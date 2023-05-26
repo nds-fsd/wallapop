@@ -44,7 +44,6 @@ import {
 import styles from "./index.module.css";
 import Sidebar from "./sidebar";
 
-
 const UserPage = () => {
   return (
     <div className={styles.userPageContainer}>
@@ -83,7 +82,6 @@ const UserPage = () => {
 
           <Route path={USER_STATS} element={<Stats />} />
         </Routes>
-
       </div>
     </div>
   );
