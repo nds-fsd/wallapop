@@ -3,7 +3,7 @@
 @tailwind utilities; */
 
 #root {
-  font-family: 'Roboto', sans-serif;  
+  font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
@@ -13,15 +13,14 @@
   -webkit-text-size-adjust: 100%;
   min-height: 100vh;
   color: var(--blue-dark);
-  --yellow-main: #EBA905;
+  --yellow-main: #eba905;
   --yellow-light: #fcf7e3;
   --yellow-dark: #706a53c0;
   --blue-dark: #0e165c;
   --blue-medium: #39428d;
   --blue-light: #6ae3eb;
-  --grey: #dce4e4;
+  --grey: #eaeeee;
   background-color: var(--grey);
-  
 }
 
 body {
@@ -30,13 +29,15 @@ body {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2.8rem;
   font-weight: 900;
+  line-height: 2.5rem;;
 }
 
 h2 {
   font-size: 2.2rem;
   font-weight: 900;
+  line-height: 2rem;
 }
 
 h3 {
@@ -74,6 +75,3 @@ p {
   background-color: var(--blue-light);
   color: white;
 } */
-
-
-

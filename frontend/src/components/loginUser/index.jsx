@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { useForm, } from 'react-hook-form';
-import styles from './loginUser.module.css';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { getUserToken } from '../../utils/localStorage.utils';
-import { setUserSession } from '../../utils/localStorage.utils';
-import { useMutation } from 'react-query';
-import { loginUser } from '../../utils/apiAuth';
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
+import styles from "./loginUser.module.css";
+import { Navigate } from "react-router-dom";
+import { getUserToken } from "../../utils/localStorage.utils";
+import { AuthContext } from "../../context/authContext";
 
 const LoginPage = () => {
   const {
@@ -14,69 +12,45 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate();
-  const login = useMutation(["user"],  loginUser);
-
-  const handleLogin = (data) => {
-    login.mutate(data, {
-      onSuccess: (data) => {
-        setUserSession(data);
-        localStorage.setItem("user", JSON.stringify(data.user))
-        navigate("/");
-      }
-    })
-  }
-  
-//   const handleLogin = async (userData) => {
-//   try {
-//     const response = await api.post("/user/login", userData);
-//     if (response.status === 200) {
-//       setUserSession(response.data.token);
-//       localStorage.setItem("user", JSON.stringify(response.data.user));
-//       navigate("/");
-//     }
-//     return response;
-//   } catch (error) {
-//     console.error(error);
-//     throw error;
-//   }
-// };
+  const { handleAuthLogin, loginError } = useContext(AuthContext);
 
   return (
     <>
       <div className={styles.loginContainer}>
-        <div>
-          {getUserToken() && (
-            <Navigate to="/" />
-          )}
-        </div>
+        <div>{getUserToken() && <Navigate to="/" />}</div>
         <h1>Inicia Sesión</h1>
-        <form onSubmit={handleSubmit(handleLogin)} className={styles.formContainer}>
+        <form
+          onSubmit={handleSubmit(handleAuthLogin)}
+          className={styles.formContainer}
+        >
           <div className={styles.register}>
             <input
               type="email"
               placeholder="Email"
               className={styles.input}
-              {...register('email', {
-              required: 'Email is required',
-              pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-              message: 'Invalid email address',
-              },
+              {...register("email", {
+                required: "Email obligatorio",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "Invalid email address",
+                },
               })}
             />
-            {errors.email && <p>{errors.email.message}</p>}
             <input
               type="password"
               placeholder="Password"
               className={styles.input}
-              {...register('password', {
-              required: 'Password is required',
+              {...register("password", {
+                required: "Contraseña obligatoria",
               })}
             />
-            {errors.password && <p>{errors.password.message}</p>}
           </div>
-          <button className={styles.formButton} type="submit">
+          <div className={styles.error}>
+            {errors.email && <p><span className="icon-warning1"></span>{errors.email.message}</p>}
+            {errors.password && <p><span className="icon-warning1"></span>{errors.password.message}</p>}
+          </div>
+          <div className={styles.errorContainer}>{loginError}</div>
+          <button className={styles.formButton} data-test="boton" type="submit">
             Inicia sesión
           </button>
         </form>

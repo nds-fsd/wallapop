@@ -1,4 +1,3 @@
-
 # version: '3.7'
 # services:
 #   mongo:
@@ -9,6 +8,4 @@
 #       MONGO_INITDB_ROOT_PASSWORD: monorepo
 #     ports:
 #       - "27040:27017"
-
-
 

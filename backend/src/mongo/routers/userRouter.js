@@ -8,6 +8,8 @@ const {
   modifyUserByID,
   deleteUserByID,
 } = require("../controllers/userController");
+const { getProductByUser } = require("../controllers/productController");
+
 
 // userRouter.get("/user", async (req, res) => {
 //   const response = await User.find();
@@ -20,6 +22,8 @@ userRouter.post("/register", userRegister);
 userRouter.post("/login", userLogin);
 
 userRouter.get("/:id", findUserByID);
+
+userRouter.get("/products/published/:id", getProductByUser)
 
 userRouter.patch("/:id", jwtMiddleware, modifyUserByID);
 

@@ -1,0 +1,59 @@
+.container {
+  position: relative;  
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  width: 4em;
+  height: 4em;
+  font-size: 3em;
+  position: relative;
+  border: none;
+  background-color: white;
+  color: var(--blue-dark);
+  cursor: pointer;
+}
+
+.button:hover {
+  color: var(--yellow-main);
+}
+
+.slide {
+  max-width: 720px;
+  max-height: 500px;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.imgSlider {
+  max-width: 700px;
+  max-height: 500px;
+  display: flex;
+  align-items: center;
+  border-radius: 1.5em;
+}
+
+.miniImgContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.miniImg {
+  position: relative;
+  top: 2rem;
+  width: 5rem;
+  opacity: 0.5;
+  border-radius: 0.5em;
+}
+
+.miniImgactive {
+ opacity: 1
+}
+

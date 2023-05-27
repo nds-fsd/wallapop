@@ -1,35 +1,137 @@
-.changePhotoContainer {
+.contentContainer {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  color: var(--blue-dark);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.contentForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: white;
+  color: var(--blue-dark);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.divInfoUser {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  color: var(--blue-dark);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.divFoto {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  color: var(--blue-dark);
+  padding: 1rem;
+  border-radius: 1rem;
   align-items: center;
-  gap: 2rem;
 }
 
-.changePhotoContainer button {
-  width: 7rem;
-  height: 2.5rem;
-  border-radius: 2.5rem;
-  font-size: 1rem;
-  color: var(--blue-dark);
-  background-color: var(--yellow-main);
-  cursor: pointer;
-  border: none;
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin-right: 1rem;
+  gap: 1rem;
+}
+
+.changePhotoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .changePhotoContainer img {
   width: 10rem;
-  height: 100%;
+  height: 10rem;
+  object-fit: cover;
   border-radius: 100%;
-  margin: 0;
 }
 
 .handleContainer {
   display: flex;
   flex-direction: column;
-  gap:.5rem;
+  gap: 0.5rem;
+}
+.handleContainer > p {
+  font-size: 0.7rem;
 }
 
 .formUser {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  justify-content: space-between;
+}
+.labels {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.formButton {
+  width: 13rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  padding: 0 1rem;
+  border-radius: 2.5rem;
+  border: 0.15em solid var(--yellow-main);
+  background-color: var(--yellow-main);
+  background-color: white;
+  color: var(--yellow-main);
+  font-weight: bold;
+  cursor: pointer;
+  top: 2rem;
+  margin-bottom: 2em;
+  margin-top: 2em;
+  margin-left: 2em;
+}
+
+.formButton:hover {
+  background-color: var(--yellow-main);
+  color: white;
+}
+.formButton2 {
+  width: 13rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  padding: 0 1rem;
+  border-radius: 2.5rem;
+  border: 0.15em solid red;
+  background-color: red;
+  background-color: white;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+  top: 2rem;
+  margin-bottom: 2em;
+  margin-top: 2em;
+  margin-left: 2em;
+}
+
+.formButton2:hover {
+  background-color: red;
+  color: white;
+}
+
+.inputProfile {
+  width: 12rem;
+  height: 2.3rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  padding-left: 1rem;
+  font-size: 1rem;
+  margin-left: 1rem;
+}
+
+.divButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
 }

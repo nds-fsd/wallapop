@@ -1,0 +1,38 @@
+.alert {
+  background-color: var(--blue-medium);
+  color: white;
+  text-align: center;
+  padding: 1em;
+  border-radius: 1em;
+  /* border: 0.3em solid var(--yellow-main); */
+  position: fixed;
+  top: 0;
+  left: 31rem;
+  z-index: 200;
+  width: 25rem;
+  height: 9rem;
+  box-shadow: 2px 2px 5px rgba(104, 104, 104, 0.8);
+}
+
+.alert > h5 {
+  width: 15rem;
+  margin-left: 4em;
+  margin-top: 3.5em;
+}
+.close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background-color: transparent;
+  border: none;
+}
+
+.close span:nth-child(1) {
+  color: white;
+  font-size: 1.2em;
+}
+
+.close span:nth-child(1):hover {
+  color: var(--yellow-main);
+  cursor: pointer;
+}

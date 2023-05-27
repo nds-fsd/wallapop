@@ -1,23 +1,20 @@
 import React from "react";
-import CategoryItem from "../categoryItem/CategoryItem";
 import styles from "./listCategory.module.css";
-import { apiCategory } from "../../../utils/apiCategories";
+import { getCategories } from "../../../utils/apiCategories";
 import { useQuery } from "react-query";
-import { NavLink, Navigate, Outlet, useParams } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+import Spinner from "../../Spinner/Spinner";
 
 const ListCategory = () => {
   // Hago peticion a BD para obtener todas las categorias
-  const { data: categories, isLoading } = useQuery("categories", async () => {
-    const res = await apiCategory.get("/category");
-    return res.data;
-  });
-
+  const { data: categories, isLoading } = useQuery(["category"], getCategories);
+// console.log(categories)
   return (
     <div className={styles.container}>
       {/* si no ha cargado las categorias muestra esto */}
       {isLoading && (
         <div>
-          {/* <Spinner /> */}
+          <Spinner />
           <h1>Cargando</h1>
         </div>
       )}
@@ -39,8 +36,10 @@ const ListCategory = () => {
                 to={"/category/" + category.title}
                 className={styles.item}
                 key={category._id}
-              >
-               {category.title}
+                >
+                <span className={category.logo} />
+                {category.title}
+            
               </NavLink>
             );
           })}

@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 
 .sideBar {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -11,17 +11,23 @@
   padding: 1rem;
 }
 
-.sideBar :hover{
- background-color:  #28349e82;
- color: var(--yellow-light);
- border-radius: 1rem;
- box-shadow: 2px 2px 4px .5px #0000001a;
+.sideBar :hover {
+  background-color: #28349e82;
+  color: var(--yellow-light);
+  border-radius: 1rem;
+  box-shadow: 2px 2px 4px 0.5px #0000001a;
+}
+.sideBar :focus {
+  background-color: #28349e82;
+  color: var(--yellow-light);
+  border-radius: 1rem;
+  box-shadow: 2px 2px 4px 0.5px #0000001a;
 }
 
-.sideBar a{
+.sideBar a {
   text-decoration: none;
   display: flex;
-  justify-content:flex-start;
+  justify-content: flex-start;
   align-items: center;
   width: 12vw;
   gap: 1rem;
@@ -30,14 +36,15 @@
 
 .profileLink img {
   width: 3rem;
-  height: auto;
+  height: 3rem;
+  object-fit: cover;
   border-radius: 100%;
 }
 
 .profileLink {
   display: flex;
   flex-direction: row;
-
+  align-items: center;
   font-weight: bolder;
   padding-left: 0;
 }
@@ -45,6 +52,3 @@
   background-color: transparent;
   box-shadow: none;
 }
-
-
-

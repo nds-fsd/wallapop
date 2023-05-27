@@ -2,11 +2,10 @@ const { model } = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
-const userSchema = require("../schemas/user");
+const userSchema = require("../schemas/userSchema");
 
 userSchema.pre("save", function (next) {
   const user = this;
-
   //si no se ha cambiado la contraseña, seguimos
   if (!user.isModified("password")) return next();
 
@@ -29,6 +28,7 @@ userSchema.methods.comparePassword = function (password) {
 };
 
 userSchema.methods.generateJWT = function () {
+  console.log("paso por el generateJWT")
   const today = new Date();
   const expirationDate = new Date();
 
