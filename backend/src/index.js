@@ -16,6 +16,7 @@ app.use("/category", categoryRouter);
 
 connectDB().then(() => console.log("Connected to database!"));
 
-const server = app.listen(3001, () => {
-  console.log("Server is up and running ⚡");
+const PORT = process.env.PORT || 3001;
+const server = app.listen(PORT, () => {
+  console.log(`Server is up and running ⚡ ${PORT}`);
 });
