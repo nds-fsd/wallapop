@@ -94,7 +94,6 @@ const CreateUserPage = () => {
                   },
                 })}
               />
-              
             </div>
             <div className={styles.errors}>
               <input
@@ -105,23 +104,22 @@ const CreateUserPage = () => {
                   required: "La contraseña es obligatoria",
                 })}
               />
-              
             </div>
           </div>
 
           <div className={styles.error1}>
-          {errors.email && (
-                <p>
-                  <span className="icon-warning1"></span>
-                  {errors.email.message}
-                </p>
-              )}
-              {errors.password && (
-                <p>
-                  <span className="icon-warning1"></span>
-                  {errors.password.message}
-                </p>
-              )}
+            {errors.email && (
+              <p>
+                <span className="icon-warning1"></span>
+                {errors.email.message}
+              </p>
+            )}
+            {errors.password && (
+              <p>
+                <span className="icon-warning1"></span>
+                {errors.password.message}
+              </p>
+            )}
           </div>
           <div className={styles.column}>
             <div className={styles.errors}>
@@ -178,7 +176,7 @@ const CreateUserPage = () => {
               <option value="">Selecciona un género</option>
               <option value="Masculino">Masculino</option>
               <option value="Femenino">Femenino</option>
-              <option value="No Binario">Binario</option>
+              <option value="No Binario">No Binario</option>
               <option value="Prefiero no decirlo">Prefiero no decirlo</option>
             </select>
             {errors.gender && (
@@ -195,7 +193,6 @@ const CreateUserPage = () => {
             type="submit"
           />
         </form>
-        <div>{registerError}</div>
       </div>
     </div>
   );
