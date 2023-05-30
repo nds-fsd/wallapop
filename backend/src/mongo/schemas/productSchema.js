@@ -11,6 +11,7 @@ const productSchema = new Schema({
   keywords: { type: Array },
   datePublication: { type: Date, default: new Date },
   location: { type: String },
+  favorite: {type: Boolean, default: false},
   // Para poder relacionar producto con users
   user: 
     {
@@ -28,6 +29,12 @@ const productSchema = new Schema({
       ref: "category",
     },
   ],
+  // favorite: {
+  //   type: Schema.Types.ObjectId,
+  //   default: false,
+  //   ref: "favorite",
+  // },
+
   characteristics: { type: Object },
 
   // ESTO DE AQUI ABAJO IRA FUERA CUANDO SE TERMINE DE CAMBIAR LAS FUNCIONES

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { api } from "./api";
 import { getUserData, getUserToken } from "./localStorage.utils";
 
@@ -75,6 +76,27 @@ export const updateProduct = (product) => {
   const id = product._id
   const { token } = getUserToken()
   // console.log("paso por la api de update", product)
+  return api
+  .patch(`/products/${id}`, product , {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  .then((res) => res.data )
+  .catch((error) => {
+    console.log(error)
+  });
+};
+
+export const changeFavorite = (product) => {
+  console.log("paso por la api de update", product)
+
+  const id = product._id
+  const { token } = getUserToken()
+  const isLoggedIn = token ? true : false
+  if (!isLoggedIn) {
+    return Promise.resolve("/user/login")
+  }
   return api
   .patch(`/products/${id}`, product , {
     headers: {

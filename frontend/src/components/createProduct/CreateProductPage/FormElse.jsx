@@ -22,10 +22,10 @@ const FormElse = () => {
     },
   });
 
-  const [showAlert, setShowAlert] = useState(false);
-  const handleCloseAlert = () => {
-    setShowAlert(false);
-  };
+  // const [showAlert, setShowAlert] = useState(false);
+  // const handleCloseAlert = () => {
+  //   setShowAlert(false);
+  // };
 
   const onSubmit = (data) => {
     const keywords =
@@ -35,6 +35,7 @@ const FormElse = () => {
         .filter((keyword) => keyword !== "") || [];
     const productData = { ...data, keywords };
     mutation.mutate(productData);
+    console.log(productData)
     // setShowAlert(true);
     alert("Tu producto se ha subido correctamente");
     reset();
@@ -182,12 +183,12 @@ const FormElse = () => {
         <button type="submit" className={styles.formButton}>
           Subir
         </button>
-        {showAlert && (
+        {/* {showAlert && (
           <CustomAlert
             message="Tu producto se ha subido correctamente"
             onClose={handleCloseAlert}
           />
-        )}
+        )} */}
       </form>
     </>
   );

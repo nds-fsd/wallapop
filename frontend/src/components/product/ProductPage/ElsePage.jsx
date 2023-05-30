@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./productPage.module.css";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
-import { getProductById } from "../../../utils/apiProducts";
-import { Link } from "react-router-dom";
+import { changeFavorite, getProductById, updateProduct } from "../../../utils/apiProducts";
+import { Link, useNavigate } from "react-router-dom";
 
 const ElsePage = ({ id }) => {
   const mockImages = [
@@ -22,7 +22,59 @@ const ElsePage = ({ id }) => {
   const { data, isLoading } = useQuery(["product", id], getProductById);
   console.log(data);
   const category = data.categories;
-  console.log("la categoria del producto", category);
+  // console.log("la categoria del producto", category);
+
+  const [favorite, setFavorite] = useState(data?.favorite);
+  const [showAlert, setShowAlert] = useState(false);
+  const handleAlertAccept = () => {
+    setShowAlert(false);
+  };
+
+  const [showError, setShowError] = useState(false)
+  const navigate = useNavigate()
+  const queryClient = useQueryClient(["product-updated"]);
+  const mutation = useMutation(updateProduct, {
+    onSuccess: (updatedProduct) => {
+      queryClient?.setQueryData(["product-updated", id, updatedProduct]);
+      setFavorite(updatedProduct.favorite);
+      setShowAlert(true);
+    },
+  });
+
+  const handleFavorite = () => {
+    const updatedFavorite = !favorite;
+    setFavorite(updatedFavorite);
+    const updatedProduct = { ...data, favorite: updatedFavorite };
+    mutation.mutate(updatedProduct, {
+      onSuccess: () => {
+        setShowAlert(true);
+      },
+    });
+  };
+
+
+  // const handleFavorite = () => {
+  //   const updatedFavorite = !favorite;
+  //   // setFavorite(updatedFavorite);
+  //   const updatedProduct = { ...data, favorite: updatedFavorite };
+  //   mutation.mutate(updatedProduct)
+  //   // mutation.mutate(updatedProduct, {
+  //   //   onSuccess: (redirectUrl) => {
+  //   //     if (typeof redirectUrl === "string") {
+  //   //       navigate(redirectUrl)
+  //   //     }
+  //   //   },
+  //   //   onError: (error) => {
+  //   //     if (error.message === "Usuario no loggeado") {
+  //   //       setShowError(true)
+  //   //       setTimeout(() => {
+  //   //         setShowError(false);
+  //   //       }, 3000);
+  //   //     }
+  //   //   }
+
+  //   // });
+  // };
 
   //Cuando todos los productos tengan asociado categories (title, logo...)
   //junto con el div que tiene el Link
@@ -31,14 +83,31 @@ const ElsePage = ({ id }) => {
 
   return (
     <>
+    {/* {showError && (
+        <div className={styles.alert}>You must be logged in to perform this action</div>
+      )} */}
       <div className={styles.productPage}>
         <div className={styles.container}>
+          
           <div className={styles.upperBar}>
-            <button className={styles.like}>
+          <div className={styles.user}>
+            <h3>{data && data.user.name}</h3>
+            <div className={styles.background}>
+              <img src={data.user.photo} className={styles.userPhoto}></img>
+            </div>
+          </div>
+          <div className={styles.buttons}>
+          <button
+              onClick={handleFavorite}
+              className={`${styles.like} ${favorite ? styles.focused : ""}`}
+            >
               <span className="icon-heart1"></span>
             </button>
             <button className={styles.chat}>CHAT</button>
           </div>
+
+          </div>
+            
           {data && <Slider images={mockImages} data={data} />}
           <div className={styles.details}>
             <div className={styles.priceContainer}>
@@ -91,6 +160,16 @@ const ElsePage = ({ id }) => {
           {data && <ProductBar data={data} />}
         </div>
       </div>
+      {showAlert && (
+        <div className={styles.alert}>
+          {favorite
+            ? "Este producto se ha añadido a tu lista de favoritos"
+            : "Este producto ya no está entre tus favoritos"}
+          <button onClick={handleAlertAccept} className={styles.accept}>
+            Aceptar
+          </button>
+        </div>
+      )}
     </>
   );
 };

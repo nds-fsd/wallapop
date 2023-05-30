@@ -8,6 +8,7 @@ const {
   deleteProductById,
   getProductByUser,
 } = require("../controllers/productController");
+const jwtMiddleware = require("../../security/jwtMiddleware");
 
 const productRouter = express.Router();
 
@@ -17,6 +18,8 @@ productRouter.get("/getbyuser/:user", getProductByUser)
 productRouter.get("/category/:category", getProductByCategory);
 productRouter.post("/newproduct/:user", postProduct);
 productRouter.patch("/:id", updateProductById);
+productRouter.patch("/:id", jwtMiddleware, updateProductById);
+
 productRouter.delete("/:id", deleteProductById);
 
 
