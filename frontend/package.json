@@ -18,7 +18,10 @@
     "react-router-dom": "^6.8.1",
     "react-spinners": "^0.13.8",
     "styled-component": "^2.8.0",
-    "sweetpagination": "^1.0.15"
+    "@cloudinary/react": "^1.11.2",
+    "@cloudinary/url-gen": "^1.10.0",
+    "classnames": "^2.3.2",
+    "axios": "^1.4.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react-swc": "^3.0.0",
