@@ -79,28 +79,46 @@ const ProfileInfo = () => {
               <h2>Información pública</h2>
               {/* FORMULARIO DATOS */}
               <form className={styles.formUser}>
-                <label className={styles.labels}>
-                  Nombre
-                  <input
-                    className={styles.inputProfile}
-                    {...register("name", {
-                      required: true,
-                    })}
-                  />
-                  {errors.name && <span>This field is required</span>}
-                </label>
-                <label className={styles.labels}>
-                  Apellido
-                  <input
-                    className={styles.inputProfile}
-                    name="surname"
-                    placeholder="Apellido"
-                    {...register("surname", {
-                      required: "Surname is required",
-                    })}
-                  />
-                  {errors?.surname?.message}
-                </label>
+                <div className={styles.errors}>
+                  <label className={styles.labels}>
+                    Nombre
+                    <input
+                      className={styles.inputProfile}
+                      {...register("name", {
+                        required: "El nombre es obligatorio",
+                      })}
+                    />
+                  </label>
+                </div>
+                <div className={styles.error}>
+                  {errors.name && (
+                    <p>
+                      <span className="icon-warning1"></span>
+                      {errors.name.message}
+                    </p>
+                  )}
+                </div>
+                <div className={styles.errors}>
+                  <label className={styles.labels}>
+                    Apellido
+                    <input
+                      className={styles.inputProfile}
+                      name="surname"
+                      placeholder="Apellido"
+                      {...register("surname", {
+                        required: "Surname is required",
+                      })}
+                    />
+                  </label>
+                </div>
+                <div className={styles.error}>
+                  {errors.surname && (
+                    <p>
+                      <span className="icon-warning1"></span>
+                      {errors.surname.message}
+                    </p>
+                  )}
+                </div>
                 <label className={styles.labels}>
                   Direción
                   <input
@@ -109,14 +127,26 @@ const ProfileInfo = () => {
                     {...register("adress")}
                   />
                 </label>
-                <label className={styles.labels}>
-                  Teléfono
-                  <input
-                    className={styles.inputProfile}
-                    placeholder="Teléfono"
-                    {...register("phone")}
-                  />
-                </label>
+                <div className={styles.errors}>
+                  <label className={styles.labels}>
+                    Teléfono
+                    <input
+                      className={styles.inputProfile}
+                      placeholder="Teléfono"
+                      {...register("phone", {
+                        required: "Phone is required",
+                      })}
+                    />
+                  </label>
+                </div>
+                <div className={styles.error}>
+                  {errors.phone && (
+                    <p>
+                      <span className="icon-warning1"></span>
+                      {errors.phone.message}
+                    </p>
+                  )}
+                </div>
               </form>
             </div>
           </div>
@@ -125,7 +155,6 @@ const ProfileInfo = () => {
             <button
               className={styles.formButton}
               type="submit"
-              disabled={!isValid}
               onClick={handleSubmit(handleSubmitWrapperUpdate)}
             >
               Guardar
@@ -133,7 +162,6 @@ const ProfileInfo = () => {
             <button
               className={styles.formButton2}
               type="submit"
-              disabled={!isValid}
               onClick={handleSubmit(handleSubmitWrapperDelete)}
             >
               Eliminar

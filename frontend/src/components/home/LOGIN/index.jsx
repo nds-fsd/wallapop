@@ -28,7 +28,7 @@ const Login = () => {
           {" "}
           <TbMessages /> BUZÓN{" "}
         </Link>
-        <div className={styles.tuButton}>
+        <div data-test="perfil" className={styles.tuButton}>
           <Link to="/user/profile/info">
             {" "}
             <img src={userData.photo} />
@@ -36,7 +36,9 @@ const Login = () => {
           </Link>
         </div>
         <div className={styles.createProductButton}>
-          <Link to="/products/newproduct/algo-que-no-utilizo">SUBIR UN PRODUCTO </Link>
+          <Link to="/products/newproduct/algo-que-no-utilizo">
+            SUBIR UN PRODUCTO{" "}
+          </Link>
         </div>
       </div>
     </nav>
