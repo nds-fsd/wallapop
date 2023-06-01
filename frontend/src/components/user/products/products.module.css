@@ -104,6 +104,7 @@
   display: flex;
   gap: 3rem;
   justify-content: center;
+  align-items: center;
   position: relative;
   top: 0.5em;
 }
@@ -178,4 +179,27 @@
 }
 .iconsList span:focus {
   color: var(--blue-medium);
+}
+
+.comprar > button{
+  width: fit-content;
+  height: 2rem;
+  font-size: 1rem;
+  padding: 0 1.5em;
+  border: none;
+  border-radius: 2.5rem;
+  background-color: var(--yellow-main);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.comprar >button:hover {
+  background-color: var(--blue-light);
+  color: white;
+}
+
+.heart span {
+  color: red;
 }

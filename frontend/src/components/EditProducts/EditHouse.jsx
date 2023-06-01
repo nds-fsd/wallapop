@@ -28,22 +28,18 @@ const EditHouse = ({ id }) => {
     },
   });
 
-  // const onSubmit = (product) => {
-  //   let keywords = product.keywords
-  //     ?.split(",")
-  //     .map((keyword) => keyword.trim())
-  //     .filter((keyword) => keyword !== "");
-      
-  //   const productData = { ...product, keywords};
-  //   mutation.mutate(productData);
-  //   alert("Los cambios se han guardado satisfactoriamente")
-  // };
-
   const onSubmit = (product) => {
-    const keywords = product.keywords
-    ?.split(",")
-    .map((keyword) => [keyword.trim()])
-    .filter((keyword) => keyword[0] !== "");  
+    let keywords = [];
+
+    if (typeof product.keywords === "string") {
+      keywords = product.keywords
+        .split(",")
+        .map((keyword) => keyword.trim())
+        .filter((keyword) => keyword !== "");
+    } else if (Array.isArray(product.keywords)) {
+      keywords = product.keywords;
+    }
+
     const productData = { ...product, keywords };
     mutation.mutate(productData);
     alert("Los cambios se han guardado satisfactoriamente");
@@ -90,8 +86,8 @@ const EditHouse = ({ id }) => {
               className={styles.input}
             >
               <option value="">Selecciona una opción</option>
-              <option value="venta">Venta</option>
-              <option value="alquiler">Alquiler</option>
+              <option value="Venta">Venta</option>
+              <option value="Alquiler">Alquiler</option>
             </select>
 
             <label htmlFor="space" className={styles.labels}>
@@ -102,12 +98,12 @@ const EditHouse = ({ id }) => {
               className={styles.input}
             >
               <option value="">Selecciona una opción</option>
-              <option value="piso">Piso</option>
-              <option value="casa">Casa</option>
-              <option value="habitacion">Habitación</option>
-              <option value="oficina">Oficina</option>
-              <option value="garaje">Garaje</option>
-              <option value="trastero">Trastero</option>
+              <option value="Piso">Piso</option>
+              <option value="Casa">Casa</option>
+              <option value="Habitación">Habitación</option>
+              <option value="Oficina">Oficina</option>
+              <option value="Garaje">Garaje</option>
+              <option value="Trastero">Trastero</option>
             </select>
             <label htmlFor="land" className={styles.labels}>
               Superficie:

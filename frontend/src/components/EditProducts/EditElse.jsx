@@ -7,7 +7,7 @@ import CustomAlert from "../CustomAlert/CustomAlert";
 
 const EditElse = ({ id }) => {
   console.log("el producto en el modal", id);
-  
+
   const {
     register,
     handleSubmit,
@@ -15,36 +15,42 @@ const EditElse = ({ id }) => {
     formState: { errors },
   } = useForm();
 
-  const { data: product } = useQuery(["product-updated", id], getProductById,{
+  const { data: product } = useQuery(["product-updated", id], getProductById, {
     onSuccess: (product) => {
-      reset(product)
-    }
+      reset(product);
+    },
   });
 
   const queryClient = useQueryClient(["product-updated"]);
   const mutation = useMutation(updateProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
-      window.location.reload()
+      window.location.reload();
     },
   });
 
   const onSubmit = (product) => {
-    const keywords = product.keywords
-    ?.split(",")
-    .map((keyword) => [keyword.trim()])
-    .filter((keyword) => keyword[0] !== "");  
+    let keywords = [];
+
+    if (typeof product.keywords === "string") {
+      keywords = product.keywords
+        .split(",")
+        .map((keyword) => keyword.trim())
+        .filter((keyword) => keyword !== "");
+    } else if (Array.isArray(product.keywords)) {
+      keywords = product.keywords;
+    }
+
     const productData = { ...product, keywords };
     mutation.mutate(productData);
     alert("Los cambios se han guardado satisfactoriamente");
   };
 
-
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.editContainer}>
-        <div className={styles.title}>
+          <div className={styles.title}>
             <label htmlFor="title" className={styles.labels}>
               Título:
             </label>
@@ -100,7 +106,6 @@ const EditElse = ({ id }) => {
               placeholder="Crea tus palabras clave"
               {...register("keywords")}
               className={styles.inputTriple}
-              // defaultValue={product?.keywords?.join(", ") || ""}
             ></input>
 
             <select {...register("status")} className={styles.dropdown}>
@@ -139,7 +144,7 @@ const EditElse = ({ id }) => {
           )}
           {/* <FormImages />
           <Map /> */}
-          
+
           <div>
             {/* <div className={styles.images}>
                 {prod && prod.images.map((image, _id) => (
@@ -148,9 +153,7 @@ const EditElse = ({ id }) => {
               </div> */}
           </div>
           <div className={styles.formButton}>
-            <button type="submit" >
-              Guardar cambios
-            </button>
+            <button type="submit">Guardar cambios</button>
           </div>
         </div>
       </form>

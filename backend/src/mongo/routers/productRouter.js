@@ -7,6 +7,7 @@ const {
   updateProductById,
   deleteProductById,
   getProductByUser,
+  getProductByUserFavs,
 } = require("../controllers/productController");
 const jwtMiddleware = require("../../security/jwtMiddleware");
 
@@ -15,6 +16,7 @@ const productRouter = express.Router();
 productRouter.get("/", getAllProducts);
 productRouter.get("/:id", getProductById);
 productRouter.get("/getbyuser/:user", getProductByUser)
+productRouter.get("/getbyuser/:user", getProductByUserFavs)
 productRouter.get("/category/:category", getProductByCategory);
 productRouter.post("/newproduct/:user", postProduct);
 productRouter.patch("/:id", updateProductById);

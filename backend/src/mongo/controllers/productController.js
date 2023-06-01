@@ -43,6 +43,23 @@ const getProductByUser = async (req, res) => {
   }
 };
 
+const getProductByUserFavs = async (req, res) => {
+  // console.log("paso por aqui");
+  const userId = req.params.user;
+  try {
+    if (!userId) res.status(404).json("no user id provided");
+    if (userId) {
+      const product = await productModel
+        .find({ user: userId, favorite: true })
+        .populate("user")
+        .populate("categories");
+      res.status(200).json(product);
+    }
+  } catch (e) {
+    res.status(500).json({ message: e });
+  }
+};
+
 // Buscar productos por categorias
 const getProductByCategory = async (req, res) => {
   const { category } = req.params;
@@ -142,4 +159,5 @@ module.exports = {
   postProduct,
   updateProductById,
   deleteProductById,
+  getProductByUserFavs
 };
