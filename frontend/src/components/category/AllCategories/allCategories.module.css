@@ -62,13 +62,18 @@
 }
 
 .priceContainer span {
-  color: red;
+  color: grey;
   font-size: 1.5em;
 }
 
 .priceContainer span:hover {
   color: var(--blue-light);
 }
+.priceContainer button {
+  border: none;
+  background-color: transparent;
+}
+
 
 .view {
   width: 13rem;

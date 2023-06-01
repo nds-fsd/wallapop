@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styles from "./productPage.module.css";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
-import { getProductById } from "../../../utils/apiProducts";
-import { Link } from "react-router-dom";
+import { changeFavorite, getProductById } from "../../../utils/apiProducts";
+import { Link, useNavigate } from "react-router-dom";
+import { getUserToken } from "../../../utils/localStorage.utils";
 
 const VehiclePage = ({ id }) => {
   const mockImages = [
@@ -13,8 +14,6 @@ const VehiclePage = ({ id }) => {
     "https://picsum.photos/id/2/700/500",
     "https://picsum.photos/id/3/700/500",
   ];
-
-  // console.log("el id del vehiculo", id)
 
   const [isExpanded, setIsExpanded] = useState(false);
   const handleExpandClick = () => {
@@ -24,6 +23,53 @@ const VehiclePage = ({ id }) => {
   const { data, isLoading } = useQuery(["product", id], getProductById);
   const category = data.categories;
 
+  const [favorite, setFavorite] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [sessionAlert, setSessionAlert] = useState(false);
+
+  const handleAlertAccept = () => {
+    setShowAlert(false);
+  };
+  const handleSessionAlert = () => {
+    setSessionAlert(false);
+    navigate("/user/login");
+  };
+
+  const navigate = useNavigate();
+  const queryClient = useQueryClient(["product-updated"]);
+  const mutation = useMutation(changeFavorite, {
+    onSuccess: (updatedProduct) => {
+      queryClient?.setQueryData(["product-updated", id, updatedProduct]);
+      setFavorite(updatedProduct.favorite);
+      setShowAlert(true);
+    },
+  });
+
+  const handleFavorite = () => {
+    const { isLoggedIn } = getUserToken();
+
+    if (isLoggedIn) {
+      const updatedFavorite = !favorite;
+      setFavorite(updatedFavorite);
+      const updatedProduct = { ...data, favorite: updatedFavorite };
+
+      mutation.mutate(updatedProduct, {
+        onSuccess: (redirectUrl) => {
+          if (typeof redirectUrl === "string") {
+            setSessionAlert(true);
+            navigate(redirectUrl);
+          } else {
+            setSessionAlert(false);
+            setShowAlert(true);
+          }
+        },
+      });
+    } else {
+      setSessionAlert(true);
+      setShowAlert(false);
+    }
+  };
+
   //Cuando todos los productos tengan asociado categories (title, logo...)
   //junto con el div que tiene el Link
   // const title = data?.categories[0].title
@@ -31,13 +77,50 @@ const VehiclePage = ({ id }) => {
 
   return (
     <>
+      {sessionAlert && (
+        <div className={styles.alert}>
+          Debes iniciar sesión para ejecutar esta acción
+          <div className={styles.alertButtons}>
+            <button onClick={handleSessionAlert} className={styles.accept}>
+              Aceptar
+            </button>
+            <button
+              onClick={() => setSessionAlert(false)}
+              className={styles.accept}
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      )}
+      {showAlert && (
+        <div className={styles.alert}>
+          {favorite
+            ? "Este producto se ha añadido a tu lista de favoritos"
+            : "Este producto ya no está entre tus favoritos"}
+          <button onClick={handleAlertAccept} className={styles.accept}>
+            Aceptar
+          </button>
+        </div>
+      )}
       <div className={styles.productPage}>
         <div className={styles.container}>
           <div className={styles.upperBar}>
-            <button className={styles.like}>
-              <span className="icon-heart1"></span>
-            </button>
-            <button className={styles.chat}>CHAT</button>
+            <div className={styles.user}>
+              <h3>{data && data.user.name}</h3>
+              <div className={styles.background}>
+                <img src={data.user.photo} className={styles.userPhoto}></img>
+              </div>
+            </div>
+            <div className={styles.buttons}>
+              <button
+                onClick={handleFavorite}
+                className={`${styles.like} ${favorite ? styles.focused : ""}`}
+              >
+                <span className="icon-heart1"></span>
+              </button>
+              <button className={styles.chat}>CHAT</button>
+            </div>
           </div>
           {data && <Slider images={mockImages} data={data} />}
 

@@ -1,25 +1,23 @@
 import React, { useState } from "react";
 import styles from "./allCategories.module.css";
-import { useQuery } from "react-query";
-import { getAllProducts } from "../../../utils/apiProducts";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { getAllProducts, updateProduct } from "../../../utils/apiProducts";
 import ImagesHome from "../../user/products/Image/ImagesHome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AllCategories = () => {
   const { data: prods } = useQuery({
     queryKey: ["products"],
     queryFn: getAllProducts,
   });
-  const [showAll, setShowAll] = useState(false)
-  const visibleProductsCount = showAll ? prods.length : 20
-  const visibleProducts = prods?.slice(0, visibleProductsCount)
+  const [showAll, setShowAll] = useState(false);
+  const visibleProductsCount = showAll ? prods.length : 20;
+  const visibleProducts = prods?.slice(0, visibleProductsCount);
   const toggleShowAll = () => {
     setShowAll(!showAll);
-
   };
 
-  console.log(prods)
-
+  // console.log(prods)
 
   return (
     <>
@@ -27,7 +25,12 @@ const AllCategories = () => {
 
       <div className={styles.gridContainer}>
         {visibleProducts?.map((prod) => (
-          <Link to={`/category/product/${prod._id}`} target="_blank" className={styles.link}>
+          <Link
+            key={prod._id}
+            to={`/category/product/${prod._id}`}
+            target="_blank"
+            className={styles.link}
+          >
             <div className={styles.card}>
               {prods && (
                 <ImagesHome
@@ -45,13 +48,15 @@ const AllCategories = () => {
                     })}{" "}
                     €
                   </h5>
-                  <span className="icon-heart1"></span>
+                  <button>
+                    <span className="icon-heart1"></span>
+                  </button>
                 </div>
                 <p className={styles.title}>{prod.title}</p>
               </div>
             </div>
-            </Link>
-          ))}
+          </Link>
+        ))}
       </div>
       {prods && prods.length > 20 && (
         <button onClick={toggleShowAll} className={styles.view}>

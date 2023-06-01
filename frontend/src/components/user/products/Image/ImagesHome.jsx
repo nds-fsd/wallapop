@@ -8,7 +8,7 @@ const ImagesHome = ({ images, category, status }) => {
     "https://picsum.photos/id/3/250/300",
   ];
 
-  console.log("en las imagenes", status)
+  // console.log("en las imagenes", status)
   return (
     <>
       {/* {images >1 && (
@@ -19,9 +19,12 @@ const ImagesHome = ({ images, category, status }) => {
 
       <div className={styles.icon}>
         <img src={mockImages[0]} className={styles.image}></img>
+        <div className={styles.tags}>
         <p className={styles.status}>{status}</p>
         {category && category.map((cat) => <span className={cat.logo} />
         )}
+        </div>
+        
       </div>
 
       {images === 0 && (
