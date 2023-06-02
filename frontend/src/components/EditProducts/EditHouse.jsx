@@ -34,10 +34,14 @@ const EditHouse = ({ id }) => {
     if (typeof product.keywords === "string") {
       keywords = product.keywords
         .split(",")
-        .map((keyword) => keyword.trim())
+        .map((keyword) => keyword.trim().split(" "))
+        .flat()
         .filter((keyword) => keyword !== "");
     } else if (Array.isArray(product.keywords)) {
-      keywords = product.keywords;
+      keywords = product.keywords
+        .map((keyword) => keyword.trim().split(" "))
+        .flat()
+        .filter((keyword) => keyword !== "");
     }
 
     const productData = { ...product, keywords };

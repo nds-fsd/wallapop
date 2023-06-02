@@ -29,16 +29,37 @@ const EditElse = ({ id }) => {
     },
   });
 
+  // const onSubmit = (product) => {
+  //   let keywords = [];
+
+  //   if (typeof product.keywords === "string") {
+  //     keywords = product.keywords
+  //       .split(",")
+  //       .map((keyword) => keyword.trim())
+  //       .filter((keyword) => keyword !== "");
+  //   } else if (Array.isArray(product.keywords)) {
+  //     keywords = product.keywords;
+  //   }
+
+  //   const productData = { ...product, keywords };
+  //   mutation.mutate(productData);
+  //   alert("Los cambios se han guardado satisfactoriamente");
+  // };
+
   const onSubmit = (product) => {
     let keywords = [];
 
     if (typeof product.keywords === "string") {
       keywords = product.keywords
         .split(",")
-        .map((keyword) => keyword.trim())
+        .map((keyword) => keyword.trim().split(" "))
+        .flat()
         .filter((keyword) => keyword !== "");
     } else if (Array.isArray(product.keywords)) {
-      keywords = product.keywords;
+      keywords = product.keywords
+        .map((keyword) => keyword.trim().split(" "))
+        .flat()
+        .filter((keyword) => keyword !== "");
     }
 
     const productData = { ...product, keywords };
