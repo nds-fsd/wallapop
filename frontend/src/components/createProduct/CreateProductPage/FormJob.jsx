@@ -27,18 +27,24 @@ const FormJob = () => {
   // };
 
   const onSubmit = (data) => {
-    const keywords =
-      data.keywords
-        ?.split(",")
-        .map((keyword) => keyword.trim())
-        .filter((keyword) => keyword !== "") || [];
-    const productData = { ...data, keywords };
+    const keywords = data.keywords
+      ?.replace(/,/g, '')
+      .split(" ")
+      .filter((keyword) => keyword !== "");
+  
+    const productData = { ...data };
+    if (keywords && keywords.length > 0) {
+      productData.keywords = keywords;
+    }
+  
     mutation.mutate(productData);
+    console.log(productData);
     // setShowAlert(true);
-    alert("Tu servicio / empleo se ha subido correctamente");
-
+    alert("Tu producto se ha subido correctamente");
     reset();
   };
+
+  
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.sectionForm}>

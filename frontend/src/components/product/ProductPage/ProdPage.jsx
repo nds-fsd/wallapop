@@ -27,14 +27,6 @@ const ProdPage = () => {
 
   let componentToRender;
 
-  // if (cat === "Inmobiliaria") {
-  //   componentToRender = <HousePage id={id} />;
-  // } else if (cat === "Motos" || "Coches") {
-  //   componentToRender = <VehiclePage id={id} />;
-  // } else {
-  //   componentToRender = <ElsePage id={id} />;
-  // }
-
   switch (cat) {
     case "Inmobiliaria":
       componentToRender = <HousePage id={id} />;

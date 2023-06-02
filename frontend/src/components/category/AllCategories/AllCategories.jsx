@@ -17,7 +17,7 @@ const AllCategories = () => {
     setShowAll(!showAll);
   };
 
-  // console.log(prods)
+  console.log(prods)
 
   return (
     <>

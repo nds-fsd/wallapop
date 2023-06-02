@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { deleteProduct, getFavsByUser } from "../../../utils/apiProducts";
+import {
+  getFavsByUser,
+} from "../../../utils/apiProducts";
 import styles from "../../user/products/products.module.css";
 import Images from "../products/Image/Images";
 import { Link } from "react-router-dom";
+import { updateProduct } from "../../../utils/apiProducts";
 
 const FavoriteProducts = () => {
   const { data: prods } = useQuery({
@@ -11,22 +14,57 @@ const FavoriteProducts = () => {
     queryFn: getFavsByUser,
   });
 
-  // console.log("los prods favs", prods);
+  console.log("los prods favs", prods);
 
-  const queryClient = useQueryClient(["product"]);
-  const mutation = useMutation(deleteProduct, {
-    onSuccess: () => {
-      queryClient?.invalidateQueries(["product", id]);
+  const [favorite, setFavorite] = useState(true);
+  const [deletionAlert, setDeletionAlert] = useState(false);
+
+  // const queryClient = useQueryClient(["product"]);
+
+  // const mutation = useMutation(updateProduct, {
+  //   onSuccess: (updatedProduct) => {
+  //     queryClient?.setQueryData(["product-updated", id, updatedProduct]);
+  //   setFavorite(updatedProduct.favorite);
+  //   setShowAlert(true);
+  //   },
+  // });
+
+  // const handleDeletionFav = () => {
+  //   const shouldDelete = window.confirm(
+  //     "Estás a punto de eliminar este producto de tus favoritos. ¿Deseas continuar?"
+  //   );
+  //   if (shouldDelete) {
+  //     mutation.mutate(id);
+  //   }
+  // };
+
+  const queryClient = useQueryClient();
+  const mutation = useMutation(updateProduct, {
+    onSuccess: (updatedProduct) => {
+      setFavorite(updatedProduct.favorite);
+      setDeletionAlert(true);
+      queryClient.setQueryData(["product", id], updatedProduct);
     },
   });
 
-  const handleDeletion = (id) => {
-    const shouldDelete = window.confirm(
-      "Estás a punto de eliminar este producto de tus favoritos. ¿Deseas continuar?"
-    );
-    if (shouldDelete) {
-      mutation.mutate(id);
-    }
+  const handleCancel = () => {
+    setDeletionAlert(false);
+  };
+
+  const handleDeletionFav = (id) => {
+    const updatedProduct = prods.find((prod) => prod._id === id);
+    if (!updatedProduct) return;
+
+    const shouldDelete = !updatedProduct.favorite;
+    setFavorite(shouldDelete);
+    const updatedProductData = { ...updatedProduct, favorite: shouldDelete };
+
+    mutation.mutate(updatedProductData, {
+      onSuccess: (updatedProduct) => {
+        setDeletionAlert(true);
+        queryClient.setQueryData(["product-updated", id, updatedProduct]);
+      },
+    });
   };
 
   return (
@@ -34,7 +72,27 @@ const FavoriteProducts = () => {
       <div className={styles.gridContainer}>
         {prods &&
           prods.map((prod) => (
-            <div className={styles.card}>
+            <div key={prod._id} className={styles.card}>
+              {deletionAlert && (
+                <div className={styles.alert}>
+                  Estás a punto de eliminar este producto de tus favoritos.
+                  ¿Deseas continuar?
+                  <div className={styles.alertButtons}>
+                    <button
+                      onClick={() => handleDeletionFav(prod._id)}
+                      className={styles.accept}
+                    >
+                      Aceptar
+                    </button>
+                    <button
+                    onClick={handleCancel}
+                    className={styles.accept}
+                  >
+                    Cancelar
+                  </button>
+                  </div>
+                </div>
+              )}
               {prods && <Images images={prod.images} />}
               <div className={styles.titleContainer}>
                 <h4 className={styles.title}>{prod.title}</h4>
@@ -63,7 +121,10 @@ const FavoriteProducts = () => {
               )}
               <p className={styles.paragraph}>{prod.description}</p>
               <div className={styles.icons}>
-                <button onClick={() => handleDeletion(prod._id)} className={styles.heart}>
+                <button
+                  onClick={() => handleDeletionFav(prod._id)}
+                  className={styles.heart}
+                >
                   <span className="icon-heart-broken"></span>
                 </button>
                 <Link to={`/category/product/${prod._id}`} target="_blank">

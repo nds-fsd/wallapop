@@ -99,7 +99,9 @@ export const postProduct = (data) => {
 
 
 export const updateProduct = (product) => {
+  console.log("paso por el update product", product)
   const id = product._id
+  console.log("el id del producto a update", id)
   const { token } = getUserToken()
   // console.log("paso por la api de update", product)
   return api

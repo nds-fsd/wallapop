@@ -30,13 +30,19 @@ const FormHouse = () => {
 
   const onSubmit = (data) => {
     const keywords = data.keywords
-      .split(",")
-      .map((keyword) => keyword.trim())
+      ?.replace(/,/g, '')
+      .split(" ")
       .filter((keyword) => keyword !== "");
-    const productData = { ...data, keywords };
-    console.log("las keywords", keywords);
+  
+    const productData = { ...data };
+    if (keywords && keywords.length > 0) {
+      productData.keywords = keywords;
+    }
+  
     mutation.mutate(productData);
-    alert("Tu inmueble se ha subido correctamente");
+    console.log(productData);
+    // setShowAlert(true);
+    alert("Tu producto se ha subido correctamente");
     reset();
   };
 

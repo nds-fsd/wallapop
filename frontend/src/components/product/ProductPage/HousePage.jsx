@@ -48,25 +48,22 @@ const HousePage = ({ id }) => {
     },
   });
 
-  const handleFavorite = () => {
-    const { isLoggedIn } = getUserToken();
+  const handleFavorite = async () => {
+    const userToken = localStorage.getItem("user-session");
 
-    if (isLoggedIn) {
+    if (userToken) {
       const updatedFavorite = !favorite;
       setFavorite(updatedFavorite);
-      const updatedProduct = { ...data, favorite: updatedFavorite };
+      const updatedProduct = { ...data, favorite: !data.favorite };
 
-      mutation.mutate(updatedProduct, {
-        onSuccess: (redirectUrl) => {
-          if (typeof redirectUrl === "string") {
-            setSessionAlert(true);
-            navigate(redirectUrl);
-          } else {
-            setSessionAlert(false);
-            setShowAlert(true);
-          }
-        },
-      });
+      try {
+        await mutation.mutateAsync(updatedProduct);
+        setSessionAlert(false);
+        setShowAlert(true);
+      } catch (error) {
+        setSessionAlert(true);
+        setShowAlert(false);
+      }
     } else {
       setSessionAlert(true);
       setShowAlert(false);
@@ -98,7 +95,7 @@ const HousePage = ({ id }) => {
       )}
       {showAlert && (
         <div className={styles.alert}>
-          {favorite
+          {data.favorite
             ? "Este producto se ha añadido a tu lista de favoritos"
             : "Este producto ya no está entre tus favoritos"}
           <button onClick={handleAlertAccept} className={styles.accept}>
