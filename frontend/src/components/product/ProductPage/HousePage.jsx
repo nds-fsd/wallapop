@@ -7,6 +7,7 @@ import ProductBar from "../ProductBar/ProductBar";
 import {
   changeFavorite,
   getProductById,
+  updateProduct,
 } from "../../../utils/apiProducts";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserToken } from "../../../utils/localStorage.utils";
@@ -30,31 +31,33 @@ const HousePage = ({ id }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
 
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const mutation = useMutation(updateProduct, {
+    onSuccess: (updatedProduct) => {
+      setFavorite(updatedProduct.favorite);
+      setShowAlert(true);
+      queryClient.setQueryData(["product", id], updatedProduct);
+    },
+  });
+
   const handleAlertAccept = () => {
     setShowAlert(false);
   };
+
   const handleSessionAlert = () => {
     setSessionAlert(false);
     navigate("/user/login");
   };
 
-  const navigate = useNavigate();
-  const queryClient = useQueryClient(["product-updated"]);
-  const mutation = useMutation(changeFavorite, {
-    onSuccess: (updatedProduct) => {
-      queryClient?.setQueryData(["product-updated", id, updatedProduct]);
-      setFavorite(updatedProduct.favorite);
-      setShowAlert(true);
-    },
-  });
-
   const handleFavorite = async () => {
     const userToken = localStorage.getItem("user-session");
 
     if (userToken) {
+      console.log(userToken)
       const updatedFavorite = !favorite;
       setFavorite(updatedFavorite);
-      const updatedProduct = { ...data, favorite: !data.favorite };
+      const updatedProduct = { ...data, favorite: updatedFavorite };
 
       try {
         await mutation.mutateAsync(updatedProduct);
@@ -77,7 +80,7 @@ const HousePage = ({ id }) => {
 
   return (
     <>
-      {sessionAlert && (
+      {data && sessionAlert && (
         <div className={styles.alert}>
           Debes iniciar sesión para ejecutar esta acción
           <div className={styles.alertButtons}>
@@ -93,7 +96,7 @@ const HousePage = ({ id }) => {
           </div>
         </div>
       )}
-      {showAlert && (
+      {data && showAlert && (
         <div className={styles.alert}>
           {data.favorite
             ? "Este producto se ha añadido a tu lista de favoritos"
@@ -107,9 +110,9 @@ const HousePage = ({ id }) => {
         <div className={styles.container}>
           <div className={styles.upperBar}>
             <div className={styles.user}>
-              <h3>{data && data.user.name}</h3>
+              <h3>{data.user?.name}</h3>
               <div className={styles.background}>
-                <img src={data.user.photo} className={styles.userPhoto}></img>
+                <img src={data?.user?.photo} className={styles.userPhoto}></img>
               </div>
             </div>
             <div className={styles.buttons}>

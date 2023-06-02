@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import {
-  getFavsByUser,
-} from "../../../utils/apiProducts";
+import { getFavsByUser } from "../../../utils/apiProducts";
 import styles from "../../user/products/products.module.css";
 import Images from "../products/Image/Images";
 import { Link } from "react-router-dom";
@@ -18,32 +16,14 @@ const FavoriteProducts = () => {
 
   const [favorite, setFavorite] = useState(true);
   const [deletionAlert, setDeletionAlert] = useState(false);
-
-  // const queryClient = useQueryClient(["product"]);
-
-  // const mutation = useMutation(updateProduct, {
-  //   onSuccess: (updatedProduct) => {
-  //     queryClient?.setQueryData(["product-updated", id, updatedProduct]);
-  //   setFavorite(updatedProduct.favorite);
-  //   setShowAlert(true);
-  //   },
-  // });
-
-  // const handleDeletionFav = () => {
-  //   const shouldDelete = window.confirm(
-  //     "Estás a punto de eliminar este producto de tus favoritos. ¿Deseas continuar?"
-  //   );
-  //   if (shouldDelete) {
-  //     mutation.mutate(id);
-  //   }
-  // };
+  const [deleteProduct, setDeleteProduct] = useState(null);
 
   const queryClient = useQueryClient();
   const mutation = useMutation(updateProduct, {
     onSuccess: (updatedProduct) => {
       setFavorite(updatedProduct.favorite);
       setDeletionAlert(true);
-      queryClient.setQueryData(["product", id], updatedProduct);
+      queryClient.setQueryData(["product", deleteProduct], updatedProduct);
     },
   });
 
@@ -52,8 +32,15 @@ const FavoriteProducts = () => {
   };
 
   const handleDeletionFav = (id) => {
+    setDeleteProduct(id);
+    setDeletionAlert(true);
+  };
+
+  const handleConfirmDeletion = (id) => {
     const updatedProduct = prods.find((prod) => prod._id === id);
     if (!updatedProduct) return;
+
+    console.log("el id del producto", id);
 
     const shouldDelete = !updatedProduct.favorite;
     setFavorite(shouldDelete);
@@ -61,8 +48,9 @@ const FavoriteProducts = () => {
 
     mutation.mutate(updatedProductData, {
       onSuccess: (updatedProduct) => {
-        setDeletionAlert(true);
-        queryClient.setQueryData(["product-updated", id, updatedProduct]);
+        setDeletionAlert(false);
+        queryClient?.setQueryData(["product-updated", id, updatedProduct]);
+        window.location.reload();
       },
     });
   };
@@ -73,23 +61,20 @@ const FavoriteProducts = () => {
         {prods &&
           prods.map((prod) => (
             <div key={prod._id} className={styles.card}>
-              {deletionAlert && (
+              {deletionAlert && deleteProduct === prod._id && (
                 <div className={styles.alert}>
                   Estás a punto de eliminar este producto de tus favoritos.
                   ¿Deseas continuar?
                   <div className={styles.alertButtons}>
                     <button
-                      onClick={() => handleDeletionFav(prod._id)}
+                      onClick={() => handleConfirmDeletion(prod._id)}
                       className={styles.accept}
                     >
                       Aceptar
                     </button>
-                    <button
-                    onClick={handleCancel}
-                    className={styles.accept}
-                  >
-                    Cancelar
-                  </button>
+                    <button onClick={handleCancel} className={styles.accept}>
+                      Cancelar
+                    </button>
                   </div>
                 </div>
               )}
