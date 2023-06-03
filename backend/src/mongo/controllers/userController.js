@@ -18,7 +18,9 @@ const userLogin = async (req, res) => {
     }
     // * Validate password with bcrypt library
     if (!foundUser.comparePassword(password)) {
-      return res.status(400).json({ error: { password: "Missing email or password" } });
+      return res
+        .status(400)
+        .json({ error: { password: "Missing email or password" } });
     }
     // * if everything is ok, return the new token and user data
     return res.status(200).json({
@@ -87,12 +89,17 @@ const findUserByID = async (req, res) => {
 };
 
 const modifyUserByID = async (req, res) => {
+  const { body } = req;
   const user = await userModel.findByIdAndUpdate(req.params.id, req.body);
-  console.log("CONTROLLER USER PATCH", user);
-  if (!user) {
-    res.status(404).json({ error: { id: "Sorry cant find that!" } });
+  if (!body.email || !body.name || !body.phone) {
+    return res.status(400).json({ error: { login: "Missing datos" } });
   } else {
-    res.status(200).json(user);
+    if (!user) {
+      res.status(404).json({ error: { id: "Sorry cant find that!" } });
+    } else {
+      console.log("CONTROLLER USER PATCH", user);
+      res.status(201).json(user);
+    }
   }
 };
 

@@ -5,7 +5,6 @@ describe("Product", () => {
     cy.get('input[type="email"]').type("proba@gmail.com");
     cy.get('input[type="password"]').type("12345");
     cy.get('[data-test="boton"]').contains("Inicia sesión").click();
-    cy.get('[data-test="boton"]').contains("Inicia sesión").click();
 
     cy.wait(300);
 
@@ -20,3 +19,7 @@ describe("Product", () => {
     );
   });
 });
+
+// tenc que comprobar si el producte creat esta als meus products
+// tambe tenc que comprobar si posu un producte a "favoritos" que
+// apareixi a sa llista

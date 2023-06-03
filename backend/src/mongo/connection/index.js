@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
 
-console.log("MONGO:");
-console.log(process.env.MONGO_URL);
+console.log("MONGO:", process.env.MONGO_URL);
 let dbUrl = process.env.MONGO_URL;
-
+// let dbUrl = "mongodb+srv://wallapop:wallapop@wallapop.sqcec8f.mongodb.net/?retryWrites=true&w=majority";
 let mongodb;
 
 exports.connectDB = async () => {

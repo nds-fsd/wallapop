@@ -1,5 +1,8 @@
 import { Given, When } from "cypress-cucumber-preprocessor/steps";
 
+//   SI CONSEGUEIXO FER FUNCINAR CUCUMBER
+//   AQUEST TEST SERIA PER COMPROBAR ES LOGIN
+
 Given(/^I go to Nuclio$/, function () {
   cy.visit("http://localhost:3000/login");
 });
