@@ -18,7 +18,7 @@ const AllCategories = () => {
 
   };
 
-  console.log(prods)
+  // console.log(prods)
 
 
   return (

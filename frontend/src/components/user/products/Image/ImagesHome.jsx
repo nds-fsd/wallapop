@@ -8,7 +8,7 @@ const ImagesHome = ({ images, category, status }) => {
     "https://picsum.photos/id/3/250/300",
   ];
 
-  console.log("en las imagenes", status)
+  // console.log("en las imagenes", status)
   return (
     <>
       {/* {images >1 && (
