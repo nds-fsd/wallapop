@@ -1,14 +1,20 @@
 const request = require("supertest");
-const app = require("../../app");
+const app = require("../../src/app");
 const emails = require("email-generator");
-const { disconnectDB, connectDB } = require("../../mongo/connection");
+const { connectDBTest, disconnectDBTest } = require("../connection");
+const { loadUser } = require("../fixtures/users.data");
+
+beforeAll(async () => {
+  await connectDBTest();
+  await loadUser();
+});
 
 describe("POST /login", () => {
   describe("Has username and password", () => {
     // si el mail/contrasenya es correcta torna es 200
     test("Response status 200", async () => {
       const response = await request(app).post("/user/login").send({
-        email: "mar.badia2@gmail.com",
+        email: "m.badia@gmail.com",
         password: "12345",
       });
       expect(response.statusCode).toBe(200);
@@ -16,7 +22,7 @@ describe("POST /login", () => {
     // torna es token
     test("Response contains a jwt", async () => {
       const response = await request(app).post("/user/login").send({
-        email: "mar.badia2@gmail.com",
+        email: "m.badia@gmail.com",
         password: "12345",
       });
       expect(response.body["token"]).toBeDefined();
@@ -34,7 +40,7 @@ describe("POST /login", () => {
   });
 
   afterAll(() => {
-    disconnectDB();
+    disconnectDBTest();
   });
 });
 

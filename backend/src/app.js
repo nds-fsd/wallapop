@@ -15,7 +15,9 @@ app.use("/user", userRouter);
 app.use("/products", productRouter);
 app.use("/category", categoryRouter);
 
-connectDB().then(() => console.log("Connected to database!"));
+if (process.env.MONGO_URL) {
+  connectDB().then(() => console.log("Connected to database!"));
+}
 
 // const PORT = process.env.PORT || 3001;
 // const server = app.listen(PORT, () => {

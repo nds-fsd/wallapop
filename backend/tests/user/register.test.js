@@ -1,9 +1,13 @@
 const request = require("supertest");
-const app = require("../../Index");
+const app = require("../../src/app");
 const emails = require("email-generator");
-const { disconnectDB, connectDB } = require("../../mongo/connection");
+const { connectDBTest, disconnectDBTest } = require("../connection");
+const { loadUser } = require("../fixtures/users.data");
 
-connectDB(false);
+beforeAll(async () => {
+  await connectDBTest();
+  await loadUser();
+});
 
 describe("POST /register", () => {
   describe("descripcion", () => {
@@ -14,7 +18,7 @@ describe("POST /register", () => {
         surname: "Badia",
         email: emails.generateEmail(),
         password: "12345",
-        phone: "6792343351",
+        phone: "679234351",
         photo:
           "http://res.cloudinary.com/dvogntdp2/image/upload/v1685034394/vnwmry1xmcbqx4ughkxl.png",
         birthday: "1997-01-21T00:00:00.000+00:00",
@@ -30,7 +34,7 @@ describe("POST /register", () => {
         surname: "Badia",
         email: emails.generateEmail(),
         password: "12345",
-        phone: "75641159752",
+        phone: "75159752",
         photo:
           "http://res.cloudinary.com/dvogntdp2/image/upload/v1685034394/vnwmry1xmcbqx4ughkxl.png",
         birthday: "1997-01-21T00:00:00.000+00:00",
@@ -56,9 +60,9 @@ describe("POST /register", () => {
       const response = await request(app).post("/user/register").send({
         name: "Mar",
         surname: "Badia",
-        email: "proba@gmail.com",
+        email: "m.badia@gmail.com",
         password: "12345",
-        phone: "00011000",
+        phone: "00011111000",
         photo:
           "http://res.cloudinary.com/dvogntdp2/image/upload/v1685034394/vnwmry1xmcbqx4ughkxl.png",
         birthday: "1997-01-21T00:00:00.000+00:00",
@@ -69,10 +73,9 @@ describe("POST /register", () => {
   });
 
   afterAll(() => {
-    disconnectDB();
+    disconnectDBTest();
   });
 });
-
 
 // tenc que probar de registrar un nou user
 // comprobar que sense les dades falla i amb elles funciona

@@ -1,26 +1,29 @@
 const mongoose = require("mongoose");
 const { MongoMemoryServer } = require("mongodb-memory-server");
+const { MongoClient } = require("mongodb");
 
-let dbUrl = process.env.MONGO_URL;
 let mongodb;
 
-exports.connectDB = async () => {
+exports.connectDBTest = async () => {
   mongoose.set("strictQuery", false);
   try {
-    await mongoose.connect(dbUrl);
-    const mongo = mongoose.connection;
-    console.log("MONGO:", process.env.MONGO_URL);
-    mongo.on("error", (error) => console.error(error));
+    const mongod = await MongoMemoryServer.create();
+    const uri = mongod.getUri();
+    console.log("MONGO TEST", uri);
+    await mongoose.connect(uri);
+
+    // añadir datos a la BD
   } catch (e) {
     console.log(e);
   }
 };
 
-exports.disconnectDB = async () => {
+exports.disconnectDBTest = async () => {
   try {
     await mongoose.connection.close();
     if (mongodb) {
       await mongodb.stop();
+      console.log("ADEU");
     }
   } catch (err) {
     console.log(err);
