@@ -28,8 +28,7 @@ const FormJob = () => {
 
   const onSubmit = (data) => {
     const keywords = data.keywords
-      ?.replace(/,/g, '')
-      .split(" ")
+      ?.split(/[, ]+/)
       .filter((keyword) => keyword !== "");
   
     const productData = { ...data };

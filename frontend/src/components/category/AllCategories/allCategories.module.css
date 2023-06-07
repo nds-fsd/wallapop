@@ -61,18 +61,36 @@
   color: var(--yellow-main);
 }
 
-.priceContainer span {
+.like {
   color: grey;
-  font-size: 1.5em;
+  font-size: 1.4em;
 }
 
-.priceContainer span:hover {
+.like:hover {
   color: var(--blue-light);
+  cursor: pointer;
 }
+.focused {
+  color: red ;
+}
+
 .priceContainer button {
   border: none;
   background-color: transparent;
 }
+
+.eye button  {
+  color: var(--yellow-main);
+  font-size: 1.4em;
+  cursor: pointer;
+}
+
+.eye button:hover {
+  color: var(--blue-light)
+}
+
+
+
 
 
 .view {
@@ -94,3 +112,57 @@
   background-color: var(--yellow-main);
   color: white;
 }
+
+
+
+
+.alert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  position: fixed;
+  top: 39%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--blue-medium);
+  color: white;
+  /* border: 2px solid var(--yellow-main); */
+  border-radius: 1em;
+  padding: 1.5em;
+  text-align: center;
+  z-index: 9999;
+  box-shadow: 2px 2px 4px rgba(87, 87, 87, 0.1);
+
+}
+
+.accept:hover {
+  background-color: var(--yellow-main);
+  color: white;
+
+}
+
+.accept {
+  width: 7rem;
+  height: 2rem;
+  border-radius: 2.5rem;
+  border: none;
+  /* border: 0.2em solid var(--yellow-main); */
+  background-color: var(--yellow-main);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.accept:hover {
+  background-color: var(--blue-light);
+  color: white;
+}
+
+.alertButtons {
+  display: flex;
+  gap: 2em;
+}
+
+

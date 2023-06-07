@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./createProductPage.module.css";
 import { useForm } from "react-hook-form";
 import { postProduct, updateProduct } from "../../../utils/apiProducts";
@@ -21,30 +21,32 @@ const FormElse = () => {
       queryClient.invalidateQueries(["product"]);
     },
   });
+  
+  const [imagePreviews, setImagePreviews] = useState([]);
 
+  // const handleImageUpload = (files) => {
+  //   const imageUrls = Array.from(files).map((file) => URL.createObjectURL(file));
+  //   setImagePreviews((prevPreviews) => [...prevPreviews, ...imageUrls]);
+  // };
+
+  const handleImageUpload = (files, index) => {
+    const imageUrls = Array.from(files).map((file) => URL.createObjectURL(file));
+    setImagePreviews((prevPreviews) => {
+      const updatedPreviews = [...prevPreviews];
+      updatedPreviews[index] = imageUrls[0];
+      return updatedPreviews;
+    });
+  };
+
+  
   // const [showAlert, setShowAlert] = useState(false);
   // const handleCloseAlert = () => {
   //   setShowAlert(false);
   // };
 
-  // const onSubmit = (data) => {
-  //   const keywords =
-  //     data.keywords
-  //       ?.split(",")
-  //       .map((keyword) => keyword.trim())
-  //       .filter((keyword) => keyword !== "") || [];
-  //   const productData = { ...data, keywords };
-  //   mutation.mutate(productData);
-  //   console.log(productData)
-  //   // setShowAlert(true);
-  //   alert("Tu producto se ha subido correctamente");
-  //   reset();
-  // };
-
   const onSubmit = (data) => {
     const keywords = data.keywords
-      ?.replace(/,/g, '')
-      .split(" ")
+      ?.split(/[, ]+/)
       .filter((keyword) => keyword !== "");
   
     const productData = { ...data };
@@ -195,7 +197,7 @@ const FormElse = () => {
             {errors.description.message}
           </p>
         )}
-        <FormImages />
+        <FormImages handleImageUpload={handleImageUpload} imagePreviews={imagePreviews} setImagePreviews={setImagePreviews}/>
         <Map />
 
         <button type="submit" className={styles.formButton}>

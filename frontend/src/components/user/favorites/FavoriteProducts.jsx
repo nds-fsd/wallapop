@@ -14,7 +14,7 @@ const FavoriteProducts = () => {
 
   console.log("los prods favs", prods);
 
-  const [favorite, setFavorite] = useState(true);
+  const [favorite, setFavorite] = useState({});
   const [deletionAlert, setDeletionAlert] = useState(false);
   const [deleteProduct, setDeleteProduct] = useState(null);
 
