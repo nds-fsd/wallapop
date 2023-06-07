@@ -1,8 +1,7 @@
 import styles from "./listProducts.module.css";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import Product from "../product/Product";
-import React, { useState } from "react";
-import Paginator from "../Paginator/paginator";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { getProductByCategory } from "../../../utils/apiProducts";
 import Spinner from "../../Spinner/Spinner";
@@ -21,11 +20,9 @@ const ListProducts = () => {
       {isLoading && (
         <div>
           <Spinner />
-          {/* <h1>Cargando</h1> */}
         </div>
       )}
       <div className={styles.carusel}>
-        {/* <Paginator product={products} /> */}
         {!isLoading &&
           // hago bucle para mostrar todos los productos que me ha llegado de la BD
           products.map((prod) => {

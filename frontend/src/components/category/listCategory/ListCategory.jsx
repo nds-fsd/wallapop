@@ -15,7 +15,6 @@ const ListCategory = () => {
       {isLoading && (
         <div>
           <Spinner />
-          <h1>Cargando</h1>
         </div>
       )}
       <div className={styles.carusel}>
@@ -23,13 +22,6 @@ const ListCategory = () => {
           // bucle para mostrar todas las categorias que vienen de la BD
           categories.map((category) => {
             return (
-              // navLink
-              // <CategoryItem
-              //   className={styles.menu}
-              //   key={category.id}
-              //   category={category}
-              // />
-
               // Para que funcione el outlet declaro cada categoria con una navLink y le muestro la ruta que tiene que hacer
               // cada vez que se aprete ( el to="")
               <NavLink

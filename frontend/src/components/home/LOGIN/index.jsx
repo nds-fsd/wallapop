@@ -18,19 +18,16 @@ const Login = () => {
           <img src={logo} />{" "}
         </div>
       </Link>
-      <Buscador />
+      <Buscador to="/products/search" />
       <div className={styles.buttonLink}>
         <Link to="/user/favorites">
-          {" "}
           <MdOutlineFavoriteBorder /> FAVORITOS{" "}
         </Link>
         <Link to="/user/messages">
-          {" "}
           <TbMessages /> BUZÓN{" "}
         </Link>
         <div data-test="perfil" className={styles.tuButton}>
           <Link to="/user/profile/info">
-            {" "}
             <img src={userData.photo} />
             TÚ
           </Link>
