@@ -3,10 +3,7 @@ const categoryModel = require("../models/categoryModel");
 
 const getAllProducts = async (req, res) => {
   try {
-    const allProducts = await productModel
-    .find()
-    .populate("categories")
-    .exec()
+    const allProducts = await productModel.find().populate("categories").exec();
     res.status(200).json(allProducts);
   } catch (error) {
     res.status(500).json({ message: "Can't find products" });
@@ -16,10 +13,11 @@ const getAllProducts = async (req, res) => {
 const getProductById = async (req, res) => {
   const { id } = req.params;
   try {
-    const productById = await productModel.findById(id)
+    const productById = await productModel
+      .findById(id)
       .populate("user")
       .populate("categories")
-      .exec()
+      .exec();
     res.status(200).json(productById);
   } catch (error) {
     res.status(404).json({ error: "Sorry, can't find this product" });
@@ -60,6 +58,20 @@ const getProductByCategory = async (req, res) => {
   }
 };
 
+// Buscar productos por name
+const getProductByName = async (req, res) => {
+  const { name } = req.params;
+  try {
+    const productByName = await productModel.find({
+      title: { $regex: new RegExp(name, "i") },
+    });
+    res.status(200).json(productByName);
+  } catch (error) {
+    res.status(404).json({ error: "Sorry, can't find this category" });
+    console.log(error);
+  }
+};
+
 // Crear producto
 const postProduct = async (req, res) => {
   const { body } = req;
@@ -76,25 +88,6 @@ const postProduct = async (req, res) => {
   } catch (e) {
     res.status(500).json({ message: e });
   }
-  // const newProduct = new productModel(req.body);
-  // //cogemos el los datos del ususario que hemos pasado por la url de la peticion
-  // const userId = req.params.userId;
-  // //parseamos los datos y cogemos el id del usuario y lo añadimos al newProduct
-  // newProduct.user.push(JSON.parse(userId).id);
-
-  // //hacemos una findOne con el nombre de la categoria para poder obtener toda su info y coger el id para ponerselo al producto
-  // // y asi relacionarlo con categoria
-  // const cat = await categoryModel.findOne({ title: req.body.category });
-  // // le añadimos el id de la categoria encontrado arriba al producto antes de crearlo
-  // newProduct.categories.push(cat._id);
-  // try {
-  //   await newProduct.save();
-  //   // console.log(newProduct);
-  //   res.status(200).json(newProduct);
-  // } catch (error) {
-  //   res.status(500).json({ error: "Can't post this product" });
-  //   console.log(error);
-  // }
 };
 
 const updateProductById = async (req, res) => {
@@ -142,4 +135,5 @@ module.exports = {
   postProduct,
   updateProductById,
   deleteProductById,
+  getProductByName,
 };

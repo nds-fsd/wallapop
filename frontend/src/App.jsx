@@ -13,7 +13,7 @@ import CreateProductPage from "./components/createProduct/CreateProductPage/Crea
 import PrivateRoutes from "./components/private-routes";
 import { AuthProvider } from "./context/authContext";
 import ProdPage from "./components/product/ProductPage/ProdPage";
-import AllCategories from "./components/category/AllCategories/AllCategories";
+import ListBuscador from "./components/home/ListBuscador/ListBuscador";
 
 function App() {
   const queryClient = new QueryClient();
@@ -33,6 +33,7 @@ function App() {
                   path="/products/newproduct/*"
                   element={<CreateProductPage />}
                 />
+
                 {/* creo la ruta para poder acceder a las categorias desde otro sitio y la lista de productos 
               Lo creo dentro del routs sin mostrarlo porque asi por mucho que cambie de categoria sigue mostrandose la navBar arriba
               en caso que no fuera asi no se mostraria
@@ -40,6 +41,10 @@ function App() {
                 <Route path="/category" element={<ListCategory />}>
                   <Route path=":category" element={<ListProducts />} />
                   <Route path="product/:productid" element={<ProdPage />} />
+                  <Route
+                    path="product/search/:name"
+                    element={<ListBuscador />}
+                  />
                 </Route>
                 <Route path="/user" element={<PrivateRoutes />}>
                   <Route path="" element={<UserPage />} />

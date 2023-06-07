@@ -8,14 +8,12 @@ import Spinner from "../../Spinner/Spinner";
 const ListCategory = () => {
   // Hago peticion a BD para obtener todas las categorias
   const { data: categories, isLoading } = useQuery(["category"], getCategories);
-// console.log(categories)
   return (
     <div className={styles.container}>
       {/* si no ha cargado las categorias muestra esto */}
       {isLoading && (
         <div>
           <Spinner />
-          <h1>Cargando</h1>
         </div>
       )}
       <div className={styles.carusel}>
@@ -23,23 +21,15 @@ const ListCategory = () => {
           // bucle para mostrar todas las categorias que vienen de la BD
           categories.map((category) => {
             return (
-              // navLink
-              // <CategoryItem
-              //   className={styles.menu}
-              //   key={category.id}
-              //   category={category}
-              // />
-
               // Para que funcione el outlet declaro cada categoria con una navLink y le muestro la ruta que tiene que hacer
               // cada vez que se aprete ( el to="")
               <NavLink
                 to={"/category/" + category.title}
                 className={styles.item}
                 key={category._id}
-                >
+              >
                 <span className={category.logo} />
                 {category.title}
-            
               </NavLink>
             );
           })}
