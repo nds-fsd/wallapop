@@ -147,16 +147,17 @@ export const AuthProvider = ({ children }) => {
     }
   );
 
-  const [images, setImages] = useState([])
+  const [images, setImages] = useState([]);
+  const imagesForUpload = [];
   const multipleUploadWidget = cloudinary.createUploadWidget(
     {
       cloudName: "dvogntdp2",
       uploadPreset: "kysnseyx",
-      sources: ["local", "url", "image_search", "google_drive"],
+      // sources: ["local", "url", "image_search", "google_drive"],
+      sources: ["local"],
       googleApiKey: "<image_search_google_api_key>",
-      showAdvancedOptions: true,
-      cropping: true,
-      multiple: true,
+      // showAdvancedOptions: true,
+      // cropping: true,
       defaultSource: "local",
       styles: {
         palette: {
@@ -180,12 +181,12 @@ export const AuthProvider = ({ children }) => {
     (err, result) => {
       if (!err && result.event === "success") {
         console.log("esto es result multiple", result);
-        setImages(result.info.secure_url);
+        imagesForUpload.push(result.info.secure_url);
+        setImages(imagesForUpload);
       }
     }
   );
   // const imgProfilInfo = { showUploadWidget, image };
-
   const data = {
     // handleAuth,
     handleLogout,
@@ -200,8 +201,8 @@ export const AuthProvider = ({ children }) => {
     image,
     images,
     setImages
+    
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };
-

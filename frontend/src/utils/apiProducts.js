@@ -83,6 +83,7 @@ export const getProductByCategory = ({ queryKey }) => {
 };
 
 export const postProduct = (data) => {
+  // console.log("esta es la data en el post", data)
   // const { id } = JSON.parse(localStorage.getItem("user"));
   const { id } = getUserData();
   return api
@@ -99,9 +100,9 @@ export const postProduct = (data) => {
 
 
 export const updateProduct = (product) => {
-  console.log("paso por el update product", product)
+  // console.log("paso por el update product", product)
   const id = product._id
-  console.log("el id del producto a update", id)
+  // console.log("el id del producto a update", id)
   const { token } = getUserToken()
   // console.log("paso por la api de update", product)
   return api
@@ -117,7 +118,7 @@ export const updateProduct = (product) => {
 };
 
 export const changeFavorite = (product) => {
-  console.log("paso por la api de update", product)
+  // console.log("paso por la api de update", product)
 
   const id = product._id
   const { token } = getUserToken()

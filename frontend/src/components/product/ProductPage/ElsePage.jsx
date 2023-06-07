@@ -132,7 +132,7 @@ const ElsePage = ({ id }) => {
             </div>
           </div>
 
-          {data && <Slider images={mockImages} data={data} />}
+          {data && <Slider images={data.images} data={data} />}
           <div className={styles.details}>
             <div className={styles.priceContainer}>
               <h1 className={styles.price}>

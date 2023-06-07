@@ -6,9 +6,12 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
 import Map from "../map/Map";
 import CustomAlert from "../../CustomAlert/CustomAlert";
+import { AuthContext } from "../../../context/authContext";
 
 const FormElse = () => {
   const queryClient = useQueryClient(["product"]);
+  const {images} = useContext(AuthContext)
+  console.log("estas son las imagenes", images)
 
   const {
     register,
@@ -21,7 +24,7 @@ const FormElse = () => {
       queryClient.invalidateQueries(["product"]);
     },
   });
-  
+
   const [imagePreviews, setImagePreviews] = useState([]);
 
   // const handleImageUpload = (files) => {
@@ -30,7 +33,9 @@ const FormElse = () => {
   // };
 
   const handleImageUpload = (files, index) => {
-    const imageUrls = Array.from(files).map((file) => URL.createObjectURL(file));
+    const imageUrls = Array.from(files).map((file) =>
+      URL.createObjectURL(file)
+    );
     setImagePreviews((prevPreviews) => {
       const updatedPreviews = [...prevPreviews];
       updatedPreviews[index] = imageUrls[0];
@@ -38,7 +43,6 @@ const FormElse = () => {
     });
   };
 
-  
   // const [showAlert, setShowAlert] = useState(false);
   // const handleCloseAlert = () => {
   //   setShowAlert(false);
@@ -48,12 +52,14 @@ const FormElse = () => {
     const keywords = data.keywords
       ?.split(/[, ]+/)
       .filter((keyword) => keyword !== "");
-  
-    const productData = { ...data };
+    
+    const productData = { ...data, images };
     if (keywords && keywords.length > 0) {
       productData.keywords = keywords;
     }
-  
+
+    console.log("esto es lo que se va a mutar", productData);
+
     mutation.mutate(productData);
     console.log(productData);
     // setShowAlert(true);
@@ -197,8 +203,12 @@ const FormElse = () => {
             {errors.description.message}
           </p>
         )}
-        <FormImages handleImageUpload={handleImageUpload} imagePreviews={imagePreviews} setImagePreviews={setImagePreviews}/>
-        <Map />
+        <FormImages
+          handleImageUpload={handleImageUpload}
+          imagePreviews={imagePreviews}
+          setImagePreviews={setImagePreviews}
+        />
+        {/* <Map /> */}
 
         <button type="submit" className={styles.formButton}>
           Subir

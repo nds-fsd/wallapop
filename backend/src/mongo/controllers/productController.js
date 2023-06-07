@@ -86,14 +86,6 @@ const postProduct = async (req, res) => {
     if (cat) {
       newProduct.categories.push(cat._id);
     }
-    const uploadedImages = [];
-
-    for (const file of req.files) {
-      const result = await cloudinary.uploader.upload(file.path);
-      uploadedImages.push(result.secure_url);
-    }
-
-    newProduct.images = uploadedImages;
     await newProduct.save();
     res.status(201).json(newProduct);
   } catch (error) {

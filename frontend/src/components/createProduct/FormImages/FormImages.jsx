@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
+import React, { useContext } from "react";
 import styles from "./formImages.module.css";
 import { AuthContext } from "../../../context/authContext";
 
@@ -13,12 +13,11 @@ const FormImages = ({ handleImageUpload, imagePreviews }) => {
   const handleFileChange = (event, index) => {
     const files = event.target.files;
     handleImageUpload(files, index);
-    const uploadedImage= imagePreviews[index]
-    setImages(uploadedImage)
+    const uploadedImage = images[index];
+    
+    setImages(...images, uploadedImage);
   };
-
-  
-
+  console.log("Nuevas imagenes", images)
   return (
     <>
       <div>
@@ -33,33 +32,37 @@ const FormImages = ({ handleImageUpload, imagePreviews }) => {
       </div>
 
       <div className={styles.images}>
-        {imagePreviews.map((preview, index) => (
+        {images.map((preview, index) => (
           <div key={index} className={styles.imagePreview}>
-            <img src={preview} alt={`Preview ${index}`} />
+            <img src={preview}/>
           </div>
         ))}
 
-        {Array.from({ length: Math.max(6 - imagePreviews.length, 1) }).map((_, index) => (
-          <div key={index + imagePreviews.length} className={styles.imagePreview}>
-            {index === 0 && images ? (
-            <img src={images} alt="Uploaded Image" />
-          ) : (
-            <button onClick={handleOpenWidget} className={styles.image}>
-              <span className="icon-image1"></span>
-            </button>
-          )}
-        </div>
-      ))}
+        {Array.from({ length: Math.max(6 - images.length, 1) }).map(
+          (_, index) => (
+            <div
+              key={index + images.length}
+              className={styles.imagePreview}
+            >
+              {index === 0 && images ? (
+                <img src={images}  />
+              ) : (
+                <button onClick={handleOpenWidget} className={styles.image}>
+                  <span className="icon-image1"></span>
+                </button>
+              )}
+            </div>
+          )
+        )}
 
-      <input
-        type="file"
-        accept="image/*"
-        multiple
-        style={{ display: "none" }}
-        onChange={handleFileChange}
-      />
+        <input
+          type="file"
+          accept="image/*"
+          multiple="multiple"
+          style={{ display: "none" }}
+          onChange={handleFileChange}
+        />
       </div>
-                 
 
       {/* <div className={styles.images}>
         <button onClick={handleOpenWidget} className={styles.image}>
