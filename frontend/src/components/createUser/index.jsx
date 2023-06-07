@@ -172,6 +172,7 @@ const CreateUserPage = () => {
               {...register("gender")}
               placeholder="Género"
               className={styles.dropdown}
+              name="gender"
             >
               <option value="">Selecciona un género</option>
               <option value="Masculino">Masculino</option>

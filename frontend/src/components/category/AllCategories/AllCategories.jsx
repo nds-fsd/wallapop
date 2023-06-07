@@ -10,16 +10,14 @@ const AllCategories = () => {
     queryKey: ["products"],
     queryFn: getAllProducts,
   });
-  const [showAll, setShowAll] = useState(false)
-  const visibleProductsCount = showAll ? prods.length : 20
-  const visibleProducts = prods?.slice(0, visibleProductsCount)
+  const [showAll, setShowAll] = useState(false);
+  const visibleProductsCount = showAll ? prods.length : 20;
+  const visibleProducts = prods?.slice(0, visibleProductsCount);
   const toggleShowAll = () => {
     setShowAll(!showAll);
-
   };
 
-  console.log(prods)
-
+  console.log(prods);
 
   return (
     <>
@@ -27,7 +25,12 @@ const AllCategories = () => {
 
       <div className={styles.gridContainer}>
         {visibleProducts?.map((prod) => (
-          <Link to={`/category/product/${prod._id}`} target="_blank" className={styles.link}>
+          <Link
+            data-test="card_prod"
+            to={`/category/product/${prod._id}`}
+            target="_blank"
+            className={styles.link}
+          >
             <div className={styles.card}>
               {prods && (
                 <ImagesHome
@@ -50,8 +53,8 @@ const AllCategories = () => {
                 <p className={styles.title}>{prod.title}</p>
               </div>
             </div>
-            </Link>
-          ))}
+          </Link>
+        ))}
       </div>
       {prods && prods.length > 20 && (
         <button onClick={toggleShowAll} className={styles.view}>

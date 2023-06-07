@@ -25,15 +25,15 @@ const EditVehicle = ({ id }) => {
   const mutation = useMutation(updateProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
-      window.location.reload()
+      window.location.reload();
     },
   });
 
   const onSubmit = (product) => {
     const keywords = product.keywords
-    ?.split(",")
-    .map((keyword) => [keyword.trim()])
-    .filter((keyword) => keyword[0] !== "");  
+      ?.split(",")
+      .map((keyword) => [keyword.trim()])
+      .filter((keyword) => keyword[0] !== "");
     const productData = { ...product, keywords };
     mutation.mutate(productData);
     alert("Los cambios se han guardado satisfactoriamente");
@@ -149,25 +149,24 @@ const EditVehicle = ({ id }) => {
           </div>
 
           <div className={styles.title}>
-          <label htmlFor="engine" className={styles.labels}>
-            Motor:
-          </label>
-          <select {...register("engine")} className={styles.input}>
+            <label htmlFor="engine" className={styles.labels}>
+              Motor:
+            </label>
+            <select {...register("engine")} className={styles.input}>
               <option value="">Selecciona una opción</option>
               <option value="Gasolina">Gasolina</option>
               <option value="Diesel">Diesel</option>
               <option value="Eléctrico">Eléctirco</option>
-
             </select>
-          <label htmlFor="shift" className={styles.labels}>
-            Cambio:
-          </label>
-          <select {...register("shift")} className={styles.input}>
+            <label htmlFor="shift" className={styles.labels}>
+              Cambio:
+            </label>
+            <select {...register("shift")} className={styles.input}>
               <option value="">Selecciona una opción</option>
               <option value="Manual">Manual</option>
               <option value="Automático">Automático</option>
             </select>
-        </div>
+          </div>
 
           <div className={styles.labelTriple}>
             <label htmlFor="price" className={styles.labels}>
@@ -243,7 +242,9 @@ const EditVehicle = ({ id }) => {
               </div> */}
           </div>
           <div className={styles.formButton}>
-            <button type="submit">Guardar cambios</button>
+            <button data-test="guardar" type="submit">
+              Guardar cambios
+            </button>
           </div>
         </div>
       </form>
