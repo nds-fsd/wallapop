@@ -76,6 +76,9 @@ const getProductByName = async (req, res) => {
 const postProduct = async (req, res) => {
   const { body } = req;
   const { user } = req.params;
+  if (!body.title || !body.description || !body.price) {
+    return res.status(400).json({ error: { login: "Missing information" } });
+  }
   try {
     const newProduct = new productModel(body);
     newProduct.user = user;
@@ -93,7 +96,9 @@ const postProduct = async (req, res) => {
 const updateProductById = async (req, res) => {
   const { id } = req.params;
   const body = req.body;
-
+  if (!body.title || !body.description || !body.price) {
+    return res.status(400).json({ error: { login: "Missing information" } });
+  }
   try {
     const updateProduct = await productModel
       .findByIdAndUpdate(id, body, { new: true })

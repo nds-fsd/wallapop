@@ -28,7 +28,12 @@ const ListProducts = () => {
           products.map((prod) => {
             return (
               // Llamo al componente PRoduct y le paso la info de cada producto
-              <Product className={styles.menu} key={prod.id} prod={prod} />
+              <Product
+                data-test="product"
+                className={styles.menu}
+                key={prod.id}
+                prod={prod}
+              />
             );
           })}
       </div>

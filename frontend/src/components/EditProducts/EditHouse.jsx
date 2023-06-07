@@ -24,7 +24,7 @@ const EditHouse = ({ id }) => {
   const mutation = useMutation(updateProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
-      window.location.reload()
+      window.location.reload();
     },
   });
 
@@ -33,7 +33,7 @@ const EditHouse = ({ id }) => {
   //     ?.split(",")
   //     .map((keyword) => keyword.trim())
   //     .filter((keyword) => keyword !== "");
-      
+
   //   const productData = { ...product, keywords};
   //   mutation.mutate(productData);
   //   alert("Los cambios se han guardado satisfactoriamente")
@@ -41,9 +41,9 @@ const EditHouse = ({ id }) => {
 
   const onSubmit = (product) => {
     const keywords = product.keywords
-    ?.split(",")
-    .map((keyword) => [keyword.trim()])
-    .filter((keyword) => keyword[0] !== "");  
+      ?.split(",")
+      .map((keyword) => [keyword.trim()])
+      .filter((keyword) => keyword[0] !== "");
     const productData = { ...product, keywords };
     mutation.mutate(productData);
     alert("Los cambios se han guardado satisfactoriamente");
@@ -141,7 +141,6 @@ const EditHouse = ({ id }) => {
             )}
           </div>
 
-
           <div className={styles.labelTriple}>
             <label htmlFor="price" className={styles.labels}>
               Precio:
@@ -217,7 +216,9 @@ const EditHouse = ({ id }) => {
               </div> */}
           </div>
           <div className={styles.formButton}>
-            <button type="submit">Guardar cambios</button>
+            <button data-test="guardar" type="submit">
+              Guardar cambios
+            </button>
           </div>
         </div>
       </form>
