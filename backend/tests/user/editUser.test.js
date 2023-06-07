@@ -13,18 +13,16 @@ describe("PATCH /user", () => {
   // paso s'info per probar de modificar s'user
   test("Response status 200", async () => {
     const response = await request(app)
-      .patch("/products/6479d436f44be4bc58ccdbfe")
+      .patch("/products/6461693bf9a77cdb3d869ca5")
       .set(
         "Authorization",
-        "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NzlkNDM2ZjQ0YmU0YmM1OGNjZGJmZSIsIm5hbWUiOiJNYXIiLCJlbWFpbCI6ImdlbmVyYWwuYmFnZGFzYXJ5YW44ODg0OEBuZXRjb20uY29tIiwiaWF0IjoxNjg1NzMwMTg2LCJleHAiOjMzNzY2NDQzNzJ9._8SSdZxPIm3EX-XKObJNriU-ao9CHVEB0-InKI5M5FM"
+        "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODA4MDkzMDNhNzZmOTc2NjM5MDFlYSIsIm5hbWUiOiJNYXIiLCJlbWFpbCI6IlwiamVyYWxkLnNoYXJlcjY3NzcxQG1haWxjbHViLmZyXCIiLCJpYXQiOjE2ODYxNDMxMjMsImV4cCI6MzM3NzQ3MDI0Nn0.9holJ24qprV5A4_IyTR7lcW-b4xXpxYmH-mfRSqWOw0"
       )
       .send({
         name: "Mar",
         surname: "Badia test",
         email: "mar.badia21@gmail.com",
         phone: "67943540",
-        photo:
-          "http://res.cloudinary.com/dvogntdp2/image/upload/v1685034394/vnwmry1xmcbqx4ughkxl.png",
         birthday: "1997-01-21T00:00:00.000+00:00",
         gender: "Femenino",
       });
@@ -58,6 +56,3 @@ describe("PATCH /user", () => {
     disconnectDBTest();
   });
 });
-
-// Si paso les dades per un json he de crear es token per poder
-// modificar s'usuari, sino no em deixara (comprobar aixo tambe)

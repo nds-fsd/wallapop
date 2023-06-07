@@ -1,5 +1,6 @@
 const users = [
   {
+    _id: "6461693bf9a77cdb3d869ca5",
     name: "Mar",
     surname: "Badia",
     email: "m.badia@gmail.com",
@@ -33,6 +34,7 @@ const users = [
     gender: "Prefiero no decirlo",
   },
   {
+    _id: "647a09aec2c9e27299401deb",
     name: "Patricia",
     surname: "Karianne",
     email: "p.Karianne@gmail.com",
@@ -51,4 +53,3 @@ exports.loadUser = () => {
   const documents = users.map((user) => new userModel(user));
   return userModel.bulkSave(documents);
 };
-

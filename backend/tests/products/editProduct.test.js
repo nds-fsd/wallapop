@@ -10,9 +10,9 @@ beforeAll(async () => {
 
 describe("PATCH /product", () => {
   // debe responder con un 200
-  test("EDITAR bien un producto, Response status 200", async () => {
+  test("EDITAR product, Response status 201", async () => {
     const response = await request(app)
-      .patch("/products/647a0a0d6ce7d100bb29b7b9")
+      .patch("/products/646b50906a04146e100478c3")
       .send({
         booked: true,
         categories: ["644fe58f93ff3b3b028e576b"],
@@ -31,7 +31,7 @@ describe("PATCH /product", () => {
 
   test("Crear producto con falta de informacion , Response status 400", async () => {
     const response = await request(app)
-      .patch("/products/647a0a0d6ce7d100bb29b7b9")
+      .patch("/products/646b50906a04146e100478c3")
       .send({
         booked: false,
         categories: ["644fe58f93ff3b3b028e576b"],
@@ -52,7 +52,3 @@ describe("PATCH /product", () => {
     disconnectDBTest();
   });
 });
-
-// probar d'editar un producte
-// comprobar si falla al no enviar totes ses dades i que tot esta be si
-// li paso tot

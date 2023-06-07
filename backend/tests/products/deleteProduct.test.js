@@ -12,7 +12,7 @@ describe("DELEAT /product", () => {
   // debe responder con un 200
   test("Borrar bien un producto, Response status 200", async () => {
     const response = await request(app).delete(
-      "/products/647a2701349bb301138b8521"
+      "/products/646b7ead6a04146e10047a3a"
     );
     expect(response.statusCode).toBe(200);
   });
@@ -28,5 +28,3 @@ describe("DELEAT /product", () => {
     disconnectDBTest();
   });
 });
-
-// probar de borrar es producte pasantli el id del producte

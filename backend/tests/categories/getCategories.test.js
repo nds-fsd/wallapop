@@ -19,6 +19,3 @@ describe("GET /Categpry", () => {
     disconnectDBTest();
   });
 });
-
-// probar de fer un get de totes ses categories
-// nose com comprobar si falla

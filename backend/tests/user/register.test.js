@@ -62,7 +62,7 @@ describe("POST /register", () => {
         surname: "Badia",
         email: "m.badia@gmail.com",
         password: "12345",
-        phone: "00011111000",
+        phone: "600111000",
         photo:
           "http://res.cloudinary.com/dvogntdp2/image/upload/v1685034394/vnwmry1xmcbqx4ughkxl.png",
         birthday: "1997-01-21T00:00:00.000+00:00",
@@ -76,7 +76,3 @@ describe("POST /register", () => {
     disconnectDBTest();
   });
 });
-
-// tenc que probar de registrar un nou user
-// comprobar que sense les dades falla i amb elles funciona
-//  que torna es token al registrar

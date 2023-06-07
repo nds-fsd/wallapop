@@ -32,6 +32,3 @@ describe("POST /categoria", () => {
     disconnectDBTest();
   });
 });
-
-// probar de crear una categoria pasanli totes les dades correctes
-// i que falla si no li envies totes ses dades

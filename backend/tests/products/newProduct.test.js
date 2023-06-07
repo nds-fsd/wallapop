@@ -53,6 +53,3 @@ describe("POST /product", () => {
     disconnectDBTest();
   });
 });
-
-// probar de crear un nou producte, comprobant si pasantli totes
-// ses dades be dona el ok i que falli quan no son correctes o faltin

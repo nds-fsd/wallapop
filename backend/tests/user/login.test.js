@@ -43,7 +43,3 @@ describe("POST /login", () => {
     disconnectDBTest();
   });
 });
-
-// probar si es login funciona be
-// probant si existeis es mail/contrasenya
-// si tot esta be o si falta alguna dada
