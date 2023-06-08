@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./createProductPage.module.css";
 import { Controller, useForm } from "react-hook-form";
 import { postProduct } from "../../../utils/apiProducts";
@@ -6,8 +6,11 @@ import { useMutation, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
 import Map from "../map/Map";
 import CustomAlert from "../../CustomAlert/CustomAlert";
+import { AuthContext } from "../../../context/authContext";
 
 const FormHouse = () => {
+  const queryClient = useQueryClient(["product"]);
+  const { images, setImages } = useContext(AuthContext);
   const {
     control,
     register,
@@ -16,12 +19,24 @@ const FormHouse = () => {
     formState: { errors },
   } = useForm();
 
-  const queryClient = useQueryClient(["product"]);
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
       queryClient.invalidateQueries(["product"]);
     },
   });
+
+  const [imagePreviews, setImagePreviews] = useState([]);
+
+  const handleImageUpload = (files, index) => {
+    const imageUrls = Array.from(files).map((file) =>
+      URL.createObjectURL(file)
+    );
+    setImagePreviews((prevPreviews) => {
+      const updatedPreviews = [...prevPreviews];
+      updatedPreviews[index] = imageUrls[0];
+      return updatedPreviews;
+    });
+  };
 
   // const [showAlert, setShowAlert] = useState(false)
   // const handleCloseAlert = () => {
@@ -32,17 +47,18 @@ const FormHouse = () => {
     const keywords = data.keywords
       ?.split(/[, ]+/)
       .filter((keyword) => keyword !== "");
-  
+
     const productData = { ...data };
     if (keywords && keywords.length > 0) {
       productData.keywords = keywords;
     }
-  
+
     mutation.mutate(productData);
     console.log(productData);
     // setShowAlert(true);
     alert("Tu producto se ha subido correctamente");
     reset();
+    setImages([]);
   };
 
   return (
@@ -112,7 +128,6 @@ const FormHouse = () => {
             {errors.rent.message}
           </p>
         )}
-
         <label htmlFor="title" className={styles.labels}>
           ¿Qué ofreces?
         </label>
@@ -127,7 +142,6 @@ const FormHouse = () => {
             {errors.title.message}
           </p>
         )}
-
         <label htmlFor="space" className={styles.labels}>
           ¿De qué espacio se trata?
         </label>
@@ -215,7 +229,6 @@ const FormHouse = () => {
             {errors.space.message}
           </p>
         )}
-
         <div className={styles.labelDouble}>
           <label htmlFor="land" className={styles.labels}>
             Superficie
@@ -232,7 +245,10 @@ const FormHouse = () => {
             placeholder="En m2"
             className={styles.inputLand}
           ></input>
-          <select {...register("status", {required: "Selecciona un estado"})} className={styles.dropdown}>
+          <select
+            {...register("status", { required: "Selecciona un estado" })}
+            className={styles.dropdown}
+          >
             <option value="">Selecciona un estado</option>
             <option value="Obra nueva">Obra nueva</option>
             <option value="En buen estado">En buen estado</option>
@@ -253,7 +269,6 @@ const FormHouse = () => {
             </p>
           )}
         </div>
-
         <div>
           <label htmlFor="price" className={styles.labels}>
             Ponle precio
@@ -283,7 +298,6 @@ const FormHouse = () => {
             {errors.price.message}
           </p>
         )}
-
         <label htmlFor="description" className={styles.labels}>
           ¿Cómo es tu inmueble?
         </label>
@@ -301,9 +315,13 @@ const FormHouse = () => {
             {errors.description.message}
           </p>
         )}
-        <FormImages />
-        <Map />
-
+        <FormImages
+          handleImageUpload={handleImageUpload}
+          imagePreviews={imagePreviews}
+          setImagePreviews={setImagePreviews}
+          reset={reset}
+        />
+        {/* <Map /> */}
         <button type="submit" className={styles.formButton}>
           Subir
         </button>

@@ -125,7 +125,7 @@ const HousePage = ({ id }) => {
               <button className={styles.chat}>CHAT</button>
             </div>
           </div>
-          {data && <Slider images={mockImages} data={data} />}
+          {data && <Slider images={data.images} data={data} />}
 
           <div className={styles.details}>
             <div className={styles.priceContainer}>

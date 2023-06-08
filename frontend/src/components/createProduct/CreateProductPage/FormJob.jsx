@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./createProductPage.module.css";
 import { useForm } from "react-hook-form";
 import { postProduct } from "../../../utils/apiProducts";
@@ -6,20 +6,36 @@ import { useMutation, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
 import Map from "../map/Map";
 import CustomAlert from "../../CustomAlert/CustomAlert";
+import { AuthContext } from "../../../context/authContext";
 
 const FormJob = () => {
+  const queryClient = useQueryClient(["product"]);
+  const { images, setImages } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  const queryClient = useQueryClient(["product"]);
+
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
       queryClient.invalidateQueries(["product"]);
     },
   });
+
+  const [imagePreviews, setImagePreviews] = useState([]);
+
+  const handleImageUpload = (files, index) => {
+    const imageUrls = Array.from(files).map((file) =>
+      URL.createObjectURL(file)
+    );
+    setImagePreviews((prevPreviews) => {
+      const updatedPreviews = [...prevPreviews];
+      updatedPreviews[index] = imageUrls[0];
+      return updatedPreviews;
+    });
+  };
 
   // const [showAlert, setShowAlert] = useState(false)
   // const handleCloseAlert = () => {
@@ -30,20 +46,20 @@ const FormJob = () => {
     const keywords = data.keywords
       ?.split(/[, ]+/)
       .filter((keyword) => keyword !== "");
-  
+
     const productData = { ...data };
     if (keywords && keywords.length > 0) {
       productData.keywords = keywords;
     }
-  
+
     mutation.mutate(productData);
     console.log(productData);
     // setShowAlert(true);
     alert("Tu producto se ha subido correctamente");
     reset();
+    setImages([]);
   };
 
-  
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.sectionForm}>
@@ -113,7 +129,10 @@ const FormJob = () => {
             <option value="Servicios">Servicios</option>
             <option value="Empleo">Empleo</option>
           </select>
-          <select {...register("status", {required: "Selecciona un estado"})} className={styles.dropdown}>
+          <select
+            {...register("status", { required: "Selecciona un estado" })}
+            className={styles.dropdown}
+          >
             <option value="">Selecciona un estado</option>
             <option value="Horas a convenir">Horas a convenir</option>
             <option value="Por la mañana">Por la mañana</option>
@@ -152,8 +171,13 @@ const FormJob = () => {
             {errors.description.message}
           </p>
         )}
-        <FormImages />
-        <Map />
+        <FormImages
+          handleImageUpload={handleImageUpload}
+          imagePreviews={imagePreviews}
+          setImagePreviews={setImagePreviews}
+          reset={reset}
+        />
+        {/* <Map /> */}
         <button type="submit" className={styles.formButton}>
           Subir
         </button>

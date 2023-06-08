@@ -3,6 +3,7 @@ import styles from "./editProduct.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProductById, updateProduct } from "../../utils/apiProducts";
+import EditImages from "../EditImages/EditImages";
 
 const EditHouse = ({ id }) => {
   console.log("el producto en el modal", id);
@@ -24,7 +25,7 @@ const EditHouse = ({ id }) => {
   const mutation = useMutation(updateProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
-      window.location.reload()
+      window.location.reload();
     },
   });
 
@@ -141,7 +142,6 @@ const EditHouse = ({ id }) => {
             )}
           </div>
 
-
           <div className={styles.labelTriple}>
             <label htmlFor="price" className={styles.labels}>
               Precio:
@@ -206,16 +206,8 @@ const EditHouse = ({ id }) => {
               {errors.description.message}
             </p>
           )}
-          {/* <FormImages />
-          <Map /> */}
+          {product && <EditImages product={product} />}
 
-          <div>
-            {/* <div className={styles.images}>
-                {prod && prod.images.map((image, _id) => (
-                  <button key={image._id} className={styles.image}>{image}</button>
-              ))}
-              </div> */}
-          </div>
           <div className={styles.formButton}>
             <button type="submit">Guardar cambios</button>
           </div>

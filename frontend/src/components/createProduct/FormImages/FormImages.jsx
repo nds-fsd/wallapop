@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./formImages.module.css";
 import { AuthContext } from "../../../context/authContext";
 
-const FormImages = ({ handleImageUpload, imagePreviews }) => {
+const FormImages = ({ handleImageUpload, reset }) => {
   const { multipleUploadWidget, images, setImages } = useContext(AuthContext);
 
   const handleOpenWidget = (event) => {
@@ -14,10 +14,18 @@ const FormImages = ({ handleImageUpload, imagePreviews }) => {
     const files = event.target.files;
     handleImageUpload(files, index);
     const uploadedImage = images[index];
-    
-    setImages(...images, uploadedImage);
+    setImages([...images, uploadedImage]);
   };
-  console.log("Nuevas imagenes", images)
+  console.log("Nuevas imagenes", images);
+
+  const remainingSlots = Math.max(6 - images.length, 0);
+  const resetImages = () => {
+    setImages([]);
+  };
+  useEffect(() => {
+    resetImages();
+  }, [reset]);
+
   return (
     <>
       <div>
@@ -34,26 +42,17 @@ const FormImages = ({ handleImageUpload, imagePreviews }) => {
       <div className={styles.images}>
         {images.map((preview, index) => (
           <div key={index} className={styles.imagePreview}>
-            <img src={preview}/>
+            <img src={preview} />
           </div>
         ))}
 
-        {Array.from({ length: Math.max(6 - images.length, 1) }).map(
-          (_, index) => (
-            <div
-              key={index + images.length}
-              className={styles.imagePreview}
-            >
-              {index === 0 && images ? (
-                <img src={images}  />
-              ) : (
-                <button onClick={handleOpenWidget} className={styles.image}>
-                  <span className="icon-image1"></span>
-                </button>
-              )}
-            </div>
-          )
-        )}
+        {Array.from({ length: remainingSlots }).map((_, index) => (
+          <div key={index + images.length} className={styles.imagePreview}>
+            <button onClick={handleOpenWidget} className={styles.image}>
+              <span className="icon-image1"></span>
+            </button>
+          </div>
+        ))}
 
         <input
           type="file"
@@ -64,29 +63,7 @@ const FormImages = ({ handleImageUpload, imagePreviews }) => {
         />
       </div>
 
-      {/* <div className={styles.images}>
-        <button onClick={handleOpenWidget} className={styles.image}>
-          <span className="icon-image1"></span>
-        </button>
-        <button onClick={handleOpenWidget} className={styles.image}>
-          <span className="icon-image1"></span>
-        </button>
-        <button onClick={handleOpenWidget} className={styles.image}>
-          <span className="icon-image1"></span>
-        </button>
-        <button onClick={handleOpenWidget} className={styles.image}>
-          <span className="icon-image1"></span>
-        </button>
-        <button onClick={handleOpenWidget} className={styles.image}>
-          <span className="icon-image1"></span>
-        </button>
-        <button onClick={handleOpenWidget}className={styles.image}>
-          <span className="icon-image1"></span>
-        </button>
-      </div> */}
-      {/* <div>
-      <input type='submit' value='Subir' className={styles.button}></input>
-    </div> */}
+      
     </>
   );
 };

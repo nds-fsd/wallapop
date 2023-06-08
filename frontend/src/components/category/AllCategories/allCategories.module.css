@@ -6,12 +6,10 @@
   gap: 2.5rem;
 }
 
-
 .genTitle {
   width: 78vw;
   margin: 1em 0 0 0;
 }
-
 
 .card {
   display: flex;
@@ -31,9 +29,8 @@
 
 .link {
   text-decoration: none;
-  color: var(--blue-dark)
+  color: var(--blue-dark);
 }
-
 
 .title {
   line-height: 1.2em;
@@ -71,7 +68,7 @@
   cursor: pointer;
 }
 .focused {
-  color: red ;
+  color: red;
 }
 
 .priceContainer button {
@@ -79,19 +76,15 @@
   background-color: transparent;
 }
 
-.eye button  {
+.eye button {
   color: var(--yellow-main);
   font-size: 1.4em;
   cursor: pointer;
 }
 
 .eye button:hover {
-  color: var(--blue-light)
+  color: var(--blue-light);
 }
-
-
-
-
 
 .view {
   width: 13rem;
@@ -113,9 +106,6 @@
   color: white;
 }
 
-
-
-
 .alert {
   display: flex;
   flex-direction: column;
@@ -133,13 +123,11 @@
   text-align: center;
   z-index: 9999;
   box-shadow: 2px 2px 4px rgba(87, 87, 87, 0.1);
-
 }
 
 .accept:hover {
   background-color: var(--yellow-main);
   color: white;
-
 }
 
 .accept {
@@ -164,5 +152,3 @@
   display: flex;
   gap: 2em;
 }
-
-

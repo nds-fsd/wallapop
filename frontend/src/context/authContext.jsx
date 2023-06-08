@@ -181,11 +181,17 @@ export const AuthProvider = ({ children }) => {
     (err, result) => {
       if (!err && result.event === "success") {
         console.log("esto es result multiple", result);
-        imagesForUpload.push(result.info.secure_url);
-        setImages(imagesForUpload);
+        // imagesForUpload.push(result.info.secure_url);
+        // setImages(imagesForUpload);
+        setImages(prevImages => [...prevImages, result.info.secure_url])
       }
     }
   );
+
+
+
+
+
   // const imgProfilInfo = { showUploadWidget, image };
   const data = {
     // handleAuth,

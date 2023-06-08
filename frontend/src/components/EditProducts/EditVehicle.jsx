@@ -3,6 +3,7 @@ import styles from "./editProduct.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProductById, updateProduct } from "../../utils/apiProducts";
+import EditImages from "../EditImages/EditImages";
 
 const EditVehicle = ({ id }) => {
   console.log("el producto en el modal", id);
@@ -25,7 +26,7 @@ const EditVehicle = ({ id }) => {
   const mutation = useMutation(updateProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
-      window.location.reload()
+      window.location.reload();
     },
   });
 
@@ -160,25 +161,24 @@ const EditVehicle = ({ id }) => {
           </div>
 
           <div className={styles.title}>
-          <label htmlFor="engine" className={styles.labels}>
-            Motor:
-          </label>
-          <select {...register("engine")} className={styles.input}>
+            <label htmlFor="engine" className={styles.labels}>
+              Motor:
+            </label>
+            <select {...register("engine")} className={styles.input}>
               <option value="">Selecciona una opción</option>
               <option value="Gasolina">Gasolina</option>
               <option value="Diesel">Diesel</option>
               <option value="Eléctrico">Eléctirco</option>
-
             </select>
-          <label htmlFor="shift" className={styles.labels}>
-            Cambio:
-          </label>
-          <select {...register("shift")} className={styles.input}>
+            <label htmlFor="shift" className={styles.labels}>
+              Cambio:
+            </label>
+            <select {...register("shift")} className={styles.input}>
               <option value="">Selecciona una opción</option>
               <option value="Manual">Manual</option>
               <option value="Automático">Automático</option>
             </select>
-        </div>
+          </div>
 
           <div className={styles.labelTriple}>
             <label htmlFor="price" className={styles.labels}>
@@ -242,16 +242,8 @@ const EditVehicle = ({ id }) => {
               {errors.description.message}
             </p>
           )}
-          {/* <FormImages />
-          <Map /> */}
+          {product && <EditImages product={product} />}
 
-          <div>
-            {/* <div className={styles.images}>
-                {prod && prod.images.map((image, _id) => (
-                  <button key={image._id} className={styles.image}>{image}</button>
-              ))}
-              </div> */}
-          </div>
           <div className={styles.formButton}>
             <button type="submit">Guardar cambios</button>
           </div>

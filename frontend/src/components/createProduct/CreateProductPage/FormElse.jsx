@@ -10,8 +10,8 @@ import { AuthContext } from "../../../context/authContext";
 
 const FormElse = () => {
   const queryClient = useQueryClient(["product"]);
-  const {images} = useContext(AuthContext)
-  console.log("estas son las imagenes", images)
+  const {images, setImages} = useContext(AuthContext)
+  // console.log("estas son las imagenes", images)
 
   const {
     register,
@@ -19,6 +19,7 @@ const FormElse = () => {
     reset,
     formState: { errors },
   } = useForm();
+  
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
       queryClient.invalidateQueries(["product"]);
@@ -26,11 +27,6 @@ const FormElse = () => {
   });
 
   const [imagePreviews, setImagePreviews] = useState([]);
-
-  // const handleImageUpload = (files) => {
-  //   const imageUrls = Array.from(files).map((file) => URL.createObjectURL(file));
-  //   setImagePreviews((prevPreviews) => [...prevPreviews, ...imageUrls]);
-  // };
 
   const handleImageUpload = (files, index) => {
     const imageUrls = Array.from(files).map((file) =>
@@ -57,14 +53,12 @@ const FormElse = () => {
     if (keywords && keywords.length > 0) {
       productData.keywords = keywords;
     }
-
-    console.log("esto es lo que se va a mutar", productData);
-
     mutation.mutate(productData);
     console.log(productData);
     // setShowAlert(true);
     alert("Tu producto se ha subido correctamente");
     reset();
+    setImages([]);
   };
 
   return (
@@ -207,6 +201,7 @@ const FormElse = () => {
           handleImageUpload={handleImageUpload}
           imagePreviews={imagePreviews}
           setImagePreviews={setImagePreviews}
+          reset={reset}
         />
         {/* <Map /> */}
 

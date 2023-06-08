@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProductById, updateProduct } from "../../utils/apiProducts";
 import CustomAlert from "../CustomAlert/CustomAlert";
+import EditImages from "../EditImages/EditImages";
 
 const EditElse = ({ id }) => {
-  console.log("el producto en el modal", id);
+  // console.log("el producto en el modal", id);
 
   const {
     register,
@@ -146,16 +147,10 @@ const EditElse = ({ id }) => {
               {errors.description.message}
             </p>
           )}
-          {/* <FormImages />
-          <Map /> */}
 
-          <div>
-            {/* <div className={styles.images}>
-                {prod && prod.images.map((image, _id) => (
-                  <button key={image._id} className={styles.image}>{image}</button>
-              ))}
-              </div> */}
-          </div>
+          {product && <EditImages product={product}/>}
+        
+
           <div className={styles.formButton}>
             <button type="submit">Guardar cambios</button>
           </div>

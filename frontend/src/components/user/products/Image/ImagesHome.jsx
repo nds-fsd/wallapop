@@ -17,19 +17,23 @@ const ImagesHome = ({ images, category, status }) => {
       </div>
     )} */}
 
-      <div className={styles.icon}>
-        <img src={mockImages[0]} className={styles.image}></img>
-        <div className={styles.tags}>
-        <p className={styles.status}>{status}</p>
-        {category && category.map((cat) => <span className={cat.logo} />
-        )}
+      {images.length > 0 ? (
+        <div className={styles.icon}>
+          <img src={images[0]} className={styles.image}></img>
+          <div className={styles.tags}>
+            <p className={styles.status}>{status}</p>
+            {category && category.map((cat) => <span className={cat.logo} />)}
+          </div>
         </div>
-        
-      </div>
-
-      {images === 0 && (
+      ) : (
         <div className={styles.noImage}>
-          <span className="icon-sad"></span>
+          <p className={styles.statusNoImage}>{status}</p>
+          <div className={styles.text}>
+            <span className="icon-sad"></span>
+            <p>Lo sentimos, no hay imágenes para mostrar</p>
+          </div>
+
+          {category && category.map((cat) => <span className={cat.logo} />)}
         </div>
       )}
     </>
