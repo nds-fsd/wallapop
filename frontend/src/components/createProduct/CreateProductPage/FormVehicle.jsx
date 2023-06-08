@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./createProductPage.module.css";
 import { Controller, useForm } from "react-hook-form";
 import { postProduct } from "../../../utils/apiProducts";
@@ -6,8 +6,12 @@ import { useMutation, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
 import Map from "../map/Map";
 import CustomAlert from "../../CustomAlert/CustomAlert";
+import { AuthContext } from "../../../context/authContext";
 
 const FormVehicle = () => {
+  const queryClient = useQueryClient(["product"]);
+  const { images, setImages } = useContext(AuthContext);
+
   const {
     control,
     register,
@@ -15,12 +19,25 @@ const FormVehicle = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const queryClient = useQueryClient(["product"]);
+
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product"]);
     },
   });
+
+  const [imagePreviews, setImagePreviews] = useState([]);
+
+  const handleImageUpload = (files, index) => {
+    const imageUrls = Array.from(files).map((file) =>
+      URL.createObjectURL(file)
+    );
+    setImagePreviews((prevPreviews) => {
+      const updatedPreviews = [...prevPreviews];
+      updatedPreviews[index] = imageUrls[0];
+      return updatedPreviews;
+    });
+  };
 
   // const [showAlert, setShowAlert] = useState(false)
   // const handleCloseAlert = () => {
@@ -28,16 +45,21 @@ const FormVehicle = () => {
   // };
 
   const onSubmit = (data) => {
-    const keywords =
-      data.keywords
-        ?.split(',')
-        .map((keyword) => keyword.trim())
-        .filter((keyword) => keyword !== "") || [];
-    const productData = { ...data, keywords };
+    const keywords = data.keywords
+      ?.split(/[, ]+/)
+      .filter((keyword) => keyword !== "");
+
+    const productData = { ...data };
+    if (keywords && keywords.length > 0) {
+      productData.keywords = keywords;
+    }
+
     mutation.mutate(productData);
+    console.log(productData);
     // setShowAlert(true);
-    alert("Tu vehículo se ha subido correctamente");
+    alert("Tu producto se ha subido correctamente");
     reset();
+    setImages([]);
   };
 
   // console.log(errors)
@@ -55,40 +77,38 @@ const FormVehicle = () => {
 
         <div className={styles.category}>
           <Controller
-          name="category"
-          control={control}
-          rules={{required: "Selecciona una categoría" }}
-          render={({ field }) => (
-            <div className={styles.category}>
-              <label htmlFor="Coches" className={styles.checkbox}>
-                <input
-                  id="Coches"
-                  type="radio"
-                  {...field}
-                  value="Coches"
-                  name='category'
-                  onChange={field.onChange}
-                ></input>
-                <span className="icon-coches"></span>
-              </label>
-
-              <label htmlFor="Motos" className={styles.checkbox}>
-                <input
-                  id="Motos"
-                  type="radio"
-                  {...field}
-                  value="Motos"
-                  name='category'
-                  onChange={field.onChange}
+            name="category"
+            control={control}
+            rules={{ required: "Selecciona una categoría" }}
+            render={({ field }) => (
+              <div className={styles.category}>
+                <label htmlFor="Coches" className={styles.checkbox}>
+                  <input
+                    id="Coches"
+                    type="radio"
+                    {...field}
+                    value="Coches"
+                    name="category"
+                    onChange={field.onChange}
                   ></input>
-                <span className="icon-motos"></span>
-              </label>
-            </div>
-          )}
-        />  
+                  <span className="icon-coches"></span>
+                </label>
 
-        
-        </div>     
+                <label htmlFor="Motos" className={styles.checkbox}>
+                  <input
+                    id="Motos"
+                    type="radio"
+                    {...field}
+                    value="Motos"
+                    name="category"
+                    onChange={field.onChange}
+                  ></input>
+                  <span className="icon-motos"></span>
+                </label>
+              </div>
+            )}
+          />
+        </div>
         {errors.category && (
           <p className={styles.error1}>
             <span className="icon-warning1"></span>
@@ -234,18 +254,21 @@ const FormVehicle = () => {
           Estado de tu vehículo
         </label>
         <div>
-          <select {...register("status", {required: "Selecciona un estado"})} className={styles.dropdown}>
+          <select
+            {...register("status", { required: "Selecciona un estado" })}
+            className={styles.dropdown}
+          >
             <option value="">Selecciona un estado</option>
             <option value="En buen estado">En buen estado</option>
             <option value="Poco uso">Poco uso</option>
           </select>
         </div>
         {errors.status && (
-            <p className={styles.error}>
-              <span className="icon-warning1"></span>
-              {errors.status.message}
-            </p>
-          )}
+          <p className={styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.status.message}
+          </p>
+        )}
 
         <div>
           <label htmlFor="engine" className={styles.labels}>
@@ -365,8 +388,13 @@ const FormVehicle = () => {
             {errors.description.message}
           </p>
         )}
-        <FormImages />
-        <Map />
+        <FormImages
+          handleImageUpload={handleImageUpload}
+          imagePreviews={imagePreviews}
+          setImagePreviews={setImagePreviews}
+          reset={reset}
+        />
+        {/* <Map /> */}
 
         <button type="submit" className={styles.formButton}>
           Subir

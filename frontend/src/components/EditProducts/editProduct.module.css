@@ -1,10 +1,9 @@
-.editContainer{
+.editContainer {
   width: 59rem;
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
   padding-bottom: 1.5em;
-
 }
 .title {
   display: flex;
@@ -164,7 +163,6 @@
   color: grey;
 }
 
-
 .column {
   display: flex;
   gap: 3rem;
@@ -274,7 +272,7 @@
   color: red;
   margin-right: 0.5em;
   font-size: 0.8em;
-  cursor:default;
+  cursor: default;
 }
 .error span:hover {
   color: red;
@@ -307,7 +305,7 @@
   display: flex;
   gap: 15.5rem;
 }
-.error4 > p{
+.error4 > p {
   color: red;
   font-size: 0.7em;
   margin-top: -0.4rem;
@@ -316,3 +314,5 @@
   color: red;
   margin-right: 0.5em;
 }
+
+

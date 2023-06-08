@@ -41,6 +41,23 @@ const getProductByUser = async (req, res) => {
   }
 };
 
+const getProductByUserFavs = async (req, res) => {
+  // console.log("paso por aqui");
+  const userId = req.params.user;
+  try {
+    if (!userId) res.status(404).json("no user id provided");
+    if (userId) {
+      const product = await productModel
+        .find({ user: userId, favorite: true })
+        .populate("user")
+        .populate("categories");
+      res.status(200).json(product);
+    }
+  } catch (e) {
+    res.status(500).json({ message: e });
+  }
+};
+
 // Buscar productos por categorias
 const getProductByCategory = async (req, res) => {
   const { category } = req.params;
@@ -88,8 +105,8 @@ const postProduct = async (req, res) => {
     }
     await newProduct.save();
     res.status(201).json(newProduct);
-  } catch (e) {
-    res.status(500).json({ message: e });
+  } catch (error) {
+    res.status(500).json({ error: "Sorry, can't post this product" });
   }
 };
 
@@ -141,4 +158,28 @@ module.exports = {
   updateProductById,
   deleteProductById,
   getProductByName,
+  getProductByUserFavs,
 };
+
+
+
+
+// const newProduct = new productModel(req.body);
+  // //cogemos el los datos del ususario que hemos pasado por la url de la peticion
+  // const userId = req.params.userId;
+  // //parseamos los datos y cogemos el id del usuario y lo añadimos al newProduct
+  // newProduct.user.push(JSON.parse(userId).id);
+
+  // //hacemos una findOne con el nombre de la categoria para poder obtener toda su info y coger el id para ponerselo al producto
+  // // y asi relacionarlo con categoria
+  // const cat = await categoryModel.findOne({ title: req.body.category });
+  // // le añadimos el id de la categoria encontrado arriba al producto antes de crearlo
+  // newProduct.categories.push(cat._id);
+  // try {
+  //   await newProduct.save();
+  //   // console.log(newProduct);
+  //   res.status(200).json(newProduct);
+  // } catch (error) {
+  //   res.status(500).json({ error: "Can't post this product" });
+  //   console.log(error);
+  // }

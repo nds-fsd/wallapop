@@ -4,13 +4,14 @@ const productSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   price: { type: Number, required: true },
-  images: { type: String },
+  images: { type: Array, default: [] },
   status: { type: String },
   sold: { type: Boolean, default: false },
   booked: { type: Boolean, default: false },
   keywords: { type: Array },
   datePublication: { type: Date, default: new Date },
   location: { type: String },
+  favorite: {type: Boolean, default: false},
   // Para poder relacionar producto con users
   user: 
     {
@@ -28,6 +29,12 @@ const productSchema = new Schema({
       ref: "category",
     },
   ],
+  // favorite: {
+  //   type: Schema.Types.ObjectId,
+  //   default: false,
+  //   ref: "favorite",
+  // },
+
   characteristics: { type: Object },
 
   // ESTO DE AQUI ABAJO IRA FUERA CUANDO SE TERMINE DE CAMBIAR LAS FUNCIONES
