@@ -6,7 +6,7 @@ const {
 
 const messageRouter = express.Router();
 
-messageRouter.get("/message/:chat-room", getMessageByChatRoom);
-messageRouter.post("/message/:user", postMessage);
+messageRouter.get("/:chat-room", getMessageByChatRoom);
+messageRouter.post("/:user", postMessage);
 
 module.exports = messageRouter;

@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./productPage.module.css";
 import { useQuery } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
 import { getProductById } from "../../../utils/apiProducts";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { postChatRoom } from "../../../utils/apiChatRoom";
+import { AuthContext } from "../../../context/authContext";
 
 const ElsePage = ({ id }) => {
+  const { userData } = useContext(AuthContext);
+
   const mockImages = [
     "https://picsum.photos/id/1/500/500",
     "https://picsum.photos/id/2/700/500",
@@ -28,6 +32,17 @@ const ElsePage = ({ id }) => {
   //junto con el div que tiene el Link
   // const title = data?.categories[0].title
   // console.log("el titulo de la categoria", title)
+  const handleCreateChatRoom = () => {
+    const body = {
+      product_id: data.id,
+      owner_id: data.user,
+      buyer_id: userData.id,
+    }
+    console.log("esto es body chatroom", body)
+    postChatRoom(body);
+    <NavLink to={"/chatroom/" + "/" + data.id + "/" + userData.id}/>
+
+  }
 
   return (
     <>
@@ -37,7 +52,9 @@ const ElsePage = ({ id }) => {
             <button className={styles.like}>
               <span className="icon-heart1"></span>
             </button>
-            <button className={styles.chat}>CHAT</button>
+            <button 
+            className={styles.chat}
+            onClick={handleCreateChatRoom}>CHAT</button>
           </div>
           {data && <Slider images={mockImages} data={data} />}
           <div className={styles.details}>

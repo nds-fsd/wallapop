@@ -9,12 +9,29 @@ const getChatRoomByID = async (req, res) => {
     res.status(404).json({ error: "Sorry, can't find this chat room" });
   }
 };
-
-// Crear producto
-const postChatRoom = async (req, res) => {
-  const { body } = req;
+const getAllChats = async (req, res) => {
+  const userId = req.jwtPayload.id;
   try {
-    const newChatRoom = new chatroomModel(body);
+    const chatrooms = await chatroomModel.find({
+      $or: [{
+        owner_id: userId
+      }, 
+    {
+      buyer_id: userId
+    }]
+    }).exec();
+    res.status(200).json(chatroomById);
+  } catch (error) {
+    res.status(404).json({ error: "Sorry, can't find this chat room" });
+  }
+};
+
+// Crear chatroom
+const postChatRoom = async (req, res) => {
+  const { body, jwtPayload } = req;
+  try {
+
+    const newChatRoom = new chatroomModel({...body, buyer_id: jwtPayload.id});
     await newChatRoom.save();
     res.status(201).json(newChatRoom);
   } catch (e) {
@@ -31,7 +48,7 @@ const deleteChatRoomById = async (req, res) => {
         .status(404)
         .json({ error: "Sorry, can't find this chat room" });
     }
-    res.status(200).json({
+    res.status(204).json({
       delChatRoom,
       message: "Your chat room has been successfully deleted",
     });
@@ -43,6 +60,7 @@ const deleteChatRoomById = async (req, res) => {
 };
 
 module.exports = {
+  getAllChats,
   deleteChatRoomById,
   postChatRoom,
   getChatRoomByID,

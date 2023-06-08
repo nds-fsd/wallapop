@@ -14,6 +14,7 @@ import PrivateRoutes from "./components/private-routes";
 import { AuthProvider } from "./context/authContext";
 import ProdPage from "./components/product/ProductPage/ProdPage";
 import AllCategories from "./components/category/AllCategories/AllCategories";
+import ChatRoom from "./components/chat/chat-room";
 
 function App() {
   const queryClient = new QueryClient();

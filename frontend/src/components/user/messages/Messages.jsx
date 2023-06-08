@@ -1,4 +1,5 @@
 import React from "react";
+import ChatRoom from "../../chat/chat-room";
 import style from "../index.module.css";
 
 const Messages = () => {
@@ -7,7 +8,7 @@ const Messages = () => {
   return (
     <div className={style.navPageContainer}>
       <h1>Buzón</h1>
-      <h2>AQUI VA LA PAGINA DE MENSAJES</h2>
+      <ChatRoom />
     </div>
   );
 };

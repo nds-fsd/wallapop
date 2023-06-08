@@ -3,12 +3,14 @@ const {
   getChatRoomByID,
   postChatRoom,
   deleteChatRoomById,
+  getAllChats,
 } = require("../controllers/chatroomController");
 
 const chatroomRouter = express.Router();
 
-chatroomRouter.get("/chat-room/:id", getChatRoomByID);
-chatroomRouter.post("/chat-room/:user", postChatRoom);
-chatroomRouter.delete("/chat-room/:id", deleteChatRoomById);
+chatroomRouter.get("/", getAllChats);
+chatroomRouter.get("/:id", getChatRoomByID);
+chatroomRouter.post("/", postChatRoom);
+chatroomRouter.delete("/:id", deleteChatRoomById);
 
 module.exports = chatroomRouter;
