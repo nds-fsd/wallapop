@@ -60,7 +60,7 @@
   margin: -3em;
   border: none;
   background-color: white;
-  color: black;
+  color: var(--blue-light);
   opacity: 0;
   cursor: pointer;
   transition: 0.25s ease all;

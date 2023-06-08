@@ -45,6 +45,8 @@
 .imagePreview img {
   width: 6rem;
   height: 6rem;
+  border-radius: 1rem;
+
 }
 
 .tip {

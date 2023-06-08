@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  
 
 }
 
@@ -12,9 +12,8 @@
   width: 4em;
   height: 4em;
   font-size: 3em;
-  position: relative;
   border: none;
-  background-color: white;
+  background-color: transparent;
   color: var(--blue-dark);
   cursor: pointer;
 }
@@ -24,8 +23,8 @@
 }
 
 .slide {
-  max-width: 720px;
-  max-height: 500px;
+  max-width: 900px;
+  max-height: 600px;
   opacity: 0;
   transition: opacity 0.8s ease-in-out;
 
@@ -37,21 +36,22 @@
 }
 
 .imgSlider {
-  max-width: 700px;
-  max-height: 500px;
   display: flex;
   align-items: center;
   border-radius: 1.5em;
+  background-color: var(--yellow-main);
+  width: 900px;
+  height: 600px;
 }
 
 .miniImgContainer {
   display: flex;
-  gap: 1rem;
+  gap: 3rem;
+  position: absolute;
+  bottom: 5em;
 }
 
 .miniImg {
-  position: relative;
-  top: 2rem;
   width: 5rem;
   opacity: 0.5;
   border-radius: 0.5em;

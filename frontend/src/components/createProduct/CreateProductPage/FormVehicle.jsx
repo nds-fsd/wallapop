@@ -49,7 +49,7 @@ const FormVehicle = () => {
       ?.split(/[, ]+/)
       .filter((keyword) => keyword !== "");
 
-    const productData = { ...data };
+    const productData = { ...data, images };
     if (keywords && keywords.length > 0) {
       productData.keywords = keywords;
     }
