@@ -17,10 +17,7 @@ const EditJob = ({ id }) => {
   } = useForm();
 
   const { data: product } = useQuery(["product-updated", id], getProductById, {
-  const { data: product } = useQuery(["product-updated", id], getProductById, {
     onSuccess: (product) => {
-      reset(product);
-    },
       reset(product);
     },
   });

@@ -165,20 +165,14 @@ const EditVehicle = ({ id }) => {
             <label htmlFor="engine" className={styles.labels}>
               Motor:
             </label>
-            <select {...register("engine")} className={styles.input}>
-            <label htmlFor="engine" className={styles.labels}>
-              Motor:
-            </label>
+            
             <select {...register("engine")} className={styles.input}>
               <option value="">Selecciona una opción</option>
               <option value="Gasolina">Gasolina</option>
               <option value="Diesel">Diesel</option>
               <option value="Eléctrico">Eléctirco</option>
             </select>
-            <label htmlFor="shift" className={styles.labels}>
-              Cambio:
-            </label>
-            <select {...register("shift")} className={styles.input}>
+            
             <label htmlFor="shift" className={styles.labels}>
               Cambio:
             </label>
@@ -259,7 +253,6 @@ const EditVehicle = ({ id }) => {
               Guardar cambios
             </button>
           </div>
-        </div>
       </form>
     </>
   );
