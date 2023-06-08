@@ -104,6 +104,7 @@
   display: flex;
   gap: 3rem;
   justify-content: center;
+  align-items: center;
   position: relative;
   top: 0.5em;
 }
@@ -178,4 +179,77 @@
 }
 .iconsList span:focus {
   color: var(--blue-medium);
+}
+
+.comprar > button{
+  width: fit-content;
+  height: 2rem;
+  font-size: 1rem;
+  padding: 0 1.5em;
+  border: none;
+  border-radius: 2.5rem;
+  background-color: var(--yellow-main);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.comprar >button:hover {
+  background-color: var(--blue-light);
+  color: white;
+}
+
+.heart span {
+  color: red;
+}
+
+.alert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  position: fixed;
+  top: 39%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--grey);
+  background-color: var(--blue-medium);
+  color: white;
+  /* border: 2px solid var(--yellow-main); */
+  border-radius: 1em;
+  padding: 1.5em;
+  text-align: center;
+  z-index: 9999;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+
+}
+
+.accept:hover {
+  background-color: var(--yellow-main);
+  color: white;
+
+}
+
+.accept {
+  width: 7rem;
+  height: 2rem;
+  border-radius: 2.5rem;
+  border: none;
+  /* border: 0.2em solid var(--yellow-main); */
+  background-color: var(--yellow-main);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.accept:hover {
+  background-color: var(--blue-light);
+  color: white;
+}
+
+.alertButtons {
+  display: flex;
+  gap: 2em;
 }

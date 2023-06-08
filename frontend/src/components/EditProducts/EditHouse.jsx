@@ -3,6 +3,7 @@ import styles from "./editProduct.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProductById, updateProduct } from "../../utils/apiProducts";
+import EditImages from "../EditImages/EditImages";
 
 const EditHouse = ({ id }) => {
   console.log("el producto en el modal", id);
@@ -24,7 +25,8 @@ const EditHouse = ({ id }) => {
   const mutation = useMutation(updateProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
-      window.location.reload()
+      window.location.reload();
+      window.location.reload();
     },
   });
 
@@ -40,10 +42,21 @@ const EditHouse = ({ id }) => {
   // };
 
   const onSubmit = (product) => {
-    const keywords = product.keywords
-    ?.split(",")
-    .map((keyword) => [keyword.trim()])
-    .filter((keyword) => keyword[0] !== "");  
+    let keywords = [];
+
+    if (typeof product.keywords === "string") {
+      keywords = product.keywords
+        .split(",")
+        .map((keyword) => keyword.trim().split(" "))
+        .flat()
+        .filter((keyword) => keyword !== "");
+    } else if (Array.isArray(product.keywords)) {
+      keywords = product.keywords
+        .map((keyword) => keyword.trim().split(" "))
+        .flat()
+        .filter((keyword) => keyword !== "");
+    }
+
     const productData = { ...product, keywords };
     mutation.mutate(productData);
     alert("Los cambios se han guardado satisfactoriamente");
@@ -90,8 +103,8 @@ const EditHouse = ({ id }) => {
               className={styles.input}
             >
               <option value="">Selecciona una opción</option>
-              <option value="venta">Venta</option>
-              <option value="alquiler">Alquiler</option>
+              <option value="Venta">Venta</option>
+              <option value="Alquiler">Alquiler</option>
             </select>
 
             <label htmlFor="space" className={styles.labels}>
@@ -102,12 +115,12 @@ const EditHouse = ({ id }) => {
               className={styles.input}
             >
               <option value="">Selecciona una opción</option>
-              <option value="piso">Piso</option>
-              <option value="casa">Casa</option>
-              <option value="habitacion">Habitación</option>
-              <option value="oficina">Oficina</option>
-              <option value="garaje">Garaje</option>
-              <option value="trastero">Trastero</option>
+              <option value="Piso">Piso</option>
+              <option value="Casa">Casa</option>
+              <option value="Habitación">Habitación</option>
+              <option value="Oficina">Oficina</option>
+              <option value="Garaje">Garaje</option>
+              <option value="Trastero">Trastero</option>
             </select>
             <label htmlFor="land" className={styles.labels}>
               Superficie:
@@ -140,7 +153,6 @@ const EditHouse = ({ id }) => {
               </p>
             )}
           </div>
-
 
           <div className={styles.labelTriple}>
             <label htmlFor="price" className={styles.labels}>
@@ -206,18 +218,12 @@ const EditHouse = ({ id }) => {
               {errors.description.message}
             </p>
           )}
-          {/* <FormImages />
-          <Map /> */}
+          {product && <EditImages product={product} />}
 
-          <div>
-            {/* <div className={styles.images}>
-                {prod && prod.images.map((image, _id) => (
-                  <button key={image._id} className={styles.image}>{image}</button>
-              ))}
-              </div> */}
-          </div>
           <div className={styles.formButton}>
-            <button type="submit">Guardar cambios</button>
+            <button data-test="guardar" type="submit">
+              Guardar cambios
+            </button>
           </div>
         </div>
       </form>

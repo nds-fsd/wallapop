@@ -45,10 +45,6 @@ const ModalContent = ({id}) => {
   return (
     <>
       <h3>Información de tu producto / servicio</h3>
-      {/* {id && <EditElse id={id}/>} */}
-      {/* {id && <EditJob id={id}/>} */}
-      {/* {id && <EditVehicle id={id}/>} */}
-      {/* {id && <EditHouse id={id}/>} */}
       {id && componentToRender}
 
 

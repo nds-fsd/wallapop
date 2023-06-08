@@ -2,7 +2,8 @@ import React from 'react'
 import styles from './images.module.css'
 
 
-const ImagesList = ({ images }) => {
+const ImagesList = ({ images, status }) => {
+  console.log("en las imagenes", status)
 
   const mockImages = [
     "https://picsum.photos/id/1/350/150",
@@ -20,13 +21,25 @@ const ImagesList = ({ images }) => {
     )} */}
 
     
-    <img src={mockImages[0]} className={styles.imgList}></img>
+    {/* <img src={images[0]} className={styles.imgList}></img>
+    <p>{status}</p>
    
     {images === 0 && (
-      <div className={styles.noImage}>
+      <div className={styles.noImageList}>
         <span className="icon-sad"></span>
     </div>
-    )}
+    )} */}
+
+
+{images.length > 0 ? (
+        
+          <img src={images[0]} className={styles.imgList}></img>
+      ) : (
+        <div className={styles.noImageList}>
+          <span className="icon-eye-blocked"></span>
+          <p>Imágenes</p>
+        </div>
+      )}
     </>
 
   );

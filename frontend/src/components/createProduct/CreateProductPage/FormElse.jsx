@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./createProductPage.module.css";
 import { useForm } from "react-hook-form";
 import { postProduct, updateProduct } from "../../../utils/apiProducts";
@@ -6,9 +6,12 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
 import Map from "../map/Map";
 import CustomAlert from "../../CustomAlert/CustomAlert";
+import { AuthContext } from "../../../context/authContext";
 
 const FormElse = () => {
   const queryClient = useQueryClient(["product"]);
+  const {images, setImages} = useContext(AuthContext)
+  // console.log("estas son las imagenes", images)
 
   const {
     register,
@@ -16,28 +19,46 @@ const FormElse = () => {
     reset,
     formState: { errors },
   } = useForm();
+  
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
       queryClient.invalidateQueries(["product"]);
     },
   });
 
-  const [showAlert, setShowAlert] = useState(false);
-  const handleCloseAlert = () => {
-    setShowAlert(false);
+  const [imagePreviews, setImagePreviews] = useState([]);
+
+  const handleImageUpload = (files, index) => {
+    const imageUrls = Array.from(files).map((file) =>
+      URL.createObjectURL(file)
+    );
+    setImagePreviews((prevPreviews) => {
+      const updatedPreviews = [...prevPreviews];
+      updatedPreviews[index] = imageUrls[0];
+      return updatedPreviews;
+    });
   };
 
+  // const [showAlert, setShowAlert] = useState(false);
+  // const handleCloseAlert = () => {
+  //   setShowAlert(false);
+  // };
+
   const onSubmit = (data) => {
-    const keywords =
-      data.keywords
-        ?.split(",")
-        .map((keyword) => keyword.trim())
-        .filter((keyword) => keyword !== "") || [];
-    const productData = { ...data, keywords };
+    const keywords = data.keywords
+      ?.split(/[, ]+/)
+      .filter((keyword) => keyword !== "");
+    
+    const productData = { ...data, images };
+    if (keywords && keywords.length > 0) {
+      productData.keywords = keywords;
+    }
     mutation.mutate(productData);
+    console.log(productData);
     // setShowAlert(true);
     alert("Tu producto se ha subido correctamente");
     reset();
+    setImages([]);
   };
 
   return (
@@ -176,18 +197,23 @@ const FormElse = () => {
             {errors.description.message}
           </p>
         )}
-        <FormImages />
-        <Map />
+        <FormImages
+          handleImageUpload={handleImageUpload}
+          imagePreviews={imagePreviews}
+          setImagePreviews={setImagePreviews}
+          reset={reset}
+        />
+        {/* <Map /> */}
 
         <button type="submit" className={styles.formButton}>
           Subir
         </button>
-        {showAlert && (
+        {/* {showAlert && (
           <CustomAlert
             message="Tu producto se ha subido correctamente"
             onClose={handleCloseAlert}
           />
-        )}
+        )} */}
       </form>
     </>
   );

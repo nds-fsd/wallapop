@@ -16,6 +16,9 @@ const getAllCategories = async (req, res) => {
 // Crear categorias
 const postCategory = async (req, res) => {
   const { title, logo } = req.body;
+  if (!title || !logo) {
+    return res.status(400).json({ error: { login: "Missing information" } });
+  }
   try {
     const catExist = await categoryModel.find({ title });
     // si existe mandamos un error
