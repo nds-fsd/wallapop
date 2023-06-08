@@ -75,10 +75,27 @@ const getProductByCategory = async (req, res) => {
   }
 };
 
+// Buscar productos por name
+const getProductByName = async (req, res) => {
+  const { name } = req.params;
+  try {
+    const productByName = await productModel.find({
+      title: { $regex: new RegExp(name, "i") },
+    });
+    res.status(200).json(productByName);
+  } catch (error) {
+    res.status(404).json({ error: "Sorry, can't find this category" });
+    console.log(error);
+  }
+};
+
 // Crear producto
 const postProduct = async (req, res) => {
   const { body } = req;
   const { user } = req.params;
+  if (!body.title || !body.description || !body.price) {
+    return res.status(400).json({ error: { login: "Missing information" } });
+  }
   try {
     const newProduct = new productModel(body);
     newProduct.user = user;
@@ -96,7 +113,9 @@ const postProduct = async (req, res) => {
 const updateProductById = async (req, res) => {
   const { id } = req.params;
   const body = req.body;
-
+  if (!body.title || !body.description || !body.price) {
+    return res.status(400).json({ error: { login: "Missing information" } });
+  }
   try {
     const updateProduct = await productModel
       .findByIdAndUpdate(id, body, { new: true })
@@ -138,6 +157,7 @@ module.exports = {
   postProduct,
   updateProductById,
   deleteProductById,
+  getProductByName,
   getProductByUserFavs,
 };
 

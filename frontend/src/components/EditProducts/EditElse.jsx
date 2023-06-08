@@ -152,7 +152,9 @@ const EditElse = ({ id }) => {
         
 
           <div className={styles.formButton}>
-            <button type="submit">Guardar cambios</button>
+            <button type="submit" data-test="guardar">
+              Guardar cambios
+            </button>
           </div>
         </div>
       </form>

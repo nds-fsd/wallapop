@@ -26,8 +26,20 @@ const EditHouse = ({ id }) => {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
       window.location.reload();
+      window.location.reload();
     },
   });
+
+  // const onSubmit = (product) => {
+  //   let keywords = product.keywords
+  //     ?.split(",")
+  //     .map((keyword) => keyword.trim())
+  //     .filter((keyword) => keyword !== "");
+      
+  //   const productData = { ...product, keywords};
+  //   mutation.mutate(productData);
+  //   alert("Los cambios se han guardado satisfactoriamente")
+  // };
 
   const onSubmit = (product) => {
     let keywords = [];
@@ -209,7 +221,9 @@ const EditHouse = ({ id }) => {
           {product && <EditImages product={product} />}
 
           <div className={styles.formButton}>
-            <button type="submit">Guardar cambios</button>
+            <button data-test="guardar" type="submit">
+              Guardar cambios
+            </button>
           </div>
         </div>
       </form>

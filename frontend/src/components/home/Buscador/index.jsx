@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import style from "./index.module.css";
+import { useState } from "react";
 
 const Buscador = () => {
   const [search, setSearch] = useState("");
-
-  if (search === "reset") setSearch("");
 
   return (
     <form className={style.searchContainer}>
@@ -16,7 +15,9 @@ const Buscador = () => {
         value={search}
         onChange={(ev) => setSearch(ev.target.value)}
       ></input>
-      <button type="submit">Buscar</button>
+      <NavLink to={`/category/product/search/${search}`}>
+        <button type="submit">Buscar</button>
+      </NavLink>
     </form>
   );
 };

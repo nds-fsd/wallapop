@@ -27,6 +27,7 @@ const EditVehicle = ({ id }) => {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
       window.location.reload();
+      window.location.reload();
     },
   });
 
@@ -165,6 +166,10 @@ const EditVehicle = ({ id }) => {
               Motor:
             </label>
             <select {...register("engine")} className={styles.input}>
+            <label htmlFor="engine" className={styles.labels}>
+              Motor:
+            </label>
+            <select {...register("engine")} className={styles.input}>
               <option value="">Selecciona una opción</option>
               <option value="Gasolina">Gasolina</option>
               <option value="Diesel">Diesel</option>
@@ -174,10 +179,15 @@ const EditVehicle = ({ id }) => {
               Cambio:
             </label>
             <select {...register("shift")} className={styles.input}>
+            <label htmlFor="shift" className={styles.labels}>
+              Cambio:
+            </label>
+            <select {...register("shift")} className={styles.input}>
               <option value="">Selecciona una opción</option>
               <option value="Manual">Manual</option>
               <option value="Automático">Automático</option>
             </select>
+          </div>
           </div>
 
           <div className={styles.labelTriple}>
@@ -245,7 +255,9 @@ const EditVehicle = ({ id }) => {
           {product && <EditImages product={product} />}
 
           <div className={styles.formButton}>
-            <button type="submit">Guardar cambios</button>
+            <button data-test="guardar" type="submit">
+              Guardar cambios
+            </button>
           </div>
         </div>
       </form>

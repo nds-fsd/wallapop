@@ -67,10 +67,10 @@ const ProductPublished = () => {
       {/* <div className={styles.container}> */}
       <div>
         {gridOpen ? (
-          <div className={styles.gridContainer}>
+          <div className={styles.gridContainer} data-test="productos">
             {prods &&
               prods.map((prod) => (
-                <div className={styles.card}>
+                <div className={styles.card} data-test="producto">
                   {prods && <Images images={prod.images} />}
                   <div className={styles.titleContainer}>
                     <h4 className={styles.title}>{prod.title}</h4>

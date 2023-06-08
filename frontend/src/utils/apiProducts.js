@@ -5,12 +5,12 @@ import { getUserData, getUserToken } from "./localStorage.utils";
 export const getAllProducts = () => {
   // console.log("paso por el get all")
   return api
-  .get('/products/')
-  .then((res) => res.data)
-  .catch((error) => {
-    console.log(error)
-  })
-}
+    .get("/products/")
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 export const getProductById = ({ queryKey }) => {
   return api
@@ -81,6 +81,18 @@ export const getProductByCategory = ({ queryKey }) => {
       })
   );
 };
+export const getProductByName = ({ queryKey }) => {
+  return (
+    api
+      //si no le pongo {queryKey} hay que acceder a la propiedad queryKey (queryKey.queryKey)
+      .get(`/products/category/product/${queryKey[1]}`)
+      .then((res) => res.data)
+      .catch((error) => {
+        console.log(error);
+        return [];
+      })
+  );
+};
 
 export const postProduct = (data) => {
   // console.log("esta es la data en el post", data)
@@ -90,14 +102,12 @@ export const postProduct = (data) => {
     .post(`/products/newProduct/${id}`, data)
     .then((res) => res.data)
     .catch((error) => {
-      console.log(error)
+      console.log(error);
       return {
-        error:
-          "Sorry, we couldn't post your product.",
+        error: "Sorry, we couldn't post your product.",
       };
     });
 };
-
 
 export const updateProduct = (product) => {
   // console.log("paso por el update product", product)
@@ -106,15 +116,15 @@ export const updateProduct = (product) => {
   const { token } = getUserToken()
   // console.log("paso por la api de update", product)
   return api
-  .patch(`/products/${id}`, product , {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-  .then((res) => res.data )
-  .catch((error) => {
-    console.log(error)
-  });
+    .patch(`/products/${id}`, product, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 export const changeFavorite = (product) => {
@@ -142,18 +152,16 @@ export const changeFavorite = (product) => {
 export const deleteProduct = (id) => {
   const token = JSON.parse(localStorage.getItem("user-session"));
   return api
-  .delete(`/products/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  })
-  .then(res => res.data)
-  .catch((error) => {
-    console.log(error)
-  })
-}
-
-
+    .delete(`/products/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 // export const getProductByIdHarcoded = () => {
 //   return api

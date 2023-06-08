@@ -8,6 +8,7 @@ import EditImages from "../EditImages/EditImages";
 const EditJob = ({ id }) => {
   console.log("el producto en el modal", id);
 
+
   const {
     register,
     handleSubmit,
@@ -16,7 +17,10 @@ const EditJob = ({ id }) => {
   } = useForm();
 
   const { data: product } = useQuery(["product-updated", id], getProductById, {
+  const { data: product } = useQuery(["product-updated", id], getProductById, {
     onSuccess: (product) => {
+      reset(product);
+    },
       reset(product);
     },
   });
@@ -26,6 +30,7 @@ const EditJob = ({ id }) => {
   const mutation = useMutation(updateProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
+      window.location.reload();
       window.location.reload();
     },
   });
@@ -150,7 +155,9 @@ const EditJob = ({ id }) => {
           {product && <EditImages product={product} />}
 
           <div className={styles.formButton}>
-            <button type="submit">Guardar cambios</button>
+            <button type="submit" data-test="guardar">
+              Guardar cambios
+            </button>
           </div>
         </div>
       </form>
