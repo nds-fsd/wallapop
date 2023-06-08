@@ -71,7 +71,7 @@ const ProductPublished = () => {
             {prods &&
               prods.map((prod) => (
                 <div className={styles.card} data-test="producto">
-                  {prods && <Images images={prod.images} />}
+                  {prods && <Images images={prod.images} status={prod.status}/>}
                   <div className={styles.titleContainer}>
                     <h4 className={styles.title}>{prod.title}</h4>
                     <h4>
@@ -82,21 +82,23 @@ const ProductPublished = () => {
                     </h4>
                   </div>
                   <div className={styles.details}>
-                    {/* <div>
+                    <div>
                 {prod.categories.map((category) => (
                   <h5 key={category._id}>{category.title}</h5>
                 ))}
-              </div> */}
-                    <h5>{prod.category}</h5>
+              </div>
+                    {/* <h5>{prod.category}</h5> */}
                     <p>{prod.status}</p>
                   </div>
-                  {Array.isArray(prod.keywords) && prod.keywords !== " " && (
+                  {Array.isArray(prod.keywords) && prod.keywords.length > 0 && (
                     <div className={styles.keywords}>
                       {prod.keywords.map((keyword, _id) => (
                         <p key={_id}>{`#${keyword}`}</p>
                       ))}
                     </div>
                   )}
+
+                  
                   <p className={styles.paragraph}>{prod.description}</p>
                   <div className={styles.icons}>
                     <button onClick={() => handleClick(prod._id)}>
@@ -128,7 +130,7 @@ const ProductPublished = () => {
               prods.map((prod) => (
                 <div className={styles.list} key={prod.id}>
                   <div className={styles.imgList}>
-                    {prods && <ImagesList images={prod.images} />}
+                    {prods && <ImagesList images={prod.images}  />}
                   </div>
 
                   <div className={styles.detailsContainer}>

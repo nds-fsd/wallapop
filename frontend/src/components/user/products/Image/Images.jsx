@@ -17,7 +17,9 @@ const Images = ({ images }) => {
     )} */}
 
       {images.length > 0 ? (
-        <img src={images[0]} className={styles.image}></img>
+        <div className={styles.imagesContainer}>
+          <img src={images[0]} className={styles.image}></img>
+        </div>
       ) : (
         <div className={styles.noImage}>
           <span className="icon-sad"></span>

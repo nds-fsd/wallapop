@@ -53,7 +53,7 @@ const EditElse = ({ id }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
         <div className={styles.editContainer}>
           <div className={styles.title}>
             <label htmlFor="title" className={styles.labels}>

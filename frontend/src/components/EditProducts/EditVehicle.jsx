@@ -246,6 +246,7 @@ const EditVehicle = ({ id }) => {
               {errors.description.message}
             </p>
           )}
+          
           {product && <EditImages product={product} />}
 
           <div className={styles.formButton}>
