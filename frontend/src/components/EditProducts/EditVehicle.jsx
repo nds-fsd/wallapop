@@ -3,9 +3,10 @@ import styles from "./editProduct.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProductById, updateProduct } from "../../utils/apiProducts";
+import EditImages from "../EditImages/EditImages";
 
 const EditVehicle = ({ id }) => {
-  console.log("el producto en el modal", id);
+  // console.log("el producto en el modal", id);
 
   const {
     register,
@@ -25,15 +26,27 @@ const EditVehicle = ({ id }) => {
   const mutation = useMutation(updateProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
-      window.location.reload()
+      window.location.reload();
+      window.location.reload();
     },
   });
 
   const onSubmit = (product) => {
-    const keywords = product.keywords
-    ?.split(",")
-    .map((keyword) => [keyword.trim()])
-    .filter((keyword) => keyword[0] !== "");  
+    let keywords = [];
+
+    if (typeof product.keywords === "string") {
+      keywords = product.keywords
+        .split(",")
+        .map((keyword) => keyword.trim().split(" "))
+        .flat()
+        .filter((keyword) => keyword !== "");
+    } else if (Array.isArray(product.keywords)) {
+      keywords = product.keywords
+        .map((keyword) => keyword.trim().split(" "))
+        .flat()
+        .filter((keyword) => keyword !== "");
+    }
+
     const productData = { ...product, keywords };
     mutation.mutate(productData);
     alert("Los cambios se han guardado satisfactoriamente");
@@ -149,25 +162,27 @@ const EditVehicle = ({ id }) => {
           </div>
 
           <div className={styles.title}>
-          <label htmlFor="engine" className={styles.labels}>
-            Motor:
-          </label>
-          <select {...register("engine")} className={styles.input}>
+            <label htmlFor="engine" className={styles.labels}>
+              Motor:
+            </label>
+            
+            <select {...register("engine")} className={styles.input}>
               <option value="">Selecciona una opción</option>
               <option value="Gasolina">Gasolina</option>
               <option value="Diesel">Diesel</option>
               <option value="Eléctrico">Eléctirco</option>
-
             </select>
-          <label htmlFor="shift" className={styles.labels}>
-            Cambio:
-          </label>
-          <select {...register("shift")} className={styles.input}>
+            
+            <label htmlFor="shift" className={styles.labels}>
+              Cambio:
+            </label>
+            <select {...register("shift")} className={styles.input}>
               <option value="">Selecciona una opción</option>
               <option value="Manual">Manual</option>
               <option value="Automático">Automático</option>
             </select>
-        </div>
+          </div>
+          </div>
 
           <div className={styles.labelTriple}>
             <label htmlFor="price" className={styles.labels}>
@@ -197,7 +212,6 @@ const EditVehicle = ({ id }) => {
               placeholder="Crea tus palabras clave"
               {...register("keywords")}
               className={styles.inputTriple}
-              // defaultValue={product?.keywords?.join(", ") || ""}
             ></input>
 
             <select {...register("status")} className={styles.dropdown}>
@@ -232,20 +246,14 @@ const EditVehicle = ({ id }) => {
               {errors.description.message}
             </p>
           )}
-          {/* <FormImages />
-          <Map /> */}
+          
+          {product && <EditImages product={product} />}
 
-          <div>
-            {/* <div className={styles.images}>
-                {prod && prod.images.map((image, _id) => (
-                  <button key={image._id} className={styles.image}>{image}</button>
-              ))}
-              </div> */}
-          </div>
           <div className={styles.formButton}>
-            <button type="submit">Guardar cambios</button>
+            <button data-test="guardar" type="submit">
+              Guardar cambios
+            </button>
           </div>
-        </div>
       </form>
     </>
   );

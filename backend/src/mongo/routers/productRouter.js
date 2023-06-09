@@ -7,19 +7,21 @@ const {
   updateProductById,
   deleteProductById,
   getProductByUser,
+  getProductByUserFavs,
+  getProductByName,
 } = require("../controllers/productController");
 
 const productRouter = express.Router();
 
 productRouter.get("/", getAllProducts);
 productRouter.get("/:id", getProductById);
-productRouter.get("/getbyuser/:user", getProductByUser)
+productRouter.get("/getbyuser/:user", getProductByUser);
+productRouter.get("/getbyuser/:user", getProductByUserFavs)
 productRouter.get("/category/:category", getProductByCategory);
+productRouter.get("/category/product/:name", getProductByName);
 productRouter.post("/newproduct/:user", postProduct);
 productRouter.patch("/:id", updateProductById);
 productRouter.delete("/:id", deleteProductById);
-
-
 
 module.exports = productRouter;
 

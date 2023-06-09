@@ -3,10 +3,12 @@ import styles from "./editProduct.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProductById, updateProduct } from "../../utils/apiProducts";
+import EditImages from "../EditImages/EditImages";
 
 const EditJob = ({ id }) => {
   console.log("el producto en el modal", id);
-  
+
+
   const {
     register,
     handleSubmit,
@@ -14,10 +16,10 @@ const EditJob = ({ id }) => {
     formState: { errors },
   } = useForm();
 
-  const { data: product }  = useQuery(["product-updated", id], getProductById,{
+  const { data: product } = useQuery(["product-updated", id], getProductById, {
     onSuccess: (product) => {
-      reset(product)
-    }
+      reset(product);
+    },
   });
   // console.log("en el form de update", product);
 
@@ -25,15 +27,27 @@ const EditJob = ({ id }) => {
   const mutation = useMutation(updateProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
-      window.location.reload()
+      window.location.reload();
+      window.location.reload();
     },
   });
 
   const onSubmit = (product) => {
-    const keywords = product.keywords
-    ?.split(",")
-    .map((keyword) => [keyword.trim()])
-    .filter((keyword) => keyword[0] !== "");  
+    let keywords = [];
+
+    if (typeof product.keywords === "string") {
+      keywords = product.keywords
+        .split(",")
+        .map((keyword) => keyword.trim().split(" "))
+        .flat()
+        .filter((keyword) => keyword !== "");
+    } else if (Array.isArray(product.keywords)) {
+      keywords = product.keywords
+        .map((keyword) => keyword.trim().split(" "))
+        .flat()
+        .filter((keyword) => keyword !== "");
+    }
+
     const productData = { ...product, keywords };
     mutation.mutate(productData);
     alert("Los cambios se han guardado satisfactoriamente");
@@ -99,7 +113,6 @@ const EditJob = ({ id }) => {
               placeholder="Crea tus palabras clave"
               {...register("keywords")}
               className={styles.inputTriple}
-              // defaultValue={product?.keywords?.join(", ") || ""}
             ></input>
 
             <select {...register("status")} className={styles.dropdown}>
@@ -135,18 +148,11 @@ const EditJob = ({ id }) => {
               {errors.description.message}
             </p>
           )}
-          {/* <FormImages />
-          <Map /> */}
-          
-          <div>
-            {/* <div className={styles.images}>
-                {prod && prod.images.map((image, _id) => (
-                  <button key={image._id} className={styles.image}>{image}</button>
-              ))}
-              </div> */}
-          </div>
+
+          {product && <EditImages product={product} />}
+
           <div className={styles.formButton}>
-            <button type="submit" >
+            <button type="submit" data-test="guardar">
               Guardar cambios
             </button>
           </div>

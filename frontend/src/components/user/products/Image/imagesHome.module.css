@@ -8,30 +8,46 @@
 .noImage {
   width: 200px;
   height: 250px;
-  background-color: var(--blue-dark);
+  background-color: var(--blue-medium);
   border-radius: 0.7em;
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   text-align: center;
 }
 
 .icon {
   height: 250px;
+}
+
+.tags {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  justify-content: space-between;
+}
+
+.tagsNoImage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 .icon span {
-  color: white;
-  font-size: 2.8em;
+  color: var(--blue-light);
+  font-size: 2.5em;
   position: relative;
-  top: -5.7em;
-  left: 3.4em;
+  margin: 0 0.1em 0.3em 0;
   z-index: 200;
+}
+
+.noImage span {
+  font-size: 2.5rem;
+  color: var(--blue-light);
+  margin: 0 0 0 3.8em;
 }
 
 .status {
@@ -39,9 +55,29 @@
   border-radius: 1em;
   height: fit-content;
   width: fit-content;
-  margin: -19em 0.8em 0 0;
+  margin: -19.5em 0.6em 0 0;
   z-index: 500;
-  padding: 0.4em;
+  padding: 0.1em 0.5em;
   font-size: 0.8em;
 }
 
+.text {
+  margin-top: 1em;
+}
+
+.text span {
+  color: white;
+  margin: 0 0 0 -0.1em;
+}
+
+.statusNoImage {
+  background-color: var(--blue-light);
+  color: var(--blue-dark);
+  margin: 0 0 0 8em;
+  border-radius: 1em;
+  height: fit-content;
+  width: fit-content;
+  z-index: 500;
+  padding: 0.1em 0.5em;
+  font-size: 0.8em;
+}

@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const Product = ({ prod }) => {
   return (
     // creo los datos que recibo(prod) que vamos a mostrar en cada card de producto
-    <NavLink to={"/category/product/" + prod._id} className={styles.container}>
+    <NavLink to={"/category/product/" + prod._id} data-test="product" className={styles.container}>
       <div className={styles.card}>
         <div className={styles.columnLeft}>
           <img src={prod.images}></img>

@@ -1,10 +1,9 @@
-.editContainer{
+.editContainer {
   width: 59rem;
+  height: max-content;
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
-  padding-bottom: 1.5em;
-
+  gap: 1rem;
 }
 .title {
   display: flex;
@@ -38,7 +37,7 @@
 }
 .double {
   display: flex;
-  justify-content: space-between;
+  gap: 2.8rem;
   align-items: flex-start;
 }
 
@@ -164,13 +163,12 @@
   color: grey;
 }
 
-
 .column {
   display: flex;
   gap: 3rem;
 }
 .textArea {
-  width: 50rem;
+  width: 49rem;
   height: 4rem;
   border-radius: 0.5rem;
   border: 0.1em solid var(--yellow-main);
@@ -274,7 +272,7 @@
   color: red;
   margin-right: 0.5em;
   font-size: 0.8em;
-  cursor:default;
+  cursor: default;
 }
 .error span:hover {
   color: red;
@@ -307,7 +305,7 @@
   display: flex;
   gap: 15.5rem;
 }
-.error4 > p{
+.error4 > p {
   color: red;
   font-size: 0.7em;
   margin-top: -0.4rem;
@@ -316,3 +314,5 @@
   color: red;
   margin-right: 0.5em;
 }
+
+

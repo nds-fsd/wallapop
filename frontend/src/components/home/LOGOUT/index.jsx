@@ -14,8 +14,8 @@ const Logout = () => {
       </Link>
       <Buscador />
       <div className={styles.buttonLink}>
-        <Link to="/login"> INICIA SESION </Link>
-        <Link to="/register"> REGISTRATE </Link>
+        <Link data-test="login" to="/login"> INICIA SESION </Link>
+        <Link data-test="register" to="/register"> REGISTRATE </Link>
       </div>
     </div>
   );

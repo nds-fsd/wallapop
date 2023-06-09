@@ -30,10 +30,14 @@
   display: flex;
   width: 42rem;
   height: 3rem;
-  justify-content: flex-end;
-  gap: 2em;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2em;
 }
-
+.buttons {
+  display: flex;
+  gap: 1em;
+}
 .like {
   width: 5rem;
   height: 2rem;
@@ -45,6 +49,12 @@
 }
 
 .like:hover {
+  background-color: red;
+  color: white;
+  border: none;
+}
+
+.focused {
   background-color: red;
   color: white;
   border: none;
@@ -270,3 +280,77 @@
   justify-content: space-around;
   height: max-content;
 }
+
+.alert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  position: fixed;
+  top: 39%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--grey);
+  background-color: var(--blue-medium);
+  color: white;
+  /* border: 2px solid var(--yellow-main); */
+  border-radius: 1em;
+  padding: 1.5em;
+  text-align: center;
+  z-index: 9999;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.accept:hover {
+  background-color: var(--yellow-main);
+  color: white;
+
+}
+
+.accept {
+  width: 7rem;
+  height: 2rem;
+  border-radius: 2.5rem;
+  border: none;
+  /* border: 0.2em solid var(--yellow-main); */
+  background-color: var(--yellow-main);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.accept:hover {
+  background-color: var(--blue-light);
+  color: white;
+}
+
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.background {
+  width: 4em;
+  height: 4em;
+  background-color: var(--yellow-main);
+  border-radius: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.userPhoto {
+  width: 3em;
+  height: 3em;
+  border-radius: 1em;
+}
+
+
+.alertButtons {
+  display: flex;
+  gap: 2em;
+}
+

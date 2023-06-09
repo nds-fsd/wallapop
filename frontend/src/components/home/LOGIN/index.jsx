@@ -18,25 +18,24 @@ const Login = () => {
           <img src={logo} />{" "}
         </div>
       </Link>
-      <Buscador />
+      <Buscador to="/products/search" />
       <div className={styles.buttonLink}>
         <Link to="/user/favorites">
-          {" "}
           <MdOutlineFavoriteBorder /> FAVORITOS{" "}
         </Link>
         <Link to="/user/messages">
-          {" "}
           <TbMessages /> BUZÓN{" "}
         </Link>
-        <div className={styles.tuButton}>
+        <div data-test="perfil" className={styles.tuButton}>
           <Link to="/user/profile/info">
-            {" "}
             <img src={userData.photo} />
             TÚ
           </Link>
         </div>
         <div className={styles.createProductButton}>
-          <Link to="/products/newproduct/algo-que-no-utilizo">SUBIR UN PRODUCTO </Link>
+          <Link to="/products/newproduct/algo-que-no-utilizo">
+            SUBIR UN PRODUCTO{" "}
+          </Link>
         </div>
       </div>
     </nav>

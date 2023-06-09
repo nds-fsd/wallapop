@@ -63,28 +63,38 @@ const Slider = ({ images, data }) => {
             </button>
           </div>
           <p className={styles.statusTag}>{data && data.status}</p>
-          
+
           {images && (
-            <ModalContainerSlider modalOpen={modalOpen}
-            setModalOpen={setModalOpen}
-            images={images} />
+            <ModalContainerSlider
+              modalOpen={modalOpen}
+              setModalOpen={setModalOpen}
+              images={images}
+            />
           )}
 
           <div className={styles.dotContainer}>
             {images.map((_, id) => (
-              <div key={id} className={currentImage === id
-                ? `${styles.dot} ${styles.dotactive}`
-                : styles.dot }><span className="icon-ello"></span></div>
+              <div
+                key={id}
+                className={
+                  currentImage === id
+                    ? `${styles.dot} ${styles.dotactive}`
+                    : styles.dot
+                }
+              >
+                <span className="icon-ello"></span>
+              </div>
             ))}
           </div>
-
         </div>
       )}
 
       {amount === 0 && (
-        <div className={styles.noImage}>
-          <span className="icon-sad"></span>
-          <h1>Lo sentimos, no hay imágenes para mostrar</h1>
+        <div className={styles.noImageContainer}>
+          <div className={styles.noImage}>
+            <span className="icon-sad"></span>
+            <h3>Lo sentimos, no hay imágenes para mostrar</h3>
+          </div>
         </div>
       )}
     </>
@@ -92,4 +102,3 @@ const Slider = ({ images, data }) => {
 };
 
 export default Slider;
-

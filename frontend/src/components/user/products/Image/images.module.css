@@ -1,14 +1,24 @@
 .image {
   border-radius: 0.7em;
+  max-width: 350px;
+  height: 200px;
+  
+}
+
+.imagesContainer {
   width: 350px;
-  height: 150px;
-  border: 0.15em solid var(--yellow-main);
+  height: 200px;
+  /* border: 0.15em solid var(--yellow-main); */
+  border-radius: 0.7em;
+  display: flex;
+  justify-content: center;
+
 }
 
 .noImage {
   width: 350px;
-  height: 150px;
-  background-color: var(--blue-dark);
+  height: 200px;
+  background-color: var(--blue-medium);
   border-radius: 0.7em;
   color: white;
   display: flex;
@@ -18,9 +28,34 @@
   text-align: center;
 }
 
+.noImageList {
+  width: 7rem;
+  height: 5rem;
+  background-color: var(--blue-medium);
+  border-radius: 0.7em;
+  color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.noImageList span {
+  font-size: 1.5em;
+  margin-top: 0.7em;
+}
+
 .imgList {
   width: 7rem;
   height: 5rem;
   border: 0.15em solid var(--yellow-main);
   border-radius: 0.7em;
+}
+
+.noImage span {
+  margin-top: 1rem;
+  font-size: 2.5rem;
+}
+
+.noImage p {
+  width: 12rem;
 }
