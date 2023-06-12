@@ -28,6 +28,7 @@ const productSchema = new Schema({
       ref: "category",
     },
   ],
+
   characteristics: { type: Object },
 
   // ESTO DE AQUI ABAJO IRA FUERA CUANDO SE TERMINE DE CAMBIAR LAS FUNCIONES

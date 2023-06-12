@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
-import {  getProductById, updateProduct } from "../../../utils/apiProducts";
+import {  getProductById } from "../../../utils/apiProducts";
 import { Link, useNavigate } from "react-router-dom";
 import { changeFavorite } from "../../../utils/apiFavorites";
 
@@ -23,8 +23,8 @@ const ElsePage = ({ id }) => {
   const { data, isLoading } = useQuery(["product", id], getProductById);
   const category = data?.categories;
 
-  console.log(data);
-  const [isFavorite, setIsFavorite] = useState(data?.favorite || false);
+  // console.log(data);
+  const [isFavorite, setIsFavorite] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
 
@@ -39,10 +39,11 @@ const ElsePage = ({ id }) => {
         setShowAlert(true);
       } else {
         setSessionAlert(true);
-        setShowAlert(false);
+        setShowAlert(true);
       }
     },
   });
+  
 
   const handleAlertAccept = () => {
     setShowAlert(false);
@@ -54,23 +55,22 @@ const ElsePage = ({ id }) => {
   };
 
   const { id: userId } = JSON.parse(localStorage.getItem("user"));
-    console.log("el id del user", userId)
+    // console.log("el id del user", userId)
 
 
   const handleFavorite = async () => {
     const userToken = localStorage.getItem("user-session");
        
     if (userToken) {
-      // console.log(userToken)
 
       const updatedFavorite = !isFavorite;
       setIsFavorite(updatedFavorite);
       const favoriteData = {
-        user: userId,
-        favorite:  updatedFavorite,
-        product: data._id
-        // ...data
+        products: data._id,
+        favorite: updatedFavorite,
+        user: userId,  
       }
+      console.log("favorite data", updatedFavorite)
 
       try {
         await mutation.mutateAsync(favoriteData);
@@ -79,6 +79,7 @@ const ElsePage = ({ id }) => {
         setSessionAlert(false);
         setShowAlert(true);
       } catch (error) {
+        console.log("error actualizando", error)
         setSessionAlert(true);
         setShowAlert(false);
       }
@@ -87,6 +88,7 @@ const ElsePage = ({ id }) => {
       setShowAlert(false);
     }
   };
+
 
   //Cuando todos los productos tengan asociado categories (title, logo...)
   //junto con el div que tiene el Link
@@ -111,7 +113,7 @@ const ElsePage = ({ id }) => {
           </div>
         </div>
       )}
-      {data && isFavorite && showAlert && (
+      {data && showAlert && (
         <div className={styles.alert}>
           {isFavorite
             ? "Este producto se ha añadido a tu lista de favoritos"
@@ -160,7 +162,7 @@ const ElsePage = ({ id }) => {
               </Link>
             </div> */}
             <div className={styles.category}>
-              {category && category.map((cat) => <span className={cat.logo} />)}
+              {category && category.map((cat) => <span className={cat.logo} key={cat._id} />)}
               <h3>{data && data.category}</h3>
             </div>
           </div>

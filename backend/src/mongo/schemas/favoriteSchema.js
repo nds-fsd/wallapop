@@ -16,7 +16,7 @@ const favoriteSchema = new Schema({
   products: [{
     type: Schema.Types.ObjectId,
     ref: "product",
-  },]
+  }],
 });
 
 module.exports = favoriteSchema;
