@@ -4,11 +4,9 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
-import {
-  getProductById,
-  updateProduct,
-} from "../../../utils/apiProducts";
+import {  getProductById, updateProduct } from "../../../utils/apiProducts";
 import { Link, useNavigate } from "react-router-dom";
+import { changeFavorite } from "../../../utils/apiFavorites";
 
 const ElsePage = ({ id }) => {
   const mockImages = [
@@ -25,18 +23,24 @@ const ElsePage = ({ id }) => {
   const { data, isLoading } = useQuery(["product", id], getProductById);
   const category = data?.categories;
 
-  console.log(data)
-  const [favorite, setFavorite] = useState(false);
+  console.log(data);
+  const [isFavorite, setIsFavorite] = useState(data?.favorite || false);
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
 
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const mutation = useMutation(updateProduct, {
-    onSuccess: (updatedProduct) => {
-      setFavorite(updatedProduct.favorite);
-      setShowAlert(true);
-      queryClient.setQueryData(["product", id], updatedProduct);
+
+  const mutation = useMutation(changeFavorite, {
+    onSuccess: (updatedFavorite) => {
+      if (updatedFavorite !== undefined) {
+        setIsFavorite(updatedFavorite);
+        queryClient.setQueryData(["product", id], { ...data, favorite: updatedFavorite});
+        setShowAlert(true);
+      } else {
+        setSessionAlert(true);
+        setShowAlert(false);
+      }
     },
   });
 
@@ -49,17 +53,29 @@ const ElsePage = ({ id }) => {
     navigate("/user/login");
   };
 
+  const { id: userId } = JSON.parse(localStorage.getItem("user"));
+    console.log("el id del user", userId)
+
+
   const handleFavorite = async () => {
     const userToken = localStorage.getItem("user-session");
-
+       
     if (userToken) {
-      console.log(userToken)
-      const updatedFavorite = !favorite;
-      setFavorite(updatedFavorite);
-      const updatedProduct = { ...data, favorite: updatedFavorite };
+      // console.log(userToken)
+
+      const updatedFavorite = !isFavorite;
+      setIsFavorite(updatedFavorite);
+      const favoriteData = {
+        user: userId,
+        favorite:  updatedFavorite,
+        product: data._id
+        // ...data
+      }
 
       try {
-        await mutation.mutateAsync(updatedProduct);
+        await mutation.mutateAsync(favoriteData);
+        console.log("el producto cambiado", favoriteData);
+
         setSessionAlert(false);
         setShowAlert(true);
       } catch (error) {
@@ -72,16 +88,14 @@ const ElsePage = ({ id }) => {
     }
   };
 
-
   //Cuando todos los productos tengan asociado categories (title, logo...)
   //junto con el div que tiene el Link
   // const title = data?.categories[0].title
   // console.log("el titulo de la categoria", title)
 
-
   return (
     <>
-      {data && sessionAlert && (
+      {data && !userId && sessionAlert && (
         <div className={styles.alert}>
           Debes iniciar sesión para ejecutar esta acción
           <div className={styles.alertButtons}>
@@ -97,9 +111,9 @@ const ElsePage = ({ id }) => {
           </div>
         </div>
       )}
-      {data && showAlert && (
+      {data && isFavorite && showAlert && (
         <div className={styles.alert}>
-          {data.favorite
+          {isFavorite
             ? "Este producto se ha añadido a tu lista de favoritos"
             : "Este producto ya no está entre tus favoritos"}
           <button onClick={handleAlertAccept} className={styles.accept}>
@@ -114,17 +128,14 @@ const ElsePage = ({ id }) => {
               <div className={styles.user}>
                 <h3>{data?.user?.name}</h3>
                 <div className={styles.background}>
-                  <img
-                    src={data?.user?.photo}
-                    className={styles.userPhoto}
-                  />
+                  <img src={data?.user?.photo} className={styles.userPhoto} />
                 </div>
               </div>
             )}
             <div className={styles.buttons}>
               <button
                 onClick={handleFavorite}
-                className={`${styles.like} ${favorite ? styles.focused : ""}`}
+                className={`${styles.like} ${isFavorite ? styles.focused : ""}`}
               >
                 <span className="icon-heart1"></span>
               </button>
