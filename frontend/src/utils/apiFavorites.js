@@ -40,6 +40,7 @@ export const changeFavorite = (product, isFavorite) => {
     user: id,
     favorite: isFavorite,
     product: product._id
+    // product: product.id
   };
 
   return api
