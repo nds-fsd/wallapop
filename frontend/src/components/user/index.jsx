@@ -43,6 +43,7 @@ import {
 } from "./route-paths";
 import styles from "./index.module.css";
 import Sidebar from "./sidebar";
+import Favs from "./favorites/favs";
 
 const UserPage = () => {
   return (
@@ -75,7 +76,7 @@ const UserPage = () => {
           <Route path={USER_MESSAGES} element={<Messages />} />
 
           <Route path={USER_FAVORITES} element={<Favorites />}>
-            <Route path={FAVORITE_PRODUCTS} element={<FavoriteProducts />} />
+            <Route path={FAVORITE_PRODUCTS} element={<Favs />} />
             <Route path={FAVORITE_PROFILES} element={<FavoriteProfiles />} />
             <Route path={FAVORITE_SEARCHES} element={<FavoriteSearches />} />
           </Route>
