@@ -41,10 +41,11 @@ const Slider = ({ images, data }) => {
                     ? `${styles.slide} ${styles.active}`
                     : styles.slide
                 }
+                key={`slide_${id}`}
               >
                 {currentImage === id && (
                   <img
-                    key={id}
+                    key={`image_${id}`}
                     src={image}
                     alt={image}
                     onMouseOver={handleMouseEnter}

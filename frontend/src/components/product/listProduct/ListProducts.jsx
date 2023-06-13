@@ -25,15 +25,22 @@ const ListProducts = () => {
       <div className={styles.carusel}>
         {!isLoading &&
           // hago bucle para mostrar todos los productos que me ha llegado de la BD
-          products.map((prod) => {
+          products.map((prod, index) => {
+            const isLastCard = index === products.length -1
             return (
               // Llamo al componente PRoduct y le paso la info de cada producto
+              <div
+                data-test="product"
+                className={`${styles.menu} ${isLastCard ? styles.lastCard : ''}`}
+                key={prod.id}
+              >
+              
               <Product
                 data-test="product"
-                className={styles.menu}
                 key={prod.id}
                 prod={prod}
               />
+              </div>
             );
           })}
       </div>

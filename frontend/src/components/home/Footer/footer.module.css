@@ -1,0 +1,110 @@
+.container {
+  background-color: var(--blue-medium);
+  color: white;
+  padding: 1em 10em;
+}
+.container a {
+  color: white;
+  text-decoration: none;
+}
+
+.container a:hover {
+  color: var(--yellow-main);
+}
+
+.titles {
+  text-decoration: underline;
+  color: var(--blue-light);
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.retrend {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  text-align: justify;
+}
+.retrend img {
+  width: 12rem;
+  height: auto;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo p {
+  width: 14rem;
+  text-align: center;
+}
+
+.slogan {
+  color: var(--yellow-main);
+  font-size: 4rem;
+  text-align: center;
+}
+
+.mediaIcons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3rem;
+  font-size: 2rem;
+  color: var(--yellow-main);
+}
+
+.questions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.secondQuestions {
+  display: flex;
+  gap: 3rem;
+}
+
+.foot {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.preguntas {
+  display: flex;
+  flex-direction: column;
+  color: var(--yellow-main);
+}
+.preguntas p {
+  color: white;
+}
+
+.preguntas span {
+  color: var(--yellow-main);
+  font-size: 2rem;
+}
+
+.message {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.columnLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.mediaIcons2 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 3rem;
+  font-size: 2rem;
+  color: var(--yellow-main);
+}

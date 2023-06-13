@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./productPage.module.css";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
@@ -9,11 +9,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { changeFavorite } from "../../../utils/apiFavorites";
 
 const ElsePage = ({ id }) => {
-  const mockImages = [
-    "https://picsum.photos/id/1/500/500",
-    "https://picsum.photos/id/2/700/500",
-    "https://picsum.photos/id/3/700/500",
-  ];
 
   const [isExpanded, setIsExpanded] = useState(false);
   const handleExpandClick = () => {
@@ -92,7 +87,7 @@ const ElsePage = ({ id }) => {
 
   //Cuando todos los productos tengan asociado categories (title, logo...)
   //junto con el div que tiene el Link
-  // const title = data?.categories[0].title
+  const title = data?.categories[0].title
   // console.log("el titulo de la categoria", title)
 
   return (
@@ -123,7 +118,7 @@ const ElsePage = ({ id }) => {
           </button>
         </div>
       )}
-      <div className={styles.productPage}>
+      <div className={styles.productPage} >
         <div className={styles.container}>
           <div className={styles.upperBar}>
             {data && data?.user && (
@@ -154,17 +149,17 @@ const ElsePage = ({ id }) => {
               </h1>
               <h2>EUR</h2>
             </div>
-            {/* <div className={styles.category}>
-              <Link to={"/category/" + title} key={category._id}>
+            <div className={styles.category}>
+              <Link to={"/category/" + title} >
                 {data.categories &&
-                  category.map((cat) => <span className={cat.logo} />)}
+                  category.map((cat) => <span className={cat.logo} key={cat._id} />)}
                 <h3>{data && data.category}</h3>
               </Link>
-            </div> */}
-            <div className={styles.category}>
+            </div>
+            {/* <div className={styles.category}>
               {category && category.map((cat) => <span className={cat.logo} key={cat._id} />)}
               <h3>{data && data.category}</h3>
-            </div>
+            </div> */}
           </div>
 
           <h2>{data && data.title}</h2>
@@ -194,6 +189,7 @@ const ElsePage = ({ id }) => {
             </div>
           </div>
           {data && <ProductBar data={data} />}
+
         </div>
       </div>
     </>

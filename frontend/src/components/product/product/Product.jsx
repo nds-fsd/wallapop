@@ -3,11 +3,9 @@ import styles from "./product.module.css";
 import { NavLink } from "react-router-dom";
 
 const Product = ({ prod }) => {
-  console.log("los productos", prod)
     // creo los datos que recibo(prod) que vamos a mostrar en cada card de producto
 
   const images = prod.images
-  console.log(images)
   
   return (
     <>

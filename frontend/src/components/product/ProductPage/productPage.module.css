@@ -23,7 +23,6 @@
   margin: auto;
   position: relative;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-
 }
 
 .upperBar {
@@ -124,7 +123,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 42rem;
+  width: 40rem;
   height: 3rem;
   margin: 2rem 0;
 }
@@ -140,14 +139,14 @@
 }
 .arrow {
   position: relative;
-  left: 20rem;
-  background-color: white;
+  left: 18rem;
+  background-color: transparent;
   border: none;
 }
 .active {
   position: relative;
-  left: 20rem;
-  background-color: white;
+  left: 18rem;
+  background-color: transparent;
   border: none;
   transform: rotate(180deg);
 }
@@ -272,7 +271,7 @@
 
 .links span {
   font-size: 2rem;
-  color: var(--yellow-main)
+  color: var(--yellow-main);
 }
 
 .linksContainerHouse {
@@ -299,13 +298,11 @@
   text-align: center;
   z-index: 9999;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-
 }
 
 .accept:hover {
   background-color: var(--yellow-main);
   color: white;
-
 }
 
 .accept {
@@ -326,7 +323,6 @@
   color: white;
 }
 
-
 .user {
   display: flex;
   align-items: center;
@@ -340,14 +336,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 .userPhoto {
   width: 3em;
   height: 3em;
   border-radius: 1em;
 }
-
 
 .alertButtons {
   display: flex;

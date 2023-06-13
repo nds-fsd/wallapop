@@ -70,7 +70,7 @@ const ProductPublished = () => {
           <div className={styles.gridContainer} data-test="productos">
             {prods &&
               prods.map((prod) => (
-                <div className={styles.card} data-test="producto">
+                <div className={styles.card} data-test="producto" key={prod._id}>
                   {prods && <Images images={prod.images} status={prod.status}/>}
                   <div className={styles.titleContainer}>
                     <h4 className={styles.title}>{prod.title}</h4>
@@ -128,7 +128,7 @@ const ProductPublished = () => {
           <div className={styles.listContainer}>
             {prods &&
               prods.map((prod) => (
-                <div className={styles.list} key={prod.id}>
+                <div className={styles.list} key={prod._id}>
                   <div className={styles.imgList}>
                     {prods && <ImagesList images={prod.images}  />}
                   </div>

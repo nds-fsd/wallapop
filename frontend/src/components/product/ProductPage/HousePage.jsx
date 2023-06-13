@@ -10,7 +10,7 @@ import {
   updateProduct,
 } from "../../../utils/apiProducts";
 import { Link, useNavigate } from "react-router-dom";
-import { getUserToken } from "../../../utils/localStorage.utils";
+// import creditea from "../../../assets/images/creditea.png";
 
 const HousePage = ({ id }) => {
   const mockImages = [
@@ -143,7 +143,7 @@ const HousePage = ({ id }) => {
               </Link>
             </div> */}
             <div className={styles.category}>
-              {category && category.map((cat) => <span className={cat.logo} />)}
+              {category && category.map((cat) => <span className={cat.logo} key={cat._id} />)}
               <h3>{data && data.category}</h3>
             </div>
           </div>
@@ -179,7 +179,7 @@ const HousePage = ({ id }) => {
               <span className="icon-credit-card1"></span>
               <h5>Calcula tu préstamo</h5>
               <Link to="https://www.creditea.es/" target="_blank">
-                <img src="C:\Users\anank\Documents\Ananke85\wallapop\frontend\src\assets\carfax.png"></img>
+                {/* <img src={creditea}/> */}
               </Link>
             </div>
 

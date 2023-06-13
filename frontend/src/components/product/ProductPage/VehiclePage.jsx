@@ -7,8 +7,10 @@ import ProductBar from "../ProductBar/ProductBar";
 import { getProductById, updateProduct } from "../../../utils/apiProducts";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserToken } from "../../../utils/localStorage.utils";
+import Footer from "../../home/Footer/Footer";
 
 const VehiclePage = ({ id }) => {
+  const showFooter = false
   const mockImages = [
     "https://picsum.photos/id/1/700/500",
     "https://picsum.photos/id/2/700/500",
@@ -142,7 +144,7 @@ const VehiclePage = ({ id }) => {
             </div> */}
             <div className={styles.category}>
               {data.categories &&
-                category.map((cat) => <span className={cat.logo} />)}
+                category.map((cat) => <span className={cat.logo} key={cat._id} />)}
               <h3>{data && data.category}</h3>
             </div>
           </div>

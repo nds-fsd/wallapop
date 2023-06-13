@@ -12,4 +12,9 @@
 .menu {
   display: flex;
   flex-direction: row;
+  margin-bottom: 0rem;
+}
+
+.menu.lastCard {
+  margin-bottom: 4rem;
 }
