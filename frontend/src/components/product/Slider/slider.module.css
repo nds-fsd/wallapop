@@ -59,7 +59,7 @@
   left: 5rem;
   margin: -3em;
   border: none;
-  background-color: white;
+  background-color: transparent;
   color: var(--blue-light);
   opacity: 0;
   cursor: pointer;
@@ -80,7 +80,7 @@
   left: 5rem;
   margin: -3em;
   border: none;
-  background-color: white;
+  background-color: transparent;
   color: black;
   opacity: 0.3;
   cursor: pointer;

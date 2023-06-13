@@ -8,14 +8,10 @@ import { getProductById, updateProduct } from "../../../utils/apiProducts";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserToken } from "../../../utils/localStorage.utils";
 import Footer from "../../home/Footer/Footer";
+import RelatedProducts from "./RelatedProducts";
 
 const VehiclePage = ({ id }) => {
-  const showFooter = false
-  const mockImages = [
-    "https://picsum.photos/id/1/700/500",
-    "https://picsum.photos/id/2/700/500",
-    "https://picsum.photos/id/3/700/500",
-  ];
+
 
   const [isExpanded, setIsExpanded] = useState(false);
   const handleExpandClick = () => {
@@ -73,7 +69,7 @@ const VehiclePage = ({ id }) => {
 
   //Cuando todos los productos tengan asociado categories (title, logo...)
   //junto con el div que tiene el Link
-  // const title = data?.categories[0].title
+  const title = data?.categories[0].title
   // console.log("el titulo de la categoria", title)
 
   return (
@@ -135,18 +131,18 @@ const VehiclePage = ({ id }) => {
               </h1>
               <h2>EUR</h2>
             </div>
-            {/* <div className={styles.category}>
-              <Link to={"/category/" + title} key={category._id} target={_blank}>
+            <div className={styles.category}>
+            <Link to={"/category/" + title} >
                 {data.categories &&
-                  category.map((cat) => <span className={cat.logo} />)}
+                  category.map((cat) => <span className={cat.logo} key={cat._id} />)}
                 <h3>{data && data.category}</h3>
               </Link>
-            </div> */}
-            <div className={styles.category}>
+            </div>
+            {/* <div className={styles.category}>
               {data.categories &&
                 category.map((cat) => <span className={cat.logo} key={cat._id} />)}
               <h3>{data && data.category}</h3>
-            </div>
+            </div> */}
           </div>
 
           <h2>{data && data.title}</h2>
@@ -226,6 +222,8 @@ const VehiclePage = ({ id }) => {
           </div>
           {data && <ProductBar data={data} />}
         </div>
+        {data && <RelatedProducts category={data.category} parentId={data._id} />}
+
       </div>
     </>
   );

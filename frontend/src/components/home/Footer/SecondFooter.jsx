@@ -34,27 +34,28 @@ const SecondFooter = () => {
             <div className={styles.foot}>
               <div className={styles.columnLeft}>
                 <div className={styles.secondQuestions}>
-                <h4>Aviso legal</h4>
-                <h4>Condiciones de uso</h4>
-                <h4>Política de privacidad</h4>
-                <h4>Cookies</h4>
+                  <h4>Aviso legal</h4>
+                  <h4>Condiciones de uso</h4>
+                  <h4>Política de privacidad</h4>
+                  <h4>Cookies</h4>
+                </div>
+                <div className={styles.mediaIcons2}>
+                  <h3>Síguenos</h3>
+                  <span className="icon-facebook2"></span>
+                  <span className="icon-twitter"></span>
+                  <span className="icon-instagram"></span>
+                </div>
               </div>
-              <div className={styles.mediaIcons2}>
-                <h3>Síguenos</h3>
-                <span className="icon-facebook2"></span>
-                <span className="icon-twitter"></span>
-                <span className="icon-instagram"></span>
-              </div>
-</div>
               <div className={styles.preguntas}>
                 <h3>¿Tienes alguna pregunta?</h3>
                 <div className={styles.message}>
-                <p>Contacta con nuestro equipo de profesionales, estaremos encantados de ayudarte.</p>
-                <span className="icon-mail2"></span>
+                  <p>
+                    Contacta con nuestro equipo de profesionales, estaremos
+                    encantados de ayudarte.
+                  </p>
+                  <span className="icon-mail2"></span>
                 </div>
               </div>
-
-              
             </div>
           </div>
         )}

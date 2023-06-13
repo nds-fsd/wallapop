@@ -65,5 +65,6 @@
 .createProductButton a {
   width: 10rem;
   background-color: var(--yellow-main);
-  color: var(--yellow-light);
+  color: white;
 }
+

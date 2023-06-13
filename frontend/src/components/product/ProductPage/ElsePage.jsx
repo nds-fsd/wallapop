@@ -7,6 +7,7 @@ import ProductBar from "../ProductBar/ProductBar";
 import {  getProductById } from "../../../utils/apiProducts";
 import { Link, useNavigate } from "react-router-dom";
 import { changeFavorite } from "../../../utils/apiFavorites";
+import RelatedProducts from "./RelatedProducts";
 
 const ElsePage = ({ id }) => {
 
@@ -191,6 +192,8 @@ const ElsePage = ({ id }) => {
           {data && <ProductBar data={data} />}
 
         </div>
+        {data && <RelatedProducts category={data.category} parentId={data._id} />}
+
       </div>
     </>
   );

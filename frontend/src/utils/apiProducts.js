@@ -12,6 +12,23 @@ export const getAllProducts = () => {
     });
 };
 
+export const getProductsByCategory = (category) => {
+  return api
+    .get("/products/")
+    .then((res) => {
+      const allProducts = res.data;
+      if (category) {
+        return allProducts.filter((product) => product.category === category);
+      }
+      return allProducts;
+    })
+    .catch((error) => {
+      console.log(error);
+      throw error;
+    });
+};
+
+
 export const getProductById = ({ queryKey }) => {
   return api
     .get(`/products/${queryKey[1]}`)
@@ -84,6 +101,7 @@ export const getProductByCategory = ({ queryKey }) => {
       })
   );
 };
+
 export const getProductByName = ({ queryKey }) => {
   return (
     api

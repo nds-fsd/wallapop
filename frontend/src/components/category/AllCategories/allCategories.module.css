@@ -27,7 +27,7 @@
   transform: translateY(-15px);
 }
 
-.link {
+.link a {
   text-decoration: none;
   color: var(--blue-dark);
 }
@@ -151,4 +151,9 @@
 .alertButtons {
   display: flex;
   gap: 2em;
+}
+
+
+.linkLink .title {
+  color: var(--blue-dark);
 }
