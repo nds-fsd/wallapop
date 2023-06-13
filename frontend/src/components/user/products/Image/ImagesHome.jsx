@@ -22,7 +22,7 @@ const ImagesHome = ({ images, category, status }) => {
           <img src={images[0]} className={styles.image}></img>
           <div className={styles.tags}>
             <p className={styles.status}>{status}</p>
-            {category && category.map((cat) => <span className={cat.logo} />)}
+            {category && category.map((cat) => <span className={cat.logo} key={cat._id}/>)}
           </div>
         </div>
       ) : (
