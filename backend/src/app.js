@@ -7,6 +7,7 @@ const userRouter = require("./mongo/routers/userRouter");
 const categoryRouter = require("./mongo/routers/categoryRouter");
 const favoriteRouter = require("./mongo/routers/favoriteRouter");
 const { connectDB } = require("./mongo/connection");
+const transactionRouter = require("./mongo/routers/transactionRouter");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use("/user", userRouter);
 app.use("/products", productRouter);
 app.use("/category", categoryRouter);
 app.use("/favorites", favoriteRouter)
+app.use("/transactions", transactionRouter);
 
 if (process.env.MONGO_URL) {
   connectDB().then(() => console.log("Connected to database!"));

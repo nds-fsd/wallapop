@@ -1,0 +1,148 @@
+.modalContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  width: 720px;
+  height: 630px;
+  border: 0.2em solid black;
+  border-radius: 2%;
+  background-color: var(--grey);
+  color: black;
+}
+
+.modalContent {
+  border-radius: 2%;
+}
+
+.modalClose {
+  margin-top: 10px;
+}
+
+.form {
+  color: var(--blue-dark);
+  width: 720px;
+  height: 350px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.formUser {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.3rem;
+}
+.fecha {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0rem;
+}
+
+.foooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 15px;
+  top: 0;
+  height: 50px;
+}
+
+.finalCompra {
+  width: 720px;
+  height: 170px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comprar {
+  background-color: var(--yellow-main);
+  color: white;
+  width: 12rem;
+  height: 2.5rem;
+  border-radius: 2.5rem;
+  border: none;
+  font-weight: bold;
+  font-size: 2em;
+  margin-bottom: 1.5rem;
+}
+
+.comprar:hover {
+  background-color: var(--blue-light);
+  color: white;
+  cursor: pointer;
+}
+
+.resumen {
+  background-color: #fff;
+  width: 640px;
+  height: 90px;
+  margin-bottom: 1.5rem;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.labels {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.title {
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+.price {
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.total {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--yellow-main);
+  display: flex;
+  justify-content: end;
+}
+
+.inputProfile {
+  width: 12rem;
+  height: 2.3rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  padding-left: 1rem;
+  font-size: 1rem;
+  margin-left: 1rem;
+}
+.error > p {
+  color: red;
+  font-size: 1.5em;
+  margin-top: -0.2rem;
+}
+.error span {
+  color: red;
+  margin-right: 0.5em;
+}
+.error1 {
+  display: flex;
+  gap: 9.5rem;
+  justify-content: flex-start;
+  gap: 9.2rem;
+  width: 34rem;
+}
+.error1 > p {
+  color: red;
+  font-size: 1.5em;
+  margin-top: -0.2rem;
+}
+.error1 span {
+  color: red;
+  margin-right: 0.5em;
+}

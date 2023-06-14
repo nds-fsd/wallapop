@@ -65,7 +65,7 @@ const UserPage = () => {
             />
           </Route>
           <Route path={USER_SALES} element={<Sales />}>
-            <Route exact path={SALES_ONGOING} element={<SalesOnGoing />} />
+            {/* <Route exact path={SALES_ONGOING} element={<SalesOnGoing />} /> */}
             <Route exact path={SALES_COMPLETED} element={<SalesCompleted />} />
           </Route>
           <Route path={USER_PRODUCTS} element={<Products />}>

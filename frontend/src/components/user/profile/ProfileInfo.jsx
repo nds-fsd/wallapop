@@ -19,7 +19,7 @@ const ProfileInfo = () => {
     onSuccess: (data) => {
       //para rellenar los campos con la info del usuario
       reset(data);
-      console.log("GET USER", data);
+      // console.log("GET USER", data);
     },
   });
 

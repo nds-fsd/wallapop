@@ -7,6 +7,7 @@ import ProductBar from "../ProductBar/ProductBar";
 import {  getProductById, updateProduct } from "../../../utils/apiProducts";
 import { Link, useNavigate } from "react-router-dom";
 import { changeFavorite } from "../../../utils/apiFavorites";
+import { getUserToken } from "../../../utils/localStorage.utils";
 
 const ElsePage = ({ id }) => {
   const mockImages = [
@@ -23,7 +24,7 @@ const ElsePage = ({ id }) => {
   const { data, isLoading } = useQuery(["product", id], getProductById);
   const category = data?.categories;
 
-  console.log(data);
+  // console.log(data);
   const [isFavorite, setIsFavorite] = useState(data?.favorite || false);
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
@@ -54,23 +55,17 @@ const ElsePage = ({ id }) => {
   };
 
   const { id: userId } = JSON.parse(localStorage.getItem("user"));
-    console.log("el id del user", userId)
+    // console.log("el id del user", userId)
 
 
   const handleFavorite = async () => {
-    const userToken = localStorage.getItem("user-session");
-       
-    if (userToken) {
-      // console.log(userToken)
+    const { userToken } = getUserToken();
 
-      const updatedFavorite = !isFavorite;
-      setIsFavorite(updatedFavorite);
-      const favoriteData = {
-        user: userId,
-        favorite:  updatedFavorite,
-        product: data._id
-        // ...data
-      }
+    if (userToken) {
+      console.log(userToken)
+      const updatedFavorite = !favorite;
+      setFavorite(updatedFavorite);
+      const updatedProduct = { ...data, favorite: updatedFavorite };
 
       try {
         await mutation.mutateAsync(favoriteData);

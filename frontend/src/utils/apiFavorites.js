@@ -35,7 +35,7 @@ export const changeFavorite = (product, isFavorite) => {
   const { id } = JSON.parse(localStorage.getItem("user"));
   const { token } = getUserToken();
 
-  console.log("paso por la api de update", product);
+  // console.log("paso por la api de update", product);
   const favoriteData = {
     user: id,
     favorite: isFavorite,

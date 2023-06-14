@@ -14,6 +14,7 @@ import PrivateRoutes from "./components/private-routes";
 import { AuthProvider } from "./context/authContext";
 import ProdPage from "./components/product/ProductPage/ProdPage";
 import ListBuscador from "./components/home/ListBuscador/ListBuscador";
+import ModalCompra from "./components/product/modalCompra/modalCompra";
 
 function App() {
   const queryClient = new QueryClient();
@@ -44,6 +45,10 @@ function App() {
                   <Route
                     path="product/search/:name"
                     element={<ListBuscador />}
+                  />
+                  <Route
+                    path="products/comprar/:id"
+                    element={<ModalCompra />}
                   />
                 </Route>
                 <Route path="/user" element={<PrivateRoutes />}>

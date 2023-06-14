@@ -16,7 +16,7 @@ const ListBuscador = () => {
     <div>
       {isLoading && (
         <div>
-          <Spinner />
+          <Spinner size="M" />
         </div>
       )}
       <div>
@@ -24,10 +24,12 @@ const ListBuscador = () => {
         {!isLoading &&
           // hago bucle para mostrar todos los productos que me ha llegado de la BD
           products.map((prod) => {
-            return (
-              // Llamo al componente PRoduct y le paso la info de cada producto
-              <Product key={prod.id} prod={prod} />
-            );
+            if (!prod.sold) {
+              return (
+                // Llamo al componente PRoduct y le paso la info de cada producto
+                <Product key={prod.id} prod={prod} />
+              );
+            }
           })}
       </div>
     </div>

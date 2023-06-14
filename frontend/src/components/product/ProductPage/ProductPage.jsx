@@ -41,7 +41,7 @@ const ProductPage = () => {
     <>
       {isLoading && (
         <div>
-          <Spinner />
+          <Spinner size="M" />
         </div>
       )}
 

@@ -44,7 +44,7 @@ const ProdPage = () => {
     <>
       {isLoading && (
         <div>
-          <Spinner />
+          <Spinner size="M" />
         </div>
       )}
       {!isLoading && id && componentToRender}
