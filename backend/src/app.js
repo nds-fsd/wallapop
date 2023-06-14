@@ -6,6 +6,7 @@ const productRouter = require("./mongo/routers/productRouter");
 const userRouter = require("./mongo/routers/userRouter");
 const categoryRouter = require("./mongo/routers/categoryRouter");
 const { connectDB } = require("./mongo/connection");
+const transactionRouter = require("./mongo/routers/transactionRouter");
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use("/user", userRouter);
 app.use("/products", productRouter);
 app.use("/category", categoryRouter);
+app.use("/transactions", transactionRouter);
 
 if (process.env.MONGO_URL) {
   connectDB().then(() => console.log("Connected to database!"));

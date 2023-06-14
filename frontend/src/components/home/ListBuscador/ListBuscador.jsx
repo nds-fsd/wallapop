@@ -16,7 +16,7 @@ const ListBuscador = () => {
     <div>
       {isLoading && (
         <div>
-          <Spinner />
+          <Spinner size="M" />
         </div>
       )}
       <div>

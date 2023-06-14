@@ -54,7 +54,7 @@ const HousePage = ({ id }) => {
     const userToken = localStorage.getItem("user-session");
 
     if (userToken) {
-      console.log(userToken)
+      // console.log(userToken)
       const updatedFavorite = !favorite;
       setFavorite(updatedFavorite);
       const updatedProduct = { ...data, favorite: updatedFavorite };

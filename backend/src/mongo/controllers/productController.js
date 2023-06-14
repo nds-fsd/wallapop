@@ -58,6 +58,23 @@ const getProductByUserFavs = async (req, res) => {
   }
 };
 
+const getProductByUserSold = async (req, res) => {
+  // console.log("paso por aqui");
+  const userId = req.params.user;
+  try {
+    if (!userId) res.status(404).json("no user id provided");
+    if (userId) {
+      const product = await productModel
+        .find({ user: userId, sold: true })
+        .populate("user")
+        .populate("categories");
+      res.status(200).json(product);
+    }
+  } catch (e) {
+    res.status(500).json({ message: e });
+  }
+};
+
 // Buscar productos por categorias
 const getProductByCategory = async (req, res) => {
   const { category } = req.params;
@@ -68,7 +85,6 @@ const getProductByCategory = async (req, res) => {
       //y populamos con categorias para buscar los productos que tiene esa categoria
       .populate("categories");
     res.status(200).json(productByCategory);
-    console.log(productByCategory);
   } catch (error) {
     res.status(404).json({ error: "Sorry, can't find this category" });
     console.log(error);
@@ -92,6 +108,7 @@ const getProductByName = async (req, res) => {
 // Crear producto
 const postProduct = async (req, res) => {
   const { body } = req;
+  // console.log("body", body);
   const { user } = req.params;
   if (!body.title || !body.description || !body.price) {
     return res.status(400).json({ error: { login: "Missing information" } });
@@ -159,27 +176,25 @@ module.exports = {
   deleteProductById,
   getProductByName,
   getProductByUserFavs,
+  getProductByUserSold,
 };
 
+// // const newProduct = new productModel(req.body);
+// //cogemos el los datos del ususario que hemos pasado por la url de la peticion
+// const userId = req.params.userId;
+// //parseamos los datos y cogemos el id del usuario y lo añadimos al newProduct
+// newProduct.user.push(JSON.parse(userId).id);
 
-
-
-// const newProduct = new productModel(req.body);
-  // //cogemos el los datos del ususario que hemos pasado por la url de la peticion
-  // const userId = req.params.userId;
-  // //parseamos los datos y cogemos el id del usuario y lo añadimos al newProduct
-  // newProduct.user.push(JSON.parse(userId).id);
-
-  // //hacemos una findOne con el nombre de la categoria para poder obtener toda su info y coger el id para ponerselo al producto
-  // // y asi relacionarlo con categoria
-  // const cat = await categoryModel.findOne({ title: req.body.category });
-  // // le añadimos el id de la categoria encontrado arriba al producto antes de crearlo
-  // newProduct.categories.push(cat._id);
-  // try {
-  //   await newProduct.save();
-  //   // console.log(newProduct);
-  //   res.status(200).json(newProduct);
-  // } catch (error) {
-  //   res.status(500).json({ error: "Can't post this product" });
-  //   console.log(error);
-  // }
+// //hacemos una findOne con el nombre de la categoria para poder obtener toda su info y coger el id para ponerselo al producto
+// // y asi relacionarlo con categoria
+// const cat = await categoryModel.findOne({ title: req.body.category });
+// // le añadimos el id de la categoria encontrado arriba al producto antes de crearlo
+// newProduct.categories.push(cat._id);
+// try {
+//   await newProduct.save();
+//   // console.log(newProduct);
+//   res.status(200).json(newProduct);
+// } catch (error) {
+//   res.status(500).json({ error: "Can't post this product" });
+//   console.log(error);
+// }

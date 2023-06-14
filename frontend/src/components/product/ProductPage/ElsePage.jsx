@@ -25,7 +25,7 @@ const ElsePage = ({ id }) => {
   const { data, isLoading } = useQuery(["product", id], getProductById);
   const category = data?.categories;
 
-  console.log(data)
+  // console.log(data)
   const [favorite, setFavorite] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
@@ -53,7 +53,7 @@ const ElsePage = ({ id }) => {
     const userToken = localStorage.getItem("user-session");
 
     if (userToken) {
-      console.log(userToken)
+      // console.log(userToken)
       const updatedFavorite = !favorite;
       setFavorite(updatedFavorite);
       const updatedProduct = { ...data, favorite: updatedFavorite };

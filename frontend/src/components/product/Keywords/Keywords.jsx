@@ -4,7 +4,7 @@ import styles from "./keywords.module.css";
 const Keywords = ({ data }) => {
   // console.log(data);
   const words = data?.keywords || [];
-  console.log(words);
+  // console.log(words);
 
   return (
     <>
