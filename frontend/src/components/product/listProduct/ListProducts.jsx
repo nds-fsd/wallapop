@@ -20,6 +20,7 @@ const ListProducts = () => {
     ? products
     : products && products.filter((prod) => prod.category === params.category);
 
+
   return (
     <div className={styles.container}>
       <h1>{params.category}</h1>

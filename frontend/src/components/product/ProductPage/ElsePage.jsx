@@ -1,45 +1,37 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./productPage.module.css";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
-import {  getProductById } from "../../../utils/apiProducts";
-import { Link, useNavigate } from "react-router-dom";
-import { changeFavorite } from "../../../utils/apiFavorites";
+import { getProductById } from "../../../utils/apiProducts";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { createFav, deleteFav, getFavs } from "../../../utils/apiFavorites";
 import RelatedProducts from "./RelatedProducts";
+import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 
 const ElsePage = ({ id }) => {
-
-  const [isExpanded, setIsExpanded] = useState(false);
-  const handleExpandClick = () => {
-    setIsExpanded(!isExpanded);
-  };
-
   const { data, isLoading } = useQuery(["product", id], getProductById);
   const category = data?.categories;
+  const title = data?.categories[0].title;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const userToken = getUserToken();
+  const userData = getUserData();
+  const userId = userData ? userData.id : null;
 
-  // console.log(data);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
+  // const [previousProductPage, setPreviousProductPage] = useState(null);
 
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
+  const previousProductPage = localStorage.getItem("previousProductPage")
 
-  const mutation = useMutation(changeFavorite, {
-    onSuccess: (updatedFavorite) => {
-      if (updatedFavorite !== undefined) {
-        setIsFavorite(updatedFavorite);
-        queryClient.setQueryData(["product", id], { ...data, favorite: updatedFavorite});
-        setShowAlert(true);
-      } else {
-        setSessionAlert(true);
-        setShowAlert(true);
-      }
-    },
-  });
-  
+
+  const handleExpandClick = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   const handleAlertAccept = () => {
     setShowAlert(false);
@@ -47,53 +39,59 @@ const ElsePage = ({ id }) => {
 
   const handleSessionAlert = () => {
     setSessionAlert(false);
+    localStorage.setItem("previousProductPage", location.pathname);    
     navigate("/user/login");
   };
 
-  const { id: userId } = JSON.parse(localStorage.getItem("user"));
-    // console.log("el id del user", userId)
-
-
   const handleFavorite = async () => {
-    const userToken = localStorage.getItem("user-session");
-       
-    if (userToken) {
-
-      const updatedFavorite = !isFavorite;
-      setIsFavorite(updatedFavorite);
-      const favoriteData = {
-        products: data._id,
-        favorite: updatedFavorite,
-        user: userId,  
-      }
-      console.log("favorite data", updatedFavorite)
-
-      try {
-        await mutation.mutateAsync(favoriteData);
-        console.log("el producto cambiado", favoriteData);
-
-        setSessionAlert(false);
-        setShowAlert(true);
-      } catch (error) {
-        console.log("error actualizando", error)
-        setSessionAlert(true);
-        setShowAlert(false);
-      }
-    } else {
+    if (!userId) {
       setSessionAlert(true);
       setShowAlert(false);
+      return;
+    }
+    try {
+      if (isFavorite) {
+        await deleteFav(data.id);
+        setIsFavorite(false);
+        setShowAlert(true);
+      } else {
+        await createFav({ product: data._id });
+        setIsFavorite(true);
+        setShowAlert(true);
+      }
+    } catch (error) {
+      console.log("Error toggling favorite:", error);
     }
   };
 
+  useEffect(() => {
+    const fetchFavoriteStatus = async () => {
+      try {
+        if (userToken) {
+          const favorites = await getFavs(userId);
+          const isProductFavorite = favorites.some(
+            (favorite) => favorite.product === data._id
+          );
+          setIsFavorite(isProductFavorite);
+        }
+      } catch (error) {
+        console.log("Error fetching favorite status:", error);
+      }
+    };
+    fetchFavoriteStatus();
+  }, [data.id, userToken]);
 
-  //Cuando todos los productos tengan asociado categories (title, logo...)
-  //junto con el div que tiene el Link
-  const title = data?.categories[0].title
-  // console.log("el titulo de la categoria", title)
+  useEffect(() => {
+    if (userToken && previousProductPage) {
+      localStorage.removeItem("previousProductPage");
+      navigate(previousProductPage);
+    }
+  }, []);
+ 
 
   return (
     <>
-      {data && !userId && sessionAlert && (
+      {data && !userToken && sessionAlert && (
         <div className={styles.alert}>
           Debes iniciar sesión para ejecutar esta acción
           <div className={styles.alertButtons}>
@@ -119,7 +117,7 @@ const ElsePage = ({ id }) => {
           </button>
         </div>
       )}
-      <div className={styles.productPage} >
+      <div className={styles.productPage}>
         <div className={styles.container}>
           <div className={styles.upperBar}>
             {data && data?.user && (
@@ -151,9 +149,11 @@ const ElsePage = ({ id }) => {
               <h2>EUR</h2>
             </div>
             <div className={styles.category}>
-              <Link to={"/category/" + title} >
+              <Link to={"/category/" + title}>
                 {data.categories &&
-                  category.map((cat) => <span className={cat.logo} key={cat._id} />)}
+                  category.map((cat) => (
+                    <span className={cat.logo} key={cat._id} />
+                  ))}
                 <h3>{data && data.category}</h3>
               </Link>
             </div>
@@ -190,10 +190,10 @@ const ElsePage = ({ id }) => {
             </div>
           </div>
           {data && <ProductBar data={data} />}
-
         </div>
-        {data && <RelatedProducts category={data.category} parentId={data._id} />}
-
+        {data && (
+          <RelatedProducts category={data.category} parentId={data._id} />
+        )}
       </div>
     </>
   );

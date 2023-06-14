@@ -5,10 +5,10 @@ import styles from "../../user/products/products.module.css";
 import Images from "../products/Image/Images";
 import { Link } from "react-router-dom";
 import { updateProduct } from "../../../utils/apiProducts";
-import { getFavorites } from "../../../utils/apiFavorites";
+import { getFavs } from "../../../utils/apiFavorites";
 
 const FavoriteProducts = () => {
-  const { data: prods } = useQuery("fav_prods", getFavorites);
+  const { data: prods } = useQuery("fav_prods", getFavs);
 
   
   console.log("los prods favs", prods);

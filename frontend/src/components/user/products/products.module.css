@@ -34,12 +34,12 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 2.2rem;
-  margin-top: 2em;
+  margin: 2em 0 2em 0;
 }
 
 .card {
   width: 22rem;
-  height: fit-content;
+  min-height: 25rem;
   padding: 1em 1.5em 1.5em 1.5em;
   background-color: white;
   border-radius: 1.5rem;

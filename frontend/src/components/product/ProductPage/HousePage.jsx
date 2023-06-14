@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./productPage.module.css";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
@@ -8,33 +8,35 @@ import {
   getProductById,
   updateProduct,
 } from "../../../utils/apiProducts";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import RelatedProducts from "./RelatedProducts";
+import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
+import { createFav, deleteFav } from "../../../utils/apiFavorites";
 // import creditea from "../../../assets/images/creditea.png";
 
 const HousePage = ({ id }) => {
   
+  const { data, isLoading } = useQuery(["product", id], getProductById);
+  const category = data?.categories;
+  const title = data?.categories[0].title;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const userToken = getUserToken();
+  const userData = getUserData();
+  const userId = userData ? userData.id : null;
+
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [sessionAlert, setSessionAlert] = useState(false);
+  // const [previousProductPage, setPreviousProductPage] = useState(null);
+
+  const previousProductPage = localStorage.getItem("previousProductPage")
+
+
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
   };
-
-  const { data, isLoading } = useQuery(["product", id], getProductById);
-  const category = data.categories;
-
-  const [favorite, setFavorite] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-  const [sessionAlert, setSessionAlert] = useState(false);
-
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const mutation = useMutation(updateProduct, {
-    onSuccess: (updatedProduct) => {
-      setFavorite(updatedProduct.favorite);
-      setShowAlert(true);
-      queryClient.setQueryData(["product", id], updatedProduct);
-    },
-  });
 
   const handleAlertAccept = () => {
     setShowAlert(false);
@@ -42,40 +44,58 @@ const HousePage = ({ id }) => {
 
   const handleSessionAlert = () => {
     setSessionAlert(false);
+    localStorage.setItem("previousProductPage", location.pathname);    
     navigate("/user/login");
   };
 
   const handleFavorite = async () => {
-    const userToken = localStorage.getItem("user-session");
-
-    if (userToken) {
-      console.log(userToken)
-      const updatedFavorite = !favorite;
-      setFavorite(updatedFavorite);
-      const updatedProduct = { ...data, favorite: updatedFavorite };
-
-      try {
-        await mutation.mutateAsync(updatedProduct);
-        setSessionAlert(false);
-        setShowAlert(true);
-      } catch (error) {
-        setSessionAlert(true);
-        setShowAlert(false);
-      }
-    } else {
+    if (!userId) {
       setSessionAlert(true);
       setShowAlert(false);
+      return;
+    }
+    try {
+      if (isFavorite) {
+        await deleteFav(data.id);
+        setIsFavorite(false);
+        setShowAlert(true);
+      } else {
+        await createFav({ product: data._id });
+        setIsFavorite(true);
+        setShowAlert(true);
+      }
+    } catch (error) {
+      console.log("Error toggling favorite:", error);
     }
   };
 
-  //Cuando todos los productos tengan asociado categories (title, logo...)
-  //junto con el div que tiene el Link
-  const title = data?.categories[0].title
-  // console.log("el titulo de la categoria", title)
+  useEffect(() => {
+    const fetchFavoriteStatus = async () => {
+      try {
+        if (userToken) {
+          const favorites = await getFavs(userId);
+          const isProductFavorite = favorites.some(
+            (favorite) => favorite.product === data._id
+          );
+          setIsFavorite(isProductFavorite);
+        }
+      } catch (error) {
+        console.log("Error fetching favorite status:", error);
+      }
+    };
+    fetchFavoriteStatus();
+  }, [data.id, userToken]);
+
+  useEffect(() => {
+    if (userToken && previousProductPage) {
+      localStorage.removeItem("previousProductPage");
+      navigate(previousProductPage);
+    }
+  }, [userToken, previousProductPage, navigate]);
 
   return (
     <>
-      {data && sessionAlert && (
+      {data && !userToken && sessionAlert && (
         <div className={styles.alert}>
           Debes iniciar sesión para ejecutar esta acción
           <div className={styles.alertButtons}>
@@ -93,7 +113,7 @@ const HousePage = ({ id }) => {
       )}
       {data && showAlert && (
         <div className={styles.alert}>
-          {data.favorite
+          {isFavorite
             ? "Este producto se ha añadido a tu lista de favoritos"
             : "Este producto ya no está entre tus favoritos"}
           <button onClick={handleAlertAccept} className={styles.accept}>
@@ -113,7 +133,7 @@ const HousePage = ({ id }) => {
             <div className={styles.buttons}>
               <button
                 onClick={handleFavorite}
-                className={`${styles.like} ${favorite ? styles.focused : ""}`}
+                className={`${styles.like} ${isFavorite ? styles.focused : ""}`}
               >
                 <span className="icon-heart1"></span>
               </button>

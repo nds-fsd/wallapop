@@ -1,15 +1,13 @@
 const express = require("express");
 const {
-  getFavoritesByUser, postFav
+  getFavoritesByUser, postFav, createFav, deleteFav
 } = require("../controllers/favoriteController");
 
 const favoriteRouter = express.Router();
 
-favoriteRouter.get("/getbyuser/:user", getFavoritesByUser);
-// favoriteRouter.post("/:user", postFavorite)
-favoriteRouter.post("/:user", postFav)
-
-// favoriteRouter.patch("/:user", postFavorite)
+favoriteRouter.get("/:user", getFavoritesByUser);
+favoriteRouter.post("/:user", createFav)
+favoriteRouter.delete("/:user", deleteFav)
 
 
 

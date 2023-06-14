@@ -37,17 +37,21 @@
 }
 
 .icon span {
-  color: var(--blue-light);
+  color: var(--blue-dark);
   font-size: 2.5em;
   position: relative;
-  margin: 0 0.1em 0.3em 0;
+  margin: 0 0.1em 0.4em 0;
   z-index: 200;
+  background-color: var(--blue-light);
+  border-radius: 1em;
 }
 
 .noImage span {
   font-size: 2.5rem;
-  color: var(--blue-light);
-  margin: 0 0 0 3.8em;
+  color: var(--blue-dark);
+  margin: 0 0.15em 0 3.8em;
+  background-color: var(--blue-light);
+  border-radius: 1em;
 }
 
 .status {
@@ -68,6 +72,7 @@
 .text span {
   color: white;
   margin: 0 0 0 -0.1em;
+  background-color: var(--blue-medium);
 }
 
 .statusNoImage {

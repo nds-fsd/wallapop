@@ -19,11 +19,19 @@ const RelatedProducts = ({ category, parentId }) => {
   // const filteredProducts =
   //   data && data.filter((prod) => prod.category === category);
 
-  console.log("los filtrados", filteredProducts);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const productsPerPage = 3;
+  const handleNext = () => {
+    setCurrentIndex((currentIndex) => (currentIndex + 3 >= filteredProducts.length ? 0 : currentIndex + 3));
+  };
+  const handlePrevious = () => {
+    setCurrentIndex((currentIndex) => (currentIndex - 3 < 0 ? filteredProducts.length - 1 - ((filteredProducts.length - 1) % 3) : currentIndex - 3));
+  };
 
+  const displayedProducts =
+    filteredProducts &&
+    filteredProducts.slice(currentIndex, currentIndex + productsPerPage);
 
   //pasa las cards una a una
   // const handleNext = () => {
@@ -38,17 +46,7 @@ const RelatedProducts = ({ category, parentId }) => {
   //   );
   // };
 
-  const handleNext = () => {
-    setCurrentIndex((currentIndex) => (currentIndex + 3 >= filteredProducts.length ? 0 : currentIndex + 3));
-  };
   
-  const handlePrevious = () => {
-    setCurrentIndex((currentIndex) => (currentIndex - 3 < 0 ? filteredProducts.length - 1 - ((filteredProducts.length - 1) % 3) : currentIndex - 3));
-  };
-
-  const displayedProducts =
-    filteredProducts &&
-    filteredProducts.slice(currentIndex, currentIndex + productsPerPage);
 
   return (
     <>

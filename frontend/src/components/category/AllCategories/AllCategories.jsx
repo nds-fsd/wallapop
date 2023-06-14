@@ -6,7 +6,7 @@ import ImagesHome from "../../user/products/Image/ImagesHome";
 import { Link } from "react-router-dom";
 
 const AllCategories = () => {
-  const { data: prods, refetch } = useQuery({
+  const { data: prods } = useQuery({
     queryKey: ["products"],
     queryFn: getAllProducts,
   });
