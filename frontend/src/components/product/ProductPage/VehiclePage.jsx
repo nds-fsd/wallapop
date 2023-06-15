@@ -28,7 +28,7 @@ const VehiclePage = ({ id }) => {
   const [sessionAlert, setSessionAlert] = useState(false);
   // const [previousProductPage, setPreviousProductPage] = useState(null);
 
-  const previousProductPage = localStorage.getItem("previousProductPage")
+  // const previousProductPage = localStorage.getItem("previousProductPage")
 
 
   const handleExpandClick = () => {
@@ -41,7 +41,7 @@ const VehiclePage = ({ id }) => {
 
   const handleSessionAlert = () => {
     setSessionAlert(false);
-    localStorage.setItem("previousProductPage", location.pathname);    
+    // localStorage.setItem("previousProductPage", location.pathname);    
     navigate("/user/login");
   };
 
@@ -53,7 +53,7 @@ const VehiclePage = ({ id }) => {
     }
     try {
       if (isFavorite) {
-        await deleteFav(data.id);
+        await deleteFav(data._id);
         setIsFavorite(false);
         setShowAlert(true);
       } else {
@@ -66,29 +66,29 @@ const VehiclePage = ({ id }) => {
     }
   };
 
-  useEffect(() => {
-    const fetchFavoriteStatus = async () => {
-      try {
-        if (userToken) {
-          const favorites = await getFavs(userId);
-          const isProductFavorite = favorites.some(
-            (favorite) => favorite.product === data.id
-          );
-          setIsFavorite(isProductFavorite);
-        }
-      } catch (error) {
-        console.log("Error fetching favorite status:", error);
-      }
-    };
-    fetchFavoriteStatus();
-  }, [data.id, userToken]);
+  // useEffect(() => {
+  //   const fetchFavoriteStatus = async () => {
+  //     try {
+  //       if (userToken) {
+  //         const favorites = await getFavs(userId);
+  //         const isProductFavorite = favorites.some(
+  //           (favorite) => favorite.product === data.id
+  //         );
+  //         setIsFavorite(isProductFavorite);
+  //       }
+  //     } catch (error) {
+  //       console.log("Error fetching favorite status:", error);
+  //     }
+  //   };
+  //   fetchFavoriteStatus();
+  // }, [data.id, userToken]);
 
-  useEffect(() => {
-    if (userToken && previousProductPage) {
-      localStorage.removeItem("previousProductPage");
-      navigate(previousProductPage);
-    }
-  }, [userToken, previousProductPage, navigate]);
+  // useEffect(() => {
+  //   if (userToken && previousProductPage) {
+  //     localStorage.removeItem("previousProductPage");
+  //     navigate(previousProductPage);
+  //   }
+  // }, [userToken, previousProductPage, navigate]);
 
   return (
     <>

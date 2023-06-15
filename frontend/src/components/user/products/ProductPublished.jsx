@@ -28,7 +28,6 @@ const ProductPublished = () => {
   };
 
   const handleClick = (id) => {
-    // console.log("el id del producto", id);
     setIdProduct(id);
     openModal();
   };

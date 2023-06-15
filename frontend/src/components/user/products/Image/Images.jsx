@@ -5,7 +5,7 @@ const Images = ({ images }) => {
 
   return (
     <>
-      {images.length > 0 ? (
+      {images?.length > 0 ? (
         <div className={styles.imagesContainer}>
           <img src={images[0]} className={styles.image}></img>
         </div>

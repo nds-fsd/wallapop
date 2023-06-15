@@ -66,12 +66,12 @@ const RelatedProducts = ({ category, parentId }) => {
 
           {filteredProducts && filteredProducts.length > 0 ? (
             displayedProducts.map((data) => (
-              <div>
+              <div key={data._id}>
                 <Link
                   to={`/category/product/${data._id}`}
                   target="_blank"
                   style={{ textDecoration: "none" }}
-                  key={data._id}
+                  
                 >
                   <div className={styles.card}>
                     <img src={data.images[0]} alt={data.title} />

@@ -21,11 +21,12 @@ export const getFavs = () => {
 };
 
 export const createFav = (data) => {
-  console.log("creo el favorito")
+  // console.log("creo el favorito")
   const { id } = getUserData();
   return api
     .post(`/favorites/${id}`, data)
-    .then((res) => res.data)
+    .then((res) =>   console.log("el favorito", res.data)
+    )
     .catch((error) => {
       console.log(error);
       return {
@@ -35,23 +36,22 @@ export const createFav = (data) => {
 };
 
 export const deleteFav = (productId) => {
-  console.log("borro el favorito")
+  // console.log("borro el favorito")
   const { id } = getUserData();
   const { token } = getUserToken();
   return api
-    .delete(`/favorites/${id}`, {
+    .delete(`/favorites/${id}/${productId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
-      },
-      data: {
-        product: productId,
-      },
+      }
     })
-    .then((res) => res.data)
+    .then((res) => console.log("el favorito borrado", res.data))
     .catch((error) => {
       console.log(error);
     });
 };
+
+
 
 export const changeFavorite = (product, isFavorite) => {
   const { id } = JSON.parse(localStorage.getItem("user"));

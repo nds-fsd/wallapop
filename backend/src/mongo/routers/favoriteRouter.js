@@ -7,7 +7,10 @@ const favoriteRouter = express.Router();
 
 favoriteRouter.get("/:user", getFavoritesByUser);
 favoriteRouter.post("/:user", createFav)
-favoriteRouter.delete("/:user", deleteFav)
+favoriteRouter.delete("/:user/:productId", deleteFav)
+favoriteRouter.patch("/:user", createFav)
+
+
 
 
 
