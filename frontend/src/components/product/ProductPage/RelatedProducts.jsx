@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./relatedProducts.module.css";
 import {
   getAllProducts,
-  getProductsByCategory,
 } from "../../../utils/apiProducts";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";

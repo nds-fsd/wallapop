@@ -9,7 +9,13 @@
 .genTitle {
   width: 78vw;
   margin: 1em 0 0 0;
+  text-decoration: underline;
 }
+
+.genTitle > h1 {
+  font-size: 4rem;
+}
+
 
 .card {
   display: flex;
@@ -154,7 +160,42 @@
   gap: 2em;
 }
 
-
 .linkLink .title {
   color: var(--blue-dark);
+}
+
+.homeContainer {
+  margin: 1em auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 80vw;
+  height: 26rem;
+  align-items: center;
+ 
+}
+
+
+.cardsContainer {
+  margin: 2em auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  /* width: 80vw; */
+  align-items: center;
+  /* overflow-x: hidden;
+  overflow-y: hidden; */
+  padding: 1em 0;
+}
+.seeMore  {
+  border: none;
+  background-color: transparent;
+}
+.seeMore span {
+  color: var(--yellow-main);
+  font-size: 2.5rem;
+}
+
+.seeMore span:hover {
+  color: var(--blue-light);
 }

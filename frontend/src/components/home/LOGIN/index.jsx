@@ -9,7 +9,7 @@ import logo from "../../../assets/images/logo-retrend.png";
 
 const Login = () => {
   const { userData } = useContext(AuthContext);
-  if (!userData) return null;
+   if (!userData) return null;
 
   return (
     <nav className={styles.navbar}>

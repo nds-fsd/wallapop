@@ -1,5 +1,6 @@
 const categoryModel = require("../models/categoryModel");
 const favoriteModel = require("../models/favoriteModel");
+const productModel = require("../models/productModel");
 
 // Definimos el CRUD todas las funciones para poder llamarlas en el Router
 
@@ -9,12 +10,12 @@ const getFavoritesByUser = async (req, res) => {
     const favorites = await favoriteModel
       .find({ user })
       // .populate("products")
-      .populate ({
+      .populate({
         path: "products",
         populate: {
           path: "categories",
-          model: categoryModel
-        }
+          model: categoryModel,
+        },
       })
       .exec();
     if (favorites.length === 0) {
@@ -27,7 +28,6 @@ const getFavoritesByUser = async (req, res) => {
     res.status(500).json({ error: "Failed to retrieve favorite products" });
   }
 };
-
 
 const createFav = async (req, res) => {
   const { product } = req.body;
@@ -72,13 +72,14 @@ const deleteFav = async (req, res) => {
       products: updatedProducts,
     });
   } catch (error) {
-    return res.status(500).json({ error: "Failed to remove product from favorites" });
+    return res
+      .status(500)
+      .json({ error: "Failed to remove product from favorites" });
   }
 };
-
 
 module.exports = {
   getFavoritesByUser,
   createFav,
-  deleteFav
+  deleteFav,
 };

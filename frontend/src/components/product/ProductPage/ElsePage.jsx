@@ -12,6 +12,8 @@ import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 
 const ElsePage = ({ id }) => {
   const { data, isLoading } = useQuery(["product", id], getProductById);
+  const { data: favs } = useQuery(["favs"], getFavs)
+  console.log("los favs del user", favs)
   const category = data?.categories;
   const title = data?.categories[0].title;
   const navigate = useNavigate();
@@ -24,19 +26,34 @@ const ElsePage = ({ id }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
+  const [userFavorites, setUserFavorites] = useState([])
+
   // const [previousProductPage, setPreviousProductPage] = useState(null);
 
   // const previousProductPage = localStorage.getItem("previousProductPage")
 
+  useEffect(() => {
+    const fetchUserFavs = async () => {
+      try {
+        const favs = await getFavs(userId);
+        const favsProductIds = favs && favs[0].products.map((prod) => prod._id);
+        setUserFavorites(favsProductIds);
+      } catch (error) {
+        console.log("Error fetching user favorites", error);
+      }
+    };
+  
+    if (userToken) {
+      fetchUserFavs();
+    }
+  }, [userToken]);
 
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
   };
-
   const handleAlertAccept = () => {
     setShowAlert(false);
   };
-
   const handleSessionAlert = () => {
     setSessionAlert(false);
     // localStorage.setItem("previousProductPage", location.pathname);    
@@ -44,7 +61,7 @@ const ElsePage = ({ id }) => {
   };
 
   const handleFavorite = async () => {
-    if (!userId) {
+    if (!userToken) {
       setSessionAlert(true);
       setShowAlert(false);
       return;
@@ -64,6 +81,7 @@ const ElsePage = ({ id }) => {
     }
   };
 
+  
   // useEffect(() => {
   //   const fetchFavoriteStatus = async () => {
   //     try {
@@ -109,7 +127,7 @@ const ElsePage = ({ id }) => {
       )}
       {data && showAlert && (
         <div className={styles.alert}>
-          {isFavorite
+          {userFavorites
             ? "Este producto se ha añadido a tu lista de favoritos"
             : "Este producto ya no está entre tus favoritos"}
           <button onClick={handleAlertAccept} className={styles.accept}>
@@ -131,7 +149,7 @@ const ElsePage = ({ id }) => {
             <div className={styles.buttons}>
               <button
                 onClick={handleFavorite}
-                className={`${styles.like} ${isFavorite ? styles.focused : ""}`}
+                className={`${styles.like} ${userFavorites ? styles.focused : ""}`}
               >
                 <span className="icon-heart1"></span>
               </button>
@@ -157,10 +175,6 @@ const ElsePage = ({ id }) => {
                 <h3>{data && data.category}</h3>
               </Link>
             </div>
-            {/* <div className={styles.category}>
-              {category && category.map((cat) => <span className={cat.logo} key={cat._id} />)}
-              <h3>{data && data.category}</h3>
-            </div> */}
           </div>
 
           <h2>{data && data.title}</h2>

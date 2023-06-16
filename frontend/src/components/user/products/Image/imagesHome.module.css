@@ -43,6 +43,7 @@
   margin: 0 0.1em 0.4em 0;
   z-index: 200;
   background-color: var(--blue-light);
+  padding: 0.08em;
   border-radius: 1em;
 }
 

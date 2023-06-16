@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import styles from "./productPage.module.css";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
 import { getProductById, updateProduct } from "../../../utils/apiProducts";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
-import Footer from "../../home/Footer/Footer";
 import RelatedProducts from "./RelatedProducts";
-import { createFav, deleteFav } from "../../../utils/apiFavorites";
+import { createFav, deleteFav, getFavs } from "../../../utils/apiFavorites";
+import creditea from "../../../assets/images/creditea.png"
+import carfax from "../../../assets/images/carfax.png"
+import mapfre from "../../../assets/images/mapfre.png"
+
 
 const VehiclePage = ({ id }) => {
 
@@ -26,19 +29,35 @@ const VehiclePage = ({ id }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
+  const [userFavorites, setUserFavorites] = useState([])
+
   // const [previousProductPage, setPreviousProductPage] = useState(null);
 
   // const previousProductPage = localStorage.getItem("previousProductPage")
+
+  useEffect(() => {
+    const fetchUserFavs = async () => {
+      try {
+        const favs = await getFavs(userId);
+        const favsProductIds = favs && favs[0].products.map((prod) => prod._id);
+        setUserFavorites(favsProductIds);
+      } catch (error) {
+        console.log("Error fetching user favorites", error);
+      }
+    };
+  
+    if (userToken) {
+      fetchUserFavs();
+    }
+  }, [userToken]);
 
 
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
   };
-
   const handleAlertAccept = () => {
     setShowAlert(false);
   };
-
   const handleSessionAlert = () => {
     setSessionAlert(false);
     // localStorage.setItem("previousProductPage", location.pathname);    
@@ -110,7 +129,7 @@ const VehiclePage = ({ id }) => {
       )}
       {data && showAlert && (
         <div className={styles.alert}>
-          {isFavorite
+          {userFavorites
             ? "Este producto se ha añadido a tu lista de favoritos"
             : "Este producto ya no está entre tus favoritos"}
           <button onClick={handleAlertAccept} className={styles.accept}>
@@ -130,7 +149,7 @@ const VehiclePage = ({ id }) => {
             <div className={styles.buttons}>
               <button
                 onClick={handleFavorite}
-                className={`${styles.like} ${isFavorite ? styles.focused : ""}`}
+                className={`${styles.like} ${userFavorites ? styles.focused : ""}`}
               >
                 <span className="icon-heart1"></span>
               </button>
@@ -156,11 +175,7 @@ const VehiclePage = ({ id }) => {
                 <h3>{data && data.category}</h3>
               </Link>
             </div>
-            {/* <div className={styles.category}>
-              {data.categories &&
-                category.map((cat) => <span className={cat.logo} key={cat._id} />)}
-              <h3>{data && data.category}</h3>
-            </div> */}
+         
           </div>
 
           <h2>{data && data.title}</h2>
@@ -210,21 +225,21 @@ const VehiclePage = ({ id }) => {
               <span className="icon-credit-card1"></span>
               <h5>Calcula tu préstamo</h5>
               <Link to="https://www.creditea.es/" target="_blank">
-                <img src="C:\Users\anank\Documents\Ananke85\wallapop\frontend\src\assets\carfax.png"></img>
+                <img src = {creditea} className={styles.imgLink}/>
               </Link>
             </div>
             <div className={styles.links}>
               <span className="icon-file-text2"></span>
               <h5>Historial del vehículo</h5>
               <Link to="https://shorturl.at/qxG89" target="_blank">
-                <img src="C:\Users\anank\Documents\Ananke85\wallapop\frontend\src\assets\carfax.png"></img>
+                <img src={carfax} className={styles.imgLink}/>
               </Link>
             </div>
             <div className={styles.links}>
               <span className="icon-coin-euro"></span>
               <h5>Calcula tu seguro</h5>
               <Link to="https://www.mapfre.es/particulares/" target="_blank">
-                <img src="C:\Users\anank\Documents\Ananke85\wallapop\frontend\src\assets\carfax.png"></img>
+                <img src={mapfre} className={styles.imgLink}/>
               </Link>
             </div>
           </div>

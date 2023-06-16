@@ -8,8 +8,8 @@ const Favorites = () => {
       <h1>Favoritos</h1>
       <div className={style.linkPageContainer}>
         <Link to="products"> Productos </Link>
-        <Link to="profiles"> Perfiles </Link>
-        <Link to="searches"> Busquedas </Link>
+        {/* <Link to="profiles"> Perfiles </Link> */}
+        <Link to="searches"> Búsquedas </Link>
       </div>
       <Outlet />
     </div>

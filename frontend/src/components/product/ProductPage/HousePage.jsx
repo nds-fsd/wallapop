@@ -4,18 +4,15 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
-import {
-  getProductById,
-  updateProduct,
-} from "../../../utils/apiProducts";
+import { getProductById, updateProduct } from "../../../utils/apiProducts";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import RelatedProducts from "./RelatedProducts";
 import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
-import { createFav, deleteFav } from "../../../utils/apiFavorites";
-// import creditea from "../../../assets/images/creditea.png";
+import { createFav, deleteFav, getFavs } from "../../../utils/apiFavorites";
+import creditea from "../../../assets/images/creditea.png"
+import carfax from "../../../assets/images/carfax.png"
 
 const HousePage = ({ id }) => {
-  
   const { data, isLoading } = useQuery(["product", id], getProductById);
   const category = data?.categories;
   const title = data?.categories[0].title;
@@ -29,10 +26,27 @@ const HousePage = ({ id }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
+  const [userFavorites, setUserFavorites] = useState([])
+
   // const [previousProductPage, setPreviousProductPage] = useState(null);
 
   // const previousProductPage = localStorage.getItem("previousProductPage")
 
+  useEffect(() => {
+    const fetchUserFavs = async () => {
+      try {
+        const favs = await getFavs(userId);
+        const favsProductIds = favs && favs[0].products.map((prod) => prod._id);
+        setUserFavorites(favsProductIds);
+      } catch (error) {
+        console.log("Error fetching user favorites", error);
+      }
+    };
+  
+    if (userToken) {
+      fetchUserFavs();
+    }
+  }, [userToken]);
 
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
@@ -44,7 +58,7 @@ const HousePage = ({ id }) => {
 
   const handleSessionAlert = () => {
     setSessionAlert(false);
-    // localStorage.setItem("previousProductPage", location.pathname);    
+    // localStorage.setItem("previousProductPage", location.pathname);
     navigate("/user/login");
   };
 
@@ -113,7 +127,7 @@ const HousePage = ({ id }) => {
       )}
       {data && showAlert && (
         <div className={styles.alert}>
-          {isFavorite
+          {userFavorites
             ? "Este producto se ha añadido a tu lista de favoritos"
             : "Este producto ya no está entre tus favoritos"}
           <button onClick={handleAlertAccept} className={styles.accept}>
@@ -133,7 +147,7 @@ const HousePage = ({ id }) => {
             <div className={styles.buttons}>
               <button
                 onClick={handleFavorite}
-                className={`${styles.like} ${isFavorite ? styles.focused : ""}`}
+                className={`${styles.like} ${userFavorites ? styles.focused : ""}`}
               >
                 <span className="icon-heart1"></span>
               </button>
@@ -151,16 +165,14 @@ const HousePage = ({ id }) => {
               <h2>EUR</h2>
             </div>
             <div className={styles.category}>
-              <Link to={"/category/" + title} >
+              <Link to={"/category/" + title}>
                 {data.categories &&
-                  category.map((cat) => <span className={cat.logo} key={cat._id} />)}
+                  category.map((cat) => (
+                    <span className={cat.logo} key={cat._id} />
+                  ))}
                 <h3>{data && data.category}</h3>
               </Link>
             </div>
-            {/* <div className={styles.category}>
-              {category && category.map((cat) => <span className={cat.logo} key={cat._id} />)}
-              <h3>{data && data.category}</h3>
-            </div> */}
           </div>
 
           <h2>{data && data.title}</h2>
@@ -194,7 +206,7 @@ const HousePage = ({ id }) => {
               <span className="icon-credit-card1"></span>
               <h5>Calcula tu préstamo</h5>
               <Link to="https://www.creditea.es/" target="_blank">
-                {/* <img src={creditea}/> */}
+                <img src={creditea} className={styles.imgLink}/>
               </Link>
             </div>
 
@@ -202,7 +214,7 @@ const HousePage = ({ id }) => {
               <span className="icon-coin-euro"></span>
               <h5>Calcula tu seguro</h5>
               <Link to="https://www.mapfre.es/particulares/" target="_blank">
-                <img src="C:\Users\anank\Documents\Ananke85\wallapop\frontend\src\assets\carfax.png"></img>
+                <img src= {carfax} className={styles.imgLink} />
               </Link>
             </div>
           </div>
@@ -218,8 +230,9 @@ const HousePage = ({ id }) => {
           </div>
           {data && <ProductBar data={data} />}
         </div>
-        {data && <RelatedProducts category={data.category} parentId={data._id} />}
-
+        {data && (
+          <RelatedProducts category={data.category} parentId={data._id} />
+        )}
       </div>
     </>
   );

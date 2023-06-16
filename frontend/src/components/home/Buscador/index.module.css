@@ -6,6 +6,8 @@
   gap: 2rem;
   align-items: center;
   justify-content: center;
+  margin-left: 3rem;
+
 }
 
 .searchContainer button {

@@ -35,7 +35,7 @@ const SecondFooter = () => {
               <div className={styles.columnLeft}>
                 <div className={styles.secondQuestions}>
                   <h4>Aviso legal</h4>
-                  <h4>Condiciones de uso</h4>
+                  <h4>Cómo funciona</h4>
                   <h4>Política de privacidad</h4>
                   <h4>Cookies</h4>
                 </div>

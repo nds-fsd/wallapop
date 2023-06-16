@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import Spinner from "../../Spinner/Spinner";
 import styles from "./footer.module.css";
-import logo from "../../../assets/images/logo-retrend.png";
+import logo_dark from "../../../assets/images/logo-retrend-dark.png";
 
 const Footer = () => {
   const { data: categories, isLoading } = useQuery(["category"], getCategories);
@@ -37,7 +37,7 @@ const Footer = () => {
             </h4>
             <div className={styles.retrend}>
               <div className={styles.logo}>
-                <img src={logo} />
+                <img src={logo_dark} />
                 <p>
                   Copyright © 2023 Retrend © de sus respectivos propietarios
                 </p>
@@ -80,7 +80,6 @@ const Footer = () => {
               <div>
                 <h2 className={styles.titles}>Legal</h2>
                 <h4>Aviso legal</h4>
-                <h4>Condiciones de uso</h4>
                 <h4>Política de privacidad</h4>
                 <h4>Cookies</h4>
               </div>
