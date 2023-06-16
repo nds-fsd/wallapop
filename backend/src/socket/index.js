@@ -1,6 +1,6 @@
 // const { jwtVerifier } = require("../security/jwtMiddleware");
 // const socketio = require("socket.io");
-// const { server } = require("../index")
+
 
 // const configurePrivateSocket = (server) => {
 //     const io = socketio(server, {

@@ -70,5 +70,4 @@ const postMessage = async (req, res) => {
 module.exports = {
   getMessageByChatRoom,
   postMessage,
-  createPrivateChatMessage
 };
