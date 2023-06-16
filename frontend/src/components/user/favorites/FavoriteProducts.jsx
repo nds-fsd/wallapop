@@ -5,23 +5,22 @@ import styles from "../../user/products/products.module.css";
 import Images from "../products/Image/Images";
 import { Link } from "react-router-dom";
 import { updateProduct } from "../../../utils/apiProducts";
+import { getFavorites } from "../../../utils/apiFavorites";
 
 const FavoriteProducts = () => {
-  const { data: prods } = useQuery({
-    queryKey: ["fav_prods"],
-    queryFn: getFavsByUser,
-  });
+  const { data: prods } = useQuery("fav_prods", getFavorites);
 
+  
   console.log("los prods favs", prods);
 
-  const [favorite, setFavorite] = useState({});
+  const [isFavorite, setIsFavorite] = useState();
   const [deletionAlert, setDeletionAlert] = useState(false);
   const [deleteProduct, setDeleteProduct] = useState(null);
 
   const queryClient = useQueryClient();
   const mutation = useMutation(updateProduct, {
     onSuccess: (updatedProduct) => {
-      setFavorite(updatedProduct.favorite);
+      setIsFavorite(updatedProduct.favorite);
       setDeletionAlert(true);
       queryClient.setQueryData(["product", deleteProduct], updatedProduct);
     },
@@ -43,7 +42,7 @@ const FavoriteProducts = () => {
     console.log("el id del producto", id);
 
     const shouldDelete = !updatedProduct.favorite;
-    setFavorite(shouldDelete);
+    setIsFavorite(shouldDelete);
     const updatedProductData = { ...updatedProduct, favorite: shouldDelete };
 
     mutation.mutate(updatedProductData, {
@@ -84,7 +83,7 @@ const FavoriteProducts = () => {
                 <h4>
                   {prod.price.toLocaleString("es-ES", {
                     useGrouping: true,
-                  })}{" "}
+                  })}
                   €
                 </h4>
               </div>

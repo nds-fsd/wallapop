@@ -6,11 +6,9 @@ import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
 import { postChatRoom } from "../../../utils/apiChatRoom";
 import { AuthContext } from "../../../context/authContext";
-import {
-  getProductById,
-  updateProduct,
-} from "../../../utils/apiProducts";
+import {  getProductById, updateProduct } from "../../../utils/apiProducts";
 import { Link, useNavigate, NavLink } from "react-router-dom";
+import { changeFavorite } from "../../../utils/apiFavorites";
 
 
 const ElsePage = ({ id }) => {
@@ -31,18 +29,24 @@ const ElsePage = ({ id }) => {
   const { data, isLoading } = useQuery(["product", id], getProductById);
   const category = data?.categories;
 
-  console.log('esto es data del produ',data)
-  const [favorite, setFavorite] = useState(false);
+  console.log(data);
+  const [isFavorite, setIsFavorite] = useState(data?.favorite || false);
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
 
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const mutation = useMutation(updateProduct, {
-    onSuccess: (updatedProduct) => {
-      setFavorite(updatedProduct.favorite);
-      setShowAlert(true);
-      queryClient.setQueryData(["product", id], updatedProduct);
+
+  const mutation = useMutation(changeFavorite, {
+    onSuccess: (updatedFavorite) => {
+      if (updatedFavorite !== undefined) {
+        setIsFavorite(updatedFavorite);
+        queryClient.setQueryData(["product", id], { ...data, favorite: updatedFavorite});
+        setShowAlert(true);
+      } else {
+        setSessionAlert(true);
+        setShowAlert(false);
+      }
     },
   });
 
@@ -55,17 +59,29 @@ const ElsePage = ({ id }) => {
     navigate("/user/login");
   };
 
+  const { id: userId } = JSON.parse(localStorage.getItem("user"));
+    console.log("el id del user", userId)
+
+
   const handleFavorite = async () => {
     const userToken = localStorage.getItem("user-session");
-
+       
     if (userToken) {
-      console.log(userToken)
-      const updatedFavorite = !favorite;
-      setFavorite(updatedFavorite);
-      const updatedProduct = { ...data, favorite: updatedFavorite };
+      // console.log(userToken)
+
+      const updatedFavorite = !isFavorite;
+      setIsFavorite(updatedFavorite);
+      const favoriteData = {
+        user: userId,
+        favorite:  updatedFavorite,
+        product: data._id
+        // ...data
+      }
 
       try {
-        await mutation.mutateAsync(updatedProduct);
+        await mutation.mutateAsync(favoriteData);
+        console.log("el producto cambiado", favoriteData);
+
         setSessionAlert(false);
         setShowAlert(true);
       } catch (error) {
@@ -77,7 +93,6 @@ const ElsePage = ({ id }) => {
       setShowAlert(false);
     }
   };
-
 
   //Cuando todos los productos tengan asociado categories (title, logo...)
   //junto con el div que tiene el Link
@@ -103,7 +118,7 @@ const ElsePage = ({ id }) => {
   
 return (
   <>
-    {data && sessionAlert && (
+    {data && !userId && sessionAlert && (
       <div className={styles.alert}>
         Debes iniciar sesión para ejecutar esta acción
         <div className={styles.alertButtons}>
@@ -119,9 +134,9 @@ return (
         </div>
       </div>
     )}
-    {data && showAlert && (
+    {data && isFavorite && showAlert && (
       <div className={styles.alert}>
-        {data.favorite
+        {isFavorite
           ? "Este producto se ha añadido a tu lista de favoritos"
           : "Este producto ya no está entre tus favoritos"}
         <button onClick={handleAlertAccept} className={styles.accept}>
@@ -146,7 +161,7 @@ return (
           <div className={styles.buttons}>
             <button
               onClick={handleFavorite}
-              className={`${styles.like} ${favorite ? styles.focused : ""}`}
+              className={`${styles.like} ${isFavorite ? styles.focused : ""}`}
             >
               <span className="icon-heart1"></span>
             </button>
@@ -207,3 +222,4 @@ return (
 );
 };
 export default ElsePage;
+

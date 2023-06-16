@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
-import { changeFavorite, getProductById, updateProduct } from "../../../utils/apiProducts";
+import { getProductById, updateProduct } from "../../../utils/apiProducts";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserToken } from "../../../utils/localStorage.utils";
 import { postChatRoom } from "../../../utils/apiChatRoom";

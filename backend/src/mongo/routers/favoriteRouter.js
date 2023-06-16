@@ -1,8 +1,13 @@
 const express = require("express");
+const {
+  getFavoritesByUser, postFavorite
+} = require("../controllers/favoriteController");
 
 const favoriteRouter = express.Router();
 
-// definimos la ruta y la funcion que va a utilizar de controller
+favoriteRouter.get("/getbyuser/:user", getFavoritesByUser);
+favoriteRouter.post("/:user", postFavorite)
+
 
 
 module.exports = favoriteRouter;

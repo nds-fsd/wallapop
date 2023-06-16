@@ -5,6 +5,7 @@ const cors = require("cors");
 const productRouter = require("./mongo/routers/productRouter");
 const userRouter = require("./mongo/routers/userRouter");
 const categoryRouter = require("./mongo/routers/categoryRouter");
+const favoriteRouter = require("./mongo/routers/favoriteRouter");
 const { connectDB } = require("./mongo/connection");
 const messageRouter = require("./mongo/routers/messageRouter");
 const jwtMiddleware = require("./security/jwtMiddleware");
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/user", userRouter);
 app.use("/products", productRouter);
 app.use("/category", categoryRouter);
+app.use("/favorites", favoriteRouter)
 app.use("/message",jwtMiddleware, messageRouter)
 app.use("/chat-room",jwtMiddleware, chatroomRouter)
 
