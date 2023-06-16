@@ -31,10 +31,10 @@ const Footer = () => {
                 </Link>
               ))}
             </h4>
-            <h4 className={styles.slogan}>
+            <h5 className={styles.slogan}>
               {" "}
               Todo lo que buscas a un click de distancia
-            </h4>
+            </h5>
             <div className={styles.retrend}>
               <div className={styles.logo}>
                 <img src={logo_dark} />

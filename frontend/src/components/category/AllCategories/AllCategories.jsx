@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styles from "./allCategories.module.css";
 import { useQuery } from "react-query";
 import { getAllProducts } from "../../../utils/apiProducts";
-import ImagesHome from "../../user/products/Image/ImagesHome";
 import { Link } from "react-router-dom";
+import ImagesHome from "../../user/Image/ImagesHome";
 
 const AllCategories = () => {
   const { data: prods } = useQuery({

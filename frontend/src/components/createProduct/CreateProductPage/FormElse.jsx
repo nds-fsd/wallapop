@@ -11,7 +11,6 @@ import { AuthContext } from "../../../context/authContext";
 const FormElse = () => {
   const queryClient = useQueryClient(["product"]);
   const {images, setImages} = useContext(AuthContext)
-  // console.log("estas son las imagenes", images)
 
   const {
     register,
@@ -54,7 +53,6 @@ const FormElse = () => {
       productData.keywords = keywords;
     }
     mutation.mutate(productData);
-    console.log("este es el nuevo producto", productData);
     // setShowAlert(true);
     alert("Tu producto se ha subido correctamente");
     reset();

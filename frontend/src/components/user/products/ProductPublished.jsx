@@ -3,11 +3,11 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { deleteProduct, getProductByUser } from "../../../utils/apiProducts";
 import Spinner from "../../Spinner/Spinner";
 import styles from "./products.module.css";
-import Images from "./Image/Images";
 import ModalContainer from "../../product/ModalContainer/ModalContainer";
-import ImagesList from "./Image/ImagesList";
-import CustomAlert from "../../CustomAlert/CustomAlert";
 import { Link } from "react-router-dom";
+import Images from "../Image/Images"
+import ImagesList from "../Image/ImagesList"
+
 
 const ProductPublished = () => {
   const { data: prods, isLoading } = useQuery({
@@ -19,6 +19,7 @@ const ProductPublished = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [idProduct, setIdProduct] = useState("");
   const [gridOpen, setGridOpen] = useState(true);
+  
   const toggleView = () => {
     setGridOpen(!gridOpen);
   };
@@ -32,10 +33,11 @@ const ProductPublished = () => {
     openModal();
   };
 
-  const queryClient = useQueryClient(["product"]);
+  const queryClient = useQueryClient(["products_published"]);
   const mutation = useMutation(deleteProduct, {
     onSuccess: () => {
-      queryClient?.invalidateQueries(["product", id]);
+      queryClient?.invalidateQueries(["products_published"]);
+      window.location.reload();
     },
   });
 
@@ -67,7 +69,7 @@ const ProductPublished = () => {
       <div>
         {gridOpen ? (
           <div className={styles.gridContainer} data-test="productos">
-            {prods &&
+            {prods && prods.length > 0 ? (
               prods.map((prod) => (
                 <div className={styles.card} data-test="producto" key={prod._id}>
                   {prods && <Images images={prod.images} status={prod.status}/>}
@@ -121,11 +123,14 @@ const ProductPublished = () => {
                     }
                   </div>
                 </div>
-              ))}
+              ))
+            ): (
+              <div>Aún no tienes productos publicados</div>
+            )}
           </div>
         ) : (
           <div className={styles.listContainer}>
-            {prods &&
+            {prods && prods.length > 0 ? (
               prods.map((prod) => (
                 <div className={styles.list} key={prod._id}>
                   <div className={styles.imgList}>
@@ -165,7 +170,10 @@ const ProductPublished = () => {
                     }
                   </div>
                 </div>
-              ))}
+              ))
+            ) : (
+              <div>Aún no tienes productos publicados</div>
+            )}
           </div>
         )}
       </div>

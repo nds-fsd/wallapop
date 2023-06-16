@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 import styles from "../../category/AllCategories/allCategories.module.css";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getAllProducts, updateProduct } from "../../../utils/apiProducts";
-import ImagesHome from "../../user/products/Image/ImagesHome";
+import ImagesHome from "../../user/Image/ImagesHome";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 import { createFav, deleteFav, getFavs } from "../../../utils/apiFavorites";
 
-const FeaturedProducts = ({categoriesToRender}) => {
+const FeaturedProducts = ({ categoriesToRender }) => {
   const { data: prods } = useQuery({
     queryKey: ["products"],
     queryFn: getAllProducts,
   });
 
-  console.log("todos los prods", prods)
   const navigate = useNavigate();
   const location = useLocation();
   const userToken = getUserToken();
@@ -24,17 +23,15 @@ const FeaturedProducts = ({categoriesToRender}) => {
   const [userFavorites, setUserFavorites] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const category = prods && prods.map((prod) => prod.category);
-  console.log("las categories", category);
- 
   const filteredProducts = prods?.filter((prod) =>
-  categoriesToRender.includes(prod.category)
-);
+    categoriesToRender.includes(prod.category)
+  );
 
   // pasa las cards una a una
   const productsPerPage = 5;
   const displayedProducts =
-  filteredProducts && filteredProducts.slice(currentIndex, currentIndex + productsPerPage);
+    filteredProducts &&
+    filteredProducts.slice(currentIndex, currentIndex + productsPerPage);
   const handleNext = () => {
     setCurrentIndex((currentIndex) =>
       currentIndex === filteredProducts.length - 1 ? 0 : currentIndex + 1
@@ -130,52 +127,53 @@ const FeaturedProducts = ({categoriesToRender}) => {
         </button>
 
         <div className={styles.cardsContainer}>
-          {displayedProducts && displayedProducts?.map((prod) => {
-            const isFavorite = userFavorites.includes(prod._id);
+          {displayedProducts &&
+            displayedProducts?.map((prod) => {
+              const isFavorite = userFavorites.includes(prod._id);
 
-            return (
-              <div key={prod._id} className={styles.card}>
-                {prods && (
-                  <ImagesHome
-                    images={prod.images}
-                    className={styles.images}
-                    category={prod.categories}
-                    status={prod.status}
-                  />
-                )}
+              return (
+                <div key={prod._id} className={styles.card}>
+                  {prods && (
+                    <ImagesHome
+                      images={prod.images}
+                      className={styles.images}
+                      category={prod.categories}
+                      status={prod.status}
+                    />
+                  )}
 
-                <div className={styles.titleContainer}>
-                  <div className={styles.priceContainer}>
-                    <h5>
-                      {prod.price.toLocaleString("es-ES", {
-                        useGrouping: true,
-                      })}
-                      €
-                    </h5>
-                    <Link
-                      data-test="card_prod"
-                      to={`/category/product/${prod._id}`}
-                      target="_blank"
-                      className={styles.eye}
-                    >
-                      <button>
-                        <span className="icon-eye1"></span>
+                  <div className={styles.titleContainer}>
+                    <div className={styles.priceContainer}>
+                      <h5>
+                        {prod.price.toLocaleString("es-ES", {
+                          useGrouping: true,
+                        })}
+                        €
+                      </h5>
+                      <Link
+                        data-test="card_prod"
+                        to={`/category/product/${prod._id}`}
+                        target="_blank"
+                        className={styles.eye}
+                      >
+                        <button>
+                          <span className="icon-eye1"></span>
+                        </button>
+                      </Link>
+                      <button
+                        onClick={() => handleFavorite(prod._id)}
+                        className={`${styles.like} ${
+                          isFavorite ? styles.focused : ""
+                        }`}
+                      >
+                        <span className="icon-heart1"></span>
                       </button>
-                    </Link>
-                    <button
-                      onClick={() => handleFavorite(prod._id)}
-                      className={`${styles.like} ${
-                        isFavorite ? styles.focused : ""
-                      }`}
-                    >
-                      <span className="icon-heart1"></span>
-                    </button>
+                    </div>
+                    <p className={styles.title}>{prod.title}</p>
                   </div>
-                  <p className={styles.title}>{prod.title}</p>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
 
         <button onClick={handleNext} className={styles.seeMore}>

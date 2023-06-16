@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import styles from "../../user/products/products.module.css";
-import Images from "../products/Image/Images";
 import { Link } from "react-router-dom";
 import { deleteFav, getFavs } from "../../../utils/apiFavorites";
-import ImagesList from "../products/Image/ImagesList";
+import Images from "../Image/Images";
+import ImagesList from "../Image/ImagesList"
 
 const FavoriteProducts = () => {
   const { data } = useQuery("fav-prods", getFavs);

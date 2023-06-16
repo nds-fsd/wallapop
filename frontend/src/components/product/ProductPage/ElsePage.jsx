@@ -29,24 +29,24 @@ const ElsePage = ({ id }) => {
   const [userFavorites, setUserFavorites] = useState([])
 
   // const [previousProductPage, setPreviousProductPage] = useState(null);
-
   // const previousProductPage = localStorage.getItem("previousProductPage")
 
   useEffect(() => {
     const fetchUserFavs = async () => {
       try {
         const favs = await getFavs(userId);
+        console.log("los favs del user", favs)
         const favsProductIds = favs && favs[0].products.map((prod) => prod._id);
-        setUserFavorites(favsProductIds);
+        const isProductFavorite = favsProductIds.includes(id)
+        setUserFavorites(isProductFavorite);
       } catch (error) {
         console.log("Error fetching user favorites", error);
       }
     };
-  
     if (userToken) {
       fetchUserFavs();
     }
-  }, [userToken]);
+  }, [userToken, id])
 
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
@@ -56,7 +56,7 @@ const ElsePage = ({ id }) => {
   };
   const handleSessionAlert = () => {
     setSessionAlert(false);
-    // localStorage.setItem("previousProductPage", location.pathname);    
+    // localStorage.setItem("previousProductPage", location.pathname);
     navigate("/user/login");
   };
 
@@ -82,22 +82,6 @@ const ElsePage = ({ id }) => {
   };
 
   
-  // useEffect(() => {
-  //   const fetchFavoriteStatus = async () => {
-  //     try {
-  //       if (userToken) {
-  //         const favorites = await getFavs(userId);
-  //         const isProductFavorite = favorites.some(
-  //           (favorite) => favorite.product === data._id
-  //         );
-  //         setIsFavorite(isProductFavorite);
-  //       }
-  //     } catch (error) {
-  //       console.log("Error fetching favorite status:", error);
-  //     }
-  //   };
-  //   fetchFavoriteStatus();
-  // }, [data.id, userToken]);
 
   // useEffect(() => {
   //   if (userToken && previousProductPage) {
@@ -149,7 +133,7 @@ const ElsePage = ({ id }) => {
             <div className={styles.buttons}>
               <button
                 onClick={handleFavorite}
-                className={`${styles.like} ${userFavorites ? styles.focused : ""}`}
+                className={`${styles.like} ${userToken && userFavorites ? styles.focused : ""}`}
               >
                 <span className="icon-heart1"></span>
               </button>

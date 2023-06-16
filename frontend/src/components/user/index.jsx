@@ -68,6 +68,8 @@ const UserPage = () => {
             <Route exact path={SALES_COMPLETED} element={<SalesCompleted />} />
           </Route>
           <Route path={USER_PRODUCTS} element={<Products />}>
+          {/* <Route path={USER_PRODUCTS} element={<ProductPublished />}> */}
+
             <Route path={PRODUCTS_PUBLISHED} element={<ProductPublished />} />
             <Route path={PRODUCTS_SOLD} element={<ProductSold />} />
           </Route>

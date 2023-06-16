@@ -28,7 +28,7 @@ userSchema.methods.comparePassword = function (password) {
 };
 
 userSchema.methods.generateJWT = function () {
-  console.log("paso por el generateJWT")
+  // console.log("paso por el generateJWT")
   const today = new Date();
   const expirationDate = new Date();
 

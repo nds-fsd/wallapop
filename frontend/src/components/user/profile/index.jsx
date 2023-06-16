@@ -17,7 +17,7 @@ const Profile = () => {
     <div className={styles.profileContainer}>
       <div className={styles.profileTitle}>
         <h1>Tu perfil</h1>
-        <h4>Aqui puedes ver y editar los datos de tu perfil</h4>
+        <h5>Aquí puedes ver y editar los datos de tu perfil</h5>
       </div>
       <div className={styles.navbarProfile}>
         <div className={styles.linksProfile}>
@@ -26,7 +26,7 @@ const Profile = () => {
           <Link to={PROFILE_VALUES}>Valoraciones</Link>
         </div>
         <div className={styles.logoutButton}>
-            <button onClick={handleLogout}>Cerrar sesion</button>
+            <button onClick={handleLogout}>Cerrar sesión</button>
         </div>
       </div>
       <Outlet />

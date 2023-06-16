@@ -10,7 +10,7 @@ const Buscador = () => {
       <input
         type="text"
         name="search"
-        placeholder="Buscar en todas las categorias"
+        placeholder="Buscar en todas las categorías"
         autoComplete="off"
         value={search}
         onChange={(ev) => setSearch(ev.target.value)}

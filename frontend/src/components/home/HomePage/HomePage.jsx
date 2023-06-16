@@ -5,7 +5,6 @@ import medalla from "../../../assets/images/medalla.png";
 import google from "../../../assets/images/google-store.png";
 import apple from "../../../assets/images/app-store.png";
 import movil from "../../../assets/images/movil.png";
-
 import styles from "./homePage.module.css";
 
 const HomePage = () => {
@@ -49,11 +48,11 @@ const HomePage = () => {
                 <span className="icon-star-full" />
                 <span className="icon-star-half" />
               </div>
-              <button class="store-button">
+              <button className="store-button">
                 <img src={google} />
                 <div className={styles.store}>
                   <span>DISPONIBLE EN</span>
-                  <span class="store-name">Google Play</span>
+                  <span className="store-name">Google Play</span>
                 </div>
               </button>
             </div>
@@ -67,7 +66,7 @@ const HomePage = () => {
                 <span className="icon-star-full" />
                 <span className="icon-star-half" />
               </div>
-              <button class="store-button">
+              <button className="store-button">
               <img src={apple} />
               <div className={styles.store}>
                 <span>DISPONIBLE EN</span>

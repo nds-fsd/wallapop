@@ -19,6 +19,7 @@ const CreateProductPage = () => {
       <div className={styles.createProductContainer}>
         <CreateProductNavBar />
         <Routes>
+          <Route path="" element={<CreateProductNavBar />} />
           <Route path={FORM_ELSE} element={<FormElse />} />
           <Route path={FORM_HOUSE} element={<FormHouse />} />
           <Route path={FORM_VEHICLE} element={<FormVehicle />} />

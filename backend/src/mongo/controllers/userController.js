@@ -57,11 +57,11 @@ const userRegister = async (req, res) => {
         .json({ error: { email: "Email already registered" } });
     } else {
       const newUser = new userModel(body);
-      console.log("este es el nuevo usuario", newUser);
+      // console.log("este es el nuevo usuario", newUser);
       const savedUser = await newUser.save();
       if (savedUser) {
         const token = savedUser.generateJWT();
-        console.log(token);
+        // console.log(token);
         return res.status(201).json({
           token: token,
           user: {
@@ -97,7 +97,7 @@ const modifyUserByID = async (req, res) => {
     if (!user) {
       res.status(404).json({ error: { id: "Sorry cant find that!" } });
     } else {
-      console.log("CONTROLLER USER PATCH", user);
+      // console.log("CONTROLLER USER PATCH", user);
       res.status(201).json(user);
     }
   }

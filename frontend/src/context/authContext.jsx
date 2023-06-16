@@ -17,27 +17,36 @@ import {
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [image, setImage] = useState("");
+  const [userData, setUserData] = useState(null);
+  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const infoUser = useQuery(["user"], getInfoUser, {
+  const { data: userDataProfile, refetch } = useQuery(["user"], getInfoUser, {
     onSuccess: (data) => {
       //para rellenar los campos con la info del usuario
       setUserData(data);
     },
   });
 
-  const [image, setImage] = useState("");
-  const [userData, setUserData] = useState(null);
-  const navigate = useNavigate();
+  useEffect(() => {
+    refetch();
+  }, [isLoggedin, refetch, isUpdating]);
 
+  
   const login = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
+      setUserData(data.user);
       setUserSession(data.token);
       setUserDataLocalStorage(data.user);
       queryClient.invalidateQueries({
         queryKey: ["user"],
       });
+      setIsLoggedin(!isLoggedin);
       navigate("/");
     },
   });
@@ -50,6 +59,7 @@ export const AuthProvider = ({ children }) => {
       queryClient.invalidateQueries({
         queryKey: ["user"],
       });
+      setIsLoggedin(!isLoggedin);
       navigate("/");
     },
   });
@@ -59,10 +69,10 @@ export const AuthProvider = ({ children }) => {
     onSuccess: (data) => {
       setUserSession(data.token);
       setUserDataLocalStorage(data.user);
-      // haccemos el invalid para avisar que hay un cambio
       queryClient.invalidateQueries({
         queryKey: ["user"],
       });
+      setIsUpdating(!isUpdating);
     },
   });
 
@@ -74,6 +84,7 @@ export const AuthProvider = ({ children }) => {
       queryClient.invalidateQueries({
         queryKey: ["user"],
       });
+      setIsLoggedin(!isLoggedin);
       navigate("/");
     },
   });
@@ -183,14 +194,10 @@ export const AuthProvider = ({ children }) => {
         console.log("esto es result multiple", result);
         // imagesForUpload.push(result.info.secure_url);
         // setImages(imagesForUpload);
-        setImages(prevImages => [...prevImages, result.info.secure_url])
+        setImages((prevImages) => [...prevImages, result.info.secure_url]);
       }
     }
   );
-
-
-
-
 
   // const imgProfilInfo = { showUploadWidget, image };
   const data = {
@@ -206,8 +213,7 @@ export const AuthProvider = ({ children }) => {
     multipleUploadWidget,
     image,
     images,
-    setImages
-    
+    setImages,
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
