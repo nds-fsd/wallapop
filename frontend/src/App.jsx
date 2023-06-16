@@ -14,6 +14,7 @@ import PrivateRoutes from "./components/private-routes";
 import { AuthProvider } from "./context/authContext";
 import ProdPage from "./components/product/ProductPage/ProdPage";
 import ListBuscador from "./components/home/ListBuscador/ListBuscador";
+import ChatRoom from "./components/chat/chat-room";
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
                     element={<ListBuscador />}
                   />
                 </Route>
+                <Route path="/chatroom/:chatRoomID" element={<ChatRoom />} />
                 <Route path="/user" element={<PrivateRoutes />}>
                   <Route path="" element={<UserPage />} />
                   <Route path="*" element={<UserPage />} />
