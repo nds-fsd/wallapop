@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const app = require("./app");
 // const { configurePrivateSocket } = require("./socket");
 
+const { configurePrivateSocket } = require("./socket");
 
 
 const PORT = process.env.PORT || 3001;
@@ -13,4 +14,4 @@ const server = app.listen(PORT, () => {
   console.log(`Server is up and running ⚡ ${PORT}`);
 });
 
-// exports.ioPrivate = configurePrivateSocket(server);
+exports.ioPrivate = configurePrivateSocket(server);

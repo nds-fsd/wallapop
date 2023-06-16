@@ -10,6 +10,7 @@ const { connectDB } = require("./mongo/connection");
 const messageRouter = require("./mongo/routers/messageRouter");
 const jwtMiddleware = require("./security/jwtMiddleware");
 const chatroomRouter = require("./mongo/routers/chatroomRouter");
+const server = require("./index")
 
 const app = express();
 
@@ -27,9 +28,12 @@ if (process.env.MONGO_URL) {
   connectDB().then(() => console.log("Connected to database!"));
 }
 
+
+
 // const PORT = process.env.PORT || 3001;
 // const server = app.listen(PORT, () => {
 //   console.log(`Server is up and running ⚡ ${PORT}`);
 // });
 
 module.exports = app;
+
