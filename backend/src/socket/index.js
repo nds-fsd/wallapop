@@ -11,6 +11,7 @@ const configurePrivateSocket = (server) => {
     });
 
     io.use((socket, next) => {
+      console.log("esto es socket", socket)
         if (socket.handshake.auth && socket.handshake.auth.token) {
           jwtVerifier(socket.handshake.auth.token, (err, user) => {
             if (err) return next(new Error("Authentication error"));

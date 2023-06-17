@@ -1,5 +1,5 @@
 const express = require("express");
-const jwtMiddleware = require("../../security/jwtMiddleware");
+const {jwtMiddleware} = require("../../security/jwtMiddleware");
 const userRouter = express.Router();
 const {
   userLogin,
@@ -25,8 +25,8 @@ userRouter.get("/:id", findUserByID);
 
 userRouter.get("/products/published/:id", getProductByUser)
 
-userRouter.patch("/:id", jwtMiddleware, modifyUserByID);
+userRouter.patch("/:id",jwtMiddleware, modifyUserByID);
 
-userRouter.delete("/:id", jwtMiddleware, deleteUserByID);
+userRouter.delete("/:id",jwtMiddleware, deleteUserByID);
 
 module.exports = userRouter;

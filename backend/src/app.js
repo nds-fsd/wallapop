@@ -8,9 +8,8 @@ const categoryRouter = require("./mongo/routers/categoryRouter");
 const favoriteRouter = require("./mongo/routers/favoriteRouter");
 const { connectDB } = require("./mongo/connection");
 const messageRouter = require("./mongo/routers/messageRouter");
-const jwtMiddleware = require("./security/jwtMiddleware");
+const {jwtMiddleware} = require("./security/jwtMiddleware");
 const chatroomRouter = require("./mongo/routers/chatroomRouter");
-const server = require("./index")
 
 const app = express();
 

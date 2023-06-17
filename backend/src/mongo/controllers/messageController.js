@@ -19,6 +19,8 @@ const getMessageByChatRoom = async (req, res) => {
 const postMessage = async (req, res) => {
   const {body, jwtPayload} = req;
   try {
+    const chat = await chatroomModel.findById(req.params.chatRoom);
+
     const newMessage = new messageModel({...body, user_id: jwtPayload.id});
     await newMessage.save();
 
@@ -28,41 +30,41 @@ const postMessage = async (req, res) => {
   }
 };
 
-// const createPrivateChatMessage = async (req, res) => {
+const createPrivateChatMessage = async (req, res) => {
 
-// 	try {
-//         // antes de crear el mensaje, garantizamos que exista el chat que tenga el mensaje
-// 		const chat = await chatroomModel.findById(req.params.chatRoom);
-// 		if(chat){
-// 			if(req.body.body){
-// 				const message = new messageModel({user_id: req.jwtPayload.id, chat_room_id: req.params.chatRoom, body: req.body.body});
-// 				message.save().then(newMessage => {
-// 					messageModel.populate(newMessage, {path: 'user_id'}, (err, m) => {
+	try {
+        // antes de crear el mensaje, garantizamos que exista el chat que tenga el mensaje
+		const chat = await chatroomModel.findById(req.params.chatRoom);
+		if(chat){
+			if(req.body.body){
+				const message = new messageModel({user_id: req.jwtPayload.id, chat_room_id: req.params.chatRoom, body: req.body.body});
+				message.save().then(newMessage => {
+					messageModel.populate(newMessage, {path: 'user_id'}, (err, m) => {
 						
-//                         // una vez que se crea un mensaje de chat se informa al grupo que toca, con un evento
-//                         // de NEW_MESSAGE
-//                         // ! importante que estamos usando el socket PRIVADO
-//                       socketServer.ioPrivate.to(`chat-${m.chat_room_id}`).emit("NEW_MESSAGE", m);
+                        // una vez que se crea un mensaje de chat se informa al grupo que toca, con un evento
+                        // de NEW_MESSAGE
+                        // ! importante que estamos usando el socket PRIVADO
+                      socketServer.ioPrivate.to(`chat-${m.chat_room_id}`).emit("NEW_MESSAGE", m);
 
-//                         // * Sistema de notificaciones personales
-// 						// chat.users.filter(u => u !== req.jwtPayload.id).forEach(user => {
-// 						// 	server.ioPrivate.to(`user-${user._id}`).emit("new-chat-message", m);
-// 						// })
+                        // * Sistema de notificaciones personales
+						// chat.users.filter(u => u !== req.jwtPayload.id).forEach(user => {
+						// 	server.ioPrivate.to(`user-${user._id}`).emit("new-chat-message", m);
+						// })
 						
-//                         res.status(201).json(m);
-// 					})
+                        res.status(201).json(m);
+					})
 
-// 				}).catch(e =>  {
-// 					res.status(500).json({error: e.message})
-// 				});
-// 			}
-// 		}else{
-// 			res.status(500).json({error: "wrong chat ID"});
-// 		}
-// 	}catch (e) {
-// 		res.status(500).json({error: e.message});
-// 	}
-// }
+				}).catch(e =>  {
+					res.status(500).json({error: e.message})
+				});
+			}
+		}else{
+			res.status(500).json({error: "wrong chat ID"});
+		}
+	}catch (e) {
+		res.status(500).json({error: e.message});
+	}
+}
 
 
 
@@ -70,4 +72,5 @@ const postMessage = async (req, res) => {
 module.exports = {
   getMessageByChatRoom,
   postMessage,
+  createPrivateChatMessage
 };
