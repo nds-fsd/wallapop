@@ -9,8 +9,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import RelatedProducts from "./RelatedProducts";
 import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 import { createFav, deleteFav, getFavs } from "../../../utils/apiFavorites";
-import creditea from "../../../assets/images/creditea.png"
-import carfax from "../../../assets/images/carfax.png"
+import creditea from "../../../assets/images/creditea.png";
+import carfax from "../../../assets/images/carfax.png";
 
 const HousePage = ({ id }) => {
   const { data, isLoading } = useQuery(["product", id], getProductById);
@@ -26,7 +26,8 @@ const HousePage = ({ id }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
-  const [userFavorites, setUserFavorites] = useState([])
+  const [userFavorites, setUserFavorites] = useState([]);
+  const [favoriteStatus, setFavoriteStatus] = useState(false);
 
   // const [previousProductPage, setPreviousProductPage] = useState(null);
 
@@ -36,9 +37,8 @@ const HousePage = ({ id }) => {
     const fetchUserFavs = async () => {
       try {
         const favs = await getFavs(userId);
-        console.log("los favs del user", favs)
         const favsProductIds = favs && favs[0].products.map((prod) => prod._id);
-        const isProductFavorite = favsProductIds.includes(id)
+        const isProductFavorite = favsProductIds.includes(String(id));
         setUserFavorites(isProductFavorite);
       } catch (error) {
         console.log("Error fetching user favorites", error);
@@ -47,7 +47,7 @@ const HousePage = ({ id }) => {
     if (userToken) {
       fetchUserFavs();
     }
-  }, [userToken, id])
+  }, [userToken, id]);
 
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
@@ -55,6 +55,7 @@ const HousePage = ({ id }) => {
 
   const handleAlertAccept = () => {
     setShowAlert(false);
+    window.location.reload();
   };
 
   const handleSessionAlert = () => {
@@ -64,26 +65,27 @@ const HousePage = ({ id }) => {
   };
 
   const handleFavorite = async () => {
-    if (!userId) {
+    if (!userToken) {
       setSessionAlert(true);
       setShowAlert(false);
       return;
     }
     try {
-      if (isFavorite) {
-        await deleteFav(data._id);
+      if (userFavorites) {
+        await deleteFav(id);
+        setShowAlert(true);
+        setFavoriteStatus(false);
         setIsFavorite(false);
-        setShowAlert(true);
       } else {
-        await createFav({ product: data._id });
-        setIsFavorite(true);
+        await createFav({ product: id });
         setShowAlert(true);
+        setFavoriteStatus(true);
+        setIsFavorite(true);
       }
     } catch (error) {
       console.log("Error toggling favorite:", error);
     }
   };
-
 
   // useEffect(() => {
   //   if (userToken && previousProductPage) {
@@ -112,7 +114,7 @@ const HousePage = ({ id }) => {
       )}
       {data && showAlert && (
         <div className={styles.alert}>
-          {userFavorites
+          {favoriteStatus
             ? "Este producto se ha añadido a tu lista de favoritos"
             : "Este producto ya no está entre tus favoritos"}
           <button onClick={handleAlertAccept} className={styles.accept}>
@@ -132,7 +134,9 @@ const HousePage = ({ id }) => {
             <div className={styles.buttons}>
               <button
                 onClick={handleFavorite}
-                className={`${styles.like} ${userToken && userFavorites ? styles.focused : ""}`}
+                className={`${styles.like} ${
+                  userToken && userFavorites ? styles.focused : ""
+                }`}
               >
                 <span className="icon-heart1"></span>
               </button>
@@ -191,7 +195,7 @@ const HousePage = ({ id }) => {
               <span className="icon-credit-card1"></span>
               <h5>Calcula tu préstamo</h5>
               <Link to="https://www.creditea.es/" target="_blank">
-                <img src={creditea} className={styles.imgLink}/>
+                <img src={creditea} className={styles.imgLink} />
               </Link>
             </div>
 
@@ -199,7 +203,7 @@ const HousePage = ({ id }) => {
               <span className="icon-coin-euro"></span>
               <h5>Calcula tu seguro</h5>
               <Link to="https://www.mapfre.es/particulares/" target="_blank">
-                <img src= {carfax} className={styles.imgLink} />
+                <img src={carfax} className={styles.imgLink} />
               </Link>
             </div>
           </div>

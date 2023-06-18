@@ -20,7 +20,7 @@ const HomePage = () => {
             <span className="icon-servicios"></span>
           </div>
           <div className={styles.pro}>
-            <h2>Retrend PRO</h2>
+            <h2>ReTrend PRO</h2>
 
             <h3>¿Tienes un negocio y necesita un impulso?</h3>
             <h4>
@@ -34,7 +34,7 @@ const HomePage = () => {
           <div className={styles.app}>
             <h2>¿Cansado del PC?</h2>
             <h3>
-              Descarga ya la app de Retrend y empieza a comprar y vender
+              Descarga ya la app de ReTrend y empieza a comprar y vender
               cómodamente desde donde quieras.
             </h3>
           </div>

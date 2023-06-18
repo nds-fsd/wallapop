@@ -28,6 +28,7 @@ const LatestProducts = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
   const [userFavorites, setUserFavorites] = useState([]);
+  const [favoriteStatus, setFavoriteStatus] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -84,10 +85,13 @@ const LatestProducts = () => {
           prevFavorites.filter((id) => id !== productId)
         );
         setShowAlert(true);
+        setFavoriteStatus(false)
+        
       } else {
         await createFav({ product: productId });
         setUserFavorites((prevFavorites) => [...prevFavorites, productId]);
         setShowAlert(true);
+        setFavoriteStatus(true)
       }
     } catch (error) {
       console.log("Error toggling favorite:", error);
@@ -114,7 +118,7 @@ const LatestProducts = () => {
       )}
       {prods && showAlert && (
         <div className={styles.alert}>
-          {userFavorites
+          {favoriteStatus
             ? "Este producto se ha añadido a tu lista de favoritos"
             : "Este producto ya no está entre tus favoritos"}
           <button onClick={handleAlertAccept} className={styles.accept}>

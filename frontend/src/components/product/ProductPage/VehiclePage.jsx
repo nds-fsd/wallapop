@@ -5,18 +5,15 @@ import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
 import { getProductById, updateProduct } from "../../../utils/apiProducts";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, redirect, useLocation, useNavigate } from "react-router-dom";
 import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 import RelatedProducts from "./RelatedProducts";
 import { createFav, deleteFav, getFavs } from "../../../utils/apiFavorites";
-import creditea from "../../../assets/images/creditea.png"
-import carfax from "../../../assets/images/carfax.png"
-import mapfre from "../../../assets/images/mapfre.png"
-
+import creditea from "../../../assets/images/creditea.png";
+import carfax from "../../../assets/images/carfax.png";
+import mapfre from "../../../assets/images/mapfre.png";
 
 const VehiclePage = ({ id }) => {
-  console.log("el id del producto",id)
-
   const { data, isLoading } = useQuery(["product", id], getProductById);
   const category = data?.categories;
   const title = data?.categories[0].title;
@@ -30,15 +27,15 @@ const VehiclePage = ({ id }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
-  const [userFavorites, setUserFavorites] = useState([])
+  const [userFavorites, setUserFavorites] = useState([]);
+  const [favoriteStatus, setFavoriteStatus] = useState(false);
 
   useEffect(() => {
     const fetchUserFavs = async () => {
       try {
         const favs = await getFavs(userId);
-        console.log("los favs del user", favs)
         const favsProductIds = favs && favs[0].products.map((prod) => prod._id);
-        const isProductFavorite = favsProductIds.includes(id)
+        const isProductFavorite = favsProductIds.includes(String(id));
         setUserFavorites(isProductFavorite);
       } catch (error) {
         console.log("Error fetching user favorites", error);
@@ -49,40 +46,43 @@ const VehiclePage = ({ id }) => {
     }
   }, [userToken, id]);
 
-
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
   };
   const handleAlertAccept = () => {
     setShowAlert(false);
+    window.location.reload();
   };
   const handleSessionAlert = () => {
     setSessionAlert(false);
     navigate("/user/login");
+    if (userToken) {
+      redirect(`/products/${id}`);
+    }
   };
 
   const handleFavorite = async () => {
-    if (!userId) {
+    if (!userToken) {
       setSessionAlert(true);
       setShowAlert(false);
       return;
     }
     try {
-      if (isFavorite) {
-        await deleteFav(data._id);
+      if (userFavorites) {
+        await deleteFav(id);
+        setShowAlert(true);
+        setFavoriteStatus(false);
         setIsFavorite(false);
-        setShowAlert(true);
       } else {
-        await createFav({ product: data.id });
-        setIsFavorite(true);
+        await createFav({ product: id });
         setShowAlert(true);
+        setFavoriteStatus(true);
+        setIsFavorite(true);
       }
     } catch (error) {
       console.log("Error toggling favorite:", error);
     }
   };
-
-  
 
   return (
     <>
@@ -124,7 +124,9 @@ const VehiclePage = ({ id }) => {
             <div className={styles.buttons}>
               <button
                 onClick={handleFavorite}
-                className={`${styles.like} ${userToken && userFavorites ? styles.focused : ""}`}
+                className={`${styles.like} ${
+                  userToken && userFavorites ? styles.focused : ""
+                }`}
               >
                 <span className="icon-heart1"></span>
               </button>
@@ -144,13 +146,14 @@ const VehiclePage = ({ id }) => {
               <h2>EUR</h2>
             </div>
             <div className={styles.category}>
-            <Link to={"/category/" + title} >
+              <Link to={"/category/" + title}>
                 {data.categories &&
-                  category.map((cat) => <span className={cat.logo} key={cat._id} />)}
+                  category.map((cat) => (
+                    <span className={cat.logo} key={cat._id} />
+                  ))}
                 <h3>{data && data.category}</h3>
               </Link>
             </div>
-         
           </div>
 
           <h2>{data && data.title}</h2>
@@ -200,21 +203,21 @@ const VehiclePage = ({ id }) => {
               <span className="icon-credit-card1"></span>
               <h5>Calcula tu préstamo</h5>
               <Link to="https://www.creditea.es/" target="_blank">
-                <img src = {creditea} className={styles.imgLink}/>
+                <img src={creditea} className={styles.imgLink} />
               </Link>
             </div>
             <div className={styles.links}>
               <span className="icon-file-text2"></span>
               <h5>Historial del vehículo</h5>
               <Link to="https://shorturl.at/qxG89" target="_blank">
-                <img src={carfax} className={styles.imgLink}/>
+                <img src={carfax} className={styles.imgLink} />
               </Link>
             </div>
             <div className={styles.links}>
               <span className="icon-coin-euro"></span>
               <h5>Calcula tu seguro</h5>
               <Link to="https://www.mapfre.es/particulares/" target="_blank">
-                <img src={mapfre} className={styles.imgLink}/>
+                <img src={mapfre} className={styles.imgLink} />
               </Link>
             </div>
           </div>
@@ -230,8 +233,9 @@ const VehiclePage = ({ id }) => {
           </div>
           {data && <ProductBar data={data} />}
         </div>
-        {data && <RelatedProducts category={data.category} parentId={data._id} />}
-
+        {data && (
+          <RelatedProducts category={data.category} parentId={data._id} />
+        )}
       </div>
     </>
   );

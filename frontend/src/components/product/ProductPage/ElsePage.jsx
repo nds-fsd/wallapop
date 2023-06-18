@@ -12,8 +12,7 @@ import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 
 const ElsePage = ({ id }) => {
   const { data, isLoading } = useQuery(["product", id], getProductById);
-  const { data: favs } = useQuery(["favs"], getFavs)
-  console.log("los favs del user", favs)
+  const { data: favs } = useQuery(["favs"], getFavs);
   const category = data?.categories;
   const title = data?.categories[0].title;
   const navigate = useNavigate();
@@ -26,7 +25,8 @@ const ElsePage = ({ id }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
-  const [userFavorites, setUserFavorites] = useState([])
+  const [userFavorites, setUserFavorites] = useState([]);
+  const [favoriteStatus, setFavoriteStatus] = useState(false);
 
   // const [previousProductPage, setPreviousProductPage] = useState(null);
   // const previousProductPage = localStorage.getItem("previousProductPage")
@@ -35,9 +35,8 @@ const ElsePage = ({ id }) => {
     const fetchUserFavs = async () => {
       try {
         const favs = await getFavs(userId);
-        console.log("los favs del user", favs)
         const favsProductIds = favs && favs[0].products.map((prod) => prod._id);
-        const isProductFavorite = favsProductIds.includes(id)
+        const isProductFavorite = favsProductIds.includes(String(id));
         setUserFavorites(isProductFavorite);
       } catch (error) {
         console.log("Error fetching user favorites", error);
@@ -46,13 +45,14 @@ const ElsePage = ({ id }) => {
     if (userToken) {
       fetchUserFavs();
     }
-  }, [userToken, id])
+  }, [userToken, id]);
 
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
   };
   const handleAlertAccept = () => {
     setShowAlert(false);
+    window.location.reload();
   };
   const handleSessionAlert = () => {
     setSessionAlert(false);
@@ -67,21 +67,21 @@ const ElsePage = ({ id }) => {
       return;
     }
     try {
-      if (isFavorite) {
-        await deleteFav(data._id );
+      if (userFavorites) {
+        await deleteFav(id);
+        setShowAlert(true);
+        setFavoriteStatus(false);
         setIsFavorite(false);
-        setShowAlert(true);
       } else {
-        await createFav({ product: data._id });
-        setIsFavorite(true);
+        await createFav({ product: id });
         setShowAlert(true);
+        setFavoriteStatus(true);
+        setIsFavorite(true);
       }
     } catch (error) {
       console.log("Error toggling favorite:", error);
     }
   };
-
-  
 
   // useEffect(() => {
   //   if (userToken && previousProductPage) {
@@ -89,7 +89,6 @@ const ElsePage = ({ id }) => {
   //     navigate(previousProductPage);
   //   }
   // }, []);
- 
 
   return (
     <>
@@ -111,7 +110,7 @@ const ElsePage = ({ id }) => {
       )}
       {data && showAlert && (
         <div className={styles.alert}>
-          {userFavorites
+          {favoriteStatus
             ? "Este producto se ha añadido a tu lista de favoritos"
             : "Este producto ya no está entre tus favoritos"}
           <button onClick={handleAlertAccept} className={styles.accept}>
@@ -133,7 +132,9 @@ const ElsePage = ({ id }) => {
             <div className={styles.buttons}>
               <button
                 onClick={handleFavorite}
-                className={`${styles.like} ${userToken && userFavorites ? styles.focused : ""}`}
+                className={`${styles.like} ${
+                  userToken && userFavorites ? styles.focused : ""
+                }`}
               >
                 <span className="icon-heart1"></span>
               </button>
