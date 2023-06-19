@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./ProfileAccount.module.css";
+import stylesDark from "./ProfileAccountDark.module.css";
 import { getInfoUser } from "../../../utils/apiAuth";
 import { useQuery, useQueryClient } from "react-query";
 import Spinner from "../../Spinner/Spinner";
 import { AuthContext } from "../../../context/authContext";
+import { ThemeContext } from "../../../context/themeContext";
 
 const ProfileAccount = () => {
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   const queryClient = useQueryClient();
   const {
     register,
@@ -40,24 +43,38 @@ const ProfileAccount = () => {
     return <Spinner size="M" />;
   } else {
     return (
-      <div className={styles.mainContainer}>
-        <div className={styles.contentContainer}>
+      <div
+        className={darkMode ? stylesDark.mainContainer : styles.mainContainer}
+      >
+        <div
+          className={
+            darkMode ? stylesDark.contentContainer : styles.contentContainer
+          }
+        >
           <h2> Información personal</h2>
-          <form className={styles.formPersonal}>
-            <label className={styles.labels}>
+          <form
+            className={darkMode ? stylesDark.formPersonal : styles.formPersonal}
+          >
+            <label className={darkMode ? stylesDark.labels : styles.labels}>
               Email
               <input
-                className={styles.inputProfile}
+                className={
+                  darkMode ? stylesDark.inputProfile : styles.inputProfile
+                }
                 type="text"
                 {...register("email")}
               />
             </label>
-            <label className={styles.labelsGenero}>
+            <label
+              className={
+                darkMode ? stylesDark.labelsGenero : styles.labelsGenero
+              }
+            >
               Género
               <select
                 {...register("gender", { required: true })}
                 placeholder="Género"
-                className={styles.selectSexo}
+                className={darkMode ? stylesDark.selectSexo : styles.selectSexo}
               >
                 <option value="">Selecciona una opción</option>
                 <option value="Masculino">Masculino</option>
@@ -67,9 +84,9 @@ const ProfileAccount = () => {
               </select>
             </label>
           </form>
-          <div className={styles.divButtons}>
+          <div className={darkMode ? stylesDark.divButtons : styles.divButtons}>
             <button
-              className={styles.formButton}
+              className={darkMode ? stylesDark.formButton : styles.formButton}
               type="submit"
               disabled={!isValid}
               onClick={handleSubmit(handleSubmitWrapperUpdate)}
@@ -77,7 +94,7 @@ const ProfileAccount = () => {
               Guardar
             </button>
             <button
-              className={styles.formButton2}
+              className={darkMode ? stylesDark.formButton2 : styles.formButton2}
               type="submit"
               disabled={!isValid}
               onClick={handleSubmit(handleSubmitWrapperDelete)}

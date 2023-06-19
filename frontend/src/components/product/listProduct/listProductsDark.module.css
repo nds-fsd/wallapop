@@ -1,0 +1,9 @@
+.menu {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--background-dark);
+}
+
+.title {
+  color: var(--blue-light);
+}

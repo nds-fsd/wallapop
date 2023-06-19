@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./ProfileInfo.module.css";
+import stylesDark from "./ProfileInfoDark.module.css";
 import { AuthContext } from "../../../context/authContext";
 import { getInfoUser } from "../../../utils/apiAuth";
 import { useQuery, useQueryClient } from "react-query";
 import Spinner from "../../Spinner/Spinner";
+import { ThemeContext } from "../../../context/themeContext";
 
 const ProfileInfo = () => {
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   const queryClient = useQueryClient();
   const {
     register,
@@ -56,18 +59,40 @@ const ProfileInfo = () => {
     return <Spinner size="M" />;
   } else {
     return (
-      <div className={styles.mainContainer}>
-        <div className={styles.contentContainer}>
-          <div className={styles.contentForm}>
-            <div className={styles.divFoto}>
+      <div
+        className={darkMode ? stylesDark.mainContainer : styles.mainContainer}
+      >
+        <div
+          className={
+            darkMode ? stylesDark.contentContainer : styles.contentContainer
+          }
+        >
+          <div
+            className={darkMode ? stylesDark.contentForm : styles.contentForm}
+          >
+            <div className={darkMode ? stylesDark.divFoto : styles.divFoto}>
               <h2> Imagenes de perfil</h2>
-              <div className={styles.infoFoto}>
-                <div className={styles.changePhotoContainer}>
+              <div className={darkMode ? stylesDark.infoFoto : styles.infoFoto}>
+                <div
+                  className={
+                    darkMode
+                      ? stylesDark.changePhotoContainer
+                      : styles.changePhotoContainer
+                  }
+                >
                   <img src={userData.photo} name="photo" />
-                  <div className={styles.handleContainer}>
+                  <div
+                    className={
+                      darkMode
+                        ? stylesDark.handleContainer
+                        : styles.handleContainer
+                    }
+                  >
                     <button
                       onClick={handleOpenWidget}
-                      className={styles.formButton}
+                      className={
+                        darkMode ? stylesDark.formButton : styles.formButton
+                      }
                     >
                       Cambiar Foto
                     </button>
@@ -75,22 +100,30 @@ const ProfileInfo = () => {
                 </div>
               </div>
             </div>
-            <div className={styles.divInfoUser}>
+            <div
+              className={darkMode ? stylesDark.divInfoUser : styles.divInfoUser}
+            >
               <h2>Información pública</h2>
               {/* FORMULARIO DATOS */}
-              <form className={styles.formUser}>
-                <div className={styles.errors}>
-                  <label className={styles.labels}>
+              <form
+                className={darkMode ? stylesDark.formUser : styles.formUser}
+              >
+                <div className={darkMode ? stylesDark.errors : styles.errors}>
+                  <label
+                    className={darkMode ? stylesDark.labels : styles.labels}
+                  >
                     Nombre
                     <input
-                      className={styles.inputProfile}
+                      className={
+                        darkMode ? stylesDark.inputProfile : styles.inputProfile
+                      }
                       {...register("name", {
                         required: "El nombre es obligatorio",
                       })}
                     />
                   </label>
                 </div>
-                <div className={styles.error}>
+                <div className={darkMode ? stylesDark.error : styles.error}>
                   {errors.name && (
                     <p>
                       <span className="icon-warning1"></span>
@@ -98,11 +131,15 @@ const ProfileInfo = () => {
                     </p>
                   )}
                 </div>
-                <div className={styles.errors}>
-                  <label className={styles.labels}>
+                <div className={darkMode ? stylesDark.errors : styles.errors}>
+                  <label
+                    className={darkMode ? stylesDark.labels : styles.labels}
+                  >
                     Apellido
                     <input
-                      className={styles.inputProfile}
+                      className={
+                        darkMode ? stylesDark.inputProfile : styles.inputProfile
+                      }
                       name="surname"
                       placeholder="Apellido"
                       {...register("surname", {
@@ -111,7 +148,7 @@ const ProfileInfo = () => {
                     />
                   </label>
                 </div>
-                <div className={styles.error}>
+                <div className={darkMode ? stylesDark.error : styles.error}>
                   {errors.surname && (
                     <p>
                       <span className="icon-warning1"></span>
@@ -119,19 +156,23 @@ const ProfileInfo = () => {
                     </p>
                   )}
                 </div>
-                <label className={styles.labels}>
+                <label className={darkMode ? stylesDark.labels : styles.labels}>
                   Direción
                   <input
-                    className={styles.inputProfile}
+                    className={
+                      darkMode ? stylesDark.inputProfile : styles.inputProfile
+                    }
                     placeholder="Direción"
                     {...register("adress")}
                   />
                 </label>
-                <div className={styles.errors}>
+                <div className={darkMode ? stylesDark.errors : styles.errors}>
                   <label className={styles.labels}>
                     Teléfono
                     <input
-                      className={styles.inputProfile}
+                      className={
+                        darkMode ? stylesDark.inputProfile : styles.inputProfile
+                      }
                       placeholder="Teléfono"
                       {...register("phone", {
                         required: "Phone is required",
@@ -139,7 +180,7 @@ const ProfileInfo = () => {
                     />
                   </label>
                 </div>
-                <div className={styles.error}>
+                <div className={darkMode ? stylesDark.error : styles.error}>
                   {errors.phone && (
                     <p>
                       <span className="icon-warning1"></span>
@@ -151,16 +192,16 @@ const ProfileInfo = () => {
             </div>
           </div>
           {/* DIV BOTONES */}
-          <div className={styles.divButtons}>
+          <div className={darkMode ? stylesDark.divButtons : styles.divButtons}>
             <button
-              className={styles.formButton}
+              className={darkMode ? stylesDark.formButton : styles.formButton}
               type="submit"
               onClick={handleSubmit(handleSubmitWrapperUpdate)}
             >
               Guardar
             </button>
             <button
-              className={styles.formButton2}
+              className={darkMode ? stylesDark.formButton2 : styles.formButton2}
               type="submit"
               onClick={handleSubmit(handleSubmitWrapperDelete)}
             >

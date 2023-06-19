@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./modalContainer.module.css";
+import stylesDark from "./modalContainerDark.module.css";
 import ModalContent from "./ModalContentProdUser/ModalContent";
+import { ThemeContext } from "../../../context/themeContext";
 
 const ModalContainer = ({ modalOpen, setModalOpen, id }) => {
- 
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+
   return (
     <>
       {modalOpen && (
-        <div className={styles.overlay}>
-          <div className={styles.modal}>
-            <div className={styles.title}>
+        <div className={darkMode ? stylesDark.overlay : styles.overlay}>
+          <div className={darkMode ? stylesDark.modal : styles.modal}>
+            <div className={darkMode ? stylesDark.title : styles.title}>
               <h2>Modo edición</h2>
               <button
-                className={styles.close}
+                className={darkMode ? stylesDark.close : styles.close}
                 onClick={() => setModalOpen(false)}
               >
                 <span className="icon-cross1"></span>

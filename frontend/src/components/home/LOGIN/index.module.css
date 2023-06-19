@@ -1,3 +1,13 @@
+.darkMode {
+  background-color: var(--grey);
+  color: var(--blue-dark);
+  font-size: 2em;
+  cursor: pointer;
+}
+.darkMode:hover {
+  color: var(--yellow-main);
+}
+
 .navbar {
   width: 100vw;
   height: 15vh;
@@ -5,14 +15,14 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-left: 3rem;
   border-bottom: solid rgba(198, 197, 197, 0.368) 0.1rem;
+  background-color: var(--grey);
 }
 
 .logoLink img {
   width: 7rem;
   height: auto;
-  margin: 0;
+  margin-left: 3rem;
 }
 
 .tuButton {
@@ -23,7 +33,6 @@
 }
 
 .tuButton img {
-  margin: 0;
   width: 2rem;
   height: 2rem;
   object-fit: cover;
@@ -33,12 +42,13 @@
 .buttonLink {
   width: 50vw;
   display: flex;
-  justify-content: space-around;
-  padding-right: 6rem;
+  justify-content: flex-end;
+  gap: 3rem;
+  padding-right: 5rem;
 }
 
 .buttonLink :hover {
-  background-color: #ebaa0525;
+  /* background-color: #ebaa0525; */
   border-radius: 2.5rem;
   color: var(--blue-dark);
   border-color: var(--blue-dark);

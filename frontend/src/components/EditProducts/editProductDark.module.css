@@ -1,0 +1,332 @@
+.editContainer {
+  width: 59rem;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.labels {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.labelKeywords {
+  font-size: 1.1rem;
+  font-weight: bold;
+  position: relative;
+  left: 8.5rem;
+}
+.labelStatus {
+  font-size: 1.1rem;
+  font-weight: bold;
+  position: relative;
+  left: 8.5rem;
+}
+
+.labelTriple {
+  font-size: 1.3rem;
+  font-weight: bold;
+  display: flex;
+  gap: 12rem;
+}
+.double {
+  display: flex;
+  gap: 2.8rem;
+  align-items: flex-start;
+}
+
+.labelShift {
+  font-size: 1.3rem;
+  font-weight: bold;
+  position: relative;
+  left: 20.5rem;
+}
+.input {
+  height: 2.1rem;
+  width: 58rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+  background-color: var(--background-medium);
+  color: white;
+}
+
+.inputTriple {
+  width: 15rem;
+  height: 2.1rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+  background-color: var(--background-medium);
+  color: white;
+}
+.price {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.columnTriple {
+  width: 59rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.vehicle {
+  display: flex;
+  justify-content: space-between;
+}
+.inputVehicle {
+  width: 12rem;
+  height: 2.3rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 1rem;
+  font-size: 1rem;
+  background-color: var(--background-medium);
+  color: white;
+}
+
+.category {
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+}
+.checkbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  display: flex;
+  width: 6em;
+  /* height: 6em; */
+  cursor: pointer;
+}
+
+.checkbox input[type="radio"] {
+  display: none;
+}
+
+.checkbox span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4em;
+  color: var(--blue-ligth);
+}
+
+.checkbox span:hover {
+  color: var(--yellow-main);
+}
+
+.checkbox input[type="radio"]:checked + span {
+  color: var(--yellow-main);
+}
+
+.priceCategory {
+  display: flex;
+  gap: 20rem;
+}
+.coin {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--yellow-main);
+}
+
+.dropdown {
+  width: 16rem;
+  height: 2.4rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 0.8rem;
+  font-size: 0.9rem;
+  background-color: var(--background-medium);
+  color: white;
+}
+
+.dropdown option:hover {
+  background-color: var(--yellow-main);
+}
+.inputLand {
+  width: 20.5rem;
+  height: 2.6rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 0.8rem;
+  font-size: 1rem;
+  background-color: var(--background-medium);
+  color: white;
+}
+
+.column {
+  display: flex;
+  gap: 3rem;
+}
+.textArea {
+  width: 49rem;
+  height: 4rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 0.8rem;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  font-family: "Roboto", sans-serif;
+  background-color: var(--background-medium);
+  color: white;
+  margin: 1rem;
+}
+
+.subtitles {
+  display: flex;
+}
+
+.engine {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  width: 20rem;
+}
+.square {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  display: flex;
+  width: 5em;
+  height: 5em;
+  cursor: pointer;
+}
+
+.square input[type="radio"] {
+  display: none;
+}
+
+.square span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3em;
+  color: var(--blue-ligth);
+}
+
+.square span:hover {
+  color: var(--yellow-main);
+}
+
+.square input[type="radio"]:checked + span {
+  color: var(--yellow-main);
+}
+
+.motor {
+  display: flex;
+}
+
+.inmuebles input[type="checkbox"] {
+  display: none;
+}
+
+.inmuebles {
+  display: flex;
+}
+.inmueblesTitle {
+  height: 8.2rem;
+}
+
+.type {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.formButton {
+  display: flex;
+  justify-content: center;
+}
+
+.formButton button {
+  width: 13rem;
+  height: 3rem;
+  font-size: 1.1rem;
+  padding: 0 1rem;
+  border-radius: 2.5rem;
+  border: 0.15em solid var(--blue-light);
+  background-color: var(--background-medium);
+  color: var(--blue-light);
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  margin: 1rem;
+}
+
+.formButton button:hover {
+  background-color: var(--blue-light);
+  color: var(--background-medium);
+}
+
+/* errors - form vehicle */
+
+.error {
+  color: red;
+  font-size: 0.7em;
+  margin-top: -0.4rem;
+}
+.error span {
+  color: red;
+  margin-right: 0.5em;
+  font-size: 0.8em;
+  cursor: default;
+}
+.error span:hover {
+  color: red;
+}
+.error2 {
+  display: flex;
+  gap: 11.5rem;
+}
+.error2 > p {
+  color: red;
+  font-size: 0.7em;
+  margin-top: -0.4rem;
+}
+.error2 span {
+  color: red;
+  margin-right: 0.5em;
+  font-size: 0.7rem;
+}
+.error3 {
+  color: red;
+  font-size: 0.7em;
+  margin-top: -0.4rem;
+  margin-left: 31.5rem;
+}
+.error3 span {
+  color: red;
+  margin-right: 0.5em;
+}
+.error4 {
+  display: flex;
+  gap: 15.5rem;
+}
+.error4 > p {
+  color: red;
+  font-size: 0.7em;
+  margin-top: -0.4rem;
+}
+.error4 span {
+  color: red;
+  margin-right: 0.5em;
+}

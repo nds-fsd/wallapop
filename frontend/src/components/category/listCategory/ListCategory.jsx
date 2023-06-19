@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./listCategory.module.css";
+import stylesDark from "./listCategoryDark.module.css";
 import { getCategories } from "../../../utils/apiCategories";
 import { useQuery } from "react-query";
 import { NavLink, Outlet } from "react-router-dom";
 import Spinner from "../../Spinner/Spinner";
+import { ThemeContext } from "../../../context/themeContext";
 
 const ListCategory = () => {
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   // Hago peticion a BD para obtener todas las categorias
   const { data: categories, isLoading } = useQuery(["category"], getCategories);
   return (
-    <div className={styles.container}>
+    <div className={darkMode ? stylesDark.container : styles.container}>
       {/* si no ha cargado las categorias muestra esto */}
       {isLoading && (
         <div>
           <Spinner size="M" />
         </div>
       )}
-      <div className={styles.carusel}>
+      <div className={darkMode ? stylesDark.carusel : styles.carusel}>
         {!isLoading &&
           // bucle para mostrar todas las categorias que vienen de la BD
           categories.map((category) => {
@@ -26,7 +29,7 @@ const ListCategory = () => {
               <NavLink
                 data-test="category"
                 to={"/category/" + category.title}
-                className={styles.item}
+                className={darkMode ? stylesDark.item : styles.item}
                 key={category._id}
               >
                 <span className={category.logo} />

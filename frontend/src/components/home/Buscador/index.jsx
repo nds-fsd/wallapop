@@ -1,12 +1,17 @@
 import { NavLink } from "react-router-dom";
-import style from "./index.module.css";
-import { useState } from "react";
+import styles from "./index.module.css";
+import stylesDark from ".//indexDark.module.css";
+import { useState, useContext } from "react";
+import { ThemeContext } from "../../../context/themeContext";
 
 const Buscador = () => {
   const [search, setSearch] = useState("");
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 
   return (
-    <form className={style.searchContainer}>
+    <form
+      className={darkMode ? stylesDark.searchContainer : styles.searchContainer}
+    >
       <input
         type="text"
         name="search"

@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./productPage.module.css";
 import HousePage from "./HousePage";
 import ElsePage from "./ElsePage";
 import VehiclePage from "./VehiclePage";
@@ -23,8 +22,6 @@ const ProdPage = () => {
     return null; // Render nothing if data or category is undefined
   }
   const cat = data?.category;
-  // console.log("la  categoría del producto", data.category)
-
   let componentToRender;
 
   switch (cat) {

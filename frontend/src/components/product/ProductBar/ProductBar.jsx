@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./productBar.module.css";
 import { NavLink } from "react-router-dom";
 import ModalCompra from "../modalCompra/modalCompra";
+import { ThemeContext } from "../../../context/themeContext";
 
 const ProductBar = ({ data }) => {
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
-    console.log("Abriendo");
-    console.log(modalOpen);
+    // console.log("Abriendo");
     setModalOpen(!modalOpen);
   };
 
   const handleClick = (data) => {
-    console.log("el id del producto", data);
+    // console.log("el id del producto", data);
     openModal();
   };
 

@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./editProduct.module.css";
+import stylesDark from "./editProductDark.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProductById, updateProduct } from "../../utils/apiProducts";
 import EditImages from "../EditImages/EditImages";
+import { ThemeContext } from "../../context/themeContext";
 
 const EditVehicle = ({ id }) => {
   // console.log("el producto en el modal", id);
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 
   const {
     register,
@@ -55,9 +58,14 @@ const EditVehicle = ({ id }) => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.editContainer}>
-          <div className={styles.title}>
-            <label htmlFor="title" className={styles.labels}>
+        <div
+          className={darkMode ? stylesDark.editContainer : styles.editContainer}
+        >
+          <div className={darkMode ? stylesDark.title : styles.title}>
+            <label
+              htmlFor="title"
+              className={darkMode ? stylesDark.labels : styles.labels}
+            >
               Título:
             </label>
             <input
@@ -65,52 +73,64 @@ const EditVehicle = ({ id }) => {
               {...register("title", {
                 required: "El título es obligatorio",
               })}
-              className={styles.input}
+              className={darkMode ? stylesDark.input : styles.input}
             ></input>
-            <label htmlFor="location" className={styles.labels}>
+            <label
+              htmlFor="location"
+              className={darkMode ? stylesDark.labels : styles.labels}
+            >
               Localización:
             </label>
             <input
               placeholder="Localización"
               {...register("location")}
-              className={styles.input}
+              className={darkMode ? stylesDark.input : styles.input}
             ></input>
           </div>
 
           {errors.title && (
-            <p className={styles.error}>
+            <p className={darkMode ? stylesDark.error : styles.error}>
               <span className="icon-warning1"></span>
               {errors.title.message}
             </p>
           )}
 
-          <div className={styles.title}>
-            <label htmlFor="brand" className={styles.labels}>
+          <div className={darkMode ? stylesDark.title : styles.title}>
+            <label
+              htmlFor="brand"
+              className={darkMode ? stylesDark.labels : styles.labels}
+            >
               Marca:
             </label>
             <input
               placeholder="Ej. BMW"
               {...register("brand", { required: "Este campo es obligatorio" })}
-              className={styles.input}
+              className={darkMode ? stylesDark.input : styles.input}
             ></input>
-            <label htmlFor="model" className={styles.labels}>
+            <label
+              htmlFor="model"
+              className={darkMode ? stylesDark.labels : styles.labels}
+            >
               Modelo:
             </label>
             <input
               placeholder="Ej. S1"
               {...register("model", { required: "Este campo es obligatorio" })}
-              className={styles.input}
+              className={darkMode ? stylesDark.input : styles.input}
             ></input>
-            <label htmlFor="year" className={styles.labels}>
+            <label
+              htmlFor="year"
+              className={darkMode ? stylesDark.labels : styles.labels}
+            >
               Año:
             </label>
             <input
               placeholder="De fabricación"
               {...register("year", { required: "Este campo es obligatorio" })}
-              className={styles.input}
+              className={darkMode ? stylesDark.input : styles.input}
             ></input>
           </div>
-          <div className={styles.error2}>
+          <div className={darkMode ? stylesDark.error2 : styles.error2}>
             {errors.brand && (
               <p>
                 <span className="icon-warning1"></span>
@@ -131,129 +151,167 @@ const EditVehicle = ({ id }) => {
             )}
           </div>
 
-          <div className={styles.title}>
-            <label htmlFor="doors" className={styles.labels}>
+          <div className={darkMode ? stylesDark.title : styles.title}>
+            <label
+              htmlFor="doors"
+              className={darkMode ? stylesDark.labels : styles.labels}
+            >
               Puertas:
             </label>
             <input
               type="number"
               placeholder="Escribe un número"
               {...register("doors")}
-              className={styles.input}
+              className={darkMode ? stylesDark.input : styles.input}
             ></input>
-            <label htmlFor="seats" className={styles.labels}>
+            <label
+              htmlFor="seats"
+              className={darkMode ? stylesDark.labels : styles.navlabelsbar}
+            >
               Plazas:
             </label>
             <input
               type="number"
               placeholder="Escribe un número"
               {...register("seats")}
-              className={styles.input}
+              className={darkMode ? stylesDark.input : styles.input}
             ></input>
-            <label htmlFor="km" className={styles.labels}>
+            <label
+              htmlFor="km"
+              className={darkMode ? stylesDark.labels : styles.labels}
+            >
               Kilometraje:
             </label>
             <input
               type="number"
               placeholder="Sé preciso"
               {...register("km", { required: "Este campo es obligatorio" })}
-              className={styles.input}
+              className={darkMode ? stylesDark.input : styles.input}
             ></input>
           </div>
 
-          <div className={styles.title}>
-            <label htmlFor="engine" className={styles.labels}>
+          <div className={darkMode ? stylesDark.title : styles.title}>
+            <label
+              htmlFor="engine"
+              className={darkMode ? stylesDark.labels : styles.labels}
+            >
               Motor:
             </label>
-            
-            <select {...register("engine")} className={styles.input}>
+
+            <select
+              {...register("engine")}
+              className={darkMode ? stylesDark.input : styles.input}
+            >
               <option value="">Selecciona una opción</option>
               <option value="Gasolina">Gasolina</option>
               <option value="Diesel">Diesel</option>
               <option value="Eléctrico">Eléctirco</option>
             </select>
-            
-            <label htmlFor="shift" className={styles.labels}>
+
+            <label
+              htmlFor="shift"
+              className={darkMode ? stylesDark.labels : styles.labels}
+            >
               Cambio:
             </label>
-            <select {...register("shift")} className={styles.input}>
+            <select
+              {...register("shift")}
+              className={darkMode ? stylesDark.input : styles.input}
+            >
               <option value="">Selecciona una opción</option>
               <option value="Manual">Manual</option>
               <option value="Automático">Automático</option>
             </select>
           </div>
-          </div>
+        </div>
 
-          <div className={styles.labelTriple}>
-            <label htmlFor="price" className={styles.labels}>
-              Precio:
-            </label>
-            <label htmlFor="keywords" className={styles.labelKeywords}>
-              Tus keywords:
-            </label>
-            <label htmlFor="status" className={styles.labelStatus}>
-              Estado de tu vehículo:
-            </label>
-          </div>
-          <div className={styles.columnTriple}>
-            <div className={styles.price}>
-              <input
-                type="number"
-                min="1"
-                {...register("price", {
-                  required: "El precio es obligatorio",
-                })}
-                placeholder="No te excedas..."
-                className={styles.inputTriple}
-              ></input>
-              <div className={styles.coin}>EUR</div>
-            </div>
+        <div className={darkMode ? stylesDark.labelTriple : styles.labelTriple}>
+          <label
+            htmlFor="price"
+            className={darkMode ? stylesDark.labels : styles.labels}
+          >
+            Precio:
+          </label>
+          <label
+            htmlFor="keywords"
+            className={
+              darkMode ? stylesDark.labelKeywords : styles.labelKeywords
+            }
+          >
+            Tus keywords:
+          </label>
+          <label
+            htmlFor="status"
+            className={darkMode ? stylesDark.labelStatus : styles.labelStatus}
+          >
+            Estado de tu vehículo:
+          </label>
+        </div>
+        <div className={styles.columnTriple}>
+          <div className={darkMode ? stylesDark.price : styles.price}>
             <input
-              placeholder="Crea tus palabras clave"
-              {...register("keywords")}
-              className={styles.inputTriple}
-            ></input>
-
-            <select {...register("status")} className={styles.dropdown}>
-              <option value="">Selecciona un estado</option>
-              <option value="En buen estado">En buen estado</option>
-              <option value="Poco uso">Poco uso</option>
-            </select>
-          </div>
-
-          {errors.price && (
-            <p className={styles.error}>
-              <span className="icon-warning1"></span>
-              {errors.price.message}
-            </p>
-          )}
-          <div className={styles.double}>
-            <label htmlFor="description" className={styles.labels}>
-              Descripción:
-            </label>
-            <textarea
-              maxLength={500}
-              placeholder="Describe las ventajas del servicio o empleo que buscas para que los demás sepan por qué deben contratarte a ti y no a otro..."
-              {...register("description", {
-                required: "La descripción es obligatoria",
+              type="number"
+              min="1"
+              {...register("price", {
+                required: "El precio es obligatorio",
               })}
-              className={styles.textArea}
-            ></textarea>
+              placeholder="No te excedas..."
+              className={darkMode ? stylesDark.inputTriple : styles.inputTriple}
+            ></input>
+            <div className={darkMode ? stylesDark.coin : styles.coin}>EUR</div>
           </div>
-          {errors.description && (
-            <p className={styles.error}>
-              <span className="icon-warning1"></span>
-              {errors.description.message}
-            </p>
-          )}
-          
-          {product && <EditImages product={product} />}
+          <input
+            placeholder="Crea tus palabras clave"
+            {...register("keywords")}
+            className={darkMode ? stylesDark.inputTriple : styles.inputTriple}
+          ></input>
 
-          <div className={styles.formButton}>
-            <button data-test="guardar" type="submit">
-              Guardar cambios
-            </button>
-          </div>
+          <select
+            {...register("status")}
+            className={darkMode ? stylesDark.dropdown : styles.dropdown}
+          >
+            <option value="">Selecciona un estado</option>
+            <option value="En buen estado">En buen estado</option>
+            <option value="Poco uso">Poco uso</option>
+          </select>
+        </div>
+
+        {errors.price && (
+          <p className={darkMode ? stylesDark.error : styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.price.message}
+          </p>
+        )}
+        <div className={darkMode ? stylesDark.double : styles.double}>
+          <label
+            htmlFor="description"
+            className={darkMode ? stylesDark.labels : styles.labels}
+          >
+            Descripción:
+          </label>
+          <textarea
+            maxLength={500}
+            placeholder="Describe las ventajas del servicio o empleo que buscas para que los demás sepan por qué deben contratarte a ti y no a otro..."
+            {...register("description", {
+              required: "La descripción es obligatoria",
+            })}
+            className={darkMode ? stylesDark.textArea : styles.textArea}
+          ></textarea>
+        </div>
+        {errors.description && (
+          <p className={darkMode ? stylesDark.error : styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.description.message}
+          </p>
+        )}
+
+        {product && <EditImages product={product} />}
+
+        <div className={darkMode ? stylesDark.formButton : styles.formButton}>
+          <button data-test="guardar" type="submit">
+            Guardar cambios
+          </button>
+        </div>
       </form>
     </>
   );

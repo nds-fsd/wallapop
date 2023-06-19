@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: var(--grey);
 }
 .container > img {
   padding-top: 15px;
@@ -21,9 +22,6 @@
 .item {
   width: 11.5rem;
   height: 6rem;
-  /* background-color: var(--yellow-main);
-  background-color: white;
-  border: 0.15em solid var(--yellow-main); */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,7 +29,6 @@
   font-size: 1em;
   text-align: center;
   color: var(--blue-dark);
-  /* color: var(--yellow-main); */
   color: var(--blue-dark);
   font-weight: bold;
   margin: 0 0 1em 1em;
@@ -42,18 +39,15 @@
   padding: 0 1em 0 1em;
 }
 
-
 .item span:nth-child(1) {
   font-size: 3.5rem;
-  /* color: white;
-  color: var(--yellow-main); */
 }
 
 .item:hover {
-  color: var(--blue-light)
+  color: var(--blue-light);
 }
 .item:focus {
-  color: var(--yellow-main)
+  color: var(--yellow-main);
 }
 .menu {
   width: 100vw;

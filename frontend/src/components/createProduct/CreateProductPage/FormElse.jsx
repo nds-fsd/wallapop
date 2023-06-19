@@ -1,17 +1,17 @@
 import React, { useContext, useState } from "react";
 import styles from "./createProductPage.module.css";
+import stylesDark from "./createProductPageDark.module.css";
 import { useForm } from "react-hook-form";
-import { postProduct, updateProduct } from "../../../utils/apiProducts";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { postProduct } from "../../../utils/apiProducts";
+import { useMutation, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
-import Map from "../map/Map";
-import CustomAlert from "../../CustomAlert/CustomAlert";
 import { AuthContext } from "../../../context/authContext";
+import { ThemeContext } from "../../../context/themeContext";
 
 const FormElse = () => {
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   const queryClient = useQueryClient(["product"]);
-  const {images, setImages} = useContext(AuthContext)
-  // console.log("estas son las imagenes", images)
+  const { images, setImages } = useContext(AuthContext);
 
   const {
     register,
@@ -19,7 +19,7 @@ const FormElse = () => {
     reset,
     formState: { errors },
   } = useForm();
-  
+
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
       queryClient.invalidateQueries(["product"]);
@@ -39,16 +39,11 @@ const FormElse = () => {
     });
   };
 
-  // const [showAlert, setShowAlert] = useState(false);
-  // const handleCloseAlert = () => {
-  //   setShowAlert(false);
-  // };
-
   const onSubmit = (data) => {
     const keywords = data.keywords
       ?.split(/[, ]+/)
       .filter((keyword) => keyword !== "");
-    
+
     const productData = { ...data, images };
     if (keywords && keywords.length > 0) {
       productData.keywords = keywords;
@@ -63,12 +58,18 @@ const FormElse = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.sectionForm}>
-        <div className={styles.title}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={darkMode ? stylesDark.sectionForm : styles.sectionForm}
+      >
+        <div className={darkMode ? stylesDark.title : styles.title}>
           <h2>Información del producto</h2>
-          <div className={styles.line}></div>
+          <div className={darkMode ? stylesDark.line : styles.line}></div>
         </div>
-        <label htmlFor="title" className={styles.labels}>
+        <label
+          htmlFor="title"
+          className={darkMode ? stylesDark.labels : styles.labels}
+        >
           ¿Qué vas a vender hoy?
         </label>
         <input
@@ -76,23 +77,31 @@ const FormElse = () => {
           {...register("title", {
             required: "El título es obligatorio",
           })}
-          className={styles.input}
+          className={darkMode ? stylesDark.input : styles.input}
         ></input>
         {errors.title && (
-          <p className={styles.error}>
+          <p className={darkMode ? stylesDark.error : styles.error}>
             <span className="icon-warning1"></span>
             {errors.title.message}
           </p>
         )}
-        <div className={styles.labelDouble}>
-          <label htmlFor="price" className={styles.labels}>
+        <div className={darkMode ? stylesDark.labelDouble : styles.labelDouble}>
+          <label
+            htmlFor="price"
+            className={darkMode ? stylesDark.labels : styles.labels}
+          >
             Ponle precio
           </label>
-          <label htmlFor="keywords" className={styles.labelKeywords}>
+          <label
+            htmlFor="keywords"
+            className={
+              darkMode ? stylesDark.labelKeywords : styles.labelKeywords
+            }
+          >
             Keywords
           </label>
         </div>
-        <div className={styles.price}>
+        <div className={darkMode ? stylesDark.price : styles.price}>
           <input
             type="number"
             min="1"
@@ -100,33 +109,41 @@ const FormElse = () => {
               required: "El precio es obligatorio",
             })}
             placeholder="No te excedas..."
-            className={styles.inputPrice}
+            className={darkMode ? stylesDark.inputPrice : styles.inputPrice}
           ></input>
-          <div className={styles.coin}>EUR</div>
+          <div className={darkMode ? stylesDark.coin : styles.coin}>EUR</div>
           <input
             placeholder="Crea tus palabras clave"
             {...register("keywords")}
-            className={styles.inputKeywords}
+            className={
+              darkMode ? stylesDark.inputKeywords : styles.inputKeywords
+            }
           ></input>
         </div>
         {errors.price && (
-          <p className={styles.error}>
+          <p className={darkMode ? stylesDark.error : styles.error}>
             <span className="icon-warning1"></span>
             {errors.price.message}
           </p>
         )}
-        <div className={styles.labelDouble}>
-          <label htmlFor="category" className={styles.labels}>
+        <div className={darkMode ? stylesDark.labelDouble : styles.labelDouble}>
+          <label
+            htmlFor="category"
+            className={darkMode ? stylesDark.labels : styles.labels}
+          >
             Categoría
           </label>
-          <label htmlFor="status" className={styles.labelStatus}>
+          <label
+            htmlFor="status"
+            className={darkMode ? stylesDark.labelStatus : styles.labelStatus}
+          >
             Estado de tu producto
           </label>
         </div>
-        <div className={styles.column}>
+        <div className={darkMode ? stylesDark.column : styles.column}>
           <select
             {...register("category", { required: "Selecciona una categoría" })}
-            className={styles.dropdown}
+            className={darkMode ? stylesDark.dropdown : styles.dropdown}
           >
             <option value="">Selecciona una categoría</option>
             <option value="Informática y Electrónica">
@@ -156,7 +173,7 @@ const FormElse = () => {
           </select>
           <select
             {...register("status", { required: "Selecciona una estado" })}
-            className={styles.dropdown}
+            className={darkMode ? stylesDark.dropdown : styles.dropdown}
           >
             <option value="">Selecciona un estado</option>
             <option value="Como nuevo">Como nuevo</option>
@@ -165,22 +182,25 @@ const FormElse = () => {
             <option value="Sin estrenar">Sin estrenar</option>
           </select>
         </div>
-        <div className={styles.status}>
+        <div className={darkMode ? stylesDark.status : styles.status}>
           {errors.category && (
-            <p className={styles.error}>
+            <p className={darkMode ? stylesDark.error : styles.error}>
               <span className="icon-warning1"></span>
               {errors.category.message}
             </p>
           )}
           {errors.status && (
-            <p className={styles.error}>
+            <p className={darkMode ? stylesDark.error : styles.error}>
               <span className="icon-warning1"></span>
               {errors.status.message}
             </p>
           )}
         </div>
 
-        <label htmlFor="description" className={styles.labels}>
+        <label
+          htmlFor="description"
+          className={darkMode ? stylesDark.labels : styles.labels}
+        >
           ¿Cómo es tu producto?
         </label>
         <textarea
@@ -189,10 +209,10 @@ const FormElse = () => {
           {...register("description", {
             required: "La descripción es obligatoria",
           })}
-          className={styles.textArea}
+          className={darkMode ? stylesDark.textArea : styles.textArea}
         ></textarea>
         {errors.description && (
-          <p className={styles.error}>
+          <p className={darkMode ? stylesDark.error : styles.error}>
             <span className="icon-warning1"></span>
             {errors.description.message}
           </p>
@@ -203,17 +223,12 @@ const FormElse = () => {
           setImagePreviews={setImagePreviews}
           reset={reset}
         />
-        {/* <Map /> */}
-
-        <button type="submit" className={styles.formButton}>
+        <button
+          type="submit"
+          className={darkMode ? stylesDark.formButton : styles.formButton}
+        >
           Subir
         </button>
-        {/* {showAlert && (
-          <CustomAlert
-            message="Tu producto se ha subido correctamente"
-            onClose={handleCloseAlert}
-          />
-        )} */}
       </form>
     </>
   );

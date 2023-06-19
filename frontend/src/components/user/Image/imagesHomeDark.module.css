@@ -10,7 +10,6 @@
   height: 250px;
   background-color: var(--blue-medium);
   border-radius: 0.7em;
-  color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -46,8 +45,10 @@
 
 .noImage span {
   font-size: 2.5rem;
-  color: var(--blue-light);
   margin: 0 0 0 3.8em;
+  background-color: var(--blue-medium);
+  color: var(--blue-light);
+
 }
 
 .status {
@@ -63,16 +64,18 @@
 
 .text {
   margin-top: 1em;
+  background-color: var(--blue-medium);
+  color: black;
+
 }
 
 .text span {
-  color: white;
+  color: black;
   margin: 0 0 0 -0.1em;
 }
 
 .statusNoImage {
   background-color: var(--blue-light);
-  color: var(--blue-dark);
   margin: 0 0 0 8em;
   border-radius: 1em;
   height: fit-content;

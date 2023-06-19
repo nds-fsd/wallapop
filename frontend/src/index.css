@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities; */
 
+/* 
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+className={darkMode ? stylesDark.navbar : styles.navbar}
+ 
+*/
+
+/*  
+rgba(226, 34, 34, 0.692);
+  box-shadow: 0 0 3px var(--yellow-main); 
+  border: solid 0.15rem var(--blue-light); 
+  background-color: var(--background-dark);   
+ */
+
 #root {
   font-family: "Roboto", sans-serif;
   line-height: 1.5;
@@ -20,9 +33,18 @@
   --blue-medium: #39428d;
   --blue-light: #6ae3eb;
   --grey: #eaeeee;
-  background-color: var(--grey);
+  /* background-color: var(--background-dark); */
+  --background-dark: #202123;
+  --background-medium: #303031;
+  --background-light: var(--grey);
 }
 
+.app {
+  background-color: var(--background-light);
+}
+.appDark {
+  background-color: var(--background-dark);
+}
 body {
   height: 100vh;
   margin: 0;
@@ -31,7 +53,7 @@ body {
 h1 {
   font-size: 2.8rem;
   font-weight: 900;
-  line-height: 2.5rem;;
+  line-height: 2.5rem;
 }
 
 h2 {

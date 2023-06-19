@@ -14,19 +14,21 @@ import {
   USER_STATS,
 } from "../route-paths";
 import styles from "./index.module.css";
+import stylesDark from "./indexDark.module.css";
 import { AuthContext } from "../../../context/authContext";
-import cld from "../../../utils/cloudinary-client";
 import { useContext } from "react";
+import { ThemeContext } from "../../../context/themeContext";
 
 const Sidebar = () => {
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   const { userData } = useContext(AuthContext);
-  if(!userData)return null
+  if (!userData) return null;
 
   return (
-    <div className={styles.sideBar}>
-      <div className={styles.profileLink}>
+    <div className={darkMode ? stylesDark.sideBar : styles.sideBar}>
+      <div className={darkMode ? stylesDark.profileLink : styles.profileLink}>
         <Link to={USER_PROFILE}>
-        <img src={userData.photo} />
+          <img src={userData.photo} />
           <p>{userData.name}</p>
         </Link>
       </div>
@@ -45,9 +47,9 @@ const Sidebar = () => {
       <Link to={USER_FAVORITES}>
         <MdOutlineFavoriteBorder /> Favoritos
       </Link>
-      <Link to={USER_STATS}>
+      {/* <Link to={USER_STATS}>
         <IoStatsChart /> Estadísticas
-      </Link>
+      </Link> */}
     </div>
   );
 };

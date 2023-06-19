@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
-import style from "../index.module.css";
+import styles from "../index.module.css";
+import stylesDark from "../indexDark.module.css";
+import { ThemeContext } from "../../../context/themeContext";
 
 const Purchases = () => {
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+
   return (
-    <div className={style.navPageContainer}>
+    <div
+      className={
+        darkMode ? stylesDark.navPageContainer : styles.navPageContainer
+      }
+    >
       <h1>Compras</h1>
-      <div className={style.linkPageContainer}>
+      <div
+        className={
+          darkMode ? stylesDark.linkPageContainer : styles.linkPageContainer
+        }
+      >
         {/* <Link to="ongoing"> En Curso </Link> */}
         <Link to="completed"> Completadas </Link>
       </div>

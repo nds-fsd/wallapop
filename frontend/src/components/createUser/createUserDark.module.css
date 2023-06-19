@@ -1,0 +1,191 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-dark);
+  color: var(--yellow-main);
+}
+
+.createUserContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40rem;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background-color: var(--background-medium);
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  justify-content: center;
+  align-items: center;
+}
+.column {
+  display: flex;
+  gap: 1rem;
+}
+
+.imageColumn {
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageColumn > label {
+  color: var(--blue-dark);
+}
+
+.input {
+  width: 15rem;
+  height: 2.3rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  position: relative;
+  padding-left: 1rem;
+  font-size: 1rem;
+  gap: 1rem;
+  background-color: var(--background-medium);
+  color: white;
+}
+
+.dropdown {
+  width: 16.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  border: 0.1em solid var(--yellow-main);
+  padding-left: 0.8rem;
+  font-size: 1rem;
+  color: white;
+  background-color: var(--background-dark);
+}
+
+.createUserButton {
+  width: 13rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  border-radius: 2.5rem;
+  border: 0.15em solid var(--yellow-main);
+  background-color: white;
+  color: var(--yellow-main);
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--background-medium);
+
+}
+
+.createUserButton:hover {
+  background-color: var(--yellow-main);
+  color: var(--background-medium);
+}
+
+.image {
+  width: 5rem;
+  height: 5rem;
+  background-color: transparent;
+  color: var(--blue-light);
+  border-radius: 1rem;
+  border-style: dotted;
+  border-width: 0.2rem;
+  border-color: var(--blue-light);
+  cursor: pointer;
+}
+.noimage {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+.image span:nth-child(1) {
+  font-size: 2.5rem;
+}
+
+.image:hover {
+  border-color: var(--yellow-main);
+  color: var(--yellow-main);
+}
+
+.error {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8.7rem;
+  width: 34rem;
+}
+.error > p {
+  color: red;
+  font-size: 0.7em;
+  margin-top: -0.2rem;
+}
+.error span {
+  color: red;
+  margin-right: 0.5em;
+}
+.error1 {
+  display: flex;
+  gap: 9.5rem;
+  justify-content: flex-start;
+  gap: 9.2rem;
+  width: 34rem;
+}
+.error1 > p {
+  color: red;
+  font-size: 0.7em;
+  margin-top: -0.2rem;
+}
+.error1 span {
+  color: red;
+  margin-right: 0.5em;
+}
+
+.inputRegister,
+.select {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* styles for createUser page */
+.create-form {
+  display: block;
+}
+
+.create-form label {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.formContainer {
+  display: flex;
+  color: red;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageButtonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.imageButtonContainer img {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  border-radius: 100%;
+}
