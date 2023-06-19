@@ -75,15 +75,15 @@
   border-radius: 2.5rem;
   font-weight: bold;
   font-size: 1rem;
-  border: solid 0.15rem var(--yellow-main);
-  color: var(--yellow-main);
+  border: solid 0.15rem var(--blue-light);
+  color: var(--blue-light);
   font-weight: 600;
   background-color: var(--background-medium);
   cursor: pointer;
 }
 
 .comprar:hover {
-  background-color: var(--yellow-main);
+  background-color: var(--blue-light);
   border-radius: 2.5rem;
   color: var(--background-medium);
 }
