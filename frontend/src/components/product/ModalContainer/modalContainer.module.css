@@ -4,13 +4,12 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(7, 7, 7, 0.08);
-  /* background-color: var(--grey);
-  background-color: blue; */
+  background-color: var(--background-dark);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  color: var(--blue-dark-to-yellow-main);
 }
 
 .modal {
@@ -21,6 +20,7 @@
   border-radius: 1em;
   padding: 2em;
   box-shadow: 2px 2px 5px rgba(104, 104, 104, 0.1);
+  background-color: var(--white-to-bg-medium);
 }
 
 .title {
@@ -28,9 +28,8 @@
   justify-content: flex-start;
   align-items: center;
   height: 2rem;
-  margin-top: 1.5em
+  margin-top: 1.5em;
 }
-
 
 .close {
   position: absolute;
@@ -41,11 +40,12 @@
 }
 
 .close span:nth-child(1) {
-  color: var(--blue-dark);
+  color: var(--red);
   font-size: 1.2em;
 }
 
 .close span:nth-child(1):hover {
-  color: var(--yellow-main);
+  color: var(--red);
   cursor: pointer;
+  font-size: 1.3em;
 }

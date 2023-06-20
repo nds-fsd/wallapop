@@ -9,19 +9,21 @@
   width: 12.5vw;
   height: 30rem;
   padding: 1rem;
+  background-color: var(--white-to-bg-medium);
+  color: var(--blue-dark-to-yellow-main);
 }
 
 .sideBar :hover {
-  background-color: #28349e82;
+  background-color: var(--blue-dark-to-yellow-light);
   color: var(--yellow-light);
   border-radius: 1rem;
-  box-shadow: 2px 2px 4px 0.5px #0000001a;
+  box-shadow: 2px 2px 4px 0.5px var(--black-to-yellow-main);
 }
 .sideBar :focus {
-  background-color: #28349e82;
+  background-color: var(--blue-dark-to-yellow-light);
   color: var(--yellow-light);
   border-radius: 1rem;
-  box-shadow: 2px 2px 4px 0.5px #0000001a;
+  box-shadow: 2px 2px 4px 0.5px var(--black-to-yellow-main);
 }
 
 .sideBar a {
@@ -32,6 +34,7 @@
   width: 12vw;
   gap: 1rem;
   font-size: 1rem;
+  color: var(--black-to-yellow-main);
 }
 
 .profileLink img {

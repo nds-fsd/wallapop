@@ -3,17 +3,19 @@
   width: 100%;
   flex-direction: column;
   margin-left: 1rem;
+  background-color: var(--gray-to-bg-dark);
 }
 
 .profileTitle {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  color: var(--blue-dark-to-white);
 }
 
 .profileTitle h4 {
   font-size: 1rem;
-  color: grey;
+  color: var(--grey-to-yellow-light);
 
   font-weight: lighter;
 }
@@ -26,15 +28,26 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--gray-to-bg-dark);
 }
 .linksProfile a {
-  text-decoration: none;
+  /* text-decoration: none;
   font-size: 1rem;
   padding: 0.5rem;
-  border-radius: 35%;
+  border-radius: 35%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7rem;
+  height: 2.5rem;
+  border-radius: 2.5rem;
+  font-size: 1rem;
+  border: var(--none-to-blue-light);
+  text-decoration: none;
+  color: var(--blue-dark-to-blue-light);
 }
 .linksProfile :hover {
-  background-color: #28349e82;
+  background-color: var(--blue-dark-to-blue-light);
   color: var(--yellow-light);
   border-radius: 1rem;
 }
@@ -56,18 +69,18 @@
   height: 2.5rem;
   border-radius: 2.5rem;
   font-size: 0.75rem;
-  border: solid 0.15rem var(--yellow-main);
-  color: var(--yellow-main);
+  border: solid 0.15rem var(--yellow-main-to-red);
+  color: var(--yellow-main-to-red);
   font-weight: 600;
-  background-color: var(--yellow-light);
+  background-color: var(--yellow-light-to-bg-dark);
   cursor: pointer;
 }
 
 .logoutButton :hover {
-  background-color: #ebaa0525;
+  background-color: var(--red);
   border-radius: 2.5rem;
-  color: var(--blue-dark);
-  border-color: var(--blue-dark);
+  color: var(--gray-to-bg-dark);
+  /* border-color: var(--blue-dark); */
 }
 
 .logoutButton {
@@ -79,7 +92,7 @@
   display: flex;
   flex-direction: column;
   /* background-color: var(--yellow-light); */
-  background-color: white;
+  background-color: var(--white-to-bg-dark);
   color: var(--blue-dark);
   padding: 1rem;
   border-radius: 1rem;
@@ -91,6 +104,7 @@
   padding: 1rem;
   margin-right: 1rem;
   gap: 1rem;
+  background-color: var(--white-to-bg-dark);
 }
 .formButton {
   width: 13rem;
@@ -98,9 +112,8 @@
   font-size: 1.2rem;
   padding: 0 1rem;
   border-radius: 2.5rem;
-  border: 0.15em solid var(--yellow-main);
-  background-color: var(--yellow-main);
-  background-color: white;
+  border: 0.15em solid var(--yellow-main-to-blue-light);
+  background-color: var(--white-to-bg-dark);
   color: var(--yellow-main);
   font-weight: bold;
   cursor: pointer;

@@ -1,11 +1,11 @@
 .darkMode {
-  background-color: var(--grey);
+  background-color: var(--gray-to-bg-dark);
   color: var(--blue-dark);
   font-size: 2em;
   cursor: pointer;
 }
 .darkMode:hover {
-  color: var(--yellow-main);
+  color: var(--yellow-main-to-blue-light);
 }
 .navbar {
   width: 100vw;
@@ -16,7 +16,7 @@
   align-items: center;
   padding-left: 3rem;
   border-bottom: solid rgba(198, 197, 197, 0.368) 0.1rem;
-  background-color: var(--grey);
+  background-color: var(--gray-to-bg-dark);
 }
 
 .logoLink img {
@@ -34,10 +34,10 @@
 }
 
 .buttonLink :hover {
-  /* background-color: #ebaa0525; */
+  background-color: var(--gray-to-bg-dark);
   border-radius: 2.5rem;
-  color: var(--yellow-main);
-  border-color: var(--yellow-main);
+  color: var(--blue-dark-to-yellow-main);
+  border-color: var(--blue-dark-to-yellow-main);
 }
 
 .buttonLink a {
@@ -45,10 +45,10 @@
   height: 2.5rem;
   border-radius: 2.5rem;
   font-size: 0.75rem;
-  border: solid 0.15rem var(--yellow-main);
-  color: var(--yellow-main);
+  border: solid 0.15rem var(--yellow-main-to-blue-light);
+  color: var(--yellow-main-to-blue-light);
   font-weight: 600;
-  background-color: var(--yellow-light);
+  background-color: var(--yellow-light-to-bg-dark);
   cursor: pointer;
   text-decoration: none;
   display: flex;

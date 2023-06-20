@@ -48,6 +48,7 @@
   font-size: 2.5rem;
   color: var(--blue-light);
   margin: 0 0 0 3.8em;
+  background-color: var(--blue-medium);
 }
 
 .status {
@@ -63,16 +64,24 @@
 
 .text {
   margin-top: 1em;
+  /* DARK::
+  background-color: var(--blue-medium);
+  color: black; */
 }
 
 .text span {
-  color: white;
+  color: var(--whit-to-black);
   margin: 0 0 0 -0.1em;
+
+  /* DARKK_
+    background-color: var(--blue-medium);
+
+   */
 }
 
 .statusNoImage {
   background-color: var(--blue-light);
-  color: var(--blue-dark);
+  /* color: var(--blue-dark); */
   margin: 0 0 0 8em;
   border-radius: 1em;
   height: fit-content;
