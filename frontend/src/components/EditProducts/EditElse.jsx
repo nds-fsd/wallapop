@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./editProduct.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProductById, updateProduct } from "../../utils/apiProducts";
 import CustomAlert from "../CustomAlert/CustomAlert";
 import EditImages from "../EditImages/EditImages";
+import { AuthContext } from "../../context/authContext";
 
 const EditElse = ({ id }) => {
-  // console.log("el producto en el modal", id);
-
   const {
     register,
     handleSubmit,
@@ -21,6 +20,36 @@ const EditElse = ({ id }) => {
       reset(product);
     },
   });
+
+  console.log("el product a editar", product);
+ 
+  const {images, setImages} = useContext(AuthContext)
+  const [imagePreviews, setImagePreviews] = useState([]);
+
+  const handleImageUpload = (files, index) => {
+    const imageUrls = Array.from(files).map((file) =>
+      URL.createObjectURL(file)
+    );
+    setImagePreviews((prevPreviews) => {
+      const updatedPreviews = [...prevPreviews];
+      updatedPreviews[index] = imageUrls[0];
+      return updatedPreviews;
+    });
+  };
+
+
+  const handleRemoveImage = (index) => {
+    setImages((prevImages) => {
+      const updatedImages = [...prevImages];
+      updatedImages.splice(index, 1);
+      return updatedImages;
+    });
+
+    const updatedProduct = { ...product };
+    updatedProduct.images = product.images.filter((_, i) => i !== index);
+    reset({ ...product, images: updatedProduct.images });
+  };
+
 
   const queryClient = useQueryClient(["product-updated"]);
   const mutation = useMutation(updateProduct, {
@@ -46,9 +75,12 @@ const EditElse = ({ id }) => {
         .filter((keyword) => keyword !== "");
     }
 
-    const productData = { ...product, keywords };
+    const productData = { ...product, keywords, images };
+    console.log("este el producto mutado", productData)
     mutation.mutate(productData);
     alert("Los cambios se han guardado satisfactoriamente");
+    reset()
+    setImages([])
   };
 
   return (
@@ -148,8 +180,16 @@ const EditElse = ({ id }) => {
             </p>
           )}
 
-          {product && <EditImages product={product}/>}
-        
+          {product && (
+            <EditImages
+              product={product}
+              handleImageUpload={handleImageUpload}
+              handleRemoveImage={handleRemoveImage}
+              imagePreviews={imagePreviews}
+              setImagePreviews={setImagePreviews}
+              reset={reset}
+            />
+          )}
 
           <div className={styles.formButton}>
             <button type="submit" data-test="guardar">

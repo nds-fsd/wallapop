@@ -115,28 +115,6 @@ export const getProductByName = ({ queryKey }) => {
   );
 };
 
-// export const postProduct = (data) => {
-//   // console.log("esta es la data en el post", data)
-//   // const { id } = JSON.parse(localStorage.getItem("user"));
-//   const { id } = getUserData();
-
-//   const favoriteData = {
-//     user: null,
-//     fav: null,
-//   };
-
-//   const productData = { ...data, favorite: favoriteData };
-//   console.log("paso por la apiProducts", productData);
-//   return api
-//     .post(`/products/newProduct/${id}`, productData)
-//     .then((res) => res.data)
-//     .catch((error) => {
-//       console.log(error);
-//       return {
-//         error: "Sorry, we couldn't post your product.",
-//       };
-//     });
-// };
 
 export const postProduct = (data) => {
   // console.log("esta es la data en el post", data)
@@ -155,11 +133,10 @@ export const postProduct = (data) => {
 };
 
 export const updateProduct = (product) => {
-  // console.log("paso por el update product", product)
+  console.log("paso por el update product", product)
   const id = product._id;
   // console.log("el id del producto a update", id)
   const { token } = getUserToken();
-  console.log("paso por la api de update", product);
   return api
     .patch(`/products/${id}`, product, {
       headers: {
@@ -171,29 +148,6 @@ export const updateProduct = (product) => {
       console.log(error);
     });
 };
-
-// export const changeFavorite = (product) => {
-//   const { token } = getUserToken();
-//   const { _id, favorite } = product;
-//   console.log("el favorito", favorite);
-//   console.log("paso por la api de update", product);
-//   const updatedProduct = {
-//     favorite: {
-//       fav: favorite.fav,
-//       user: favorite.user,
-//     },
-//   };
-//   return api
-//     .patch(`/products/${_id}/favorite`, updatedProduct, {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     })
-//     .then((res) => res.data)
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// };
 
 export const deleteProduct = (id) => {
   const token = JSON.parse(localStorage.getItem("user-session"));

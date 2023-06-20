@@ -11,6 +11,8 @@ import { AuthContext } from "../../../context/authContext";
 const FormElse = () => {
   const queryClient = useQueryClient(["product"]);
   const {images, setImages} = useContext(AuthContext)
+  const [imagePreviews, setImagePreviews] = useState([]);
+
 
   const {
     register,
@@ -25,7 +27,6 @@ const FormElse = () => {
     },
   });
 
-  const [imagePreviews, setImagePreviews] = useState([]);
 
   const handleImageUpload = (files, index) => {
     const imageUrls = Array.from(files).map((file) =>
@@ -201,7 +202,7 @@ const FormElse = () => {
           setImagePreviews={setImagePreviews}
           reset={reset}
         />
-        {/* <Map /> */}
+        <Map />
 
         <button type="submit" className={styles.formButton}>
           Subir

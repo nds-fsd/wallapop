@@ -159,7 +159,6 @@ export const AuthProvider = ({ children }) => {
   );
 
   const [images, setImages] = useState([]);
-  const imagesForUpload = [];
   const multipleUploadWidget = cloudinary.createUploadWidget(
     {
       cloudName: "dvogntdp2",
@@ -191,7 +190,7 @@ export const AuthProvider = ({ children }) => {
     },
     (err, result) => {
       if (!err && result.event === "success") {
-        console.log("esto es result multiple", result);
+        console.log("esto es result multiple", result.event);
         // imagesForUpload.push(result.info.secure_url);
         // setImages(imagesForUpload);
         setImages((prevImages) => [...prevImages, result.info.secure_url]);
