@@ -20,12 +20,10 @@ const FormImages = ({ handleImageUpload, imagePreviews }) => {
   // }
 
   // const handleUploadSuccess = (result) => {
-  //   console.log('Upload Result:', result);
 
   //   if (result && result.event === 'success') {
   //     const imageUrl = result.info.secure_url;
   //     setImagePreviews((prevPreviews) => [...prevPreviews, imageUrl]);
-  //     console.log('Updated Image Previews:', [...prevPreviews, imageUrl]);
   //   }
   // };
 
@@ -111,7 +109,6 @@ export default FormImages;
 //    }
 //    const imageUrl = result.info.secure_url;
 //    setImages((prevImages) => [...prevImages, imageUrl]);
-//    console.log("paso por el upload de multiple imagenes", result);
 //  };
 
 //  const multipleUploadWidget = cloudinary.createUploadWidget({

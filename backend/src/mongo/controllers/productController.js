@@ -26,7 +26,7 @@ const getProductById = async (req, res) => {
 };
 
 const getProductByUser = async (req, res) => {
-  // console.log("paso por aqui");
+
   const userId = req.params.user;
   try {
     if (!userId) res.status(404).json("no user id provided");
@@ -43,7 +43,7 @@ const getProductByUser = async (req, res) => {
 };
 
 const getProductByUserFavs = async (req, res) => {
-  // console.log("paso por aqui");
+
   const userId = req.params.user;
   try {
     if (!userId) res.status(404).json("no user id provided");
@@ -74,7 +74,7 @@ const getProductByCategory = async (req, res) => {
       //y populamos con categorias para buscar los productos que tiene esa categoria
       .populate("categories");
     res.status(200).json(productByCategory);
-    console.log(productByCategory);
+
   } catch (error) {
     res.status(404).json({ error: "Sorry, can't find this category" });
     console.log(error);
@@ -207,9 +207,9 @@ module.exports = {
 // newProduct.categories.push(cat._id);
 // try {
 //   await newProduct.save();
-//   // console.log(newProduct);
+
 //   res.status(200).json(newProduct);
 // } catch (error) {
 //   res.status(500).json({ error: "Can't post this product" });
-//   console.log(error);
+
 // }

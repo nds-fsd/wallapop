@@ -44,6 +44,7 @@ import {
 import styles from "./index.module.css";
 import Sidebar from "./sidebar";
 import Favs from "./favorites/favs";
+import ChatRoom from "../chat/chat-room";
 
 const UserPage = () => {
   return (
@@ -73,7 +74,9 @@ const UserPage = () => {
             <Route path={PRODUCTS_SOLD} element={<ProductSold />} />
           </Route>
 
-          <Route path={USER_MESSAGES} element={<Messages />} />
+          <Route path={USER_MESSAGES} element={<Messages />}>
+            <Route path="chatroom/:chatRoomID" element={<ChatRoom />} />
+          </Route>
 
           <Route path={USER_FAVORITES} element={<Favorites />}>
             <Route path={FAVORITE_PRODUCTS} element={<Favs />} />

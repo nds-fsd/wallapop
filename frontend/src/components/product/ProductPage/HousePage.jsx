@@ -4,16 +4,11 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
-import {
-  
-  getProductById,
-  updateProduct,
-} from "../../../utils/apiProducts";
+import { getProductById, updateProduct } from "../../../utils/apiProducts";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserToken } from "../../../utils/localStorage.utils";
 import { postChatRoom } from "../../../utils/apiChatRoom";
 import { AuthContext } from "../../../context/authContext";
-
 
 const HousePage = ({ id }) => {
   const { userData } = useContext(AuthContext);
@@ -59,7 +54,6 @@ const HousePage = ({ id }) => {
     const userToken = localStorage.getItem("user-session");
 
     if (userToken) {
-      console.log(userToken)
       const updatedFavorite = !favorite;
       setFavorite(updatedFavorite);
       const updatedProduct = { ...data, favorite: updatedFavorite };
@@ -81,23 +75,21 @@ const HousePage = ({ id }) => {
   //Cuando todos los productos tengan asociado categories (title, logo...)
   //junto con el div que tiene el Link
   // const title = data?.categories[0].title
-  // console.log("el titulo de la categoria", title)
 
   const handleCreateChatRoom = async () => {
     const body = {
       product_id: data._id,
       owner_id: data.user._id,
       buyer_id: userData._id,
-    }
-    console.log("esto es body chatroom", body)
+    };
+
     try {
       const chatroom = await postChatRoom(body);
-      navigate(`/chatroom/${chatroom._id}`);
-    } catch (error) { console.log(error)
-      
+      navigate(`/user/chatroom/${chatroom._id}`);
+    } catch (error) {
+      console.log(error);
     }
-  
-  }
+  };
 
   return (
     <>
@@ -143,9 +135,9 @@ const HousePage = ({ id }) => {
               >
                 <span className="icon-heart1"></span>
               </button>
-              <button 
-            className={styles.chat}
-            onClick={handleCreateChatRoom}>CHAT</button>
+              <button className={styles.chat} onClick={handleCreateChatRoom}>
+                CHAT
+              </button>
             </div>
           </div>
           {data && <Slider images={data.images} data={data} />}

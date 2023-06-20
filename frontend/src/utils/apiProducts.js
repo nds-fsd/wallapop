@@ -3,7 +3,7 @@ import { api } from "./api";
 import { getUserData, getUserToken } from "./localStorage.utils";
 
 export const getAllProducts = () => {
-  // console.log("paso por el get all")
+
   return api
     .get("/products/")
     .then((res) => res.data)
@@ -25,8 +25,7 @@ export const getProductById = ({ queryKey }) => {
 export const getProductByUser = () => {
   const { id } = JSON.parse(localStorage.getItem("user"));
   const token = JSON.parse(localStorage.getItem("user-session"));
-  // console.log("el id", id);
-  // console.log("el token", token);
+
   return api
     .get(`/products/getbyuser/${id}`, {
       headers: {
@@ -59,7 +58,6 @@ export const getFavsByUser = () => {
       })
       .then((res) => {
         const filteredProducts = res.data.filter((product) => product.favorite && product.favorite.fav === true)
-        console.log("Filtered products:", filteredProducts); // Log the filtered products
         return filteredProducts;
       })
       .catch((error) => {
@@ -98,7 +96,7 @@ export const getProductByName = ({ queryKey }) => {
 };
 
 // export const postProduct = (data) => {
-//   // console.log("esta es la data en el post", data)
+
 //   // const { id } = JSON.parse(localStorage.getItem("user"));
 //   const { id } = getUserData();
 
@@ -108,7 +106,7 @@ export const getProductByName = ({ queryKey }) => {
 //   };
 
 //   const productData = { ...data, favorite: favoriteData };
-//   console.log("paso por la apiProducts", productData);
+
 //   return api
 //     .post(`/products/newProduct/${id}`, productData)
 //     .then((res) => res.data)
@@ -121,7 +119,6 @@ export const getProductByName = ({ queryKey }) => {
 // };
 
 export const postProduct = (data) => {
-  // console.log("esta es la data en el post", data)
   // const { id } = JSON.parse(localStorage.getItem("user"));
   const { id } = getUserData();
 
@@ -137,11 +134,11 @@ export const postProduct = (data) => {
 };
 
 export const updateProduct = (product) => {
-  // console.log("paso por el update product", product)
+
   const id = product._id;
-  // console.log("el id del producto a update", id)
+
   const { token } = getUserToken();
-  console.log("paso por la api de update", product);
+
   return api
     .patch(`/products/${id}`, product, {
       headers: {
@@ -157,8 +154,7 @@ export const updateProduct = (product) => {
 // export const changeFavorite = (product) => {
 //   const { token } = getUserToken();
 //   const { _id, favorite } = product;
-//   console.log("el favorito", favorite);
-//   console.log("paso por la api de update", product);
+
 //   const updatedProduct = {
 //     favorite: {
 //       fav: favorite.fav,

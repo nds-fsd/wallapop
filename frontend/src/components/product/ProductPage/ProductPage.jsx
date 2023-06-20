@@ -1,7 +1,5 @@
 import React, { useContext, useState } from "react";
-import {
-  getProductById,
-} from "../../../utils/apiProducts";
+import { getProductById } from "../../../utils/apiProducts";
 import { useQuery, useMutation } from "react-query";
 import styles from "./productPage.module.css";
 import Slider from "../Slider/Slider";
@@ -14,7 +12,6 @@ import Keywords from "../Keywords/Keywords";
 import { useParams } from "react-router-dom";
 import { postChatRoom } from "../../../utils/apiChatRoom";
 import { AuthContext } from "../../../context/authContext";
-
 
 const ProductPage = () => {
   const { userData } = useContext(AuthContext);
@@ -47,16 +44,15 @@ const ProductPage = () => {
       product_id: data._id,
       owner_id: data.user._id,
       buyer_id: userData._id,
-    }
-    console.log("esto es body chatroom", body)
+    };
+
     try {
       const chatroom = await postChatRoom(body);
-      navigate(`/chatroom/${chatroom._id}`);
-    } catch (error) { console.log(error)
-      
+      navigate(`/user/chatroom/${chatroom._id}`);
+    } catch (error) {
+      console.log(error);
     }
-  
-  }
+  };
 
   return (
     <>
@@ -73,15 +69,16 @@ const ProductPage = () => {
               <button className={styles.like}>
                 <span className="icon-heart1"></span>
               </button>
-              <button 
-            className={styles.chat}
-            onClick={handleCreateChatRoom}>CHAT</button>
+              <button className={styles.chat} onClick={handleCreateChatRoom}>
+                CHAT
+              </button>
             </div>
             {data && <Slider images={mockImages} data={data} />}
             <div className={styles.details}>
               <div className={styles.priceContainer}>
                 <h1 className={styles.price}>
-                  {data && data.price.toLocaleString('es-ES', {useGrouping: true})}
+                  {data &&
+                    data.price.toLocaleString("es-ES", { useGrouping: true })}
                 </h1>
                 <h2>EUR</h2>
               </div>

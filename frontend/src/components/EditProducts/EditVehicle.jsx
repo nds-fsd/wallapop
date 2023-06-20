@@ -6,7 +6,7 @@ import { getProductById, updateProduct } from "../../utils/apiProducts";
 import EditImages from "../EditImages/EditImages";
 
 const EditVehicle = ({ id }) => {
-  // console.log("el producto en el modal", id);
+
 
   const {
     register,

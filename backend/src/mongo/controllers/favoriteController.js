@@ -41,7 +41,6 @@ const postFavorite = async (req, res) => {
     }
     await existingFavorites.save();
     res.status(200).json(existingFavorites);
-    console.log("el favorito cambiado", existingFavorites)
   } catch (error) {
     res.status(500).json({ error: "Failed to create favorite" });
   }

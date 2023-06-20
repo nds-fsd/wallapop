@@ -1,37 +1,34 @@
-import { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../../context/authContext";
-import { getChatRoomID } from "../../utils/apiChatRoom";
 import { getMessageByChatRoom, postMessage } from "../../utils/apiMessage";
 import styles from "./chat-room.module.css";
-import {io} from "socket.io-client";
-import { getUserToken } from "../../utils/localStorage.utils";
+import { io } from "socket.io-client";
+import { getUserData, getUserToken } from "../../utils/localStorage.utils";
+import ChatHeader from "./chat-header";
+import FormChat from "./formChat";
 
 const token = getUserToken();
-const socket = io("ws://localhost:3001", {
+const socket = io("http://localhost:3001", {
   path: "/private",
   reconnectionDelayMax: 10000,
   auth: {
     token,
-  }
+  },
 });
 
 const ChatRoom = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
+  const messagesContainerRef = useRef(null);
   const params = useParams();
   const { chatRoomID } = params;
   const { data } = useQuery(["message", chatRoomID], getMessageByChatRoom);
+  const { id } = getUserData();
 
-  const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [storedMessages, setStoredMessages] = useState([]);
+  
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   useEffect(() => {
     socket.connect();
@@ -44,65 +41,48 @@ const ChatRoom = () => {
   }, [socket]);
 
   useEffect(() => {
+    setMessages(data);
+  }, [data]);
+
+  useEffect(() => {
     const receivedMessage = (message) => {
-      const parsedMessage = {
-        ...message,
-        user:
-          message.user._id === getUserSession().id
-            ? "Yo"
-            : message.user.firstName,
-      };
-      setMessages([...messages, parsedMessage]);
+      setMessages([...messages, message]);
+      scrollToBottom();
     };
+    socket.on("NEW_MESSAGE", receivedMessage);
 
-      socket.emit("join-chat", chatRoomID);
-      socket.on("chat-joined", (data) => {
-        console.log(`Joined chat: ${data}`);
-      });
-      socket.on("NEW_MESSAGE", receivedMessage);
-    
-
-    //Desuscribimos el estado del componente cuando ya no es necesario utilizarlo
     return () => {
       socket.off("NEW_MESSAGE", receivedMessage);
     };
   }, [messages, socket]);
 
-
-  const handlePostMessage = (message) => {
-    const body = {
-      chat_room_id: chatRoomID,
-      body: message.message,
-    };
-    postMessage(body);
-    // setMessage(body.body)
+  const scrollToBottom = () => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollIntoView({ block: 'end' });
+    }
   };
 
   return (
     <div>
       <div className={styles.chatroomContainer}>
-       
-        {data?.map((message)=>{
-         return (<div>
-            <p>{message.body}</p>
-          </div>)
+        <ChatHeader chatRoomID={chatRoomID} />
+        <div className={styles.messageContainer} >
+          {messages?.map((message) => {
+            return (
+              <div
+                className={`${
+                  message.user_id === id ? styles.myMessage : styles.otherMessage
+                }`}
+                
+                >
+                {message.body}
+              </div>
+            );
+          })}
+          <div ref={messagesContainerRef} />
+        </div>
 
-        })}
-
-        <form
-          onSubmit={handleSubmit(handlePostMessage)}
-          className={styles.formContainer}
-        >
-          <input
-            type="text-area"
-            placeholder="Dile algo al vendedor..."
-            {...register("message", {
-              required: "Escribe un mensaje para el vendedor",
-            })}
-          />
-
-          <input value="Enviar" type="submit" />
-        </form>
+        <FormChat />
       </div>
     </div>
   );

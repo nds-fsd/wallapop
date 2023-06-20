@@ -14,7 +14,6 @@ const ProductPublished = () => {
     queryKey: ["products_published"],
     queryFn: getProductByUser,
   });
-  console.log("los productos", prods);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [idProduct, setIdProduct] = useState("");
@@ -28,7 +27,6 @@ const ProductPublished = () => {
   };
 
   const handleClick = (id) => {
-    // console.log("el id del producto", id);
     setIdProduct(id);
     openModal();
   };
@@ -71,7 +69,9 @@ const ProductPublished = () => {
             {prods &&
               prods.map((prod) => (
                 <div className={styles.card} data-test="producto">
-                  {prods && <Images images={prod.images} status={prod.status}/>}
+                  {prods && (
+                    <Images images={prod.images} status={prod.status} />
+                  )}
                   <div className={styles.titleContainer}>
                     <h4 className={styles.title}>{prod.title}</h4>
                     <h4>
@@ -83,10 +83,10 @@ const ProductPublished = () => {
                   </div>
                   <div className={styles.details}>
                     <div>
-                {prod.categories.map((category) => (
-                  <h5 key={category._id}>{category.title}</h5>
-                ))}
-              </div>
+                      {prod.categories.map((category) => (
+                        <h5 key={category._id}>{category.title}</h5>
+                      ))}
+                    </div>
                     {/* <h5>{prod.category}</h5> */}
                     <p>{prod.status}</p>
                   </div>
@@ -98,7 +98,6 @@ const ProductPublished = () => {
                     </div>
                   )}
 
-                  
                   <p className={styles.paragraph}>{prod.description}</p>
                   <div className={styles.icons}>
                     <button onClick={() => handleClick(prod._id)}>
@@ -130,7 +129,7 @@ const ProductPublished = () => {
               prods.map((prod) => (
                 <div className={styles.list} key={prod.id}>
                   <div className={styles.imgList}>
-                    {prods && <ImagesList images={prod.images}  />}
+                    {prods && <ImagesList images={prod.images} />}
                   </div>
 
                   <div className={styles.detailsContainer}>

@@ -1,14 +1,24 @@
 import React from "react";
-import ChatRoom from "../../chat/chat-room";
+import { Outlet } from "react-router-dom";
 import style from "../index.module.css";
+import styles from "./messages.module.css";
+import ChatList from "./chatList";
 
 const Messages = () => {
-  //Aqui va el fetch al endpoint de mensajes
-
   return (
     <div className={style.navPageContainer}>
-      <h1>Buzón</h1>
-      <ChatRoom />
+      <div>
+        <h1>Buzón</h1>
+      </div>
+      <div className={styles.chatContainer}>
+        <div className={styles.outlet}>
+          <Outlet />
+        </div>
+
+        <div className={styles.chatList}>
+          <ChatList />
+        </div>
+      </div>
     </div>
   );
 };

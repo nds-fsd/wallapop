@@ -25,7 +25,6 @@ export const getInfoUser = (user) => {
 };
 
 export const modUser = (user) => {
-  console.log("HOLA USER QUE TAL?", user);
   const token = JSON.parse(localStorage.getItem("user-session"));
   const userId = localStorage.getItem("user");
   const id = JSON.parse(userId).id;
@@ -40,7 +39,6 @@ export const modUser = (user) => {
 };
 
 export const deleteUser = (user) => {
-  console.log("VAMOS A ELIMINAR EL USUARIO");
   const token = JSON.parse(localStorage.getItem("user-session"));
   const userId = localStorage.getItem("user");
   const id = JSON.parse(userId).id;

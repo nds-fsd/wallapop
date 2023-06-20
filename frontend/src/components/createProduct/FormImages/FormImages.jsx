@@ -16,7 +16,6 @@ const FormImages = ({ handleImageUpload, reset }) => {
     const uploadedImage = images[index];
     setImages([...images, uploadedImage]);
   };
-  console.log("Nuevas imagenes", images);
 
   const remainingSlots = Math.max(6 - images.length, 0);
   const resetImages = () => {

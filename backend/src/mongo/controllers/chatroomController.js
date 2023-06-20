@@ -10,19 +10,17 @@ const getChatRoomByID = async (req, res) => {
   }
 };
 
-const getChatRoomID = async (req, res) => {
-  const { buyerid, productid } = req.params;
+const getProductByChatRoom = async (req, res) => {
+  const { chatroom } = req.params;
   try {
-    await chatroomModel.findOne(
-      { buyer_id: buyerid, product_id: productid },
-      function (err, result) {
-        if (err) {
-          res.status(404).json(err);
-        } else {
-          res.status(200).json(result);
-        }
-      }
-    );
+    const chat = await chatroomModel
+      .findById(chatroom)
+      .populate("product_id")
+      .populate("buyer_id")
+      .populate("owner_id")
+      .exec();
+
+    res.status(200).json(chat);
   } catch (error) {
     return console.log(error);
   }
@@ -42,8 +40,11 @@ const getAllChats = async (req, res) => {
           },
         ],
       })
+      .populate("owner_id")
+      .populate("product_id")
+      .populate("buyer_id")
       .exec();
-    res.status(200).json(chatroomById);
+    res.status(200).json(chatrooms);
   } catch (error) {
     res.status(404).json({ error: "Sorry, can't find this chat room" });
   }
@@ -60,10 +61,16 @@ const postChatRoom = async (req, res) => {
     });
     if (existingChat) {
       return res.status(200).json(existingChat);
+    } if (owner_id === jwtPayload.id){
+      return res.status(403).json({error: "You can't create a chat with yourself"})
     }else {
-    const newChatRoom = new chatroomModel({ ...body, buyer_id: jwtPayload.id });
-    await newChatRoom.save();
-    res.status(201).json(newChatRoom);}
+      const newChatRoom = new chatroomModel({
+        ...body,
+        buyer_id: jwtPayload.id,
+      });
+      await newChatRoom.save();
+      res.status(201).json(newChatRoom);
+    }
   } catch (e) {
     res.status(500).json({ message: e });
   }
@@ -94,5 +101,5 @@ module.exports = {
   deleteChatRoomById,
   postChatRoom,
   getChatRoomByID,
-  getChatRoomID,
+  getProductByChatRoom,
 };

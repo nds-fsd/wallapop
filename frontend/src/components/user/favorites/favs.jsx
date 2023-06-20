@@ -7,9 +7,7 @@ import { updateProduct } from "../../../utils/apiProducts";
 import { getFavorites } from "../../../utils/apiFavorites";
 
 const Favs = () => {
-
-  const { data } = useQuery("fav-prods", getFavorites)
-  console.log("los favoritos del user", data)
+  const { data } = useQuery("fav-prods", getFavorites);
 
   return (
     <>

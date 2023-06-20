@@ -26,13 +26,11 @@ const ProfileAccount = () => {
 
   // PARA EDITAR USER
   const handleSubmitWrapperUpdate = (data) => {
-    console.log("VAS A EDITAR EL USUARIO", data);
     handlerAuthUpdate({ ...data });
   };
 
   // PARA ELIMINAR USER
   const handleSubmitWrapperDelete = (data) => {
-    console.log("VAS A ELIMINAR EL USUARIO", data);
     handlerAuthDelete({ ...data });
   };
 
