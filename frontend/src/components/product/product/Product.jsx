@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./product.module.css";
 import { NavLink } from "react-router-dom";
 

@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
-import style from "../index.module.css";
+import styles from "../index.module.css";
 import ProductPublished from "./ProductPublished";
 
 const Products = () => {
   return (
-    <div className={style.navPageContainer}>
+    <div className={styles.navPageContainer}>
       <h1>Productos</h1>
-      <div className={style.linkPageContainer}>
+      <div className={styles.linkPageContainer}>
         <Link to="published"> Publicados </Link>
         <Link to="sold"> Vendidos </Link>
       </div>

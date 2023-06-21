@@ -11,7 +11,6 @@
   justify-content: center;
   align-items: center;
   border-radius: 2rem;
-
 }
 .noImageContainer {
   width: 42rem;
@@ -99,6 +98,7 @@
   align-items: center;
   border: 0.2em solid var(--yellow-main);
   cursor: pointer;
+  object-fit: contain;
 }
 
 .statusTag {
@@ -115,7 +115,6 @@
   display: flex;
   gap: 1rem;
   justify-content: center;
- 
 }
 .dot {
   position: relative;

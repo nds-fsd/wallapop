@@ -28,4 +28,8 @@ const jwtMiddleware = (req, res, next) => {
   next();
 };
 
-module.exports = jwtMiddleware;
+const jwtVerifier = (token,callback) => {
+	jwt.verify(token, jwtSecret, callback);
+}
+
+module.exports = {jwtMiddleware, jwtVerifier};

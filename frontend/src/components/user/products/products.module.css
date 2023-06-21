@@ -7,9 +7,43 @@
   top: 12.3rem;
   right: 4rem;
   margin: 1rem 4rem;
+  background-color: var(--gray-to-bg-dark);
 }
 
 .gridList button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  background-color: var(--gray-to-bg-dark);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.gridList span {
+  font-size: 1.2rem;
+  color: var(--black-to-yellow-light);
+}
+.gridList button:hover {
+  background-color: var(--blue-light);
+  color: var(--black-to-yellow-light);
+}
+.gridList button:focus {
+  outline: none;
+  background-color: var(--blue-dark-to-blue-light);
+  color: white;
+}
+
+.gridListFavs {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  top: 12.3rem;
+  right: 4rem;
+  margin: 0.5rem 4rem;
+}
+
+.gridListFavs button {
   width: 2.5rem;
   height: 2.5rem;
   border: none;
@@ -17,17 +51,17 @@
   border-radius: 0.5rem;
   cursor: pointer;
 }
-.gridList span {
+.gridListFavs span {
   font-size: 1.2rem;
   color: white;
 }
-.gridList button:hover {
+.gridListFavs button:hover {
   background-color: var(--blue-light);
   color: white;
 }
-.gridList button:focus {
+.gridListFavs button:focus {
   outline: none;
-  background-color: var(--blue-dark);
+  background-color: var(--blue-dark-to-blue-light);
   color: white;
 }
 
@@ -84,10 +118,19 @@
   width: 22rem;
   min-height: 25rem;
   padding: 1em 1.5em 1.5em 1.5em;
-  background-color: white;
+  background-color: var(--white-to-bg-medium);
   border-radius: 1.5rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
+.card:hover {
+  width: 22rem;
+  height: fit-content;
+  padding: 1em 1.5em 1.5em 1.5em;
+  background-color: var(--white-to-bg-medium);
+  border-radius: 1.5rem;
+  box-shadow: 0 0 5px var(--black-to-yellow-main);
+}
+
 .card > img {
   border-radius: 0.7em;
   border: 0.15em solid var(--yellow-main);
@@ -105,8 +148,8 @@
 }
 
 .title {
-  color: var(--blue-dark);
-  text-decoration: underline;
+  color: var(--blue-dark-to-yellow-main);
+  text-decoration: none;
   width: 16rem;
   line-height: 1.2em;
 }
@@ -118,6 +161,7 @@
   height: 2.5em;
   position: relative;
   top: 0.7em;
+  color: var(--blue-dark-to-yellow-light);
 }
 
 .paragraph {
@@ -129,6 +173,8 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--blue-dark-to-yellow-light);
+
 }
 
 .keywords {
@@ -139,6 +185,7 @@
 }
 .keywords > p {
   font-size: 0.8em;
+  color: var(--blue-dark-to-yellow-light);
 }
 .icons button {
   border: none;
@@ -183,12 +230,16 @@
 }
 .list {
   height: 7rem;
-  background-color: white;
+  background-color: var(--white-to-bg-medium);
   display: flex;
   gap: 2.5em;
   width: 75rem;
   border-radius: 1.5rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.list:hover {
+  box-shadow: 0 0 3px var(--black-to-yellow-main);
 }
 
 .imgList {
@@ -205,9 +256,9 @@
 }
 
 .titleList {
-  color: var(--blue-dark);
+  color: var(--blue-dark-to-yellow-main);
   font-size: 1.2em;
-  text-decoration: underline;
+  text-decoration: none;
 }
 .iconsList {
   display: flex;
@@ -219,10 +270,11 @@
 .iconsList button {
   background-color: transparent;
   border: none;
+  
 }
 
 .iconsList span {
-  color: var(--yellow-main);
+  color: var(--yellow-main-to-yellow-light);
   font-size: 2em;
   cursor: pointer;
 }
@@ -230,7 +282,7 @@
   color: var(--blue-light);
 }
 .iconsList span:focus {
-  color: var(--blue-medium);
+  color: var(--blue-medium-to-blue-light);
 }
 
 .comprar > button {
@@ -266,7 +318,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--grey);
-  background-color: var(--blue-medium);
+  background-color: var(--blue-medium-to-blue-light);
   color: white;
   /* border: 2px solid var(--yellow-main); */
   border-radius: 1em;

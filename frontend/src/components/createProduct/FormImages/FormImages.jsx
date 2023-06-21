@@ -28,7 +28,7 @@ const FormImages = ({ handleImageUpload, reset }) => {
   return (
     <>
       <div>
-        <h2>Imágenes</h2>
+        <h2 className={styles.title}>Imágenes</h2>
         <div className={styles.line}></div>
         <h5 className={styles.tip}>
           <span className={styles.boldChar}>
@@ -61,8 +61,6 @@ const FormImages = ({ handleImageUpload, reset }) => {
           onChange={handleFileChange}
         />
       </div>
-
-      
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import styles from "./productPage.module.css";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
@@ -11,6 +11,8 @@ import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 import { createFav, deleteFav, getFavs } from "../../../utils/apiFavorites";
 import creditea from "../../../assets/images/creditea.png";
 import carfax from "../../../assets/images/carfax.png";
+import { postChatRoom } from "../../../utils/apiChatRoom";
+import { AuthContext } from "../../../context/authContext";
 
 const HousePage = ({ id }) => {
   const { data, isLoading } = useQuery(["product", id], getProductById);
@@ -86,6 +88,21 @@ const HousePage = ({ id }) => {
   };
 
 
+  const handleCreateChatRoom = async () => {
+    const body = {
+      product_id: data._id,
+      owner_id: data.user._id,
+      buyer_id: userData._id,
+    };
+
+    try {
+      const chatroom = await postChatRoom(body);
+      navigate(`/user/chatroom/${chatroom._id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       {data && !userToken && sessionAlert && (
@@ -132,7 +149,13 @@ const HousePage = ({ id }) => {
               >
                 <span className="icon-heart1"></span>
               </button>
-              <button className={styles.chat}>CHAT</button>
+              {userData?._id !== data?.user._id ? (
+                <button className={styles.chat} onClick={handleCreateChatRoom}>
+                  CHAT
+                </button>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           {data && <Slider images={data.images} data={data} />}

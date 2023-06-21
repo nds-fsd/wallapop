@@ -1,0 +1,28 @@
+.itemContainer img {
+  border-radius: 30%;
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+}
+
+.itemContainer p {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.itemContainer h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.itemContainer {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  gap: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: var(--grey);
+  border-bottom: 1px solid var(--blue-dark);
+  border-radius: 1rem;
+}

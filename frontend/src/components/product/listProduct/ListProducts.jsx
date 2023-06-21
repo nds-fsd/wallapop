@@ -22,11 +22,11 @@ const ListProducts = () => {
 
 
   return (
-    <div className={styles.container}>
-      <h1>{params.category}</h1>
+    <div>
+      <h1 className={styles.title}>{params.category}</h1>
       {isLoading && (
         <div>
-          <Spinner />
+          <Spinner size="M" />
         </div>
       )}
       {!isLoading &&
@@ -43,6 +43,7 @@ const ListProducts = () => {
           {!isLoading &&
             // hago bucle para mostrar todos los productos que me ha llegado de la BD
             filteredProducts.map((prod, index) => {
+              if (!prod.sold) {
               const isLastCard = index === filteredProducts.length - 1;
               return (
                 // Llamo al componente PRoduct y le paso la info de cada producto
@@ -56,7 +57,7 @@ const ListProducts = () => {
                   <Product data-test="product" key={prod._id} prod={prod} />
                 </div>
               );
-            })}
+}})}
         </div>
       )}
     </div>

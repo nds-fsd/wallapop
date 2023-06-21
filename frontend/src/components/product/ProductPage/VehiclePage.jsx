@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import styles from "./productPage.module.css";
 import { useQuery } from "react-query";
 import Slider from "../Slider/Slider";
@@ -12,6 +12,8 @@ import { createFav, deleteFav, getFavs } from "../../../utils/apiFavorites";
 import creditea from "../../../assets/images/creditea.png";
 import carfax from "../../../assets/images/carfax.png";
 import mapfre from "../../../assets/images/mapfre.png";
+import { postChatRoom } from "../../../utils/apiChatRoom";
+import { AuthContext } from "../../../context/authContext";
 
 const VehiclePage = ({ id }) => {
   const { data, isLoading } = useQuery(["product", id], getProductById);
@@ -83,6 +85,25 @@ const VehiclePage = ({ id }) => {
     }
   };
 
+  //Cuando todos los productos tengan asociado categories (title, logo...)
+  //junto con el div que tiene el Link
+  // const title = data?.categories[0].title
+
+  const handleCreateChatRoom = async () => {
+    const body = {
+      product_id: data._id,
+      owner_id: data.user._id,
+      buyer_id: userData._id,
+    };
+
+    try {
+      const chatroom = await postChatRoom(body);
+      navigate(`/user/chatroom/${chatroom._id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       {data && !userToken && sessionAlert && (
@@ -129,7 +150,13 @@ const VehiclePage = ({ id }) => {
               >
                 <span className="icon-heart1"></span>
               </button>
-              <button className={styles.chat}>CHAT</button>
+              {userData?._id !== data?.user._id ? (
+                <button className={styles.chat} onClick={handleCreateChatRoom}>
+                  CHAT
+                </button>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           {data && <Slider images={data.images} data={data} />}

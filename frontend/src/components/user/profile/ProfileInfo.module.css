@@ -1,17 +1,24 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin-right: 1rem;
+  gap: 1rem;
+}
 .contentContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: white;
-  color: var(--blue-dark);
+  color: var(--blue-dark-to-blue-light);
   padding: 1rem;
   border-radius: 1rem;
+  background-color: var(--white-to-bg-medium);
 }
 .contentForm {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background-color: white;
+  background-color: var(--white-to-bg-medium);
   color: var(--blue-dark);
   padding: 1rem;
   border-radius: 1rem;
@@ -19,27 +26,19 @@
 .divInfoUser {
   display: flex;
   flex-direction: column;
-  background-color: white;
-  color: var(--blue-dark);
+  background-color: var(--white-to-bg-medium);
+  color: var(--blue-dark-to-yellow-main);
   padding: 1rem;
   border-radius: 1rem;
 }
 .divFoto {
   display: flex;
   flex-direction: column;
-  background-color: white;
-  color: var(--blue-dark);
+  background-color: var(--white-to-bg-medium);
+  color: var(--blue-dark-to-yellow-main);
   padding: 1rem;
   border-radius: 1rem;
   align-items: center;
-}
-
-.mainContainer {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  margin-right: 1rem;
-  gap: 1rem;
 }
 
 .changePhotoContainer {
@@ -80,10 +79,9 @@
   font-size: 1.2rem;
   padding: 0 1rem;
   border-radius: 2.5rem;
-  border: 0.15em solid var(--yellow-main);
-  background-color: var(--yellow-main);
-  background-color: white;
-  color: var(--yellow-main);
+  border: 0.15em solid var(--yellow-main-to-blue-light);
+  background-color: var(--white-to-bg-medium);
+  color: var(--yellow-main-to-blue-light);
   font-weight: bold;
   cursor: pointer;
   top: 2rem;
@@ -93,8 +91,8 @@
 }
 
 .formButton:hover {
-  background-color: var(--yellow-main);
-  color: white;
+  background-color: var(--yellow-main-to-blue-light);
+  color: var(--white-to-bg-medium);
 }
 .formButton2 {
   width: 13rem;
@@ -102,10 +100,9 @@
   font-size: 1.2rem;
   padding: 0 1rem;
   border-radius: 2.5rem;
-  border: 0.15em solid red;
-  background-color: red;
-  background-color: white;
-  color: red;
+  border: 0.15em solid var(--red);
+  background-color: var(--white-to-bg-medium);
+  color: var(--red);
   font-weight: bold;
   cursor: pointer;
   top: 2rem;
@@ -115,8 +112,8 @@
 }
 
 .formButton2:hover {
-  background-color: red;
-  color: white;
+  background-color: var(--red);
+  color: var(--white-to-bg-medium);
 }
 
 .inputProfile {
@@ -127,6 +124,11 @@
   padding-left: 1rem;
   font-size: 1rem;
   margin-left: 1rem;
+  background-color: var(--white-to-bg-medium);
+  color: var(--blue-dark-to-yellow-light);
+}
+.inputProfile::placeholder {
+  color: var(--blue-dark-to-yellow-light);
 }
 
 .divButtons {

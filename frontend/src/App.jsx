@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import CreateUserPage from "./components/createUser";
@@ -16,6 +16,9 @@ import ProdPage from "./components/product/ProductPage/ProdPage";
 import ListBuscador from "./components/home/ListBuscador/ListBuscador";
 import Footer from "./components/home/Footer/Footer";
 import SecondFooter from "./components/home/Footer/SecondFooter";
+import ModalCompra from "./components/product/modalCompra/modalCompra";
+import "./index.css";
+import ChatRoom from "./components/chat/chat-room";
 
 function App() {
   const queryClient = new QueryClient();
@@ -48,6 +51,10 @@ function App() {
                   <Route
                     path="product/search/:name"
                     element={<ListBuscador />}
+                  />
+                  <Route
+                    path="products/comprar/:id"
+                    element={<ModalCompra />}
                   />
                 </Route>
                 <Route path="/user" element={<PrivateRoutes />}>

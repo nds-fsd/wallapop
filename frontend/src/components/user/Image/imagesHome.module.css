@@ -17,6 +17,7 @@
   justify-content: space-around;
   align-items: center;
   text-align: center;
+  border: 0.15em solid var(--yellow-main);
 }
 
 .icon {
@@ -65,14 +66,17 @@
   z-index: 500;
   padding: 0.1em 0.5em;
   font-size: 0.8em;
+  color: var(--blue-dark);
 }
 
 .text {
   margin-top: 1em;
+  background-color: var(--blue-medium);
+  color: black;
 }
 
 .text span {
-  color: white;
+  color: var(--whit-to-black);
   margin: 0 0 0 -0.1em;
   background-color: var(--blue-medium);
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { deleteProduct, getProductByUser } from "../../../utils/apiProducts";
 import Spinner from "../../Spinner/Spinner";
@@ -51,11 +51,11 @@ const ProductPublished = () => {
 
   return (
     <>
-      {/* {isLoading && (
+      {isLoading && (
         <div>
-          <Spinner />
+          <Spinner size="M" />
         </div>
-      )} */}
+      )}
       <div className={styles.gridList}>
         <button onClick={toggleView}>
           <span className="icon-table2"></span>
@@ -68,7 +68,7 @@ const ProductPublished = () => {
         {gridOpen ? (
           <div className={styles.gridContainer} data-test="productos">
             {prods && prods.length > 0 ? (
-              prods.map((prod) => (
+              prods.map((prod) => !prod.sold && (
                 <div className={styles.card} data-test="producto" key={prod._id}>
                   {prods && <Images images={prod.images} status={prod.status}/>}
                   <div className={styles.titleContainer}>
@@ -128,7 +128,7 @@ const ProductPublished = () => {
         ) : (
           <div className={styles.listContainer}>
             {prods && prods.length > 0 ? (
-              prods.map((prod) => (
+              prods.map((prod) => !prod.sold && (
                 <div className={styles.list} key={prod._id}>
                   <div className={styles.imgList}>
                     {prods && <ImagesList images={prod.images}  />}

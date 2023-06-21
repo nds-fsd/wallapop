@@ -72,7 +72,6 @@ const CreateUserPage = () => {
                 {errors.name.message}
               </p>
             )}
-
             {errors.surname && (
               <p>
                 <span className="icon-warning1"></span>

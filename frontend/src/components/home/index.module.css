@@ -3,12 +3,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: var(--gray-to-bg-dark);
 }
 
 /* .homeContainer h1 {
   font-size: 2rem;
+  color: var(--blue-dark-to-white);
 }
 
 .homeContainer h2 {
   font-size: 1.5rem;
-} */
+  color: var(--blue-dark-to-white);
+}

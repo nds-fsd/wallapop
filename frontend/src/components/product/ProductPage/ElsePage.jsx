@@ -1,16 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import styles from "./productPage.module.css";
 import { useQuery } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
+import { postChatRoom } from "../../../utils/apiChatRoom";
+import {AuthContext } from "../../../context/authContext";
 import { getProductById } from "../../../utils/apiProducts";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, NavLink } from "react-router-dom";
 import { createFav, deleteFav, getFavs } from "../../../utils/apiFavorites";
+import { getUserToken } from "../../../utils/localStorage.utils";
 import RelatedProducts from "./RelatedProducts";
 import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 
 const ElsePage = ({ id }) => {
+
   const { data, isLoading } = useQuery(["product", id], getProductById);
   const { data: favs } = useQuery(["favs"], getFavs);
   const category = data?.categories;
@@ -85,6 +89,21 @@ const ElsePage = ({ id }) => {
   };
 
 
+  const handleCreateChatRoom = async () => {
+    const body = {
+      product_id: data._id,
+      owner_id: data.user._id,
+      buyer_id: userData._id,
+    };
+
+    try {
+      const chatroom = await postChatRoom(body);
+      navigate(`/user/messages/chatroom/${chatroom._id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       {data && !userToken && sessionAlert && (
@@ -133,10 +152,15 @@ const ElsePage = ({ id }) => {
               >
                 <span className="icon-heart1"></span>
               </button>
-              <button className={styles.chat}>CHAT</button>
+              {userData?._id !== data?.user._id ? (
+                <button className={styles.chat} onClick={handleCreateChatRoom}>
+                  CHAT
+                </button>
+              ) : (
+                ""
+              )}
             </div>
           </div>
-
           {data && <Slider images={data.images} data={data} />}
           <div className={styles.details}>
             <div className={styles.priceContainer}>
@@ -156,10 +180,8 @@ const ElsePage = ({ id }) => {
               </Link>
             </div>
           </div>
-
           <h2>{data && data.title}</h2>
           {data && <Keywords data={data} />}
-
           <div className={styles.line}></div>
           <div className={styles.expandable}>
             <h3>DESCRIPCIÓN DEL PRODUCTO</h3>
@@ -173,7 +195,6 @@ const ElsePage = ({ id }) => {
           {isExpanded && (
             <p className={styles.textExpanded}>{data && data.description}</p>
           )}
-
           <div className={styles.media}>
             <p>Comparte este producto con tus amigos</p>
             <div className={styles.mediaIcons}>
@@ -193,5 +214,4 @@ const ElsePage = ({ id }) => {
     </>
   );
 };
-
 export default ElsePage;

@@ -15,24 +15,10 @@ const FormImages = ({ handleImageUpload, imagePreviews }) => {
     handleImageUpload(files, index);
   };
 
-  // const handlePreviews = () => {
-
-  // }
-
-  // const handleUploadSuccess = (result) => {
-  //   console.log('Upload Result:', result);
-
-  //   if (result && result.event === 'success') {
-  //     const imageUrl = result.info.secure_url;
-  //     setImagePreviews((prevPreviews) => [...prevPreviews, imageUrl]);
-  //     console.log('Updated Image Previews:', [...prevPreviews, imageUrl]);
-  //   }
-  // };
-
   return (
     <>
       <div>
-        <h2>Imágenes</h2>
+        <h2 className={styles.title}>Imágenes</h2>
         <div className={styles.line}></div>
         <h5 className={styles.tip}>
           <span className={styles.boldChar}>
@@ -53,15 +39,20 @@ const FormImages = ({ handleImageUpload, imagePreviews }) => {
           </div>
         ))}
 
-        {Array.from({ length: Math.max(6 - imagePreviews.length, 1) }).map((_, index) => (
-          <div key={index + imagePreviews.length} className={styles.imagePreview}>
-            {index >= imagePreviews.length && (
-              <button onClick={handleOpenWidget} className={styles.image}>
-                <span className="icon-image1"></span>
-              </button>
-            )}
-          </div>
-        ))}
+        {Array.from({ length: Math.max(6 - imagePreviews.length, 1) }).map(
+          (_, index) => (
+            <div
+              key={index + imagePreviews.length}
+              className={styles.imagePreview}
+            >
+              {index >= imagePreviews.length && (
+                <button onClick={handleOpenWidget} className={styles.image}>
+                  <span className="icon-image1"></span>
+                </button>
+              )}
+            </div>
+          )
+        )}
       </div>
 
       <input
@@ -101,8 +92,7 @@ const FormImages = ({ handleImageUpload, imagePreviews }) => {
 
 export default FormImages;
 
-
- //MULTIPLE CARGA DE IMAGENES EN LOS PRODUCTOS
+//MULTIPLE CARGA DE IMAGENES EN LOS PRODUCTOS
 //  const [images, setImages] = useState([]);
 
 //  const handleUploadSuccess = (result) => {
@@ -111,7 +101,6 @@ export default FormImages;
 //    }
 //    const imageUrl = result.info.secure_url;
 //    setImages((prevImages) => [...prevImages, imageUrl]);
-//    console.log("paso por el upload de multiple imagenes", result);
 //  };
 
 //  const multipleUploadWidget = cloudinary.createUploadWidget({

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./allCategories.module.css";
 import { useQuery } from "react-query";
 import { getAllProducts } from "../../../utils/apiProducts";

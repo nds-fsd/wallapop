@@ -3,7 +3,7 @@ import { api } from "./api";
 import { getUserData, getUserToken } from "./localStorage.utils";
 
 export const getAllProducts = () => {
-  // console.log("paso por el get all")
+
   return api
     .get("/products/")
     .then((res) => res.data)
@@ -40,10 +40,8 @@ export const getProductById = ({ queryKey }) => {
 };
 
 export const getProductByUser = () => {
-  const { id } = JSON.parse(localStorage.getItem("user"));
-  const token = JSON.parse(localStorage.getItem("user-session"));
-  // console.log("el id", id);
-  // console.log("el token", token);
+  const { id } = getUserData();
+  const { token } = getUserToken();
   return api
     .get(`/products/getbyuser/${id}`, {
       headers: {
@@ -61,32 +59,55 @@ export const getProductByUser = () => {
 };
 
 export const getFavsByUser = () => {
-  const { id } = JSON.parse(localStorage.getItem("user"));
-  const token = JSON.parse(localStorage.getItem("user-session"));
+  const { id } = getUserData();
+  const { token } = getUserToken();  
+  return api
+    .get(`/products/getbyuser/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        favorite: true,
+      }
+    })
+    .then((res) => {
+      const filteredProducts = res.data.filter((product) => product.favorite === true)
+      return filteredProducts;
+    })
+    .catch((error) => {
+      console.log(error);
+      return {
+        error:
+          "Sorry, we couldn't retrieve your products. Please try again later.",
+      };
+    });
+};
 
-  return (
-    api
-      .get(`/products/getbyuser/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          "favorite.fav": true,
-        },
-      })
-      .then((res) => {
-        const filteredProducts = res.data.filter((product) => product.favorite && product.favorite.fav === true)
-        console.log("Filtered products:", filteredProducts); // Log the filtered products
-        return filteredProducts;
-      })
-      .catch((error) => {
-        console.log(error);
-        return {
-          error:
-            "Sorry, we couldn't retrieve your products. Please try again later.",
-        };
-      })
-  );
+export const getSoldByUser = () => {
+  const { id } = getUserData();
+  const { token } = getUserToken();
+  return api
+    .get(`/products/sold/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        favorite: true,
+      },
+    })
+    .then((res) => {
+      const filteredProducts = res.data.filter(
+        (product) => product.sold === true
+      );
+      return filteredProducts;
+    })
+    .catch((error) => {
+      console.log(error);
+      return {
+        error:
+          "Sorry, we couldn't retrieve your products. Please try again later.",
+      };
+    });
 };
 
 export const getProductByCategory = ({ queryKey }) => {
@@ -117,8 +138,6 @@ export const getProductByName = ({ queryKey }) => {
 
 
 export const postProduct = (data) => {
-  // console.log("esta es la data en el post", data)
-  // const { id } = JSON.parse(localStorage.getItem("user"));
   const { id } = getUserData();
 
   return api
@@ -133,9 +152,9 @@ export const postProduct = (data) => {
 };
 
 export const updateProduct = (product) => {
-  console.log("paso por el update product", product)
+
   const id = product._id;
-  // console.log("el id del producto a update", id)
+
   const { token } = getUserToken();
   return api
     .patch(`/products/${id}`, product, {
@@ -150,7 +169,7 @@ export const updateProduct = (product) => {
 };
 
 export const deleteProduct = (id) => {
-  const token = JSON.parse(localStorage.getItem("user-session"));
+  const { token } = getUserToken();
   return api
     .delete(`/products/${id}`, {
       headers: {

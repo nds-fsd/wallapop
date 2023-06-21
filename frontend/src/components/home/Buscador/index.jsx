@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
-import style from "./index.module.css";
+import styles from "./index.module.css";
 import { useState } from "react";
 
 const Buscador = () => {
   const [search, setSearch] = useState("");
 
   return (
-    <form className={style.searchContainer}>
+    <form className={styles.searchContainer}>
       <input
         type="text"
         name="search"
