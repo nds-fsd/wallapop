@@ -26,7 +26,7 @@ const Profile = () => {
           <Link to={PROFILE_VALUES}>Valoraciones</Link>
         </div>
         <div className={styles.logoutButton}>
-            <button onClick={handleLogout}>Cerrar sesion</button>
+          <button onClick={handleLogout}>Cerrar sesion</button>
         </div>
       </div>
       <Outlet />

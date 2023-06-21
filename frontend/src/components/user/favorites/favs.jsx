@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import styles from "../../user/products/products.module.css";
-import Images from "../products/Image/Images";
+import Images from "../Image/Images";
 import { Link } from "react-router-dom";
 import { updateProduct } from "../../../utils/apiProducts";
 import { getFavorites } from "../../../utils/apiFavorites";

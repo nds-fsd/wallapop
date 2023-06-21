@@ -6,23 +6,23 @@
   position: absolute;
   top: 12.3rem;
   right: 4rem;
-  background-color: var(--gray-to-bg-dark);
+  background-color: var(--white-to-bg-medium);
 }
 .gridList button {
   width: 2.5rem;
   height: 2.5rem;
   border: none;
-  background-color: var(--gray-to-bg-dark);
+  background-color: var(--yellow-main-to-blue-light);
   border-radius: 0.5rem;
   cursor: pointer;
 }
 .gridList span {
   font-size: 1.2rem;
-  color: var(--black-to-yellow-light);
+  color: white;
 }
 .gridList button:hover {
   background-color: var(--blue-light);
-  color: var(--black-to-yellow-light);
+  color: white;
 }
 .gridList button:focus {
   outline: none;
@@ -46,11 +46,11 @@
   border-radius: 1.5rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
+
 .card:hover {
   width: 22rem;
   height: fit-content;
   padding: 1em 1.5em 1.5em 1.5em;
-  background-color: var(--white-to-bg-medium);
   border-radius: 1.5rem;
   box-shadow: 0 0 5px var(--black-to-yellow-main);
 }
@@ -85,6 +85,7 @@
   position: relative;
   top: 0.7em;
   color: var(--blue-dark-to-yellow-light);
+  /* DARK:    color: var(--yellow-light);*/
 }
 
 .paragraph {
@@ -98,6 +99,7 @@
   text-overflow: ellipsis;
   color: var(--blue-dark-to-yellow-light);
 
+  /* DARK:    color: var(--yellow-light);*/
 }
 
 .keywords {
@@ -108,7 +110,7 @@
 }
 .keywords > p {
   font-size: 0.8em;
-  color: var(--blue-dark-to-yellow-light);
+  /* DARK:    color: var(--yellow-light);*/
 }
 .icons button {
   border: none;
@@ -152,7 +154,6 @@
   border-radius: 1.5rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
-
 .list:hover {
   box-shadow: 0 0 3px var(--black-to-yellow-main);
 }
@@ -185,7 +186,6 @@
 .iconsList button {
   background-color: transparent;
   border: none;
-  
 }
 
 .iconsList span {
@@ -232,10 +232,8 @@
   top: 39%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--grey);
-  background-color: var(--blue-medium-to-blue-light);
+  background-color: var(--gray-to-bg-dark);
   color: white;
-  /* border: 2px solid var(--yellow-main); */
   border-radius: 1em;
   padding: 1.5em;
   text-align: center;

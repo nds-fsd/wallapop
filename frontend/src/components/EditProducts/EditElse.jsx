@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styles from "./editProduct.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -148,8 +148,7 @@ const EditElse = ({ id }) => {
             </p>
           )}
 
-          {product && <EditImages product={product}/>}
-        
+          {product && <EditImages product={product} />}
 
           <div className={styles.formButton}>
             <button type="submit" data-test="guardar">

@@ -1,16 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Buscador from "../Buscador";
 import styles from "./index.module.css";
 import { TbMessages } from "react-icons/tb";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { AuthContext } from "../../../context/authContext";
-import logo from "../../../assets/images/logo-retrend.png";
+import image from "../../../assets/images/logo-retrend.png";
 import { getAllChats } from "../../../utils/apiChatRoom";
 import { useQuery } from "react-query";
+import { ThemeContext } from "../../../context/themeContext";
 
 const Login = () => {
   const { userData } = useContext(AuthContext);
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   if (!userData) return null;
   const { data, isLoading } = useQuery(["chats"], getAllChats);
   
@@ -20,11 +22,16 @@ const Login = () => {
     <nav className={styles.navbar}>
       <Link to="/">
         <div className={styles.logoLink}>
-          <img src={logo} />{" "}
+          <img src={image} alt="logo" />
         </div>
       </Link>
       <Buscador to="/products/search" />
       <div className={styles.buttonLink}>
+        <div className={styles.darkMode}>
+          <div onClick={toggleDarkMode}>
+          <span className={darkMode ? "icon-sun" : "icon-contrast"} />
+          </div>
+        </div>
         <Link to="/user/favorites">
           <MdOutlineFavoriteBorder /> FAVORITOS{" "}
         </Link>

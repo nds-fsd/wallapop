@@ -12,17 +12,17 @@
   width: 2.5rem;
   height: 2.5rem;
   border: none;
-  background-color: var(--gray-to-bg-dark);
+  background-color: var(--yellow-main-to-blue-light);
   border-radius: 0.5rem;
   cursor: pointer;
 }
 .gridList span {
   font-size: 1.2rem;
-  color: var(--black-to-yellow-light);
+  color: white;
 }
 .gridList button:hover {
   background-color: var(--blue-light);
-  color: var(--black-to-yellow-light);
+  color: white;
 }
 .gridList button:focus {
   outline: none;
@@ -50,7 +50,6 @@
   width: 22rem;
   height: fit-content;
   padding: 1em 1.5em 1.5em 1.5em;
-  background-color: var(--white-to-bg-medium);
   border-radius: 1.5rem;
   box-shadow: 0 0 5px var(--black-to-yellow-main);
 }
@@ -96,8 +95,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: var(--blue-dark-to-yellow-light);
-
+  color: var(--blue-dark-to-blue-light);
 }
 
 .keywords {
@@ -145,18 +143,16 @@
 }
 .list {
   height: 7rem;
-  background-color: var(--white-to-bg-medium);
   display: flex;
   gap: 2.5em;
   width: 70rem;
   border-radius: 1.5rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  background-color: var(--white-to-bg-medium);
 }
-
 .list:hover {
   box-shadow: 0 0 3px var(--black-to-yellow-main);
 }
-
 .imgList {
   display: flex;
   align-items: center;
@@ -185,7 +181,6 @@
 .iconsList button {
   background-color: transparent;
   border: none;
-  
 }
 
 .iconsList span {
@@ -233,9 +228,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--grey);
-  background-color: var(--blue-medium-to-blue-light);
+  background-color: var(--blue-medium);
   color: white;
-  /* border: 2px solid var(--yellow-main); */
   border-radius: 1em;
   padding: 1.5em;
   text-align: center;
@@ -253,7 +247,6 @@
   height: 2rem;
   border-radius: 2.5rem;
   border: none;
-  /* border: 0.2em solid var(--yellow-main); */
   background-color: var(--yellow-main);
   color: white;
   font-weight: bold;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./editProduct.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -6,9 +6,7 @@ import { getProductById, updateProduct } from "../../utils/apiProducts";
 import EditImages from "../EditImages/EditImages";
 
 const EditJob = ({ id }) => {
-  console.log("el producto en el modal", id);
-
-
+  // console.log("el producto en el modal", id);
   const {
     register,
     handleSubmit,

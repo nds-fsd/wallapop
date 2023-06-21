@@ -7,10 +7,7 @@ import { getProductById } from "../../../../utils/apiProducts";
 
 const ModalContainerSlider = ({ modalOpen, setModalOpen, images }) => {
   const params = useParams();
-  const { data } = useQuery(
-    ["product", params.productid],
-    getProductById
-  );
+  const { data } = useQuery(["product", params.productid], getProductById);
 
   return (
     <>

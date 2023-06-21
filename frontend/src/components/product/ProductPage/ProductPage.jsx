@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 import { getProductById } from "../../../utils/apiProducts";
 import { useQuery, useMutation } from "react-query";
 import styles from "./productPage.module.css";
@@ -58,7 +58,7 @@ const ProductPage = () => {
     <>
       {isLoading && (
         <div>
-          <Spinner />
+          <Spinner size="M" />
         </div>
       )}
 

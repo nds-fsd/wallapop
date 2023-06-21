@@ -29,7 +29,7 @@ const Sidebar = () => {
     <div className={styles.sideBar}>
       <div className={styles.profileLink}>
         <Link to={USER_PROFILE}>
-        <img src={userData.photo} />
+          <img src={userData.photo} />
           <p>{userData.name}</p>
         </Link>
       </div>
@@ -54,9 +54,9 @@ const Sidebar = () => {
       <Link to={USER_FAVORITES}>
         <MdOutlineFavoriteBorder /> Favoritos
       </Link>
-      <Link to={USER_STATS}>
+      {/* <Link to={USER_STATS}>
         <IoStatsChart /> Estadísticas
-      </Link>
+      </Link> */}
     </div>
   );
 };

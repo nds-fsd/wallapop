@@ -10,6 +10,7 @@ const { connectDB } = require("./mongo/connection");
 const messageRouter = require("./mongo/routers/messageRouter");
 const {jwtMiddleware} = require("./security/jwtMiddleware");
 const chatroomRouter = require("./mongo/routers/chatroomRouter");
+const transactionRouter = require("./mongo/routers/transactionRouter");
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use("/category", categoryRouter);
 app.use("/favorites", favoriteRouter)
 app.use("/message",jwtMiddleware, messageRouter)
 app.use("/chat-room",jwtMiddleware, chatroomRouter)
+app.use("/transactions", transactionRouter);
 
 if (process.env.MONGO_URL) {
   connectDB().then(() => console.log("Connected to database!"));

@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: var(--gray-to-bg-dark);
 }
 .container > img {
   padding-top: 15px;
@@ -21,18 +22,13 @@
 .item {
   width: 11.5rem;
   height: 6rem;
-  /* background-color: var(--yellow-main);
-  background-color: white;
-  border: 0.15em solid var(--yellow-main); */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 1em;
   text-align: center;
-  color: var(--blue-dark);
-  /* color: var(--yellow-main); */
-  color: var(--blue-dark);
+  color: var(--blue-dark-to-yellow-main);
   font-weight: bold;
   margin: 0 0 1em 1em;
   word-wrap: break-word;
@@ -42,18 +38,15 @@
   padding: 0 1em 0 1em;
 }
 
-
 .item span:nth-child(1) {
   font-size: 3.5rem;
-  /* color: white;
-  color: var(--yellow-main); */
 }
 
 .item:hover {
-  color: var(--blue-light)
+  color: var(--blue-light-to-yellow-light);
 }
 .item:focus {
-  color: var(--yellow-main)
+  color: var(--yellow-main);
 }
 .menu {
   width: 100vw;
@@ -75,10 +68,12 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background-color: var(--blue-dark);
+  background-color: var(--blue-dark-to-yellow-dark);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--blue-light);
+  background: var(--blue-light-to-yellow-dark);
+  border: 0.15em solid var(--transparent-to-yellow-main);
+
 }

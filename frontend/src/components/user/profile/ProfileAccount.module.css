@@ -4,12 +4,13 @@
   padding: 1rem;
   margin-right: 1rem;
   gap: 1rem;
+  background-color: var(--gray-to-bg-dark);
 }
 .contentContainer {
   display: flex;
   flex-direction: column;
-  background-color: white;
-  color: var(--blue-dark);
+  background-color: var(--white-to-bg-medium);
+  color: var(--blue-dark-to-yellow-main);
   padding: 1rem;
   border-radius: 1rem;
 }
@@ -25,7 +26,6 @@
   font-weight: bold;
   padding-right: 5rem;
   padding-left: 1rem;
-
 }
 .labelsBth {
   font-size: 1.3rem;
@@ -44,18 +44,17 @@
   height: 3rem;
   font-size: 1.2rem;
   border-radius: 2.5rem;
-  border: 0.15em solid var(--yellow-main);
-  background-color: var(--yellow-main);
-  background-color: white;
-  color: var(--yellow-main);
+  border: 0.15em solid var(--yellow-main-to-blue-light);
+  background-color: var(--gray-to-bg-dark);
+  color: var(--yellow-main-to-blue-light);
   font-weight: bold;
   cursor: pointer;
   margin-top: 2em;
 }
 
 .formButton:hover {
-  background-color: var(--yellow-main);
-  color: white;
+  background-color: var(--yellow-main-to-blue-light);
+  color: var(--gray-to-bg-dark);
 }
 .formButton2 {
   width: 13rem;
@@ -63,18 +62,17 @@
   font-size: 1.2rem;
   padding: 0 1rem;
   border-radius: 2.5rem;
-  border: 0.15em solid red;
-  background-color: red;
-  background-color: white;
-  color: red;
+  border: 0.15em solid var(--red);
+  background-color: var(--gray-to-bg-dark);
+  color: var(--red);
   font-weight: bold;
   cursor: pointer;
   margin-top: 2em;
 }
 
 .formButton2:hover {
-  background-color: red;
-  color: white;
+  background-color: var(--red);
+  color: var(--gray-to-bg-dark);
 }
 .inputProfile {
   width: 12rem;
@@ -84,6 +82,8 @@
   padding-left: 1rem;
   font-size: 1rem;
   margin-left: 1rem;
+  background-color: var(--gray-to-bg-dark);
+  color: var(--blue-dark-to-yellow-light);
 }
 
 .selectSexo {
@@ -94,6 +94,8 @@
   padding-left: 1rem;
   font-size: 1rem;
   margin-left: 1rem;
+  background-color: var(--gray-to-bg-dark);
+  color: var(--blue-dark-to-yellow-light);
 }
 
 .divButtons {

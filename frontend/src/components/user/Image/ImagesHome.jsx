@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./imagesHome.module.css";
 
 const ImagesHome = ({ images, category, status }) => {

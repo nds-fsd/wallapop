@@ -3,7 +3,6 @@ import styles from "./modalContainer.module.css";
 import ModalContent from "./ModalContentProdUser/ModalContent";
 
 const ModalContainer = ({ modalOpen, setModalOpen, id }) => {
- 
   return (
     <>
       {modalOpen && (

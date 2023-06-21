@@ -1,8 +1,10 @@
 .mainContainer {
- display: flex;
- flex-direction: column;
- justify-content: center;
- align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gray-to-bg-dark);
+  color: var(--blue-dark-to-yellow-main);
 }
 
 .createUserContainer {
@@ -10,11 +12,12 @@
   flex-direction: column;
   align-items: center;
   width: 40rem;
-  background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 1.5rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
+  background-color: var(--white-to-bg-medium);
+  color: var(--blue-dark-to-yellow-main);
 }
 
 .formContainer {
@@ -27,6 +30,7 @@
 .column {
   display: flex;
   gap: 1rem;
+  color: var(--black-to-white);
 }
 
 .imageColumn {
@@ -37,7 +41,7 @@
 }
 
 .imageColumn > label {
-  color: var(--blue-dark)
+  color: var(--blue-dark);
 }
 
 .input {
@@ -49,6 +53,8 @@
   padding-left: 1rem;
   font-size: 1rem;
   gap: 1rem;
+  background-color: var(--white-to-bg-medium);
+  color: var(--black-to-yellow-light);
 }
 
 .dropdown {
@@ -58,7 +64,8 @@
   border: 0.1em solid var(--yellow-main);
   padding-left: 0.8rem;
   font-size: 1rem;
-  color: grey;
+  background-color: var(--white-to-bg-medium);
+  color: var(--black-to-yellow-light);
 }
 
 .createUserButton {
@@ -67,17 +74,17 @@
   font-size: 1.2rem;
   border-radius: 2.5rem;
   border: 0.15em solid var(--yellow-main);
-  background-color: white;
   color: var(--yellow-main);
   font-weight: bold;
   cursor: pointer;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  background-color: var(--white-to-bg-medium);
 }
 
 .createUserButton:hover {
   background-color: var(--yellow-main);
-  color: white;
+  color: var(--white-to-bg-medium);
 }
 
 .image {
@@ -138,7 +145,8 @@
   margin-right: 0.5em;
 }
 
-.inputRegister, .select {
+.inputRegister,
+.select {
   width: 100%;
   padding: 5px;
   margin-bottom: 15px;
@@ -159,7 +167,6 @@
   margin-bottom: 10px;
 }
 
-
 .formContainer {
   display: flex;
   color: red;
@@ -175,7 +182,7 @@
   margin-bottom: 2rem;
 }
 
-.imageButtonContainer img{
+.imageButtonContainer img {
   width: 10rem;
   height: 10rem;
   object-fit: cover;

@@ -3,18 +3,19 @@
   width: 100%;
   flex-direction: column;
   margin-left: 1rem;
+  background-color: var(--gray-to-bg-dark);
 }
 
 .profileTitle {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  color: var(--blue-dark-to-white);
 }
 
 .profileTitle h4 {
   font-size: 1rem;
-  color: grey;
-
+  color: var(--grey-to-yellow-light);
   font-weight: lighter;
 }
 .profileTitle h1 {
@@ -26,22 +27,28 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--gray-to-bg-dark);
 }
 .linksProfile a {
+  color: var(--yellow-main-to-blue-light);
+  background-color: var(--gray-to-bg-dark);
+  border-radius: 1.5rem;
+  width: 5rem;
+  padding: 0.5em 2em;
+  display: flex;
+  justify-content: center;
   text-decoration: none;
-  font-size: 1rem;
-  padding: 0.5rem;
-  border-radius: 35%;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: solid 0.15rem var(--yellow-main-to-blue-light);
 }
 .linksProfile :hover {
-  background-color: #28349e82;
-  color: var(--yellow-light);
-  border-radius: 1rem;
+  background-color: var(--yellow-main-to-blue-light);
+  color: var(--gray-to-bg-dark);
 }
 .linksProfile :focus {
-  background-color: #28349e82;
-  color: var(--yellow-light);
-  border-radius: 1rem;
+  background-color: var(--yellow-main-to-blue-light);
+  color: var(--gray-to-bg-dark);
 }
 
 .linksProfile {
@@ -49,6 +56,7 @@
   width: 20vw;
   justify-content: space-between;
   font-size: 1rem;
+  gap: 2rem;
 }
 
 .logoutButton button {
@@ -56,18 +64,18 @@
   height: 2.5rem;
   border-radius: 2.5rem;
   font-size: 0.75rem;
-  border: solid 0.15rem var(--yellow-main);
-  color: var(--yellow-main);
+  border: solid 0.15rem var(--red);
+  color: var(--red);
   font-weight: 600;
-  background-color: var(--yellow-light);
   cursor: pointer;
+  background-color: var(--gray-to-bg-dark);
 }
 
 .logoutButton :hover {
-  background-color: #ebaa0525;
+  background-color: var(--red);
   border-radius: 2.5rem;
-  color: var(--blue-dark);
-  border-color: var(--blue-dark);
+  color: var(--gray-to-bg-dark);
+  /* border-color: var(--blue-dark); */
 }
 
 .logoutButton {
@@ -78,8 +86,7 @@
 .contentContainer {
   display: flex;
   flex-direction: column;
-  /* background-color: var(--yellow-light); */
-  background-color: white;
+  background-color: var(--white-to-bg-dark);
   color: var(--blue-dark);
   padding: 1rem;
   border-radius: 1rem;
@@ -91,6 +98,7 @@
   padding: 1rem;
   margin-right: 1rem;
   gap: 1rem;
+  background-color: var(--white-to-bg-dark);
 }
 .formButton {
   width: 13rem;
@@ -98,9 +106,8 @@
   font-size: 1.2rem;
   padding: 0 1rem;
   border-radius: 2.5rem;
-  border: 0.15em solid var(--yellow-main);
-  background-color: var(--yellow-main);
-  background-color: white;
+  border: 0.15em solid var(--yellow-main-to-blue-light);
+  background-color: var(--white-to-bg-dark);
   color: var(--yellow-main);
   font-weight: bold;
   cursor: pointer;

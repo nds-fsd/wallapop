@@ -16,6 +16,15 @@
     font-size: 16px;
   } */
 
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gray-to-bg-dark);
+  color: var(--yellow-main);
+}
+
 .loginContainer h1 {
   text-align: center;
 }
@@ -24,7 +33,7 @@
   display: flex;
   flex-direction: column;
   width: 35rem;
-  background-color: white;
+  background-color: var(--white-to-bg-medium);
   border-radius: 4px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   height: max-content;
@@ -44,6 +53,7 @@
 .register {
   display: flex;
   justify-content: space-between;
+  color: var(--grey-to-white);
 }
 .input {
   width: 13rem;
@@ -54,6 +64,9 @@
   padding-left: 1rem;
   font-size: 1rem;
   gap: 1rem;
+  background-color: var(--white-to-bg-medium);
+  color: var(--grey-to-white);
+
 }
 
 .formButton {
@@ -62,7 +75,7 @@
   font-size: 1.2rem;
   border-radius: 2.5rem;
   border: 0.15em solid var(--yellow-main);
-  background-color: white;
+  background-color: var(--white-to-bg-medium);
   color: var(--yellow-main);
   font-weight: bold;
   cursor: pointer;
@@ -70,11 +83,8 @@
 }
 
 .formButton:hover {
-  background-color: var(--yellow-main);
-  color: white;
+  background-color: var(--white-to-bg-medium);
 }
-
-
 
 .error {
   display: flex;

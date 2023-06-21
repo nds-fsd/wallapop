@@ -15,26 +15,28 @@ const ListProducts = () => {
   );
 
   return (
-    <div className={styles.container}>
-      <h1>{params.category}</h1>
+    <div>
+      <h1 className={styles.title}>{params.category}</h1>
       {isLoading && (
         <div>
-          <Spinner />
+          <Spinner size="M" />
         </div>
       )}
-      <div className={styles.carusel}>
+      <div>
         {!isLoading &&
           // hago bucle para mostrar todos los productos que me ha llegado de la BD
           products.map((prod) => {
-            return (
-              // Llamo al componente PRoduct y le paso la info de cada producto
-              <Product
-                data-test="product"
-                className={styles.menu}
-                key={prod.id}
-                prod={prod}
-              />
-            );
+            if (!prod.sold) {
+              return (
+                // Llamo al componente PRoduct y le paso la info de cada producto
+                <Product
+                  data-test="product"
+                  className={styles.menu}
+                  key={prod._id}
+                  prod={prod}
+                />
+              );
+            }
           })}
       </div>
     </div>

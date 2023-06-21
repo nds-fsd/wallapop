@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext, useState, useContext } from "react";
 import styles from "./productPage.module.css";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
@@ -9,6 +9,7 @@ import { AuthContext } from "../../../context/authContext";
 import { getProductById, updateProduct } from "../../../utils/apiProducts";
 import { Link, useNavigate, NavLink } from "react-router-dom";
 import { changeFavorite } from "../../../utils/apiFavorites";
+import { getUserToken } from "../../../utils/localStorage.utils";
 
 const ElsePage = ({ id }) => {
   const { userData } = useContext(AuthContext);
@@ -62,17 +63,13 @@ const ElsePage = ({ id }) => {
   const { id: userId } = JSON.parse(localStorage.getItem("user"));
 
   const handleFavorite = async () => {
-    const userToken = localStorage.getItem("user-session");
+    const { userToken } = getUserToken();
 
     if (userToken) {
-      const updatedFavorite = !isFavorite;
-      setIsFavorite(updatedFavorite);
-      const favoriteData = {
-        user: userId,
-        favorite: updatedFavorite,
-        product: data._id,
-        // ...data
-      };
+      console.log(userToken);
+      const updatedFavorite = !favorite;
+      setFavorite(updatedFavorite);
+      const updatedProduct = { ...data, favorite: updatedFavorite };
 
       try {
         await mutation.mutateAsync(favoriteData);
@@ -172,13 +169,6 @@ const ElsePage = ({ id }) => {
               </h1>
               <h2>EUR</h2>
             </div>
-            {/* <div className={styles.category}>
-            <Link to={"/category/" + title} key={category._id}>
-              {data.categories &&
-                category.map((cat) => <span className={cat.logo} />)}
-              <h3>{data && data.category}</h3>
-            </Link>
-          </div> */}
             <div className={styles.category}>
               {category && category.map((cat) => <span className={cat.logo} />)}
               <h3>{data && data.category}</h3>

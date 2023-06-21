@@ -2,7 +2,6 @@
   border-radius: 0.7em;
   max-width: 350px;
   height: 200px;
-  
 }
 
 .imagesContainer {
@@ -12,15 +11,14 @@
   border-radius: 0.7em;
   display: flex;
   justify-content: center;
-
 }
 
 .noImage {
   width: 350px;
   height: 200px;
-  background-color: var(--blue-medium);
+  background-color: var(--blue-medium-to-bg-dark);
   border-radius: 0.7em;
-  color: white;
+  color: var(--white-to-black);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,9 +29,9 @@
 .noImageList {
   width: 7rem;
   height: 5rem;
-  background-color: var(--blue-medium);
+  background-color: var(--blue-medium-to-bg-dark);
   border-radius: 0.7em;
-  color: white;
+  color: var(--white-to-black);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -54,8 +52,10 @@
 .noImage span {
   margin-top: 1rem;
   font-size: 2.5rem;
+  /* falta Backgrount , DARK:: yellow-main */
 }
 
 .noImage p {
   width: 12rem;
+  /* falta Backgrount , DARK:: yellow-main */
 }

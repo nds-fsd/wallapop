@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useContext } from "react";
 import styles from "./productPage.module.css";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
@@ -156,13 +156,7 @@ const VehiclePage = ({ id }) => {
               </h1>
               <h2>EUR</h2>
             </div>
-            {/* <div className={styles.category}>
-              <Link to={"/category/" + title} key={category._id} target={_blank}>
-                {data.categories &&
-                  category.map((cat) => <span className={cat.logo} />)}
-                <h3>{data && data.category}</h3>
-              </Link>
-            </div> */}
+
             <div className={styles.category}>
               {data.categories &&
                 category.map((cat) => <span className={cat.logo} />)}

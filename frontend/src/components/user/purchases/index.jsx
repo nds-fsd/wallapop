@@ -1,13 +1,13 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
-import style from "../index.module.css";
+import styles from "../index.module.css";
 
 const Purchases = () => {
   return (
-    <div className={style.navPageContainer}>
+    <div className={styles.navPageContainer}>
       <h1>Compras</h1>
-      <div className={style.linkPageContainer}>
-        <Link to="ongoing"> En Curso </Link>
+      <div className={styles.linkPageContainer}>
+        {/* <Link to="ongoing"> En Curso </Link> */}
         <Link to="completed"> Completadas </Link>
       </div>
       <Outlet />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./listCategory.module.css";
 import { getCategories } from "../../../utils/apiCategories";
 import { useQuery } from "react-query";
@@ -14,7 +14,7 @@ const ListCategory = () => {
       {/* si no ha cargado las categorias muestra esto */}
       {isLoading && (
         <div>
-          <Spinner />
+          <Spinner size="M" />
         </div>
       )}
       <div className={styles.carusel}>

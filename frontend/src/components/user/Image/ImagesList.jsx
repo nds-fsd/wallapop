@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./images.module.css";
 
 const ImagesList = ({ images, status }) => {
+  // console.log("en las imagenes", status);
+
   const mockImages = [
     "https://picsum.photos/id/1/350/150",
     "https://picsum.photos/id/2/350/150",

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./allCategories.module.css";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getAllProducts, updateProduct } from "../../../utils/apiProducts";
-import ImagesHome from "../../user/products/Image/ImagesHome";
+import ImagesHome from "../../user/Image/ImagesHome";
 import { Link, useNavigate } from "react-router-dom";
 
 const AllCategories = () => {
@@ -106,47 +106,51 @@ const AllCategories = () => {
         </div>
       )}
       <div className={styles.gridContainer}>
-        {visibleProducts?.map((prod) => (
-          <div key={prod._id} className={styles.card}>
-            {prods && (
-              <ImagesHome
-                images={prod.images}
-                className={styles.images}
-                category={prod.categories}
-                status={prod.status}
-              />
-            )}
-            <div className={styles.titleContainer}>
-              <div className={styles.priceContainer}>
-                <h5>
-                  {prod.price.toLocaleString("es-ES", {
-                    useGrouping: true,
-                  })}
-                  €
-                </h5>
-                <Link
-                  data-test="card_prod"
-                  to={`/category/product/${prod._id}`}
-                  target="_blank"
-                  className={styles.eye}
-                >
-                  <button>
-                    <span className="icon-eye1"></span>
-                  </button>
-                </Link>
-                <button
-                  onClick={() => handleFavorite(prod._id)}
-                  className={`${styles.like} ${
-                    prod.favorite ? styles.focused : ""
-                  }`}
-                >
-                  <span className="icon-heart1"></span>
-                </button>
+        {visibleProducts?.map(
+          (prod) =>
+            // Añado esto para que no se muestren los productos con sold = true
+            !prod.sold && (
+              <div key={prod._id} className={styles.card}>
+                {prods && (
+                  <ImagesHome
+                    images={prod.images}
+                    className={styles.images}
+                    category={prod.categories}
+                    status={prod.status}
+                  />
+                )}
+                <div className={styles.titleContainer}>
+                  <div className={styles.priceContainer}>
+                    <h5>
+                      {prod.price.toLocaleString("es-ES", {
+                        useGrouping: true,
+                      })}
+                      €
+                    </h5>
+                    <Link
+                      data-test="card_prod"
+                      to={`/category/product/${prod._id}`}
+                      target="_blank"
+                      className={styles.eye}
+                    >
+                      <button>
+                        <span className="icon-eye1"></span>
+                      </button>
+                    </Link>
+                    <button
+                      onClick={() => handleFavorite(prod._id)}
+                      className={`${styles.like} ${
+                        prod.favorite ? styles.focused : ""
+                      }`}
+                    >
+                      <span className="icon-heart1"></span>
+                    </button>
+                  </div>
+                  <p className={styles.title}>{prod.title}</p>
+                </div>
               </div>
-              <p className={styles.title}>{prod.title}</p>
-            </div>
-          </div>
-        ))}
+            )
+        )}
       </div>
       {prods && prods.length > 20 && (
         <button onClick={toggleShowAll} className={styles.view}>

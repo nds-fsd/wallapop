@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import styles from "./editProduct.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -34,7 +34,7 @@ const EditHouse = ({ id }) => {
   //     ?.split(",")
   //     .map((keyword) => keyword.trim())
   //     .filter((keyword) => keyword !== "");
-      
+
   //   const productData = { ...product, keywords};
   //   mutation.mutate(productData);
   //   alert("Los cambios se han guardado satisfactoriamente")

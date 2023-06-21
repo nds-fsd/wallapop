@@ -4,8 +4,6 @@ import { Controller, useForm } from "react-hook-form";
 import { postProduct } from "../../../utils/apiProducts";
 import { useMutation, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
-import Map from "../map/Map";
-import CustomAlert from "../../CustomAlert/CustomAlert";
 import { AuthContext } from "../../../context/authContext";
 
 const FormHouse = () => {
@@ -37,11 +35,6 @@ const FormHouse = () => {
       return updatedPreviews;
     });
   };
-
-  // const [showAlert, setShowAlert] = useState(false)
-  // const handleCloseAlert = () => {
-  //   setShowAlert(false);
-  // };
 
   const onSubmit = (data) => {
     const keywords = data.keywords

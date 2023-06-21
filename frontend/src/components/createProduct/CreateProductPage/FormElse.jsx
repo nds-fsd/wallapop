@@ -1,11 +1,9 @@
 import React, { useContext, useState } from "react";
 import styles from "./createProductPage.module.css";
 import { useForm } from "react-hook-form";
-import { postProduct, updateProduct } from "../../../utils/apiProducts";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { postProduct } from "../../../utils/apiProducts";
+import { useMutation, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
-import Map from "../map/Map";
-import CustomAlert from "../../CustomAlert/CustomAlert";
 import { AuthContext } from "../../../context/authContext";
 
 const FormElse = () => {
@@ -37,11 +35,6 @@ const FormElse = () => {
       return updatedPreviews;
     });
   };
-
-  // const [showAlert, setShowAlert] = useState(false);
-  // const handleCloseAlert = () => {
-  //   setShowAlert(false);
-  // };
 
   const onSubmit = (data) => {
     const keywords = data.keywords
@@ -201,17 +194,9 @@ const FormElse = () => {
           setImagePreviews={setImagePreviews}
           reset={reset}
         />
-        {/* <Map /> */}
-
         <button type="submit" className={styles.formButton}>
           Subir
         </button>
-        {/* {showAlert && (
-          <CustomAlert
-            message="Tu producto se ha subido correctamente"
-            onClose={handleCloseAlert}
-          />
-        )} */}
       </form>
     </>
   );

@@ -4,8 +4,12 @@
   text-decoration: underline;
 }
 
+.title {
+  color: var(--blue-dark-to-yellow-main);
+}
+
 .line {
-  background-color: var(--blue-dark);
+  background-color: var(--blue-dark-to-yellow-main);
   height: 2px;
   opacity: 1;
   margin: 2em 0 1em 0;
@@ -46,7 +50,6 @@
   width: 6rem;
   height: 6rem;
   border-radius: 1rem;
-
 }
 
 .tip {
