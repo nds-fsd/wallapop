@@ -15,21 +15,16 @@ import { AuthProvider } from "./context/authContext";
 import ProdPage from "./components/product/ProductPage/ProdPage";
 import ListBuscador from "./components/home/ListBuscador/ListBuscador";
 import ModalCompra from "./components/product/modalCompra/modalCompra";
-import  { ThemeContext } from "./context/themeContext";
 import "./index.css";
 
 function App() {
   const queryClient = new QueryClient();
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
-
-  const rootClassName = `${darkMode ? "appDark" : "app"}`;
 
   return (
     <>
-      <QueryClientProvider client={queryClient} >
-        {/* <ThemeProvider> */}
+      <QueryClientProvider client={queryClient}>
         <AuthProvider>
-          <div className={rootClassName}>
+          <div>
             <Navbar />
             <div>
               <Routes>
@@ -66,7 +61,6 @@ function App() {
           </div>
           <ReactQueryDevtools initialIsOpen={false} />
         </AuthProvider>
-        {/* </ThemeProvider> */}
       </QueryClientProvider>
     </>
   );

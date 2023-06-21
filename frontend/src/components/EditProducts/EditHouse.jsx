@@ -1,15 +1,12 @@
 import React, { useEffect, useContext } from "react";
 import styles from "./editProduct.module.css";
-import stylesDark from "./editProductDark.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProductById, updateProduct } from "../../utils/apiProducts";
 import EditImages from "../EditImages/EditImages";
-import { ThemeContext } from "../../context/themeContext";
 
 const EditHouse = ({ id }) => {
   // console.log("el producto en el modal", id);
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 
   const {
     register,
@@ -68,14 +65,9 @@ const EditHouse = ({ id }) => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div
-          className={darkMode ? stylesDark.editContainer : styles.editContainer}
-        >
-          <div className={darkMode ? stylesDark.title : styles.title}>
-            <label
-              htmlFor="title"
-              className={darkMode ? stylesDark.labels : styles.labels}
-            >
+        <div className={styles.editContainer}>
+          <div className={styles.title}>
+            <label htmlFor="title" className={styles.labels}>
               Título:
             </label>
             <input
@@ -83,53 +75,44 @@ const EditHouse = ({ id }) => {
               {...register("title", {
                 required: "El título es obligatorio",
               })}
-              className={darkMode ? stylesDark.input : styles.input}
+              className={styles.input}
             ></input>
-            <label
-              htmlFor="location"
-              className={darkMode ? stylesDark.labels : styles.labels}
-            >
+            <label htmlFor="location" className={styles.labels}>
               Localización:
             </label>
             <input
               placeholder="Localización"
               {...register("location")}
-              className={darkMode ? stylesDark.input : styles.input}
+              className={styles.input}
             ></input>
           </div>
 
           {errors.title && (
-            <p className={darkMode ? stylesDark.error : styles.error}>
+            <p className={styles.error}>
               <span className="icon-warning1"></span>
               {errors.title.message}
             </p>
           )}
 
-          <div className={darkMode ? stylesDark.title : styles.title}>
-            <label
-              htmlFor="rent"
-              className={darkMode ? stylesDark.labels : styles.labels}
-            >
+          <div className={styles.title}>
+            <label htmlFor="rent" className={styles.labels}>
               Renta:
             </label>
             <select
               {...register("rent", { required: "Este campo es obligatorio" })}
-              className={darkMode ? stylesDark.input : styles.input}
+              className={styles.input}
             >
               <option value="">Selecciona una opción</option>
               <option value="Venta">Venta</option>
               <option value="Alquiler">Alquiler</option>
             </select>
 
-            <label
-              htmlFor="space"
-              className={darkMode ? stylesDark.labels : styles.labels}
-            >
+            <label htmlFor="space" className={styles.labels}>
               Espacio:
             </label>
             <select
               {...register("space", { required: "Este campo es obligatorio" })}
-              className={darkMode ? stylesDark.input : styles.input}
+              className={styles.input}
             >
               <option value="">Selecciona una opción</option>
               <option value="Piso">Piso</option>
@@ -139,10 +122,7 @@ const EditHouse = ({ id }) => {
               <option value="Garaje">Garaje</option>
               <option value="Trastero">Trastero</option>
             </select>
-            <label
-              htmlFor="land"
-              className={darkMode ? stylesDark.labels : styles.labels}
-            >
+            <label htmlFor="land" className={styles.labels}>
               Superficie:
             </label>
             <input
@@ -150,58 +130,43 @@ const EditHouse = ({ id }) => {
               min="1"
               {...register("land", { required: "Este campo es obligatorio" })}
               placeholder="En m2"
-              className={darkMode ? stylesDark.input : styles.input}
+              className={styles.input}
             ></input>
           </div>
-          <div className={darkMode ? stylesDark.error2 : styles.error2}>
+          <div className={styles.error2}>
             {errors.rent && (
-              <p className={darkMode ? stylesDark.error : styles.error}>
+              <p className={styles.error}>
                 <span className="icon-warning1"></span>
                 {errors.rent.message}
               </p>
             )}
             {errors.space && (
-              <p className={darkMode ? stylesDark.error : styles.error}>
+              <p className={styles.error}>
                 <span className="icon-warning1"></span>
                 {errors.space.message}
               </p>
             )}
             {errors.land && (
-              <p className={darkMode ? stylesDark.error : styles.error}>
+              <p className={styles.error}>
                 <span className="icon-warning1"></span>
                 {errors.land.message}
               </p>
             )}
           </div>
 
-          <div
-            className={darkMode ? stylesDark.labelTriple : styles.labelTriple}
-          >
-            <label
-              htmlFor="price"
-              className={darkMode ? stylesDark.labels : styles.labels}
-            >
+          <div className={styles.labelTriple}>
+            <label htmlFor="price" className={styles.labels}>
               Precio:
             </label>
-            <label
-              htmlFor="keywords"
-              className={
-                darkMode ? stylesDark.labelKeywords : styles.labelKeywords
-              }
-            >
+            <label htmlFor="keywords" className={styles.labelKeywords}>
               Tus keywords:
             </label>
-            <label
-              htmlFor="status"
-              className={darkMode ? stylesDark.labelStatus : styles.labelStatus}
-            >
+            <label htmlFor="status" className={styles.labelStatus}>
               Estado de tu inmueble:
             </label>
           </div>
-          <div
-            className={darkMode ? stylesDark.columnTriple : styles.columnTriple}
-          >
-            <div className={darkMode ? stylesDark.price : styles.price}>
+          <div className={styles.columnTriple}>
+            <div className={styles.price}>
               <input
                 type="number"
                 min="1"
@@ -209,25 +174,18 @@ const EditHouse = ({ id }) => {
                   required: "El precio es obligatorio",
                 })}
                 placeholder="No te excedas..."
-                className={
-                  darkMode ? stylesDark.inputTriple : styles.inputTriple
-                }
+                className={styles.inputTriple}
               ></input>
-              <div className={darkMode ? stylesDark.coin : styles.coin}>
-                EUR
-              </div>
+              <div className={styles.coin}>EUR</div>
             </div>
             <input
               placeholder="Crea tus palabras clave"
               {...register("keywords")}
-              className={darkMode ? stylesDark.inputTriple : styles.inputTriple}
+              className={styles.inputTriple}
               // defaultValue={product?.keywords?.join(", ") || ""}
             ></input>
 
-            <select
-              {...register("status")}
-              className={darkMode ? stylesDark.dropdown : styles.dropdown}
-            >
+            <select {...register("status")} className={styles.dropdown}>
               <option value="">Selecciona un estado</option>
               <option value="Obra nueva">Obra nueva</option>
               <option value="En buen estado">En buen estado</option>
@@ -236,16 +194,13 @@ const EditHouse = ({ id }) => {
           </div>
 
           {errors.price && (
-            <p className={darkMode ? stylesDark.error : styles.error}>
+            <p className={styles.error}>
               <span className="icon-warning1"></span>
               {errors.price.message}
             </p>
           )}
-          <div className={darkMode ? stylesDark.double : styles.double}>
-            <label
-              htmlFor="description"
-              className={darkMode ? stylesDark.labels : styles.labels}
-            >
+          <div className={styles.double}>
+            <label htmlFor="description" className={styles.labels}>
               Descripción:
             </label>
             <textarea
@@ -254,18 +209,18 @@ const EditHouse = ({ id }) => {
               {...register("description", {
                 required: "La descripción es obligatoria",
               })}
-              className={darkMode ? stylesDark.textArea : styles.textArea}
+              className={styles.textArea}
             ></textarea>
           </div>
           {errors.description && (
-            <p className={darkMode ? stylesDark.error : styles.error}>
+            <p className={styles.error}>
               <span className="icon-warning1"></span>
               {errors.description.message}
             </p>
           )}
           {product && <EditImages product={product} />}
 
-          <div className={darkMode ? stylesDark.formButton : styles.formButton}>
+          <div className={styles.formButton}>
             <button data-test="guardar" type="submit">
               Guardar cambios
             </button>

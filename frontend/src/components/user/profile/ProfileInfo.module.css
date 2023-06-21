@@ -1,18 +1,24 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin-right: 1rem;
+  gap: 1rem;
+}
 .contentContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: white;
   color: var(--blue-dark-to-blue-light);
   padding: 1rem;
   border-radius: 1rem;
-  background-color: var(--gray-to-bg-dark);
+  background-color: var(--white-to-bg-medium);
 }
 .contentForm {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background-color: var(--gray-to-bg-dark);
+  background-color: var(--white-to-bg-medium);
   color: var(--blue-dark);
   padding: 1rem;
   border-radius: 1rem;
@@ -20,7 +26,7 @@
 .divInfoUser {
   display: flex;
   flex-direction: column;
-  background-color: var(--gray-to-bg-dark);
+  background-color: var(--white-to-bg-medium);
   color: var(--blue-dark-to-yellow-main);
   padding: 1rem;
   border-radius: 1rem;
@@ -28,19 +34,11 @@
 .divFoto {
   display: flex;
   flex-direction: column;
-  background-color: var(--gray-to-bg-dark);
+  background-color: var(--white-to-bg-medium);
   color: var(--blue-dark-to-yellow-main);
   padding: 1rem;
   border-radius: 1rem;
   align-items: center;
-}
-
-.mainContainer {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  margin-right: 1rem;
-  gap: 1rem;
 }
 
 .changePhotoContainer {
@@ -82,7 +80,7 @@
   padding: 0 1rem;
   border-radius: 2.5rem;
   border: 0.15em solid var(--yellow-main-to-blue-light);
-  background-color: var(--gray-to-bg-dark);
+  background-color: var(--white-to-bg-medium);
   color: var(--yellow-main-to-blue-light);
   font-weight: bold;
   cursor: pointer;
@@ -127,10 +125,10 @@
   font-size: 1rem;
   margin-left: 1rem;
   background-color: var(--white-to-bg-medium);
-  color: var(--blue-dark-to-blue-light);
+  color: var(--blue-dark-to-yellow-light);
 }
 .inputProfile::placeholder {
-  color: var(--blue-dark-to-yellow-dark);
+  color: var(--blue-dark-to-yellow-light);
 }
 
 .divButtons {

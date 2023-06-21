@@ -1,14 +1,11 @@
 import React, { useContext } from "react";
 import styles from "./modalCompra.module.css";
-import stylesDark from "./modalCompraDark.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
 import { postTransactions } from "../../../utils/apiTransacions";
 import { updateProduct } from "../../../utils/apiProducts";
-import { ThemeContext } from "../../../context/themeContext";
 
 const ModalCompra = ({ modalOpen, setModalOpen, data }) => {
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   const queryClient = useQueryClient(["transaction"]);
   const queryClientProd = useQueryClient(["product"]);
   const idProduct = data._id;
@@ -60,45 +57,28 @@ const ModalCompra = ({ modalOpen, setModalOpen, data }) => {
   return (
     <>
       {modalOpen && (
-        <div
-          className={
-            darkMode ? stylesDark.modalContainer : styles.modalContainer
-          }
-        >
-          <div
-            className={darkMode ? stylesDark.modalContent : styles.modalContent}
-          >
-            <div className={darkMode ? stylesDark.foooter : styles.foooter}>
+        <div className={styles.modalContainer}>
+          <div className={styles.modalContent}>
+            <div className={styles.foooter}>
               <h3>Realizando la compra</h3>
-              <button
-                onClick={handleSubmitClose}
-                className={darkMode ? stylesDark.modalClose : styles.modalClose}
-              >
+              <button onClick={handleSubmitClose} className={styles.modalClose}>
                 X
               </button>
             </div>
-            <div className={darkMode ? stylesDark.form : styles.form}>
-              <form className={darkMode ? stylesDark.errors : styles.errors}>
+            <div className={styles.form}>
+              <form className={styles.errors}>
                 {/* datos producto */}
                 <h4>¿Cómo quieres recibirlo?</h4>
                 <h6>
                   Elige el método más conveniente. El coste del servicio se
                   sumará al precio del producto.
                 </h6>
-                <div
-                  className={darkMode ? stylesDark.formUser : styles.formUser}
-                >
-                  <div className={darkMode ? stylesDark.errors : styles.errors}>
-                    <label
-                      className={darkMode ? stylesDark.labels : styles.labels}
-                    >
+                <div className={styles.formUser}>
+                  <div className={styles.errors}>
+                    <label className={styles.labels}>
                       Direcion de envio
                       <input
-                        className={
-                          darkMode
-                            ? stylesDark.inputProfile
-                            : styles.inputProfile
-                        }
+                        className={styles.inputProfile}
                         type="text"
                         name="Address"
                         placeholder="Direción donde quieres recibir la compra"
@@ -108,7 +88,7 @@ const ModalCompra = ({ modalOpen, setModalOpen, data }) => {
                       />
                     </label>
                   </div>
-                  <div className={darkMode ? stylesDark.error : styles.error}>
+                  <div className={styles.error}>
                     {errors.address && (
                       <p>
                         <span className="icon-warning1"></span>
@@ -117,73 +97,45 @@ const ModalCompra = ({ modalOpen, setModalOpen, data }) => {
                     )}
                   </div>
                 </div>
-                <div
-                  className={darkMode ? stylesDark.formUser : styles.formUser}
-                >
-                  <label
-                    className={darkMode ? stylesDark.labels : styles.labels}
-                  >
+                <div className={styles.formUser}>
+                  <label className={styles.labels}>
                     Numero tarjeta
                     <input
-                      className={
-                        darkMode ? stylesDark.inputProfile : styles.inputProfile
-                      }
+                      className={styles.inputProfile}
                       type="text"
                       name="Address"
                       placeholder="Numero de tarjeta"
                     />
                   </label>
                 </div>
-                <div
-                  className={darkMode ? stylesDark.formUser : styles.formUser}
-                >
-                  <label
-                    className={darkMode ? stylesDark.labels : styles.labels}
-                  >
+                <div className={styles.formUser}>
+                  <label className={styles.labels}>
                     Nombre propietario
                     <input
-                      className={
-                        darkMode ? stylesDark.inputProfile : styles.inputProfile
-                      }
+                      className={styles.inputProfile}
                       type="text"
                       name="Address"
                       placeholder="Nombre del propietario"
                     />
                   </label>
                 </div>
-                <div className={darkMode ? stylesDark.fecha : styles.fecha}>
-                  <div
-                    className={darkMode ? stylesDark.formUser : styles.formUser}
-                  >
-                    <label
-                      className={darkMode ? stylesDark.labels : styles.labels}
-                    >
+                <div className={styles.fecha}>
+                  <div className={styles.formUser}>
+                    <label className={styles.labels}>
                       Caducidad
                       <input
-                        className={
-                          darkMode
-                            ? stylesDark.inputProfile
-                            : styles.inputProfile
-                        }
+                        className={styles.inputProfile}
                         type="date"
                         name="Address"
                         placeholder="caducidad"
                       />
                     </label>
                   </div>
-                  <div
-                    className={darkMode ? stylesDark.formUser : styles.formUser}
-                  >
-                    <label
-                      className={darkMode ? stylesDark.labels : styles.labels}
-                    >
+                  <div className={styles.formUser}>
+                    <label className={styles.labels}>
                       CCV
                       <input
-                        className={
-                          darkMode
-                            ? stylesDark.inputProfile
-                            : styles.inputProfile
-                        }
+                        className={styles.inputProfile}
                         type="text"
                         name="Address"
                         placeholder="CVV"
@@ -193,24 +145,20 @@ const ModalCompra = ({ modalOpen, setModalOpen, data }) => {
                 </div>
               </form>
             </div>
-            <div
-              className={darkMode ? stylesDark.finalCompra : styles.finalCompra}
-            >
-              <div className={darkMode ? stylesDark.resumen : styles.resumen}>
-                <div className={darkMode ? stylesDark.title : styles.title}>
+            <div className={styles.finalCompra}>
+              <div className={styles.resumen}>
+                <div className={styles.title}>
                   <p>{data.title}</p>
                   <p>{data.price} € </p>
                 </div>
-                <div className={darkMode ? stylesDark.price : styles.price}>
+                <div className={styles.price}>
                   <p>Precio envio</p>
                   <p>2.49 €</p>
                 </div>
-                <p className={darkMode ? stylesDark.total : styles.total}>
-                  {total} €
-                </p>
+                <p className={styles.total}>{total} €</p>
               </div>
               <button
-                className={darkMode ? stylesDark.comprar : styles.comprar}
+                className={styles.comprar}
                 type="submit"
                 onClick={handleSubmit(handleSubmitWrapperUpdate)}
               >

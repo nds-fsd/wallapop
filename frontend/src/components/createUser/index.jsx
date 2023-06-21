@@ -2,11 +2,8 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/authContext";
 import styles from "./createUser.module.css";
-import stylesDark from "./createUserDark.module.css";
-import { ThemeContext } from "../../context/themeContext";
 
 const CreateUserPage = () => {
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   const {
     register,
     handleSubmit,
@@ -26,30 +23,14 @@ const CreateUserPage = () => {
   };
 
   return (
-    <div className={darkMode ? stylesDark.mainContainer : styles.mainContainer}>
-      <div
-        className={
-          darkMode ? stylesDark.createUserContainer : styles.createUserContainer
-        }
-      >
+    <div className={styles.mainContainer}>
+      <div className={styles.createUserContainer}>
         <h1>Regístrate</h1>
-        <div
-          className={
-            darkMode
-              ? stylesDark.imageButtonContainer
-              : styles.imageButtonContainer
-          }
-        >
+        <div className={styles.imageButtonContainer}>
           <label htmlFor="images">Selecciona una imagen</label>
           <button
             onClick={handleOpenWidget}
-            className={
-              darkMode && !image
-                ? stylesDark.image
-                : styles.image && !darkMode && !image
-                ? styles.image
-                : stylesDark.image
-            }
+            className={!image ? styles.image : styles.noimage}
           >
             {!image ? (
               <span className="icon-image1"></span>
@@ -60,31 +41,31 @@ const CreateUserPage = () => {
         </div>
         <form
           onSubmit={handleSubmit(handleSubmitWrapper)}
-          className={darkMode ? stylesDark.formContainer : styles.formContainer}
+          className={styles.formContainer}
         >
-          <div className={darkMode ? stylesDark.column : styles.column}>
-            <div className={darkMode ? stylesDark.errors : styles.errors}>
+          <div className={styles.column}>
+            <div className={styles.errors}>
               <input
                 type="text"
                 placeholder="Nombre"
-                className={darkMode ? stylesDark.input : styles.input}
+                className={styles.input}
                 {...register("name", {
                   required: "El nombre es obligatorio",
                 })}
               />
             </div>
-            <div className={darkMode ? stylesDark.errors : styles.errors}>
+            <div className={styles.errors}>
               <input
                 type="text"
                 placeholder="Apellido"
-                className={darkMode ? stylesDark.input : styles.input}
+                className={styles.input}
                 {...register("surname", {
                   required: "El apellido es obligatorio",
                 })}
               />
             </div>
           </div>
-          <div className={darkMode ? stylesDark.error : styles.error}>
+          <div className={styles.error}>
             {errors.name && (
               <p>
                 <span className="icon-warning1"></span>
@@ -98,12 +79,12 @@ const CreateUserPage = () => {
               </p>
             )}
           </div>
-          <div className={darkMode ? stylesDark.column : styles.column}>
-            <div className={darkMode ? stylesDark.errors : styles.errors}>
+          <div className={styles.column}>
+            <div className={styles.errors}>
               <input
                 type="email"
                 placeholder="Email"
-                className={darkMode ? stylesDark.input : styles.input}
+                className={styles.input}
                 {...register("email", {
                   required: "El email es obligatorio",
                   pattern: {
@@ -113,11 +94,11 @@ const CreateUserPage = () => {
                 })}
               />
             </div>
-            <div className={darkMode ? stylesDark.errors : styles.errors}>
+            <div className={styles.errors}>
               <input
                 type="password"
                 placeholder="Password"
-                className={darkMode ? stylesDark.input : styles.input}
+                className={styles.input}
                 {...register("password", {
                   required: "La contraseña es obligatoria",
                 })}
@@ -125,7 +106,7 @@ const CreateUserPage = () => {
             </div>
           </div>
 
-          <div className={darkMode ? stylesDark.error1 : styles.error1}>
+          <div className={styles.error1}>
             {errors.email && (
               <p>
                 <span className="icon-warning1"></span>
@@ -139,12 +120,12 @@ const CreateUserPage = () => {
               </p>
             )}
           </div>
-          <div className={darkMode ? stylesDark.column : styles.column}>
-            <div className={darkMode ? stylesDark.errors : styles.errors}>
+          <div className={styles.column}>
+            <div className={styles.errors}>
               <input
                 type="text"
                 placeholder="Teléfono"
-                className={darkMode ? stylesDark.input : styles.input}
+                className={styles.input}
                 {...register("phone", {
                   required: "El teléfono es obligatorio",
                 })}
@@ -153,13 +134,13 @@ const CreateUserPage = () => {
             <input
               type="text"
               placeholder="Dirección"
-              className={darkMode ? stylesDark.input : styles.input}
+              className={styles.input}
               {...register("address", {
                 required: "La dirección es obligatoria",
               })}
             />
           </div>
-          <div className={darkMode ? stylesDark.error : styles.error}>
+          <div className={styles.error}>
             {errors.phone && (
               <p>
                 <span className="icon-warning1"></span>
@@ -173,15 +154,15 @@ const CreateUserPage = () => {
               </p>
             )}
           </div>
-          <div className={darkMode ? stylesDark.column : styles.column}>
+          <div className={styles.column}>
             <input
               type="date"
               placeholder="Fecha de nacimiento"
-              className={darkMode ? stylesDark.input : styles.input}
+              className={styles.input}
               {...register("birthday")}
             />
             {errors.birthday && (
-              <p className={darkMode ? stylesDark.error : styles.error}>
+              <p className={styles.error}>
                 <span className="icon-warning1"></span>
                 {errors.birthday.message}
               </p>
@@ -189,7 +170,7 @@ const CreateUserPage = () => {
             <select
               {...register("gender")}
               placeholder="Género"
-              className={darkMode ? stylesDark.dropdown : styles.dropdown}
+              className={styles.dropdown}
               name="gender"
             >
               <option value="">Selecciona un género</option>
@@ -199,7 +180,7 @@ const CreateUserPage = () => {
               <option value="Prefiero no decirlo">Prefiero no decirlo</option>
             </select>
             {errors.gender && (
-              <p className={darkMode ? stylesDark.error : styles.error}>
+              <p className={styles.error}>
                 <span className="icon-warning1"></span>
                 {errors.gender.message}
               </p>
@@ -207,9 +188,7 @@ const CreateUserPage = () => {
           </div>
 
           <input
-            className={
-              darkMode ? stylesDark.createUserButton : styles.createUserButton
-            }
+            className={styles.createUserButton}
             value="Regístrate"
             type="submit"
           />

@@ -56,6 +56,7 @@
   padding-left: 1rem;
   font-size: 0.9rem;
   background-color: var(--white-to-bg-medium);
+  color: var(--black-to-yellow-light);
 }
 
 .inputTriple {
@@ -67,6 +68,7 @@
   padding-left: 1rem;
   font-size: 0.9rem;
   background-color: var(--white-to-bg-medium);
+  color: var(--black-to-yellow-light);
 }
 .price {
   display: flex;
@@ -183,8 +185,9 @@
   padding-top: 0.8rem;
   font-size: 0.9rem;
   background-color: var(--white-to-bg-medium);
-  color: var(--grey-to-white);
+  color: var(--black-to-yellow-light);
   font-family: "Roboto", sans-serif;
+  margin: 1rem;
 }
 
 .subtitles {
@@ -257,10 +260,11 @@
   border-radius: 2.5rem;
   border: 0.15em solid var(--yellow-main);
   background-color: var(--white-to-bg-medium);
-  color: var(--yellow-main-to-blue-light);
+  color: var(--yellow-main);
   font-weight: bold;
   cursor: pointer;
   position: relative;
+  margin: 1rem;
 }
 
 .formButton button:hover {

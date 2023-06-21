@@ -12,11 +12,11 @@
   width: 7rem;
   height: 2.5rem;
   border-radius: 2.5rem;
-  font-size: 1rem;
-  background-color: var(--yellow-main-to-bg-dark);
+  font-size: 0.75rem;
+  background-color: var(--yellow-main);
   cursor: pointer;
-  border: var(--none-to-blue-dark);
-  color: var(--yellow-light-to-blue-light);
+  border: none;
+  color: var(--gray-to-bg-dark);
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -24,16 +24,16 @@
   width: 7rem;
   height: 2.5rem;
   border-radius: 2.5rem;
-  font-size: 1rem;
+  font-size: 0.75rem;
+  background-color: var(--gray-to-bg-dark);
   color: var(--blue-dark-to-yellow-main);
   border-color: var(--blue-dark-to-yellow-main);
+  border: var(--blue-dark-to-yellow-main) solid 0.15rem;
   cursor: pointer;
-  border: var(--none-to-blue-dark);
-  background-color: var(--yellow-dark-to-bg-dark);
 }
 .searchContainer input {
   border-radius: 10rem;
-  border: var(--blue-dark-to-blue-light) solid 0.1rem;
+  border: var(--blue-dark-to-yellow-main) solid 0.1rem;
   width: 80%;
   margin-bottom: 0;
   padding: 0.65rem;
@@ -42,5 +42,5 @@
 }
 
 .searchContainer input::placeholder {
-  color: var(--grey-to-black);
+  color: var(--black-to-yellow-light);
 }

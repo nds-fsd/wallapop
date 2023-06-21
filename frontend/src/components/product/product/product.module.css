@@ -20,7 +20,7 @@
   overflow: hidden;
   width: 45rem;
   height: 14rem;
-  background-color: var(--gray-to-bg-dark);
+  background-color: var(--grey-to-bg-medium);
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
 .card:hover {

@@ -53,6 +53,7 @@
 .register {
   display: flex;
   justify-content: space-between;
+  color: var(--grey-to-white);
 }
 .input {
   width: 13rem;
@@ -64,6 +65,8 @@
   font-size: 1rem;
   gap: 1rem;
   background-color: var(--white-to-bg-medium);
+  color: var(--grey-to-white);
+
 }
 
 .formButton {
@@ -80,7 +83,6 @@
 }
 
 .formButton:hover {
-  background-color: var(--yellow-main);
   background-color: var(--white-to-bg-medium);
 }
 

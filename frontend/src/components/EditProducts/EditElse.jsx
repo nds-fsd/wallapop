@@ -1,16 +1,13 @@
 import React, { useContext } from "react";
 import styles from "./editProduct.module.css";
-import stylesDark from "./editProductDark.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProductById, updateProduct } from "../../utils/apiProducts";
 import CustomAlert from "../CustomAlert/CustomAlert";
 import EditImages from "../EditImages/EditImages";
-import { ThemeContext } from "../../context/themeContext";
 
 const EditElse = ({ id }) => {
   // console.log("el producto en el modal", id);
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 
   const {
     register,
@@ -56,18 +53,10 @@ const EditElse = ({ id }) => {
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className={darkMode ? stylesDark.container : styles.container}
-      >
-        <div
-          className={darkMode ? stylesDark.editContainer : styles.editContainer}
-        >
-          <div className={darkMode ? stylesDark.title : styles.title}>
-            <label
-              htmlFor="title"
-              className={darkMode ? stylesDark.labels : styles.labels}
-            >
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
+        <div className={styles.editContainer}>
+          <div className={styles.title}>
+            <label htmlFor="title" className={styles.labels}>
               Título:
             </label>
             <input
@@ -75,56 +64,38 @@ const EditElse = ({ id }) => {
               {...register("title", {
                 required: "El título es obligatorio",
               })}
-              className={darkMode ? stylesDark.input : styles.input}
+              className={styles.input}
             ></input>
-            <label
-              htmlFor="location"
-              className={darkMode ? stylesDark.labels : styles.labels}
-            >
+            <label htmlFor="location" className={styles.labels}>
               Localización:
             </label>
             <input
               placeholder="Localización"
               {...register("location")}
-              className={darkMode ? stylesDark.input : styles.input}
+              className={styles.input}
             ></input>
           </div>
 
           {errors.title && (
-            <p className={darkMode ? stylesDark.error : styles.error}>
+            <p className={styles.error}>
               <span className="icon-warning1"></span>
               {errors.title.message}
             </p>
           )}
 
-          <div
-            className={darkMode ? stylesDark.labelTriple : styles.labelTriple}
-          >
-            <label
-              htmlFor="price"
-              className={darkMode ? stylesDark.labels : styles.labels}
-            >
+          <div className={styles.labelTriple}>
+            <label htmlFor="price" className={styles.labels}>
               Precio:
             </label>
-            <label
-              htmlFor="keywords"
-              className={
-                darkMode ? stylesDark.labelKeywords : styles.labelKeywords
-              }
-            >
+            <label htmlFor="keywords" className={styles.labelKeywords}>
               Tus keywords:
             </label>
-            <label
-              htmlFor="status"
-              className={darkMode ? stylesDark.labelStatus : styles.labelStatus}
-            >
+            <label htmlFor="status" className={styles.labelStatus}>
               Estado de tu producto:
             </label>
           </div>
-          <div
-            className={darkMode ? stylesDark.columnTriple : styles.columnTriple}
-          >
-            <div className={darkMode ? stylesDark.price : styles.price}>
+          <div className={styles.columnTriple}>
+            <div className={styles.price}>
               <input
                 type="number"
                 min="1"
@@ -132,24 +103,17 @@ const EditElse = ({ id }) => {
                   required: "El precio es obligatorio",
                 })}
                 placeholder="No te excedas..."
-                className={
-                  darkMode ? stylesDark.inputTriple : styles.inputTriple
-                }
+                className={styles.inputTriple}
               ></input>
-              <div className={darkMode ? stylesDark.coin : styles.coin}>
-                EUR
-              </div>
+              <div className={styles.coin}>EUR</div>
             </div>
             <input
               placeholder="Crea tus palabras clave"
               {...register("keywords")}
-              className={darkMode ? stylesDark.inputTriple : styles.inputTriple}
+              className={styles.inputTriple}
             ></input>
 
-            <select
-              {...register("status")}
-              className={darkMode ? stylesDark.dropdown : styles.dropdown}
-            >
+            <select {...register("status")} className={styles.dropdown}>
               <option value="">Selecciona un estado</option>
               <option value="Como nuevo">Como nuevo</option>
               <option value="En buen estado">En buen estado</option>
@@ -159,16 +123,13 @@ const EditElse = ({ id }) => {
           </div>
 
           {errors.price && (
-            <p className={darkMode ? stylesDark.error : styles.error}>
+            <p className={styles.error}>
               <span className="icon-warning1"></span>
               {errors.price.message}
             </p>
           )}
-          <div className={darkMode ? stylesDark.double : styles.double}>
-            <label
-              htmlFor="description"
-              className={darkMode ? stylesDark.labels : styles.labels}
-            >
+          <div className={styles.double}>
+            <label htmlFor="description" className={styles.labels}>
               Descripción:
             </label>
             <textarea
@@ -177,7 +138,7 @@ const EditElse = ({ id }) => {
               {...register("description", {
                 required: "La descripción es obligatoria",
               })}
-              className={darkMode ? stylesDark.textArea : styles.textArea}
+              className={styles.textArea}
             ></textarea>
           </div>
           {errors.description && (
@@ -189,7 +150,7 @@ const EditElse = ({ id }) => {
 
           {product && <EditImages product={product} />}
 
-          <div className={darkMode ? stylesDark.formButton : styles.formButton}>
+          <div className={styles.formButton}>
             <button type="submit" data-test="guardar">
               Guardar cambios
             </button>

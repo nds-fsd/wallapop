@@ -1,11 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from "./images.module.css";
-import stylesDark from "./imagesDark.module.css";
-import { ThemeContext } from "../../../context/themeContext";
 
 const ImagesList = ({ images, status }) => {
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
-
   // console.log("en las imagenes", status);
 
   const mockImages = [
@@ -32,12 +28,9 @@ const ImagesList = ({ images, status }) => {
     )} */}
 
       {images.length > 0 ? (
-        <img
-          src={images[0]}
-          className={darkMode ? stylesDark.imgList : styles.imgList}
-        ></img>
+        <img src={images[0]} className={styles.imgList}></img>
       ) : (
-        <div className={darkMode ? stylesDark.noImageList : styles.noImageList}>
+        <div className={styles.noImageList}>
           <span className="icon-eye-blocked"></span>
           <p>Imágenes</p>
         </div>

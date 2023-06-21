@@ -6,6 +6,12 @@
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 className={darkMode ? stylesDark.navbar : styles.navbar}
  
+
+
+darkMode.*:
+
+
+
 */
 
 /*  
@@ -26,24 +32,21 @@ rgba(226, 34, 34, 0.692);
   -webkit-text-size-adjust: 100%;
   min-height: 100vh;
   /* color: var(--blue-dark); */
-  --yellow-main: #eba905; /* DAY */
-  --blue-light: #6ae3eb; /* DARK */
-  --yellow-main-to-blue-light: #eba905;
-  --redo: rgba(226, 34, 34, 0.692);
-  --blue-dark: #0e165c; /* DAY */
-  --yellow-main: #eba905; /* DARK*/
-  --blue-dark-to-yellow-main: #0e165c;
 
+  --red: rgba(226, 34, 34, 0.692);
+  --blue-light: #6ae3eb;
+  --blue-medium: #39428d;
+  --blue-dark: #0e165c;
+  --yellow-main: #eba905;
   --yellow-light: #fcf7e3;
   --yellow-dark: #706a53c0;
-
-  --blue-medium: #39428d;
   --grey: #eaeeee;
   /* background-color: var(--background-dark); */
   --background-dark: #202123;
   --background-light: var(--grey); /*#eaeeee*/
+  --background-medium: #303031;
 
-  --gray-to-bg-dark: #eaeeee; /* El otro dark es el (--background-dark)*/
+  /* --gray-to-bg-dark: #eaeeee; /* El otro dark es el (--background-dark)
   --grey-to-white: #eaeeee;
   --grey-to-black: #eaeeee;
   --grey-to-yellow-light: #eaeeee;
@@ -88,20 +91,16 @@ rgba(226, 34, 34, 0.692);
 
   --none-to-blue-dark: solid 0.15rem var(#0e165c);
   --none-to-blue-light: solid 0.15rem var(#0e165c);
-  --none-to-blue-dark: solid 0.15rem var(#0e165c);
+  --none-to-blue-dark: solid 0.15rem var(#0e165c); */
 }
 
-/* .app {
-  background-color: var(--background-light);
-}
-.appDark {
-  
-} */
 body,
 #root {
   height: 100vh;
   margin: 0;
-  background-color: var(--background-dark);
+  background-color: var(--gray-to-bg-dark);
+  color: var(--blue-dark-to-yellow-main);
+  /* background-color: var(--background-dark); */
 }
 
 h1 {

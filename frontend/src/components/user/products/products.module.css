@@ -12,21 +12,21 @@
   width: 2.5rem;
   height: 2.5rem;
   border: none;
-  background-color: var(--yellow-main-to-blue-light);
+  background-color: var(--gray-to-bg-dark);
   border-radius: 0.5rem;
   cursor: pointer;
 }
 .gridList span {
   font-size: 1.2rem;
-  color: white;
+  color: var(--black-to-yellow-light);
 }
 .gridList button:hover {
   background-color: var(--blue-light);
-  color: white;
+  color: var(--black-to-yellow-light);
 }
 .gridList button:focus {
   outline: none;
-  background-color: var(--blue-dark);
+  background-color: var(--blue-dark-to-blue-light);
   color: white;
 }
 
@@ -72,7 +72,7 @@
 
 .title {
   color: var(--blue-dark-to-yellow-main);
-  text-decoration: underline;
+  text-decoration: none;
   width: 16rem;
   line-height: 1.2em;
 }
@@ -96,10 +96,8 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* DARK::
-    color: var(--yellow-light);
+  color: var(--blue-dark-to-yellow-light);
 
-  */
 }
 
 .keywords {
@@ -175,7 +173,7 @@
 .titleList {
   color: var(--blue-dark-to-yellow-main);
   font-size: 1.2em;
-  text-decoration: underline;
+  text-decoration: none;
 }
 .iconsList {
   display: flex;
@@ -187,6 +185,7 @@
 .iconsList button {
   background-color: transparent;
   border: none;
+  
 }
 
 .iconsList span {

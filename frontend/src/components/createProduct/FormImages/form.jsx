@@ -1,12 +1,9 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import styles from "./formImages.module.css";
-import stylesDark from "./formImagesDark.module.css";
 import { AuthContext } from "../../../context/authContext";
-import { ThemeContext } from "../../../context/themeContext";
 
 const FormImages = ({ handleImageUpload, imagePreviews }) => {
   const { multipleUploadWidget, image } = useContext(AuthContext);
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 
   const handleOpenWidget = (event) => {
     event.preventDefault();
@@ -21,22 +18,19 @@ const FormImages = ({ handleImageUpload, imagePreviews }) => {
   return (
     <>
       <div>
-        <h2 className={darkMode ? stylesDark.title : styles.title}>Imágenes</h2>
-        <div className={darkMode ? stylesDark.line : styles.line}></div>
-        <h5 className={darkMode ? stylesDark.tip : styles.tip}>
-          <span className={darkMode ? stylesDark.boldChar : styles.boldChar}>
+        <h2 className={styles.title}>Imágenes</h2>
+        <div className={styles.line}></div>
+        <h5 className={styles.tip}>
+          <span className={styles.boldChar}>
             Aquí va un consejo... Sube al menos 3 fotos de calidad.
           </span>
           Ya conoces el refrán, una imagen vale más que mil palabras.
         </h5>
       </div>
 
-      <div className={darkMode ? stylesDark.images : styles.images}>
+      <div className={styles.images}>
         {imagePreviews.map((preview, index) => (
-          <div
-            key={index}
-            className={darkMode ? stylesDark.imagePreview : styles.imagePreview}
-          >
+          <div key={index} className={styles.imagePreview}>
             {index === 0 && images ? (
               <img src={images} alt="Uploaded" />
             ) : (
@@ -49,15 +43,10 @@ const FormImages = ({ handleImageUpload, imagePreviews }) => {
           (_, index) => (
             <div
               key={index + imagePreviews.length}
-              className={
-                darkMode ? stylesDark.imagePreview : styles.imagePreview
-              }
+              className={styles.imagePreview}
             >
               {index >= imagePreviews.length && (
-                <button
-                  onClick={handleOpenWidget}
-                  className={darkMode ? stylesDark.image : styles.image}
-                >
+                <button onClick={handleOpenWidget} className={styles.image}>
                   <span className="icon-image1"></span>
                 </button>
               )}

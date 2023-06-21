@@ -3,17 +3,13 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { deleteProduct, getProductByUser } from "../../../utils/apiProducts";
 import Spinner from "../../Spinner/Spinner";
 import styles from "./products.module.css";
-import stylesDark from "./productsDark.module.css";
 import ModalContainer from "../../product/ModalContainer/ModalContainer";
 import CustomAlert from "../../CustomAlert/CustomAlert";
 import { Link } from "react-router-dom";
-import { ThemeContext } from "../../../context/themeContext";
 import Images from "../Image/Images";
 import ImagesList from "../Image/ImagesList";
 
 const ProductPublished = () => {
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
-
   const { data: prods, isLoading } = useQuery({
     queryKey: ["products_published"],
     queryFn: getProductByUser,
@@ -60,7 +56,7 @@ const ProductPublished = () => {
           <Spinner size="M" />
         </div>
       )}
-      <div className={darkMode ? stylesDark.gridList : styles.gridList}>
+      <div className={styles.gridList}>
         <button onClick={toggleView}>
           <span className="icon-table2"></span>
         </button>
@@ -71,35 +67,17 @@ const ProductPublished = () => {
       {/* <div className={styles.container}> */}
       <div>
         {gridOpen ? (
-          <div
-            className={
-              darkMode ? stylesDark.gridContainer : styles.gridContainer
-            }
-            data-test="productos"
-          >
+          <div className={styles.gridContainer} data-test="productos">
             {prods &&
               prods.map(
                 (prod) =>
                   !prod.sold && (
-                    <div
-                      className={darkMode ? stylesDark.card : styles.card}
-                      data-test="producto"
-                    >
+                    <div className={styles.card} data-test="producto">
                       {prods && (
                         <Images images={prod.images} status={prod.status} />
                       )}
-                      <div
-                        className={
-                          darkMode
-                            ? stylesDark.titleContainer
-                            : styles.titleContainer
-                        }
-                      >
-                        <h4
-                          className={darkMode ? stylesDark.title : styles.title}
-                        >
-                          {prod.title}
-                        </h4>
+                      <div className={styles.titleContainer}>
+                        <h4 className={styles.title}>{prod.title}</h4>
                         <h4>
                           {prod.price.toLocaleString("es-ES", {
                             useGrouping: true,
@@ -107,11 +85,7 @@ const ProductPublished = () => {
                           €
                         </h4>
                       </div>
-                      <div
-                        className={
-                          darkMode ? stylesDark.details : styles.details
-                        }
-                      >
+                      <div className={styles.details}>
                         <div>
                           {prod.categories.map((category) => (
                             <h5 key={category._id}>{category.title}</h5>
@@ -122,27 +96,15 @@ const ProductPublished = () => {
                       </div>
                       {Array.isArray(prod.keywords) &&
                         prod.keywords.length > 0 && (
-                          <div
-                            className={
-                              darkMode ? stylesDark.keywords : styles.keywords
-                            }
-                          >
+                          <div className={styles.keywords}>
                             {prod.keywords.map((keyword, _id) => (
                               <p key={_id}>{`#${keyword}`}</p>
                             ))}
                           </div>
                         )}
 
-                      <p
-                        className={
-                          darkMode ? stylesDark.paragraph : styles.paragraph
-                        }
-                      >
-                        {prod.description}
-                      </p>
-                      <div
-                        className={darkMode ? stylesDark.icons : styles.icons}
-                      >
+                      <p className={styles.paragraph}>{prod.description}</p>
+                      <div className={styles.icons}>
                         <button onClick={() => handleClick(prod._id)}>
                           <span className="icon-pen1"></span>
                         </button>
@@ -170,48 +132,19 @@ const ProductPublished = () => {
               )}
           </div>
         ) : (
-          <div
-            className={
-              darkMode ? stylesDark.listContainer : styles.listContainer
-            }
-          >
+          <div className={styles.listContainer}>
             {prods &&
               prods.map(
                 (prod) =>
                   !prod.sold && (
-                    <div
-                      className={darkMode ? stylesDark.list : styles.list}
-                      key={prod.id}
-                    >
-                      <div
-                        className={
-                          darkMode ? stylesDark.imgList : styles.imgList
-                        }
-                      >
+                    <div className={styles.list} key={prod.id}>
+                      <div className={styles.imgList}>
                         {prods && <ImagesList images={prod.images} />}
                       </div>
 
-                      <div
-                        className={
-                          darkMode
-                            ? stylesDark.detailsContainer
-                            : styles.detailsContainer
-                        }
-                      >
-                        <div
-                          className={
-                            darkMode
-                              ? stylesDark.titleContainer
-                              : styles.titleContainer
-                          }
-                        >
-                          <h4
-                            className={
-                              darkMode ? stylesDark.titleList : styles.titleList
-                            }
-                          >
-                            {prod.title}
-                          </h4>
+                      <div className={styles.detailsContainer}>
+                        <div className={styles.titleContainer}>
+                          <h4 className={styles.titleList}>{prod.title}</h4>
                           <h4>
                             {prod.price.toLocaleString("es-ES", {
                               useGrouping: true,
@@ -219,19 +152,9 @@ const ProductPublished = () => {
                             €
                           </h4>
                         </div>
-                        <p
-                          className={
-                            darkMode ? stylesDark.paragraph : styles.paragraph
-                          }
-                        >
-                          {prod.description}
-                        </p>
+                        <p className={styles.paragraph}>{prod.description}</p>
                       </div>
-                      <div
-                        className={
-                          darkMode ? stylesDark.iconsList : styles.iconsList
-                        }
-                      >
+                      <div className={styles.iconsList}>
                         <button onClick={() => handleClick(prod._id)}>
                           <span className="icon-pen1"></span>
                         </button>

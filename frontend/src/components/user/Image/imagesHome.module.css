@@ -16,6 +16,7 @@
   justify-content: space-around;
   align-items: center;
   text-align: center;
+  border: 0.15em solid var(--yellow-main);
 }
 
 .icon {
@@ -60,28 +61,23 @@
   z-index: 500;
   padding: 0.1em 0.5em;
   font-size: 0.8em;
+  color: var(--blue-dark);
 }
 
 .text {
   margin-top: 1em;
-  /* DARK::
   background-color: var(--blue-medium);
-  color: black; */
+  color: black;
 }
 
 .text span {
   color: var(--whit-to-black);
   margin: 0 0 0 -0.1em;
-
-  /* DARKK_
-    background-color: var(--blue-medium);
-
-   */
 }
 
 .statusNoImage {
   background-color: var(--blue-light);
-  /* color: var(--blue-dark); */
+  color: var(--blue-dark);
   margin: 0 0 0 8em;
   border-radius: 1em;
   height: fit-content;

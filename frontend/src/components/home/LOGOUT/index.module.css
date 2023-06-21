@@ -1,6 +1,6 @@
 .darkMode {
   background-color: var(--gray-to-bg-dark);
-  color: var(--blue-dark);
+  color: var(--blue-dark-to-yellow-main);
   font-size: 2em;
   cursor: pointer;
 }
@@ -30,7 +30,7 @@
   display: flex;
   justify-content: space-around;
   padding-right: 6rem;
-  background-color: var(--grey);
+  background-color: var(--gray-to-bg-dark);
 }
 
 .buttonLink :hover {

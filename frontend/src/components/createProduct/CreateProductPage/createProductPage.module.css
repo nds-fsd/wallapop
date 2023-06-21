@@ -94,6 +94,7 @@
   display: flex;
   width: 6em;
   cursor: pointer;
+  color: var(--blue-light);
 }
 
 .checkbox input[type="radio"] {
@@ -247,6 +248,7 @@
   width: 5em;
   height: 5em;
   cursor: pointer;
+  color: var(--blue-light);
 }
 
 .square input[type="radio"] {
@@ -258,7 +260,7 @@
   align-items: center;
   justify-content: center;
   font-size: 3em;
-  color: var(--blue-dark-to-blue-light);
+  color: var(--blue-light);
 }
 
 .square span:hover {
@@ -289,7 +291,7 @@
   display: flex;
   gap: 2rem;
   justify-content: center;
-  color: var(--blue-dark-to-blue-light);
+  color: var(--blue-light);
 }
 
 .formButton {

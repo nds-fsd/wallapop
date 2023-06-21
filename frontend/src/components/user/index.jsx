@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
 import PurchasesOnGoing from "./purchases/PurchasesOnGoing";
 import PurchasesCompleted from "./purchases/PurchasesCompleted";
@@ -42,26 +42,14 @@ import {
   USER_STATS,
 } from "./route-paths";
 import styles from "./index.module.css";
-import stylesDark from "./indexDark.module.css";
 import Sidebar from "./sidebar";
 import Favs from "./favorites/favs";
-import { ThemeContext } from "../../context/themeContext";
 
 const UserPage = () => {
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
-
   return (
-    <div
-      className={
-        darkMode ? stylesDark.userPageContainer : styles.userPageContainer
-      }
-    >
+    <div className={styles.userPageContainer}>
       <Sidebar />
-      <div
-        className={
-          darkMode ? stylesDark.outletContainer : styles.outletContainer
-        }
-      >
+      <div className={styles.outletContainer}>
         <Routes>
           <Route path={USER_PROFILE} element={<Profile />}>
             <Route path={PROFILE_INFO} element={<ProfileInfo />} />

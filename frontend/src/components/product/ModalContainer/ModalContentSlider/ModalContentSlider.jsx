@@ -1,10 +1,7 @@
 import React, { useState, useContext } from "react";
 import styles from "./modalContentSlider.module.css";
-import stylesDark from "./modalContentSliderDark.module.css";
-import ThemeContext from "../../../../context/themeContext";
 
 const ModalContentSlider = ({ images }) => {
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   const [currentImage, setCurrentImage] = useState(0);
   const amount = images.length;
   const nextImage = () => {
@@ -15,11 +12,8 @@ const ModalContentSlider = ({ images }) => {
   };
   return (
     <>
-      <div className={darkMode ? stylesDark.container : styles.container}>
-        <button
-          onClick={prevImage}
-          className={darkMode ? stylesDark.button : styles.button}
-        >
+      <div className={styles.container}>
+        <button onClick={prevImage} className={styles.button}>
           <span className="icon-undo2"></span>
         </button>
         {images.map((image, id) => (
@@ -35,23 +29,16 @@ const ModalContentSlider = ({ images }) => {
                 key={id}
                 src={image}
                 alt={image}
-                className={darkMode ? stylesDark.imgSlider : styles.imgSlider}
+                className={styles.imgSlider}
               />
             )}
           </div>
         ))}
-        <button
-          onClick={nextImage}
-          className={darkMode ? stylesDark.button : styles.button}
-        >
+        <button onClick={nextImage} className={styles.button}>
           <span className="icon-redo2"></span>
         </button>
       </div>
-      <div
-        className={
-          darkMode ? stylesDark.miniImgContainer : styles.miniImgContainer
-        }
-      >
+      <div className={styles.miniImgContainer}>
         {images.map((image, id) => (
           <img
             key={image.id}

@@ -8,8 +8,8 @@
   height: 640px;
   border: 0.2em solid black;
   border-radius: 2%;
-  background-color: var(--grey);
-  color: black;
+  background-color: var(--grey-to-bg-medium);
+  color: var(--blue-dark-to-blue-light);
 }
 
 .modalContent {
@@ -22,9 +22,9 @@
   border-radius: 2.5rem;
   font-size: 0.75rem;
   border: solid 0.15rem rgba(226, 34, 34, 0.692);
-  color: rgba(226, 34, 34, 0.692);
+  color: var(--red);
   font-weight: 600;
-  background-color: var(--background-light);
+  background-color: var(--grey-to-bg-medium);
   cursor: pointer;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .form {
-  color: var(--blue-dark);
+  color: var(--blue-dark-to-yellow-main);
   width: 720px;
   height: 350px;
   padding: 16px;
@@ -76,7 +76,7 @@
 
 .comprar {
   background-color: var(--yellow-main);
-  color: white;
+  color: var(--grey-to-bg-medium);
   width: 12rem;
   height: 2.5rem;
   border-radius: 2.5rem;
@@ -89,7 +89,7 @@
 
 .comprar:hover {
   background-color: var(--blue-light);
-  color: white;
+  color: var(--grey-to-bg-medium);
   cursor: pointer;
 }
 
@@ -103,6 +103,7 @@
   flex-direction: column;
   justify-content: start;
   padding: 0.5rem;
+  color: var(--blue-dark);
 }
 
 .labels {
@@ -136,6 +137,9 @@
   padding-left: 1rem;
   font-size: 1rem;
   margin-left: 1rem;
+  background-color: var(--grey-to-bg-medium);
+  /* color: var(--black-to-white); */
+  color: var(--blue-dark-to-yellow-light);
 }
 .error > p {
   color: red;

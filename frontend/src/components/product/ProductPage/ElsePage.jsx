@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import styles from "./productPage.module.css";
-import stylesDark from "./productPageDark.module.css";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
@@ -9,10 +8,8 @@ import { getProductById, updateProduct } from "../../../utils/apiProducts";
 import { Link, useNavigate } from "react-router-dom";
 import { changeFavorite } from "../../../utils/apiFavorites";
 import { getUserToken } from "../../../utils/localStorage.utils";
-import { ThemeContext } from "../../../context/themeContext";
 
 const ElsePage = ({ id }) => {
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   const mockImages = [
     "https://picsum.photos/id/1/500/500",
     "https://picsum.photos/id/2/700/500",
@@ -96,20 +93,15 @@ const ElsePage = ({ id }) => {
   return (
     <>
       {data && !userId && sessionAlert && (
-        <div className={darkMode ? stylesDark.alert : styles.alert}>
+        <div className={styles.alert}>
           Debes iniciar sesión para ejecutar esta acción
-          <div
-            className={darkMode ? stylesDark.alertButtons : styles.alertButtons}
-          >
-            <button
-              onClick={handleSessionAlert}
-              className={darkMode ? stylesDark.accept : styles.accept}
-            >
+          <div className={styles.alertButtons}>
+            <button onClick={handleSessionAlert} className={styles.accept}>
               Aceptar
             </button>
             <button
               onClick={() => setSessionAlert(false)}
-              className={darkMode ? stylesDark.accept : styles.accept}
+              className={styles.accept}
             >
               Cerrar
             </button>
@@ -117,65 +109,47 @@ const ElsePage = ({ id }) => {
         </div>
       )}
       {data && isFavorite && showAlert && (
-        <div className={darkMode ? stylesDark.alert : styles.alert}>
+        <div className={styles.alert}>
           {isFavorite
             ? "Este producto se ha añadido a tu lista de favoritos"
             : "Este producto ya no está entre tus favoritos"}
-          <button
-            onClick={handleAlertAccept}
-            className={darkMode ? stylesDark.accept : styles.accept}
-          >
+          <button onClick={handleAlertAccept} className={styles.accept}>
             Aceptar
           </button>
         </div>
       )}
-      <div className={darkMode ? stylesDark.productPage : styles.productPage}>
-        <div className={darkMode ? stylesDark.container : styles.container}>
-          <div className={darkMode ? stylesDark.upperBar : styles.upperBar}>
+      <div className={styles.productPage}>
+        <div className={styles.container}>
+          <div className={styles.upperBar}>
             {data && data?.user && (
-              <div className={darkMode ? stylesDark.user : styles.user}>
+              <div className={styles.user}>
                 <h3>{data?.user?.name}</h3>
-                <div
-                  className={
-                    darkMode ? stylesDark.background : styles.background
-                  }
-                >
-                  <img
-                    src={data?.user?.photo}
-                    className={
-                      darkMode ? stylesDark.userPhoto : styles.userPhoto
-                    }
-                  />
+                <div className={styles.background}>
+                  <img src={data?.user?.photo} className={styles.userPhoto} />
                 </div>
               </div>
             )}
-            <div className={darkMode ? stylesDark.buttons : styles.buttons}>
+            <div className={styles.buttons}>
               <button
                 onClick={handleFavorite}
                 className={`${styles.like} ${isFavorite ? styles.focused : ""}`}
               >
                 <span className="icon-heart1"></span>
               </button>
-              <button className={darkMode ? stylesDark.chat : styles.chat}>
-                CHAT
-              </button>
+              <button className={styles.chat}>CHAT</button>
             </div>
           </div>
 
           {data && <Slider images={data.images} data={data} />}
-          <div className={darkMode ? stylesDark.details : styles.details}>
-            <div
-              className={
-                darkMode ? stylesDark.priceContainer : styles.priceContainer
-              }
-            >
-              <h1 className={darkMode ? stylesDark.price : styles.price}>
+          <div className={styles.details}>
+            <div className={styles.priceContainer}>
+              <h1 className={styles.price}>
                 {data &&
                   data.price?.toLocaleString("es-ES", { useGrouping: true })}
               </h1>
               <h2>EUR</h2>
             </div>
-            <div className={darkMode ? stylesDark.category : styles.category}>
+            <div className={styles.category}>
               {category && category.map((cat) => <span className={cat.logo} />)}
               <h3>{data && data.category}</h3>
             </div>
@@ -184,39 +158,23 @@ const ElsePage = ({ id }) => {
           <h2>{data && data.title}</h2>
           {data && <Keywords data={data} />}
 
-          <div className={darkMode ? stylesDark.line : styles.line}></div>
-          <div className={darkMode ? stylesDark.expandable : styles.expandable}>
+          <div className={styles.line}></div>
+          <div className={styles.expandable}>
             <h3>DESCRIPCIÓN DEL PRODUCTO</h3>
             <button
               onClick={handleExpandClick}
-              className={
-                darkMode && !isExpanded
-                  ? stylesDark.arrow
-                  : stylesDark.active && darkMode && isExpanded
-                  ? stylesDark.active
-                  : stylesDark.arrow && !darkMode && isExpanded
-                  ? styles.arrow
-                  : styles.active
-              }
+              className={!isExpanded ? styles.arrow : styles.active}
             >
               <span className="icon-circle-down"></span>
             </button>
           </div>
           {isExpanded && (
-            <p
-              className={
-                darkMode ? stylesDark.textExpanded : styles.textExpanded
-              }
-            >
-              {data && data.description}
-            </p>
+            <p className={styles.textExpanded}>{data && data.description}</p>
           )}
 
-          <div className={darkMode ? stylesDark.media : styles.media}>
+          <div className={styles.media}>
             <p>Comparte este producto con tus amigos</p>
-            <div
-              className={darkMode ? stylesDark.mediaIcons : styles.mediaIcons}
-            >
+            <div className={styles.mediaIcons}>
               <span className="icon-facebook2"></span>
               <span className="icon-twitter"></span>
               <span className="icon-whatsapp"></span>

@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from "./createProductPage.module.css";
-import stylesDark from "./createProductPageDark.module.css";
 import CreateProductNavBar from "../CreateProductNavBar/CreateProductNavBar";
 import { Route, Routes } from "react-router-dom";
 import {
@@ -13,20 +12,11 @@ import FormElse from "./FormElse";
 import FormHouse from "./FormHouse";
 import FormVehicle from "./FormVehicle";
 import FormJob from "./FormJob";
-import { ThemeContext } from "../../../context/themeContext";
 
 const CreateProductPage = () => {
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
-
   return (
     <>
-      <div
-        className={
-          darkMode
-            ? stylesDark.createProductContainer
-            : styles.createProductContainer
-        }
-      >
+      <div className={styles.createProductContainer}>
         <CreateProductNavBar />
         <Routes>
           <Route path={FORM_ELSE} element={<FormElse />} />

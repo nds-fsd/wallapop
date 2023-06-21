@@ -4,26 +4,27 @@
   font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 12.5vw;
-  height: 30rem;
+  justify-content:flex-start;
+  /* align-items: center; */
+  width: 15vw;
+  height: auto;
   padding: 1rem;
+  gap: 3rem;
   background-color: var(--white-to-bg-medium);
   color: var(--blue-dark-to-yellow-main);
 }
 
 .sideBar :hover {
-  background-color: var(--blue-dark-to-yellow-light);
+  background-color: var(--blue-dark-to-yellow-main);
   color: var(--yellow-light);
   border-radius: 1rem;
-  box-shadow: 2px 2px 4px 0.5px var(--black-to-yellow-main);
+  box-shadow: 0 0 3px  var(--black-to-yellow-main);
 }
 .sideBar :focus {
-  background-color: var(--blue-dark-to-yellow-light);
+  background-color: var(--blue-dark-to-yellow-main);
   color: var(--yellow-light);
   border-radius: 1rem;
-  box-shadow: 2px 2px 4px 0.5px var(--black-to-yellow-main);
+  box-shadow: 0 0 3px  var(--black-to-yellow-main);
 }
 
 .sideBar a {

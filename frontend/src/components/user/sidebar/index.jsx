@@ -14,19 +14,16 @@ import {
   USER_STATS,
 } from "../route-paths";
 import styles from "./index.module.css";
-import stylesDark from "./indexDark.module.css";
 import { AuthContext } from "../../../context/authContext";
 import { useContext } from "react";
-import { ThemeContext } from "../../../context/themeContext";
 
 const Sidebar = () => {
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   const { userData } = useContext(AuthContext);
   if (!userData) return null;
 
   return (
-    <div className={darkMode ? stylesDark.sideBar : styles.sideBar}>
-      <div className={darkMode ? stylesDark.profileLink : styles.profileLink}>
+    <div className={styles.sideBar}>
+      <div className={styles.profileLink}>
         <Link to={USER_PROFILE}>
           <img src={userData.photo} />
           <p>{userData.name}</p>
