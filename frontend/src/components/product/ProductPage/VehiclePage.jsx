@@ -1,4 +1,4 @@
-import React, { useContext, useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./productPage.module.css";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
