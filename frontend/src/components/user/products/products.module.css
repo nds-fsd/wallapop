@@ -6,8 +6,9 @@
   position: absolute;
   top: 12.3rem;
   right: 4rem;
-  margin: 3rem 4rem;
+  margin: 1rem 4rem;
 }
+
 .gridList button {
   width: 2.5rem;
   height: 2.5rem;
@@ -30,12 +31,53 @@
   color: white;
 }
 
+.gridListFavs {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  top: 12.3rem;
+  right: 4rem;
+  margin: 0.5rem 4rem;
+}
+
+.gridListFavs button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  background-color: var(--yellow-main);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.gridListFavs span {
+  font-size: 1.2rem;
+  color: white;
+}
+.gridListFavs button:hover {
+  background-color: var(--blue-light);
+  color: white;
+}
+.gridListFavs button:focus {
+  outline: none;
+  background-color: var(--blue-dark);
+  color: white;
+}
+
 .gridContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 2.2rem;
   margin: 3rem 3rem;
+}
+
+.gridContainerFavs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 2.2rem;
+  margin: 8rem 3rem 3rem 3rem;
 }
 
 .card {
@@ -49,6 +91,7 @@
 .card > img {
   border-radius: 0.7em;
   border: 0.15em solid var(--yellow-main);
+  object-fit: contain;
 }
 
 .titleContainer {
@@ -130,6 +173,14 @@
   gap: 1rem;
   margin: 3em 10em;
 }
+
+.listContainerFavs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  margin: 8em 10em;
+}
 .list {
   height: 7rem;
   background-color: white;
@@ -182,7 +233,7 @@
   color: var(--blue-medium);
 }
 
-.comprar > button{
+.comprar > button {
   width: fit-content;
   height: 2rem;
   font-size: 1rem;
@@ -196,7 +247,7 @@
   text-transform: uppercase;
 }
 
-.comprar >button:hover {
+.comprar > button:hover {
   background-color: var(--blue-light);
   color: white;
 }
@@ -223,13 +274,11 @@
   text-align: center;
   z-index: 9999;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-
 }
 
 .accept:hover {
   background-color: var(--yellow-main);
   color: white;
-
 }
 
 .accept {
@@ -262,7 +311,7 @@
   gap: 1em;
 }
 
-.comprarFav > button{
+.comprarFav > button {
   height: 2rem;
   font-size: 1rem;
   padding: 0 1.5em;
@@ -275,7 +324,7 @@
   text-transform: uppercase;
 }
 
-.comprarFav >button:hover {
+.comprarFav > button:hover {
   background-color: var(--blue-light);
   color: white;
 }

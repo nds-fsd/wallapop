@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import styles from "./editImages.module.css";
 import { AuthContext } from "../../context/authContext";
 
 const EditImages = ({
   product,
-  reset,
   handleImageUpload,
   handleRemoveImage,
 }) => {
+  
   const imagesUploaded = product && product.images;
   const { multipleUploadWidget, images, setImages } = useContext(AuthContext);
 
@@ -20,18 +20,16 @@ const EditImages = ({
     const files = event.target.files;
     handleImageUpload(files, index);
     const uploadedImage = images[index];
-  
-    setImages((imagesUploaded) => {
-      const updatedImages = [...imagesUploaded, uploadedImage];
-      return updatedImages;
+    setImages((prevImagesUploaded) => {
+      if (prevImagesUploaded.length > 0) {
+        return [...imagesUploaded, ...prevImages, uploadedImage];
+      } else {
+        return [...imagesUploaded, uploadedImage];
+      }
     });
   };
  
   const remainingSlots = Math.max(6 - images.length, 0);
-
-  useEffect(() => {
-    reset({ images: product.images });
-  }, [product, reset]);
 
   return (
     <>
@@ -46,8 +44,9 @@ const EditImages = ({
                 <div className={styles.imgList} key={index}>
                   <img className={styles.image} src={image}></img>
                   <div>
-                    <button onClick={() => handleRemoveImage(index)} />
+                    <button onClick={() => handleRemoveImage(index)}>
                     <span className="icon-cross1"></span>
+                    </button>
                   </div>
                 </div>
               ))}
@@ -56,8 +55,9 @@ const EditImages = ({
                   <div key={index} className={styles.imgList}>
                     <img src={preview} />
                     <div>
-                      <button onClick={() => handleRemoveImage(index)} />
+                      <button onClick={() => handleRemoveImage(index)}>
                       <span className="icon-cross1"></span>
+                      </button>
                     </div>
                   </div>
                 ))}
@@ -73,6 +73,13 @@ const EditImages = ({
                   </button>
                 </div>
               ))}
+              <input
+                  type="file"
+                  accept="image/*"
+                  multiple="multiple"
+                  style={{ display: "none" }}
+                  onChange={handleFileChange}
+                />
             </>
           ) : (
             <div className={styles.noImage}>

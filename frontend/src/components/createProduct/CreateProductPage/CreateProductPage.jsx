@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./createProductPage.module.css";
 import CreateProductNavBar from "../CreateProductNavBar/CreateProductNavBar";
-import { Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import {
   FORM_ELSE,
   FORM_HOUSE,
@@ -19,7 +19,6 @@ const CreateProductPage = () => {
       <div className={styles.createProductContainer}>
         <CreateProductNavBar />
         <Routes>
-          <Route path="" element={<CreateProductNavBar />} />
           <Route path={FORM_ELSE} element={<FormElse />} />
           <Route path={FORM_HOUSE} element={<FormHouse />} />
           <Route path={FORM_VEHICLE} element={<FormVehicle />} />

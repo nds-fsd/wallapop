@@ -92,10 +92,11 @@
 .imgSlider {
   width: 500px;
   height: 350px;
+  border-radius: 1.5em;
+  object-fit: contain;
   margin-left: 5rem;
   display: flex;
   align-items: center;
-  border-radius: 1.5em;
   border: 0.2em solid var(--yellow-main);
   cursor: pointer;
 }

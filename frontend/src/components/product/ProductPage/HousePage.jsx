@@ -29,9 +29,6 @@ const HousePage = ({ id }) => {
   const [userFavorites, setUserFavorites] = useState([]);
   const [favoriteStatus, setFavoriteStatus] = useState(false);
 
-  // const [previousProductPage, setPreviousProductPage] = useState(null);
-
-  // const previousProductPage = localStorage.getItem("previousProductPage")
 
   useEffect(() => {
     const fetchUserFavs = async () => {
@@ -87,12 +84,6 @@ const HousePage = ({ id }) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (userToken && previousProductPage) {
-  //     localStorage.removeItem("previousProductPage");
-  //     navigate(previousProductPage);
-  //   }
-  // }, [userToken, previousProductPage, navigate]);
 
   return (
     <>

@@ -23,9 +23,10 @@
   color: var(--blue-dark);
 }
 
-.card img {
+.card > img {
   width: 12rem;
-  height: 7rem;
+  height: 8.5rem;
+  object-fit: contain;
   border-radius: 1rem;
 }
 

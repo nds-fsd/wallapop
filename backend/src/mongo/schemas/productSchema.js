@@ -11,7 +11,6 @@ const productSchema = new Schema({
   keywords: { type: Array },
   datePublication: { type: Date, default: new Date() },
   location: { type: String },
-  // favorite: {type: Boolean, default: false},
   // Para poder relacionar producto con users
   user: {
     type: Schema.Types.ObjectId,

@@ -1,18 +1,16 @@
 import React, { useContext, useState } from "react";
 import styles from "./createProductPage.module.css";
 import { useForm } from "react-hook-form";
-import { postProduct, updateProduct } from "../../../utils/apiProducts";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { postProduct } from "../../../utils/apiProducts";
+import { useMutation, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
 import Map from "../map/Map";
-import CustomAlert from "../../CustomAlert/CustomAlert";
 import { AuthContext } from "../../../context/authContext";
 
 const FormElse = () => {
   const queryClient = useQueryClient(["product"]);
-  const {images, setImages} = useContext(AuthContext)
+  const { images, setImages } = useContext(AuthContext);
   const [imagePreviews, setImagePreviews] = useState([]);
-
 
   const {
     register,
@@ -20,13 +18,12 @@ const FormElse = () => {
     reset,
     formState: { errors },
   } = useForm();
-  
+
   const mutation = useMutation(postProduct, {
     onSuccess: () => {
       queryClient.invalidateQueries(["product"]);
     },
   });
-
 
   const handleImageUpload = (files, index) => {
     const imageUrls = Array.from(files).map((file) =>
@@ -39,22 +36,16 @@ const FormElse = () => {
     });
   };
 
-  // const [showAlert, setShowAlert] = useState(false);
-  // const handleCloseAlert = () => {
-  //   setShowAlert(false);
-  // };
-
   const onSubmit = (data) => {
     const keywords = data.keywords
       ?.split(/[, ]+/)
       .filter((keyword) => keyword !== "");
-    
+
     const productData = { ...data, images };
     if (keywords && keywords.length > 0) {
       productData.keywords = keywords;
     }
     mutation.mutate(productData);
-    // setShowAlert(true);
     alert("Tu producto se ha subido correctamente");
     reset();
     setImages([]);
@@ -207,12 +198,6 @@ const FormElse = () => {
         <button type="submit" className={styles.formButton}>
           Subir
         </button>
-        {/* {showAlert && (
-          <CustomAlert
-            message="Tu producto se ha subido correctamente"
-            onClose={handleCloseAlert}
-          />
-        )} */}
       </form>
     </>
   );

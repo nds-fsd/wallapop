@@ -14,7 +14,6 @@ const ProductPublished = () => {
     queryKey: ["products_published"],
     queryFn: getProductByUser,
   });
-  console.log("los productos", prods);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [idProduct, setIdProduct] = useState("");
@@ -65,7 +64,6 @@ const ProductPublished = () => {
           <span className="icon-list2"></span>
         </button>
       </div>
-      {/* <div className={styles.container}> */}
       <div>
         {gridOpen ? (
           <div className={styles.gridContainer} data-test="productos">
@@ -88,7 +86,6 @@ const ProductPublished = () => {
                   <h5 key={category._id}>{category.title}</h5>
                 ))}
               </div>
-                    {/* <h5>{prod.category}</h5> */}
                     <p>{prod.status}</p>
                   </div>
                   {Array.isArray(prod.keywords) && prod.keywords.length > 0 && (

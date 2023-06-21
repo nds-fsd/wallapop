@@ -9,7 +9,6 @@ const {
   getProductByUser,
   getProductByUserFavs,
   getProductByName,
-  updateProductFavorite,
 } = require("../controllers/productController");
 
 const productRouter = express.Router();
@@ -22,7 +21,6 @@ productRouter.get("/category/:category", getProductByCategory);
 productRouter.get("/category/product/:name", getProductByName);
 productRouter.post("/newproduct/:user", postProduct);
 productRouter.patch("/:id", updateProductById);
-productRouter.patch("/:id/favorite", updateProductFavorite);
 productRouter.delete("/:id", deleteProductById);
 
 module.exports = productRouter;

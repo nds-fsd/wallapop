@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styles from "./editProduct.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProductById, updateProduct } from "../../utils/apiProducts";
 import EditImages from "../EditImages/EditImages";
+import { AuthContext } from "../../context/authContext";
 
 const EditVehicle = ({ id }) => {
-  // console.log("el producto en el modal", id);
-
   const {
     register,
     handleSubmit,
@@ -20,13 +19,36 @@ const EditVehicle = ({ id }) => {
       reset(product);
     },
   });
-  // console.log("en el form de update", product);
+
+  const { images, setImages } = useContext(AuthContext);
+  const [imagePreviews, setImagePreviews] = useState([]);
+
+  const handleImageUpload = (files, index) => {
+    const imageUrls = Array.from(files).map((file) =>
+      URL.createObjectURL(file)
+    );
+    setImagePreviews((prevPreviews) => {
+      const updatedPreviews = [...prevPreviews];
+      updatedPreviews[index] = imageUrls[0];
+      return updatedPreviews;
+    });
+  };
+
+  const handleRemoveImage = (index) => {
+    setImages((prevImg) => {
+      const updatedImages = [...prevImg];
+      updatedImages.splice(index, 1);
+      return updatedImages;
+    });
+    const updatedProduct = { ...product };
+    updatedProduct.images = product.images.filter((_, i) => i !== index);
+    reset({ ...product, images: updatedProduct.images });
+  };
 
   const queryClient = useQueryClient(["product-updated"]);
   const mutation = useMutation(updateProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
-      window.location.reload();
       window.location.reload();
     },
   });
@@ -46,10 +68,12 @@ const EditVehicle = ({ id }) => {
         .flat()
         .filter((keyword) => keyword !== "");
     }
-
-    const productData = { ...product, keywords };
+    const updatedImages =
+      images.length > 0 ? [...product.images, ...images] : product.images;
+    const productData = { ...product, keywords, images: updatedImages };
     mutation.mutate(productData);
     alert("Los cambios se han guardado satisfactoriamente");
+    setImages([updatedImages]);
   };
 
   return (
@@ -165,14 +189,14 @@ const EditVehicle = ({ id }) => {
             <label htmlFor="engine" className={styles.labels}>
               Motor:
             </label>
-            
+
             <select {...register("engine")} className={styles.input}>
               <option value="">Selecciona una opción</option>
               <option value="Gasolina">Gasolina</option>
               <option value="Diesel">Diesel</option>
               <option value="Eléctrico">Eléctirco</option>
             </select>
-            
+
             <label htmlFor="shift" className={styles.labels}>
               Cambio:
             </label>
@@ -182,78 +206,86 @@ const EditVehicle = ({ id }) => {
               <option value="Automático">Automático</option>
             </select>
           </div>
-          </div>
+        </div>
 
-          <div className={styles.labelTriple}>
-            <label htmlFor="price" className={styles.labels}>
-              Precio:
-            </label>
-            <label htmlFor="keywords" className={styles.labelKeywords}>
-              Tus keywords:
-            </label>
-            <label htmlFor="status" className={styles.labelStatus}>
-              Estado de tu vehículo:
-            </label>
-          </div>
-          <div className={styles.columnTriple}>
-            <div className={styles.price}>
-              <input
-                type="number"
-                min="1"
-                {...register("price", {
-                  required: "El precio es obligatorio",
-                })}
-                placeholder="No te excedas..."
-                className={styles.inputTriple}
-              ></input>
-              <div className={styles.coin}>EUR</div>
-            </div>
+        <div className={styles.labelTriple}>
+          <label htmlFor="price" className={styles.labels}>
+            Precio:
+          </label>
+          <label htmlFor="keywords" className={styles.labelKeywords}>
+            Tus keywords:
+          </label>
+          <label htmlFor="status" className={styles.labelStatus}>
+            Estado de tu vehículo:
+          </label>
+        </div>
+        <div className={styles.columnTriple}>
+          <div className={styles.price}>
             <input
-              placeholder="Crea tus palabras clave"
-              {...register("keywords")}
+              type="number"
+              min="1"
+              {...register("price", {
+                required: "El precio es obligatorio",
+              })}
+              placeholder="No te excedas..."
               className={styles.inputTriple}
             ></input>
-
-            <select {...register("status")} className={styles.dropdown}>
-              <option value="">Selecciona un estado</option>
-              <option value="En buen estado">En buen estado</option>
-              <option value="Poco uso">Poco uso</option>
-            </select>
+            <div className={styles.coin}>EUR</div>
           </div>
+          <input
+            placeholder="Crea tus palabras clave"
+            {...register("keywords")}
+            className={styles.inputTriple}
+          ></input>
 
-          {errors.price && (
-            <p className={styles.error}>
-              <span className="icon-warning1"></span>
-              {errors.price.message}
-            </p>
-          )}
-          <div className={styles.double}>
-            <label htmlFor="description" className={styles.labels}>
-              Descripción:
-            </label>
-            <textarea
-              maxLength={500}
-              placeholder="Describe las ventajas del servicio o empleo que buscas para que los demás sepan por qué deben contratarte a ti y no a otro..."
-              {...register("description", {
-                required: "La descripción es obligatoria",
-              })}
-              className={styles.textArea}
-            ></textarea>
-          </div>
-          {errors.description && (
-            <p className={styles.error}>
-              <span className="icon-warning1"></span>
-              {errors.description.message}
-            </p>
-          )}
-          
-          {product && <EditImages product={product} />}
+          <select {...register("status")} className={styles.dropdown}>
+            <option value="">Selecciona un estado</option>
+            <option value="En buen estado">En buen estado</option>
+            <option value="Poco uso">Poco uso</option>
+          </select>
+        </div>
 
-          <div className={styles.formButton}>
-            <button data-test="guardar" type="submit">
-              Guardar cambios
-            </button>
-          </div>
+        {errors.price && (
+          <p className={styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.price.message}
+          </p>
+        )}
+        <div className={styles.double}>
+          <label htmlFor="description" className={styles.labels}>
+            Descripción:
+          </label>
+          <textarea
+            maxLength={500}
+            placeholder="Describe las ventajas del servicio o empleo que buscas para que los demás sepan por qué deben contratarte a ti y no a otro..."
+            {...register("description", {
+              required: "La descripción es obligatoria",
+            })}
+            className={styles.textArea}
+          ></textarea>
+        </div>
+        {errors.description && (
+          <p className={styles.error}>
+            <span className="icon-warning1"></span>
+            {errors.description.message}
+          </p>
+        )}
+
+        {product && (
+          <EditImages
+            product={product}
+            handleImageUpload={handleImageUpload}
+            handleRemoveImage={handleRemoveImage}
+            imagePreviews={imagePreviews}
+            setImagePreviews={setImagePreviews}
+          />
+        )}
+
+        <div className={styles.formButton}>
+          <button data-test="guardar" type="submit">
+            Guardar cambios
+          </button>
+        </div>
       </form>
     </>
   );

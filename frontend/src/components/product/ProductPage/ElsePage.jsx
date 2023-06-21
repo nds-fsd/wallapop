@@ -56,8 +56,11 @@ const ElsePage = ({ id }) => {
   };
   const handleSessionAlert = () => {
     setSessionAlert(false);
-    // localStorage.setItem("previousProductPage", location.pathname);
+    const previousProductPage = window.location.pathname;
+
+    localStorage.setItem('previousProductPage', previousProductPage);
     navigate("/user/login");
+    navigate(previousProductPage)
   };
 
   const handleFavorite = async () => {
@@ -83,12 +86,6 @@ const ElsePage = ({ id }) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (userToken && previousProductPage) {
-  //     localStorage.removeItem("previousProductPage");
-  //     navigate(previousProductPage);
-  //   }
-  // }, []);
 
   return (
     <>

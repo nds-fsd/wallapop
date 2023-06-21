@@ -4,7 +4,7 @@ import styles from "../../user/products/products.module.css";
 import { Link } from "react-router-dom";
 import { deleteFav, getFavs } from "../../../utils/apiFavorites";
 import Images from "../Image/Images";
-import ImagesList from "../Image/ImagesList"
+import ImagesList from "../Image/ImagesList";
 
 const FavoriteProducts = () => {
   const { data } = useQuery("fav-prods", getFavs);
@@ -39,16 +39,13 @@ const FavoriteProducts = () => {
   const handleConfirmDeletion = (id) => {
     const updatedProduct = favs.find((fav) => fav._id === id);
     if (!updatedProduct) return;
-    console.log("el id del producto", id);
     mutation.mutate(id);
     window.location.reload();
   };
 
-  
-
   return (
     <>
-      <div className={styles.gridList}>
+      <div className={styles.gridListFavs}>
         <button onClick={toggleView}>
           <span className="icon-table2"></span>
         </button>
@@ -58,7 +55,7 @@ const FavoriteProducts = () => {
       </div>
 
       {gridOpen ? (
-        <div className={styles.gridContainer}>
+        <div className={styles.gridContainerFavs}>
           {data && favs.length > 0 ? (
             favs.map((fav) => (
               <div key={fav._id} className={styles.card}>
@@ -124,7 +121,7 @@ const FavoriteProducts = () => {
           )}
         </div>
       ) : (
-        <div className={styles.listContainer}>
+        <div className={styles.listContainerFavs}>
           {data && favs.length > 0 ? (
             favs.map((fav) => (
               <div key={fav._id} className={styles.list}>

@@ -127,35 +127,14 @@ const updateProductById = async (req, res) => {
   }
   try {
     const updateProduct = await productModel
-      .findByIdAndUpdate(id, body, { new: true })
+      .findByIdAndUpdate(id, body)
+      // .findByIdAndUpdate(id, body, { new: true })
+
       .exec();
     if (!updateProduct) {
       return res.status(404).json({ error: "Sorry, can't find this product" });
     }
     res.status(201).json(updateProduct);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ error: "An error occurred while updating the product" });
-  }
-};
-
-const updateProductFavorite = async (req, res) => {
-  const { id } = req.params;
-  const { favorite } = req.body;
-
-  try {
-    const updatedProduct = await productModel.findByIdAndUpdate(
-      id,
-      { favorite },
-      { new: true }
-    );
-    console.log("paso por el controller", favorite);
-    if (!updatedProduct) {
-      return res.status(404).json({ error: "Sorry, can't find this product" });
-    }
-
-    res.status(200).json(updatedProduct);
   } catch (error) {
     res
       .status(500)
@@ -191,7 +170,6 @@ module.exports = {
   deleteProductById,
   getProductByName,
   getProductByUserFavs,
-  updateProductFavorite,
 };
 
 // const newProduct = new productModel(req.body);

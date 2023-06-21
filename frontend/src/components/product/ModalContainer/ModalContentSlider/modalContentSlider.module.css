@@ -1,11 +1,9 @@
 .container {
-  position: relative;  
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  
-
 }
 
 .button {
@@ -24,24 +22,22 @@
 
 .slide {
   max-width: 900px;
-  max-height: 600px;
+  max-height: 450px;
   opacity: 0;
   transition: opacity 0.8s ease-in-out;
-
 }
 
 .slide.active {
   opacity: 1;
-
 }
 
 .imgSlider {
   display: flex;
   align-items: center;
-  border-radius: 1.5em;
-  background-color: var(--yellow-main);
+  object-fit: contain;
+  border-radius: 3em;
   width: 900px;
-  height: 600px;
+  height: 450px;
 }
 
 .miniImgContainer {
@@ -55,9 +51,9 @@
   width: 5rem;
   opacity: 0.5;
   border-radius: 0.5em;
+  object-fit: contain;
 }
 
 .miniImgactive {
- opacity: 1
+  opacity: 1;
 }
-
