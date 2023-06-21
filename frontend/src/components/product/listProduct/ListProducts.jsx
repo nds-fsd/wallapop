@@ -51,7 +51,7 @@ const ListProducts = () => {
                   className={`${styles.menu} ${
                     isLastCard ? styles.lastCard : ""
                   }`}
-                  key={prod.id}
+                  key={prod._id}
                 >
                   <Product data-test="product" key={prod._id} prod={prod} />
                 </div>

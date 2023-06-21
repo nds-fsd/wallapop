@@ -57,10 +57,8 @@ const ElsePage = ({ id }) => {
   const handleSessionAlert = () => {
     setSessionAlert(false);
     const previousProductPage = window.location.pathname;
-
     localStorage.setItem('previousProductPage', previousProductPage);
     navigate("/user/login");
-    navigate(previousProductPage)
   };
 
   const handleFavorite = async () => {
@@ -150,7 +148,7 @@ const ElsePage = ({ id }) => {
             </div>
             <div className={styles.category}>
               <Link to={"/category/" + title}>
-                {data.categories &&
+                {data && data.categories &&
                   category.map((cat) => (
                     <span className={cat.logo} key={cat._id} />
                   ))}
@@ -185,12 +183,13 @@ const ElsePage = ({ id }) => {
               <span className="icon-mail2"></span>
             </div>
           </div>
-          {data && <ProductBar data={data} />}
+        
         </div>
         {data && (
           <RelatedProducts category={data.category} parentId={data._id} />
         )}
       </div>
+      {data && <ProductBar data={data} />}
     </>
   );
 };

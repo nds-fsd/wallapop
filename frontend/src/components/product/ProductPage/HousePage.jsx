@@ -57,7 +57,8 @@ const HousePage = ({ id }) => {
 
   const handleSessionAlert = () => {
     setSessionAlert(false);
-    // localStorage.setItem("previousProductPage", location.pathname);
+    const previousProductPage = window.location.pathname;
+    localStorage.setItem('previousProductPage', previousProductPage);
     navigate("/user/login");
   };
 
@@ -208,12 +209,13 @@ const HousePage = ({ id }) => {
               <span className="icon-mail2"></span>
             </div>
           </div>
-          {data && <ProductBar data={data} />}
         </div>
         {data && (
           <RelatedProducts category={data.category} parentId={data._id} />
         )}
       </div>
+      {data && <ProductBar data={data} />}
+
     </>
   );
 };

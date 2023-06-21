@@ -25,7 +25,7 @@ const Footer = () => {
                 <Link
                   to={"/category/" + cat.title}
                   key={cat._id}
-                  target="_blank"
+                  // target="_blank"
                 >
                   {cat.title}
                 </Link>

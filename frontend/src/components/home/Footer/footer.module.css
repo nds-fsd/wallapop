@@ -2,7 +2,7 @@
   background-color: var(--blue-medium);
   color: white;
   padding: 1em 10em;
-  box-shadow: 0 2px 4px 3px var(--blue-medium);
+  /* box-shadow: 0 2px 4px 3px var(--blue-medium); */
   
 }
 .container a {

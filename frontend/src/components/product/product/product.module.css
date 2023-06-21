@@ -72,7 +72,7 @@
 
 .noImage {
   width: 16rem;
-  height: 14rem;
+  height: 14.5rem;
   background-color: var(--blue-medium);
   color: white;
   display: flex;

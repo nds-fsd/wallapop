@@ -1,7 +1,6 @@
 import React from "react";
 import ListCategory from "../category/listCategory/ListCategory";
 import style from "./index.module.css";
-import AllCategoriesHome from "../category/AllCategories/AllCategoriesHome";
 import HomePage from "./HomePage/HomePage";
 
 const Home = () => {

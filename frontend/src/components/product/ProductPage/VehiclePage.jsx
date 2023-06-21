@@ -55,10 +55,9 @@ const VehiclePage = ({ id }) => {
   };
   const handleSessionAlert = () => {
     setSessionAlert(false);
+    const previousProductPage = window.location.pathname;
+    localStorage.setItem('previousProductPage', previousProductPage);
     navigate("/user/login");
-    if (userToken) {
-      redirect(`/products/${id}`);
-    }
   };
 
   const handleFavorite = async () => {
@@ -231,12 +230,13 @@ const VehiclePage = ({ id }) => {
               <span className="icon-mail2"></span>
             </div>
           </div>
-          {data && <ProductBar data={data} />}
         </div>
         {data && (
           <RelatedProducts category={data.category} parentId={data._id} />
         )}
       </div>
+      {data && <ProductBar data={data} />}
+
     </>
   );
 };

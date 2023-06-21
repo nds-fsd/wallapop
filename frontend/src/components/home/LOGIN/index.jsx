@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Buscador from "../Buscador";
 import styles from "./index.module.css";
 import { TbMessages } from "react-icons/tb";
@@ -9,7 +9,18 @@ import logo from "../../../assets/images/logo-retrend.png";
 
 const Login = () => {
   const { userData } = useContext(AuthContext);
-   if (!userData) return null;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userData) {
+      navigate(localStorage.getItem("previousProductPage"));
+      setTimeout(() => {
+        localStorage.removeItem("previousProductPage");
+      }, 2000);
+    }
+  }, [userData]);
+
+  if (!userData) return null;
 
   return (
     <nav className={styles.navbar}>
@@ -33,9 +44,7 @@ const Login = () => {
           </Link>
         </div>
         <div className={styles.createProductButton}>
-          <Link to="/products/newproduct/">
-            SUBIR UN PRODUCTO{" "}
-          </Link>
+          <Link to="/products/newproduct/">SUBIR UN PRODUCTO </Link>
         </div>
       </div>
     </nav>
