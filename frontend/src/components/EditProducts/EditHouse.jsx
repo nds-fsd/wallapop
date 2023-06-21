@@ -1,12 +1,12 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styles from "./editProduct.module.css";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProductById, updateProduct } from "../../utils/apiProducts";
 import EditImages from "../EditImages/EditImages";
+import { AuthContext } from "../../context/authContext";
 
 const EditHouse = ({ id }) => {
-
   const {
     register,
     handleSubmit,
@@ -20,25 +20,38 @@ const EditHouse = ({ id }) => {
     },
   });
 
+  const { images, setImages } = useContext(AuthContext);
+  const [imagePreviews, setImagePreviews] = useState([]);
+
+  const handleImageUpload = (files, index) => {
+    const imageUrls = Array.from(files).map((file) =>
+      URL.createObjectURL(file)
+    );
+    setImagePreviews((prevPreviews) => {
+      const updatedPreviews = [...prevPreviews];
+      updatedPreviews[index] = imageUrls[0];
+      return updatedPreviews;
+    });
+  };
+
+  const handleRemoveImage = (index) => {
+    setImages((prevImg) => {
+      const updatedImages = [...prevImg];
+      updatedImages.splice(index, 1);
+      return updatedImages;
+    });
+    const updatedProduct = { ...product };
+    updatedProduct.images = product.images.filter((_, i) => i !== index);
+    reset({ ...product, images: updatedProduct.images });
+  };
+
   const queryClient = useQueryClient(["product-updated"]);
   const mutation = useMutation(updateProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
       window.location.reload();
-      window.location.reload();
     },
   });
-
-  // const onSubmit = (product) => {
-  //   let keywords = product.keywords
-  //     ?.split(",")
-  //     .map((keyword) => keyword.trim())
-  //     .filter((keyword) => keyword !== "");
-
-  //   const productData = { ...product, keywords};
-  //   mutation.mutate(productData);
-  //   alert("Los cambios se han guardado satisfactoriamente")
-  // };
 
   const onSubmit = (product) => {
     let keywords = [];
@@ -55,10 +68,12 @@ const EditHouse = ({ id }) => {
         .flat()
         .filter((keyword) => keyword !== "");
     }
-
-    const productData = { ...product, keywords };
+    const updatedImages =
+      images.length > 0 ? [...product.images, ...images] : product.images;
+    const productData = { ...product, keywords, images: updatedImages };
     mutation.mutate(productData);
     alert("Los cambios se han guardado satisfactoriamente");
+    setImages([updatedImages]);
   };
 
   return (
@@ -181,7 +196,6 @@ const EditHouse = ({ id }) => {
               placeholder="Crea tus palabras clave"
               {...register("keywords")}
               className={styles.inputTriple}
-              // defaultValue={product?.keywords?.join(", ") || ""}
             ></input>
 
             <select {...register("status")} className={styles.dropdown}>
@@ -217,8 +231,15 @@ const EditHouse = ({ id }) => {
               {errors.description.message}
             </p>
           )}
-          {product && <EditImages product={product} />}
-
+          {product && (
+            <EditImages
+              product={product}
+              handleImageUpload={handleImageUpload}
+              handleRemoveImage={handleRemoveImage}
+              imagePreviews={imagePreviews}
+              setImagePreviews={setImagePreviews}
+            />
+          )}
           <div className={styles.formButton}>
             <button data-test="guardar" type="submit">
               Guardar cambios

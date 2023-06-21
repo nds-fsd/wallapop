@@ -6,19 +6,23 @@
   position: absolute;
   top: 12.3rem;
   right: 4rem;
+  margin: 1rem 4rem;
   background-color: var(--gray-to-bg-dark);
 }
+
 .gridList button {
   width: 2.5rem;
   height: 2.5rem;
   border: none;
   background-color: var(--gray-to-bg-dark);
+  background-color: var(--yellow-main);
   border-radius: 0.5rem;
   cursor: pointer;
 }
 .gridList span {
   font-size: 1.2rem;
   color: var(--black-to-yellow-light);
+  color: white
 }
 .gridList button:hover {
   background-color: var(--blue-light);
@@ -30,17 +34,91 @@
   color: white;
 }
 
+.gridListFavs {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  top: 12.3rem;
+  right: 4rem;
+  margin: 0.5rem 4rem;
+}
+
+.gridListFavs button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  background-color: var(--yellow-main);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.gridListFavs span {
+  font-size: 1.2rem;
+  color: white;
+}
+.gridListFavs button:hover {
+  background-color: var(--blue-light);
+  color: white;
+}
+.gridListFavs button:focus {
+  outline: none;
+  background-color: var(--blue-dark-to-blue-light);
+  color: white;
+}
+
+.gridListFavs {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  top: 12.3rem;
+  right: 4rem;
+  margin: 0.5rem 4rem;
+}
+
+.gridListFavs button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  background-color: var(--yellow-main);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.gridListFavs span {
+  font-size: 1.2rem;
+  color: white;
+}
+.gridListFavs button:hover {
+  background-color: var(--blue-light);
+  color: white;
+}
+.gridListFavs button:focus {
+  outline: none;
+  background-color: var(--blue-dark);
+  color: white;
+}
+
 .gridContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 2.2rem;
-  margin-top: 2em;
+  margin: 3rem 3rem;
+}
+
+.gridContainerFavs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 2.2rem;
+  margin: 16rem 3rem 3rem 3rem;
 }
 
 .card {
   width: 22rem;
-  height: fit-content;
+  min-height: 25rem;
   padding: 1em 1.5em 1.5em 1.5em;
   background-color: var(--white-to-bg-medium);
   border-radius: 1.5rem;
@@ -58,6 +136,7 @@
 .card > img {
   border-radius: 0.7em;
   border: 0.15em solid var(--yellow-main);
+  object-fit: contain;
 }
 
 .titleContainer {
@@ -141,14 +220,22 @@
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2em;
+  margin: 3em 10em;
+}
+
+.listContainerFavs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  margin: 16em 10em;
 }
 .list {
   height: 7rem;
   background-color: var(--white-to-bg-medium);
   display: flex;
   gap: 2.5em;
-  width: 70rem;
+  width: 75rem;
   border-radius: 1.5rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
@@ -163,7 +250,7 @@
 }
 
 .detailsContainer {
-  width: 48em;
+  width: 50em;
 }
 .imgList {
   position: relative;
@@ -190,6 +277,7 @@
 
 .iconsList span {
   color: var(--yellow-main-to-yellow-light);
+  color: var(--yellow-main);
   font-size: 2em;
   cursor: pointer;
 }
@@ -271,7 +359,27 @@
   gap: 2em;
 }
 
-.disabled {
-  opacity: 0.5; /* Redueix l'opacitat per donar una aparença desactivada */
-  pointer-events: none;
+.unfav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+}
+
+.comprarFav > button {
+  height: 2rem;
+  font-size: 1rem;
+  padding: 0 1.5em;
+  border: none;
+  border-radius: 2.5rem;
+  background-color: var(--yellow-main);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.comprarFav > button:hover {
+  background-color: var(--blue-light);
+  color: white;
 }

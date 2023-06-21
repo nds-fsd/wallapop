@@ -2,6 +2,7 @@
   border-radius: 0.7em;
   max-width: 350px;
   height: 200px;
+  object-fit: contain;
 }
 
 .imagesContainer {
@@ -47,6 +48,7 @@
   height: 5rem;
   border: 0.15em solid var(--yellow-main);
   border-radius: 0.7em;
+  object-fit: contain;
 }
 
 .noImage span {

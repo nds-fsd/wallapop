@@ -1,6 +1,5 @@
 const productModel = require("../models/productModel");
 const categoryModel = require("../models/categoryModel");
-const favoriteModel = require("../models/favoriteModel");
 
 const getAllProducts = async (req, res) => {
   try {
@@ -145,35 +144,14 @@ const updateProductById = async (req, res) => {
   }
   try {
     const updateProduct = await productModel
-      .findByIdAndUpdate(id, body, { new: true })
+      .findByIdAndUpdate(id, body)
+      // .findByIdAndUpdate(id, body, { new: true })
+
       .exec();
     if (!updateProduct) {
       return res.status(404).json({ error: "Sorry, can't find this product" });
     }
     res.status(201).json(updateProduct);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ error: "An error occurred while updating the product" });
-  }
-};
-
-const updateProductFavorite = async (req, res) => {
-  const { id } = req.params;
-  const { favorite } = req.body;
-
-  try {
-    const updatedProduct = await productModel.findByIdAndUpdate(
-      id,
-      { favorite },
-      { new: true }
-    );
-    console.log("paso por el controller", favorite);
-    if (!updatedProduct) {
-      return res.status(404).json({ error: "Sorry, can't find this product" });
-    }
-
-    res.status(200).json(updatedProduct);
   } catch (error) {
     res
       .status(500)
@@ -210,28 +188,4 @@ module.exports = {
   getProductByName,
   getProductByUserFavs,
   getProductByUserSold,
-  updateProductFavorite,
 };
-
-
-
-
-// const newProduct = new productModel(req.body);
-  // //cogemos el los datos del ususario que hemos pasado por la url de la peticion
-  // const userId = req.params.userId;
-  // //parseamos los datos y cogemos el id del usuario y lo añadimos al newProduct
-  // newProduct.user.push(JSON.parse(userId).id);
-
-// //hacemos una findOne con el nombre de la categoria para poder obtener toda su info y coger el id para ponerselo al producto
-// // y asi relacionarlo con categoria
-// const cat = await categoryModel.findOne({ title: req.body.category });
-// // le añadimos el id de la categoria encontrado arriba al producto antes de crearlo
-// newProduct.categories.push(cat._id);
-// try {
-//   await newProduct.save();
-
-//   res.status(200).json(newProduct);
-// } catch (error) {
-//   res.status(500).json({ error: "Can't post this product" });
-
-// }

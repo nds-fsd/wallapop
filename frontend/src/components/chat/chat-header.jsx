@@ -16,7 +16,13 @@ const ChatHeader = ({ chatRoomID }) => {
     <div className={styles.headerContainer}>
       <Link to={`/category/product/${product?._id}`} className={styles.link}>
         <div className={styles.productImage}>
-          <img src={product?.images[0]} />
+          {product?.images && product.images.length > 0 ? (
+            <img src={product?.images[0]} />
+          ) : (
+            <div className={styles.noImage}>
+              <span className="icon-eye-blocked"></span>
+            </div>
+          )}
         </div>
         <div className={styles.productContent}>
           <h1> {product?.price} €</h1>

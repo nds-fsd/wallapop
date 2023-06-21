@@ -12,6 +12,23 @@ export const getAllProducts = () => {
     });
 };
 
+export const getProductsByCategory = (category) => {
+  return api
+    .get("/products/")
+    .then((res) => {
+      const allProducts = res.data;
+      if (category) {
+        return allProducts.filter((product) => product.category === category);
+      }
+      return allProducts;
+    })
+    .catch((error) => {
+      console.log(error);
+      throw error;
+    });
+};
+
+
 export const getProductById = ({ queryKey }) => {
   return api
     .get(`/products/${queryKey[1]}`)
@@ -105,6 +122,7 @@ export const getProductByCategory = ({ queryKey }) => {
       })
   );
 };
+
 export const getProductByName = ({ queryKey }) => {
   return (
     api
@@ -118,28 +136,6 @@ export const getProductByName = ({ queryKey }) => {
   );
 };
 
-// export const postProduct = (data) => {
-
-//   // const { id } = JSON.parse(localStorage.getItem("user"));
-//   const { id } = getUserData();
-
-//   const favoriteData = {
-//     user: null,
-//     fav: null,
-//   };
-
-//   const productData = { ...data, favorite: favoriteData };
-
-//   return api
-//     .post(`/products/newProduct/${id}`, productData)
-//     .then((res) => res.data)
-//     .catch((error) => {
-//       console.log(error);
-//       return {
-//         error: "Sorry, we couldn't post your product.",
-//       };
-//     });
-// };
 
 export const postProduct = (data) => {
   const { id } = getUserData();
@@ -160,7 +156,6 @@ export const updateProduct = (product) => {
   const id = product._id;
 
   const { token } = getUserToken();
-
   return api
     .patch(`/products/${id}`, product, {
       headers: {
@@ -171,26 +166,6 @@ export const updateProduct = (product) => {
     .catch((error) => {
       console.log(error);
     });
-};
-
-export const changeFavorite = (product) => {
-  // console.log("paso por la api de update", product)
-  const id = product._id
-  const { token } = getUserToken();
-  const isLoggedIn = token ? true : false
-  if (!isLoggedIn) {
-    return Promise.resolve("/user/login")
-  }
-  return api
-  .patch(`/products/${id}`, product , {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-  .then((res) => res.data )
-  .catch((error) => {
-    console.log(error)
-  });
 };
 
 export const deleteProduct = (id) => {

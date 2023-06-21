@@ -22,6 +22,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   background-color: var(--gray-to-bg-dark);
+  margin-top: 9rem;
 }
 
 .profileLink img {

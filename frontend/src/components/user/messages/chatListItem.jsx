@@ -15,7 +15,13 @@ const ChatListItem = ({ data }) => {
         className={styles.itemContainer}
       >
         <div>
-          <img src={product?.images[0]} />
+          {product?.images && product.images.length > 0 ? (
+            <img src={product?.images[0]} />
+          ) : (
+            <div className={styles.noImage}>
+              <span className="icon-eye-blocked"></span>
+            </div>
+          )}
         </div>
         <div>
           <p>{owner?.id !== id ? owner?.name : buyer?.name}</p>

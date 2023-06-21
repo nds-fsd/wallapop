@@ -1,74 +1,87 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import styles from "./productPage.module.css";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
 import { getProductById, updateProduct } from "../../../utils/apiProducts";
-import { Link, useNavigate } from "react-router-dom";
-import { getUserToken } from "../../../utils/localStorage.utils";
+import { Link, redirect, useLocation, useNavigate } from "react-router-dom";
+import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
+import RelatedProducts from "./RelatedProducts";
+import { createFav, deleteFav, getFavs } from "../../../utils/apiFavorites";
+import creditea from "../../../assets/images/creditea.png";
+import carfax from "../../../assets/images/carfax.png";
+import mapfre from "../../../assets/images/mapfre.png";
 import { postChatRoom } from "../../../utils/apiChatRoom";
 import { AuthContext } from "../../../context/authContext";
 
 const VehiclePage = ({ id }) => {
-  const { userData } = useContext(AuthContext);
-
-  const mockImages = [
-    "https://picsum.photos/id/1/700/500",
-    "https://picsum.photos/id/2/700/500",
-    "https://picsum.photos/id/3/700/500",
-  ];
+  const { data, isLoading } = useQuery(["product", id], getProductById);
+  const category = data?.categories;
+  const title = data?.categories[0].title;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const userToken = getUserToken();
+  const userData = getUserData();
+  const userId = userData ? userData.id : null;
 
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [sessionAlert, setSessionAlert] = useState(false);
+  const [userFavorites, setUserFavorites] = useState([]);
+  const [favoriteStatus, setFavoriteStatus] = useState(false);
+
+  useEffect(() => {
+    const fetchUserFavs = async () => {
+      try {
+        const favs = await getFavs(userId);
+        const favsProductIds = favs && favs[0].products.map((prod) => prod._id);
+        const isProductFavorite = favsProductIds.includes(String(id));
+        setUserFavorites(isProductFavorite);
+      } catch (error) {
+        console.log("Error fetching user favorites", error);
+      }
+    };
+    if (userToken) {
+      fetchUserFavs();
+    }
+  }, [userToken, id]);
+
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
   };
-
-  const { data, isLoading } = useQuery(["product", id], getProductById);
-  const category = data.categories;
-
-  const [favorite, setFavorite] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-  const [sessionAlert, setSessionAlert] = useState(false);
-
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const mutation = useMutation(updateProduct, {
-    onSuccess: (updatedProduct) => {
-      setFavorite(updatedProduct.favorite);
-      setShowAlert(true);
-      queryClient.setQueryData(["product", id], updatedProduct);
-    },
-  });
-
   const handleAlertAccept = () => {
     setShowAlert(false);
+    window.location.reload();
   };
-
   const handleSessionAlert = () => {
     setSessionAlert(false);
+    const previousProductPage = window.location.pathname;
+    localStorage.setItem('previousProductPage', previousProductPage);
     navigate("/user/login");
   };
 
   const handleFavorite = async () => {
-    const userToken = localStorage.getItem("user-session");
-
-    if (userToken) {
-      const updatedFavorite = !favorite;
-      setFavorite(updatedFavorite);
-      const updatedProduct = { ...data, favorite: updatedFavorite };
-
-      try {
-        await mutation.mutateAsync(updatedProduct);
-        setSessionAlert(false);
-        setShowAlert(true);
-      } catch (error) {
-        setSessionAlert(true);
-        setShowAlert(false);
-      }
-    } else {
+    if (!userToken) {
       setSessionAlert(true);
       setShowAlert(false);
+      return;
+    }
+    try {
+      if (userFavorites) {
+        await deleteFav(id);
+        setShowAlert(true);
+        setFavoriteStatus(false);
+        setIsFavorite(false);
+      } else {
+        await createFav({ product: id });
+        setShowAlert(true);
+        setFavoriteStatus(true);
+        setIsFavorite(true);
+      }
+    } catch (error) {
+      console.log("Error toggling favorite:", error);
     }
   };
 
@@ -93,7 +106,7 @@ const VehiclePage = ({ id }) => {
 
   return (
     <>
-      {data && sessionAlert && (
+      {data && !userToken && sessionAlert && (
         <div className={styles.alert}>
           Debes iniciar sesión para ejecutar esta acción
           <div className={styles.alertButtons}>
@@ -111,7 +124,7 @@ const VehiclePage = ({ id }) => {
       )}
       {data && showAlert && (
         <div className={styles.alert}>
-          {favorite
+          {userFavorites
             ? "Este producto se ha añadido a tu lista de favoritos"
             : "Este producto ya no está entre tus favoritos"}
           <button onClick={handleAlertAccept} className={styles.accept}>
@@ -131,7 +144,9 @@ const VehiclePage = ({ id }) => {
             <div className={styles.buttons}>
               <button
                 onClick={handleFavorite}
-                className={`${styles.like} ${favorite ? styles.focused : ""}`}
+                className={`${styles.like} ${
+                  userToken && userFavorites ? styles.focused : ""
+                }`}
               >
                 <span className="icon-heart1"></span>
               </button>
@@ -156,11 +171,14 @@ const VehiclePage = ({ id }) => {
               </h1>
               <h2>EUR</h2>
             </div>
-
             <div className={styles.category}>
-              {data.categories &&
-                category.map((cat) => <span className={cat.logo} />)}
-              <h3>{data && data.category}</h3>
+              <Link to={"/category/" + title}>
+                {data.categories &&
+                  category.map((cat) => (
+                    <span className={cat.logo} key={cat._id} />
+                  ))}
+                <h3>{data && data.category}</h3>
+              </Link>
             </div>
           </div>
 
@@ -211,21 +229,21 @@ const VehiclePage = ({ id }) => {
               <span className="icon-credit-card1"></span>
               <h5>Calcula tu préstamo</h5>
               <Link to="https://www.creditea.es/" target="_blank">
-                <img src="C:\Users\anank\Documents\Ananke85\wallapop\frontend\src\assets\carfax.png"></img>
+                <img src={creditea} className={styles.imgLink} />
               </Link>
             </div>
             <div className={styles.links}>
               <span className="icon-file-text2"></span>
               <h5>Historial del vehículo</h5>
               <Link to="https://shorturl.at/qxG89" target="_blank">
-                <img src="C:\Users\anank\Documents\Ananke85\wallapop\frontend\src\assets\carfax.png"></img>
+                <img src={carfax} className={styles.imgLink} />
               </Link>
             </div>
             <div className={styles.links}>
               <span className="icon-coin-euro"></span>
               <h5>Calcula tu seguro</h5>
               <Link to="https://www.mapfre.es/particulares/" target="_blank">
-                <img src="C:\Users\anank\Documents\Ananke85\wallapop\frontend\src\assets\carfax.png"></img>
+                <img src={mapfre} className={styles.imgLink} />
               </Link>
             </div>
           </div>
@@ -239,9 +257,13 @@ const VehiclePage = ({ id }) => {
               <span className="icon-mail2"></span>
             </div>
           </div>
-          {data && <ProductBar data={data} />}
         </div>
+        {data && (
+          <RelatedProducts category={data.category} parentId={data._id} />
+        )}
       </div>
+      {data && <ProductBar data={data} />}
+
     </>
   );
 };

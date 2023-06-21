@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 import styles from "../index.module.css";
-import ProductPublished from "./ProductPublished";
 
 const Products = () => {
   return (

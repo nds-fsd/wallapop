@@ -19,7 +19,7 @@
   margin: 0.7rem;
   overflow: hidden;
   width: 45rem;
-  height: 14rem;
+  height: 14.5rem;
   background-color: var(--grey-to-bg-medium);
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
@@ -43,7 +43,7 @@
   font-size: 0.8em;
   line-height: 1.3em;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -51,14 +51,14 @@
 
 .columnLeft {
   width: 16rem;
-  height: 16rem;
+  height: 14.5rem;
   background-color: var(--blue-medium-to-blue-light);
 }
 
 .columnLeft img {
   width: 16rem;
-  height: 16rem;
-  object-fit: cover;
+  height: 14.5rem;
+  object-fit: contain;
   border-radius: 1em 0 0 1em;
 }
 .columnRight {
@@ -73,11 +73,20 @@
 
 .noImage {
   width: 16rem;
-  height: 16rem;
+  height: 14.5rem;
+  background-color: var(--blue-medium);
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  background-color: var(--blue-medium);
+  text-align: center;
+}
+
+.noImage span {
+  font-size: 2.5rem;
+}
+
+.text p {
+  width: 11rem;
 }

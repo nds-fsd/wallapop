@@ -13,9 +13,6 @@ const ModalContent = ({ id }) => {
     return null; // Render nothing if data or category is undefined
   }
   const cat = data?.category;
-  //aqui me retorna la categoria del producto, cuando hago click
-  //en un producto me sale error de que category es undefined
-  //y ya no puedo aplicar el switch case
 
   let componentToRender;
 

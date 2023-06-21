@@ -58,7 +58,7 @@
   left: 5rem;
   margin: -3em;
   border: none;
-  background-color: white;
+  background-color: transparent;
   color: var(--blue-light);
   opacity: 0;
   cursor: pointer;
@@ -79,7 +79,7 @@
   left: 5rem;
   margin: -3em;
   border: none;
-  background-color: white;
+  background-color: transparent;
   color: black;
   opacity: 0.3;
   cursor: pointer;
@@ -91,10 +91,11 @@
 .imgSlider {
   width: 500px;
   height: 350px;
+  border-radius: 1.5em;
+  object-fit: contain;
   margin-left: 5rem;
   display: flex;
   align-items: center;
-  border-radius: 1.5em;
   border: 0.2em solid var(--yellow-main);
   cursor: pointer;
   object-fit: contain;

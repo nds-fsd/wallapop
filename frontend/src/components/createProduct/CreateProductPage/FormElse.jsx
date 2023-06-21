@@ -4,11 +4,13 @@ import { useForm } from "react-hook-form";
 import { postProduct } from "../../../utils/apiProducts";
 import { useMutation, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
+import Map from "../map/Map";
 import { AuthContext } from "../../../context/authContext";
 
 const FormElse = () => {
   const queryClient = useQueryClient(["product"]);
   const { images, setImages } = useContext(AuthContext);
+  const [imagePreviews, setImagePreviews] = useState([]);
 
   const {
     register,
@@ -22,8 +24,6 @@ const FormElse = () => {
       queryClient.invalidateQueries(["product"]);
     },
   });
-
-  const [imagePreviews, setImagePreviews] = useState([]);
 
   const handleImageUpload = (files, index) => {
     const imageUrls = Array.from(files).map((file) =>
@@ -46,7 +46,6 @@ const FormElse = () => {
       productData.keywords = keywords;
     }
     mutation.mutate(productData);
-    // setShowAlert(true);
     alert("Tu producto se ha subido correctamente");
     reset();
     setImages([]);
@@ -194,6 +193,8 @@ const FormElse = () => {
           setImagePreviews={setImagePreviews}
           reset={reset}
         />
+        {/* <Map /> */}
+
         <button type="submit" className={styles.formButton}>
           Subir
         </button>

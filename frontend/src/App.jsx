@@ -7,19 +7,23 @@ import UserPage from "./components/user";
 import Navbar from "./components/home/navbar";
 import ListCategory from "./components/category/listCategory/ListCategory";
 import ListProducts from "./components/product/listProduct/ListProducts";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./components/home";
 import CreateProductPage from "./components/createProduct/CreateProductPage/CreateProductPage";
 import PrivateRoutes from "./components/private-routes";
 import { AuthProvider } from "./context/authContext";
 import ProdPage from "./components/product/ProductPage/ProdPage";
 import ListBuscador from "./components/home/ListBuscador/ListBuscador";
+import Footer from "./components/home/Footer/Footer";
+import SecondFooter from "./components/home/Footer/SecondFooter";
 import ModalCompra from "./components/product/modalCompra/modalCompra";
 import "./index.css";
 import ChatRoom from "./components/chat/chat-room";
 
 function App() {
   const queryClient = new QueryClient();
+  const location = useLocation()
+  const isHomePage = location.pathname === "/"
 
   return (
     <>
@@ -59,6 +63,8 @@ function App() {
                 </Route>
               </Routes>
             </div>
+            {isHomePage ? <Footer /> : <SecondFooter />}
+
           </div>
           <ReactQueryDevtools initialIsOpen={false} />
         </AuthProvider>

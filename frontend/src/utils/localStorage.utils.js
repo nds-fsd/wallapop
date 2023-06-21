@@ -37,7 +37,8 @@ export const setUserDataLocalStorage = (sessionData) => {
 }
 
 export const setUserSession = (sessionData) => {
-  // console.log('esto es object', sessionData)
+
+
   setStorageObject("user-session", sessionData);
 };
 

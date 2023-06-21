@@ -5,7 +5,6 @@ import Logout from "../LOGOUT/index";
 
 const Navbar = () => {
   const { userData } = useContext(AuthContext);
-
-   return <div> {userData ? <Login /> : <Logout />} </div>;
+  return <div> {userData && userData ? <Login /> : <Logout />} </div>;
 };
 export default Navbar;

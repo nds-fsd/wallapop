@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Buscador from "../Buscador";
 import styles from "./index.module.css";
 import { TbMessages } from "react-icons/tb";
@@ -13,6 +13,17 @@ import { ThemeContext } from "../../../context/themeContext";
 const Login = () => {
   const { userData } = useContext(AuthContext);
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userData) {
+      navigate(localStorage.getItem("previousProductPage"));
+      setTimeout(() => {
+        localStorage.removeItem("previousProductPage");
+      }, 2000);
+    }
+  }, [userData]);
+  
   if (!userData) return null;
   const { data, isLoading } = useQuery(["chats"], getAllChats);
   
@@ -53,9 +64,7 @@ const Login = () => {
           </Link>
         </div>
         <div className={styles.createProductButton}>
-          <Link to="/products/newproduct/algo-que-no-utilizo">
-            SUBIR UN PRODUCTO{" "}
-          </Link>
+          <Link to="/products/newproduct/">SUBIR UN PRODUCTO </Link>
         </div>
       </div>
     </nav>

@@ -9,7 +9,6 @@
   width: 7rem;
   height: 7em;
   border-radius: 0.7em;
-
 }
 
 .double {
@@ -25,10 +24,11 @@
 
 .noImage {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
 
-.noImage .push {
+.imgRemaining .remain {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,25 +41,103 @@
   border-width: 0.25rem;
   border-color: var(--blue-light);
   cursor: pointer;
+  margin-top: 0.5rem;
+
 }
 
-.push span {
+
+.imgRemaining .remain span {
   font-size: 2.5rem;
   color: var(--blue-light);
-
 }
 
-.push:hover {
+.imgRemaining .remain:hover {
   border-color: var(--yellow-main);
   color: var(--yellow-main);
 }
-.push span:hover {
+.remain span:hover {
+  color: var(--yellow-main);
+}
+
+.imgList span {
+  color: var(--grey);
+  font-size: 1.2em;
+
+}
+
+.imgList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imgList span:hover {
+  color: red;
+}
+
+
+.imgUpload {
+  display: flex;
+  justify-content: space-around;
+  width: 50rem;
+}
+.imgUpload .imagePreview {
+  width: 6rem;
+  height: 6rem;
+  background-color: transparent;
+  color: var(--blue-light);
+  border-radius: 1rem;
+  border-style: dotted;
+  border-width: 0.25rem;
+  border-color: var(--blue-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagePreview span {
+  color: var(--blue-light);
+  font-size: 2rem;
+}
+
+.imgUpload .imagePreview:hover {
+  border-color: var(--yellow-main);
+}
+
+.imagePreview span:hover {
   color: var(--yellow-main)
 }
 
 
 
-.push img {
+
+
+
+/* .imagePreview .imgRemaining {
   width: 6rem;
   height: 6rem;
+  background-color: transparent;
+  color: var(--blue-light);
+  border-radius: 1rem;
+  border-style: dotted;
+  border-width: 0.25rem;
+  border-color: var(--blue-light);
+  cursor: pointer;
+  
+  margin-top: 0.5rem;
 }
+
+.imgRemaining span {
+  font-size: 2.5rem;
+  color: var(--blue-light);
+}
+
+.imgRemaining:hover {
+  color: var(--yellow-main);
+}
+
+.uploaded {
+  display: flex;
+  justify-content: space-around;
+} */

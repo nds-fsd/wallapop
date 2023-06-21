@@ -1,94 +1,89 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import styles from "./productPage.module.css";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
 import { postChatRoom } from "../../../utils/apiChatRoom";
-import { AuthContext } from "../../../context/authContext";
-import { getProductById, updateProduct } from "../../../utils/apiProducts";
-import { Link, useNavigate, NavLink } from "react-router-dom";
-import { changeFavorite } from "../../../utils/apiFavorites";
-import { getUserToken } from "../../../utils/localStorage.utils";
+import {AuthContext } from "../../../context/authContext";
+import { getProductById } from "../../../utils/apiProducts";
+import { Link, useLocation, useNavigate, NavLink } from "react-router-dom";
+import { createFav, deleteFav, getFavs } from "../../../utils/apiFavorites";
+import RelatedProducts from "./RelatedProducts";
+import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 
 const ElsePage = ({ id }) => {
-  const { userData } = useContext(AuthContext);
 
-  const mockImages = [
-    "https://picsum.photos/id/1/500/500",
-    "https://picsum.photos/id/2/700/500",
-    "https://picsum.photos/id/3/700/500",
-  ];
+  const { data, isLoading } = useQuery(["product", id], getProductById);
+  const { data: favs } = useQuery(["favs"], getFavs);
+  const category = data?.categories;
+  const title = data?.categories[0].title;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const userToken = getUserToken();
+  const userData = getUserData();
+  const userId = userData ? userData.id : null;
 
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [sessionAlert, setSessionAlert] = useState(false);
+  const [userFavorites, setUserFavorites] = useState([]);
+  const [favoriteStatus, setFavoriteStatus] = useState(false);
+
+  useEffect(() => {
+    const fetchUserFavs = async () => {
+      try {
+        const favs = await getFavs(userId);
+        const favsProductIds = favs && favs[0].products.map((prod) => prod._id);
+        const isProductFavorite = favsProductIds.includes(String(id));
+        setUserFavorites(isProductFavorite);
+      } catch (error) {
+        console.log("Error fetching user favorites", error);
+      }
+    };
+    if (userToken) {
+      fetchUserFavs();
+    }
+  }, [userToken, id]);
+
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
   };
-
-  const { data, isLoading } = useQuery(["product", id], getProductById);
-  const category = data?.categories;
-
-  const [isFavorite, setIsFavorite] = useState(data?.favorite || false);
-  const [showAlert, setShowAlert] = useState(false);
-  const [sessionAlert, setSessionAlert] = useState(false);
-
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
-
-  const mutation = useMutation(changeFavorite, {
-    onSuccess: (updatedFavorite) => {
-      if (updatedFavorite !== undefined) {
-        setIsFavorite(updatedFavorite);
-        queryClient.setQueryData(["product", id], {
-          ...data,
-          favorite: updatedFavorite,
-        });
-        setShowAlert(true);
-      } else {
-        setSessionAlert(true);
-        setShowAlert(false);
-      }
-    },
-  });
-
   const handleAlertAccept = () => {
     setShowAlert(false);
+    window.location.reload();
   };
-
   const handleSessionAlert = () => {
     setSessionAlert(false);
+    const previousProductPage = window.location.pathname;
+    localStorage.setItem('previousProductPage', previousProductPage);
     navigate("/user/login");
   };
 
-  const { id: userId } = JSON.parse(localStorage.getItem("user"));
-
   const handleFavorite = async () => {
-    const { userToken } = getUserToken();
-
-    if (userToken) {
-      console.log(userToken);
-      const updatedFavorite = !favorite;
-      setFavorite(updatedFavorite);
-      const updatedProduct = { ...data, favorite: updatedFavorite };
-
-      try {
-        await mutation.mutateAsync(favoriteData);
-
-        setSessionAlert(false);
-        setShowAlert(true);
-      } catch (error) {
-        setSessionAlert(true);
-        setShowAlert(false);
-      }
-    } else {
+    if (!userToken) {
       setSessionAlert(true);
       setShowAlert(false);
+      return;
+    }
+    try {
+      if (userFavorites) {
+        await deleteFav(id);
+        setShowAlert(true);
+        setFavoriteStatus(false);
+        setIsFavorite(false);
+      } else {
+        await createFav({ product: id });
+        setShowAlert(true);
+        setFavoriteStatus(true);
+        setIsFavorite(true);
+      }
+    } catch (error) {
+      console.log("Error toggling favorite:", error);
     }
   };
 
-  //Cuando todos los productos tengan asociado categories (title, logo...)
-  //junto con el div que tiene el Link
-  // const title = data?.categories[0].title
 
   const handleCreateChatRoom = async () => {
     const body = {
@@ -107,7 +102,7 @@ const ElsePage = ({ id }) => {
 
   return (
     <>
-      {data && !userId && sessionAlert && (
+      {data && !userToken && sessionAlert && (
         <div className={styles.alert}>
           Debes iniciar sesión para ejecutar esta acción
           <div className={styles.alertButtons}>
@@ -123,9 +118,9 @@ const ElsePage = ({ id }) => {
           </div>
         </div>
       )}
-      {data && isFavorite && showAlert && (
+      {data && showAlert && (
         <div className={styles.alert}>
-          {isFavorite
+          {favoriteStatus
             ? "Este producto se ha añadido a tu lista de favoritos"
             : "Este producto ya no está entre tus favoritos"}
           <button onClick={handleAlertAccept} className={styles.accept}>
@@ -147,7 +142,9 @@ const ElsePage = ({ id }) => {
             <div className={styles.buttons}>
               <button
                 onClick={handleFavorite}
-                className={`${styles.like} ${isFavorite ? styles.focused : ""}`}
+                className={`${styles.like} ${
+                  userToken && userFavorites ? styles.focused : ""
+                }`}
               >
                 <span className="icon-heart1"></span>
               </button>
@@ -170,8 +167,13 @@ const ElsePage = ({ id }) => {
               <h2>EUR</h2>
             </div>
             <div className={styles.category}>
-              {category && category.map((cat) => <span className={cat.logo} />)}
-              <h3>{data && data.category}</h3>
+              <Link to={"/category/" + title}>
+                {data && data.categories &&
+                  category.map((cat) => (
+                    <span className={cat.logo} key={cat._id} />
+                  ))}
+                <h3>{data && data.category}</h3>
+              </Link>
             </div>
           </div>
           <h2>{data && data.title}</h2>
@@ -198,9 +200,13 @@ const ElsePage = ({ id }) => {
               <span className="icon-mail2"></span>
             </div>
           </div>
-          {data && <ProductBar data={data} />}
+        
         </div>
+        {data && (
+          <RelatedProducts category={data.category} parentId={data._id} />
+        )}
       </div>
+      {data && <ProductBar data={data} />}
     </>
   );
 };

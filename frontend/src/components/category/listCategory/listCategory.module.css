@@ -9,15 +9,19 @@
   padding-top: 15px;
 }
 
+
 .carusel {
-  width: 81vw;
+  width: 85vw;
   display: flex;
   flex-direction: row;
   align-items: center;
-  overflow-x: scroll;
-  overflow-y: hidden;
+  justify-content: center;
+  /* overflow-x: scroll;
+  overflow-y: hidden; */
   padding-top: 35px;
 }
+
+
 
 .item {
   width: 11.5rem;
@@ -39,7 +43,7 @@
 }
 
 .item span:nth-child(1) {
-  font-size: 3.5rem;
+  font-size: 4.5rem;
 }
 
 .item:hover {
@@ -54,6 +58,20 @@
   text-align: center;
   align-items: center;
 }
+
+.seeMore  {
+  border: none;
+  background-color: transparent;
+}
+.seeMore span {
+  color: var(--yellow-main);
+  font-size: 2.5rem;
+}
+
+.seeMore span:hover {
+  color: var(--blue-light);
+}
+
 
 /* Designing for scroll-bar*/
 ::-webkit-scrollbar {

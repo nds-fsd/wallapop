@@ -57,7 +57,7 @@ const ProfileInfo = () => {
         <div className={styles.contentContainer}>
           <div className={styles.contentForm}>
             <div className={styles.divFoto}>
-              <h2> Imagenes de perfil</h2>
+              <h2> Imágenes de perfil</h2>
               <div className={styles.infoFoto}>
                 <div className={styles.changePhotoContainer}>
                   <img src={userData.photo} name="photo" />
@@ -117,10 +117,10 @@ const ProfileInfo = () => {
                   )}
                 </div>
                 <label className={styles.labels}>
-                  Direción
+                  Dirección
                   <input
                     className={styles.inputProfile}
-                    placeholder="Direción"
+                    placeholder="Dirección"
                     {...register("adress")}
                   />
                 </label>

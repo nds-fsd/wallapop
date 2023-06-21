@@ -5,11 +5,11 @@
   width: 100%;
   height: max-content;
   background-color: var(--blue-medium);
-  position: fixed;
+  position: sticky;
   bottom: 0;
   left: 0;
-  box-shadow: 0 2px 4px 1px grey;
-  z-index: 500;
+  border-bottom: 1px solid var(--grey);
+  z-index: 1;
 }
 
 .productDetails {

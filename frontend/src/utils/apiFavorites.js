@@ -1,45 +1,65 @@
 import { api } from "./api";
-import { getUserToken } from "./localStorage.utils";
+import { getUserData, getUserToken } from "./localStorage.utils";
 
-export const getFavorites = () => {
-  const { id } = JSON.parse(localStorage.getItem("user"));
-  const token = JSON.parse(localStorage.getItem("user-session"));
-  return (
-    api
-      .get(`/favorites/getbyuser/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          favorite: true,
-        },
-      })
-      .then((res) => {
-        const filteredProducts = res.data.filter(
-          (product) => product.favorite === true
-        );
-        return filteredProducts;
-      })
-      // .then((res) => res.data)
-      .catch((error) => {
-        console.log(error);
-        return {
-          error:
-            "Sorry, we couldn't retrieve your products. Please try again later.",
-        };
-      })
-  );
+export const getFavs = () => {
+  const { id } = getUserData();
+  const { token } = getUserToken();
+  return api
+    .get(`/favorites/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      return {
+        error:
+          "Sorry, we couldn't retrieve your products. Please try again later.",
+      };
+    });
 };
+
+export const createFav = (data) => {
+  // console.log("creo el favorito")
+  const { id } = getUserData();
+  return api
+    .post(`/favorites/${id}`, data)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      return {
+        error: "Sorry, can't create your favorite",
+      };
+    });
+};
+
+export const deleteFav = (productId) => {
+  // console.log("borro el favorito")
+  const { id } = getUserData();
+  const { token } = getUserToken();
+  return api
+    .delete(`/favorites/${id}/${productId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+
 
 export const changeFavorite = (product, isFavorite) => {
   const { id } = JSON.parse(localStorage.getItem("user"));
+  // console.log("el user id", id)
   const { token } = getUserToken();
 
   const favoriteData = {
-    user: id,
     favorite: isFavorite,
-    product: product._id,
-    // product: product.id
+    product: product.id,
   };
 
   return api
@@ -53,26 +73,3 @@ export const changeFavorite = (product, isFavorite) => {
       console.log(error);
     });
 };
-
-// export const changeFavorite = (product) => {
-//   const { token } = getUserToken();
-//   const { _id, favorite } = product;
-
-
-//   const updatedProduct = {
-//     favorite: {
-//       fav: favorite.fav,
-//       user: favorite.user,
-//     },
-//   };
-//   return api
-//     .patch(`/products/${_id}/favorite`, updatedProduct, {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     })
-//     .then((res) => res.data)
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// };

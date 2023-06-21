@@ -47,14 +47,11 @@ const FormVehicle = () => {
     }
 
     mutation.mutate(productData);
-
     // setShowAlert(true);
     alert("Tu producto se ha subido correctamente");
     reset();
     setImages([]);
   };
-
-
 
   return (
     <>

@@ -15,14 +15,17 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: solid rgba(198, 197, 197, 0.368) 0.1rem;
+  border-bottom: solid rgba(198, 197, 197, 0.368) 0.2rem;
   background-color: var(--gray-to-bg-dark);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
 }
 
 .logoLink img {
   width: 7rem;
   height: auto;
-  margin-left: 3rem;
+  padding-left: 3rem;
 }
 
 .tuButton {
@@ -77,3 +80,4 @@
   background-color: var(--yellow-main-to-bg-dark);
   color: var(--yellow-light-to-blue-light);
 }
+

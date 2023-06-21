@@ -11,6 +11,7 @@
   flex-direction: column;
   padding: 2rem 5rem 1rem 5rem;
   background-color: var(--gray-to-bg-dark);
+  margin: 4em auto;
 }
 
 .container {
@@ -127,7 +128,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 42rem;
+  width: 40rem;
   height: 3rem;
   margin: 2rem 0;
   color: var(--blue-dark-to-yellow-light);
@@ -147,13 +148,13 @@
 }
 .arrow {
   position: relative;
-  left: 20rem;
+  left: 18rem;
   background-color: var(--white-to-bg-medium);
   border: none;
 }
 .active {
   position: relative;
-  left: 20rem;
+  left: 18rem;
   background-color: var(--white-to-bg-medium);
   border: none;
   transform: rotate(180deg);
@@ -356,4 +357,8 @@
 .alertButtons {
   display: flex;
   gap: 2em;
+}
+
+.imgLink {
+  width: 12rem;
 }

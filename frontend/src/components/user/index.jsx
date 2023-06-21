@@ -43,7 +43,6 @@ import {
 } from "./route-paths";
 import styles from "./index.module.css";
 import Sidebar from "./sidebar";
-import Favs from "./favorites/favs";
 import ChatRoom from "../chat/chat-room";
 
 const UserPage = () => {
@@ -58,18 +57,12 @@ const UserPage = () => {
             <Route path={PROFILE_VALUES} element={<ProfileValues />} />
           </Route>
 
-          <Route path={USER_PURCHASES} element={<Purchases />}>
-            <Route path={PURCHASES_ONGOING} element={<PurchasesOnGoing />} />
-            <Route
-              path={PURCHASES_COMPLETED}
-              element={<PurchasesCompleted />}
-            />
-          </Route>
-          <Route path={USER_SALES} element={<Sales />}>
-            {/* <Route exact path={SALES_ONGOING} element={<SalesOnGoing />} /> */}
-            <Route exact path={SALES_COMPLETED} element={<SalesCompleted />} />
-          </Route>
+          <Route path={USER_PURCHASES} element={<PurchasesCompleted />} />
+
+          <Route path={USER_SALES} element={<SalesCompleted />} />
+
           <Route path={USER_PRODUCTS} element={<Products />}>
+            <Route path="" element={<ProductPublished />} />
             <Route path={PRODUCTS_PUBLISHED} element={<ProductPublished />} />
             <Route path={PRODUCTS_SOLD} element={<ProductSold />} />
           </Route>
@@ -78,13 +71,10 @@ const UserPage = () => {
             <Route path="chatroom/:chatRoomID" element={<ChatRoom />} />
           </Route>
 
-          <Route path={USER_FAVORITES} element={<Favorites />}>
-            <Route path={FAVORITE_PRODUCTS} element={<Favs />} />
-            <Route path={FAVORITE_PROFILES} element={<FavoriteProfiles />} />
+          <Route path={USER_FAVORITES} element={<FavoriteProducts />}>
+            <Route path={FAVORITE_PRODUCTS} element={<FavoriteProducts />} />
             <Route path={FAVORITE_SEARCHES} element={<FavoriteSearches />} />
           </Route>
-
-          <Route path={USER_STATS} element={<Stats />} />
         </Routes>
       </div>
     </div>

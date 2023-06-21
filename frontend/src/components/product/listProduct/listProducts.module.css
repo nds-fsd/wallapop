@@ -1,7 +1,30 @@
 .menu {
   display: flex;
   flex-direction: row;
+  margin-bottom: 0rem;
 }
+.menu.lastCard {
+  margin-bottom: 4rem;
+}
+
+.noProducts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 12rem;
+  margin-bottom: 3rem;
+}
+
+.container {
+  margin-top: 3em;
+}
+
+.container h1 {
+  display: flex;
+  justify-content: center;
+}
+
 .title {
   color: var(--blue-dark-to-yellow-light);
 }
+

@@ -21,16 +21,13 @@
   font-weight: bold;
 }
 .searchContainer button:hover {
-  width: 7rem;
-  height: 2.5rem;
-  border-radius: 2.5rem;
-  font-size: 0.75rem;
   background-color: var(--gray-to-bg-dark);
   color: var(--blue-dark-to-yellow-main);
   border-color: var(--blue-dark-to-yellow-main);
   border: var(--blue-dark-to-yellow-main) solid 0.15rem;
   cursor: pointer;
 }
+
 .searchContainer input {
   border-radius: 10rem;
   border: var(--blue-dark-to-yellow-main) solid 0.1rem;
@@ -44,3 +41,4 @@
 .searchContainer input::placeholder {
   color: var(--black-to-yellow-light);
 }
+

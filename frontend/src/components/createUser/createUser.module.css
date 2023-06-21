@@ -5,6 +5,7 @@
   align-items: center;
   background-color: var(--gray-to-bg-dark);
   color: var(--blue-dark-to-yellow-main);
+  margin: 3rem auto;
 }
 
 .createUserContainer {
@@ -14,8 +15,8 @@
   width: 40rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 1.5rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+ /* margin-top: 2rem;
+  margin-bottom: 2rem; */
   background-color: var(--white-to-bg-medium);
   color: var(--blue-dark-to-yellow-main);
 }

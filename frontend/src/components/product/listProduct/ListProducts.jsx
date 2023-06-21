@@ -5,6 +5,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { getProductByCategory } from "../../../utils/apiProducts";
 import Spinner from "../../Spinner/Spinner";
+import AllCategories from "../../category/AllCategories/AllCategories";
 
 const ListProducts = () => {
   const params = useParams();
@@ -14,6 +15,12 @@ const ListProducts = () => {
     getProductByCategory
   );
 
+  const isAllProductsCategory = params.category === "Todas las Categorías";
+  const filteredProducts = isAllProductsCategory
+    ? products
+    : products && products.filter((prod) => prod.category === params.category);
+
+
   return (
     <div>
       <h1 className={styles.title}>{params.category}</h1>
@@ -22,23 +29,37 @@ const ListProducts = () => {
           <Spinner size="M" />
         </div>
       )}
-      <div>
-        {!isLoading &&
-          // hago bucle para mostrar todos los productos que me ha llegado de la BD
-          products.map((prod) => {
-            if (!prod.sold) {
+      {!isLoading &&
+        filteredProducts.length === 0 &&
+        !isAllProductsCategory && (
+          <div className={styles.noProducts}>
+            <h3>No hay productos para mostrar</h3>
+          </div>
+        )}
+      {isAllProductsCategory ? (
+        <AllCategories />
+      ) : (
+        <div className={styles.carusel}>
+          {!isLoading &&
+            // hago bucle para mostrar todos los productos que me ha llegado de la BD
+            filteredProducts.map((prod, index) => {
+              if (!prod.sold) {
+              const isLastCard = index === filteredProducts.length - 1;
               return (
                 // Llamo al componente PRoduct y le paso la info de cada producto
-                <Product
+                <div
                   data-test="product"
-                  className={styles.menu}
+                  className={`${styles.menu} ${
+                    isLastCard ? styles.lastCard : ""
+                  }`}
                   key={prod._id}
-                  prod={prod}
-                />
+                >
+                  <Product data-test="product" key={prod._id} prod={prod} />
+                </div>
               );
-            }
-          })}
-      </div>
+}})}
+        </div>
+      )}
     </div>
   );
 };
