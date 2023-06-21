@@ -154,9 +154,13 @@ const ElsePage = ({ id }) => {
               >
                 <span className="icon-heart1"></span>
               </button>
-              <button className={styles.chat} onClick={handleCreateChatRoom}>
-                CHAT
-              </button>
+              {userData?._id !== data?.user._id ? (
+                <button className={styles.chat} onClick={handleCreateChatRoom}>
+                  CHAT
+                </button>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           {data && <Slider images={data.images} data={data} />}

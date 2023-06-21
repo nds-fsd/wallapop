@@ -69,9 +69,13 @@ const ProductPage = () => {
               <button className={styles.like}>
                 <span className="icon-heart1"></span>
               </button>
-              <button className={styles.chat} onClick={handleCreateChatRoom}>
-                CHAT
-              </button>
+              {userData?._id !== data?.user._id ? (
+                <button className={styles.chat} onClick={handleCreateChatRoom}>
+                  CHAT
+                </button>
+              ) : (
+                ""
+              )}
             </div>
             {data && <Slider images={mockImages} data={data} />}
             <div className={styles.details}>

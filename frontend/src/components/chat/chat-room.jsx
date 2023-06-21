@@ -67,13 +67,13 @@ const ChatRoom = () => {
       <div className={styles.chatroomContainer}>
         <ChatHeader chatRoomID={chatRoomID} />
         <div className={styles.messageContainer} >
-          {messages?.map((message) => {
+          {messages?.map((message, i) => {
             return (
               <div
                 className={`${
                   message.user_id === id ? styles.myMessage : styles.otherMessage
                 }`}
-                
+                key={i}
                 >
                 {message.body}
               </div>
