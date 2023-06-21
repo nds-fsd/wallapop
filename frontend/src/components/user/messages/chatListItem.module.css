@@ -26,3 +26,23 @@
   border-bottom: 1px solid var(--blue-dark);
   border-radius: 1rem;
 }
+
+
+.noImage {
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--blue-medium);
+  border-radius: 30%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  border: none;
+}
+
+
+.noImage span {
+  font-size: 1.2rem;
+}

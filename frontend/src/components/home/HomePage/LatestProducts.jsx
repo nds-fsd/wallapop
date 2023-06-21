@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../category/AllCategories/allCategories.module.css";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { getAllProducts, updateProduct } from "../../../utils/apiProducts";
+import { getAllProducts } from "../../../utils/apiProducts";
 import ImagesHome from "../../user/Image/ImagesHome";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getUserData, getUserToken } from "../../../utils/localStorage.utils";

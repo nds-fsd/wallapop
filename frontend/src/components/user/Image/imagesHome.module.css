@@ -69,14 +69,17 @@
   color: var(--blue-dark);
 }
 
+
 .text {
   margin-top: 1em;
   background-color: var(--blue-medium);
   color: black;
+  color: white;
 }
 
 .text span {
   color: var(--whit-to-black);
+  color: white;
   margin: 0 0 0 -0.1em;
   background-color: var(--blue-medium);
 }

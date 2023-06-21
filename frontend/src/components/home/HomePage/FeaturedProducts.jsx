@@ -116,7 +116,7 @@ const FeaturedProducts = ({ categoriesToRender }) => {
       )}
       {prods && showAlert && (
         <div className={styles.alert}>
-          {setFavoriteStatus
+          {favoriteStatus
             ? "Este producto se ha añadido a tu lista de favoritos"
             : "Este producto ya no está entre tus favoritos"}
           <button onClick={handleAlertAccept} className={styles.accept}>

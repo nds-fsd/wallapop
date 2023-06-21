@@ -17,6 +17,9 @@
   padding-left: 3rem;
   border-bottom: solid rgba(198, 197, 197, 0.368) 0.1rem;
   background-color: var(--gray-to-bg-dark);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
 }
 
 .logoLink img {

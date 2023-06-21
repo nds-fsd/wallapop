@@ -193,7 +193,7 @@ const FormElse = () => {
           setImagePreviews={setImagePreviews}
           reset={reset}
         />
-        <Map />
+        {/* <Map /> */}
 
         <button type="submit" className={styles.formButton}>
           Subir

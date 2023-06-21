@@ -16,7 +16,7 @@ const Buscador = () => {
         onChange={(ev) => setSearch(ev.target.value)}
       ></input>
       <NavLink to={`/category/product/search/${search}`}>
-        <button type="submit" className={style.boton}>Buscar</button>
+        <button type="submit" className={styles.boton}>Buscar</button>
       </NavLink>
     </form>
   );

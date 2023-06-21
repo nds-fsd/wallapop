@@ -43,7 +43,6 @@ import {
 } from "./route-paths";
 import styles from "./index.module.css";
 import Sidebar from "./sidebar";
-import Favs from "./favorites/favs";
 import ChatRoom from "../chat/chat-room";
 
 const UserPage = () => {

@@ -9,7 +9,6 @@ import {AuthContext } from "../../../context/authContext";
 import { getProductById } from "../../../utils/apiProducts";
 import { Link, useLocation, useNavigate, NavLink } from "react-router-dom";
 import { createFav, deleteFav, getFavs } from "../../../utils/apiFavorites";
-import { getUserToken } from "../../../utils/localStorage.utils";
 import RelatedProducts from "./RelatedProducts";
 import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 
@@ -31,9 +30,6 @@ const ElsePage = ({ id }) => {
   const [sessionAlert, setSessionAlert] = useState(false);
   const [userFavorites, setUserFavorites] = useState([]);
   const [favoriteStatus, setFavoriteStatus] = useState(false);
-
-  // const [previousProductPage, setPreviousProductPage] = useState(null);
-  // const previousProductPage = localStorage.getItem("previousProductPage")
 
   useEffect(() => {
     const fetchUserFavs = async () => {

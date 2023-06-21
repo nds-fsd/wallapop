@@ -1,4 +1,4 @@
-import React, { useState }, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./listCategory.module.css";
 import { getCategories } from "../../../utils/apiCategories";
 import { useQuery } from "react-query";

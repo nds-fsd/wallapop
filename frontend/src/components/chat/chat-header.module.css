@@ -36,7 +36,6 @@
 .headerContainer {
   border-bottom: 1px solid var(--yellow-main);
   background-color: white;
-
 }
 
 .ownerContainer {
@@ -57,4 +56,23 @@
   width: 4rem;
   height: 4rem;
   object-fit: cover;
+}
+
+.noImage {
+  width: 5rem;
+  height: 5rem;
+  background-color: var(--blue-medium);
+  border-radius: 30%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  border: none;
+}
+
+
+.noImage span {
+  font-size: 2rem;
 }

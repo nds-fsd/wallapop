@@ -41,6 +41,7 @@ rgba(226, 34, 34, 0.692);
   --yellow-light: #fcf7e3;
   --yellow-dark: #706a53c0;
   --grey: #eaeeee;
+  --grey-dark: #868888;
   /* background-color: var(--background-dark); */
   --background-dark: #202123;
   --background-light: var(--grey); /*#eaeeee*/

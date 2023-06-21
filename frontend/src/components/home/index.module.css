@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   background-color: var(--gray-to-bg-dark);
+  margin-top: 12rem;
 }
 
 /* .homeContainer h1 {
@@ -14,4 +15,5 @@
 .homeContainer h2 {
   font-size: 1.5rem;
   color: var(--blue-dark-to-white);
-}
+} */
+ 

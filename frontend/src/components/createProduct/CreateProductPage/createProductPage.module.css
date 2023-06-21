@@ -109,7 +109,7 @@
   align-items: center;
   justify-content: center;
   font-size: 4em;
-  color: var(--blue-ligth);
+  color: var(--blue-dark);
 }
 
 .checkbox span:hover {
@@ -207,8 +207,7 @@
   position: relative;
   padding-left: 0.8rem;
   font-size: 1rem;
-  color: grey;
-  color: var(--grey-to-white);
+  color: var(--grey-dark-to-white);
   background-color: var(--white-to-bg-medium);
 }
 
@@ -251,7 +250,7 @@
   width: 5em;
   height: 5em;
   cursor: pointer;
-  color: var(--blue-light);
+  color: var(--blue-dark);
 }
 
 .square input[type="radio"] {
@@ -263,7 +262,7 @@
   align-items: center;
   justify-content: center;
   font-size: 3em;
-  color: var(--blue-light);
+  color: var(--blue-dark);
 }
 
 .square span:hover {
