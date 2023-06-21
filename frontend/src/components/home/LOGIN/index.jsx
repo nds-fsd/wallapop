@@ -6,12 +6,17 @@ import { TbMessages } from "react-icons/tb";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { AuthContext } from "../../../context/authContext";
 import image from "../../../assets/images/logo-retrend.png";
+import { getAllChats } from "../../../utils/apiChatRoom";
+import { useQuery } from "react-query";
 import { ThemeContext } from "../../../context/themeContext";
 
 const Login = () => {
   const { userData } = useContext(AuthContext);
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   if (!userData) return null;
+  const { data, isLoading } = useQuery(["chats"], getAllChats);
+  
+
 
   return (
     <nav className={styles.navbar}>
@@ -30,9 +35,17 @@ const Login = () => {
         <Link to="/user/favorites">
           <MdOutlineFavoriteBorder /> FAVORITOS{" "}
         </Link>
-        <Link to="/user/messages">
+      {!isLoading && <Link to={`/user/messages/chatroom/${data[0]?._id}`}>
           <TbMessages /> BUZÓN{" "}
-        </Link>
+        </Link>}
+        {isLoading && <Link to={`/user/messages`}>
+          <TbMessages /> BUZÓN{" "}
+        </Link>}
+
+
+        {/* <Link to={`/user/messages/chatroom/${id}`}>
+          <TbMessages /> BUZÓN{" "}
+        </Link> */}
         <div data-test="perfil" className={styles.tuButton}>
           <Link to="/user/profile/info">
             <img src={userData.photo} />

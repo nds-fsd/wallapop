@@ -1,0 +1,22 @@
+.chatContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  gap: 3rem;
+}
+
+.outlet {
+  width: 45vw;
+}
+
+.chatList {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  overflow-y: scroll;
+  background-color: white;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+
+}

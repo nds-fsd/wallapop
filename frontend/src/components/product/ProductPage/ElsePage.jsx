@@ -4,12 +4,16 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
+import { postChatRoom } from "../../../utils/apiChatRoom";
+import { AuthContext } from "../../../context/authContext";
 import { getProductById, updateProduct } from "../../../utils/apiProducts";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, NavLink } from "react-router-dom";
 import { changeFavorite } from "../../../utils/apiFavorites";
 import { getUserToken } from "../../../utils/localStorage.utils";
 
 const ElsePage = ({ id }) => {
+  const { userData } = useContext(AuthContext);
+
   const mockImages = [
     "https://picsum.photos/id/1/500/500",
     "https://picsum.photos/id/2/700/500",
@@ -24,7 +28,6 @@ const ElsePage = ({ id }) => {
   const { data, isLoading } = useQuery(["product", id], getProductById);
   const category = data?.categories;
 
-  // console.log(data);
   const [isFavorite, setIsFavorite] = useState(data?.favorite || false);
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
@@ -58,7 +61,6 @@ const ElsePage = ({ id }) => {
   };
 
   const { id: userId } = JSON.parse(localStorage.getItem("user"));
-  console.log("el id del user", userId);
 
   const handleFavorite = async () => {
     const { userToken } = getUserToken();
@@ -71,7 +73,6 @@ const ElsePage = ({ id }) => {
 
       try {
         await mutation.mutateAsync(favoriteData);
-        console.log("el producto cambiado", favoriteData);
 
         setSessionAlert(false);
         setShowAlert(true);
@@ -88,7 +89,21 @@ const ElsePage = ({ id }) => {
   //Cuando todos los productos tengan asociado categories (title, logo...)
   //junto con el div que tiene el Link
   // const title = data?.categories[0].title
-  // console.log("el titulo de la categoria", title)
+
+  const handleCreateChatRoom = async () => {
+    const body = {
+      product_id: data._id,
+      owner_id: data.user._id,
+      buyer_id: userData._id,
+    };
+
+    try {
+      const chatroom = await postChatRoom(body);
+      navigate(`/user/messages/chatroom/${chatroom._id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -136,10 +151,15 @@ const ElsePage = ({ id }) => {
               >
                 <span className="icon-heart1"></span>
               </button>
-              <button className={styles.chat}>CHAT</button>
+              {userData?._id !== data?.user._id ? (
+                <button className={styles.chat} onClick={handleCreateChatRoom}>
+                  CHAT
+                </button>
+              ) : (
+                ""
+              )}
             </div>
           </div>
-
           {data && <Slider images={data.images} data={data} />}
           <div className={styles.details}>
             <div className={styles.priceContainer}>
@@ -154,10 +174,8 @@ const ElsePage = ({ id }) => {
               <h3>{data && data.category}</h3>
             </div>
           </div>
-
           <h2>{data && data.title}</h2>
           {data && <Keywords data={data} />}
-
           <div className={styles.line}></div>
           <div className={styles.expandable}>
             <h3>DESCRIPCIÓN DEL PRODUCTO</h3>
@@ -171,7 +189,6 @@ const ElsePage = ({ id }) => {
           {isExpanded && (
             <p className={styles.textExpanded}>{data && data.description}</p>
           )}
-
           <div className={styles.media}>
             <p>Comparte este producto con tus amigos</p>
             <div className={styles.mediaIcons}>
@@ -187,5 +204,4 @@ const ElsePage = ({ id }) => {
     </>
   );
 };
-
 export default ElsePage;

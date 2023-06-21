@@ -19,7 +19,6 @@ const ProfileInfo = () => {
     onSuccess: (data) => {
       //para rellenar los campos con la info del usuario
       reset(data);
-      // console.log("GET USER", data);
     },
   });
 
@@ -37,7 +36,6 @@ const ProfileInfo = () => {
 
   // PARA EDITAR USER
   const handleSubmitWrapperUpdate = (data) => {
-    console.log("VAS A EDITAR EL USUARIO", data);
     handlerAuthUpdate({ ...data, photo: image });
   };
 
@@ -47,7 +45,6 @@ const ProfileInfo = () => {
       "Estás a punto de borrar este producto. ¿Deseas continuar?"
     );
     if (shouldDelete) {
-      console.log("VAS A ELIMINAR EL USUARIO", data);
       handlerAuthDelete({ ...data });
     }
   };

@@ -7,7 +7,7 @@ import CustomAlert from "../CustomAlert/CustomAlert";
 import EditImages from "../EditImages/EditImages";
 
 const EditElse = ({ id }) => {
-  // console.log("el producto en el modal", id);
+
 
   const {
     register,

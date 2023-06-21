@@ -6,20 +6,14 @@ import EditJob from "../../../EditProducts/EditJob";
 import EditVehicle from "../../../EditProducts/EditVehicle";
 import EditHouse from "../../../EditProducts/EditHouse";
 
-
-const ModalContent = ({id}) => {
-
-  // console.log("el id en el modal content", id)
-
-  const { data } = useQuery(["product", id], getProductById)
-  console.log("en el modal content", data)
+const ModalContent = ({ id }) => {
+  const { data } = useQuery(["product", id], getProductById);
 
   if (!data || !data.category) {
     return null; // Render nothing if data or category is undefined
   }
-  const cat= data?.category
-  console.log("las keywords", data.category)
-  //aqui me retorna la categoria del producto, cuando hago click 
+  const cat = data?.category;
+  //aqui me retorna la categoria del producto, cuando hago click
   //en un producto me sale error de que category es undefined
   //y ya no puedo aplicar el switch case
 
@@ -27,28 +21,25 @@ const ModalContent = ({id}) => {
 
   switch (cat) {
     case "Inmobiliaria":
-      componentToRender = <EditHouse id={id}/>;
+      componentToRender = <EditHouse id={id} />;
       break;
     case "Motos":
     case "Coches":
-      componentToRender = <EditVehicle id={id}/>;
+      componentToRender = <EditVehicle id={id} />;
       break;
     case "Servicios":
     case "Empleo":
       componentToRender = <EditJob id={id} />;
       break;
     default:
-      componentToRender = <EditElse id={id}/>;
+      componentToRender = <EditElse id={id} />;
       break;
   }
- 
+
   return (
     <>
       <h3>Información de tu producto / servicio</h3>
       {id && componentToRender}
-
-
-      
     </>
   );
 };

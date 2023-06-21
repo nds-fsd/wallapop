@@ -14,7 +14,6 @@ const ProductPublished = () => {
     queryKey: ["products_published"],
     queryFn: getProductByUser,
   });
-  // console.log("los productos", prods);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [idProduct, setIdProduct] = useState("");
@@ -28,7 +27,6 @@ const ProductPublished = () => {
   };
 
   const handleClick = (id) => {
-    // console.log("el id del producto", id);
     setIdProduct(id);
     openModal();
   };

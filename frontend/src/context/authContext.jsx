@@ -80,26 +80,22 @@ export const AuthProvider = ({ children }) => {
 
   // FUNCION LOGIN
   const handleAuthLogin = (data) => {
-    console.log("HANDLEAUTH LOGIN", data);
     login.mutate(data);
   };
 
   // FUNCION REGISTRO
   const handleAuthRegister = (data) => {
-    console.log("HANDLEAUTH REGISTER", data);
     register.mutate(data);
   };
 
   // FUNCION MODIFICAR
   const handlerAuthUpdate = (data) => {
-    console.log("HANDLEAUTH MODIFICAR", data);
     update.mutate(data);
   };
 
   // FUNCION DELETE
   const handlerAuthDelete = (data) => {
     // windows alert para avisar
-    console.log("HANDLEAUTH DELETE", data);
     userDelete.mutate(data);
   };
 
@@ -141,7 +137,6 @@ export const AuthProvider = ({ children }) => {
     },
     (err, result) => {
       if (!err && result.event === "success") {
-        console.log("esto es result", result);
         setImage(result.info.secure_url);
       }
     }
@@ -180,17 +175,12 @@ export const AuthProvider = ({ children }) => {
     },
     (err, result) => {
       if (!err && result.event === "success") {
-        console.log("esto es result multiple", result);
         // imagesForUpload.push(result.info.secure_url);
         // setImages(imagesForUpload);
-        setImages(prevImages => [...prevImages, result.info.secure_url])
+        setImages((prevImages) => [...prevImages, result.info.secure_url]);
       }
     }
   );
-
-
-
-
 
   // const imgProfilInfo = { showUploadWidget, image };
   const data = {
@@ -206,8 +196,7 @@ export const AuthProvider = ({ children }) => {
     multipleUploadWidget,
     image,
     images,
-    setImages
-    
+    setImages,
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

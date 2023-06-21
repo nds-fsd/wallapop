@@ -101,7 +101,6 @@ export default FormImages;
 //    }
 //    const imageUrl = result.info.secure_url;
 //    setImages((prevImages) => [...prevImages, imageUrl]);
-//    console.log("paso por el upload de multiple imagenes", result);
 //  };
 
 //  const multipleUploadWidget = cloudinary.createUploadWidget({

@@ -16,6 +16,7 @@ import ProdPage from "./components/product/ProductPage/ProdPage";
 import ListBuscador from "./components/home/ListBuscador/ListBuscador";
 import ModalCompra from "./components/product/modalCompra/modalCompra";
 import "./index.css";
+import ChatRoom from "./components/chat/chat-room";
 
 function App() {
   const queryClient = new QueryClient();

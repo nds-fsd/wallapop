@@ -10,9 +10,6 @@ import Images from "../Image/Images";
 const FavoriteProducts = () => {
   const { data: prods } = useQuery("fav_prods", getFavorites);
 
-  
-  console.log("los prods favs", prods);
-
   const [isFavorite, setIsFavorite] = useState();
   const [deletionAlert, setDeletionAlert] = useState(false);
   const [deleteProduct, setDeleteProduct] = useState(null);

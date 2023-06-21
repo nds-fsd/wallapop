@@ -58,6 +58,7 @@
 .columnLeft img {
   width: 16rem;
   height: 16rem;
+  object-fit: cover;
   border-radius: 1em 0 0 1em;
 }
 .columnRight {

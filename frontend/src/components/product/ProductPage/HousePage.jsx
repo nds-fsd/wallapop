@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./productPage.module.css";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
@@ -7,8 +7,12 @@ import ProductBar from "../ProductBar/ProductBar";
 import { getProductById, updateProduct } from "../../../utils/apiProducts";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserToken } from "../../../utils/localStorage.utils";
+import { postChatRoom } from "../../../utils/apiChatRoom";
+import { AuthContext } from "../../../context/authContext";
 
 const HousePage = ({ id }) => {
+  const { userData } = useContext(AuthContext);
+
   const mockImages = [
     "https://picsum.photos/id/1/700/500",
     "https://picsum.photos/id/2/700/500",
@@ -71,7 +75,21 @@ const HousePage = ({ id }) => {
   //Cuando todos los productos tengan asociado categories (title, logo...)
   //junto con el div que tiene el Link
   // const title = data?.categories[0].title
-  // console.log("el titulo de la categoria", title)
+
+  const handleCreateChatRoom = async () => {
+    const body = {
+      product_id: data._id,
+      owner_id: data.user._id,
+      buyer_id: userData._id,
+    };
+
+    try {
+      const chatroom = await postChatRoom(body);
+      navigate(`/user/chatroom/${chatroom._id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -117,7 +135,13 @@ const HousePage = ({ id }) => {
               >
                 <span className="icon-heart1"></span>
               </button>
-              <button className={styles.chat}>CHAT</button>
+              {userData?._id !== data?.user._id ? (
+                <button className={styles.chat} onClick={handleCreateChatRoom}>
+                  CHAT
+                </button>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           {data && <Slider images={data.images} data={data} />}

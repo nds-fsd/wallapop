@@ -17,8 +17,6 @@ const AllCategories = () => {
     setShowAll(!showAll);
   };
 
-  // console.log(prods);
-
   const [favorite, setFavorite] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
@@ -48,16 +46,12 @@ const AllCategories = () => {
   };
 
   const handleFavorite = async (id) => {
-    // console.log("paso por la funcion de favorite");
     const updatedProduct = prods.find((prod) => prod._id === id);
 
     if (!updatedProduct) return;
     const userToken = localStorage.getItem("user-session");
     if (userToken) {
-      console.log("este el el token del user", userToken);
-
       try {
-        // console.log(userToken);
         const updatedFavorite = !updatedProduct.favorite;
         const updatedProductData = {
           ...updatedProduct,
@@ -80,7 +74,6 @@ const AllCategories = () => {
       setShowAlert(false);
       setSessionAlert(true);
     }
-    // console.log("hecho el favorite");
   };
 
   return (

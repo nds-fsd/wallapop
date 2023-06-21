@@ -10,8 +10,12 @@ import RiseLoader from "react-spinners/RiseLoader";
 import Spinner from "../../Spinner/Spinner";
 import Keywords from "../Keywords/Keywords";
 import { useParams } from "react-router-dom";
+import { postChatRoom } from "../../../utils/apiChatRoom";
+import { AuthContext } from "../../../context/authContext";
 
 const ProductPage = () => {
+  const { userData } = useContext(AuthContext);
+
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
     // Do nothing for 500 ms to emulate extremely slow code
@@ -35,6 +39,21 @@ const ProductPage = () => {
     getProductById
   );
 
+  const handleCreateChatRoom = async () => {
+    const body = {
+      product_id: data._id,
+      owner_id: data.user._id,
+      buyer_id: userData._id,
+    };
+
+    try {
+      const chatroom = await postChatRoom(body);
+      navigate(`/user/chatroom/${chatroom._id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       {isLoading && (
@@ -50,7 +69,13 @@ const ProductPage = () => {
               <button className={styles.like}>
                 <span className="icon-heart1"></span>
               </button>
-              <button className={styles.chat}>CHAT</button>
+              {userData?._id !== data?.user._id ? (
+                <button className={styles.chat} onClick={handleCreateChatRoom}>
+                  CHAT
+                </button>
+              ) : (
+                ""
+              )}
             </div>
             {data && <Slider images={mockImages} data={data} />}
             <div className={styles.details}>

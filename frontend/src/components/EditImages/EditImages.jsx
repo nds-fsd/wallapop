@@ -2,10 +2,8 @@ import React from "react";
 import styles from "./editImages.module.css";
 
 const EditImages = ({ product }) => {
-  console.log("el producto a editar", product);
 
   const images = product && product.images;
-  console.log("las imagenes a editar", images);
   return (
     <>
       <div className={styles.double}>

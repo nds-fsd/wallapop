@@ -3,7 +3,7 @@ import { api } from "./api";
 import { getUserData, getUserToken } from "./localStorage.utils";
 
 export const getAllProducts = () => {
-  // console.log("paso por el get all")
+
   return api
     .get("/products/")
     .then((res) => res.data)
@@ -119,7 +119,7 @@ export const getProductByName = ({ queryKey }) => {
 };
 
 // export const postProduct = (data) => {
-//   // console.log("esta es la data en el post", data)
+
 //   // const { id } = JSON.parse(localStorage.getItem("user"));
 //   const { id } = getUserData();
 
@@ -129,7 +129,7 @@ export const getProductByName = ({ queryKey }) => {
 //   };
 
 //   const productData = { ...data, favorite: favoriteData };
-//   console.log("paso por la apiProducts", productData);
+
 //   return api
 //     .post(`/products/newProduct/${id}`, productData)
 //     .then((res) => res.data)
@@ -142,7 +142,6 @@ export const getProductByName = ({ queryKey }) => {
 // };
 
 export const postProduct = (data) => {
-  // console.log("esta es la data en el post", data)
   const { id } = getUserData();
 
   return api
@@ -157,11 +156,11 @@ export const postProduct = (data) => {
 };
 
 export const updateProduct = (product) => {
-  // console.log("paso por el update product", product);
+
   const id = product._id;
-  // console.log("el id del producto a update", id);
+
   const { token } = getUserToken();
-  // console.log("paso por la api de update", product);
+
   return api
     .patch(`/products/${id}`, product, {
       headers: {
