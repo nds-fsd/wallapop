@@ -5,7 +5,6 @@
   justify-content: center;
   align-items: center;
   background-color: var(--gray-to-bg-dark);
-
 }
 
 .button {
@@ -14,7 +13,7 @@
   font-size: 3em;
   border: none;
   background-color: transparent;
-  color: var(--blue-dark);
+  color: var(--blue-dark-to-yellow-main);
   cursor: pointer;
 }
 
@@ -54,6 +53,7 @@
   opacity: 0.5;
   border-radius: 0.5em;
   object-fit: contain;
+  color: var(--blue-dark-to-yellow-main);
 }
 
 .miniImgactive {

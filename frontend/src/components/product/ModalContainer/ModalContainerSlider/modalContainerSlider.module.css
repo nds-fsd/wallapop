@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  background-color: rgba(2, 2, 2, 0.02);
+  background-color: var(--white-to-bg-dark);
 }
 
 .modal {
@@ -34,16 +34,17 @@
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  background-color: white;
+  background-color: var(--white-to-bg-dark);
   border: none;
+  color: var(--white-to-yellow-main);
 }
 
 .close span:nth-child(1) {
-  color: var(--blue-dark);
   font-size: 1.2em;
+  color: var(--blue-dark-to-yellow-main);
 }
 
 .close span:nth-child(1):hover {
-  color: var(--yellow-main);
+  color: var(--red);
   cursor: pointer;
 }
