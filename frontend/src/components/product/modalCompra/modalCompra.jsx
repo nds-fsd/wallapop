@@ -6,6 +6,12 @@ import { postTransactions } from "../../../utils/apiTransacions";
 import { updateProduct } from "../../../utils/apiProducts";
 
 const ModalCompra = ({ modalOpen, setModalOpen, data }) => {
+  console.log("DATA MODAL:", data);
+
+  if (!data.price) {
+    data = data[0].products[0];
+  }
+
   const queryClient = useQueryClient(["transaction"]);
   const queryClientProd = useQueryClient(["product"]);
   const idProduct = data._id;

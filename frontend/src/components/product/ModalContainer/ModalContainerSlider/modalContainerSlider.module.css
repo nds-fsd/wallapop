@@ -4,12 +4,13 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: var(--white-to-bg-medium);
+  /* background-color: var(--white-to-bg-medium); */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  background-color: rgba(2, 2, 2, 0.02);
 }
 
 .modal {

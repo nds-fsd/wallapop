@@ -7,6 +7,7 @@
   gap: 1rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
   font-size: 1rem;
+  background-color: var(--grey-to-bg-medium);
 }
 .messageContainer {
   height: 38vh;
@@ -15,21 +16,23 @@
   gap: 0.5rem;
   overflow-y: scroll;
   padding: 1rem;
-  border-bottom: 1px solid var(--blue-dark);
+  border-bottom: 1px solid var(--blue-dark-to-yellow-main);
   border-radius: 10px;
-  background-color: var(--grey);
+  /* background-color: var(--grey); */
+  background-color: var(--gray-to-bg-dark);
 }
 
 .myMessage {
-  background-color: var(--blue-dark);
   color: var(--yellow-light);
   align-self: flex-end;
+  background-color: var(--blue-dark-to-yellow-main);
+  color: var(--yellow-light-to-black);
 }
 
 .otherMessage {
-  background-color: var(--yellow-main);
-  color: var(--blue-dark);
   align-self: flex-start;
+  background-color: var(--yellow-main-to-blue-medium);
+  color: var(--black-to-yellow-light);
 }
 .myMessage,
 .otherMessage {
@@ -64,4 +67,6 @@
   padding: 0.5rem;
   min-height: 3rem;
   border-radius: 0.5rem;
+  background-color: var(--gray-to-bg-dark);
+  color: var(--black-to-yellow-light);
 }

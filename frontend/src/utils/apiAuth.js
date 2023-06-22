@@ -18,6 +18,7 @@ export const loginUser = (user) => {
 export const getInfoUser = (user) => {
   const userId = localStorage.getItem("user");
   const id = JSON.parse(userId).id;
+  console.log("ID API AUTH:", id);
   return api
     .get(`/user/${id}`, user)
     .then((res) => res.data)

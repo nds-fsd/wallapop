@@ -43,7 +43,7 @@ const Sidebar = () => {
         <GrTag /> Productos
       </Link>
       {!isLoading && 
-      <Link to={`/user/messages/chatroom/${data[0]?._id}`}>
+      <Link to={`/user/messages/chatroom/${data?.[0]?._id}`}>
           <TbMessages /> Buzón{" "}
         </Link>}
       {isLoading && 
