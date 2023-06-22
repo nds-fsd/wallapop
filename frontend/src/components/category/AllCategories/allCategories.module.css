@@ -20,7 +20,7 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 13rem;
+  width: 11rem;
   height: fit-content;
   padding: 0.7em 0.7em 0.4em 0.9em;
   background-color: var(--white-to-bg-medium);
@@ -95,7 +95,7 @@
 }
 
 .view {
-  width: 13rem;
+  width: 12rem;
   height: 3rem;
   margin-bottom: 2em;
   margin-left: 45vw;

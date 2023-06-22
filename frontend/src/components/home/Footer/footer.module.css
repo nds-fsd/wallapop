@@ -3,7 +3,13 @@
   color: white;
   padding: 1em 10em;
   /* box-shadow: 0 2px 4px 3px var(--blue-medium); */
-  
+}
+
+.container h2 {
+  font-size: 1.5rem;
+}
+.container h4 {
+  font-size: 0.9rem;
 }
 .container a {
   color: white;
@@ -22,8 +28,12 @@
 .categories {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  row-gap: 1rem;
 }
 
+.retrend p {
+  font-size: 0.8rem;
+}
 .retrend {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -48,7 +58,7 @@
 
 .slogan {
   color: var(--yellow-main);
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: center;
 }
 
@@ -110,5 +120,3 @@
   font-size: 2rem;
   color: var(--yellow-main);
 }
-
-

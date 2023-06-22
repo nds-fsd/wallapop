@@ -24,13 +24,13 @@
 
 
 .item {
-  width: 11.5rem;
-  height: 6rem;
+  width: 10.5rem;
+  height: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 1em;
+  font-size: 0.8em;
   text-align: center;
   color: var(--blue-dark-to-yellow-main);
   font-weight: bold;

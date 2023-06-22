@@ -1,13 +1,13 @@
 .image {
   border-radius: 0.7em;
-  width: 13rem;
+  width: 10.5rem;
   height: 250px;
   object-fit: cover;
   border: 0.15em solid var(--yellow-main);
 }
 
 .noImage {
-  width: 200px;
+  width: 10.5rem;
   height: 250px;
   background-color: var(--blue-medium);
   border-radius: 0.7em;
