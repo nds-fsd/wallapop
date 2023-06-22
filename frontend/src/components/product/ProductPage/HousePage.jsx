@@ -92,7 +92,7 @@ const HousePage = ({ id }) => {
     const body = {
       product_id: data._id,
       owner_id: data.user._id,
-      buyer_id: userData._id,
+      buyer_id: userData.id,
     };
 
     try {
@@ -149,7 +149,7 @@ const HousePage = ({ id }) => {
               >
                 <span className="icon-heart1"></span>
               </button>
-              {userData?._id !== data?.user._id ? (
+              {userData?.id !== data?.user._id ? (
                 <button className={styles.chat} onClick={handleCreateChatRoom}>
                   CHAT
                 </button>

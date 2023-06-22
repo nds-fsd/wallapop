@@ -4,8 +4,11 @@ import styles from "./chat-header.module.css";
 import { Link } from "react-router-dom";
 
 const ChatHeader = ({ chatRoomID }) => {
-  const id = { chatRoomID };
-  const { data } = useQuery(["product", id], getProductByChatRoom);
+
+  const id =  {chatRoomID} ;
+  const { data } = useQuery(["product", id.chatRoomID], getProductByChatRoom);
+
+
   const product = data?.product_id;
 
   const owner = data?.owner_id;
