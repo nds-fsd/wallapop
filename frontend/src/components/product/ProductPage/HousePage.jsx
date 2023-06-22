@@ -237,7 +237,7 @@ const HousePage = ({ id }) => {
           <RelatedProducts category={data.category} parentId={data._id} />
         )}
       </div>
-      {data && <ProductBar data={data} />}
+      {data && userData?.id !== data?.user._id ? (<ProductBar data={data}/>) : ("")}
 
     </>
   );
