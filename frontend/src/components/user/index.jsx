@@ -52,14 +52,19 @@ const UserPage = () => {
       <div className={styles.outletContainer}>
         <Routes>
           <Route path={USER_PROFILE} element={<Profile />}>
+            <Route path="" element={<ProfileInfo />} />
             <Route path={PROFILE_INFO} element={<ProfileInfo />} />
             <Route path={PROFILE_ACCOUNT} element={<ProfileAccount />} />
-            <Route path={PROFILE_VALUES} element={<ProfileValues />} />
+            {/* <Route path={PROFILE_VALUES} element={<ProfileValues />} /> */}
           </Route>
 
-          <Route path={USER_PURCHASES} element={<PurchasesCompleted />} />
+          <Route path={USER_PURCHASES} element={<Purchases />}>
+            <Route path="" element={<PurchasesCompleted />} />
+          </Route>
 
-          <Route path={USER_SALES} element={<SalesCompleted />} />
+          <Route path={USER_SALES} element={<Sales />}>
+            <Route path="" element={<SalesCompleted />} />
+          </Route>
 
           <Route path={USER_PRODUCTS} element={<Products />}>
             <Route path="" element={<ProductPublished />} />
@@ -71,9 +76,9 @@ const UserPage = () => {
             <Route path="chatroom/:chatRoomID" element={<ChatRoom />} />
           </Route>
 
-          <Route path={USER_FAVORITES} element={<FavoriteProducts />}>
-            <Route path={FAVORITE_PRODUCTS} element={<FavoriteProducts />} />
-            <Route path={FAVORITE_SEARCHES} element={<FavoriteSearches />} />
+          <Route path={USER_FAVORITES} element={<Favorites />}>
+            <Route path="" element={<FavoriteProducts />} />
+            {/* <Route path={FAVORITE_SEARCHES} element={<FavoriteSearches />} /> */}
           </Route>
         </Routes>
       </div>

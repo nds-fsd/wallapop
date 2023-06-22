@@ -173,7 +173,7 @@ const VehiclePage = ({ id }) => {
             </div>
             <div className={styles.category}>
               <Link to={"/category/" + title}>
-                {data.categories &&
+                {data && data.categories &&
                   category.map((cat) => (
                     <span className={cat.logo} key={cat._id} />
                   ))}
@@ -185,7 +185,7 @@ const VehiclePage = ({ id }) => {
           <h2>{data && data.title}</h2>
           {data && <Keywords data={data} />}
 
-          {data.brand || data.model || data.year || data.doors || data.seats ? (
+          {data?.brand || data?.model || data?.year || data?.doors || data?.seats ? (
             <div className={styles.detailType}>
               {data.brand && <p className={styles.detail}>{data.brand}</p>}
               {data.model && <p className={styles.detail}>{data.model}</p>}
@@ -198,7 +198,7 @@ const VehiclePage = ({ id }) => {
               )}
             </div>
           ) : null}
-          {data.km || data.engine || data.shift ? (
+          {data?.km || data?.engine || data?.shift ? (
             <div className={styles.detailType2}>
               {data.km && (
                 <p className={styles.detail}>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { deleteFav, getFavs } from "../../../utils/apiFavorites";
 import Images from "../Image/Images";
 import ImagesList from "../Image/ImagesList";
+import ModalCompra from "../../product/modalCompra/modalCompra";
 
 const FavoriteProducts = () => {
   const { data } = useQuery("fav-prods", getFavs);
@@ -12,8 +13,17 @@ const FavoriteProducts = () => {
   const [deletionAlert, setDeletionAlert] = useState(false);
   const [deleteProduct, setDeleteProduct] = useState(null);
   const [gridOpen, setGridOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
   const toggleView = () => {
     setGridOpen(!gridOpen);
+  };
+
+  const openModal = () => {
+    setModalOpen(!modalOpen);
+  };
+
+  const handleClick = (data) => {
+    openModal();
   };
 
   const queryClient = useQueryClient();
@@ -111,8 +121,15 @@ const FavoriteProducts = () => {
                     </button>
                   </Link>
                   <div className={styles.comprar}>
-                    <button>Comprar ya</button>
+                    <button onClick={() => handleClick(data)}>
+                      Comprar ya
+                    </button>
                   </div>
+                  <ModalCompra
+                    modalOpen={modalOpen}
+                    setModalOpen={setModalOpen}
+                    data={data}
+                  />
                 </div>
               </div>
             ))
@@ -173,8 +190,13 @@ const FavoriteProducts = () => {
                     </Link>
                   </div>
                   <div className={styles.comprarFav}>
-                    <button>Comprar ya</button>
+                    <button onClick={() => handleClick(data)}>Comprar ya</button>
                   </div>
+                  <ModalCompra
+                    modalOpen={modalOpen}
+                    setModalOpen={setModalOpen}
+                    data={data}
+                  />
                 </div>
               </div>
             ))

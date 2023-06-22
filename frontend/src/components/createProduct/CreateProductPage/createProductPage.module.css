@@ -228,7 +228,7 @@
   padding-top: 0.8rem;
   font-size: 1rem;
   font-family: "Roboto", sans-serif;
-  color: var(--grey-to-white);
+  color: var(--grey-dark-to-white-to-white);
   background-color: var(--white-to-bg-medium);
 }
 .subtitles {
@@ -311,7 +311,7 @@
 
 .formButton:hover {
   background-color: var(--yellow-main);
-  color: var(--blue-dark-to-bd-medium);
+  color: var(--white-to-bg-medium);
 }
 
 /* errors - form vehicle */

@@ -180,7 +180,7 @@ const HousePage = ({ id }) => {
           </div>
 
           <h2>{data && data.title}</h2>
-          {data.space || data.rent || data.land ? (
+          {data?.space || data?.rent || data?.land ? (
             <div className={styles.detailType}>
               {data.space && <p className={styles.detail}>{data.space}</p>}
               {data.rent && <p className={styles.detail}>{data.rent}</p>}

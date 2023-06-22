@@ -76,7 +76,7 @@ const ModalCompra = ({ modalOpen, setModalOpen, data }) => {
                 <div className={styles.formUser}>
                   <div className={styles.errors}>
                     <label className={styles.labels}>
-                      Direcion de envio
+                      Dirección de envío
                       <input
                         className={styles.inputProfile}
                         type="text"
@@ -99,7 +99,7 @@ const ModalCompra = ({ modalOpen, setModalOpen, data }) => {
                 </div>
                 <div className={styles.formUser}>
                   <label className={styles.labels}>
-                    Numero tarjeta
+                    Número tarjeta
                     <input
                       className={styles.inputProfile}
                       type="text"
@@ -152,7 +152,7 @@ const ModalCompra = ({ modalOpen, setModalOpen, data }) => {
                   <p>{data.price} € </p>
                 </div>
                 <div className={styles.price}>
-                  <p>Precio envio</p>
+                  <p>Precio envío</p>
                   <p>2.49 €</p>
                 </div>
                 <p className={styles.total}>{total} €</p>

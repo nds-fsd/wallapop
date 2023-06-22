@@ -23,7 +23,7 @@ const Profile = () => {
         <div className={styles.linksProfile}>
           <Link to={PROFILE_INFO}>Perfil</Link>
           <Link to={PROFILE_ACCOUNT}>Cuenta</Link>
-          <Link to={PROFILE_VALUES}>Valoraciones</Link>
+          {/* <Link to={PROFILE_VALUES}>Valoraciones</Link> */}
         </div>
         <div className={styles.logoutButton}>
             <button onClick={handleLogout}>Cerrar sesión</button>

@@ -23,6 +23,7 @@ const SalesCompleted = () => {
           <Spinner size="M" />
         </div>
       )}
+
       <div className={styles.gridList}>
         <button onClick={toggleView}>
           <span className="icon-table2"></span>
@@ -34,7 +35,7 @@ const SalesCompleted = () => {
       <div>
         {gridOpen ? (
           <div className={styles.gridContainer} data-test="productos">
-            {prods &&
+            {prods && prods.length > 0 ? (
               prods.map((prod) => (
                 <div className={styles.card} data-test="producto">
                   {prods && (
@@ -67,7 +68,10 @@ const SalesCompleted = () => {
 
                   <p className={styles.paragraph}>{prod.description}</p>
                 </div>
-              ))}
+              ))
+            ) : (
+              <div>Aún no has realizado ninguna venta</div>
+            )}
           </div>
         ) : (
           <div className={styles.listContainer}>

@@ -9,7 +9,7 @@ const Sales = () => {
       <div className={styles.linkPageContainer}>
         {
           /* <Link to="ongoing"> En Curso </Link>*/
-          <Link to="completed"> Completadas </Link>
+          // <Link to="completed"> Completadas </Link>
         }
       </div>
       <Outlet />

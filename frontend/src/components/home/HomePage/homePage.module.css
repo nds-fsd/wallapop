@@ -2,7 +2,7 @@
   display: grid;
   gap: 8rem;
   grid-template-columns: 1fr 1fr;
-  margin: 0 8rem 4rem 8rem;
+  margin: 9rem 8rem 4rem 8rem;
 }
 
 .columnLeft {
@@ -89,6 +89,7 @@
 .storeButtons {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 2rem;
   margin-left: 5rem;
 }
@@ -124,7 +125,7 @@
   width: 23rem;
   position: relative;
   top: -43rem;
-  left: 20rem
+  left: 55%;
 }
 
 .stars {
