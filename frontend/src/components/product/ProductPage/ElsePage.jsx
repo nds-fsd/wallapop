@@ -91,7 +91,6 @@ const ElsePage = ({ id }) => {
       owner_id: data.user._id,
       buyer_id: userData.id,
     };
-
     try {
       const chatroom = await postChatRoom(body);
       navigate(`/user/messages/chatroom/${chatroom._id}`);

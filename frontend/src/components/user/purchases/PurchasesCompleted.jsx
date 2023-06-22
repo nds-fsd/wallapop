@@ -35,7 +35,7 @@ const PurchasesCompleted = () => {
       <div>
         {gridOpen ? (
           <div className={styles.gridContainer} data-test="productos">
-            {transactions &&
+            {transactions && transactions.length > 0 ? (
               transactions.map((transaction) => (
                 <div className={styles.card} data-test="producto">
                   {transaction.product.map((prod) => (
@@ -58,7 +58,10 @@ const PurchasesCompleted = () => {
                     </div>
                   ))}
                 </div>
-              ))}
+              ))
+            ) : (
+              <div>Aún no has realizado ninguna compra</div>
+            )}
           </div>
         ) : (
           <div className={styles.listContainer}>

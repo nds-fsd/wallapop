@@ -12,6 +12,7 @@
   gap: 3rem;
   background-color: var(--white-to-bg-medium);
   color: var(--blue-dark-to-yellow-main);
+  margin-top: 8.2rem;
 }
 
 .sideBar :hover {

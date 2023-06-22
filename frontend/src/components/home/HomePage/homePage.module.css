@@ -2,7 +2,7 @@
   display: grid;
   gap: 4rem;
   grid-template-columns: 1fr 1fr;
-  margin: 0 8rem 4rem 8rem;
+  margin: 9rem 8rem 4rem 8rem;
 }
 
 .columnLeft {

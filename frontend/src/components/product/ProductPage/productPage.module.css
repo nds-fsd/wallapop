@@ -302,6 +302,7 @@
   top: 39%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: var(--blue-medium);
   color: white;
   border-radius: 1em;
   padding: 1.5em;

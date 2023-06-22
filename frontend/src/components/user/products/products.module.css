@@ -113,7 +113,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 2.2rem;
-  margin: 16rem 3rem 3rem 3rem;
+  margin: 5rem 3rem 3rem 3rem;
 }
 
 .card {
@@ -228,7 +228,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
-  margin: 16em 10em;
+  margin: 5em 10em;
 }
 .list {
   height: 7rem;
