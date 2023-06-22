@@ -9,6 +9,7 @@ const DEFAULT_VALUES = {
   "--grey-to-bg-medium": "#eaeeee",
   "--grey-to-white": "#eaeeee",
   "--grey-to-black": "#eaeeee",
+  "--grey-dark-to-white": "#eaeeee",
 
   /* ------------ BLACK ------------*/
   "--black-to-white": "black",
@@ -70,6 +71,7 @@ const DEFAULT_DARK_VALUES = {
   "--grey-to-bg-medium": " #303031",
   "--grey-to-white": "white",
   "--grey-to-black": "black",
+  "--grey-dark-to-white": "white",
 
   /* ------------ BLACK ------------*/
   "--black-to-white:": "#fff",
