@@ -21,7 +21,7 @@
   height: 2.5rem;
   border-radius: 2.5rem;
   font-size: 0.75rem;
-  border: solid 0.15rem rgba(226, 34, 34, 0.692);
+  border: 2px solid var(--red);
   color: var(--red);
   font-weight: 600;
   background-color: var(--grey-to-bg-medium);
@@ -29,7 +29,7 @@
 }
 
 .modalClose:hover {
-  background-color: rgba(226, 34, 34, 0.692);
+  background-color: var(--red);
   border-radius: 2.5rem;
   color: var(--background-dark);
 }

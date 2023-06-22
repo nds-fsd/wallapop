@@ -5,7 +5,6 @@ const jwtMiddleware = (req, res, next) => {
   // Recogemos el header "Authorization". Sabemos que viene en formato "Bearer XXXXX...",
   // así que nos quedamos solo con el token y obviamos "Bearer "
   const authHeader = req.headers["authorization"];
-
   if (!authHeader)
     return res.status(401).json({ error: "Unauthorized MISSING HEADER" });
   const token = authHeader.split(" ")[1];
@@ -17,9 +16,11 @@ const jwtMiddleware = (req, res, next) => {
 
   try {
     // Si la función verify() funciona, devolverá el payload del token
+
     tokenPayload = jwt.verify(token, jwtSecret);
   } catch (error) {
     // Si falla, será porque el token es inválido, por lo que devolvemo error 401
+
     return res.status(401).json({ error: "Unauthorized" });
   }
 
@@ -28,8 +29,8 @@ const jwtMiddleware = (req, res, next) => {
   next();
 };
 
-const jwtVerifier = (token,callback) => {
-	jwt.verify(token, jwtSecret, callback);
-}
+const jwtVerifier = (token, callback) => {
+  jwt.verify(token, jwtSecret, callback);
+};
 
-module.exports = {jwtMiddleware, jwtVerifier};
+module.exports = { jwtMiddleware, jwtVerifier };

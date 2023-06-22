@@ -20,12 +20,13 @@ const socket = io("http://localhost:3001", {
 const ChatRoom = () => {
   const messagesContainerRef = useRef(null);
   const params = useParams();
+
   const { chatRoomID } = params;
   const { data } = useQuery(["message", chatRoomID], getMessageByChatRoom);
   const { id } = getUserData();
 
   const [messages, setMessages] = useState([]);
-  
+
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
@@ -58,7 +59,7 @@ const ChatRoom = () => {
 
   const scrollToBottom = () => {
     if (messagesContainerRef.current) {
-      messagesContainerRef.current.scrollIntoView({ block: 'end' });
+      messagesContainerRef.current.scrollIntoView({ block: "end" });
     }
   };
 
@@ -66,15 +67,17 @@ const ChatRoom = () => {
     <div>
       <div className={styles.chatroomContainer}>
         <ChatHeader chatRoomID={chatRoomID} />
-        <div className={styles.messageContainer} >
+        <div className={styles.messageContainer}>
           {messages?.map((message, i) => {
             return (
               <div
                 className={`${
-                  message.user_id === id ? styles.myMessage : styles.otherMessage
+                  message.user_id === id
+                    ? styles.myMessage
+                    : styles.otherMessage
                 }`}
                 key={i}
-                >
+              >
                 {message.body}
               </div>
             );

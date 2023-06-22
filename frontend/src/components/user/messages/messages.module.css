@@ -14,7 +14,7 @@
   flex-direction: column;
   height: 70vh;
   overflow-y: scroll;
-  background-color: white;
+  background-color: var(--white-to-bg-medium);
   border-radius: 1.5rem;
   padding: 1.5rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);

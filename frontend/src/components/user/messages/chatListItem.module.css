@@ -22,11 +22,12 @@
   gap: 1rem;
   cursor: pointer;
   text-decoration: none;
-  background-color: var(--grey);
+  background-color: var(--gray-to-bg-dark);
   border-bottom: 1px solid var(--blue-dark);
   border-radius: 1rem;
+  border: 0.15em solid var(--blue-dark-to-yellow-main);
+  color: var(--blue-dark-to-yellow-light);
 }
-
 
 .noImage {
   width: 3rem;
@@ -41,7 +42,6 @@
   text-align: center;
   border: none;
 }
-
 
 .noImage span {
   font-size: 1.2rem;

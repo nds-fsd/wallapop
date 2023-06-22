@@ -3,7 +3,7 @@ import { getUserData } from "./localStorage.utils";
 
 export const getMessageByChatRoom = ({ queryKey }) => {
   const token = JSON.parse(localStorage.getItem("user-session"));
-
+  console.log("TOKEN", token);
   return api
     .get(`/message/${queryKey[1]}`, {
       headers: {
@@ -18,21 +18,20 @@ export const getMessageByChatRoom = ({ queryKey }) => {
 };
 
 export const postMessage = (data) => {
-    const { id } = getUserData();
-    const token = JSON.parse(localStorage.getItem("user-session"));
+  const { id } = getUserData();
+  const token = JSON.parse(localStorage.getItem("user-session"));
 
-    return api
-      .post(`/message`, data,{
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => console.log('mensaje post', res.data))
-      .catch((error) => {
-        console.log(error)
-        return {
-          error:
-            "Sorry, we couldn't post your message.",
-        };
-      });
-  };
+  return api
+    .post(`/message`, data, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => console.log("mensaje post", res.data))
+    .catch((error) => {
+      console.log(error);
+      return {
+        error: "Sorry, we couldn't post your message.",
+      };
+    });
+};

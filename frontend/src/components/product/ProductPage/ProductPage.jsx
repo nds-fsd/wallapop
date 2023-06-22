@@ -48,6 +48,7 @@ const ProductPage = () => {
 
     try {
       const chatroom = await postChatRoom(body);
+      console.log("chatrooom", chatroom);
       navigate(`/user/chatroom/${chatroom._id}`);
     } catch (error) {
       console.log(error);
