@@ -11,7 +11,7 @@ const AllCategories = () => {
     queryFn: getAllProducts,
   });
   const [showAll, setShowAll] = useState(false);
-  const visibleProductsCount = showAll ? prods.length : 20;
+  const visibleProductsCount = showAll ? prods.length : 18;
   const visibleProducts = prods?.slice(0, visibleProductsCount);
   const toggleShowAll = () => {
     setShowAll(!showAll);

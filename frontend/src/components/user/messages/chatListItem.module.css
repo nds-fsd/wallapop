@@ -17,6 +17,7 @@
 
 .itemContainer {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
   gap: 1rem;
@@ -25,6 +26,22 @@
   background-color: var(--grey);
   border-bottom: 1px solid var(--blue-dark);
   border-radius: 1rem;
+}
+
+.chatData {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  width: 15rem;
+}
+
+.newMessage {
+  background-color: rgb(234, 6, 6);
+  width: 1rem;
+  height: 1rem;
+  color: rgb(234, 6, 6);
+  border-radius: 100%
 }
 
 
