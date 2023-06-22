@@ -5,9 +5,9 @@ export const getProductByChatRoom = (data) => {
   const params = data.queryKey[1];
 
   return api
-    .get(`/chat-room/product/${params.chatRoomID}`, {
+    .get(`/chat-room/product/${params}`, {
       headers: {
-        authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     })
     .then((res) => res.data)
@@ -29,11 +29,11 @@ export const getAllChats = (data) => {
 
 export const postChatRoom = (data) => {
   const token = JSON.parse(localStorage.getItem("user-session"));
-
+  console.log("data en el api", data)
   return api
     .post(`/chat-room`, data, {
       headers: {
-        authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     })
     .then((res) => res.data)
