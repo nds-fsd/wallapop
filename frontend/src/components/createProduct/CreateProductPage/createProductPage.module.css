@@ -228,7 +228,7 @@
   padding-top: 0.8rem;
   font-size: 1rem;
   font-family: "Roboto", sans-serif;
-  color: var(--grey-dark-to-white-to-white);
+  color: var(--grey-dark-to-white);
   background-color: var(--white-to-bg-medium);
 }
 .subtitles {

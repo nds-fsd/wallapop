@@ -7,6 +7,7 @@ import Images from "../Image/Images";
 import ImagesList from "../Image/ImagesList";
 import ModalCompra from "../../product/modalCompra/modalCompra";
 
+
 const FavoriteProducts = () => {
   const { data } = useQuery("fav-prods", getFavs);
   const favs = data && data[0].products;
@@ -125,6 +126,11 @@ const FavoriteProducts = () => {
                       Comprar ya
                     </button>
                   </div>
+                  {/* <ModalContainerCompra
+                    modalOpen={modalOpen}
+                    setModalOpen={setModalOpen}
+                    data={data}
+                  /> */}
                   <ModalCompra
                     modalOpen={modalOpen}
                     setModalOpen={setModalOpen}
