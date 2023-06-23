@@ -223,7 +223,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
-  margin: 3em 10em;
+  padding-top: 2rem;
 }
 
 .listContainerFavs {
@@ -231,16 +231,17 @@
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
-  margin: 5em 10em;
+  padding-top: 2rem;
 }
 .list {
   height: 7rem;
   background-color: var(--white-to-bg-medium);
   display: flex;
   gap: 2.5em;
-  width: 75rem;
   border-radius: 1.5rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  max-width: max-content;
+  padding-right: 1rem;
 }
 
 .list:hover {
@@ -253,7 +254,7 @@
 }
 
 .detailsContainer {
-  width: 50em;
+  width: 45em;
 }
 .imgList {
   position: relative;
