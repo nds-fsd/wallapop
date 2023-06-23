@@ -22,7 +22,7 @@
 .gridList span {
   font-size: 1.2rem;
   color: var(--black-to-yellow-light);
-  color: white
+  color: white;
 }
 .gridList button:hover {
   background-color: var(--blue-light);
@@ -176,7 +176,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   color: var(--blue-dark-to-yellow-light);
-
 }
 
 .keywords {
@@ -193,6 +192,10 @@
   border: none;
   background-color: transparent;
 }
+/* button.logo {
+  border: none;
+  background-color: transparent;
+} */
 .icons {
   display: flex;
   gap: 3rem;
@@ -272,7 +275,6 @@
 .iconsList button {
   background-color: transparent;
   border: none;
-  
 }
 
 .iconsList span {

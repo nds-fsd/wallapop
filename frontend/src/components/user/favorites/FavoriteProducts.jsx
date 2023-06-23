@@ -10,6 +10,7 @@ import ModalCompra from "../../product/modalCompra/modalCompra";
 
 const FavoriteProducts = () => {
   const { data } = useQuery("fav-prods", getFavs);
+
   const favs = data && data[0].products;
   const [deletionAlert, setDeletionAlert] = useState(false);
   const [deleteProduct, setDeleteProduct] = useState(null);
@@ -21,9 +22,11 @@ const FavoriteProducts = () => {
 
   const openModal = () => {
     setModalOpen(!modalOpen);
+    console.log("abiertoooooooooooooooooo.");
   };
 
   const handleClick = (data) => {
+    console.log("DATAAAAAAAA.", data);
     openModal();
   };
 
@@ -68,77 +71,78 @@ const FavoriteProducts = () => {
       {gridOpen ? (
         <div className={styles.gridContainerFavs}>
           {data && favs.length > 0 ? (
-            favs.map((fav) => (
-              <div key={fav._id} className={styles.card}>
-                {deletionAlert && deleteProduct === fav._id && (
-                  <div className={styles.alert}>
-                    Estás a punto de eliminar este producto de tus favoritos.
-                    ¿Deseas continuar?
-                    <div className={styles.alertButtons}>
+            favs.map(
+              (fav) =>
+                !prod.sold && (
+                  <div key={fav._id} className={styles.card}>
+                    {deletionAlert && deleteProduct === fav._id && (
+                      <div className={styles.alert}>
+                        Estás a punto de eliminar este producto de tus
+                        favoritos. ¿Deseas continuar?
+                        <div className={styles.alertButtons}>
+                          <button
+                            onClick={() => handleConfirmDeletion(fav._id)}
+                            className={styles.accept}
+                          >
+                            Aceptar
+                          </button>
+                          <button
+                            onClick={handleCancel}
+                            className={styles.accept}
+                          >
+                            Cancelar
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                    {data && <Images images={fav.images} />}
+                    <div className={styles.titleContainer}>
+                      <h4 className={styles.title}>{fav.title}</h4>
+                      <h4>
+                        {fav.price?.toLocaleString("es-ES", {
+                          useGrouping: true,
+                        })}
+                        €
+                      </h4>
+                    </div>
+                    <div className={styles.details}>
+                      <h5>{fav.category}</h5>
+                      <p>{fav.status}</p>
+                    </div>
+                    {Array.isArray(fav.keywords) && fav.keywords.length > 0 && (
+                      <div className={styles.keywords}>
+                        {fav.keywords.map((keyword, index) => (
+                          <p key={index}>{`#${keyword}`}</p>
+                        ))}
+                      </div>
+                    )}
+                    <p className={styles.paragraph}>{fav.description}</p>
+                    <div className={styles.icons}>
                       <button
-                        onClick={() => handleConfirmDeletion(fav._id)}
-                        className={styles.accept}
+                        onClick={() => handleDeletionFav(fav._id)}
+                        className={styles.heart}
                       >
-                        Aceptar
+                        <span className="icon-heart-broken"></span>
                       </button>
-                      <button onClick={handleCancel} className={styles.accept}>
-                        Cancelar
-                      </button>
+                      <Link to={`/category/product/${fav._id}`} target="_blank">
+                        <button>
+                          <span className="icon-eye1"></span>
+                        </button>
+                      </Link>
+                      <div className={styles.comprar}>
+                        <button onClick={() => handleClick(data)}>
+                          Comprar ya
+                        </button>
+                      </div>
+                      <ModalCompra
+                        modalOpen={modalOpen}
+                        setModalOpen={setModalOpen}
+                        data={data}
+                      />
                     </div>
                   </div>
-                )}
-                {data && <Images images={fav.images} />}
-                <div className={styles.titleContainer}>
-                  <h4 className={styles.title}>{fav.title}</h4>
-                  <h4>
-                    {fav.price?.toLocaleString("es-ES", {
-                      useGrouping: true,
-                    })}
-                    €
-                  </h4>
-                </div>
-                <div className={styles.details}>
-                  <h5>{fav.category}</h5>
-                  <p>{fav.status}</p>
-                </div>
-                {Array.isArray(fav.keywords) && fav.keywords.length > 0 && (
-                  <div className={styles.keywords}>
-                    {fav.keywords.map((keyword, index) => (
-                      <p key={index}>{`#${keyword}`}</p>
-                    ))}
-                  </div>
-                )}
-                <p className={styles.paragraph}>{fav.description}</p>
-                <div className={styles.icons}>
-                  <button
-                    onClick={() => handleDeletionFav(fav._id)}
-                    className={styles.heart}
-                  >
-                    <span className="icon-heart-broken"></span>
-                  </button>
-                  <Link to={`/category/product/${fav._id}`} target="_blank">
-                    <button>
-                      <span className="icon-eye1"></span>
-                    </button>
-                  </Link>
-                  <div className={styles.comprar}>
-                    <button onClick={() => handleClick(data)}>
-                      Comprar ya
-                    </button>
-                  </div>
-                  {/* <ModalContainerCompra
-                    modalOpen={modalOpen}
-                    setModalOpen={setModalOpen}
-                    data={data}
-                  /> */}
-                  <ModalCompra
-                    modalOpen={modalOpen}
-                    setModalOpen={setModalOpen}
-                    data={data}
-                  />
-                </div>
-              </div>
-            ))
+                )
+            )
           ) : (
             <div>Aún no tienes productos favoritos</div>
           )}
@@ -146,66 +150,77 @@ const FavoriteProducts = () => {
       ) : (
         <div className={styles.listContainerFavs}>
           {data && favs.length > 0 ? (
-            favs.map((fav) => (
-              <div key={fav._id} className={styles.list}>
-                {deletionAlert && deleteProduct === fav._id && (
-                  <div className={styles.alert}>
-                    Estás a punto de eliminar este producto de tus favoritos.
-                    ¿Deseas continuar?
-                    <div className={styles.alertButtons}>
-                      <button
-                        onClick={() => handleConfirmDeletion(fav._id)}
-                        className={styles.accept}
-                      >
-                        Aceptar
-                      </button>
-                      <button onClick={handleCancel} className={styles.accept}>
-                        Cancelar
-                      </button>
+            favs.map(
+              (fav) =>
+                !prod.sold && (
+                  <div key={fav._id} className={styles.list}>
+                    {deletionAlert && deleteProduct === fav._id && (
+                      <div className={styles.alert}>
+                        Estás a punto de eliminar este producto de tus
+                        favoritos. ¿Deseas continuar?
+                        <div className={styles.alertButtons}>
+                          <button
+                            onClick={() => handleConfirmDeletion(fav._id)}
+                            className={styles.accept}
+                          >
+                            Aceptar
+                          </button>
+                          <button
+                            onClick={handleCancel}
+                            className={styles.accept}
+                          >
+                            Cancelar
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                    <div className={styles.imgList}>
+                      {data && <ImagesList images={fav.images} />}
+                    </div>
+                    <div className={styles.detailsContainer}>
+                      <div className={styles.titleContainer}>
+                        <h4 className={styles.titleList}>{fav.title}</h4>
+                        <h4>
+                          {fav.price?.toLocaleString("es-ES", {
+                            useGrouping: true,
+                          })}
+                          €
+                        </h4>
+                      </div>
+                      <p className={styles.paragraph}>{fav.description}</p>
+                    </div>
+
+                    <div className={styles.unfav}>
+                      <div className={styles.iconsList}>
+                        <button
+                          onClick={() => handleDeletionFav(fav._id)}
+                          className={styles.heart}
+                        >
+                          <span className="icon-heart-broken"></span>
+                        </button>
+                        <Link
+                          to={`/category/product/${fav._id}`}
+                          target="_blank"
+                        >
+                          <button>
+                            <span className="icon-eye1"></span>
+                          </button>
+                        </Link>
+                      </div>
+                      <div className={styles.comprarFav}>
+                        <button onClick={() => handleClick(data)}>
+                          Comprar ya
+                        </button>
+                      </div>
+                      <ModalCompra
+                        modalOpen={modalOpen}
+                        setModalOpen={setModalOpen}
+                        data={data}
+                      />
                     </div>
                   </div>
-                )}
-                <div className={styles.imgList}>
-                  {data && <ImagesList images={fav.images} />}
-                </div>
-                <div className={styles.detailsContainer}>
-                  <div className={styles.titleContainer}>
-                    <h4 className={styles.titleList}>{fav.title}</h4>
-                    <h4>
-                      {fav.price?.toLocaleString("es-ES", {
-                        useGrouping: true,
-                      })}
-                      €
-                    </h4>
-                  </div>
-                  <p className={styles.paragraph}>{fav.description}</p>
-                </div>
-
-                <div className={styles.unfav}>
-                  <div className={styles.iconsList}>
-                    <button
-                      onClick={() => handleDeletionFav(fav._id)}
-                      className={styles.heart}
-                    >
-                      <span className="icon-heart-broken"></span>
-                    </button>
-                    <Link to={`/category/product/${fav._id}`} target="_blank">
-                      <button>
-                        <span className="icon-eye1"></span>
-                      </button>
-                    </Link>
-                  </div>
-                  <div className={styles.comprarFav}>
-                    <button onClick={() => handleClick(data)}>Comprar ya</button>
-                  </div>
-                  <ModalCompra
-                    modalOpen={modalOpen}
-                    setModalOpen={setModalOpen}
-                    data={data}
-                  />
-                </div>
-              </div>
-            ))
+                )
+            )
           ) : (
             <div>Aún no tienes productos favoritos</div>
           )}

@@ -82,7 +82,7 @@ const ChatRoom = () => {
               </div>
             );
           })}
-          <div ref={messagesContainerRef} />
+          <div  ref={messagesContainerRef}/>
         </div>
 
         <FormChat />

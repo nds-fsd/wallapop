@@ -108,6 +108,7 @@
   width: max-content;
   border-radius: 2rem;
   font-weight: bold;
+  color: var(--blue-dark-to-bg-medium);
 }
 
 .dotContainer {

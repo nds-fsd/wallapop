@@ -76,7 +76,10 @@
   width: 16rem;
   line-height: 1.2em;
 }
-
+.price {
+  font-size: 2.3rem;
+  padding-top: 2.5rem;
+}
 .details {
   display: flex;
   align-items: center;

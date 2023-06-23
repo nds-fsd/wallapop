@@ -15,12 +15,10 @@
 .card {
   width: 12rem;
   height: 17rem;
-  background-color: white;
   padding: 1em 1em 1em 1em;
-  background-color: white;
   border-radius: 1.5rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-  color: var(--blue-dark);
+  background-color: var(--white-to-bg-medium);
 }
 
 .card > img {
@@ -33,6 +31,7 @@
 .title {
   text-align: justify;
   margin-top: 0.1em;
+  color: var(--blue-dark-to-yellow-main);
 }
 
 .description {
@@ -42,6 +41,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--blue-dark-to-yellow-light);
 }
 
 .cardContainer button {
@@ -66,4 +66,3 @@
 .cardContainer button:hover:not(.disabled) span {
   color: var(--blue-light);
 }
-

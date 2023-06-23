@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import styles from "./products.module.css";
 import Spinner from "../../Spinner/Spinner";
 import Images from "../Image/Images";
+import ImagesList from "../Image/ImagesList";
 
 const PurchasesCompleted = () => {
   const { data: transactions, isLoading } = useQuery({
@@ -67,29 +68,38 @@ const PurchasesCompleted = () => {
           <div className={styles.listContainer}>
             {transactions &&
               transactions.map((transaction) => (
-                <div className={styles.card} data-test="producto">
+                <div
+                  className={styles.list}
+                  key={transaction._id}
+                  data-test="producto"
+                >
                   {/* Hacemos map de los datos del producto para mostrar la imagen */}
                   {transaction.product.map((prod) => (
-                    <Images images={prod.images} status={prod.images} />
+                    // <Images images={prod.images} status={prod.images} />
+                    <div className={styles.imgList}>
+                      {prod && <ImagesList images={prod.images} />}
+                    </div>
                   ))}
                   {/* Hacemos map de los datos del producto */}
-                  {transaction.product.map((prod) => (
-                    <div className={styles.titleContainer}>
-                      <h4 className={styles.title}>{prod.title}</h4>
-                      <h4>
-                        {prod.price.toLocaleString("es-ES", {
-                          useGrouping: true,
-                        })}
-                        €
-                      </h4>
-                    </div>
-                  ))}
-                  {/* Hacemos map de los datos del vendedor */}
-                  {transaction.vendor.map((ven) => (
-                    <div className={styles.details}>
-                      <p key={ven._id}> Vendedor: {ven.name}</p>
-                    </div>
-                  ))}
+                  <div className={styles.detailsContainer}>
+                    {transaction.product.map((prod) => (
+                      <div className={styles.titleContainer}>
+                        <h4 className={styles.titleList}>{prod.title}</h4>
+                        <h4 className={styles.price}>
+                          {prod.price.toLocaleString("es-ES", {
+                            useGrouping: true,
+                          })}
+                          €
+                        </h4>
+                      </div>
+                    ))}
+                    {/* Hacemos map de los datos del vendedor */}
+                    {transaction.vendor.map((ven) => (
+                      <div className={styles.details}>
+                        <p key={ven._id}> Vendedor: {ven.name}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
           </div>
