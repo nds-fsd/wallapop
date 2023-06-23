@@ -8,7 +8,6 @@
   padding: 1rem 2.5rem 1rem 2.5rem;
   border-radius: 1rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-
 }
 
 .selector {
@@ -78,19 +77,19 @@
 }
 
 .selection1:focus {
-  color: white;
-  background-color: var(--blue-medium);
-  border-color: var(--blue-medium);
+  background-color: var(--blue-dark-to-yellow-main);
+  border-color: var(--blue-dark-to-yellow-main);
+  color: var(--white-to-bg-medium);
 }
 .selection:focus {
-  color: white;
-  background-color: var(--blue-medium);
-  border-color: var(--blue-medium);
+  background-color: var(--blue-dark-to-yellow-main);
+  border-color: var(--blue-dark-to-yellow-main);
+  color: var(--white-to-bg-medium);
 }
 .selection2:focus {
-  color: white;
-  background-color: var(--blue-medium);
-  border-color: var(--blue-medium);
+  background-color: var(--blue-dark-to-yellow-main);
+  border-color: var(--blue-dark-to-yellow-main);
+  color: var(--white-to-bg-medium);
 }
 
 .vertical {

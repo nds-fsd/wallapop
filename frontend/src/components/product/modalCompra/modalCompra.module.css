@@ -21,7 +21,7 @@
   height: 2.5rem;
   border-radius: 2.5rem;
   font-size: 0.75rem;
-  border: 2px solid var(--red);
+  border: 2px solid var(--red) !important;
   color: var(--red);
   font-weight: 600;
   background-color: var(--grey-to-bg-medium);
@@ -75,8 +75,8 @@
 }
 
 .comprar {
-  background-color: var(--yellow-main);
-  color: var(--grey-to-bg-medium);
+  background-color: var(--yellow-main) !important;
+  color: var(--grey-to-bg-medium) !important;
   width: 12rem;
   height: 2.5rem;
   border-radius: 2.5rem;
@@ -88,8 +88,8 @@
 }
 
 .comprar:hover {
-  background-color: var(--blue-light);
-  color: var(--grey-to-bg-medium);
+  background-color: var(--blue-light) !important;
+  color: var(--grey-to-bg-medium) !important;
   cursor: pointer;
 }
 
