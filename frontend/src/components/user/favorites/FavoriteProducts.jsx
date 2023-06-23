@@ -7,6 +7,7 @@ import Images from "../Image/Images";
 import ImagesList from "../Image/ImagesList";
 import ModalCompra from "../../product/modalCompra/modalCompra";
 
+
 const FavoriteProducts = () => {
   const { data } = useQuery("fav-prods", getFavs);
 

@@ -112,7 +112,6 @@
 
 .view:hover {
   background-color: var(--yellow-main-to-blue-light);
-
   color: var(--white-to-black);
 }
 

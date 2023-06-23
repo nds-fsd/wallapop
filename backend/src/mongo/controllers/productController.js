@@ -10,6 +10,29 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+const getTwelveProducts = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = 12;
+
+    const count = await productModel.countDocuments();
+    const totalPages = Math.ceil(count / limit);
+
+    const skip = (page - 1) * limit;
+
+    const allProducts = await productModel
+      .find()
+      .populate("categories")
+      .skip(skip)
+      .limit(limit)
+      .exec();
+
+    res.status(200).json({ products: allProducts, totalPages });
+  } catch (error) {
+    res.status(500).json({ message: "Can't find products" });
+  }
+};
+
 const getProductById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -179,6 +202,7 @@ const deleteProductById = async (req, res) => {
 
 module.exports = {
   getAllProducts,
+  getTwelveProducts,
   getProductById,
   getProductByUser,
   getProductByCategory,

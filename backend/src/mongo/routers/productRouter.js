@@ -10,11 +10,13 @@ const {
   getProductByUserFavs,
   getProductByName,
   getProductByUserSold,
+  getTwelveProducts,
 } = require("../controllers/productController");
 
 const productRouter = express.Router();
 
 productRouter.get("/", getAllProducts);
+productRouter.get("/", getTwelveProducts)
 productRouter.get("/:id", getProductById);
 productRouter.get("/getbyuser/:user", getProductByUser);
 productRouter.get("/getbyuser/:user", getProductByUserFavs);

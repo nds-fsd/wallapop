@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import styles from "./productPage.module.css";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
@@ -16,6 +16,7 @@ const ElsePage = ({ id }) => {
 
   const { data, isLoading } = useQuery(["product", id], getProductById);
   const { data: favs } = useQuery(["favs"], getFavs);
+  const queryClient = useQueryClient()
   const category = data?.categories;
   const title = data?.categories[0].title;
   const navigate = useNavigate();
@@ -83,7 +84,6 @@ const ElsePage = ({ id }) => {
       console.log("Error toggling favorite:", error);
     }
   };
-
 
   const handleCreateChatRoom = async () => {
     const body = {

@@ -12,6 +12,15 @@ export const getAllProducts = () => {
     });
 };
 
+export const getTwelveProducts = () => {
+  return api
+    .get("/products/?limit=12")
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 export const getProductsByCategory = (category) => {
   return api
     .get("/products/")

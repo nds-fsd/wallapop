@@ -28,3 +28,23 @@
   color: var(--blue-dark-to-yellow-light);
 }
 
+.view {
+  width: 12rem;
+  height: 3rem;
+  margin-bottom: 2rem;
+  margin-left: 15vw;
+  font-size: 1.2rem;
+  padding: 0 1rem;
+  border-radius: 2.5rem;
+  border: 0.15em solid var(--yellow-main-to-blue-light);
+  background-color: var(--white-to-bg-medium);
+  color: var(--yellow-main-to-blue-light);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.view:hover {
+  background-color: var(--yellow-main-to-blue-light);
+  color: var(--white-to-black);
+}
+

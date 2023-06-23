@@ -1,7 +1,7 @@
 import styles from "./listProducts.module.css";
 import { useQuery } from "react-query";
 import Product from "../product/Product";
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductByCategory } from "../../../utils/apiProducts";
 import Spinner from "../../Spinner/Spinner";
@@ -20,7 +20,17 @@ const ListProducts = () => {
     ? products
     : products && products.filter((prod) => prod.category === params.category);
 
+  const [visibleProductsCount, setVisibleProductsCount] = useState(5);
+  const loadMoreProducts = () => {
+    setVisibleProductsCount((prevCount) => prevCount + 5);
+  };
 
+  const showLessProducts = () => {
+    setVisibleProductsCount((prevCount) => prevCount - 5);
+  };
+
+
+  console.log("los prods", filteredProducts)
   return (
     <div>
       <h1 className={styles.title}>{params.category}</h1>
@@ -42,22 +52,35 @@ const ListProducts = () => {
         <div className={styles.carusel}>
           {!isLoading &&
             // hago bucle para mostrar todos los productos que me ha llegado de la BD
-            filteredProducts.map((prod, index) => {
-              if (!prod.sold) {
-              const isLastCard = index === filteredProducts.length - 1;
-              return (
-                // Llamo al componente PRoduct y le paso la info de cada producto
-                <div
-                  data-test="product"
-                  className={`${styles.menu} ${
-                    isLastCard ? styles.lastCard : ""
-                  }`}
-                  key={prod._id}
-                >
-                  <Product data-test="product" key={prod._id} prod={prod} />
-                </div>
-              );
-}})}
+            filteredProducts
+              .slice(0, visibleProductsCount)
+              .map((prod, index) => {
+                if (!prod.sold) {
+                  const isLastCard = index === filteredProducts.length - 1;
+                  return (
+                    // Llamo al componente PRoduct y le paso la info de cada producto
+                    <div
+                      data-test="product"
+                      className={`${styles.menu} ${
+                        isLastCard ? styles.lastCard : ""
+                      }`}
+                      key={prod._id}
+                    >
+                      <Product data-test="product" key={prod._id} prod={prod} />
+                    </div>
+                  );
+                }
+              })}
+          {filteredProducts && filteredProducts.length > visibleProductsCount && (
+            <button onClick={loadMoreProducts} className={styles.view}>
+              Mostrar más
+            </button>
+          )}
+          {visibleProductsCount > 5 && (
+            <button onClick={showLessProducts} className={styles.view}>
+              Mostrar menos
+            </button>
+          )}
         </div>
       )}
     </div>

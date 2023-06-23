@@ -22,9 +22,17 @@ const ListCategory = () => {
       currentIndex === 0 ? categories.length - 1 : currentIndex - 1
     );
   };
+  // const displayedCategories =
+  //   categories &&
+  //   categories.slice(currentIndex, currentIndex + productsPerPage);
+
   const displayedCategories =
     categories &&
-    categories.slice(currentIndex, currentIndex + productsPerPage);
+    categories
+    .concat(categories.slice(0, productsPerPage))
+    .slice(currentIndex, currentIndex + productsPerPage);
+
+
   return (
     <div className={styles.container}>
       {/* si no ha cargado las categorias muestra esto */}

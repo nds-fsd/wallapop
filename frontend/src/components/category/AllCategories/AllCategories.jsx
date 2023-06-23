@@ -1,21 +1,30 @@
 import React, { useState, useContext } from "react";
 import styles from "./allCategories.module.css";
 import { useQuery } from "react-query";
-import { getAllProducts } from "../../../utils/apiProducts";
+import { getTwelveProducts } from "../../../utils/apiProducts";
 import { Link } from "react-router-dom";
 import ImagesHome from "../../user/Image/ImagesHome";
 
 const AllCategories = () => {
   const { data: prods } = useQuery({
     queryKey: ["products"],
-    queryFn: getAllProducts,
+    queryFn: getTwelveProducts,
   });
-  const [showAll, setShowAll] = useState(false);
-  const visibleProductsCount = showAll ? prods.length : 18;
-  const visibleProducts = prods?.slice(0, visibleProductsCount);
-  const toggleShowAll = () => {
-    setShowAll(!showAll);
+  const [visibleProductsCount, setVisibleProductsCount] = useState(12)
+  const loadMoreProducts = () => {
+    setVisibleProductsCount((prevCount) => prevCount + 12 )
+  }
+
+  const showLessProducts = () => {
+    setVisibleProductsCount((prevCount) => prevCount - 12);
   };
+  const visibleProducts = prods?.slice(0, visibleProductsCount);
+
+  // const [showAll, setShowAll] = useState(false);
+  // const visibleProductsCount = showAll ? prods.length : 18;
+  // const toggleShowAll = () => {
+  //   setShowAll(!showAll);
+  // };
 
 
   return (
@@ -54,11 +63,24 @@ const AllCategories = () => {
           </Link>
         ))}
       </div>
-      {prods && prods.length > 20 && (
+
+
+      {prods && prods.length > 12 && visibleProductsCount < prods.length && (
+        <button onClick={loadMoreProducts} className={styles.view}>
+          Mostrar más
+        </button>
+      )}
+      {visibleProductsCount > 12 && (
+        <button onClick={showLessProducts} className={styles.view}>
+          Mostrar menos
+        </button>
+      )}
+      
+      {/* {prods && prods.length > 20 && (
         <button onClick={toggleShowAll} className={styles.view}>
           {showAll ? "Mostrar menos" : "Mostrar más"}
         </button>
-      )}
+      )} */}
     </>
   );
 };
