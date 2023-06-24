@@ -30,43 +30,45 @@ const Login = () => {
 
   return (
     <nav className={styles.navbar}>
-      <Link to="/">
-        <div className={styles.logoLink}>
-          <img src={darkMode ? imageDark : image} alt="logo" />{" "}
-        </div>
-      </Link>
-      <Buscador to="/products/search" />
-      <div className={styles.buttonLink}>
-        <div className={styles.darkMode}>
-          <div onClick={toggleDarkMode}>
-            <span className={darkMode ? "icon-sun" : "icon-contrast"} />
+      <div className={styles.nav}>
+        <Link to="/">
+          <div className={styles.logoLink}>
+            <img src={darkMode ? imageDark : image} alt="logo" />{" "}
           </div>
-        </div>
-        <Link to="/user/favorites">
-          <MdOutlineFavoriteBorder /> FAVORITOS{" "}
         </Link>
-        {!isLoading && (
-          <Link to={`/user/messages/chatroom/${data?.[0]?._id}`}>
-            <TbMessages /> BUZÓN{" "}
+        <Buscador to="/products/search" />
+        <div className={styles.buttonLink}>
+          <div className={styles.darkMode}>
+            <div onClick={toggleDarkMode}>
+              <span className={darkMode ? "icon-sun" : "icon-contrast"} />
+            </div>
+          </div>
+          <Link to="/user/favorites">
+            <MdOutlineFavoriteBorder /> FAVORITOS{" "}
           </Link>
-        )}
-        {isLoading && (
-          <Link to={`/user/messages`}>
-            <TbMessages /> BUZÓN{" "}
-          </Link>
-        )}
+          {!isLoading && (
+            <Link to={`/user/messages/chatroom/${data?.[0]?._id}`}>
+              <TbMessages /> BUZÓN{" "}
+            </Link>
+          )}
+          {isLoading && (
+            <Link to={`/user/messages`}>
+              <TbMessages /> BUZÓN{" "}
+            </Link>
+          )}
 
-        {/* <Link to={`/user/messages/chatroom/${id}`}>
+          {/* <Link to={`/user/messages/chatroom/${id}`}>
           <TbMessages /> BUZÓN{" "}
         </Link> */}
-        <div data-test="perfil" className={styles.tuButton}>
-          <Link to="/user/profile/info">
-            <img src={userData.photo} />
-            TÚ
-          </Link>
-        </div>
-        <div className={styles.createProductButton}>
-          <Link to="/products/newproduct/">SUBIR UN PRODUCTO </Link>
+          <div data-test="perfil" className={styles.tuButton}>
+            <Link to="/user/profile/info">
+              <img src={userData.photo} />
+              TÚ
+            </Link>
+          </div>
+          <div className={styles.createProductButton}>
+            <Link to="/products/newproduct/">SUBIR UN PRODUCTO </Link>
+          </div>
         </div>
       </div>
     </nav>

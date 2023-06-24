@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import styles from "./productBar.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
-import ModalCompra from "../modalCompra/modalCompra";
+import ModalContainerCompra from "../modalCompra/ModalContainerCompra";
 import style from "../ProductPage/productPage.module.css";
 import { getUserToken } from "../../../utils/localStorage.utils";
 
@@ -65,11 +65,10 @@ const ProductBar = ({ data }) => {
           <button onClick={handleClick} className={styles.comprar}>
             COMPRAR
           </button>
-          {/* </NavLink> */}
-          <ModalCompra
+          <ModalContainerCompra
             modalOpen={modalOpen}
             setModalOpen={setModalOpen}
-            data={data}
+            prod={data}
           />
         </div>
       </div>

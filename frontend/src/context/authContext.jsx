@@ -15,7 +15,6 @@ import {
 } from "../utils/localStorage.utils";
 
 export const AuthContext = createContext();
-
 export const AuthProvider = ({ children }) => {
   const [image, setImage] = useState("");
   const [userData, setUserData] = useState(null);
@@ -36,7 +35,6 @@ export const AuthProvider = ({ children }) => {
     refetch();
   }, [isLoggedin, refetch, isUpdating]);
 
-  
   const login = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
@@ -67,12 +65,16 @@ export const AuthProvider = ({ children }) => {
   const update = useMutation({
     mutationFn: modUser,
     onSuccess: (data) => {
+      console.log("Vas a editar tus datooss");
       setUserSession(data.token);
       setUserDataLocalStorage(data.user);
       queryClient.invalidateQueries({
         queryKey: ["user"],
       });
       setIsUpdating(!isUpdating);
+    },
+    onError: (error) => {
+      console.log("estas poniendolo maaaaaaaaaaaaal!!!", error);
     },
   });
 

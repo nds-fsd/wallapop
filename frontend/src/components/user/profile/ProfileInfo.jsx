@@ -37,6 +37,7 @@ const ProfileInfo = () => {
   // PARA EDITAR USER
   const handleSubmitWrapperUpdate = (data) => {
     handlerAuthUpdate({ ...data, photo: image });
+    window.alert("Usuario editado correctamente");
   };
 
   // PARA ELIMINAR USER

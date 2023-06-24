@@ -1,5 +1,5 @@
 .darkMode {
-  background-color: var(--gray-to-bg-dark);
+  background-color: transparent;
   color: var(--blue-dark-to-yellow-main);
   font-size: 2em;
   cursor: pointer;

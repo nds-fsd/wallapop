@@ -83,7 +83,8 @@
 }
 
 .formButton:hover {
-  background-color: var(--yellow-main-to-bg-medium);
+  background-color: var(--yellow-main);
+  color: var(--white-to-bg-medium);
 }
 
 .error {

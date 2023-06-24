@@ -27,11 +27,17 @@ const ProfileAccount = () => {
   // PARA EDITAR USER
   const handleSubmitWrapperUpdate = (data) => {
     handlerAuthUpdate({ ...data });
+    window.alert("Usuario editado correctamente");
   };
 
   // PARA ELIMINAR USER
   const handleSubmitWrapperDelete = (data) => {
-    handlerAuthDelete({ ...data });
+    const shouldDelete = window.confirm(
+      "Estás a punto de borrar este producto. ¿Deseas continuar?"
+    );
+    if (shouldDelete) {
+      handlerAuthDelete({ ...data });
+    }
   };
 
   if (isLoading) {

@@ -29,8 +29,6 @@ const ListProducts = () => {
     setVisibleProductsCount((prevCount) => prevCount - 5);
   };
 
-
-  console.log("los prods", filteredProducts)
   return (
     <div>
       <h1 className={styles.title}>{params.category}</h1>
