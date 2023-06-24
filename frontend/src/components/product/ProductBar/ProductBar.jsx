@@ -68,7 +68,7 @@ const ProductBar = ({ data }) => {
           <ModalContainerCompra
             modalOpen={modalOpen}
             setModalOpen={setModalOpen}
-            prod={data}
+            data={data}
           />
         </div>
       </div>
