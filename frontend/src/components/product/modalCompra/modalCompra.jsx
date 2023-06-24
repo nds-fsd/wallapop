@@ -1,22 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./modalCompra.module.css";
 import { useForm } from "react-hook-form";
-import { useMutation, useQueryClient } from "react-query";
 import { postTransactions } from "../../../utils/apiTransacions";
 import { updateProduct } from "../../../utils/apiProducts";
+import { useNavigate } from "react-router-dom";
+import style from "../ProductPage//productPage.module.css";
 
 const ModalCompra = ({ modalOpen, setModalOpen, data }) => {
-  const queryClient = useQueryClient(["transaction"]);
-  const queryClientProd = useQueryClient(["product"]);
-  if (!modalOpen) {
-    return null; // Si el modal no está abierto, no se muestra nada
-  }
-  if (!data.price) {
-    data = data[0].products[0];
-  }
-  const idProduct = data._id;
-  const prod = data;
-  const total = Number(data.price) + 2.49;
+  const [showAlert, setShowAlert] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -24,41 +16,56 @@ const ModalCompra = ({ modalOpen, setModalOpen, data }) => {
     formState: { errors },
   } = useForm();
 
-  // creamos la transacion
-  const mutation = useMutation(postTransactions, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(["transaction"]);
-    },
-  });
+  const idProduct = data._id;
+  const prod = data;
+  const total = Number(data.price) + 2.49;
 
-  // modificamos el producto para cambiarle el sold a true (linia 47)
-  const mutationProd = useMutation(updateProduct, {
-    onSuccess: () => {
-      queryClientProd.setQueryData(["product", prod]);
-    },
-  });
+  if (!modalOpen) {
+    return null; // Si el modal no está abierto, no se muestra nada
+  }
+  if (!data.price) {
+    data = data[0].products[0];
+  }
 
-  const handleSubmitWrapperUpdate = (data) => {
+  const handleSubmitWrapperUpdate = async (data) => {
+    console.log(data);
     const dataProd = new Date();
-    // crear transacion
     const transactionData = { ...data, product: idProduct, date: dataProd };
-    mutation.mutate(transactionData);
-
-    // modificar producto
     const productnData = { ...prod, sold: true };
-    mutationProd.mutate(productnData);
-    // a la que se crea la transacion se borran todos los datos del form
-    reset();
-    setModalOpen(false);
-    alert("La compra se ha completado correctamente");
+    // modificar producto
+    try {
+      const productSold = await updateProduct(productnData);
+      setShowAlert(!showAlert);
+      // crear transacion
+      const newTransaction = await postTransactions(transactionData);
+
+      // a la que se crea la transacion se borran todos los datos del form
+      
+      reset();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleSubmitClose = () => {
     setModalOpen(false);
   };
 
+  const handleAlertAccept = () => {
+    setShowAlert(false);
+    navigate("/user/purchases");
+  };
+
   return (
     <>
+      {data && showAlert && (
+        <div className={style.alert}>
+          <p>La compra se ha completado correctamente</p>
+          <button onClick={handleAlertAccept} className={style.accept}>
+            Aceptar
+          </button>
+        </div>
+      )}
       {modalOpen && (
         <div className={styles.modalContainer}>
           <div className={styles.modalContent}>
@@ -69,7 +76,10 @@ const ModalCompra = ({ modalOpen, setModalOpen, data }) => {
               </button>
             </div>
             <div className={styles.form}>
-              <form className={styles.errors}>
+              <form
+                className={styles.errors}
+                onSubmit={handleSubmit(handleSubmitWrapperUpdate)}
+              >
                 {/* datos producto */}
                 <h4>¿Cómo quieres recibirlo?</h4>
                 <h6>
@@ -146,27 +156,24 @@ const ModalCompra = ({ modalOpen, setModalOpen, data }) => {
                     </label>
                   </div>
                 </div>
+
+                <div className={styles.finalCompra}>
+                  <div className={styles.resumen}>
+                    <div className={styles.title}>
+                      <p>{data.title}</p>
+                      <p>{data.price} € </p>
+                    </div>
+                    <div className={styles.price}>
+                      <p>Precio envío</p>
+                      <p>2.49 €</p>
+                    </div>
+                    <p className={styles.total}>{total} €</p>
+                  </div>
+                  <button className={styles.comprar} type="submit">
+                    Confirmar compra
+                  </button>
+                </div>
               </form>
-            </div>
-            <div className={styles.finalCompra}>
-              <div className={styles.resumen}>
-                <div className={styles.title}>
-                  <p>{data.title}</p>
-                  <p>{data.price} € </p>
-                </div>
-                <div className={styles.price}>
-                  <p>Precio envío</p>
-                  <p>2.49 €</p>
-                </div>
-                <p className={styles.total}>{total} €</p>
-              </div>
-              <button
-                className={styles.comprar}
-                type="submit"
-                onClick={handleSubmit(handleSubmitWrapperUpdate)}
-              >
-                Confirmar compra
-              </button>
             </div>
           </div>
         </div>

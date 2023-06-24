@@ -5,7 +5,6 @@ import ModalCompra from "../modalCompra/modalCompra";
 import style from "../ProductPage/productPage.module.css";
 import { getUserToken } from "../../../utils/localStorage.utils";
 
-
 const ProductBar = ({ data }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
@@ -13,38 +12,31 @@ const ProductBar = ({ data }) => {
   const userToken = getUserToken();
   const navigate = useNavigate();
 
+  // const openModal = () => {
+  //   // console.log("Abriendo");
+  //   setModalOpen(!modalOpen);
+  // };
 
-
-  const openModal = () => {
-    // console.log("Abriendo");
-    setModalOpen(!modalOpen);
-  };
-
-  const handleClick = (data) => {
+  const handleClick = () => {
     if (!userToken) {
       setSessionAlert(true);
       setShowAlert(false);
       return;
-    }
-    try{
-      openModal();
-
-    } catch (e) {
-      console.log("Error toggling favorite:", e);
-
+    } else {
+      setModalOpen(!modalOpen);
     }
   };
 
   const handleSessionAlert = () => {
     setSessionAlert(false);
     const previousProductPage = window.location.pathname;
-    localStorage.setItem('previousProductPage', previousProductPage);
+    localStorage.setItem("previousProductPage", previousProductPage);
     navigate("/user/login");
   };
 
   return (
     <>
-    {data && !userToken && sessionAlert && (
+      {data && !userToken && sessionAlert && (
         <div className={style.alert}>
           Debes iniciar sesión para ejecutar esta acción
           <div className={style.alertButtons}>
@@ -60,6 +52,7 @@ const ProductBar = ({ data }) => {
           </div>
         </div>
       )}
+
       <div className={styles.productBar}>
         <div className={styles.productDetails}>
           <div>
@@ -69,7 +62,7 @@ const ProductBar = ({ data }) => {
             </h3>
           </div>
           {/* <NavLink to={`/category/products/comprar/${data._id}`}> */}
-          <button onClick={() => handleClick(data)} className={styles.comprar}>
+          <button onClick={handleClick} className={styles.comprar}>
             COMPRAR
           </button>
           {/* </NavLink> */}

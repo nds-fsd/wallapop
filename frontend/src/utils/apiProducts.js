@@ -161,7 +161,6 @@ export const postProduct = (data) => {
 };
 
 export const updateProduct = (product) => {
-
   const id = product._id;
 
   const { token } = getUserToken();
