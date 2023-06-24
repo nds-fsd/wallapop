@@ -162,11 +162,7 @@ const updateProductById = async (req, res) => {
     return res.status(400).json({ error: { login: "Missing information" } });
   }
   try {
-    const updateProduct = await productModel
-      .findByIdAndUpdate(id, body)
-      // .findByIdAndUpdate(id, body, { new: true })
-
-      .exec();
+    const updateProduct = await productModel.findByIdAndUpdate(id, body).exec();
     if (!updateProduct) {
       return res.status(404).json({ error: "Sorry, can't find this product" });
     }

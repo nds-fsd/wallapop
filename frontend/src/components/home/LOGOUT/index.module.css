@@ -9,17 +9,18 @@
 }
 .navbar {
   width: 100vw;
-  height: 15vh;
+  min-height: 15vh;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding-left: 3rem;
   border-bottom: solid rgba(198, 197, 197, 0.368) 0.1rem;
   background-color: var(--gray-to-bg-dark);
   position: fixed;
   top: 0;
   z-index: 1000;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.5rem;
 }
 
 .logoLink img {
@@ -27,14 +28,26 @@
   height: auto;
   margin: 0;
 }
+.buttonLink {
+  display: flex;
+  gap: 1rem;
+  background-color: var(--gray-to-bg-dark);
+}
 
+@media only screen and (max-width: 600px) {
+  .buttonLink {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0.5rem;
+  }
+}
+/* 
 .buttonLink {
   width: 30vw;
   display: flex;
   justify-content: space-around;
   padding-right: 6rem;
-  background-color: var(--gray-to-bg-dark);
-}
+} */
 
 .buttonLink :hover {
   background-color: var(--gray-to-bg-dark);
@@ -58,4 +71,5 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 0.5rem;
 }

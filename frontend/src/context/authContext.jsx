@@ -72,9 +72,6 @@ export const AuthProvider = ({ children }) => {
       });
       setIsUpdating(!isUpdating);
     },
-    onError: (error) => {
-      console.log("estas poniendolo maaaaaaaaaaaaal!!!", error);
-    },
   });
 
   const userDelete = useMutation({

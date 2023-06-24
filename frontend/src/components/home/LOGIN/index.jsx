@@ -30,7 +30,6 @@ const Login = () => {
 
   return (
     <nav className={styles.navbar}>
-      <div className={styles.nav}>
         <Link to="/">
           <div className={styles.logoLink}>
             <img src={darkMode ? imageDark : image} alt="logo" />{" "}
@@ -70,7 +69,6 @@ const Login = () => {
             <Link to="/products/newproduct/">SUBIR UN PRODUCTO </Link>
           </div>
         </div>
-      </div>
     </nav>
   );
 };

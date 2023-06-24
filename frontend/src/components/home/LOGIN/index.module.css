@@ -11,9 +11,8 @@
 
 .navbar {
   width: 100vw;
-  height: 15vh;
+  min-height: 15vh;
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
   align-items: center;
   border-bottom: solid rgba(198, 197, 197, 0.368) 0.2rem;
@@ -21,15 +20,10 @@
   position: fixed;
   top: 0;
   z-index: 1000;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.5rem;
 }
-.nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-}
-
 .logoLink img {
   width: 7rem;
   height: auto;
@@ -51,11 +45,16 @@
 }
 
 .buttonLink {
-  width: 50vw;
   display: flex;
-  justify-content: flex-end;
-  gap: 3rem;
-  padding-right: 5rem;
+  gap: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .buttonLink {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0.5rem;
+  }
 }
 
 .buttonLink :hover {
