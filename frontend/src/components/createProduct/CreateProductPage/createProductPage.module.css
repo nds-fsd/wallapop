@@ -206,7 +206,7 @@
   position: relative;
   padding-left: 0.8rem;
   font-size: 1rem;
-  color: var(--grey-dark-to-white);
+  /* color: var(--grey-dark-to-white); */
   background-color: var(--white-to-bg-medium);
 }
 
@@ -299,6 +299,7 @@
   width: 13rem;
   height: 3rem;
   font-size: 1.2rem;
+  margin-top: 1rem;
   padding: 0 1rem;
   border-radius: 2.5rem;
   border: 0.15em solid var(--yellow-main);

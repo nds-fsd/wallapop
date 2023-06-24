@@ -66,7 +66,7 @@ const PurchasesCompleted = () => {
           </div>
         ) : (
           <div className={styles.listContainer}>
-            {transactions &&
+            {transactions && transactions.length > 0 ? (
               transactions.map((transaction) => (
                 <div
                   className={styles.list}
@@ -101,7 +101,10 @@ const PurchasesCompleted = () => {
                     ))}
                   </div>
                 </div>
-              ))}
+              ))
+            ) : (
+              <div>Aún no has realizado ninguna compra</div>
+            )}
           </div>
         )}
       </div>

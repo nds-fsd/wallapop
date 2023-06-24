@@ -73,7 +73,7 @@ const FavoriteProducts = () => {
           {data && favs.length > 0 ? (
             favs.map(
               (fav) =>
-                !prod.sold && (
+                !fav.sold && (
                   <div key={fav._id} className={styles.card}>
                     {deletionAlert && deleteProduct === fav._id && (
                       <div className={styles.alert}>
@@ -152,7 +152,7 @@ const FavoriteProducts = () => {
           {data && favs.length > 0 ? (
             favs.map(
               (fav) =>
-                !prod.sold && (
+                !fav.sold && (
                   <div key={fav._id} className={styles.list}>
                     {deletionAlert && deleteProduct === fav._id && (
                       <div className={styles.alert}>

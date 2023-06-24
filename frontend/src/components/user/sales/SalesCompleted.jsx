@@ -75,7 +75,7 @@ const SalesCompleted = () => {
           </div>
         ) : (
           <div className={styles.listContainer}>
-            {prods &&
+            {prods && prods.length > 0 ? (
               prods.map((prod) => (
                 <div className={styles.list} key={prod.id}>
                   <div className={styles.imgList}>
@@ -94,7 +94,10 @@ const SalesCompleted = () => {
                     <p className={styles.paragraph}>{prod.description}</p>
                   </div>
                 </div>
-              ))}
+              ))
+            ) : (
+              <div>Aún no has realizado ninguna venta</div>
+            )}
           </div>
         )}
       </div>
