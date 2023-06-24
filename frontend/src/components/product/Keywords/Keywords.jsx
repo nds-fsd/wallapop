@@ -3,8 +3,6 @@ import styles from "./keywords.module.css";
 
 const Keywords = ({ data }) => {
   const words = data?.keywords || [];
-  // console.log(words);
-
   return (
     <>
       {Array.isArray(words) && words.length > 0 && (

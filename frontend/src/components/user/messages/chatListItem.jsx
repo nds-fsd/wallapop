@@ -6,17 +6,16 @@ import { io } from "socket.io-client";
 
 const token = getUserToken();
 const socket = io("http://localhost:3001", {
-path: "/private",
-reconnectionDelayMax: 10000,
-auth: {
-  token,
-},
+  path: "/private",
+  reconnectionDelayMax: 10000,
+  auth: {
+    token,
+  },
 });
 
 const ChatListItem = ({ data }) => {
   const { id } = getUserData();
   const [newMessage, setNewMessage] = useState(false);
-
 
   useEffect(() => {
     socket.connect();
@@ -27,15 +26,13 @@ const ChatListItem = ({ data }) => {
       socket.disconnect();
     };
   }, [socket]);
-  
+
   const { product_id: product, owner_id: owner, buyer_id: buyer, _id } = data;
 
   useEffect(() => {
     const receivedMessage = (message) => {
-      console.log(message)
-      if(message.chat_room_id === _id ){
-
-        setNewMessage(true)
+      if (message.chat_room_id === _id) {
+        setNewMessage(true);
       }
     };
     socket.on("NEW_MESSAGE", receivedMessage);
@@ -43,11 +40,7 @@ const ChatListItem = ({ data }) => {
     return () => {
       socket.off("NEW_MESSAGE", receivedMessage);
     };
-  }, [newMessage,socket]);
-
-
-
-
+  }, [newMessage, socket]);
 
   return (
     <div>
@@ -70,9 +63,11 @@ const ChatListItem = ({ data }) => {
           <p>{owner?.id === id ? buyer?.name : ""}</p>
           <h3>{product?.title}</h3>
         </div>
-        { newMessage && <div className={styles.newMessage}>
+        {newMessage && (
+          <div className={styles.newMessage}>
             <p>"</p>
-        </div>}
+          </div>
+        )}
       </Link>
     </div>
   );

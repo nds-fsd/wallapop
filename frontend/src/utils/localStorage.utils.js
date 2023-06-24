@@ -18,7 +18,6 @@ export const deleteStorageObject = (key) => {
 
 export const getUserToken = () => {
   const session = getStorageObject("user-session");
-  console.log("Me das el token porfi? ", session);
   if (session) {
     return session;
   } else {
