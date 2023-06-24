@@ -19,9 +19,8 @@ const getTransactionsById = async (req, res) => {
 };
 
 const getTransactionsByUser = async (req, res) => {
-  //   console.log("paso por aqui");
   const userId = req.params.user;
-  //   console.log("y luego por aqui con el uderID", userId);
+
   try {
     if (!userId) res.status(404).json("no user id provided");
     if (userId) {
@@ -60,7 +59,7 @@ const postTransactions = async (req, res) => {
       //y le añadimos a la transacion el id del user propietario del producto
       newtransaction.vendor.push(productInfo.user._id);
       await newtransaction.save();
-      console.log("newtransaction", newtransaction);
+
       res.status(201).json(newtransaction);
     } catch (error) {
       res.status(500).json({ error: "Sorry, can't post this transaction" });

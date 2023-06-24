@@ -17,8 +17,6 @@ const AllCategoriesHome = () => {
     setShowAll(!showAll);
   };
 
-  console.log(prods);
-
   const [favorite, setFavorite] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
@@ -48,11 +46,13 @@ const AllCategoriesHome = () => {
   };
 
   const handleFavorite = async (id) => {
+
     const updatedProduct = prods.find((prod) => prod._id === id);
 
     if (!updatedProduct) return;
     const userToken = localStorage.getItem("user-session");
     if (userToken) {
+
       try {
         const updatedFavorite = !updatedProduct.favorite;
         const updatedProductData = {

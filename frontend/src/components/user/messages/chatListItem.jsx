@@ -3,6 +3,8 @@ import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 import styles from "./chatListItem.module.css";
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import { getCheckMessages, patchMessage } from "../../../utils/apiMessage";
+import { useQuery } from "react-query";
 
 const token = getUserToken();
 const socket = io("http://localhost:3001", {
@@ -14,40 +16,25 @@ const socket = io("http://localhost:3001", {
 });
 
 const ChatListItem = ({ data }) => {
-  const { id } = getUserData();
-  const [newMessage, setNewMessage] = useState(false);
-
-  useEffect(() => {
-    socket.connect();
-    socket.on("connection", (data) => {
-      console.log("Connected");
-    });
-    return () => {
-      socket.disconnect();
-    };
-  }, [socket]);
-
   const { product_id: product, owner_id: owner, buyer_id: buyer, _id } = data;
+  const { id } = getUserData();
+  const { data: noCheckMessages } = useQuery(
+    ["checkmessage", _id],
+    getCheckMessages
+  );
 
-  useEffect(() => {
-    const receivedMessage = (message) => {
-      if (message.chat_room_id === _id) {
-        setNewMessage(true);
-      }
-    };
-    socket.on("NEW_MESSAGE", receivedMessage);
+  const lastMessage = noCheckMessages?.pop(-1);
 
-    return () => {
-      socket.off("NEW_MESSAGE", receivedMessage);
-    };
-  }, [newMessage, socket]);
+  const handleCheckMessage = (body) => {
+    patchMessage(body);
+  };
 
   return (
     <div>
       <Link
         to={`/user/messages/chatroom/${_id}`}
         className={styles.itemContainer}
-        onClick={() => setNewMessage(false)}
+        onClick={() => handleCheckMessage({ chat_room_id: _id, check: true })}
       >
         <div>
           {product?.images && product.images.length > 0 ? (
@@ -59,11 +46,10 @@ const ChatListItem = ({ data }) => {
           )}
         </div>
         <div className={styles.chatData}>
-          <p>{owner?.id !== id ? owner?.name : buyer?.name}</p>
-          <p>{owner?.id === id ? buyer?.name : ""}</p>
+          <p>{owner?._id !== id ? owner?.name : buyer?.name}</p>
           <h3>{product?.title}</h3>
         </div>
-        {newMessage && (
+        {lastMessage?.check === false && lastMessage?.user_id !== id && (
           <div className={styles.newMessage}>
             <p>"</p>
           </div>

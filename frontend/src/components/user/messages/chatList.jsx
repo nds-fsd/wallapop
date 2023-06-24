@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { getAllChats } from "../../../utils/apiChatRoom";
 import ChatListItem from "./chatListItem";
-import styles from "./chatList.module.css"
+import styles from "./chatList.module.css";
 
 const ChatList = () => {
   const { data: allChats } = useQuery(["chats"], getAllChats);

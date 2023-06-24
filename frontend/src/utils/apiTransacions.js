@@ -4,6 +4,7 @@ import { getUserData, getUserToken } from "./localStorage.utils";
 export const getTransactionsByUser = () => {
   const { id } = getUserData();
   const { token } = getUserToken();
+
   return api
     .get(`/transactions/getbyuser/${id}`, {
       headers: {
