@@ -14,6 +14,7 @@ const ProductList = () => {
     "Hogar y Jardín",
     "Electrodomésticos",
     "Construcción y Reformas",
+    "Informática y Electrónica"
   ];
 
   return (
