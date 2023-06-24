@@ -98,7 +98,6 @@ const ElsePage = ({ id }) => {
     };
     try {
       const chatroom = await postChatRoom(body);
-      // console.log("chatrooom", chatroom);
 
       navigate(`/user/messages/chatroom/${chatroom._id}`);
     } catch (error) {

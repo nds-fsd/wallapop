@@ -28,7 +28,6 @@ const ModalCompra = ({ modalOpen, setModalOpen, data }) => {
   }
 
   const handleSubmitWrapperUpdate = async (data) => {
-    console.log(data);
     const dataProd = new Date();
     const transactionData = { ...data, product: idProduct, date: dataProd };
     const productnData = { ...prod, sold: true };

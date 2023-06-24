@@ -3,8 +3,6 @@ import styles from "./modalContainer.module.css";
 import ModalCompra from "./modalCompra";
 
 const ModalContainerCompra = ({ modalOpen, setModalOpen, data }) => {
-  console.log("Hola, has ido al modal container compra");
-  // console.log("PROD", prod);
   return (
     <>
       {modalOpen && (
@@ -19,7 +17,13 @@ const ModalContainerCompra = ({ modalOpen, setModalOpen, data }) => {
                 <span className="icon-cross1"></span>
               </button>
             </div>
-            {data && <ModalCompra data={data} modalOpen={modalOpen} setModalOpen={setModalOpen} />}
+            {data && (
+              <ModalCompra
+                data={data}
+                modalOpen={modalOpen}
+                setModalOpen={setModalOpen}
+              />
+            )}
           </div>
         </div>
       )}

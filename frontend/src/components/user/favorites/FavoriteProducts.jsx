@@ -10,8 +10,6 @@ import ModalContainerCompra from "../../product/modalCompra/ModalContainerCompra
 const FavoriteProducts = () => {
   const { data } = useQuery("fav-prods", getFavs);
 
-  console.log("bienvenido a tus favoritos", data);
-
   const favs = data && data[0]?.products;
   const [deletionAlert, setDeletionAlert] = useState(false);
   const [deleteProduct, setDeleteProduct] = useState(null);
@@ -27,9 +25,6 @@ const FavoriteProducts = () => {
   };
 
   const handleClick = (fav) => {
-    {
-      console.log("Y vas a enviar este producto: ", fav);
-    }
     // guardamos en el prod en el useState para luego enviarselo al modal
     setProduct(fav);
     openModal();
@@ -143,9 +138,8 @@ const FavoriteProducts = () => {
                     <ModalContainerCompra
                       modalOpen={modalOpen}
                       setModalOpen={setModalOpen}
-                      prod={product}
+                      data={product}
                     />
-                    {console.log("Hallo, estas en tus productos favoritos")}
                   </div>
                 )
             )

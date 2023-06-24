@@ -12,11 +12,6 @@ const ProductBar = ({ data }) => {
   const userToken = getUserToken();
   const navigate = useNavigate();
 
-  // const openModal = () => {
-  //   // console.log("Abriendo");
-  //   setModalOpen(!modalOpen);
-  // };
-
   const handleClick = () => {
     if (!userToken) {
       setSessionAlert(true);

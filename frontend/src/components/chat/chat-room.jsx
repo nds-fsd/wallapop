@@ -50,6 +50,10 @@ const ChatRoom = () => {
       setMessages([...messages, message]);
       scrollToBottom();
     };
+    socket.emit("join-chat", chatRoomID);
+    socket.on("chat-joined", (data) => {
+      console.log(`Joined chat: ${data}`);
+    });
     socket.on("NEW_MESSAGE", receivedMessage);
 
     return () => {
@@ -65,11 +69,10 @@ const ChatRoom = () => {
 
   return (
     <div>
-      {messages?.length > 0 ? (
         <div className={styles.chatroomContainer}>
           <ChatHeader chatRoomID={chatRoomID} />
           <div className={styles.messageContainer}>
-            {messages.map((message, i) => (
+            {messages?.map((message, i) => (
               <div
                 className={`${
                   message.user_id === id
@@ -86,12 +89,6 @@ const ChatRoom = () => {
 
           <FormChat />
         </div>
-      ) : (
-        <div className={styles.sinProducts}>
-          <h3>Sin mensajes todavía </h3>
-          <h5>Encuentra algo que te guste y empieza una conversación.</h5>
-        </div>
-      )}
     </div>
   );
 };
