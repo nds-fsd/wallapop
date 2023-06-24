@@ -65,16 +65,12 @@ export const AuthProvider = ({ children }) => {
   const update = useMutation({
     mutationFn: modUser,
     onSuccess: (data) => {
-      console.log("Vas a editar tus datooss");
       setUserSession(data.token);
       setUserDataLocalStorage(data.user);
       queryClient.invalidateQueries({
         queryKey: ["user"],
       });
       setIsUpdating(!isUpdating);
-    },
-    onError: (error) => {
-      console.log("estas poniendolo maaaaaaaaaaaaal!!!", error);
     },
   });
 

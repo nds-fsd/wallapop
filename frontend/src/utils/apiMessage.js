@@ -3,7 +3,6 @@ import { getUserData } from "./localStorage.utils";
 
 export const getMessageByChatRoom = ({ queryKey }) => {
   const token = JSON.parse(localStorage.getItem("user-session"));
-  console.log("TOKEN", token);
   return api
     .get(`/message/${queryKey[1]}`, {
       headers: {

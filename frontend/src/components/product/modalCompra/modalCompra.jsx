@@ -7,9 +7,6 @@ import { updateProduct } from "../../../utils/apiProducts";
 import { useNavigate } from "react-router-dom";
 
 const ModalCompra = (prod) => {
-  // console.log("alaa ahora estas en el modal de compra");
-
-  // console.log("MODAAAAAL:", prod);
   const navigate = useNavigate();
   const queryClient = useQueryClient(["transaction"]);
   const queryClientProd = useQueryClient(["product"]);
@@ -53,7 +50,6 @@ const ModalCompra = (prod) => {
     reset();
     alert("La compra se ha completado correctamente");
     navigate("/");
-
   };
 
   return (

@@ -1,11 +1,9 @@
 .searchContainer {
   display: flex;
-  width: 50%;
   box-shadow: none;
   gap: 2rem;
   align-items: center;
   justify-content: space-around;
-  margin-left: 3rem;
 }
 .searchContainer button {
   width: 7rem;
@@ -30,6 +28,7 @@
 .searchContainer input {
   border-radius: 10rem;
   border: var(--blue-dark-to-yellow-main) solid 0.1rem;
+  min-width: 210px;
   width: 80%;
   margin-bottom: 0;
   padding: 0.65rem;
@@ -40,4 +39,3 @@
 .searchContainer input::placeholder {
   color: var(--black-to-yellow-light);
 }
-
