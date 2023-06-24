@@ -54,7 +54,7 @@ const AllCategoriesHome = () => {
     if (!updatedProduct) return;
     const userToken = localStorage.getItem("user-session");
     if (userToken) {
-      console.log("este el el token del user", userToken);
+      // console.log("este el el token del user", userToken);
 
       try {
         // console.log(userToken);

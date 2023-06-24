@@ -3,10 +3,10 @@ import { getUserData, getUserToken } from "./localStorage.utils";
 
 export const getFavs = () => {
   const { id } = getUserData();
-  console.log("E que haces aqui tienes id?", id);
+  // console.log("E que haces aqui tienes id?", id);
   const token = getUserToken();
-  console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", getUserToken());
-  console.log("y token?", token);
+  // console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", getUserToken());
+  // console.log("y token?", token);
 
   return api
     .get(`/favorites/${id}`, {

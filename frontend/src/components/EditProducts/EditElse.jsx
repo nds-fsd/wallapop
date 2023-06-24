@@ -71,7 +71,7 @@ const EditElse = ({ id }) => {
     }
     const updatedImages = images.length > 0 ? [...product.images, ...images] : product.images;
     const productData = { ...product, keywords, images: updatedImages };
-    console.log("este el producto mutado", productData)
+    // console.log("este el producto mutado", productData)
     mutation.mutate(productData);
     alert("Los cambios se han guardado satisfactoriamente");
     setImages([updatedImages])
