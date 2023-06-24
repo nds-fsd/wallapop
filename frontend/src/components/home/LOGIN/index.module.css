@@ -1,8 +1,9 @@
 .darkMode {
-  background-color: var(--gray-to-bg-dark);
+  background-color: transparent;
   color: var(--blue-dark-to-yellow-main);
   font-size: 2em;
   cursor: pointer;
+  display: flex;
 }
 .darkMode:hover {
   color: var(--yellow-main-to-blue-light);
@@ -20,6 +21,13 @@
   position: fixed;
   top: 0;
   z-index: 1000;
+}
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
 }
 
 .logoLink img {
@@ -80,4 +88,3 @@
   background-color: var(--yellow-main-to-bg-dark);
   color: var(--yellow-light-to-blue-light);
 }
-

@@ -18,12 +18,13 @@ const getFavoritesByUser = async (req, res) => {
         },
       })
       .exec();
-    if (favorites.length === 0) {
-      return res
-        .status(404)
-        .json({ message: "Sorry, there are no favorite products to display" });
-    }
-    return res.status(200).json(favorites);
+    // if (favorites.length === 0) {
+    //   return res
+    //     .status(404)
+    //     .json({ message: "Sorry, there are no favorite products to display" });
+    // } else {
+      return res.status(200).json(favorites);
+    // }
   } catch (error) {
     res.status(500).json({ error: "Failed to retrieve favorite products" });
   }

@@ -2,13 +2,16 @@ import React from "react";
 import styles from "./modalContainer.module.css";
 import ModalCompra from "./modalCompra";
 
-const ModalContainer = ({ modalOpen, setModalOpen, id }) => {
+const ModalContainerCompra = ({ modalOpen, setModalOpen, prod }) => {
+  console.log("Hola, has ido al modal container compra");
+  // console.log("PROD", prod);
   return (
     <>
       {modalOpen && (
         <div className={styles.overlay}>
           <div className={styles.modal}>
             <div className={styles.title}>
+              <h2>Modo COOMPRA</h2>
               <button
                 className={styles.close}
                 onClick={() => setModalOpen(false)}
@@ -16,7 +19,7 @@ const ModalContainer = ({ modalOpen, setModalOpen, id }) => {
                 <span className="icon-cross1"></span>
               </button>
             </div>
-            {id && <ModalCompra id={id} />}
+            {prod && <ModalCompra prod={prod} />}
           </div>
         </div>
       )}
@@ -24,4 +27,4 @@ const ModalContainer = ({ modalOpen, setModalOpen, id }) => {
   );
 };
 
-export default ModalContainer;
+export default ModalContainerCompra;

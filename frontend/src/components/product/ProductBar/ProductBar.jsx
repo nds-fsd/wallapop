@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
 import styles from "./productBar.module.css";
 import { NavLink } from "react-router-dom";
-import ModalCompra from "../modalCompra/modalCompra";
+import ModalContainerCompra from "../modalCompra/ModalContainerCompra";
 
 const ProductBar = ({ data }) => {
   const [modalOpen, setModalOpen] = useState(false);
-
   const openModal = () => {
     // console.log("Abriendo");
     setModalOpen(!modalOpen);
@@ -14,6 +13,7 @@ const ProductBar = ({ data }) => {
   const handleClick = (data) => {
     // console.log("el id del producto", data);
     openModal();
+
   };
 
   return (
@@ -30,11 +30,10 @@ const ProductBar = ({ data }) => {
           <button onClick={() => handleClick(data)} className={styles.comprar}>
             COMPRAR
           </button>
-          {/* </NavLink> */}
-          <ModalCompra
+          <ModalContainerCompra
             modalOpen={modalOpen}
             setModalOpen={setModalOpen}
-            data={data}
+            prod={data}
           />
         </div>
       </div>

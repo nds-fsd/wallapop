@@ -106,10 +106,16 @@ const ProductPublished = () => {
 
                       <p className={styles.paragraph}>{prod.description}</p>
                       <div className={styles.icons}>
-                        <button className={styles.logo}  onClick={() => handleClick(prod._id)}>
+                        <button
+                          className={styles.logo}
+                          onClick={() => handleClick(prod._id)}
+                        >
                           <span className="icon-pen1"></span>
                         </button>
-                        <button className={styles.logo} onClick={() => handleDeletion(prod._id)}>
+                        <button
+                          className={styles.logo}
+                          onClick={() => handleDeletion(prod._id)}
+                        >
                           <span className="icon-bin"></span>
                         </button>
                         <Link
@@ -120,20 +126,23 @@ const ProductPublished = () => {
                             <span className="icon-eye1"></span>
                           </button>
                         </Link>
-
-                        {
-                          <ModalContainer
-                            modalOpen={modalOpen}
-                            setModalOpen={setModalOpen}
-                            id={idProduct}
-                          />
-                        }
+                        <ModalContainer
+                          modalOpen={modalOpen}
+                          setModalOpen={setModalOpen}
+                          id={idProduct}
+                        />
                       </div>
                     </div>
                   )
               )
             ) : (
-              <div>Aún no tienes productos publicados</div>
+              <div className={styles.sinProducts}>
+                <h3>Aún no tienes productos</h3>
+                <h5>
+                  Créenos, es muuucho mejor cuando vendes cosas. ¡Sube algo que
+                  quieras vender! 💸
+                </h5>
+              </div>
             )}
           </div>
         ) : (
@@ -186,7 +195,13 @@ const ProductPublished = () => {
                   )
               )
             ) : (
-              <div>Aún no tienes productos publicados</div>
+              <div className={styles.sinProducts}>
+                <h3>Aún no tienes productos</h3>
+                <h5>
+                  Créenos, es muuucho mejor cuando vendes cosas. ¡Sube algo que
+                  quieras vender! 💸
+                </h5>
+              </div>
             )}
           </div>
         )}

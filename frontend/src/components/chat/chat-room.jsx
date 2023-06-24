@@ -65,11 +65,11 @@ const ChatRoom = () => {
 
   return (
     <div>
-      <div className={styles.chatroomContainer}>
-        <ChatHeader chatRoomID={chatRoomID} />
-        <div className={styles.messageContainer}>
-          {messages?.map((message, i) => {
-            return (
+      {messages?.length > 0 ? (
+        <div className={styles.chatroomContainer}>
+          <ChatHeader chatRoomID={chatRoomID} />
+          <div className={styles.messageContainer}>
+            {messages.map((message, i) => (
               <div
                 className={`${
                   message.user_id === id
@@ -80,13 +80,18 @@ const ChatRoom = () => {
               >
                 {message.body}
               </div>
-            );
-          })}
-          <div  ref={messagesContainerRef}/>
-        </div>
+            ))}
+            <div ref={messagesContainerRef} />
+          </div>
 
-        <FormChat />
-      </div>
+          <FormChat />
+        </div>
+      ) : (
+        <div className={styles.sinProducts}>
+          <h3>Sin mensajes todavía </h3>
+          <h5>Encuentra algo que te guste y empieza una conversación.</h5>
+        </div>
+      )}
     </div>
   );
 };

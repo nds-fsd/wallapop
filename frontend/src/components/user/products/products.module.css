@@ -385,3 +385,13 @@
   background-color: var(--blue-light);
   color: white;
 }
+
+.sinProducts {
+  color: var(--blue-dark-to-yellow-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-left: 9rem;
+}

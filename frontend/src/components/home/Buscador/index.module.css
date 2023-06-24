@@ -1,11 +1,10 @@
 .searchContainer {
   display: flex;
   width: 50%;
-  background-color: transparent;
   box-shadow: none;
   gap: 2rem;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   margin-left: 3rem;
 }
 .searchContainer button {

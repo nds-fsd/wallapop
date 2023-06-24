@@ -268,3 +268,13 @@
   opacity: 0.5; /* Redueix l'opacitat per donar una aparença desactivada */
   pointer-events: none;
 }
+
+.sinProducts {
+  color: var(--blue-dark-to-yellow-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-left: 9rem;
+}
