@@ -1,10 +1,19 @@
 import React, { useState, useContext } from "react";
 import styles from "./productBar.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import ModalCompra from "../modalCompra/modalCompra";
+import style from "../ProductPage/productPage.module.css";
+import { getUserToken } from "../../../utils/localStorage.utils";
+
 
 const ProductBar = ({ data }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [sessionAlert, setSessionAlert] = useState(false);
+
+  const userToken = getUserToken();
+  const navigate = useNavigate();
+
+
 
   const openModal = () => {
     // console.log("Abriendo");
@@ -12,12 +21,45 @@ const ProductBar = ({ data }) => {
   };
 
   const handleClick = (data) => {
-    // console.log("el id del producto", data);
-    openModal();
+    if (!userToken) {
+      setSessionAlert(true);
+      setShowAlert(false);
+      return;
+    }
+    try{
+      openModal();
+
+    } catch (e) {
+      console.log("Error toggling favorite:", e);
+
+    }
+  };
+
+  const handleSessionAlert = () => {
+    setSessionAlert(false);
+    const previousProductPage = window.location.pathname;
+    localStorage.setItem('previousProductPage', previousProductPage);
+    navigate("/user/login");
   };
 
   return (
     <>
+    {data && !userToken && sessionAlert && (
+        <div className={style.alert}>
+          Debes iniciar sesión para ejecutar esta acción
+          <div className={style.alertButtons}>
+            <button onClick={handleSessionAlert} className={style.accept}>
+              Aceptar
+            </button>
+            <button
+              onClick={() => setSessionAlert(false)}
+              className={style.accept}
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      )}
       <div className={styles.productBar}>
         <div className={styles.productDetails}>
           <div>
