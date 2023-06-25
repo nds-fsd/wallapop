@@ -21,7 +21,7 @@ const FeaturedProducts = ({ categoriesToRender }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [sessionAlert, setSessionAlert] = useState(false);
   const [userFavorites, setUserFavorites] = useState([]);
-  const [favoriteStatus, setFavoriteStatus] = useState(false)
+  const [favoriteStatus, setFavoriteStatus] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const filteredProducts = prods?.filter((prod) =>
@@ -67,13 +67,12 @@ const FeaturedProducts = ({ categoriesToRender }) => {
           prevFavorites.filter((id) => id !== productId)
         );
         setShowAlert(true);
-        setFavoriteStatus(false)
+        setFavoriteStatus(false);
       } else {
         await createFav({ product: productId });
         setUserFavorites((prevFavorites) => [...prevFavorites, productId]);
         setShowAlert(true);
-        setFavoriteStatus(true)
-
+        setFavoriteStatus(true);
       }
     } catch (error) {
       console.log("Error toggling favorite:", error);
@@ -133,50 +132,52 @@ const FeaturedProducts = ({ categoriesToRender }) => {
         <div className={styles.cardsContainer}>
           {displayedProducts &&
             displayedProducts?.map((prod) => {
-              const isFavorite = userFavorites.includes(prod._id);
+              if (!prod.sold) {
+                const isFavorite = userFavorites.includes(prod._id);
 
-              return (
-                <div key={prod._id} className={styles.card}>
-                  {prods && (
-                    <ImagesHome
-                      images={prod.images}
-                      className={styles.images}
-                      category={prod.categories}
-                      status={prod.status}
-                    />
-                  )}
+                return (
+                  <div key={prod._id} className={styles.card}>
+                    {prods && (
+                      <ImagesHome
+                        images={prod.images}
+                        className={styles.images}
+                        category={prod.categories}
+                        status={prod.status}
+                      />
+                    )}
 
-                  <div className={styles.titleContainer}>
-                    <div className={styles.priceContainer}>
-                      <h5>
-                        {prod.price.toLocaleString("es-ES", {
-                          useGrouping: true,
-                        })}
-                        €
-                      </h5>
-                      <Link
-                        data-test="card_prod"
-                        to={`/category/product/${prod._id}`}
-                        target="_blank"
-                        className={styles.eye}
-                      >
-                        <button>
-                          <span className="icon-eye1"></span>
+                    <div className={styles.titleContainer}>
+                      <div className={styles.priceContainer}>
+                        <h5>
+                          {prod.price.toLocaleString("es-ES", {
+                            useGrouping: true,
+                          })}
+                          €
+                        </h5>
+                        <Link
+                          data-test="card_prod"
+                          to={`/category/product/${prod._id}`}
+                          target="_blank"
+                          className={styles.eye}
+                        >
+                          <button>
+                            <span className="icon-eye1"></span>
+                          </button>
+                        </Link>
+                        <button
+                          onClick={() => handleFavorite(prod._id)}
+                          className={`${styles.like} ${
+                            isFavorite ? styles.focused : ""
+                          }`}
+                        >
+                          <span className="icon-heart1"></span>
                         </button>
-                      </Link>
-                      <button
-                        onClick={() => handleFavorite(prod._id)}
-                        className={`${styles.like} ${
-                          isFavorite ? styles.focused : ""
-                        }`}
-                      >
-                        <span className="icon-heart1"></span>
-                      </button>
+                      </div>
+                      <p className={styles.title}>{prod.title}</p>
                     </div>
-                    <p className={styles.title}>{prod.title}</p>
                   </div>
-                </div>
-              );
+                );
+              }
             })}
         </div>
 

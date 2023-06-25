@@ -43,7 +43,7 @@
   font-weight: bold;
   position: relative;
   left: 18.2rem;
-  color: var(--blue-dark-to-yellow-main);
+  color: var(--grey-to-yellow-main);
 }
 
 .labelTriple {
@@ -194,7 +194,7 @@
   position: relative;
   padding-left: 0.8rem;
   font-size: 1rem;
-  color: var(--grey-to-white);
+  color: var(--blue-dark-to-yellow-light);
   background-color: var(--white-to-bg-medium);
 }
 
@@ -206,7 +206,7 @@
   position: relative;
   padding-left: 0.8rem;
   font-size: 1rem;
-  color: var(--grey-dark-to-white);
+  color: var(--blue-dark-to-yellow-light);
   background-color: var(--white-to-bg-medium);
 }
 
@@ -227,7 +227,7 @@
   padding-top: 0.8rem;
   font-size: 1rem;
   font-family: "Roboto", sans-serif;
-  color: var(--grey-dark-to-white);
+  color: var(--blue-dark-to-yellow-light);
   background-color: var(--white-to-bg-medium);
 }
 .subtitles {

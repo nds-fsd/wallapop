@@ -9,7 +9,7 @@ const DEFAULT_VALUES = {
   "--grey-to-bg-medium": "#eaeeee",
   "--grey-to-white": "#eaeeee",
   "--grey-to-black": "#eaeeee",
-  "--grey-dark-to-white": "#eaeeee",
+  "--grey-dark-to-white": "#868888",
 
   /* ------------ BLACK ------------*/
   "--black-to-white": "black",
