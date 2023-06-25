@@ -9,6 +9,9 @@ import { AuthContext } from "../../../context/authContext";
 const FormJob = () => {
   const queryClient = useQueryClient(["product"]);
   const { images, setImages } = useContext(AuthContext);
+  const [imagePreviews, setImagePreviews] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -22,8 +25,6 @@ const FormJob = () => {
     },
   });
 
-  const [imagePreviews, setImagePreviews] = useState([]);
-
   const handleImageUpload = (files, index) => {
     const imageUrls = Array.from(files).map((file) =>
       URL.createObjectURL(file)
@@ -35,6 +36,10 @@ const FormJob = () => {
     });
   };
 
+  const handleAlertAccept = () => {
+    setShowAlert(false);
+  };
+
   const onSubmit = (data) => {
     const keywords = data.keywords
       ?.split(/[, ]+/)
@@ -43,17 +48,25 @@ const FormJob = () => {
     const productData = { ...data, images };
     if (keywords && keywords.length > 0) {
       productData.keywords = keywords;
+    } else {
+      delete productData.keywords;
     }
-
     mutation.mutate(productData);
-    // setShowAlert(true);
-    alert("Tu producto se ha subido correctamente");
+    setShowAlert(true);
     reset();
     setImages([]);
   };
 
   return (
     <>
+      {showAlert && (
+        <div className={styles.alert}>
+          Tu producto se ha subido correctamente
+          <button onClick={handleAlertAccept} className={styles.accept}>
+            Aceptar
+          </button>
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)} className={styles.sectionForm}>
         <div className={styles.title}>
           <h2>Información del servicio / empleo</h2>

@@ -68,7 +68,6 @@ const LatestProducts = () => {
   };
   const handleSessionAlert = () => {
     setSessionAlert(false);
-    // localStorage.setItem("previousProductPage", location.pathname);
     navigate("/user/login");
   };
 

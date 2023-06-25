@@ -10,7 +10,6 @@ import ModalCompra from "../../product/modalCompra/modalCompra";
 
 const FavoriteProducts = () => {
   const { data } = useQuery("fav-prods", getFavs);
-
   const favs = data && data[0].products;
   const [deletionAlert, setDeletionAlert] = useState(false);
   const [deleteProduct, setDeleteProduct] = useState(null);
@@ -22,11 +21,9 @@ const FavoriteProducts = () => {
 
   const openModal = () => {
     setModalOpen(!modalOpen);
-    console.log("abiertoooooooooooooooooo.");
   };
 
   const handleClick = (data) => {
-    console.log("DATAAAAAAAA.", data);
     openModal();
   };
 

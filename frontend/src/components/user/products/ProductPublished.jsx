@@ -14,9 +14,13 @@ const ProductPublished = () => {
     queryFn: getProductByUser,
   });
 
+  console.log("los prods", prods)
+
   const [modalOpen, setModalOpen] = useState(false);
   const [idProduct, setIdProduct] = useState("");
   const [gridOpen, setGridOpen] = useState(true);
+  const [deletionAlert, setDeletionAlert] = useState(false);
+  const [delProduct, setDelProduct] = useState(null);
 
   const toggleView = () => {
     setGridOpen(!gridOpen);
@@ -35,17 +39,22 @@ const ProductPublished = () => {
   const mutation = useMutation(deleteProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["products_published"]);
-      window.location.reload();
     },
   });
 
-  const handleDeletion = (id) => {
-    const shouldDelete = window.confirm(
-      "Estás a punto de borrar este producto. ¿Deseas continuar?"
-    );
-    if (shouldDelete) {
-      mutation.mutate(id);
-    }
+  const handleDeletionProd = (id) => {
+    setDelProduct(id);
+    setDeletionAlert(true);
+  };
+  const handleCancel = () => {
+    setDeletionAlert(false);
+  };
+
+  const handleConfirmDeletion = (id) => {
+    const updatedProduct = prods.find((prod) => prod._id === id);
+    if (!updatedProduct) return;
+    mutation.mutate(id);
+    window.location.reload();
   };
 
   return (
@@ -75,6 +84,25 @@ const ProductPublished = () => {
                       data-test="producto"
                       key={prod._id}
                     >
+                      {deletionAlert && delProduct === prod._id && (
+                      <div className={styles.alert}>
+                        "Estás a punto de borrar este producto. ¿Deseas continuar?"
+                        <div className={styles.alertButtons}>
+                          <button
+                            onClick={() => handleConfirmDeletion(prod._id)}
+                            className={styles.accept}
+                          >
+                            Aceptar
+                          </button>
+                          <button
+                            onClick={handleCancel}
+                            className={styles.accept}
+                          >
+                            Cancelar
+                          </button>
+                        </div>
+                      </div>
+                    )}
                       {prods && (
                         <Images images={prod.images} status={prod.status} />
                       )}
@@ -109,7 +137,7 @@ const ProductPublished = () => {
                         <button className={styles.logo}  onClick={() => handleClick(prod._id)}>
                           <span className="icon-pen1"></span>
                         </button>
-                        <button className={styles.logo} onClick={() => handleDeletion(prod._id)}>
+                        <button className={styles.logo} onClick={() => handleDeletionProd(prod._id)}>
                           <span className="icon-bin"></span>
                         </button>
                         <Link
@@ -143,6 +171,25 @@ const ProductPublished = () => {
                 (prod) =>
                   !prod.sold && (
                     <div className={styles.list} key={prod._id}>
+                      {deletionAlert && delProduct === prod._id && (
+                      <div className={styles.alert}>
+                        "Estás a punto de borrar este producto. ¿Deseas continuar?"
+                        <div className={styles.alertButtons}>
+                          <button
+                            onClick={() => handleConfirmDeletion(prod._id)}
+                            className={styles.accept}
+                          >
+                            Aceptar
+                          </button>
+                          <button
+                            onClick={handleCancel}
+                            className={styles.accept}
+                          >
+                            Cancelar
+                          </button>
+                        </div>
+                      </div>
+                    )}
                       <div className={styles.imgList}>
                         {prods && <ImagesList images={prod.images} />}
                       </div>
@@ -163,7 +210,7 @@ const ProductPublished = () => {
                         <button onClick={() => handleClick(prod._id)}>
                           <span className="icon-pen1"></span>
                         </button>
-                        <button onClick={() => handleDeletion(prod._id)}>
+                        <button onClick={() => handleDeletionProd(prod._id)}>
                           <span className="icon-bin"></span>
                         </button>
                         <Link
