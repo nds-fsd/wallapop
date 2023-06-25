@@ -17,6 +17,7 @@
 
 .container {
   margin-top: 3em;
+  min-height: 40vh;
 }
 
 .container h1 {

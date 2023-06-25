@@ -14,6 +14,7 @@ const messageSchema = new Schema({
     },
 
   body: { type: String },
+  check: { type: Boolean, default: false },
   created_at: { type: Date, default: new Date() },
 });
 

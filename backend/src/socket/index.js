@@ -23,7 +23,17 @@ const configurePrivateSocket = (server) => {
   });
 
   io.on("connection", (client) => {
-    console.log("Frontend is connected!");
+    client.emit("connection", "You are now connected");
+    client.join(`user-${client.user.id}`);
+
+    console.log(
+      `User: ${client.user.name} has now its session with id ${client.user.id}`
+    );
+
+    client.on("join-chat", (chatId) => {
+      client.join(`chat-${chatId}`);
+      console.log(`User: ${client.user.name} joined chat ${chatId}`);
+    });
   });
 
   io.on("disconnect", (socket) => {

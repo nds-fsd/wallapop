@@ -1,23 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useParams, useOutletContext } from "react-router-dom";
 import { getMessageByChatRoom, postMessage } from "../../utils/apiMessage";
 import styles from "./chat-room.module.css";
-import { io } from "socket.io-client";
 import { getUserData, getUserToken } from "../../utils/localStorage.utils";
 import ChatHeader from "./chat-header";
 import FormChat from "./formChat";
-
-const token = getUserToken();
-const socket = io("http://localhost:3001", {
-  path: "/private",
-  reconnectionDelayMax: 10000,
-  auth: {
-    token,
-  },
-});
+import { BsCheckAll } from "react-icons/bs";
 
 const ChatRoom = () => {
+  const { socket } = useOutletContext();
   const messagesContainerRef = useRef(null);
   const params = useParams();
 
@@ -32,25 +24,31 @@ const ChatRoom = () => {
   }, [messages]);
 
   useEffect(() => {
-    socket.connect();
-    socket.on("connection", (data) => {
-      console.log("Connected");
-    });
-    return () => {
-      socket.disconnect();
-    };
-  }, [socket]);
-
-  useEffect(() => {
     setMessages(data);
   }, [data]);
 
   useEffect(() => {
     const receivedMessage = (message) => {
-      setMessages([...messages, message]);
-      scrollToBottom();
+      if (message.chat_room_id === chatRoomID) {
+        setMessages([...messages, message]);
+        scrollToBottom();
+      }
     };
+    socket.emit("join-chat", chatRoomID);
+    socket.on("chat-joined", (data) => {
+      console.log(`Joined chat: ${data}`);
+    });
     socket.on("NEW_MESSAGE", receivedMessage);
+
+    const markAsRead = () => {
+      const readMessages = messages.map((message) => ({
+        ...message,
+        check: true,
+      }));
+      setMessages(readMessages);
+    };
+
+    socket.on("READ_MESSAGES", markAsRead);
 
     return () => {
       socket.off("NEW_MESSAGE", receivedMessage);
@@ -65,11 +63,15 @@ const ChatRoom = () => {
 
   return (
     <div>
-      {messages?.length > 0 ? (
-        <div className={styles.chatroomContainer}>
-          <ChatHeader chatRoomID={chatRoomID} />
-          <div className={styles.messageContainer}>
-            {messages.map((message, i) => (
+      <div className={styles.chatroomContainer}>
+        <ChatHeader chatRoomID={chatRoomID} />
+        <div className={styles.messageContainer}>
+          {messages?.map((message, i) => (
+            <div
+              className={`${
+                message.user_id === id ? styles.myCheck : styles.otherCheck
+              }`}
+            >
               <div
                 className={`${
                   message.user_id === id
@@ -80,18 +82,14 @@ const ChatRoom = () => {
               >
                 {message.body}
               </div>
-            ))}
-            <div ref={messagesContainerRef} />
-          </div>
+              {message.check === true && <BsCheckAll />}
+            </div>
+          ))}
+          <div ref={messagesContainerRef} />
+        </div>
 
-          <FormChat />
-        </div>
-      ) : (
-        <div className={styles.sinProducts}>
-          <h3>Sin mensajes todavía </h3>
-          <h5>Encuentra algo que te guste y empieza una conversación.</h5>
-        </div>
-      )}
+        <FormChat />
+      </div>
     </div>
   );
 };

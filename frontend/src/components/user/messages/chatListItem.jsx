@@ -3,6 +3,8 @@ import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 import styles from "./chatListItem.module.css";
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import { getCheckMessages, patchMessage } from "../../../utils/apiMessage";
+import { useQuery } from "react-query";
 
 const token = getUserToken();
 const socket = io("http://localhost:3001", {
@@ -13,41 +15,40 @@ const socket = io("http://localhost:3001", {
   },
 });
 
-const ChatListItem = ({ data }) => {
-  const { id } = getUserData();
-  const [newMessage, setNewMessage] = useState(false);
-
-  useEffect(() => {
-    socket.connect();
-    socket.on("connection", (data) => {
-      console.log("Connected");
-    });
-    return () => {
-      socket.disconnect();
-    };
-  }, [socket]);
-
+const ChatListItem = ({ data, socket }) => {
   const { product_id: product, owner_id: owner, buyer_id: buyer, _id } = data;
+  const { id } = getUserData();
+  const { data: uncheckedMessages, refetch } = useQuery(
+    ["checkmessage", _id],
+    getCheckMessages
+  );
 
   useEffect(() => {
-    const receivedMessage = (message) => {
+    const updateNotification = (message) => {
       if (message.chat_room_id === _id) {
-        setNewMessage(true);
+        refetch();
       }
     };
-    socket.on("NEW_MESSAGE", receivedMessage);
+
+  
+    socket.on("NEW_MESSAGE", updateNotification);
 
     return () => {
-      socket.off("NEW_MESSAGE", receivedMessage);
+      socket.off("NEW_MESSAGE", updateNotification);
     };
-  }, [newMessage, socket]);
+  }, [_id, socket]);
+
+  const handleCheckMessage = async (chatId) => {
+    const patchedMessages = await patchMessage(chatId);
+    refetch();
+  };
 
   return (
     <div>
       <Link
         to={`/user/messages/chatroom/${_id}`}
         className={styles.itemContainer}
-        onClick={() => setNewMessage(false)}
+        onClick={() => handleCheckMessage(_id)}
       >
         <div>
           {product?.images && product.images.length > 0 ? (
@@ -59,11 +60,10 @@ const ChatListItem = ({ data }) => {
           )}
         </div>
         <div className={styles.chatData}>
-          <p>{owner?.id !== id ? owner?.name : buyer?.name}</p>
-          <p>{owner?.id === id ? buyer?.name : ""}</p>
+          <p>{owner?._id !== id ? owner?.name : buyer?.name}</p>
           <h3>{product?.title}</h3>
         </div>
-        {newMessage && (
+        {uncheckedMessages?.length > 0 && (
           <div className={styles.newMessage}>
             <p>"</p>
           </div>

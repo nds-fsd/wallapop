@@ -85,7 +85,6 @@ const getProductByUserFavs = async (req, res) => {
 };
 
 const getProductByUserSold = async (req, res) => {
-  // console.log("paso por aqui");
   const userId = req.params.user;
   try {
     if (!userId) res.status(404).json("no user id provided");
@@ -134,6 +133,7 @@ const getProductByName = async (req, res) => {
 // Crear producto
 const postProduct = async (req, res) => {
   const { body } = req;
+
   const { user } = req.params;
   if (!body.title || !body.description || !body.price) {
     return res.status(400).json({ error: { login: "Missing information" } });

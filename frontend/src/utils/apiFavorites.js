@@ -4,6 +4,7 @@ import { getUserData, getUserToken } from "./localStorage.utils";
 export const getFavs = () => {
   const { id } = getUserData();
   const token = getUserToken();
+
   return api
     .get(`/favorites/${id}`, {
       headers: {
@@ -50,6 +51,7 @@ export const deleteFav = (productId) => {
 
 export const changeFavorite = (product, isFavorite) => {
   const { id } = JSON.parse(localStorage.getItem("user"));
+
   const { token } = getUserToken();
 
   const favoriteData = {

@@ -19,9 +19,15 @@ const EditElse = ({ id }) => {
       reset(product);
     },
   });
-
+  const queryClient = useQueryClient(["product-updated"]);
   const { images, setImages } = useContext(AuthContext);
   const [imagePreviews, setImagePreviews] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+    window.location.reload();
+  };
 
   const handleImageUpload = (files, index) => {
     const imageUrls = Array.from(files).map((file) =>
@@ -35,22 +41,24 @@ const EditElse = ({ id }) => {
   };
 
   const handleRemoveImage = (index) => {
-    console.log("Borrando imagen", index);
     setImages((prevImg) => {
       const updatedImages = [...prevImg];
       updatedImages.splice(index, 1);
       return updatedImages;
+    });
+    setImagePreviews((prevPreviews) => {
+      const updatedPreviews = [...prevPreviews];
+      updatedPreviews.splice(index, 1);
+      return updatedPreviews;
     });
     const updatedProduct = { ...product };
     updatedProduct.images = product.images.filter((_, i) => i !== index);
     reset({ ...product, images: updatedProduct.images });
   };
 
-  const queryClient = useQueryClient(["product-updated"]);
   const mutation = useMutation(updateProduct, {
     onSuccess: () => {
       queryClient?.invalidateQueries(["product-updated", id]);
-      window.location.reload();
     },
   });
 
@@ -69,17 +77,24 @@ const EditElse = ({ id }) => {
         .flat()
         .filter((keyword) => keyword !== "");
     }
+    
     const updatedImages =
       images.length > 0 ? [...product.images, ...images] : product.images;
     const productData = { ...product, keywords, images: updatedImages };
-    // console.log("este el producto mutado", productData)
     mutation.mutate(productData);
-    alert("Los cambios se han guardado satisfactoriamente");
-    setImages([updatedImages]);
+    setShowAlert(true);
   };
 
   return (
     <>
+      {showAlert && (
+        <div className={styles.alert}>
+          Los cambios se han guardado satisfactoriamente
+          <button onClick={handleCloseAlert} className={styles.accept}>
+            Aceptar
+          </button>
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
         <div className={styles.editContainer}>
           <div className={styles.title}>

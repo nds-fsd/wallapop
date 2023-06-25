@@ -2,9 +2,7 @@ import React from "react";
 import styles from "./modalContainer.module.css";
 import ModalCompra from "./modalCompra";
 
-const ModalContainerCompra = ({ modalOpen, setModalOpen, prod }) => {
-  console.log("Hola, has ido al modal container compra");
-  // console.log("PROD", prod);
+const ModalContainerCompra = ({ modalOpen, setModalOpen, data }) => {
   return (
     <>
       {modalOpen && (
@@ -19,7 +17,13 @@ const ModalContainerCompra = ({ modalOpen, setModalOpen, prod }) => {
                 <span className="icon-cross1"></span>
               </button>
             </div>
-            {prod && <ModalCompra prod={prod} />}
+            {data && (
+              <ModalCompra
+                data={data}
+                modalOpen={modalOpen}
+                setModalOpen={setModalOpen}
+              />
+            )}
           </div>
         </div>
       )}

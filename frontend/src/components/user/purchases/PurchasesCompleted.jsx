@@ -12,7 +12,7 @@ const PurchasesCompleted = () => {
     queryKey: ["PURCHASES_COMPLETED"],
     queryFn: getTransactionsByUser,
   });
-  // console.log("los productos", transactions);
+
   const [gridOpen, setGridOpen] = useState(true);
   const toggleView = () => {
     setGridOpen(!gridOpen);
@@ -62,7 +62,7 @@ const PurchasesCompleted = () => {
               ))
             ) : (
               <div className={styles.sinProducts}>
-                <h3>Aún sin ventas</h3>
+                <h3>Aún no has realizado ninguna compra</h3>
                 <h5>Empieza a vender para ganar dinero 🛒</h5>
               </div>
             )}
@@ -107,7 +107,7 @@ const PurchasesCompleted = () => {
               ))
             ) : (
               <div className={styles.sinProducts}>
-                <h3>Aún sin ventas</h3>
+                <h3>Aún no has realizado ninguna compra</h3>
                 <h5>Empieza a vender para ganar dinero 🛒</h5>
               </div>
             )}

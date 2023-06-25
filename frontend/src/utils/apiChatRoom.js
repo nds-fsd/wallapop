@@ -3,6 +3,7 @@ import { api } from "./api";
 export const getProductByChatRoom = (data) => {
   const token = JSON.parse(localStorage.getItem("user-session"));
   const params = data.queryKey[1];
+
   return api
     .get(`/chat-room/product/${params}`, {
       headers: {
@@ -27,6 +28,7 @@ export const getAllChats = (data) => {
 
 export const postChatRoom = (data) => {
   const token = JSON.parse(localStorage.getItem("user-session"));
+
   return api
     .post(`/chat-room`, data, {
       headers: {

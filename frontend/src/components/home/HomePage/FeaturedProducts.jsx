@@ -32,7 +32,9 @@ const FeaturedProducts = ({ categoriesToRender }) => {
   const productsPerPage = 5;
   const displayedProducts =
     filteredProducts &&
-    filteredProducts.slice(currentIndex, currentIndex + productsPerPage);
+    filteredProducts
+    .concat(filteredProducts.slice(0, productsPerPage))
+    .slice(currentIndex, currentIndex + productsPerPage);
   const handleNext = () => {
     setCurrentIndex((currentIndex) =>
       currentIndex === filteredProducts.length - 1 ? 0 : currentIndex + 1

@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import ListCategory from "../category/listCategory/ListCategory";
 import styles from "./index.module.css";
 import HomePage from "./HomePage/HomePage";
-import banner from "../../assets/images/banner2.png"
-import bannerDark from "../../assets/images/bannerDark.png"
+import banner from "../../assets/images/banner4.png"
+import bannerDark from "../../assets/images/bannerDark3.png"
 import { ThemeContext } from "../../context/themeContext";
 
 
