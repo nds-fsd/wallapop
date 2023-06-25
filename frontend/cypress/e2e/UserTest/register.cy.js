@@ -4,9 +4,9 @@ describe("register", () => {
 
     cy.get('[name="name"]').type("mar");
     cy.get('[name="surname"]').type("badia");
-    cy.get('input[type="email"]').type("mar.badia2@gmail.com");
+    cy.get('input[type="email"]').type("mar.badia222@gmail.com");
     cy.get('input[type="password"]').type("12345");
-    cy.get("[name=phone]").type("00000000");
+    cy.get("[name=phone]").type("0000000");
     cy.get("[name=address]").type("Gran via 15");
     cy.get('input[type="date"]').type("1997-01-21");
     cy.get("[name=gender]").select("Femenino");

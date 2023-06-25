@@ -6,17 +6,11 @@ describe("template spec", () => {
     cy.get('input[type="password"]').type("12345");
     cy.get('[data-test="boton"]').contains("Inicia sesión").click();
 
-    cy.wait(300);
+    cy.wait(3000);
+    cy.visit("http://localhost:3000/category/Consolas%20y%20Videojuegos");
+    cy.get('[data-test="product"]').first().click();
 
-    cy.get('[class*="cardsContainer"] > [class*="card"]> div p[class*="title"]')
-      .contains("jmhngbfc")
-      .find('[data-test="card_prod"]>span.icon-eye1')
-      .click();
-
-    cy.wait(2000);
-    cy.contains("Columna jbl");
+    cy.wait(5000);
+    cy.contains("NHL 95");
   });
 });
-
-// Comprobar al apretar un product et dirigeix a la pagina des producte
-// amb totes ses dades cargades
