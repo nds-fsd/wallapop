@@ -7,6 +7,7 @@ import { io } from "socket.io-client";
 import { getUserData, getUserToken } from "../../utils/localStorage.utils";
 import ChatHeader from "./chat-header";
 import FormChat from "./formChat";
+import {BsCheckAll} from "react-icons/bs"
 
 const token = getUserToken();
 const socket = io("http://localhost:3001", {
@@ -69,10 +70,15 @@ const ChatRoom = () => {
 
   return (
     <div>
-        <div className={styles.chatroomContainer}>
-          <ChatHeader chatRoomID={chatRoomID} />
-          <div className={styles.messageContainer}>
-            {messages?.map((message, i) => (
+      <div className={styles.chatroomContainer}>
+        <ChatHeader chatRoomID={chatRoomID} />
+        <div className={styles.messageContainer}>
+          {messages?.map((message, i) => (
+            <div
+            className={`${
+              message.user_id === id
+              ? styles.myCheck
+              : styles.otherCheck}`}>
               <div
                 className={`${
                   message.user_id === id
@@ -83,12 +89,14 @@ const ChatRoom = () => {
               >
                 {message.body}
               </div>
-            ))}
-            <div ref={messagesContainerRef} />
-          </div>
-
-          <FormChat />
+              {message.check === true && (<BsCheckAll />)}
+            </div>
+          ))}
+          <div ref={messagesContainerRef} />
         </div>
+
+        <FormChat />
+      </div>
     </div>
   );
 };
