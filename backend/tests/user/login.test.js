@@ -4,6 +4,7 @@ const emails = require("email-generator");
 const { connectDBTest, disconnectDBTest } = require("../connection");
 const { loadUser } = require("../fixtures/users.data");
 
+console.log("HOlaaa estas en el test de login");
 beforeAll(async () => {
   await connectDBTest();
   await loadUser();

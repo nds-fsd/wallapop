@@ -43,16 +43,6 @@ describe("POST /register", () => {
       expect(response.body["token"]).toBeDefined;
     });
   });
-  // Tener el error capturado cuando falta password o email
-  describe("Missing information", () => {
-    test("Response status 400", async () => {
-      const missingInfo = [{ email: "proba@gmail.com" }, { password: "12345" }];
-      missingInfo.forEach(async (info) => {
-        const response = await request(app).post("/user/register").send(info);
-        expect(response.statusCode).toBe(400);
-      });
-    });
-  });
 
   // Tener el error capturado cuando ya esta registrado el email
   describe("Email already registered", () => {

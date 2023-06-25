@@ -13,7 +13,7 @@ describe("PATCH /user", () => {
   // paso s'info per probar de modificar s'user
   test("Response status 200", async () => {
     const response = await request(app)
-      .patch("/products/6461693bf9a77cdb3d869ca5")
+      .patch("/user/6461693bf9a77cdb3d869ca5")
       .set(
         "Authorization",
         "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODA4MDkzMDNhNzZmOTc2NjM5MDFlYSIsIm5hbWUiOiJNYXIiLCJlbWFpbCI6IlwiamVyYWxkLnNoYXJlcjY3NzcxQG1haWxjbHViLmZyXCIiLCJpYXQiOjE2ODYxNDMxMjMsImV4cCI6MzM3NzQ3MDI0Nn0.9holJ24qprV5A4_IyTR7lcW-b4xXpxYmH-mfRSqWOw0"

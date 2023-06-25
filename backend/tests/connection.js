@@ -9,6 +9,7 @@ exports.connectDBTest = async () => {
   try {
     const mongod = await MongoMemoryServer.create();
     const uri = mongod.getUri();
+    console.log("BD TEST", uri);
 
     await mongoose.connect(uri);
 
@@ -23,7 +24,6 @@ exports.disconnectDBTest = async () => {
     await mongoose.connection.close();
     if (mongodb) {
       await mongodb.stop();
-
     }
   } catch (err) {
     console.log(err);
