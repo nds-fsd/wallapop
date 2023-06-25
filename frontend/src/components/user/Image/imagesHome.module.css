@@ -69,7 +69,6 @@
   color: var(--blue-dark);
 }
 
-
 .text {
   margin-top: 1em;
   background-color: var(--blue-medium);
@@ -87,11 +86,11 @@
 .statusNoImage {
   background-color: var(--blue-light);
   color: var(--blue-dark);
-  margin: 0 0 0 8em;
+  margin: 0 4.1em 0 8em;
   border-radius: 1em;
   height: fit-content;
-  width: fit-content;
-  z-index: 500;
-  padding: 0.1em 0.5em;
+  width: max-content;
+  z-index: 10;
+  padding: 0.1em 0.8em;
   font-size: 0.8em;
 }
