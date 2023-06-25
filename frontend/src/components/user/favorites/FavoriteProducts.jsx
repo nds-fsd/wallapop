@@ -5,14 +5,16 @@ import { Link } from "react-router-dom";
 import { deleteFav, getFavs } from "../../../utils/apiFavorites";
 import Images from "../Image/Images";
 import ImagesList from "../Image/ImagesList";
-import ModalCompra from "../../product/modalCompra/modalCompra";
-
+import ModalContainerCompra from "../../product/modalCompra/ModalContainerCompra";
 
 const FavoriteProducts = () => {
   const { data } = useQuery("fav-prods", getFavs);
-  const favs = data && data[0].products;
+
+  const favs = data && data[0]?.products;
+
   const [deletionAlert, setDeletionAlert] = useState(false);
   const [deleteProduct, setDeleteProduct] = useState(null);
+  const [product, setProduct] = useState("");
   const [gridOpen, setGridOpen] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const toggleView = () => {
@@ -23,7 +25,9 @@ const FavoriteProducts = () => {
     setModalOpen(!modalOpen);
   };
 
-  const handleClick = (data) => {
+  const handleClick = (fav) => {
+    // guardamos en el prod en el useState para luego enviarselo al modal
+    setProduct(fav);
     openModal();
   };
 
@@ -67,7 +71,7 @@ const FavoriteProducts = () => {
 
       {gridOpen ? (
         <div className={styles.gridContainerFavs}>
-          {data && favs.length > 0 ? (
+          {data && favs?.length > 0 ? (
             favs.map(
               (fav) =>
                 !fav.sold && (
@@ -127,26 +131,29 @@ const FavoriteProducts = () => {
                         </button>
                       </Link>
                       <div className={styles.comprar}>
-                        <button onClick={() => handleClick(data)}>
+                        <button onClick={() => handleClick(fav)}>
                           Comprar ya
                         </button>
                       </div>
-                      <ModalCompra
-                        modalOpen={modalOpen}
-                        setModalOpen={setModalOpen}
-                        data={data}
-                      />
                     </div>
+                    <ModalContainerCompra
+                      modalOpen={modalOpen}
+                      setModalOpen={setModalOpen}
+                      data={product}
+                    />
                   </div>
                 )
             )
           ) : (
-            <div>Aún no tienes productos favoritos</div>
+            <div className={styles.sinProducts}>
+              <h3>Aún no tienes productos favoritos</h3>
+              <h5>Para guardar un producto, pulsa el icono del producto ❤️</h5>
+            </div>
           )}
         </div>
       ) : (
         <div className={styles.listContainerFavs}>
-          {data && favs.length > 0 ? (
+          {data && favs?.length > 0 ? (
             favs.map(
               (fav) =>
                 !fav.sold && (
@@ -186,7 +193,6 @@ const FavoriteProducts = () => {
                       </div>
                       <p className={styles.paragraph}>{fav.description}</p>
                     </div>
-
                     <div className={styles.unfav}>
                       <div className={styles.iconsList}>
                         <button
@@ -205,21 +211,24 @@ const FavoriteProducts = () => {
                         </Link>
                       </div>
                       <div className={styles.comprarFav}>
-                        <button onClick={() => handleClick(data)}>
+                        <button onClick={() => handleClick(fav)}>
                           Comprar ya
                         </button>
                       </div>
-                      <ModalCompra
-                        modalOpen={modalOpen}
-                        setModalOpen={setModalOpen}
-                        data={data}
-                      />
                     </div>
+                    <ModalContainerCompra
+                      modalOpen={modalOpen}
+                      setModalOpen={setModalOpen}
+                      prod={product}
+                    />
                   </div>
                 )
             )
           ) : (
-            <div>Aún no tienes productos favoritos</div>
+            <div className={styles.sinProducts}>
+              <h3>Aún no tienes productos favoritos</h3>
+              <h5>Para guardar un producto, pulsa el icono del producto ❤️</h5>
+            </div>
           )}
         </div>
       )}

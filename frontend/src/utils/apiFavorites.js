@@ -3,7 +3,8 @@ import { getUserData, getUserToken } from "./localStorage.utils";
 
 export const getFavs = () => {
   const { id } = getUserData();
-  const { token } = getUserToken();
+  const token = getUserToken();
+
   return api
     .get(`/favorites/${id}`, {
       headers: {
@@ -21,7 +22,6 @@ export const getFavs = () => {
 };
 
 export const createFav = (data) => {
-  // console.log("creo el favorito")
   const { id } = getUserData();
   return api
     .post(`/favorites/${id}`, data)
@@ -35,14 +35,13 @@ export const createFav = (data) => {
 };
 
 export const deleteFav = (productId) => {
-  // console.log("borro el favorito")
   const { id } = getUserData();
   const { token } = getUserToken();
   return api
     .delete(`/favorites/${id}/${productId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
-      }
+      },
     })
     .then((res) => res.data)
     .catch((error) => {
@@ -50,11 +49,9 @@ export const deleteFav = (productId) => {
     });
 };
 
-
-
 export const changeFavorite = (product, isFavorite) => {
   const { id } = JSON.parse(localStorage.getItem("user"));
-  // console.log("el user id", id)
+
   const { token } = getUserToken();
 
   const favoriteData = {

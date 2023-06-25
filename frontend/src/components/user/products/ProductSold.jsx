@@ -11,7 +11,6 @@ const ProductSold = () => {
     queryKey: ["PRODUCTS_SOLD"],
     queryFn: getSoldByUser,
   });
-  // console.log("los productos", prods);
   const [gridOpen, setGridOpen] = useState(true);
   const toggleView = () => {
     setGridOpen(!gridOpen);

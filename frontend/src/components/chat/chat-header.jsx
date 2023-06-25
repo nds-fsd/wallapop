@@ -7,6 +7,7 @@ const ChatHeader = ({ chatRoomID }) => {
 
   const id =  {chatRoomID} ;
   const { data } = useQuery(["product", id.chatRoomID], getProductByChatRoom);
+  console.log(data)
 
 
   const product = data?.product_id;

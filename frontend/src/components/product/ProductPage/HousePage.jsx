@@ -89,6 +89,11 @@ const HousePage = ({ id }) => {
 
 
   const handleCreateChatRoom = async () => {
+    if (!userToken) {
+      setSessionAlert(true);
+      setShowAlert(false);
+      return;
+    }
     const body = {
       product_id: data._id,
       owner_id: data.user._id,
@@ -141,14 +146,14 @@ const HousePage = ({ id }) => {
               </div>
             </div>
             <div className={styles.buttons}>
-              <button
+            {userData?.id !== data?.user._id ? (<button
                 onClick={handleFavorite}
                 className={`${styles.like} ${
                   userToken && userFavorites ? styles.focused : ""
                 }`}
               >
                 <span className="icon-heart1"></span>
-              </button>
+              </button>) : ("")}
               {userData?.id !== data?.user._id ? (
                 <button className={styles.chat} onClick={handleCreateChatRoom}>
                   CHAT
@@ -237,7 +242,7 @@ const HousePage = ({ id }) => {
           <RelatedProducts category={data.category} parentId={data._id} />
         )}
       </div>
-      {data && userData?.id !== data?.user._id ? (<ProductBar data={data}/>) : ("")}
+      {data && userToken && userData?.id !== data?.user._id ? (<ProductBar data={data}/>) : ("")}
 
     </>
   );

@@ -7,11 +7,9 @@ import Images from "../Image/Images";
 import ImagesList from "../Image/ImagesList";
 
 const SalesCompleted = () => {
-  const { data: prods, isLoading } = useQuery({
-    queryKey: ["PRODUCTS_SOLD"],
-    queryFn: getSoldByUser,
-  });
+  const { data: prods, isLoading } = useQuery("PRODUCTS_SOLD", getSoldByUser);
   const [gridOpen, setGridOpen] = useState(true);
+
   const toggleView = () => {
     setGridOpen(!gridOpen);
   };
@@ -37,7 +35,11 @@ const SalesCompleted = () => {
           <div className={styles.gridContainer} data-test="productos">
             {prods && prods.length > 0 ? (
               prods.map((prod) => (
-                <div className={styles.card} data-test="producto">
+                <div
+                  className={styles.card}
+                  key={prod._id}
+                  data-test="producto"
+                >
                   {prods && (
                     <Images images={prod.images} status={prod.status} />
                   )}
@@ -70,14 +72,20 @@ const SalesCompleted = () => {
                 </div>
               ))
             ) : (
-              <div>Aún no has realizado ninguna venta</div>
+              <div className={styles.sinProducts}>
+                <h3>Aún no has realizado ninguna venta</h3>
+                <h5>
+                  Créenos, es muuucho mejor cuando vendes cosas. ¡Sube algo que
+                  quieras vender! 💸
+                </h5>
+              </div>
             )}
           </div>
         ) : (
           <div className={styles.listContainer}>
             {prods && prods.length > 0 ? (
               prods.map((prod) => (
-                <div className={styles.list} key={prod.id}>
+                <div className={styles.list} key={prod._id}>
                   <div className={styles.imgList}>
                     {prods && <ImagesList images={prod.images} />}
                   </div>
@@ -96,7 +104,13 @@ const SalesCompleted = () => {
                 </div>
               ))
             ) : (
-              <div>Aún no has realizado ninguna venta</div>
+              <div className={styles.sinProducts}>
+                <h3>Aún no has realizado ninguna venta</h3>
+                <h5>
+                  Créenos, es muuucho mejor cuando vendes cosas. ¡Sube algo que
+                  quieras vender! 💸
+                </h5>
+              </div>
             )}
           </div>
         )}

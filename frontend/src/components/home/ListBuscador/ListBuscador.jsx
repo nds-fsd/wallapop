@@ -25,6 +25,7 @@ const ListBuscador = () => {
         {!isLoading &&
           // hago bucle para mostrar todos los productos que me ha llegado de la BD
           products.map((prod) => {
+            // quito los vendidos para que no se vean
             if (!prod.sold) {
               return (
                 // Llamo al componente PRoduct y le paso la info de cada producto

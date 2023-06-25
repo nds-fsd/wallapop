@@ -48,7 +48,6 @@ const getProductById = async (req, res) => {
 };
 
 const getProductByUser = async (req, res) => {
-
   const userId = req.params.user;
   try {
     if (!userId) res.status(404).json("no user id provided");
@@ -65,7 +64,6 @@ const getProductByUser = async (req, res) => {
 };
 
 const getProductByUserFavs = async (req, res) => {
-
   const userId = req.params.user;
   try {
     if (!userId) res.status(404).json("no user id provided");
@@ -87,7 +85,6 @@ const getProductByUserFavs = async (req, res) => {
 };
 
 const getProductByUserSold = async (req, res) => {
-  // console.log("paso por aqui");
   const userId = req.params.user;
   try {
     if (!userId) res.status(404).json("no user id provided");
@@ -113,7 +110,6 @@ const getProductByCategory = async (req, res) => {
       //y populamos con categorias para buscar los productos que tiene esa categoria
       .populate("categories");
     res.status(200).json(productByCategory);
-
   } catch (error) {
     res.status(404).json({ error: "Sorry, can't find this category" });
     console.log(error);
@@ -137,7 +133,7 @@ const getProductByName = async (req, res) => {
 // Crear producto
 const postProduct = async (req, res) => {
   const { body } = req;
-  // console.log("body", body);
+
   const { user } = req.params;
   if (!body.title || !body.description || !body.price) {
     return res.status(400).json({ error: { login: "Missing information" } });
@@ -166,11 +162,7 @@ const updateProductById = async (req, res) => {
     return res.status(400).json({ error: { login: "Missing information" } });
   }
   try {
-    const updateProduct = await productModel
-      .findByIdAndUpdate(id, body)
-      // .findByIdAndUpdate(id, body, { new: true })
-
-      .exec();
+    const updateProduct = await productModel.findByIdAndUpdate(id, body).exec();
     if (!updateProduct) {
       return res.status(404).json({ error: "Sorry, can't find this product" });
     }

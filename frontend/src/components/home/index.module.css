@@ -4,9 +4,21 @@
   justify-content: center;
   align-items: center;
   background-color: var(--gray-to-bg-dark);
-  margin-top: 12rem;
+  margin-top: 10rem;
 }
 
+.banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.homeContainer img {
+  object-fit: cover;
+  max-width: 100vw;
+}
 /* .homeContainer h1 {
   font-size: 2rem;
   color: var(--blue-dark-to-white);
@@ -16,4 +28,3 @@
   font-size: 1.5rem;
   color: var(--blue-dark-to-white);
 } */
- 

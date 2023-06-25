@@ -3,10 +3,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9999;
+  z-index: 9998;
   width: 720px;
   height: 640px;
-  border: 0.2em solid black;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   border-radius: 2%;
   background-color: var(--grey-to-bg-medium);
   color: var(--blue-dark-to-blue-light);
@@ -72,6 +74,8 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-top: 2rem;
+
 }
 
 .comprar {
@@ -85,11 +89,14 @@
   border: none;
   cursor: pointer;
   font-weight: 600;
+  margin-top: 1rem;
 }
 
+
 .comprar:hover {
-  background-color: var(--blue-light) !important;
-  color: var(--grey-to-bg-medium) !important;
+  background-color: var(--gray-to-bg-medium) !important;
+  color: var(--yellow-main) !important;
+  border: 2px solid var(--yellow-main);
   cursor: pointer;
 }
 
@@ -97,7 +104,6 @@
   background-color: #fff;
   width: 640px;
   height: 90px;
-  margin-bottom: 1rem;
   border-radius: 2px;
   display: flex;
   flex-direction: column;
@@ -138,7 +144,6 @@
   font-size: 1rem;
   margin-left: 1rem;
   background-color: var(--grey-to-bg-medium);
-  /* color: var(--black-to-white); */
   color: var(--blue-dark-to-yellow-light);
 }
 .error > p {

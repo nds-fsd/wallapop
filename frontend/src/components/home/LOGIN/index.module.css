@@ -1,8 +1,9 @@
 .darkMode {
-  background-color: var(--gray-to-bg-dark);
+  background-color: transparent;
   color: var(--blue-dark-to-yellow-main);
   font-size: 2em;
   cursor: pointer;
+  display: flex;
 }
 .darkMode:hover {
   color: var(--yellow-main-to-blue-light);
@@ -10,9 +11,8 @@
 
 .navbar {
   width: 100vw;
-  height: 15vh;
+  min-height: 15vh;
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
   align-items: center;
   border-bottom: solid rgba(198, 197, 197, 0.368) 0.2rem;
@@ -20,8 +20,10 @@
   position: fixed;
   top: 0;
   z-index: 1000;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.5rem;
 }
-
 .logoLink img {
   width: 7rem;
   height: auto;
@@ -43,11 +45,16 @@
 }
 
 .buttonLink {
-  width: 50vw;
   display: flex;
-  justify-content: flex-end;
-  gap: 3rem;
-  padding-right: 5rem;
+  gap: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .buttonLink {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0.5rem;
+  }
 }
 
 .buttonLink :hover {
@@ -80,4 +87,3 @@
   background-color: var(--yellow-main-to-bg-dark);
   color: var(--yellow-light-to-blue-light);
 }
-

@@ -70,3 +70,11 @@
   background-color: var(--gray-to-bg-dark);
   color: var(--black-to-yellow-light);
 }
+.sinProducts {
+  color: var(--blue-dark-to-yellow-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-left: 9rem;
+}

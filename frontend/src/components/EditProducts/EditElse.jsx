@@ -77,6 +77,7 @@ const EditElse = ({ id }) => {
         .flat()
         .filter((keyword) => keyword !== "");
     }
+    
     const updatedImages =
       images.length > 0 ? [...product.images, ...images] : product.images;
     const productData = { ...product, keywords, images: updatedImages };

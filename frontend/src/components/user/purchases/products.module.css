@@ -146,16 +146,17 @@
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
-  margin: 2em;
+  padding: 1rem;
 }
 .list {
   height: 7rem;
   background-color: var(--white-to-bg-medium);
   display: flex;
   gap: 2.5em;
-  width: 70rem;
   border-radius: 1.5rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  max-width: max-content;
+  padding-right: 1rem;
 }
 .list:hover {
   box-shadow: 0 0 3px var(--black-to-yellow-main);
@@ -272,7 +273,12 @@
   gap: 2em;
 }
 
-.disabled {
-  opacity: 0.5; /* Redueix l'opacitat per donar una aparença desactivada */
-  pointer-events: none;
+.sinProducts {
+  color: var(--blue-dark-to-yellow-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-left: 9rem;
 }

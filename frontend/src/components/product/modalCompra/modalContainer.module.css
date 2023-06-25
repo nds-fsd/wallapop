@@ -1,0 +1,51 @@
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  color: var(--blue-dark-to-yellow-main);
+  background-color: rgba(2, 2, 2, 0.5);
+}
+
+.modal {
+  width: 720px;
+  height: 640px;
+  position: relative;
+  border-radius: 1em;
+  padding: 2em;
+  box-shadow: 2px 2px 5px rgba(104, 104, 104, 0.1);
+  background-color: var(--grey-to-bg-medium);
+}
+
+.title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 2rem;
+  margin-top: 1.5em;
+  color: var(--blue-dark-to-yellow-light);
+}
+
+.close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background-color: transparent;
+  border: none;
+}
+
+.close span:nth-child(1) {
+  color: var(--red);
+  font-size: 1.2em;
+}
+
+.close span:nth-child(1):hover {
+  color: var(--red);
+  cursor: pointer;
+  font-size: 1.3em;
+}
