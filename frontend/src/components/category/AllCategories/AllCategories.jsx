@@ -10,10 +10,10 @@ const AllCategories = () => {
     queryKey: ["products"],
     queryFn: getTwelveProducts,
   });
-  const [visibleProductsCount, setVisibleProductsCount] = useState(12)
+  const [visibleProductsCount, setVisibleProductsCount] = useState(12);
   const loadMoreProducts = () => {
-    setVisibleProductsCount((prevCount) => prevCount + 12 )
-  }
+    setVisibleProductsCount((prevCount) => prevCount + 12);
+  };
 
   const showLessProducts = () => {
     setVisibleProductsCount((prevCount) => prevCount - 12);
@@ -26,7 +26,6 @@ const AllCategories = () => {
   //   setShowAll(!showAll);
   // };
 
-
   return (
     <>
       <div className={styles.gridContainer}>
@@ -35,9 +34,8 @@ const AllCategories = () => {
             data-test="card_prod"
             to={`/category/product/${prod._id}`}
             target="_blank"
-            style={{ textDecoration: 'none' }}
+            style={{ textDecoration: "none" }}
             className={styles.linkLink}
-
           >
             <div key={prod._id} className={styles.card}>
               {prods && (
@@ -64,7 +62,6 @@ const AllCategories = () => {
         ))}
       </div>
 
-
       {prods && prods.length > 12 && visibleProductsCount < prods.length && (
         <button onClick={loadMoreProducts} className={styles.view}>
           Mostrar más
@@ -75,7 +72,7 @@ const AllCategories = () => {
           Mostrar menos
         </button>
       )}
-      
+
       {/* {prods && prods.length > 20 && (
         <button onClick={toggleShowAll} className={styles.view}>
           {showAll ? "Mostrar menos" : "Mostrar más"}

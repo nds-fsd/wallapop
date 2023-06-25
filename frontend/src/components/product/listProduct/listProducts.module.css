@@ -37,7 +37,7 @@
   padding: 0 1rem;
   border-radius: 2.5rem;
   border: 0.15em solid var(--yellow-main-to-blue-light);
-  background-color: var(--white-to-bg-medium);
+  background-color: var(--gray-to-bg-dark);
   color: var(--yellow-main-to-blue-light);
   font-weight: bold;
   cursor: pointer;
