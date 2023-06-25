@@ -11,6 +11,7 @@ const FavoriteProducts = () => {
   const { data } = useQuery("fav-prods", getFavs);
 
   const favs = data && data[0]?.products;
+
   const [deletionAlert, setDeletionAlert] = useState(false);
   const [deleteProduct, setDeleteProduct] = useState(null);
   const [product, setProduct] = useState("");

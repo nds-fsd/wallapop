@@ -34,7 +34,7 @@ const ProductSold = () => {
       <div>
         {gridOpen ? (
           <div className={styles.gridContainer} data-test="productos">
-            {prods &&
+            {prods && prods.length > 0 ? (
               prods.map((prod) => (
                 <div className={styles.card} data-test="producto" disabled>
                   {prods && (
@@ -67,11 +67,14 @@ const ProductSold = () => {
 
                   <p className={styles.paragraph}>{prod.description}</p>
                 </div>
-              ))}
+              ))
+            ) : (
+              <div>Aún no has vendido ningún producto</div>
+            )}
           </div>
         ) : (
           <div className={styles.listContainer}>
-            {prods &&
+            {prods && prods.length > 0 ? (
               prods.map((prod) => (
                 <div className={styles.list} key={prod.id}>
                   <div className={styles.imgList}>
@@ -90,7 +93,10 @@ const ProductSold = () => {
                     <p className={styles.paragraph}>{prod.description}</p>
                   </div>
                 </div>
-              ))}
+              ))
+            ) : (
+              <div>Aún no has vendido ningún producto</div>
+            )}
           </div>
         )}
       </div>

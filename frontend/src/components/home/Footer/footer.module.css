@@ -5,6 +5,14 @@
   /* box-shadow: 0 2px 4px 3px var(--blue-medium); */
 }
 
+/* .secondContainer {
+  background-color: var(--blue-medium);
+  color: white;
+  padding: 1em 10em;
+  position: static;
+  bottom: 0
+} */
+
 .container h2 {
   font-size: 1.5rem;
 }

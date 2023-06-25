@@ -30,7 +30,7 @@ const ListProducts = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1 className={styles.title}>{params.category}</h1>
       {isLoading && (
         <div>
@@ -69,11 +69,12 @@ const ListProducts = () => {
                   );
                 }
               })}
-          {filteredProducts && filteredProducts.length > visibleProductsCount && (
-            <button onClick={loadMoreProducts} className={styles.view}>
-              Mostrar más
-            </button>
-          )}
+          {filteredProducts &&
+            filteredProducts.length > visibleProductsCount && (
+              <button onClick={loadMoreProducts} className={styles.view}>
+                Mostrar más
+              </button>
+            )}
           {visibleProductsCount > 5 && (
             <button onClick={showLessProducts} className={styles.view}>
               Mostrar menos
