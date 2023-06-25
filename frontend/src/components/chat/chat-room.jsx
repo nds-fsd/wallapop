@@ -1,24 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useParams, useOutletContext } from "react-router-dom";
 import { getMessageByChatRoom, postMessage } from "../../utils/apiMessage";
 import styles from "./chat-room.module.css";
-import { io } from "socket.io-client";
 import { getUserData, getUserToken } from "../../utils/localStorage.utils";
 import ChatHeader from "./chat-header";
 import FormChat from "./formChat";
 import { BsCheckAll } from "react-icons/bs";
 
-const token = getUserToken();
-const socket = io("http://localhost:3001", {
-  path: "/private",
-  reconnectionDelayMax: 10000,
-  auth: {
-    token,
-  },
-});
-
 const ChatRoom = () => {
+  const { socket } = useOutletContext();
   const messagesContainerRef = useRef(null);
   const params = useParams();
 
@@ -33,22 +24,11 @@ const ChatRoom = () => {
   }, [messages]);
 
   useEffect(() => {
-    socket.connect();
-    socket.on("connection", (data) => {
-      console.log("Connected");
-    });
-    return () => {
-      socket.disconnect();
-    };
-  }, [socket]);
-
-  useEffect(() => {
     setMessages(data);
   }, [data]);
 
   useEffect(() => {
     const receivedMessage = (message) => {
-      console.log({ messages, message });
       if (message.chat_room_id === chatRoomID) {
         setMessages([...messages, message]);
         scrollToBottom();
@@ -59,6 +39,16 @@ const ChatRoom = () => {
       console.log(`Joined chat: ${data}`);
     });
     socket.on("NEW_MESSAGE", receivedMessage);
+
+    const markAsRead = () => {
+      const readMessages = messages.map((message) => ({
+        ...message,
+        check: true,
+      }));
+      setMessages(readMessages);
+    };
+
+    socket.on("READ_MESSAGES", markAsRead);
 
     return () => {
       socket.off("NEW_MESSAGE", receivedMessage);

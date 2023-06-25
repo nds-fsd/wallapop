@@ -53,6 +53,9 @@ const postMessage = async (req, res) => {
 
 const patchMessage = async (req, res) => {
   const { body, jwtPayload } = req;
+  if (!req.params.chatId) {
+    return res.status(404).json({ error: "Sorry, not chatId found" });
+  }
   try {
     const messages = await messageModel
       .updateMany(
@@ -65,9 +68,7 @@ const patchMessage = async (req, res) => {
       )
       .exec();
 
-    if (!messages) {
-      return res.status(404).json({ error: "Sorry, can't find any messages" });
-    }
+    m.ioPrivate.to(`chat-${req.params.chatId}`).emit("READ_MESSAGES");
 
     res.status(201).json(messages);
   } catch (e) {

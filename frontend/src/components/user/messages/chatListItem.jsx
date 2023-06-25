@@ -15,7 +15,7 @@ const socket = io("http://localhost:3001", {
   },
 });
 
-const ChatListItem = ({ data }) => {
+const ChatListItem = ({ data, socket }) => {
   const { product_id: product, owner_id: owner, buyer_id: buyer, _id } = data;
   const { id } = getUserData();
   const { data: uncheckedMessages, refetch } = useQuery(
@@ -23,8 +23,23 @@ const ChatListItem = ({ data }) => {
     getCheckMessages
   );
 
-  const handleCheckMessage = (chatId) => {
-    patchMessage(chatId);
+  useEffect(() => {
+    const updateNotification = (message) => {
+      if (message.chat_room_id === _id) {
+        refetch();
+      }
+    };
+
+  
+    socket.on("NEW_MESSAGE", updateNotification);
+
+    return () => {
+      socket.off("NEW_MESSAGE", updateNotification);
+    };
+  }, [_id, socket]);
+
+  const handleCheckMessage = async (chatId) => {
+    const patchedMessages = await patchMessage(chatId);
     refetch();
   };
 
