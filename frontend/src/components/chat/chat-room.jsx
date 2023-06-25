@@ -7,7 +7,7 @@ import { io } from "socket.io-client";
 import { getUserData, getUserToken } from "../../utils/localStorage.utils";
 import ChatHeader from "./chat-header";
 import FormChat from "./formChat";
-import {BsCheckAll} from "react-icons/bs"
+import { BsCheckAll } from "react-icons/bs";
 
 const token = getUserToken();
 const socket = io("http://localhost:3001", {
@@ -48,8 +48,11 @@ const ChatRoom = () => {
 
   useEffect(() => {
     const receivedMessage = (message) => {
-      setMessages([...messages, message]);
-      scrollToBottom();
+      console.log({ messages, message });
+      if (message.chat_room_id === chatRoomID) {
+        setMessages([...messages, message]);
+        scrollToBottom();
+      }
     };
     socket.emit("join-chat", chatRoomID);
     socket.on("chat-joined", (data) => {
@@ -75,10 +78,10 @@ const ChatRoom = () => {
         <div className={styles.messageContainer}>
           {messages?.map((message, i) => (
             <div
-            className={`${
-              message.user_id === id
-              ? styles.myCheck
-              : styles.otherCheck}`}>
+              className={`${
+                message.user_id === id ? styles.myCheck : styles.otherCheck
+              }`}
+            >
               <div
                 className={`${
                   message.user_id === id
@@ -89,7 +92,7 @@ const ChatRoom = () => {
               >
                 {message.body}
               </div>
-              {message.check === true && (<BsCheckAll />)}
+              {message.check === true && <BsCheckAll />}
             </div>
           ))}
           <div ref={messagesContainerRef} />

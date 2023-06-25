@@ -14,12 +14,13 @@ const FormChat = () => {
     formState: { errors },
   } = useForm();
 
-  const handlePostMessage = (message) => {
+  const handlePostMessage = async (message) => {
     const body = {
       chat_room_id: chatRoomID,
       body: message.message,
     };
-    postMessage(body);
+   const newMessage =  await postMessage(body);
+   
     reset();
   };
 
