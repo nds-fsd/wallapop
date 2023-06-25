@@ -19,8 +19,8 @@ const EditElse = ({ id }) => {
       reset(product);
     },
   });
- 
-  const {images, setImages} = useContext(AuthContext)
+
+  const { images, setImages } = useContext(AuthContext);
   const [imagePreviews, setImagePreviews] = useState([]);
 
   const handleImageUpload = (files, index) => {
@@ -35,7 +35,7 @@ const EditElse = ({ id }) => {
   };
 
   const handleRemoveImage = (index) => {
-    console.log("Borrando imagen", index)
+    console.log("Borrando imagen", index);
     setImages((prevImg) => {
       const updatedImages = [...prevImg];
       updatedImages.splice(index, 1);
@@ -69,12 +69,13 @@ const EditElse = ({ id }) => {
         .flat()
         .filter((keyword) => keyword !== "");
     }
-    const updatedImages = images.length > 0 ? [...product.images, ...images] : product.images;
+    const updatedImages =
+      images.length > 0 ? [...product.images, ...images] : product.images;
     const productData = { ...product, keywords, images: updatedImages };
     // console.log("este el producto mutado", productData)
     mutation.mutate(productData);
     alert("Los cambios se han guardado satisfactoriamente");
-    setImages([updatedImages])
+    setImages([updatedImages]);
   };
 
   return (
@@ -86,6 +87,7 @@ const EditElse = ({ id }) => {
               Título:
             </label>
             <input
+              data-test="product-title-else"
               placeholder="Dale un título a tu producto"
               {...register("title", {
                 required: "El título es obligatorio",

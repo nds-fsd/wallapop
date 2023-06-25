@@ -85,6 +85,7 @@ const EditHouse = ({ id }) => {
               Título:
             </label>
             <input
+              data-test="product-title"
               placeholder="Dale un título a tu producto"
               {...register("title", {
                 required: "El título es obligatorio",

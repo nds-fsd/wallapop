@@ -7,16 +7,15 @@ describe("Delete Product", () => {
     cy.get('[data-test="boton"]').contains("Inicia sesión").click();
     cy.wait(300);
 
-    //Aqui tendria que pasarle productos en un json y eliminar y comprobar algun producto en concreto buscando por el nombre...
+    //vamos a la ventana de donde esta la lista de productos del user
     cy.visit("http://localhost:3000/user/products/published");
-    cy.get("button > .icon-bin").click();
-
-    cy.visit("http://localhost:3000/user/products/published");
-    cy.get('[data-test="productos"] > [data-test="producto"]').should(
-      ($lis) => {
-        console.log($lis);
-        expect($lis).to.have.length(0);
-      }
-    );
+    // Entonces buscmaos el producto por el titulo
+    cy.get(
+      '[data-test="productos"] > [data-test="producto"] > div h4[class*="title"]'
+    )
+      .contains("producto prueba") // titulo del producto
+      .parents('[data-test="producto"]')
+      .find("button>span.icon-bin")
+      .click();
   });
 });

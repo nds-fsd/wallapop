@@ -79,79 +79,63 @@ const EditVehicle = ({ id }) => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div
-          className={ styles.editContainer}
-        >
-          <div className={ styles.title}>
-            <label
-              htmlFor="title"
-              className={ styles.labels}
-            >
+        <div className={styles.editContainer}>
+          <div className={styles.title}>
+            <label htmlFor="title" className={styles.labels}>
               Título:
             </label>
             <input
+              data-test="product-title-vehicle"
               placeholder="Dale un título a tu producto"
               {...register("title", {
                 required: "El título es obligatorio",
               })}
-              className={ styles.input}
+              className={styles.input}
             ></input>
-            <label
-              htmlFor="location"
-              className={ styles.labels}
-            >
+            <label htmlFor="location" className={styles.labels}>
               Localización:
             </label>
             <input
               placeholder="Localización"
               {...register("location")}
-              className={ styles.input}
+              className={styles.input}
             ></input>
           </div>
 
           {errors.title && (
-            <p className={ styles.error}>
+            <p className={styles.error}>
               <span className="icon-warning1"></span>
               {errors.title.message}
             </p>
           )}
 
-          <div className={ styles.title}>
-            <label
-              htmlFor="brand"
-              className={ styles.labels}
-            >
+          <div className={styles.title}>
+            <label htmlFor="brand" className={styles.labels}>
               Marca:
             </label>
             <input
               placeholder="Ej. BMW"
               {...register("brand", { required: "Este campo es obligatorio" })}
-              className={ styles.input}
+              className={styles.input}
             ></input>
-            <label
-              htmlFor="model"
-              className={ styles.labels}
-            >
+            <label htmlFor="model" className={styles.labels}>
               Modelo:
             </label>
             <input
               placeholder="Ej. S1"
               {...register("model", { required: "Este campo es obligatorio" })}
-              className={ styles.input}
+              className={styles.input}
             ></input>
-            <label
-              htmlFor="year"
-              className={ styles.labels}
-            >
+            <label htmlFor="year" className={styles.labels}>
               Año:
             </label>
             <input
               placeholder="De fabricación"
               {...register("year", { required: "Este campo es obligatorio" })}
-              className={ styles.input}
+              className={styles.input}
             ></input>
           </div>
-          <div className={ styles.error2}>
+          <div className={styles.error2}>
             {errors.brand && (
               <p>
                 <span className="icon-warning1"></span>
@@ -172,50 +156,38 @@ const EditVehicle = ({ id }) => {
             )}
           </div>
 
-          <div className={ styles.title}>
-            <label
-              htmlFor="doors"
-              className={ styles.labels}
-            >
+          <div className={styles.title}>
+            <label htmlFor="doors" className={styles.labels}>
               Puertas:
             </label>
             <input
               type="number"
               placeholder="Escribe un número"
               {...register("doors")}
-              className={ styles.input}
+              className={styles.input}
             ></input>
-            <label
-              htmlFor="seats"
-              className={ styles.navlabelsbar}
-            >
+            <label htmlFor="seats" className={styles.navlabelsbar}>
               Plazas:
             </label>
             <input
               type="number"
               placeholder="Escribe un número"
               {...register("seats")}
-              className={ styles.input}
+              className={styles.input}
             ></input>
-            <label
-              htmlFor="km"
-              className={ styles.labels}
-            >
+            <label htmlFor="km" className={styles.labels}>
               Kilometraje:
             </label>
             <input
               type="number"
               placeholder="Sé preciso"
               {...register("km", { required: "Este campo es obligatorio" })}
-              className={ styles.input}
+              className={styles.input}
             ></input>
           </div>
 
-          <div className={ styles.title}>
-            <label
-              htmlFor="engine"
-              className={ styles.labels}
-            >
+          <div className={styles.title}>
+            <label htmlFor="engine" className={styles.labels}>
               Motor:
             </label>
 
@@ -229,10 +201,7 @@ const EditVehicle = ({ id }) => {
             <label htmlFor="shift" className={styles.labels}>
               Cambio:
             </label>
-            <select
-              {...register("shift")}
-              className={ styles.input}
-            >
+            <select {...register("shift")} className={styles.input}>
               <option value="">Selecciona una opción</option>
               <option value="Manual">Manual</option>
               <option value="Automático">Automático</option>
