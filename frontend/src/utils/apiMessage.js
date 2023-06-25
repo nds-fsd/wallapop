@@ -17,7 +17,8 @@ export const getMessageByChatRoom = ({ queryKey }) => {
     });
 };
 
-export const getCheckMessages = ({ queryKey }) => {
+export const getCheckMessages = (something) => {
+  const { queryKey } = something;
   const token = JSON.parse(localStorage.getItem("user-session"));
 
   return api
@@ -41,7 +42,7 @@ export const postMessage = (data) => {
         authorization: `Bearer ${token}`,
       },
     })
-    .then((res) => console.log("mensaje post", res.data))
+    .then((res) => res.data)
     .catch((error) => {
       console.log(error);
       return {
@@ -50,19 +51,22 @@ export const postMessage = (data) => {
     });
 };
 
-export const patchMessage = (data) => {
-  const { id } = getUserData();
+export const patchMessage = (chatId) => {
   const token = JSON.parse(localStorage.getItem("user-session"));
 
   return api
-  .patch(`/message/message/${data.chat_room_id}`, data, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-  .then((res) => res.data)
-  .catch((error) => {
-    console.log(error);
-    return {error: "Sorry, we couldn't patch your message"};
-  })
+    .patch(
+      `/message/${chatId}`,
+      { check: true },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      return { error: "Sorry, we couldn't patch your message" };
+    });
 };

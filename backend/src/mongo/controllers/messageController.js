@@ -27,7 +27,6 @@ const postMessage = async (req, res) => {
 
   try {
     const chat = await chatroomModel.findById(body.chat_room_id);
-
     if (!chat) {
       return res.status(500).json({ error: "wrong chat ID" });
     }
@@ -41,18 +40,12 @@ const postMessage = async (req, res) => {
       user_id: jwtPayload.id,
     });
 
-    messageModel
-      .populate(newMessage, { path: "user_id" }, (err, me) => {
-        newMessage
-          .save()
-          .then((message) => {
-            m.ioPrivate.to(`chat-${me.chat_room_id}`).emit("NEW_MESSAGE", me);
-            res.status(200).json(me);
-          })
-          .catch((e) => {
-            res.status(500).json({ error: e.message });
-          });
-      });
+    await newMessage.save();
+
+    m.ioPrivate
+      .to(`chat-${newMessage.chat_room_id}`)
+      .emit("NEW_MESSAGE", newMessage);
+    res.status(200).json(newMessage);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -60,15 +53,23 @@ const postMessage = async (req, res) => {
 
 const patchMessage = async (req, res) => {
   const { body, jwtPayload } = req;
+  if (!req.params.chatId) {
+    return res.status(404).json({ error: "Sorry, not chatId found" });
+  }
   try {
     const messages = await messageModel
-      .findOneAndUpdate({ chat_room_id: body.chat_room_id, user_id: { $ne: jwtPayload.id }, check: false }, body)
+      .updateMany(
+        {
+          chat_room_id: req.params.chatId,
+          user_id: { $ne: jwtPayload.id },
+          check: false,
+        },
+        body
+      )
       .exec();
-      
-    if (!messages) {
-      return res.status(404).json({ error: "Sorry, can't find any messages" });
-    }
-    
+
+    m.ioPrivate.to(`chat-${req.params.chatId}`).emit("READ_MESSAGES");
+
     res.status(201).json(messages);
   } catch (e) {
     res
@@ -76,7 +77,6 @@ const patchMessage = async (req, res) => {
       .json({ error: "An error occurred while updating the messages" });
   }
 };
-
 
 // const patchMessage = async (req, res) => {
 //   const { body, jwtPayload } = req;
@@ -104,10 +104,15 @@ const getCheckMessages = async (req, res) => {
     if (!chatroom) {
       res.status(404).json("no chatroom id provided");
     } else {
-      const message = await messageModel
-        .find({ chat_room_id: chatroom, check: false })
+      const messages = await messageModel
+        .find({
+          chat_room_id: chatroom,
+          check: false,
+          user_id: { $ne: req.jwtPayload.id },
+        })
         .exec();
-        res.status(200).json(message);
+
+      res.status(200).json(messages);
     }
   } catch (e) {
     res.status(500).json({ error: "An error occurred" });

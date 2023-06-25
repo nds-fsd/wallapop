@@ -21,8 +21,21 @@
   /* background-color: var(--grey); */
   background-color: var(--gray-to-bg-dark);
 }
+.myCheck {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+}
+
+.otherCheck {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
 
 .myMessage {
+  display: flex;
+  flex-direction: column;
   color: var(--yellow-light);
   align-self: flex-end;
   background-color: var(--blue-dark-to-yellow-main);

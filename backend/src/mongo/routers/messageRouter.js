@@ -3,15 +3,15 @@ const {
   postMessage,
   getMessageByChatRoom,
   getCheckMessages,
-  patchMessage
+  patchMessage,
 } = require("../controllers/messageController");
 const { jwtMiddleware } = require("../../security/jwtMiddleware");
 
 const messageRouter = express.Router();
 
 messageRouter.get("/:chatRoom", jwtMiddleware, getMessageByChatRoom);
-messageRouter.get("/nocheck/:chatroom", jwtMiddleware, getCheckMessages)
+messageRouter.get("/nocheck/:chatroom", jwtMiddleware, getCheckMessages);
 messageRouter.post("/", jwtMiddleware, postMessage);
-messageRouter.patch("/message/:chatroom", jwtMiddleware, patchMessage)
+messageRouter.patch("/:chatId", jwtMiddleware, patchMessage);
 
 module.exports = messageRouter;

@@ -15,18 +15,32 @@ const socket = io("http://localhost:3001", {
   },
 });
 
-const ChatListItem = ({ data }) => {
+const ChatListItem = ({ data, socket }) => {
   const { product_id: product, owner_id: owner, buyer_id: buyer, _id } = data;
   const { id } = getUserData();
-  const { data: noCheckMessages } = useQuery(
+  const { data: uncheckedMessages, refetch } = useQuery(
     ["checkmessage", _id],
     getCheckMessages
   );
 
-  const lastMessage = noCheckMessages?.pop(-1);
+  useEffect(() => {
+    const updateNotification = (message) => {
+      if (message.chat_room_id === _id) {
+        refetch();
+      }
+    };
 
-  const handleCheckMessage = (body) => {
-    patchMessage(body);
+  
+    socket.on("NEW_MESSAGE", updateNotification);
+
+    return () => {
+      socket.off("NEW_MESSAGE", updateNotification);
+    };
+  }, [_id, socket]);
+
+  const handleCheckMessage = async (chatId) => {
+    const patchedMessages = await patchMessage(chatId);
+    refetch();
   };
 
   return (
@@ -34,7 +48,7 @@ const ChatListItem = ({ data }) => {
       <Link
         to={`/user/messages/chatroom/${_id}`}
         className={styles.itemContainer}
-        onClick={() => handleCheckMessage({ chat_room_id: _id, check: true })}
+        onClick={() => handleCheckMessage(_id)}
       >
         <div>
           {product?.images && product.images.length > 0 ? (
@@ -49,7 +63,7 @@ const ChatListItem = ({ data }) => {
           <p>{owner?._id !== id ? owner?.name : buyer?.name}</p>
           <h3>{product?.title}</h3>
         </div>
-        {lastMessage?.check === false && lastMessage?.user_id !== id && (
+        {uncheckedMessages?.length > 0 && (
           <div className={styles.newMessage}>
             <p>"</p>
           </div>
