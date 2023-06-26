@@ -9,7 +9,7 @@
   align-items: center;
   z-index: 1000;
   color: var(--blue-dark-to-yellow-main);
-  background-color: rgba(2, 2, 2, 0.02);
+  background-color: rgba(2, 2, 2, 0.3);
 }
 
 .modal {

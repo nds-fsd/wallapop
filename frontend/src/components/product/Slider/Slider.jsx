@@ -28,12 +28,15 @@ const Slider = ({ images, data }) => {
       {amount >= 1 && (
         <div className={styles.sliderContainer}>
           <div className={styles.container}>
-            <button
-              onClick={prevImage}
-              className={isHovering ? styles.buttonOpacity : styles.button}
-            >
-              <span className="icon-undo2"></span>
-            </button>
+            {amount > 1 && (
+              <button
+                onClick={prevImage}
+                className={isHovering ? styles.buttonOpacity : styles.button}
+              >
+                <span className="icon-undo2"></span>
+              </button>
+            )}
+
             {images.map((image, id) => (
               <div
                 className={
@@ -56,12 +59,14 @@ const Slider = ({ images, data }) => {
                 )}
               </div>
             ))}
-            <button
-              onClick={nextImage}
-              className={isHovering ? styles.buttonOpacity : styles.button}
-            >
-              <span className="icon-redo2"></span>
-            </button>
+            {amount > 1 && (
+              <button
+                onClick={nextImage}
+                className={isHovering ? styles.buttonOpacity : styles.button}
+              >
+                <span className="icon-redo2"></span>
+              </button>
+            )}
           </div>
           <p className={styles.statusTag}>{data && data.status}</p>
 

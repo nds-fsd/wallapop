@@ -1,5 +1,6 @@
 .gridContainer {
   margin: 2em 10em;
+  width: 75vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -97,7 +98,7 @@
   width: 12rem;
   height: 3rem;
   margin-bottom: 2em;
-  margin-left: 45vw;
+  margin-left: 33vw;
   font-size: 1.2rem;
   padding: 0 1rem;
   border-radius: 2.5rem;
@@ -190,3 +191,4 @@
 .seeMore span:hover {
   color: var(--blue-light);
 }
+

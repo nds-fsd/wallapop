@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./editImages.module.css";
 import { AuthContext } from "../../context/authContext";
 
 const EditImages = ({
   product,
   handleImageUpload,
-  handleRemoveImage,
+  handleRemoveImage
 }) => {
   
   const imagesUploaded = product && product.images;
@@ -28,7 +28,7 @@ const EditImages = ({
       }
     });
   };
- 
+
   const remainingSlots = Math.max(6 - images.length, 0);
 
   return (
@@ -55,7 +55,7 @@ const EditImages = ({
                   <div key={index} className={styles.imgList}>
                     <img src={preview} />
                     <div>
-                      <button onClick={() => handleRemoveImage(index)}>
+                      <button onClick={() => handleRemoveImage(index) + imagesUploaded}>
                       <span className="icon-cross1"></span>
                       </button>
                     </div>

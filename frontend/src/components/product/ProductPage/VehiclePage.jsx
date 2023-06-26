@@ -264,7 +264,7 @@ const VehiclePage = ({ id }) => {
           </div>
         </div>
         {data && (
-          <RelatedProducts category={data.category} parentId={data._id} />
+          <RelatedProducts category={data?.category} parentId={data?._id} />
         )}
       </div>
       {data && userToken && userData?.id !== data?.user._id ? (<ProductBar data={data}/>) : ("")}

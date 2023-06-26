@@ -13,9 +13,12 @@ const ModalContentSlider = ({ images }) => {
   return (
     <>
       <div className={styles.container}>
-        <button onClick={prevImage} className={styles.button}>
-          <span className="icon-undo2"></span>
-        </button>
+        {amount > 1 && (
+          <button onClick={prevImage} className={styles.button}>
+            <span className="icon-undo2"></span>
+          </button>
+        )}
+
         {images.map((image, id) => (
           <div
             className={
@@ -34,9 +37,11 @@ const ModalContentSlider = ({ images }) => {
             )}
           </div>
         ))}
-        <button onClick={nextImage} className={styles.button}>
-          <span className="icon-redo2"></span>
-        </button>
+        {amount > 1 && (
+          <button onClick={nextImage} className={styles.button}>
+            <span className="icon-redo2"></span>
+          </button>
+        )}
       </div>
       <div className={styles.miniImgContainer}>
         {images.map((image, id) => (

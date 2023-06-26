@@ -11,7 +11,7 @@
 
 .navbar {
   width: 100vw;
-  min-height: 15vh;
+  min-height: 11vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
