@@ -330,8 +330,8 @@
 }
 
 .accept:hover {
-  background-color: var(--blue-light);
-  color: white;
+  border: 0.2em solid var(--yellow-main);
+  background-color: var(--blue-medium);
 }
 
 .user {
