@@ -9,7 +9,7 @@ const ModalContainerCompra = ({ modalOpen, setModalOpen, data }) => {
         <div className={styles.overlay}>
           <div className={styles.modal}>
             <div className={styles.title}>
-              <h2>Modo COOMPRA</h2>
+              <h2>Modo COMPRA</h2>
               <button
                 className={styles.close}
                 onClick={() => setModalOpen(false)}

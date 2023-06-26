@@ -11,6 +11,7 @@ const AllCategories = () => {
     queryFn: getTwelveProducts,
   });
   const [visibleProductsCount, setVisibleProductsCount] = useState(12)
+  
   const loadMoreProducts = () => {
     setVisibleProductsCount((prevCount) => prevCount + 12 )
   }
@@ -19,12 +20,6 @@ const AllCategories = () => {
     setVisibleProductsCount((prevCount) => prevCount - 12);
   };
   const visibleProducts = prods?.slice(0, visibleProductsCount);
-
-  // const [showAll, setShowAll] = useState(false);
-  // const visibleProductsCount = showAll ? prods.length : 18;
-  // const toggleShowAll = () => {
-  //   setShowAll(!showAll);
-  // };
 
 
   return (
@@ -75,14 +70,7 @@ const AllCategories = () => {
       </div>
 
 
-      
-      
-      {/* {prods && prods.length > 20 && (
-        <button onClick={toggleShowAll} className={styles.view}>
-          {showAll ? "Mostrar menos" : "Mostrar más"}
-        </button>
-      )} */}
-    </>
+  </>
   );
 };
 

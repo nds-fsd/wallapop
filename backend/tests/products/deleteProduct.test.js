@@ -23,6 +23,14 @@ describe("DELEAT /product", () => {
     );
     expect(response.statusCode).toBe(404);
   });
+  test("borrar producto con falta de informacion, Response status 400", async () => {
+    const response = await request(app).delete("/products/");
+    expect(response.statusCode).toBe(404);
+  });
+  test("borrar producto enviando mal el id, Response status 500", async () => {
+    const response = await request(app).delete("/products/joijoijoi");
+    expect(response.statusCode).toBe(500);
+  });
 
   afterAll(() => {
     disconnectDBTest();

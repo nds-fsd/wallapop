@@ -185,7 +185,7 @@
   padding-top: 0.8rem;
   font-size: 0.9rem;
   background-color: var(--white-to-bg-medium);
-  color: var(--black-to-yellow-light);
+  color: var(--grey-dark-to-white);
   font-family: "Roboto", sans-serif;
   margin: 1rem;
 }
@@ -268,8 +268,8 @@
 }
 
 .formButton button:hover {
-  background-color: var(--yellow-main-to-blue-light);
-  background-color: var(--white-to-bg-medium);
+  background-color: var(--yellow-main);
+  color: var(--white-to-bg-medium);
 }
 
 /* errors - form vehicle */
@@ -358,6 +358,6 @@
 }
 
 .accept:hover {
-  background-color: var(--blue-light);
-  color: white;
+  border: 0.2em solid var(--yellow-main);
+  background-color: var(--blue-medium);
 }

@@ -23,7 +23,7 @@ const getFavoritesByUser = async (req, res) => {
     //     .status(404)
     //     .json({ message: "Sorry, there are no favorite products to display" });
     // } else {
-      return res.status(200).json(favorites);
+    return res.status(200).json(favorites);
     // }
   } catch (error) {
     res.status(500).json({ error: "Failed to retrieve favorite products" });
@@ -33,7 +33,9 @@ const getFavoritesByUser = async (req, res) => {
 const createFav = async (req, res) => {
   const { product } = req.body;
   const { user } = req.params;
-
+  if (!user || !product) {
+    return res.status(404).json({ error: "no user id provided" });
+  }
   try {
     const existingFav = await favoriteModel.findOne({ user: user });
     if (existingFav) {
@@ -56,8 +58,10 @@ const createFav = async (req, res) => {
 
 const deleteFav = async (req, res) => {
   const { user, productId } = req.params;
-
   try {
+    if (!user || !productId) {
+      return res.status(404).json({ error: "no user id provided" });
+    }
     const existingFav = await favoriteModel.findOne({ user: user });
     if (!existingFav) {
       return res.status(404).json({ error: "User has no favorite products" });

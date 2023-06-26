@@ -2,25 +2,6 @@
 @tailwind components;
 @tailwind utilities; */
 
-/* 
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
-className={darkMode ? stylesDark.navbar : styles.navbar}
- 
-
-
-darkMode.*:
-
-
-
-*/
-
-/*  
-rgba(226, 34, 34, 0.692);
-  box-shadow: 0 0 3px var(--yellow-main); 
-  border: solid 0.15rem var(--blue-light); 
-  background-color: var(--background-dark);   
- */
-
 :root {
   font-family: "Roboto", sans-serif;
   line-height: 1.5;

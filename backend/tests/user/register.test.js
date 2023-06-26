@@ -43,16 +43,6 @@ describe("POST /register", () => {
       expect(response.body["token"]).toBeDefined;
     });
   });
-  // Tener el error capturado cuando falta password o email
-  describe("Missing information", () => {
-    test("Response status 400", async () => {
-      const missingInfo = [{ email: "proba@gmail.com" }, { password: "12345" }];
-      missingInfo.forEach(async (info) => {
-        const response = await request(app).post("/user/register").send(info);
-        expect(response.statusCode).toBe(400);
-      });
-    });
-  });
 
   // Tener el error capturado cuando ya esta registrado el email
   describe("Email already registered", () => {
@@ -62,6 +52,34 @@ describe("POST /register", () => {
         surname: "Badia",
         email: "m.badia@gmail.com",
         password: "12345",
+        phone: "600111000",
+        photo:
+          "http://res.cloudinary.com/dvogntdp2/image/upload/v1685034394/vnwmry1xmcbqx4ughkxl.png",
+        birthday: "1997-01-21T00:00:00.000+00:00",
+        gender: "Prefiero no decirlo",
+      });
+      expect(response.statusCode).toBe(400);
+    });
+    test("Response status 400, sin mail", async () => {
+      const response = await request(app).post("/user/register").send({
+        name: "Mar",
+        surname: "Badia",
+        email: "",
+        password: "12345",
+        phone: "600111000",
+        photo:
+          "http://res.cloudinary.com/dvogntdp2/image/upload/v1685034394/vnwmry1xmcbqx4ughkxl.png",
+        birthday: "1997-01-21T00:00:00.000+00:00",
+        gender: "Prefiero no decirlo",
+      });
+      expect(response.statusCode).toBe(400);
+    });
+    test("Response status 400, sin passsword", async () => {
+      const response = await request(app).post("/user/register").send({
+        name: "Mar",
+        surname: "Badia",
+        email: "m.badia@gmail.com",
+        password: "",
         phone: "600111000",
         photo:
           "http://res.cloudinary.com/dvogntdp2/image/upload/v1685034394/vnwmry1xmcbqx4ughkxl.png",

@@ -17,7 +17,6 @@
   font-size: 4rem;
 }
 
-
 .card {
   display: flex;
   flex-direction: column;
@@ -104,8 +103,7 @@
   padding: 0 1rem;
   border-radius: 2.5rem;
   border: 0.15em solid var(--yellow-main-to-blue-light);
-
-  background-color: var(--white-to-bg-medium);
+  background-color: var(--gray-to-bg-dark);
   color: var(--yellow-main-to-blue-light);
   font-weight: bold;
   cursor: pointer;
@@ -127,7 +125,6 @@
   transform: translate(-50%, -50%);
   background-color: var(--blue-medium);
   color: white;
-  /* border: 2px solid var(--yellow-main); */
   border-radius: 1em;
   padding: 1.5em;
   text-align: center;
@@ -135,17 +132,11 @@
   box-shadow: 2px 2px 4px rgba(87, 87, 87, 0.1);
 }
 
-.accept:hover {
-  background-color: var(--yellow-main-to-blue-dark);
-  color: white;
-}
-
 .accept {
   width: 7rem;
   height: 2rem;
   border-radius: 2.5rem;
   border: none;
-  /* border: 0.2em solid var(--yellow-main); */
   background-color: var(--yellow-main-to-blue-dark);
   color: white;
   font-weight: bold;
@@ -154,9 +145,8 @@
 }
 
 .accept:hover {
-  background-color: var(--blue-light-to-yellow-light);
-  /* --yellow-main-to-blue-dark */
-  color: white;
+  background-color: var(--blue-light);
+  color: var(--blue-medium);
 }
 
 .alertButtons {
@@ -176,9 +166,7 @@
   width: 80vw;
   height: 26rem;
   align-items: center;
- 
 }
-
 
 .cardsContainer {
   margin: 2em auto;
@@ -191,7 +179,7 @@
   overflow-y: hidden; */
   padding: 1em 0;
 }
-.seeMore  {
+.seeMore {
   border: none;
   background-color: transparent;
 }

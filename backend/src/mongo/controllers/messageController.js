@@ -1,7 +1,12 @@
 const messageModel = require("../models/messageModel");
 const chatroomModel = require("../models/chatroomModel");
-const m = require("../../index");
+const dotenv = require("dotenv");
+dotenv.config();
 
+// const isTest = process.env.IS_TESTING;
+// if (!isTest) {
+  const m = require("../../index");
+// }
 const getMessageByChatRoom = async (req, res) => {
   const chatroomID = req.params["chatRoom"];
   try {
@@ -42,9 +47,11 @@ const postMessage = async (req, res) => {
 
     await newMessage.save();
 
-    m.ioPrivate
-      .to(`chat-${newMessage.chat_room_id}`)
-      .emit("NEW_MESSAGE", newMessage);
+    // if (!isTest) {
+      m.ioPrivate
+        .to(`chat-${newMessage.chat_room_id}`)
+        .emit("NEW_MESSAGE", newMessage);
+    // }
     res.status(200).json(newMessage);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -67,8 +74,9 @@ const patchMessage = async (req, res) => {
         body
       )
       .exec();
-
-    m.ioPrivate.to(`chat-${req.params.chatId}`).emit("READ_MESSAGES");
+    // if (!isTest) {
+      m.ioPrivate.to(`chat-${req.params.chatId}`).emit("READ_MESSAGES");
+    // }
 
     res.status(201).json(messages);
   } catch (e) {

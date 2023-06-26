@@ -1,5 +1,5 @@
 .line {
-  background-color: var(--blue-dark);
+  background-color: var(--blue-dark-to-yellow-main);
   height: 2px;
   opacity: 1;
   position: relative;
@@ -330,8 +330,8 @@
 }
 
 .accept:hover {
-  background-color: var(--blue-light);
-  color: white;
+  border: 0.2em solid var(--yellow-main);
+  background-color: var(--blue-medium);
 }
 
 .user {

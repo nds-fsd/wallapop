@@ -9,7 +9,7 @@ const DEFAULT_VALUES = {
   "--grey-to-bg-medium": "#eaeeee",
   "--grey-to-white": "#eaeeee",
   "--grey-to-black": "#eaeeee",
-  "--grey-dark-to-white": "#eaeeee",
+  "--grey-dark-to-white": "#868888",
 
   /* ------------ BLACK ------------*/
   "--black-to-white": "black",
@@ -63,7 +63,6 @@ const DEFAULT_VALUES = {
   "--none-to-blue-light": "solid 0.15rem none",
   "--none-to-blue-dark": "solid 0.15rem none",
 };
-
 const DEFAULT_DARK_VALUES = {
   /* ------------ GREY ------------*/
   "--grey-to-yellow-light": "#fcf7e3",

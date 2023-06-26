@@ -17,9 +17,9 @@
 .noImage {
   width: 350px;
   height: 200px;
-  background-color: var(--blue-medium-to-bg-dark);
+  background-color: var(--blue-medium);
   border-radius: 0.7em;
-  color: var(--white-to-black);
+  color: var(--yellow-light);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,7 +32,7 @@
   height: 5rem;
   background-color: var(--blue-medium-to-bg-dark);
   border-radius: 0.7em;
-  color: var(--white-to-black);
+  color: var(--white-to-bg-dark);
   display: flex;
   justify-content: center;
   flex-direction: column;

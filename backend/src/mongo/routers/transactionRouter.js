@@ -2,6 +2,7 @@ const express = require("express");
 const {
   getTransactionsByUser,
   postTransactions,
+  getTransactionsById,
 } = require("../controllers/transactionController");
 
 const transactionRouter = express.Router();
