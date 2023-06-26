@@ -9,6 +9,9 @@ ReTrend es un ecommerce en formato aplicación web desarrollado como proyecto fi
    
 # Descripción del proyecto
 ReTrend es un clon personalizado del ecommerce Wallapop que permite la compra-venta de productos de segunda mano entre usuarios registrados en la plataforma. La aplicación permite una navegación libre entre las diferentes categorías, visualización de productos y sus relacionados, enviar la ficha de producto a un amigo o familiar… Sin embargo, está diseñada para que ciertas funcionalidades sólo las puedan llevar a cabo los usuarios logueados en la aplicación, así como chatear, marcar productos como favoritos, publicar productos o realizar transacciones entre usuarios.
+
+Como punto de partida se establecieron las diferentes entidades de las que constaba la plataforma y la relación que se iba a establecer entre ellas para así poder crear toda la lógica de programación de la aplicación, tal y como muestra la siguiente figura:
+
 # Recorrido por la plataforma
 ### Home Page
 Bajo la premisa “Dale una segunda vida a lo que ya no usas”, ReTrend ofrece al usuario una barra de navegación por las distintas categorías y una visita rápida por las novedades de la plataforma: los productos más recientes, los más destacados por categoría según estacionalidad… así como información adicional sobre ReTrend Pro, la app móvil y enlaces a soporte, política de privacidad o funcionamiento de la plataforma.
