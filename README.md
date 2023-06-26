@@ -90,6 +90,7 @@ $ npm install
 PORT: 3001
 MONGO_URL: [ ]
 JWT_SECRET: [ ]
+VITE_CLOUD_NAME: [ ]
 ````
 * Inicia el servidor y el cliente:
 ```
