@@ -5,7 +5,8 @@ ReTrend es un ecommerce en formato aplicación web desarrollado como proyecto fi
 2. Recorrido por la plataforma
 3. Tecnologías utilizadas
 4. Instalación
-5. Responsables del proyecto
+6. Responsables del proyecto
+   
 # Descripción del proyecto
 ReTrend es un clon personalizado del ecommerce Wallapop que permite la compra-venta de productos de segunda mano entre usuarios registrados en la plataforma. La aplicación permite una navegación libre entre las diferentes categorías, visualización de productos y sus relacionados, enviar la ficha de producto a un amigo o familiar… Sin embargo, está diseñada para que ciertas funcionalidades sólo las puedan llevar a cabo los usuarios logueados en la aplicación, así como chatear, marcar productos como favoritos, publicar productos o realizar transacciones entre usuarios.
 # Recorrido por la plataforma
@@ -62,11 +63,42 @@ Está realizado con WebSockets, un protocolo de comunicación ampliamente compat
 ### Principales librerías utilizadas en Back-End:
 * Express
 * Mongoose (Base de datos)
-* Socket (Cliente y servidor)
+* Socket.io (Cliente y servidor)
 * Cloudinary (Gestión de imágenes)
 * JWT (Autenticación y autorización)
 
 # Instalación
+
+## 1. Requisitos previos
+
+Para ejecutar ReTrend en local, debes tener instalado:
+* Node.js
+* MongoDB
+
+## 2. Configuración:
+
+* Clona este monorepositorio en tu máquina local:
+````
+$ git clone https://github.com/nds-fsd/wallapop.git
+````
+* Instala las dependencias del proyecto:
+```
+$ npm install
+````
+* Crea un archivo .env en la raíz del proyecto y agrega las siguientes variables de entorno:
+```
+PORT: 3001
+MONGO_URL: [ ]
+JWT_SECRET: [ ]
+````
+* Inicia el servidor y el cliente:
+```
+$ npm run dev
+````
+* Abre el navegador web en:
+```
+* http://localhost:3000/ para visualizar la aplicación.
+```
 # Responsables del proyecto
 * Mar Badia
 * Lorena Carmona
