@@ -54,9 +54,9 @@ const Sidebar = () => {
       <Link to={USER_FAVORITES}>
         <MdOutlineFavoriteBorder /> Favoritos
       </Link>
-      {/* <Link to={USER_STATS}>
+      <Link to={USER_STATS}>
         <IoStatsChart /> Estadísticas
-      </Link> */}
+      </Link>
     </div>
   );
 };

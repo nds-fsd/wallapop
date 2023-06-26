@@ -90,11 +90,11 @@
 .statusNoImage {
   background-color: var(--blue-light);
   color: var(--blue-dark);
-  margin: 0 1.8em 0 8em;
+  margin: 0 4.1em 0 8em;
   border-radius: 1em;
   height: fit-content;
   width: max-content;
-  z-index: 500;
+  z-index: 10;
   padding: 0.1em 0.8em;
   font-size: 0.8em;
 }

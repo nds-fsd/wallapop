@@ -207,8 +207,11 @@ const ElsePage = ({ id }) => {
           </div>
         
         </div>
+        {/* {data && userData?.id !== data?.user._id && (
+          <RelatedProducts category={data?.category} parentId={data?._id} />
+        )} */}
         {data && (
-          <RelatedProducts category={data.category} parentId={data._id} />
+          <RelatedProducts category={data?.category} parentId={data?._id} />
         )}
       </div>
       {data && userData?.id !== data?.user._id ? (<ProductBar data={data}/>) : ("")}

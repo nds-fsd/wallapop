@@ -66,7 +66,7 @@ function App() {
             {isHomePage ? <Footer /> : <SecondFooter />}
 
           </div>
-          <ReactQueryDevtools initialIsOpen={false} />
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </AuthProvider>
       </QueryClientProvider>
     </>

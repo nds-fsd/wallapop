@@ -2,7 +2,6 @@ import React from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
 import PurchasesOnGoing from "./purchases/PurchasesOnGoing";
 import PurchasesCompleted from "./purchases/PurchasesCompleted";
-import Stats from "./stats/Stats";
 import SalesCompleted from "./sales/SalesCompleted";
 import SalesOnGoing from "./sales/SalesOnGoing";
 import Profile from "./profile/index";
@@ -32,6 +31,8 @@ import {
   PURCHASES_ONGOING,
   SALES_COMPLETED,
   SALES_ONGOING,
+  STATS_PURCHASES,
+  STATS_SALES,
   USER,
   USER_FAVORITES,
   USER_MESSAGES,
@@ -44,6 +45,9 @@ import {
 import styles from "./index.module.css";
 import Sidebar from "./sidebar";
 import ChatRoom from "../chat/chat-room";
+import Stats from "./stats";
+import StatsPurchases from "./stats/StatsPurchases";
+import StatsSales from "./stats/StatsSales";
 
 const UserPage = () => {
   return (
@@ -79,6 +83,16 @@ const UserPage = () => {
           <Route path={USER_FAVORITES} element={<Favorites />}>
             <Route path="" element={<FavoriteProducts />} />
             {/* <Route path={FAVORITE_SEARCHES} element={<FavoriteSearches />} /> */}
+          </Route>
+
+          {/* <Route path={USER_STATS} element={<Stats />}>
+            <Route path="" element={<Statistics />} />
+          </Route> */}
+
+          <Route path={USER_STATS} element={<Stats />}>
+            <Route path="" element={<StatsPurchases />} />
+            <Route path={STATS_PURCHASES} element={<StatsPurchases />} />
+            <Route path={STATS_SALES} element={<StatsSales />} />
           </Route>
         </Routes>
       </div>

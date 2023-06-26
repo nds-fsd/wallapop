@@ -62,10 +62,7 @@ const AllCategories = () => {
             </div>
           </Link>
         ))}
-      </div>
-
-
-      {prods && prods.length > 12 && visibleProductsCount < prods.length && (
+        {prods && prods.length > 12 && visibleProductsCount < prods.length && (
         <button onClick={loadMoreProducts} className={styles.view}>
           Mostrar más
         </button>
@@ -75,6 +72,10 @@ const AllCategories = () => {
           Mostrar menos
         </button>
       )}
+      </div>
+
+
+      
       
       {/* {prods && prods.length > 20 && (
         <button onClick={toggleShowAll} className={styles.view}>
