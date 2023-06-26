@@ -21,6 +21,7 @@ describe("Get ID /product", () => {
     );
     expect(response.statusCode).toBe(200);
   });
+
   test("GET id product not found", async () => {
     const response = await request(app).get("/products/646b50906a04146");
     expect(response.statusCode).toBe(404);
@@ -31,11 +32,20 @@ describe("Get ID /product", () => {
     );
     expect(response.statusCode).toBe(200);
   });
+  test("GET sold product not found 404", async () => {
+    const response = await request(app).get("/products/sold/");
+    expect(response.statusCode).toBe(404);
+  });
+
   test("GET by user", async () => {
     const response = await request(app).get(
       "/products/getbyuser/6461693bf9a77cdb3d869ca5"
     );
     expect(response.statusCode).toBe(200);
+  });
+  test("GET by user", async () => {
+    const response = await request(app).get("/products/getbyuser/");
+    expect(response.statusCode).toBe(404);
   });
   test("GET by user not found", async () => {
     const response = await request(app).get(

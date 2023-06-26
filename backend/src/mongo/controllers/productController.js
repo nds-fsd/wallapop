@@ -49,8 +49,8 @@ const getProductById = async (req, res) => {
 
 const getProductByUser = async (req, res) => {
   const userId = req.params.user;
+  if (!userId) res.status(404).json("no user id provided");
   try {
-    if (!userId) res.status(404).json("no user id provided");
     if (userId) {
       const product = await productModel
         .find({ user: userId })
@@ -86,8 +86,8 @@ const getProductByUserFavs = async (req, res) => {
 
 const getProductByUserSold = async (req, res) => {
   const userId = req.params.user;
+  if (!userId) res.status(404).json("no user id provided");
   try {
-    if (!userId) res.status(404).json("no user id provided");
     if (userId) {
       const product = await productModel
         .find({ user: userId, sold: true })

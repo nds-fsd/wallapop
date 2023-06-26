@@ -5,6 +5,9 @@ const userModel = require("../models/userModel");
 // Definimos el CRUD todas las funciones para poder llamarlas en el Router
 const getTransactionsById = async (req, res) => {
   const { id } = req.params;
+  if (!id) {
+    return res.status(404).json("no user id provided");
+  }
   try {
     const transactionById = await transactionModel
       .findById(id)
@@ -14,15 +17,15 @@ const getTransactionsById = async (req, res) => {
       .exec();
     res.status(200).json(transactionById);
   } catch (error) {
-    res.status(404).json({ error: "Sorry, can't find this transaction" });
+    res.status(500).json({ error: "Sorry, can't find this transaction" });
   }
 };
 
 const getTransactionsByUser = async (req, res) => {
   const userId = req.params.user;
 
+  if (!userId) res.status(404).json("no user id provided");
   try {
-    if (!userId) res.status(404).json("no user id provided");
     if (userId) {
       const transaction = await transactionModel
         //   buscamos la transacion con el id del comprador y nos devolvera una lista con todas las transaciones
@@ -68,6 +71,7 @@ const postTransactions = async (req, res) => {
 };
 
 module.exports = {
+  getTransactionsById,
   getTransactionsByUser,
   postTransactions,
 };
