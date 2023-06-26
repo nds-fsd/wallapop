@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "npx nodemon src/index.js",
     "start": "node src/index.js",
-    "test": "jest --coverage"
+    "test": "IS_TESTING=true jest --coverage"
   },
   "devDependencies": {
     "jest": "^29.5.0",

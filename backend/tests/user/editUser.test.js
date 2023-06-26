@@ -11,7 +11,7 @@ beforeAll(async () => {
 
 describe("PATCH /user", () => {
   // paso s'info per probar de modificar s'user
-  test("Response status 200", async () => {
+  test("Response status 201", async () => {
     const response = await request(app)
       .patch("/user/6461693bf9a77cdb3d869ca5")
       .set(
@@ -27,6 +27,36 @@ describe("PATCH /user", () => {
         gender: "Femenino",
       });
     expect(response.statusCode).toBe(201);
+  });
+  test("Response status 201", async () => {
+    const response = await request(app)
+      .patch("/user/")
+      .set(
+        "Authorization",
+        "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODA4MDkzMDNhNzZmOTc2NjM5MDFlYSIsIm5hbWUiOiJNYXIiLCJlbWFpbCI6IlwiamVyYWxkLnNoYXJlcjY3NzcxQG1haWxjbHViLmZyXCIiLCJpYXQiOjE2ODYxNDMxMjMsImV4cCI6MzM3NzQ3MDI0Nn0.9holJ24qprV5A4_IyTR7lcW-b4xXpxYmH-mfRSqWOw0"
+      )
+      .send({
+        name: "Mar",
+        surname: "Badia test",
+        email: "mar.badia21@gmail.com",
+        phone: "67943540",
+        birthday: "1997-01-21T00:00:00.000+00:00",
+        gender: "Femenino",
+      });
+    expect(response.statusCode).toBe(404);
+  });
+  test("Response status 401", async () => {
+    const response = await request(app)
+      .patch("/user/6461693bf9a77cdb3d869ca5")
+      .send({
+        name: "Mar",
+        surname: "Badia test",
+        email: "mar.badia21@gmail.com",
+        phone: "67943540",
+        birthday: "1997-01-21T00:00:00.000+00:00",
+        gender: "Femenino",
+      });
+    expect(response.statusCode).toBe(401);
   });
 
   // intento canviar dades de user sense es nom,

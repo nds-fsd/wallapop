@@ -60,6 +60,34 @@ describe("POST /register", () => {
       });
       expect(response.statusCode).toBe(400);
     });
+    test("Response status 400, sin mail", async () => {
+      const response = await request(app).post("/user/register").send({
+        name: "Mar",
+        surname: "Badia",
+        email: "",
+        password: "12345",
+        phone: "600111000",
+        photo:
+          "http://res.cloudinary.com/dvogntdp2/image/upload/v1685034394/vnwmry1xmcbqx4ughkxl.png",
+        birthday: "1997-01-21T00:00:00.000+00:00",
+        gender: "Prefiero no decirlo",
+      });
+      expect(response.statusCode).toBe(400);
+    });
+    test("Response status 400, sin passsword", async () => {
+      const response = await request(app).post("/user/register").send({
+        name: "Mar",
+        surname: "Badia",
+        email: "m.badia@gmail.com",
+        password: "",
+        phone: "600111000",
+        photo:
+          "http://res.cloudinary.com/dvogntdp2/image/upload/v1685034394/vnwmry1xmcbqx4ughkxl.png",
+        birthday: "1997-01-21T00:00:00.000+00:00",
+        gender: "Prefiero no decirlo",
+      });
+      expect(response.statusCode).toBe(400);
+    });
   });
 
   afterAll(() => {

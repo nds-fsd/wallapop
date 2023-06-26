@@ -13,7 +13,6 @@ const chatroomRouter = require("./mongo/routers/chatroomRouter");
 const transactionRouter = require("./mongo/routers/transactionRouter");
 
 const app = express();
-console.log("aa", app);
 app.use(cors());
 app.use(express.json());
 app.use("/user", userRouter);
@@ -28,4 +27,4 @@ if (process.env.MONGO_URL) {
   connectDB().then(() => console.log("Connected to database!"));
 }
 
-module.exports = { app };
+module.exports =  app ;

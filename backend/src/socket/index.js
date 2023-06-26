@@ -8,7 +8,6 @@ const configurePrivateSocket = (server) => {
     },
     path: "/private",
   });
-
   io.use((socket, next) => {
     if (socket.handshake.auth && socket.handshake.auth.token) {
       jwtVerifier(socket.handshake.auth.token, (err, user) => {
@@ -40,7 +39,9 @@ const configurePrivateSocket = (server) => {
     console.log(`User ${socket.user.name} has disconnected`);
   });
 
-  return io;
+   return io;
 };
+module.exports = {
+  configurePrivateSocket
+}
 
-module.exports = { configurePrivateSocket };
