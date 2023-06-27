@@ -12,38 +12,33 @@ beforeAll(async () => {
   await loadMessages();
 });
 
-describe("DELETE /chat-room", () => {
+describe("GET /chat-room", () => {
   // debe responder con un 200
-  test("delete chatroom, Response status 201", async () => {
+  test("Get product chatroom, Response status 200", async () => {
     const response = await request(app)
-      .delete("/chat-room/649764a0ffd8789eaebbee43")
+      .get("/chat-room/product/6497707b6bf946d3bae4666c")
       .set(
         "Authorization",
         "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODA4MDkzMDNhNzZmOTc2NjM5MDFlYSIsIm5hbWUiOiJNYXIiLCJlbWFpbCI6IlwiamVyYWxkLnNoYXJlcjY3NzcxQG1haWxjbHViLmZyXCIiLCJpYXQiOjE2ODYxNDMxMjMsImV4cCI6MzM3NzQ3MDI0Nn0.9holJ24qprV5A4_IyTR7lcW-b4xXpxYmH-mfRSqWOw0"
       );
-    expect(response.statusCode).toBe(204);
+    expect(response.statusCode).toBe(200);
   });
-  test("delete Chatroom, Response status 401", async () => {
-    const response = await request(app).delete("/chat-room/649764a0ffd878");
-    expect(response.statusCode).toBe(401);
-  });
-  test("delete Chatroom, Response status 404", async () => {
+  test("Get product chatroom, Response status 404 sin id del chatRoom", async () => {
     const response = await request(app)
-      .delete("/chat-room/648203b0821fd45051675928")
+      .get("/chat-room/product/")
       .set(
         "Authorization",
         "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODA4MDkzMDNhNzZmOTc2NjM5MDFlYSIsIm5hbWUiOiJNYXIiLCJlbWFpbCI6IlwiamVyYWxkLnNoYXJlcjY3NzcxQG1haWxjbHViLmZyXCIiLCJpYXQiOjE2ODYxNDMxMjMsImV4cCI6MzM3NzQ3MDI0Nn0.9holJ24qprV5A4_IyTR7lcW-b4xXpxYmH-mfRSqWOw0"
       );
     expect(response.statusCode).toBe(404);
   });
-  test("delete Chatroom, Response status 500", async () => {
-    const response = await request(app)
-      .delete("/chat-room/649764a0ffd878")
-      .set(
-        "Authorization",
-        "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODA4MDkzMDNhNzZmOTc2NjM5MDFlYSIsIm5hbWUiOiJNYXIiLCJlbWFpbCI6IlwiamVyYWxkLnNoYXJlcjY3NzcxQG1haWxjbHViLmZyXCIiLCJpYXQiOjE2ODYxNDMxMjMsImV4cCI6MzM3NzQ3MDI0Nn0.9holJ24qprV5A4_IyTR7lcW-b4xXpxYmH-mfRSqWOw0"
-      );
-    expect(response.statusCode).toBe(500);
+
+  test("Get by id chatroom sin token, Response status 401", async () => {
+    const response = await request(app).get(
+      "/chat-room/6497707b6bf946d3bae4666c"
+    );
+
+    expect(response.statusCode).toBe(401);
   });
 
   afterAll(() => {

@@ -61,9 +61,12 @@ const postChatRoom = async (req, res) => {
     });
     if (existingChat) {
       return res.status(200).json(existingChat);
-    } if (body.owner_id === jwtPayload.id){
-      return res.status(403).json({error: "You can't create a chat with yourself"})
-    }else {
+    }
+    if (body.owner_id === jwtPayload.id) {
+      return res
+        .status(403)
+        .json({ error: "You can't create a chat with yourself" });
+    } else {
       const newChatRoom = new chatroomModel({
         ...body,
         buyer_id: jwtPayload.id,

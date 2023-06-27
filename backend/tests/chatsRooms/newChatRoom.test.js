@@ -27,6 +27,33 @@ describe("POST /chat-room", () => {
       });
     expect(response.statusCode).toBe(201);
   });
+  test("create new chatroom, Response status 403", async () => {
+    const response = await request(app)
+      .post("/chat-room/")
+      .set(
+        "Authorization",
+        "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODA4MDkzMDNhNzZmOTc2NjM5MDFlYSIsIm5hbWUiOiJNYXIiLCJlbWFpbCI6IlwiamVyYWxkLnNoYXJlcjY3NzcxQG1haWxjbHViLmZyXCIiLCJpYXQiOjE2ODYxNDMxMjMsImV4cCI6MzM3NzQ3MDI0Nn0.9holJ24qprV5A4_IyTR7lcW-b4xXpxYmH-mfRSqWOw0"
+      )
+      .send({
+        product_id: "6480809303a76f97663901ea",
+        owner_id: "6480809303a76f97663901ea",
+      });
+    expect(response.statusCode).toBe(403);
+  });
+  test("Create new Chatroom, Response status 500 sin id", async () => {
+    const response = await request(app)
+      .post("/chat-room/")
+      .set(
+        "Authorization",
+        "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODA4MDkzMDNhNzZmOTc2NjM5MDFlYSIsIm5hbWUiOiJNYXIiLCJlbWFpbCI6IlwiamVyYWxkLnNoYXJlcjY3NzcxQG1haWxjbHViLmZyXCIiLCJpYXQiOjE2ODYxNDMxMjMsImV4cCI6MzM3NzQ3MDI0Nn0.9holJ24qprV5A4_IyTR7lcW-b4xXpxYmH-mfRSqWOw0"
+      )
+      .send({
+        product_id: "",
+        owner_id: "",
+      });
+
+    expect(response.statusCode).toBe(500);
+  });
   test("Create new Chatroom, Response status 500", async () => {
     const response = await request(app)
       .post("/chat-room/")
