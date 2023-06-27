@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+const dotenv = require("dotenv");
+dotenv.config();
 import { Outlet } from "react-router-dom";
 import style from "../index.module.css";
 import styles from "./messages.module.css";
@@ -9,7 +11,7 @@ import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 import { io } from "socket.io-client";
 
 const token = getUserToken();
-const socket = io("http://localhost:3001", {
+const socket = io(process.env.SOCKETS, {
   path: "/private",
   reconnectionDelayMax: 10000,
   auth: {
