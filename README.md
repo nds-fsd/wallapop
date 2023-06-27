@@ -60,6 +60,11 @@ La página de usuario consta de distintas secciones:
 
 ![Screenshot](./screenshots/10_ReTrend_Screenshots_Favorites.jpg)
 
+* Estadísticas. Donde visualizar de forma rápida las compras y ventas del usuario, así como el importe total, el número de transacciones realizadas y el importe promedio de cada una de ellas.
+  
+![Screenshot](./screenshots/17_ReTrend_Screenshots_Stats.jpg)
+
+
 ### Categories Page
 Desde la Home Page el usuario puede navegar entre las distintas categorías de productos que ofrece la aplicación. Un primer icono permite ver todos los productos perteneciente a cualquier categoría y los demás, filtrados según la propia. Desde aquí, las cards, muestran los principales datos de los productos y permiten la navegación a su ficha.
 
