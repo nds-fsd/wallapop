@@ -10,10 +10,12 @@ import imageDark from "../../../assets/images/logo-retrend-dark.png";
 import { getAllChats } from "../../../utils/apiChatRoom";
 import { useQuery } from "react-query";
 import { ThemeContext } from "../../../context/themeContext";
+import { LangContext } from "../../../context/idiomaContext";
 
 const Login = () => {
   const { userData } = useContext(AuthContext);
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+  const { esLang, toggleEsLang, langVariables } = useContext(LangContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,45 +32,51 @@ const Login = () => {
 
   return (
     <nav className={styles.navbar}>
-        <Link to="/">
-          <div className={styles.logoLink}>
-            <img src={darkMode ? imageDark : image} alt="logo" />{" "}
-          </div>
-        </Link>
-        <Buscador to="/products/search" />
-        <div className={styles.buttonLink}>
-          <div className={styles.darkMode}>
-            <div onClick={toggleDarkMode}>
-              <span className={darkMode ? "icon-sun" : "icon-contrast"} />
-            </div>
-          </div>
-          <Link to="/user/favorites">
-            <MdOutlineFavoriteBorder /> FAVORITOS{" "}
-          </Link>
-          {!isLoading && (
-            <Link to={`/user/messages/chatroom/${data?.[0]?._id}`}>
-              <TbMessages /> BUZÓN{" "}
-            </Link>
-          )}
-          {isLoading && (
-            <Link to={`/user/messages`}>
-              <TbMessages /> BUZÓN{" "}
-            </Link>
-          )}
-
-          {/* <Link to={`/user/messages/chatroom/${id}`}>
-          <TbMessages /> BUZÓN{" "}
-        </Link> */}
-          <div data-test="perfil" className={styles.tuButton}>
-            <Link to="/user/profile/info">
-              <img src={userData.photo} />
-              TÚ
-            </Link>
-          </div>
-          <div className={styles.createProductButton}>
-            <Link to="/products/newproduct/">SUBIR UN PRODUCTO </Link>
+      <Link to="/">
+        <div className={styles.logoLink}>
+          <img src={darkMode ? imageDark : image} alt="logo" />{" "}
+        </div>
+      </Link>
+      <Buscador to="/products/search" />
+      <div className={styles.buttonLink}>
+        <div className={styles.darkMode}>
+          <div onClick={toggleDarkMode}>
+            <span className={darkMode ? "icon-sun" : "icon-contrast"} />
           </div>
         </div>
+        <div className={styles.darkMode}>
+          <div onClick={toggleEsLang}>
+            <span className={esLang ? "icon-music" : "icon-calculator1"} />
+          </div>
+        </div>
+        <Link to="/user/favorites">
+          {/* <MdOutlineFavoriteBorder /> FAVORITOS{" "} */}
+          <MdOutlineFavoriteBorder /> {langVariables.buttonNavFav}{" "}
+        </Link>
+        {!isLoading && (
+          <Link to={`/user/messages/chatroom/${data?.[0]?._id}`}>
+            <TbMessages /> {langVariables.buttonNavBuzon}{" "}
+          </Link>
+        )}
+        {isLoading && (
+          <Link to={`/user/messages`}>
+            <TbMessages /> {langVariables.buttonNavBuzon}{" "}
+          </Link>
+        )}
+
+        {/* <Link to={`/user/messages/chatroom/${id}`}>
+          <TbMessages /> BUZÓN{" "}
+        </Link> */}
+        <div data-test="perfil" className={styles.tuButton}>
+          <Link to="/user/profile/info">
+            <img src={userData.photo} />
+            {langVariables.buttonNavTu}
+          </Link>
+        </div>
+        <div className={styles.createProductButton}>
+          <Link to="/products/newproduct/">{langVariables.buttonNavProd} </Link>
+        </div>
+      </div>
     </nav>
   );
 };
