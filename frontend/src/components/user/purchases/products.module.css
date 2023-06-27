@@ -264,8 +264,8 @@
 }
 
 .accept:hover {
-  border: 0.2em solid var(--yellow-main);
-  background-color: var(--blue-medium);
+  border: 0.2em solid var(--blue-light);
+  background-color: var(--blue-light);
 }
 
 .alertButtons {
