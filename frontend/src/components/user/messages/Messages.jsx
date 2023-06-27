@@ -8,8 +8,14 @@ import { getAllChats } from "../../../utils/apiChatRoom";
 import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 import { io } from "socket.io-client";
 
+const URL_API =
+  window.location.hostname === "retrend.netlify.app"
+    ? "https://retrend.up.railway.app/"
+    : "http://localhost:3001";
+
+
 const token = getUserToken();
-const socket = io("http://localhost:3001", {
+const socket = io(URL_API, {
   path: "/private",
   reconnectionDelayMax: 10000,
   auth: {

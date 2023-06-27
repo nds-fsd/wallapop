@@ -6,8 +6,14 @@ import { io } from "socket.io-client";
 import { getCheckMessages, patchMessage } from "../../../utils/apiMessage";
 import { useQuery } from "react-query";
 
+const URL_API =
+  window.location.hostname === "retrend.netlify.app"
+    ? "https://retrend.up.railway.app/"
+    : "http://localhost:3001";
+
+console.log("API", URL_API);
 const token = getUserToken();
-const socket = io("http://localhost:3001", {
+const socket = io(URL_API, {
   path: "/private",
   reconnectionDelayMax: 10000,
   auth: {
