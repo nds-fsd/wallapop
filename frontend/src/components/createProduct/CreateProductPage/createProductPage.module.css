@@ -81,6 +81,7 @@
   padding-left: 1rem;
   font-size: 1rem;
   background-color: var(--gray-to-bg-medium);
+  color: var(--blue-dark-to-yellow-light);
 }
 
 .category {
