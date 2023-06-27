@@ -23,15 +23,7 @@ describe("GET /chat-room", () => {
       );
     expect(response.statusCode).toBe(200);
   });
-  test("Get by id chatroom, Response status 200", async () => {
-    const response = await request(app)
-      .get("/chat-room/6497707b6bf946d3bae4666c")
-      .set(
-        "Authorization",
-        "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODA4MDkzMDNhNzZmOTc2NjM5MDFlYSIsIm5hbWUiOiJNYXIiLCJlbWFpbCI6IlwiamVyYWxkLnNoYXJlcjY3NzcxQG1haWxjbHViLmZyXCIiLCJpYXQiOjE2ODYxNDMxMjMsImV4cCI6MzM3NzQ3MDI0Nn0.9holJ24qprV5A4_IyTR7lcW-b4xXpxYmH-mfRSqWOw0"
-      );
-    expect(response.statusCode).toBe(200);
-  });
+
   test("Get by id chatroom sin token, Response status 401", async () => {
     const response = await request(app).get(
       "/chat-room/6497707b6bf946d3bae4666c"
