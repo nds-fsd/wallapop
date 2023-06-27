@@ -41,11 +41,13 @@ const ChatRoom = () => {
     socket.on("NEW_MESSAGE", receivedMessage);
 
     const markAsRead = () => {
-      const readMessages = messages.map((message) => ({
-        ...message,
-        check: true,
-      }));
-      setMessages(readMessages);
+      if (!!messages) {
+        const readMessages = messages.map((message) => ({
+          ...message,
+          check: true,
+        }));
+        setMessages(readMessages);
+      }
     };
 
     socket.on("READ_MESSAGES", markAsRead);
