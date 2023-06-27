@@ -155,7 +155,7 @@
 }
 
 .linkLink .title {
-  color: var(--blue-dark);
+  color: var(--blue-dark-to-yellow-light);
 }
 
 .homeContainer {
@@ -191,4 +191,3 @@
 .seeMore span:hover {
   color: var(--blue-light);
 }
-
