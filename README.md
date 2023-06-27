@@ -93,8 +93,14 @@ El chat es el canal de comunicación por excelencia entre usuarios de ReTrend. L
 Está realizado con WebSockets, un protocolo de comunicación ampliamente compatible con los navegadores web modernos que permite la comunicación bidireccional en tiempo real entre un cliente (normalmente un navegador web) y un servidor. Proporciona canales de comunicación eficientes, de baja latencia y full-duplex a través de una única conexión TCP. 
 
 # Testing
+Para testear el correcto funcionamiento de la aplicación hemos utilizado dos herramientas:
+* Jest, para realizar pruebas unitarias y de integración, incluyendo pruebas de funciones, componentes y módulos individuales. Proporciona una amplia gama de funcionalidades, como aserciones, cobertura de código, ejecución paralela de pruebas y mocks para simular dependencias externas.
 
+La siguiente figura muestra un 85% de cobertura de código en la aplicación de ReTrend, obtenido mediante los tests programados.
 
+![Screenshot](./screenshots/16_ReTrend_Screenshots_Test.jpeg)
+
+* Cypress, para realizar pruebas end-to-end de toda la aplicación en un navegador. Cypress interactúa directamente con la aplicación, permitiendo probar acciones del usuario y verificar el estado de la interfaz en tiempo real.
 
 # Tecnologías utilizadas
 ### Principales librerías utilizadas en Front-End:
@@ -141,9 +147,9 @@ VITE_CLOUD_NAME: [ ]
 ```
 $ npm run dev
 ````
-* Abre el navegador web en:
+* Abre el navegador web en el siguiente puerto para visualizar la aplicación:
 ```
-* http://localhost:3000/ para visualizar la aplicación.
+http://localhost:3000/
 ```
 # Responsables del proyecto
 * Mar Badia
