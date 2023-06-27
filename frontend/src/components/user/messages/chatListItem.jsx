@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-const dotenv = require("dotenv");
-dotenv.config();
 import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 import styles from "./chatListItem.module.css";
 import { useEffect, useState } from "react";
@@ -9,7 +7,7 @@ import { getCheckMessages, patchMessage } from "../../../utils/apiMessage";
 import { useQuery } from "react-query";
 
 const token = getUserToken();
-const socket = io(process.env.SOCKETS, {
+const socket = io("http://localhost:3001", {
   path: "/private",
   reconnectionDelayMax: 10000,
   auth: {
@@ -32,7 +30,6 @@ const ChatListItem = ({ data, socket }) => {
       }
     };
 
-  
     socket.on("NEW_MESSAGE", updateNotification);
 
     return () => {
