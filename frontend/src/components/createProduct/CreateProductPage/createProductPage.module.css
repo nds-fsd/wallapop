@@ -109,15 +109,15 @@
   align-items: center;
   justify-content: center;
   font-size: 4em;
-  color: var(--blue-dark-to-blue-light);
+  color: var(--blue-dark-to-yellow-main);
 }
 
 .checkbox span:hover {
-  color: var(--yellow-main);
+  color: var(--yellow-main-to-blue-light);
 }
 
 .checkbox input[type="radio"]:checked + span {
-  color: var(--yellow-main);
+  color: var(--yellow-main-to-blue-light);
 }
 
 .line {
@@ -250,7 +250,7 @@
   width: 5em;
   height: 5em;
   cursor: pointer;
-  color: var(--blue-dark-to-blue-light);
+  color: var(--blue-dark-to-yellow-main);
 }
 
 .square input[type="radio"] {
@@ -262,15 +262,15 @@
   align-items: center;
   justify-content: center;
   font-size: 3em;
-  color: var(--blue-dark-to-blue-light);
+  color: var(--blue-dark-to-yellow-main);
 }
 
 .square span:hover {
-  color: var(--yellow-main);
+  color: var(--yellow-main-to-blue-light);
 }
 
 .square input[type="radio"]:checked + span {
-  color: var(--yellow-main);
+  color: var(--yellow-main-to-blue-light);
 }
 
 .motor {
