@@ -101,7 +101,7 @@ describe("PATCH /product", () => {
       });
     expect(response.statusCode).toBe(404);
   });
-  test("Crear producto con id mal , Response status 500", async () => {
+  test("Crear producto con id mal , Response status 404", async () => {
     const response = await request(app)
       .patch("/products/")
       .send({
@@ -118,6 +118,24 @@ describe("PATCH /product", () => {
         user: "647a09aec2c9e27299401deb",
       });
     expect(response.statusCode).toBe(404);
+  });
+  test("Crear producto con id mal , Response status 500", async () => {
+    const response = await request(app)
+      .patch("/products/sdaljdiajsl")
+      .send({
+        booked: false,
+        categories: ["644fe58f93ff3b3b028e576b"],
+        category: "Coleccionismo",
+        datePublication: "2023-06-02T15:25:30.771Z",
+        description: "descripcion producto",
+        keywords: ["dhf"],
+        price: 4564,
+        sold: false,
+        status: "Como nuevo",
+        title: "titulo producto",
+        user: "647a09aec2c9e27299401deb",
+      });
+    expect(response.statusCode).toBe(500);
   });
 
   afterAll(() => {

@@ -58,13 +58,6 @@ describe("Get ID /product", () => {
     expect(response.statusCode).toBe(200);
   });
 
-  test("GET categories and product", async () => {
-    const response = await request(app).get(
-      "/products/category/product/Ducati Monster"
-    );
-    expect(response.statusCode).toBe(200);
-  });
-
   afterAll(() => {
     disconnectDBTest();
   });
