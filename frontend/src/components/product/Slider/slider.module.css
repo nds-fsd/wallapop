@@ -92,7 +92,7 @@
   width: 500px;
   height: 350px;
   border-radius: 1.5em;
-  object-fit: contain;
+  object-fit: cover;
   margin-left: 5rem;
   display: flex;
   align-items: center;

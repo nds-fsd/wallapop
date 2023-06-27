@@ -68,6 +68,7 @@ const ChatRoom = () => {
         <div className={styles.messageContainer}>
           {messages?.map((message, i) => (
             <div
+            key={message._id}
               className={`${
                 message.user_id === id ? styles.myCheck : styles.otherCheck
               }`}

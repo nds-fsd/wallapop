@@ -6,12 +6,15 @@ import { useMutation, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
 import Map from "../map/Map";
 import { AuthContext } from "../../../context/authContext";
+import beers from "../../../assets/images/beers.png";
 
 const FormElse = () => {
   const queryClient = useQueryClient(["product"]);
   const { images, setImages } = useContext(AuthContext);
   const [imagePreviews, setImagePreviews] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
+  const [priceAlert, setPriceAlert] = useState(false);
+  const [priceValue, setPriceValue] = useState("");
 
   const {
     register,
@@ -41,6 +44,20 @@ const FormElse = () => {
     setShowAlert(false);
   };
 
+  const handlePrice = (event) => {
+    const { value } = event.target;
+    if (value && value.includes(".")) {
+      setPriceAlert(true);
+    } else {
+      setPriceAlert(false);
+    }
+    setPriceValue(value);
+  };
+
+  const handlePriceAccept = () => {
+    setPriceAlert(false);
+  };
+
   const onSubmit = (data) => {
     const keywords = data.keywords
       ?.split(/[, ]+/)
@@ -68,6 +85,7 @@ const FormElse = () => {
           </button>
         </div>
       )}
+
       <form onSubmit={handleSubmit(onSubmit)} className={styles.sectionForm}>
         <div className={styles.title}>
           <h2>Información del producto</h2>
@@ -81,6 +99,7 @@ const FormElse = () => {
           {...register("title", {
             required: "El título es obligatorio",
           })}
+          onChange={handlePrice}
           className={styles.input}
         ></input>
         {errors.title && (
@@ -104,6 +123,7 @@ const FormElse = () => {
             {...register("price", {
               required: "El precio es obligatorio",
             })}
+            onChange={handlePrice}
             placeholder="No te excedas..."
             className={styles.inputPrice}
           ></input>
@@ -113,6 +133,15 @@ const FormElse = () => {
             {...register("keywords")}
             className={styles.inputKeywords}
           ></input>
+          {priceAlert && (
+            <div className={styles.alert}>
+              Mejor guarda esas monedas para unas cañas
+              <img src={beers} className={styles.beer} />
+              <button onClick={handlePriceAccept} className={styles.accept}>
+                Aceptar
+              </button>
+            </div>
+          )}
         </div>
         {errors.price && (
           <p className={styles.error}>

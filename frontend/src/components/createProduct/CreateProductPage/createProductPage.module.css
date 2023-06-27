@@ -417,3 +417,7 @@
   background-color: var(--blue-light);
   color: white;
 }
+
+.beer {
+  width: 4rem;
+}

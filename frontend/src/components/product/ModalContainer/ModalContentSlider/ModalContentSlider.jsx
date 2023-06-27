@@ -21,6 +21,7 @@ const ModalContentSlider = ({ images }) => {
 
         {images.map((image, id) => (
           <div
+          key={id}
             className={
               currentImage === id
                 ? `${styles.slide} ${styles.active}`
@@ -46,7 +47,7 @@ const ModalContentSlider = ({ images }) => {
       <div className={styles.miniImgContainer}>
         {images.map((image, id) => (
           <img
-            key={image.id}
+            key={id}
             src={image}
             className={
               currentImage === id

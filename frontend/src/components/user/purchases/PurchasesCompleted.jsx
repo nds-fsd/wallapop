@@ -38,12 +38,12 @@ const PurchasesCompleted = () => {
           <div className={styles.gridContainer} data-test="productos">
             {transactions && transactions.length > 0 ? (
               transactions.map((transaction) => (
-                <div className={styles.card} data-test="producto">
+                <div key={transaction._id} className={styles.card} data-test="producto">
                   {transaction.product.map((prod) => (
-                    <Images images={prod.images} status={prod.images} />
+                    <Images images={prod.images} status={prod.images} key={prod._id} />
                   ))}
                   {transaction.product.map((prod) => (
-                    <div className={styles.titleContainer}>
+                    <div key={prod._id} className={styles.titleContainer}>
                       <h4 className={styles.title}>{prod.title}</h4>
                       <h4>
                         {prod.price.toLocaleString("es-ES", {
@@ -54,8 +54,8 @@ const PurchasesCompleted = () => {
                     </div>
                   ))}
                   {transaction.vendor.map((ven) => (
-                    <div className={styles.details}>
-                      <p key={ven._id}> Vendedor: {ven.name}</p>
+                    <div className={styles.details} key={ven._id}>
+                      <p > Vendedor: {ven.name}</p>
                     </div>
                   ))}
                 </div>
@@ -79,14 +79,14 @@ const PurchasesCompleted = () => {
                   {/* Hacemos map de los datos del producto para mostrar la imagen */}
                   {transaction.product.map((prod) => (
                     // <Images images={prod.images} status={prod.images} />
-                    <div className={styles.imgList}>
+                    <div key={prod._id} className={styles.imgList}>
                       {prod && <ImagesList images={prod.images} />}
                     </div>
                   ))}
                   {/* Hacemos map de los datos del producto */}
                   <div className={styles.detailsContainer}>
                     {transaction.product.map((prod) => (
-                      <div className={styles.titleContainer}>
+                      <div key={prod._id} className={styles.titleContainer}>
                         <h4 className={styles.titleList}>{prod.title}</h4>
                         <h4 className={styles.price}>
                           {prod.price.toLocaleString("es-ES", {
@@ -98,8 +98,8 @@ const PurchasesCompleted = () => {
                     ))}
                     {/* Hacemos map de los datos del vendedor */}
                     {transaction.vendor.map((ven) => (
-                      <div className={styles.details}>
-                        <p key={ven._id}> Vendedor: {ven.name}</p>
+                      <div className={styles.details} key={ven._id}>
+                        <p > Vendedor: {ven.name}</p>
                       </div>
                     ))}
                   </div>

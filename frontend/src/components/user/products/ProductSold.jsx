@@ -36,7 +36,7 @@ const ProductSold = () => {
           <div className={styles.gridContainer} data-test="productos">
             {prods && prods.length > 0 ? (
               prods.map((prod) => (
-                <div className={styles.card} data-test="producto" disabled>
+                <div className={styles.card} key={prod._id} data-test="producto" disabled>
                   {prods && (
                     <Images images={prod.images} status={prod.status} />
                   )}
@@ -76,7 +76,7 @@ const ProductSold = () => {
           <div className={styles.listContainer}>
             {prods && prods.length > 0 ? (
               prods.map((prod) => (
-                <div className={styles.list} key={prod.id}>
+                <div className={styles.list} key={prod._id}>
                   <div className={styles.imgList}>
                     {prods && <ImagesList images={prod.images} />}
                   </div>

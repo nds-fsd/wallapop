@@ -5,12 +5,15 @@ import { postProduct } from "../../../utils/apiProducts";
 import { useMutation, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
 import { AuthContext } from "../../../context/authContext";
+import beers from "../../../assets/images/beers.png";
 
 const FormVehicle = () => {
   const queryClient = useQueryClient(["product"]);
   const { images, setImages } = useContext(AuthContext);
   const [imagePreviews, setImagePreviews] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
+  const [priceAlert, setPriceAlert] = useState(false);
+  const [priceValue, setPriceValue] = useState("");
 
   const {
     control,
@@ -39,6 +42,20 @@ const FormVehicle = () => {
 
   const handleAlertAccept = () => {
     setShowAlert(false);
+  };
+
+  const handlePrice = (event) => {
+    const { value } = event.target;
+    if (value && value.includes(".")) {
+      setPriceAlert(true);
+    } else {
+      setPriceAlert(false);
+    }
+    setPriceValue(value);
+  };
+
+  const handlePriceAccept = () => {
+    setPriceAlert(false);
   };
 
   const onSubmit = (data) => {
@@ -231,10 +248,13 @@ const FormVehicle = () => {
           </label>
         </div>
         <div className={styles.price}>
-          <input
+        <input
             type="number"
             min="1"
-            {...register("price", { required: "El precio es obligatorio" })}
+            {...register("price", {
+              required: "El precio es obligatorio",
+            })}
+            onChange={handlePrice}
             placeholder="No te excedas..."
             className={styles.inputPrice}
           ></input>
@@ -244,6 +264,15 @@ const FormVehicle = () => {
             {...register("keywords")}
             className={styles.inputKeywords}
           ></input>
+          {priceAlert && (
+            <div className={styles.alert}>
+              Mejor guarda esas monedas para unas cañas
+              <img src={beers} className={styles.beer} />
+              <button onClick={handlePriceAccept} className={styles.accept}>
+                Aceptar
+              </button>
+            </div>
+          )}
         </div>
         {errors.price && (
           <p className={styles.error}>
