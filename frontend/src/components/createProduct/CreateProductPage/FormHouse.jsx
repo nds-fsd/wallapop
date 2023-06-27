@@ -5,12 +5,16 @@ import { postProduct } from "../../../utils/apiProducts";
 import { useMutation, useQueryClient } from "react-query";
 import FormImages from "../FormImages/FormImages";
 import { AuthContext } from "../../../context/authContext";
+import beers from "../../../assets/images/beers.png";
+
 
 const FormHouse = () => {
   const queryClient = useQueryClient(["product"]);
   const { images, setImages } = useContext(AuthContext);
   const [imagePreviews, setImagePreviews] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
+  const [priceAlert, setPriceAlert] = useState(false);
+  const [priceValue, setPriceValue] = useState("");
 
   const {
     control,
@@ -41,6 +45,19 @@ const FormHouse = () => {
     setShowAlert(false);
   };
 
+  const handlePrice = (event) => {
+    const { value } = event.target;
+    if (value && value.includes(".")) {
+      setPriceAlert(true);
+    } else {
+      setPriceAlert(false);
+    }
+    setPriceValue(value);
+  };
+
+  const handlePriceAccept = () => {
+    setPriceAlert(false);
+  };
   const onSubmit = (data) => {
     const keywords = data.keywords
       ?.split(/[, ]+/)
@@ -50,7 +67,7 @@ const FormHouse = () => {
     if (keywords && keywords.length > 0) {
       productData.keywords = keywords;
     } else {
-      delete productData.keywords
+      delete productData.keywords;
     }
     mutation.mutate(productData);
     setShowAlert(true);
@@ -287,6 +304,7 @@ const FormHouse = () => {
             type="number"
             min="1"
             {...register("price", { required: "El precio es obligatorio" })}
+            onChange={handlePrice}
             placeholder="No te excedas..."
             className={styles.inputPrice}
           ></input>
@@ -296,6 +314,15 @@ const FormHouse = () => {
             {...register("keywords")}
             className={styles.inputKeywords}
           ></input>
+          {priceAlert && (
+            <div className={styles.alert}>
+              Mejor guarda esas monedas para unas cañas
+              <img src={beers} className={styles.beer} />
+              <button onClick={handlePriceAccept} className={styles.accept}>
+                Aceptar
+              </button>
+            </div>
+          )}
         </div>
         {errors.price && (
           <p className={styles.error}>
