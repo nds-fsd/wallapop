@@ -26,6 +26,7 @@ const findAll = ({
       operation = operation.populate(popField);
     });
   }
+  // se tiene que mejorar porque no funciona
   if (sort != "") {
     operation = operation.sort(sort);
   }
