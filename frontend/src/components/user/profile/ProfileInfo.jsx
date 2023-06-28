@@ -127,7 +127,10 @@ const ProfileInfo = () => {
                   <h2> Imágenes de perfil</h2>
                   <div className={styles.infoFoto}>
                     <div className={styles.changePhotoContainer}>
-                      <img src={userData.photo} name="photo" />
+                     { userData.photo ? 
+                     <img src={image !== userData.photo ? image : userData.photo } name="photo" />
+                     : 
+                     <img src={"https://res.cloudinary.com/dvogntdp2/image/upload/v1687880800/s9jq5uchu8mcvbftlqfj.jpg"} name="photo" /> }
                       <div className={styles.handleContainer}>
                         <button
                           onClick={handleOpenWidget}
