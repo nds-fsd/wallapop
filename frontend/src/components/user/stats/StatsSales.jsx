@@ -24,17 +24,18 @@ const StatsSales = () => {
           <Spinner size="M" />
         </div>
       )}
-      <div className={styles.gridContainerSales}>
-        <div className={styles.titleSales}>
-          <h2>Producto</h2>
-          <h2>Precio</h2>
-        </div>
-        {sales && sales.length > 0 ? (
+
+      {sales && sales.length > 0 ? (
+        <div className={styles.gridContainerSales}>
+          <div className={styles.titleSales}>
+            <h2>Producto</h2>
+            <h2>Precio</h2>
+          </div>
           <div className={styles.gridSales}>
             {sales.map((sale) => (
               <div className={styles.rowSales} key={sale._id}>
                 <div className={styles.columnSales}>
-                  <h4 key={sale._id}>{sale.title}</h4>
+                  <h4>{sale.title}</h4>
                 </div>
                 <div className={styles.columnSales}>
                   <h4>
@@ -47,36 +48,39 @@ const StatsSales = () => {
               </div>
             ))}
           </div>
-        ) : (
-          <div>Sin ventas</div>
-        )}
-        <div className={styles.priceContainer}>
-          <div className={styles.price}>
-            <h3>Importe total de las ventas realizadas:</h3>
-            <h3>
-              {totalAmount.toLocaleString("es-ES", {
-                useGrouping: true,
-              })}
-              €
-            </h3>
-          </div>
-          <div className={styles.price2}>
-            <h3>Número total de ventas:</h3>
-            <h3>{totalSales}</h3>
-          </div>
-          <div className={styles.price2}>
-            <h3>Promedio por venta:</h3>
-            <h3>
-              {averagePerSale.toLocaleString("es-ES", {
-                useGrouping: true,
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}
-              €
-            </h3>
+          <div className={styles.priceContainer}>
+            <div className={styles.price}>
+              <h3>Importe total de las ventas realizadas:</h3>
+              <h3>
+                {totalAmount.toLocaleString("es-ES", {
+                  useGrouping: true,
+                })}
+                €
+              </h3>
+            </div>
+            <div className={styles.price2}>
+              <h3>Número total de ventas:</h3>
+              <h3>{totalSales}</h3>
+            </div>
+            <div className={styles.price2}>
+              <h3>Promedio por venta:</h3>
+              <h3>
+                {averagePerSale.toLocaleString("es-ES", {
+                  useGrouping: true,
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+                €
+              </h3>
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className={styles.sinProducts}>
+          <h3>Aún no has realizado ninguna compra</h3>
+          <h5>Empieza a vender para ganar dinero 🛒</h5>
+        </div>
+      )}
     </>
   );
 };

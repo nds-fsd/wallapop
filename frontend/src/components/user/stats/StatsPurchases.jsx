@@ -22,7 +22,6 @@ const StatsPurchases = () => {
   const averagePerPurchase =
     totalPurchases > 0 ? totalAmount / totalPurchases : 0;
 
-  // console.log("las compras", purchases);
   return (
     <>
       {isLoading && (
@@ -30,13 +29,13 @@ const StatsPurchases = () => {
           <Spinner size="M" />
         </div>
       )}
-      <div className={styles.gridContainer}>
-        <div className={styles.title}>
-          <h2>Producto</h2>
-          <h2>Precio</h2>
-          <h2>Comprador</h2>
-        </div>
-        {purchases && purchases.length > 0 ? (
+      {purchases && purchases.length > 0 ? (
+        <div className={styles.gridContainer}>
+          <div className={styles.title}>
+            <h2>Producto</h2>
+            <h2>Precio</h2>
+            <h2>Comprador</h2>
+          </div>
           <div className={styles.grid}>
             {purchases.map((purch) => (
               <div className={styles.row} key={purch._id}>
@@ -63,36 +62,39 @@ const StatsPurchases = () => {
               </div>
             ))}
           </div>
-        ) : (
-          <div>Sin compras</div>
-        )}
-        <div className={styles.priceContainer}>
-          <div className={styles.price}>
-            <h3>Importe total de las compras realizadas</h3>
-            <h3>
-              {totalAmount.toLocaleString("es-ES", {
-                useGrouping: true,
-              })}
-              €
-            </h3>
-          </div>
-          <div className={styles.price2}>
-            <h3>Número total de compras:</h3>
-            <h3>{totalPurchases}</h3>
-          </div>
-          <div className={styles.price2}>
-            <h3>Promedio por compra:</h3>
-            <h3>
-              {averagePerPurchase.toLocaleString("es-ES", {
-                useGrouping: true,
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}
-              €
-            </h3>
+          <div className={styles.priceContainer}>
+            <div className={styles.price}>
+              <h3>Importe total de las compras realizadas</h3>
+              <h3>
+                {totalAmount.toLocaleString("es-ES", {
+                  useGrouping: true,
+                })}
+                €
+              </h3>
+            </div>
+            <div className={styles.price2}>
+              <h3>Número total de compras:</h3>
+              <h3>{totalPurchases}</h3>
+            </div>
+            <div className={styles.price2}>
+              <h3>Promedio por compra:</h3>
+              <h3>
+                {averagePerPurchase.toLocaleString("es-ES", {
+                  useGrouping: true,
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+                €
+              </h3>
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className={styles.sinProducts}>
+          <h3>Aún no has realizado ninguna compra</h3>
+          <h5>Empieza a vender para ganar dinero 🛒</h5>
+        </div>
+      )}
     </>
   );
 };

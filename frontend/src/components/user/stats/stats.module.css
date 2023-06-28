@@ -112,3 +112,13 @@
 .rowSales h4 {
   margin-top: -0.1em;
 }
+
+.sinProducts {
+  color: var(--blue-dark-to-yellow-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-left: 9rem;
+}
