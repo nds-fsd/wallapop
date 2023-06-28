@@ -334,7 +334,7 @@ const FormHouse = () => {
           ¿Cómo es tu inmueble?
         </label>
         <textarea
-          maxLength={500}
+          maxLength={2000}
           placeholder="Describe los detalles más llamativos de tu espacio..."
           {...register("description", {
             required: "La descripción es obligatoria",
@@ -357,7 +357,6 @@ const FormHouse = () => {
         <button type="submit" className={styles.formButton}>
           Subir
         </button>
-        {/* {showAlert && <CustomAlert message="Tu producto se ha subido correctamente" onClose={handleCloseAlert}/>} */}
       </form>
     </>
   );
