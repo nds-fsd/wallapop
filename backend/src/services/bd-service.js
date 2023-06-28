@@ -1,6 +1,6 @@
 // Creamos las principales funciones con la BD
 /*
-    ·QUERY --> 
+    ·QUERY --> lo que quieras buscar
     ·MODEL --> modelSchema de mongo
     ·POPULATIONFIELDS --> si tiene que hacer populate
     ·ENTITY --> 
@@ -8,12 +8,17 @@
 */
 
 // GET ALL
-const findAll = ({ query = {}, model, populationFields = [], entity }) => {
+const findAll = ({
+  query = {},
+  model,
+  populationFields = [],
+  entity,
+  sort = "",
+}) => {
   // comprobamos que exista el model y entity
   if (!model || !entity) {
     throw new Error("Missing Model or Entity");
   }
-  //                  ¿¿¿¿find o findAll????
   let operation = model.find(query);
   //   hacemos un foreach para todos los populates que tenga
   if (populationFields.length > 0) {
@@ -21,15 +26,19 @@ const findAll = ({ query = {}, model, populationFields = [], entity }) => {
       operation = operation.populate(popField);
     });
   }
+  if (sort != "") {
+    operation = operation.sort(sort);
+  }
+  // console.log("OPERTION", operation);
   return operation;
 };
 
-// FIND ONE
-const findOne = ({ id, model, populationFields = [], entity }) => {
-  if (!model || !entity) {
+// FIND ID
+const findID = ({ id, model, populationFields = [] }) => {
+  // aqui falta el entity que nose perque va aqui
+  if (!model) {
     throw new Error("Missing Model or Entity");
   }
-
   let operation = model.findById(id);
   if (populationFields.length > 0) {
     populationFields.forEach((popField) => {
@@ -39,7 +48,7 @@ const findOne = ({ id, model, populationFields = [], entity }) => {
   return operation;
 };
 
-// CREATE
+// CREATE | POST
 const create = (model, data) => {
   if (!model || !data) {
     throw new Error("Missing Model or data");
@@ -49,7 +58,7 @@ const create = (model, data) => {
 };
 
 // MODIFICAR / UPDATE
-const updateOne = ({ model, id, data, populationFields = [] }) => {
+const updateItem = ({ model, id, data, populationFields = [] }) => {
   if (!model || !data || !id) {
     throw new Error("Missing Model or data or id");
   }
@@ -64,11 +73,11 @@ const updateOne = ({ model, id, data, populationFields = [] }) => {
 };
 
 // DELETE
-const deleteOne = (model, id) => {
+const deleteItem = ({ model }, id) => {
   if (!model || !id) {
     throw new Error("Missing Model or ID");
   }
-  return model.findByIdAndDelete(id);
+  return model.findByIdAndDelete(id).exec();
 };
 
-module.exports = { findAll, findOne, create, deleteOne, updateOne };
+module.exports = { findAll, findID, create, deleteItem, updateItem };

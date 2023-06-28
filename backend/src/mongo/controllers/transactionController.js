@@ -1,3 +1,4 @@
+const { getAll, createOne } = require("../../services/crud-service");
 const productModel = require("../models/productModel");
 const transactionModel = require("../models/transactionModel");
 const userModel = require("../models/userModel");
@@ -6,7 +7,6 @@ const userModel = require("../models/userModel");
 
 const getTransactionsByUser = async (req, res) => {
   const userId = req.params.user;
-
   if (!userId) res.status(404).json("no user id provided");
   try {
     if (userId) {
@@ -22,6 +22,7 @@ const getTransactionsByUser = async (req, res) => {
     res.status(500).json({ message: e });
   }
 };
+
 
 // Crear transactiono
 const postTransactions = async (req, res) => {

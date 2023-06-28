@@ -6,9 +6,10 @@ const { getAll, createOne } = require("../../services/crud-service");
 
 // Get para obtener todas las categorias
 const getAllCategories = getAll({
-  populationFields: [],
-  entity: "category",
   model: categoryModel,
+  populationFields: [],
+  sort: "",
+  entity: "category",
 });
 
 // Crear categorias

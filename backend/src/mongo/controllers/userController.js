@@ -1,5 +1,6 @@
 const express = require("express");
 const userModel = require("../models/userModel");
+const { getID, updateOne, deleteOne } = require("../../services/crud-service");
 
 const userLogin = async (req, res) => {
   const { email, password } = req.body;
@@ -77,37 +78,19 @@ const userRegister = async (req, res) => {
   }
 };
 
-const findUserByID = async (req, res) => {
-  const newFind = await userModel.findById(req.params.id);
-  if (!newFind) {
-    res.status(404).json("Sorry cant find that!");
-  } else {
-    res.status(200).json(newFind);
-  }
-};
+const findUserByID = getID({
+  model: userModel,
+  populationFields: [],
+});
 
-const modifyUserByID = async (req, res) => {
-  const { body } = req;
-  const user = await userModel.findByIdAndUpdate(req.params.id, req.body);
-  if (!body.email || !body.name || !body.phone) {
-    return res.status(400).json({ error: { login: "Missing datos" } });
-  } else {
-    if (!user) {
-      res.status(404).json({ error: { id: "Sorry cant find that!" } });
-    } else {
-      res.status(201).json(user);
-    }
-  }
-};
+const modifyUserByID = updateOne({
+  model: userModel,
+  populationFields: [],
+});
 
-const deleteUserByID = async (req, res) => {
-  const user = await userModel.findByIdAndDelete(req.params.id, req.body);
-  if (!user) {
-    res.status(404).json({ error: { id: "Sorry cant find that!" } });
-  } else {
-    res.status(200).json(user);
-  }
-};
+const deleteUserByID = deleteOne({
+  model: userModel,
+});
 
 module.exports = {
   userLogin,
@@ -116,3 +99,35 @@ module.exports = {
   deleteUserByID,
   findUserByID,
 };
+
+// const findUserByID = async (req, res) => {
+//   const newFind = await userModel.findById(req.params.id);
+//   if (!newFind) {
+//     res.status(404).json("Sorry cant find that!");
+//   } else {
+//     res.status(200).json(newFind);
+//   }
+// };
+
+// const modifyUserByID = async (req, res) => {
+//   const { body } = req;
+//   const user = await userModel.findByIdAndUpdate(req.params.id, req.body);
+//   if (!body.email || !body.name || !body.phone) {
+//     return res.status(400).json({ error: { login: "Missing datos" } });
+//   } else {
+//     if (!user) {
+//       res.status(404).json({ error: { id: "Sorry cant find that!" } });
+//     } else {
+//       res.status(201).json(user);
+//     }
+//   }
+// };
+
+// const deleteUserByID = async (req, res) => {
+//   const user = await userModel.findByIdAndDelete(req.params.id, req.body);
+//   if (!user) {
+//     res.status(404).json({ error: { id: "Sorry cant find that!" } });
+//   } else {
+//     res.status(200).json(user);
+//   }
+// };

@@ -5,8 +5,9 @@ dotenv.config();
 
 // const isTest = process.env.IS_TESTING;
 // if (!isTest) {
-  const m = require("../../index");
+const m = require("../../index");
 // }
+
 const getMessageByChatRoom = async (req, res) => {
   const chatroomID = req.params["chatRoom"];
   try {
@@ -26,7 +27,6 @@ const getMessageByChatRoom = async (req, res) => {
 };
 
 // Crear mensaje
-
 const postMessage = async (req, res) => {
   const { body, jwtPayload } = req;
 
@@ -48,9 +48,9 @@ const postMessage = async (req, res) => {
     await newMessage.save();
 
     // if (!isTest) {
-      m.ioPrivate
-        .to(`chat-${newMessage.chat_room_id}`)
-        .emit("NEW_MESSAGE", newMessage);
+    m.ioPrivate
+      .to(`chat-${newMessage.chat_room_id}`)
+      .emit("NEW_MESSAGE", newMessage);
     // }
     res.status(200).json(newMessage);
   } catch (e) {
@@ -75,7 +75,7 @@ const patchMessage = async (req, res) => {
       )
       .exec();
     // if (!isTest) {
-      m.ioPrivate.to(`chat-${req.params.chatId}`).emit("READ_MESSAGES");
+    m.ioPrivate.to(`chat-${req.params.chatId}`).emit("READ_MESSAGES");
     // }
 
     res.status(201).json(messages);
@@ -85,26 +85,6 @@ const patchMessage = async (req, res) => {
       .json({ error: "An error occurred while updating the messages" });
   }
 };
-
-// const patchMessage = async (req, res) => {
-//   const { body, jwtPayload } = req;
-//   try {
-//     const message = await messageModel
-//       .updateMany(
-//         { chat_room_id: body.chat_room_id, user_id: { $ne: jwtPayload.id } },
-//         { $set: { check: true } }
-//       )
-//       .exec();
-//     if (!message) {
-//       return res.status(404).json({ error: "Sorry, can't find this message" });
-//     }
-//     res.status(201).json(message);
-//   } catch (e) {
-//     res
-//       .status(500)
-//       .json({ error: "An error occurred while updating the message" });
-//   }
-// };
 
 const getCheckMessages = async (req, res) => {
   const chatroom = req.params.chatroom;
@@ -127,9 +107,31 @@ const getCheckMessages = async (req, res) => {
   }
 };
 
+
 module.exports = {
   getMessageByChatRoom,
   postMessage,
   patchMessage,
   getCheckMessages,
 };
+
+
+// const patchMessage = async (req, res) => {
+//   const { body, jwtPayload } = req;
+//   try {
+//     const message = await messageModel
+//       .updateMany(
+//         { chat_room_id: body.chat_room_id, user_id: { $ne: jwtPayload.id } },
+//         { $set: { check: true } }
+//       )
+//       .exec();
+//     if (!message) {
+//       return res.status(404).json({ error: "Sorry, can't find this message" });
+//     }
+//     res.status(201).json(message);
+//   } catch (e) {
+//     res
+//       .status(500)
+//       .json({ error: "An error occurred while updating the message" });
+//   }
+// };
