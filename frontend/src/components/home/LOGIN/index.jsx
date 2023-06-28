@@ -61,7 +61,7 @@ const Login = () => {
         </Link> */}
           <div data-test="perfil" className={styles.tuButton}>
             <Link to="/user/profile/info">
-              <img src={userData.photo} />
+              <img src={userData.photo === "" ? "https://res.cloudinary.com/dvogntdp2/image/upload/v1687880800/s9jq5uchu8mcvbftlqfj.jpg" : userData.photo} />
               TÚ
             </Link>
           </div>

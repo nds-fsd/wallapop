@@ -142,7 +142,7 @@ const HousePage = ({ id }) => {
             <div className={styles.user}>
               <h3>{data.user?.name}</h3>
               <div className={styles.background}>
-                <img src={data?.user?.photo} className={styles.userPhoto}></img>
+              <img src={data?.user?.photo === "" ? "https://res.cloudinary.com/dvogntdp2/image/upload/v1687880800/s9jq5uchu8mcvbftlqfj.jpg" : data.user.photo} className={styles.userPhoto} />
               </div>
             </div>
             <div className={styles.buttons}>

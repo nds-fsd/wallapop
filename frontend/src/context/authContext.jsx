@@ -16,10 +16,12 @@ import {
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
-  const [image, setImage] = useState("");
+  const imageStatus = JSON.parse(localStorage.getItem("user"))?.photo;
+  const [image, setImage] = useState(imageStatus);
   const [userData, setUserData] = useState(null);
   const [isLoggedin, setIsLoggedin] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
+
 
   const navigate = useNavigate();
   const queryClient = useQueryClient();
