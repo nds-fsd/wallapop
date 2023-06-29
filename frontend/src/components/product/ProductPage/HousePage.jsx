@@ -86,6 +86,10 @@ const HousePage = ({ id }) => {
       console.log("Error toggling favorite:", error);
     }
   };
+  
+  const handleExpandClick = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   const handleCreateChatRoom = async () => {
     if (!userToken) {
