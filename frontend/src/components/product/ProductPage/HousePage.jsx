@@ -160,7 +160,7 @@ const HousePage = ({ id }) => {
                 <button
                   onClick={handleFavorite}
                   className={`${styles.like} ${
-                    userFavorites ? styles.focused : ""
+                    userToken && userFavorites ? styles.focused : ""
                   }`}
                 >
                   <span

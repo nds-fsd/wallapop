@@ -31,6 +31,8 @@ const ElsePage = ({ id }) => {
   const [userFavorites, setUserFavorites] = useState([]);
   const [favoriteStatus, setFavoriteStatus] = useState(false);
 
+
+  console.log(data)
   useEffect(() => {
     const fetchUserFavs = async () => {
       try {
@@ -160,7 +162,7 @@ const ElsePage = ({ id }) => {
                 <button
                   onClick={handleFavorite}
                   className={`${styles.like} ${
-                    userFavorites ? styles.focused : ""
+                    userToken && userFavorites ? styles.focused : ""
                   }`}
                 >
                   <span

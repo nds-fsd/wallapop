@@ -157,7 +157,7 @@ const VehiclePage = ({ id }) => {
               >
                 <span
                     className={`icon-heart1 ${
-                      userFavorites ? styles.focused : ""
+                     userToken && userFavorites ? styles.focused : ""
                     }`}
                   ></span>
               </button>) : ("")}

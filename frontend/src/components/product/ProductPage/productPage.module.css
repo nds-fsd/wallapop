@@ -49,10 +49,18 @@
   cursor: pointer;
 }
 
+.like span {
+  background-color: transparent;
+  color: red
+}
 .like:hover {
   background-color: red;
   color: white;
   border: none;
+}
+
+.like span:hover {
+  color: white
 }
 
 .focused {
