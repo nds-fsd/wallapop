@@ -33,8 +33,8 @@ const FeaturedProducts = ({ categoriesToRender }) => {
   const displayedProducts =
     filteredProducts &&
     filteredProducts
-    .concat(filteredProducts.slice(0, productsPerPage))
-    .slice(currentIndex, currentIndex + productsPerPage);
+      .concat(filteredProducts.slice(0, productsPerPage))
+      .slice(currentIndex, currentIndex + productsPerPage);
   const handleNext = () => {
     setCurrentIndex((currentIndex) =>
       currentIndex === filteredProducts.length - 1 ? 0 : currentIndex + 1
@@ -166,14 +166,16 @@ const FeaturedProducts = ({ categoriesToRender }) => {
                             <span className="icon-eye1"></span>
                           </button>
                         </Link>
-                        <button
-                          onClick={() => handleFavorite(prod._id)}
-                          className={`${styles.like} ${
-                            isFavorite ? styles.focused : ""
-                          }`}
-                        >
-                          <span className="icon-heart1"></span>
-                        </button>
+                        {userData?.id !== prod?.user.id ? (
+                          <button
+                            onClick={() => handleFavorite(prod._id)}
+                            className={`${styles.like} ${
+                              isFavorite ? styles.focused : ""
+                            }`}
+                          >
+                            <span className="icon-heart1"></span>
+                          </button>
+                        ) : null}
                       </div>
                       <p className={styles.title}>{prod.title}</p>
                     </div>

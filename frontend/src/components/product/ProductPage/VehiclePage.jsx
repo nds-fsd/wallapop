@@ -32,6 +32,7 @@ const VehiclePage = ({ id }) => {
   const [userFavorites, setUserFavorites] = useState([]);
   const [favoriteStatus, setFavoriteStatus] = useState(false);
 
+
   useEffect(() => {
     const fetchUserFavs = async () => {
       try {
@@ -204,7 +205,7 @@ const VehiclePage = ({ id }) => {
                 <p className={styles.detail}>{data.doors} puertas</p>
               )}
               {data?.seats !== 0 && data?.seats && (
-                <p className={styles.detail}>{data.seats} plazas{data.seats !==1 ? "s" : ""}</p>
+                <p className={styles.detail}>{data.seats} plaza{data.seats !==1 ? "s" : ""}</p>
               )}
             </div>
           ) : null}

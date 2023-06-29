@@ -35,6 +35,7 @@ const LatestProducts = () => {
     const fetchUserFavs = async () => {
       try {
         const favs = await getFavs(userId);
+        if (favs && favs[0] && favs[0].products) {}
         const favsProductIds = favs && favs[0].products.map((prod) => prod._id);
         setUserFavorites(favsProductIds);
       } catch (error) {
@@ -166,14 +167,16 @@ const LatestProducts = () => {
                           <span className="icon-eye1"></span>
                         </button>
                       </Link>
-                      <button
-                        onClick={() => handleFavorite(prod._id)}
-                        className={`${styles.like} ${
-                          isFavorite ? styles.focused : ""
-                        }`}
-                      >
-                        <span className="icon-heart1"></span>
-                      </button>
+                      {userData?.id !== prod?.user.id ? (
+                          <button
+                            onClick={() => handleFavorite(prod._id)}
+                            className={`${styles.like} ${
+                              isFavorite ? styles.focused : ""
+                            }`}
+                          >
+                            <span className="icon-heart1"></span>
+                          </button>
+                        ) : null}
                     </div>
                     <p className={styles.title}>{prod.title}</p>
                   </div>
