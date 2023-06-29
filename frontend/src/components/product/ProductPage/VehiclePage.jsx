@@ -197,26 +197,26 @@ const VehiclePage = ({ id }) => {
 
           {data?.brand || data?.model || data?.year || data?.doors || data?.seats ? (
             <div className={styles.detailType}>
-              {data.brand && <p className={styles.detail}>{data.brand}</p>}
-              {data.model && <p className={styles.detail}>{data.model}</p>}
-              {data.year && <p className={styles.detail}>{data.year}</p>}
-              {data.doors && (
+              {data?.brand && <p className={styles.detail}>{data.brand}</p>}
+              {data?.model && <p className={styles.detail}>{data.model}</p>}
+              {data?.year && <p className={styles.detail}>{data.year}</p>}
+              {data?.doors !== 0 && (
                 <p className={styles.detail}>{data.doors} puertas</p>
               )}
-              {data.seats && (
+              {data?.seats !== 0 && (
                 <p className={styles.detail}>{data.seats} plazas</p>
               )}
             </div>
           ) : null}
           {data?.km || data?.engine || data?.shift ? (
             <div className={styles.detailType2}>
-              {data.km && (
+              {data?.km && (
                 <p className={styles.detail}>
-                  {data.km.toLocaleString("es-ES", { useGrouping: true })} Km
+                  {data?.km.toLocaleString("es-ES", { useGrouping: true })} Km
                 </p>
               )}
-              {data.engine && <p className={styles.detail}>{data.engine}</p>}
-              {data.shift && <p className={styles.detail}>{data.shift}</p>}
+              {data?.engine && <p className={styles.detail}>{data.engine}</p>}
+              {data?.shift && <p className={styles.detail}>{data.shift}</p>}
             </div>
           ) : null}
 
