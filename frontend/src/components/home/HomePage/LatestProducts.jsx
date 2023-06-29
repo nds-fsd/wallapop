@@ -20,6 +20,8 @@ const LatestProducts = () => {
     },
   });
 
+
+  console.log(prods)
   const navigate = useNavigate();
   const location = useLocation();
   const userToken = getUserToken();
@@ -167,7 +169,7 @@ const LatestProducts = () => {
                           <span className="icon-eye1"></span>
                         </button>
                       </Link>
-                      {userData?.id !== prod?.user.id ? (
+                      {userData?.id !== prod?.user ? (
                           <button
                             onClick={() => handleFavorite(prod._id)}
                             className={`${styles.like} ${

@@ -163,29 +163,29 @@ const FormElse = () => {
             className={styles.dropdown}
           >
             <option value="">Selecciona una categoría</option>
-            <option value="Informática y Electrónica">
-              Informática y Electrónica
-            </option>
-            <option value="TV, Audio y Foto">TV, Audio y Foto</option>
-            <option value="Móviles y Telefonía">Móviles y Telefonía</option>
             <option value="Bicicletas">Bicicletas</option>
-            <option value="Electrodomésticos">Electrodomésticos</option>
-            <option value="Consolas y Videojuegos">
-              Consolas y Videojuegos
-            </option>
             <option value="Cine, Libros y Música">Cine, Libros y Música</option>
-            <option value="Niños y Bebés">Niños y Bebés</option>
             <option value="Coleccionismo">Coleccionismo</option>
             <option value="Construcción y Reformas">
               Construcción y Reformas
             </option>
+            <option value="Deporte y Ocio">Deporte y Ocio</option>
+            <option value="Electrodomésticos">Electrodomésticos</option>
+            <option value="Hogar y Jardín">Hogar y Jardín</option>
             <option value="Industria y Agricultura">
               Industria y Agricultura
             </option>
-            <option value="Motor y Accesorios">Motor y Accesorios</option>
+            <option value="Informática y Electrónica">
+              Informática y Electrónica
+            </option>
             <option value="Moda y Accesorios">Moda y Accesorios</option>
-            <option value="Hogar y Jardín">Hogar y Jardín</option>
-            <option value="Deporte y Ocio">Deporte y Ocio</option>
+            <option value="Motor y Accesorios">Motor y Accesorios</option>
+            <option value="Móviles y Telefonía">Móviles y Telefonía</option>
+            <option value="Niños y Bebés">Niños y Bebés</option>
+            <option value="TV, Audio y Foto">TV, Audio y Foto</option>
+            <option value="Consolas y Videojuegos">
+              Consolas y Videojuegos
+            </option>
             <option value="Otros">Otros</option>
           </select>
           <select

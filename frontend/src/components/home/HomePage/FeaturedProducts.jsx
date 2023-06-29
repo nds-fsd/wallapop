@@ -28,6 +28,7 @@ const FeaturedProducts = ({ categoriesToRender }) => {
     categoriesToRender.includes(prod.category)
   );
 
+
   // pasa las cards una a una
   const productsPerPage = 5;
   const displayedProducts =
@@ -166,7 +167,7 @@ const FeaturedProducts = ({ categoriesToRender }) => {
                             <span className="icon-eye1"></span>
                           </button>
                         </Link>
-                        {userData?.id !== prod?.user.id ? (
+                        {userData?.id !== prod?.user ? (
                           <button
                             onClick={() => handleFavorite(prod._id)}
                             className={`${styles.like} ${
