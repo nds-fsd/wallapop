@@ -200,11 +200,11 @@ const VehiclePage = ({ id }) => {
               {data?.brand && <p className={styles.detail}>{data.brand}</p>}
               {data?.model && <p className={styles.detail}>{data.model}</p>}
               {data?.year && <p className={styles.detail}>{data.year}</p>}
-              {data?.doors !== 0 && (
+              {data?.doors !== 0 &&  data?.doors && (
                 <p className={styles.detail}>{data.doors} puertas</p>
               )}
-              {data?.seats !== 0 && (
-                <p className={styles.detail}>{data.seats} plazas</p>
+              {data?.seats !== 0 && data?.seats && (
+                <p className={styles.detail}>{data.seats} plazas{data.seats !==1 ? "s" : ""}</p>
               )}
             </div>
           ) : null}
