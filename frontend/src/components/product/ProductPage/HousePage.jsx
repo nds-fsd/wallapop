@@ -31,14 +31,18 @@ const HousePage = ({ id }) => {
   const [userFavorites, setUserFavorites] = useState([]);
   const [favoriteStatus, setFavoriteStatus] = useState(false);
 
-
   useEffect(() => {
     const fetchUserFavs = async () => {
       try {
         const favs = await getFavs(userId);
-        const favsProductIds = favs && favs[0].products.map((prod) => prod._id);
-        const isProductFavorite = favsProductIds.includes(String(id));
-        setUserFavorites(isProductFavorite);
+        if (favs && favs[0] && favs[0].products) {
+          const favsProductIds =
+            favs && favs[0].products.map((prod) => prod._id);
+          const isProductFavorite = favsProductIds.includes(String(id));
+          setUserFavorites(isProductFavorite);
+        } else {
+          setUserFavorites(false);
+        }
       } catch (error) {
         console.log("Error fetching user favorites", error);
       }
@@ -48,10 +52,6 @@ const HousePage = ({ id }) => {
     }
   }, [userToken, id]);
 
-  const handleExpandClick = () => {
-    setIsExpanded(!isExpanded);
-  };
-
   const handleAlertAccept = () => {
     setShowAlert(false);
     window.location.reload();
@@ -60,7 +60,7 @@ const HousePage = ({ id }) => {
   const handleSessionAlert = () => {
     setSessionAlert(false);
     const previousProductPage = window.location.pathname;
-    localStorage.setItem('previousProductPage', previousProductPage);
+    localStorage.setItem("previousProductPage", previousProductPage);
     navigate("/user/login");
   };
 
@@ -86,7 +86,6 @@ const HousePage = ({ id }) => {
       console.log("Error toggling favorite:", error);
     }
   };
-
 
   const handleCreateChatRoom = async () => {
     if (!userToken) {
@@ -142,18 +141,33 @@ const HousePage = ({ id }) => {
             <div className={styles.user}>
               <h3>{data.user?.name}</h3>
               <div className={styles.background}>
-              <img src={data?.user?.photo === "" ? "https://res.cloudinary.com/dvogntdp2/image/upload/v1687880800/s9jq5uchu8mcvbftlqfj.jpg" : data.user.photo} className={styles.userPhoto} />
+                <img
+                  src={
+                    data?.user?.photo === ""
+                      ? "https://res.cloudinary.com/dvogntdp2/image/upload/v1687880800/s9jq5uchu8mcvbftlqfj.jpg"
+                      : data.user.photo
+                  }
+                  className={styles.userPhoto}
+                />
               </div>
             </div>
             <div className={styles.buttons}>
-            {userData?.id !== data?.user._id ? (<button
-                onClick={handleFavorite}
-                className={`${styles.like} ${
-                  userToken && userFavorites ? styles.focused : ""
-                }`}
-              >
-                <span className="icon-heart1"></span>
-              </button>) : ("")}
+              {userData?.id !== data?.user._id ? (
+                <button
+                  onClick={handleFavorite}
+                  className={`${styles.like} ${
+                    userFavorites ? styles.focused : ""
+                  }`}
+                >
+                  <span
+                    className={`icon-heart1 ${
+                      userFavorites ? styles.focused : ""
+                    }`}
+                  ></span>{" "}
+                </button>
+              ) : (
+                ""
+              )}
               {userData?.id !== data?.user._id ? (
                 <button className={styles.chat} onClick={handleCreateChatRoom}>
                   CHAT
@@ -242,8 +256,11 @@ const HousePage = ({ id }) => {
           <RelatedProducts category={data?.category} parentId={data?._id} />
         )}
       </div>
-      {data && userToken && userData?.id !== data?.user._id ? (<ProductBar data={data}/>) : ("")}
-
+      {data && userToken && userData?.id !== data?.user._id ? (
+        <ProductBar data={data} />
+      ) : (
+        ""
+      )}
     </>
   );
 };

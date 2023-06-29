@@ -36,9 +36,14 @@ const VehiclePage = ({ id }) => {
     const fetchUserFavs = async () => {
       try {
         const favs = await getFavs(userId);
-        const favsProductIds = favs && favs[0].products.map((prod) => prod._id);
-        const isProductFavorite = favsProductIds.includes(String(id));
-        setUserFavorites(isProductFavorite);
+        if (favs && favs[0] && favs[0].products) {
+          const favsProductIds =
+            favs && favs[0].products.map((prod) => prod._id);
+          const isProductFavorite = favsProductIds.includes(String(id));
+          setUserFavorites(isProductFavorite);
+        } else {
+          setUserFavorites(false);
+        }
       } catch (error) {
         console.log("Error fetching user favorites", error);
       }
@@ -84,10 +89,6 @@ const VehiclePage = ({ id }) => {
       console.log("Error toggling favorite:", error);
     }
   };
-
-  //Cuando todos los productos tengan asociado categories (title, logo...)
-  //junto con el div que tiene el Link
-  // const title = data?.categories[0].title
 
   const handleCreateChatRoom = async () => {
     if (!userToken) {
@@ -150,10 +151,14 @@ const VehiclePage = ({ id }) => {
               {userData?.id !== data?.user._id ? (<button
                 onClick={handleFavorite}
                 className={`${styles.like} ${
-                  userToken && userFavorites ? styles.focused : ""
+                  userFavorites ? styles.focused : ""
                 }`}
               >
-                <span className="icon-heart1"></span>
+                <span
+                    className={`icon-heart1 ${
+                      userFavorites ? styles.focused : ""
+                    }`}
+                  ></span>
               </button>) : ("")}
               {userData?.id !== data?.user._id ? (
                 <button className={styles.chat} onClick={handleCreateChatRoom}>

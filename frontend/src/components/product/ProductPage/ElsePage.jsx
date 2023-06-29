@@ -5,7 +5,7 @@ import Slider from "../Slider/Slider";
 import Keywords from "../Keywords/Keywords";
 import ProductBar from "../ProductBar/ProductBar";
 import { postChatRoom } from "../../../utils/apiChatRoom";
-import {AuthContext } from "../../../context/authContext";
+import { AuthContext } from "../../../context/authContext";
 import { getProductById } from "../../../utils/apiProducts";
 import { Link, useLocation, useNavigate, NavLink } from "react-router-dom";
 import { createFav, deleteFav, getFavs } from "../../../utils/apiFavorites";
@@ -13,10 +13,9 @@ import RelatedProducts from "./RelatedProducts";
 import { getUserData, getUserToken } from "../../../utils/localStorage.utils";
 
 const ElsePage = ({ id }) => {
-
   const { data, isLoading } = useQuery(["product", id], getProductById);
   const { data: favs } = useQuery(["favs"], getFavs);
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const category = data?.categories;
   const title = data?.categories[0].title;
   const navigate = useNavigate();
@@ -36,9 +35,14 @@ const ElsePage = ({ id }) => {
     const fetchUserFavs = async () => {
       try {
         const favs = await getFavs(userId);
-        const favsProductIds = favs && favs[0].products.map((prod) => prod._id);
-        const isProductFavorite = favsProductIds.includes(String(id));
-        setUserFavorites(isProductFavorite);
+        if (favs && favs[0] && favs[0].products) {
+          const favsProductIds =
+            favs && favs[0].products.map((prod) => prod._id);
+          const isProductFavorite = favsProductIds.includes(String(id));
+          setUserFavorites(isProductFavorite);
+        } else {
+          setUserFavorites(false);
+        }
       } catch (error) {
         console.log("Error fetching user favorites", error);
       }
@@ -58,7 +62,7 @@ const ElsePage = ({ id }) => {
   const handleSessionAlert = () => {
     setSessionAlert(false);
     const previousProductPage = window.location.pathname;
-    localStorage.setItem('previousProductPage', previousProductPage);
+    localStorage.setItem("previousProductPage", previousProductPage);
     navigate("/user/login");
   };
 
@@ -140,19 +144,34 @@ const ElsePage = ({ id }) => {
               <div className={styles.user}>
                 <h3>{data?.user?.name}</h3>
                 <div className={styles.background}>
-                  <img src={data?.user?.photo === "" ? "https://res.cloudinary.com/dvogntdp2/image/upload/v1687880800/s9jq5uchu8mcvbftlqfj.jpg" : data.user.photo} className={styles.userPhoto} />
+                  <img
+                    src={
+                      data?.user?.photo === ""
+                        ? "https://res.cloudinary.com/dvogntdp2/image/upload/v1687880800/s9jq5uchu8mcvbftlqfj.jpg"
+                        : data.user.photo
+                    }
+                    className={styles.userPhoto}
+                  />
                 </div>
               </div>
             )}
             <div className={styles.buttons}>
-            {userData?.id !== data?.user._id ? (<button
-                onClick={handleFavorite}
-                className={`${styles.like} ${
-                  userToken && userFavorites ? styles.focused : ""
-                }`}
-              >
-                <span className="icon-heart1"></span>
-              </button>) : ("")}
+              {userData?.id !== data?.user._id ? (
+                <button
+                  onClick={handleFavorite}
+                  className={`${styles.like} ${
+                    userFavorites ? styles.focused : ""
+                  }`}
+                >
+                  <span
+                    className={`icon-heart1 ${
+                      userFavorites ? styles.focused : ""
+                    }`}
+                  ></span>
+                </button>
+              ) : (
+                ""
+              )}
               {userData?.id !== data?.user._id ? (
                 <button className={styles.chat} onClick={handleCreateChatRoom}>
                   CHAT
@@ -173,7 +192,8 @@ const ElsePage = ({ id }) => {
             </div>
             <div className={styles.category}>
               <Link to={"/category/" + title}>
-                {data && data.categories &&
+                {data &&
+                  data.categories &&
                   category.map((cat) => (
                     <span className={cat.logo} key={cat._id} />
                   ))}
@@ -205,7 +225,6 @@ const ElsePage = ({ id }) => {
               <span className="icon-mail2"></span>
             </div>
           </div>
-        
         </div>
         {/* {data && userData?.id !== data?.user._id && (
           <RelatedProducts category={data?.category} parentId={data?._id} />
@@ -214,7 +233,11 @@ const ElsePage = ({ id }) => {
           <RelatedProducts category={data?.category} parentId={data?._id} />
         )}
       </div>
-      {data && userData?.id !== data?.user._id ? (<ProductBar data={data}/>) : ("")}
+      {data && userData?.id !== data?.user._id ? (
+        <ProductBar data={data} />
+      ) : (
+        ""
+      )}
     </>
   );
 };
