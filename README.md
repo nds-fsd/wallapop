@@ -114,14 +114,15 @@ La siguiente figura muestra un 85% de cobertura de código en la aplicación de 
 * React-Hook-Form 
 * React-Query
 * Axios
-* Jest (testing)
+* Cypress (testing)
+
 ### Principales librerías utilizadas en Back-End:
 * Express
 * Mongoose (Base de datos)
 * Socket.io (Cliente y servidor)
 * Cloudinary (Gestión de imágenes)
 * JWT (Autenticación y autorización)
-* Cypress (testing)
+* Jest (testing)
 
 # Instalación
 
