@@ -20,8 +20,6 @@ const LatestProducts = () => {
     },
   });
 
-
-  console.log(prods)
   const navigate = useNavigate();
   const location = useLocation();
   const userToken = getUserToken();
